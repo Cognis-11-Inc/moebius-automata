@@ -1,0 +1,18 @@
+[package]
+name = "moebius-core"
+description = "M0 scientific core: persistent digital cells on a periodic 3D lattice."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[dependencies]
+blake3 = "1"
+rand = "0.9"
+rand_chacha = "0.9"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"

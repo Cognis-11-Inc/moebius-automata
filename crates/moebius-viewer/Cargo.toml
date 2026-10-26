@@ -1,0 +1,20 @@
+[package]
+name = "moebius-viewer"
+description = "Read-only Bevy 0.20 viewer of committed M0 snapshots."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[[bin]]
+name = "moebius-view"
+path = "src/main.rs"
+
+[dependencies]
+bevy = { version = "=0.20.0", features = ["wav"] }
+clap = { version = "4", features = ["derive"] }
+moebius-core = { workspace = true }
+serde_json = "1"

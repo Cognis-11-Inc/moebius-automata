@@ -1,0 +1,36 @@
+# Non-authoritative analysis stack for M0.
+# The scientific tick is Rust. These packages do not advance the world.
+# Interpreter: CPython 3.13 (see python/README.md and python/requirements.lock.txt).
+# TensorFlow publishes no cp314 wheel. The host Python is 3.14, so the venv is 3.13.
+numpy
+scipy
+pandas
+matplotlib
+seaborn
+sympy
+scikit-learn
+scikit-image
+statsmodels
+h5py
+pyarrow
+xarray
+numba
+networkx
+polars
+pydantic>=2
+tqdm
+jupyter
+ipykernel
+notebook
+pyyaml
+rich
+pillow
+imageio
+joblib
+plotly
+bokeh
+dask
+protobuf
+torch
+tensorflow
+pytest

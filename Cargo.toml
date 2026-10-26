@@ -1,0 +1,19 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/moebius-core",
+    "crates/moebius-cli",
+    "crates/moebius-viewer",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+authors = ["Cognis 11 Inc."]
+rust-version = "1.97.1"
+repository = "https://github.com/Cognis-11-Inc/moebius-automata"
+publish = false
+
+[workspace.dependencies]
+moebius-core = { path = "crates/moebius-core" }

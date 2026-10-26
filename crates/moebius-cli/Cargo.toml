@@ -1,0 +1,20 @@
+[package]
+name = "moebius-cli"
+description = "Headless M0 batch runner. It writes committed snapshots and does not render them."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+publish.workspace = true
+autobins = false
+
+[[bin]]
+name = "moebius"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+moebius-core = { workspace = true }
+serde_json = "1"

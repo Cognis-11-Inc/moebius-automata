@@ -1,0 +1,21 @@
+{
+  "width": 64,
+  "height": 64,
+  "depth": 64,
+  "initial_population": 128,
+  "initial_energy": 12,
+  "initial_nutrient_per_site": 4,
+  "nutrient_wave_amplitude": 18,
+  "initial_reservoir": 50000,
+  "initial_waste": 0,
+  "inflow_per_tick": 256,
+  "inject_per_tick": 256,
+  "uptake_per_tick": 2,
+  "energy_per_nutrient": 3,
+  "maintenance_cost": 2,
+  "export_per_tick": 128,
+  "site_cap": 64,
+  "reservoir_cap": 50000000,
+  "energy_cap": 10000,
+  "genome_fill": "derived"
+}
