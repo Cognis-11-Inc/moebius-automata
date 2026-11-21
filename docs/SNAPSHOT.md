@@ -55,3 +55,22 @@ stride. The samples are not a second stock.
 `hypothesis.json`, when present, is `{ "name", "note", "sites": [[x, y, z, weight], ...] }`
 with unknown fields rejected. It is an annotation. The viewer can draw it. The
 simulation never writes it.
+
+## Farm M1 extension
+
+M0 payload bytes remain unchanged when brain and flesh lists are empty. Farm
+snapshots append `FARM2`, a little-endian `u32` byte length, and compact JSON
+with ordered `brains` and `flesh` lists. The extension is covered by the state
+hash. All controller weights, eligibility traces, bends, twists, jaw and last-action
+state, velocity, subsite
+position, lineage, reward memory, and permanent flesh are included. A farm with
+no living cells still stores its flesh. Unknown extensions, unordered or duplicate
+entries, and payloads above 16 MB are rejected. Restore also audits state bounds,
+mode compatibility, occupancy, and both ledgers.
+
+Farm manifests identify `canonical-le-v1+FARM2`. The earlier FARM1 extension encodes five joints and 14 actions. It is
+explicitly refused by the new rig loader rather than silently reinterpreted.
+Its old run artifacts remain unchanged; replay requires the original implementation.
+Older binaries cannot decode the new extension. Existing M0 recordings keep their config hashes and state hashes.
+The live viewer uses full rig state; recorded viewer playback currently shows
+lattice positions and accounting without the live articulated presentation.

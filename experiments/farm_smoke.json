@@ -1,0 +1,28 @@
+{
+  "width": 12,
+  "height": 12,
+  "depth": 12,
+  "initial_population": 12,
+  "initial_energy": 24,
+  "initial_nutrient_per_site": 12,
+  "nutrient_wave_amplitude": 0,
+  "initial_reservoir": 50000,
+  "initial_waste": 0,
+  "inflow_per_tick": 256,
+  "inject_per_tick": 256,
+  "uptake_per_tick": 2,
+  "energy_per_nutrient": 3,
+  "maintenance_cost": 1,
+  "export_per_tick": 128,
+  "site_cap": 64,
+  "reservoir_cap": 50000000,
+  "energy_cap": 10000,
+  "genome_fill": "derived",
+  "farm": {
+    "max_population": 96,
+    "birth_energy": 40,
+    "birth_cost": 4,
+    "maturity_ticks": 24,
+    "birth_cooldown": 32
+  }
+}

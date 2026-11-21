@@ -1,18 +1,20 @@
-//! M0 scientific core for Möbius Automata.
+//! Deterministic M0 and opt-in Farm M1 core for Möbius Automata.
 //!
 //! A digital cell is an identifiable lifecycle with a site, not a pixel.
 //! The lattice is a hybrid artificial-life substrate with one material field.
-//! This crate does not implement binding, division, mutation, roles, signals,
-//! collectives, or evolutionary success. It does not link to other Cognis systems.
+//! Optional Farm M1 adds adaptive motor rigs, asexual reproduction, inherited
+//! controller mutation, and persistent secretion. Collective organisms and
+//! evolutionary success are not established. No other Cognis systems are linked.
 //!
 //! Action-energy is an integer accounting stock created by a stated conversion
 //! and destroyed by maintenance or death. It is not a conserved physical quantity.
-//! Material (field + reservoir + waste + external output) is conserved exactly
+//! Material (field + flesh + reservoir + waste + external output) is conserved exactly
 //! against the initial stock plus external input.
 
 #![forbid(unsafe_code)]
 
 mod error;
+pub mod farm;
 mod geom;
 mod hashutil;
 mod prng;
@@ -24,8 +26,8 @@ pub mod snapshot;
 pub mod world;
 
 pub use config::{
-    GenomeFill, MAX_AMOUNT, MAX_AXIS, MAX_SNAPSHOTS, MAX_TICKS, MAX_TRAIL_ROWS, MAX_VOLUME,
-    SimConfig, config_hash, load_config_str,
+    FarmRules, GenomeFill, MAX_AMOUNT, MAX_AXIS, MAX_SNAPSHOTS, MAX_TICKS, MAX_TRAIL_ROWS,
+    MAX_VOLUME, SimConfig, config_hash, load_config_str,
 };
 pub use geom::{
     Dims, Dir, MoveOutcome, MoveProposal, NEIGHBORHOOD, Site, resolve_moves, step_site,

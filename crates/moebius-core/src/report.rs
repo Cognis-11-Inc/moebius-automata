@@ -16,6 +16,7 @@ pub struct Metrics {
     pub live: u32,
     pub dead: u32,
     pub field: u64,
+    pub flesh: u64,
     pub reservoir: u64,
     pub waste: u64,
     pub external_input: u64,
@@ -40,6 +41,7 @@ fn metrics_from(world: &World, accounts: &Accounts) -> Metrics {
         live: world.live_count(),
         dead: world.dead_count(),
         field: accounts.field,
+        flesh: accounts.flesh,
         reservoir: accounts.reservoir,
         waste: accounts.waste,
         external_input: accounts.external_input,
@@ -63,15 +65,16 @@ pub fn metrics_csv(rows: &[Metrics]) -> Result<String, Error> {
         )));
     }
     let mut out = String::from(
-        "tick,live,dead,field,reservoir,waste,external_input,external_output,material_residual,energy_live,energy_credited,energy_maintenance,energy_disposed,energy_residual,state_hash\n",
+        "tick,live,dead,field,flesh,reservoir,waste,external_input,external_output,material_residual,energy_live,energy_credited,energy_maintenance,energy_disposed,energy_residual,state_hash\n",
     );
     for row in rows {
         out.push_str(&format!(
-            "{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}\n",
+            "{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}\n",
             row.tick,
             row.live,
             row.dead,
             row.field,
+            row.flesh,
             row.reservoir,
             row.waste,
             row.external_input,
@@ -121,6 +124,7 @@ pub struct RunManifest {
     pub external_input: u64,
     pub external_output: u64,
     pub material_field: u64,
+    pub material_flesh: u64,
     pub material_reservoir: u64,
     pub material_waste: u64,
     pub material_residual: i64,
@@ -160,9 +164,21 @@ pub fn build_manifest(
         seed,
         prng: PRNG.into(),
         placement_stream: PLACEMENT_STREAM.into(),
-        movement_stream: MOVEMENT_STREAM.into(),
-        neighborhood: NEIGHBORHOOD.into(),
-        state_format: STATE_FORMAT.into(),
+        movement_stream: if config.farm.is_some() {
+            "M1 adaptive motor policy; domain-separated brain, motor-explore and motor-mutation BLAKE3 draws".into()
+        } else {
+            MOVEMENT_STREAM.into()
+        },
+        neighborhood: if config.farm.is_some() {
+            "M1 fixed-point inertial motion, periodic wrap; endpoint occupancy contention".into()
+        } else {
+            NEIGHBORHOOD.into()
+        },
+        state_format: if config.farm.is_some() {
+            "canonical-le-v1+FARM2".into()
+        } else {
+            STATE_FORMAT.into()
+        },
         ticks,
         snapshot_interval,
         snapshot_ticks: snapshot_ticks.to_vec(),
@@ -174,6 +190,7 @@ pub fn build_manifest(
         external_input: accounts.external_input,
         external_output: accounts.external_output,
         material_field: accounts.field,
+        material_flesh: accounts.flesh,
         material_reservoir: accounts.reservoir,
         material_waste: accounts.waste,
         material_residual: 0,
@@ -222,7 +239,7 @@ pub fn check_horizon(config: &SimConfig, ticks: u64) -> Result<(), Error> {
             config.reservoir_cap, config.initial_reservoir, config.inflow_per_tick
         )));
     }
-    let population = u64::from(config.initial_population);
+    let population = u64::from(config.population_bound());
     let seeded = population
         .checked_mul(config.initial_energy)
         .ok_or_else(|| Error::Overflow("seed energy horizon".into()))?;
@@ -292,7 +309,7 @@ pub fn validate_run(
     }
     let trail_upper = ticks
         .saturating_add(1)
-        .checked_mul(u64::from(config.initial_population))
+        .checked_mul(u64::from(config.population_bound()))
         .ok_or_else(|| Error::Overflow("trail row horizon".into()))?;
     if trail_upper > MAX_TRAIL_ROWS {
         return Err(Error::Run(format!(

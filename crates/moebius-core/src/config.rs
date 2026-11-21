@@ -3,9 +3,9 @@ use serde::{Deserialize, Serialize};
 use crate::error::Error;
 
 /// Hard bounds for M0. Values outside these ranges are rejected.
-/// The acceptance experiment stays 64³. The open hall uses the 128 cap.
-pub const MAX_AXIS: u32 = 128;
-pub const MAX_VOLUME: u64 = 128 * 128 * 128;
+/// The acceptance experiment stays 64³. Farm M1 defaults to the 256 cap.
+pub const MAX_AXIS: u32 = 256;
+pub const MAX_VOLUME: u64 = 256 * 256 * 256;
 pub const MAX_TICKS: u64 = 100_000;
 pub const MAX_SNAPSHOTS: u64 = 48;
 pub const MAX_TRAIL_ROWS: u64 = 200_000;
@@ -47,6 +47,31 @@ pub struct SimConfig {
     pub reservoir_cap: u64,
     pub energy_cap: u64,
     pub genome_fill: GenomeFill,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub farm: Option<FarmRules>,
+}
+
+/// Optional M1 laws; absence preserves M0 and its historical config hashes.
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FarmRules {
+    pub max_population: u32,
+    pub birth_energy: u64,
+    pub birth_cost: u64,
+    pub maturity_ticks: u64,
+    pub birth_cooldown: u64,
+}
+
+impl Default for FarmRules {
+    fn default() -> Self {
+        Self {
+            max_population: 768,
+            birth_energy: 80,
+            birth_cost: 8,
+            maturity_ticks: 64,
+            birth_cooldown: 128,
+        }
+    }
 }
 
 impl SimConfig {
@@ -72,6 +97,7 @@ impl SimConfig {
             reservoir_cap: 50_000_000,
             energy_cap: 10_000,
             genome_fill: GenomeFill::Derived,
+            farm: None,
         }
     }
 
@@ -98,7 +124,23 @@ impl SimConfig {
             reservoir_cap: 50_000_000,
             energy_cap: 10_000,
             genome_fill: GenomeFill::Derived,
+            farm: None,
         }
+    }
+
+    pub fn farm_256() -> Self {
+        let mut config = Self::hall_128();
+        config.width = 256;
+        config.height = 256;
+        config.depth = 256;
+        config.farm = Some(FarmRules::default());
+        config
+    }
+
+    pub fn population_bound(&self) -> u32 {
+        self.farm
+            .as_ref()
+            .map_or(self.initial_population, |farm| farm.max_population)
     }
 
     pub fn volume(&self) -> Result<u64, Error> {
@@ -125,6 +167,20 @@ impl SimConfig {
 
     pub fn validate(&self) -> Result<(), Error> {
         let volume = self.volume()?;
+        if let Some(farm) = &self.farm
+            && (farm.max_population < self.initial_population
+                || farm.max_population > 8192
+                || u64::from(farm.max_population) > volume
+                || farm.birth_energy > self.energy_cap
+                || farm.birth_energy < 2
+                || farm.birth_cost > farm.birth_energy - 2
+                || farm.maturity_ticks == 0
+                || farm.birth_cooldown == 0)
+        {
+            return Err(Error::Config(
+                "invalid farm population or reproduction limits".into(),
+            ));
+        }
         if u64::from(self.initial_population) > volume {
             return Err(Error::Config(format!(
                 "initial_population {} exceeds volume {volume}",

@@ -1,15 +1,20 @@
 //! Viewer costumes. These meshes are not organism detections.
-//! The silhouette is elongated bone and pipe, not a sphere.
+//! Small curved carapaces, ribbed conduits, and soft cores share one cell law.
 
 use bevy::asset::RenderAssetUsages;
 use bevy::mesh::{Indices, Mesh, PrimitiveTopology};
 use bevy::prelude::*;
+use moebius_core::farm::{JOINTS, SPINE_JOINTS};
+pub const BIND_START: f32 = -1.05;
+pub const BIND_STEP: f32 = 2.0 / (SPINE_JOINTS - 1) as f32;
 
 struct Sculpt {
     positions: Vec<[f32; 3]>,
     normals: Vec<[f32; 3]>,
     uvs: Vec<[f32; 2]>,
     indices: Vec<u32>,
+    colors: Vec<[f32; 4]>,
+    tint: [f32; 4],
 }
 
 impl Sculpt {
@@ -19,6 +24,8 @@ impl Sculpt {
             normals: Vec::new(),
             uvs: Vec::new(),
             indices: Vec::new(),
+            colors: Vec::new(),
+            tint: [1.0; 4],
         }
     }
 
@@ -40,6 +47,7 @@ impl Sculpt {
                 let angle = step as f32 / sides as f32 * std::f32::consts::TAU;
                 let normal = side * angle.cos() + up * angle.sin();
                 self.positions.push((center + normal * radius).to_array());
+                self.colors.push(self.tint);
                 self.normals.push(normal.to_array());
                 self.uvs.push([step as f32 / sides as f32, ring as f32]);
             }
@@ -50,25 +58,93 @@ impl Sculpt {
             let b = base + next;
             let c = base + sides + step;
             let d = base + sides + next;
-            self.indices.extend([a, c, b, b, c, d]);
+            self.indices.extend([a, b, c, b, d, c]);
         }
     }
 
-    fn ribs(&mut self, center: Vec3, axis: Vec3, radius: f32, count: u32) {
-        let dir = axis.normalize_or_zero();
-        if dir.length_squared() < 0.5 {
+    /// Smooth swept conduit with a transported frame, including around bends.
+    fn conduit(&mut self, path: &[(Vec3, f32)], sides: u32) {
+        if path.len() < 2 {
             return;
         }
-        let helper = if dir.y.abs() > 0.85 { Vec3::X } else { Vec3::Y };
-        let side = dir.cross(helper).normalize();
-        let up = dir.cross(side).normalize();
-        for step in 0..count {
-            let angle = step as f32 / count as f32 * std::f32::consts::TAU;
-            let normal = side * angle.cos() + up * angle.sin();
-            let root = center + normal * radius * 0.45;
-            let tip = center + normal * radius;
-            self.tube(root, tip, radius * 0.08, radius * 0.035, 5);
+        let base = self.positions.len() as u32;
+        let mut side = Vec3::X;
+        for (ring, &(center, radius)) in path.iter().enumerate() {
+            let prev = path[ring.saturating_sub(1)].0;
+            let next = path[(ring + 1).min(path.len() - 1)].0;
+            let dir = (next - prev).normalize_or_zero();
+            side = (side - dir * side.dot(dir)).normalize_or_zero();
+            if side.length_squared() < 0.5 {
+                let helper = if dir.y.abs() > 0.85 { Vec3::Z } else { Vec3::Y };
+                side = dir.cross(helper).normalize();
+            }
+            let up = dir.cross(side).normalize();
+            for step in 0..sides {
+                let angle = step as f32 / sides as f32 * std::f32::consts::TAU;
+                let normal = side * angle.cos() + up * angle.sin();
+                self.positions.push((center + normal * radius).to_array());
+                self.normals.push(normal.to_array());
+                self.colors.push(self.tint);
+                self.uvs.push([step as f32 / sides as f32, ring as f32]);
+            }
         }
+        for ring in 0..path.len() as u32 - 1 {
+            for step in 0..sides {
+                let next = (step + 1) % sides;
+                let a = base + ring * sides + step;
+                let b = base + ring * sides + next;
+                let c = a + sides;
+                let d = b + sides;
+                self.indices.extend([a, b, c, b, d, c]);
+            }
+        }
+    }
+
+    /// Ellipsoidal tissue beneath the external ribs. Smooth analytic normals.
+    fn organ(&mut self, center: Vec3, size: Vec3) {
+        let base = self.positions.len() as u32;
+        let rings = 12;
+        let sides = 20;
+        for ring in 0..=rings {
+            let latitude = ring as f32 / rings as f32 * std::f32::consts::PI;
+            for step in 0..=sides {
+                let angle = step as f32 / sides as f32 * std::f32::consts::TAU;
+                let unit = Vec3::new(
+                    latitude.sin() * angle.cos(),
+                    latitude.cos(),
+                    latitude.sin() * angle.sin(),
+                );
+                self.positions.push((center + unit * size).to_array());
+                self.normals.push((unit / size).normalize().to_array());
+                self.colors.push(self.tint);
+                self.uvs
+                    .push([step as f32 / sides as f32, ring as f32 / rings as f32]);
+            }
+        }
+        for ring in 0..rings {
+            for step in 0..sides {
+                let a = base + ring * (sides + 1) + step;
+                let b = a + 1;
+                let c = a + sides + 1;
+                let d = c + 1;
+                self.indices.extend([a, b, c, b, d, c]);
+            }
+        }
+    }
+
+    fn tendon(&mut self, points: [Vec3; 4], radius: f32) {
+        let path: Vec<_> = (0..=16)
+            .map(|step| {
+                let t = step as f32 / 16.0;
+                let u = 1.0 - t;
+                let point = points[0] * u.powi(3)
+                    + points[1] * (3.0 * u * u * t)
+                    + points[2] * (3.0 * u * t * t)
+                    + points[3] * t.powi(3);
+                (point, radius * (1.0 - 0.65 * t))
+            })
+            .collect();
+        self.conduit(&path, 10);
     }
 
     fn mesh(self) -> Mesh {
@@ -79,6 +155,7 @@ impl Sculpt {
         mesh.insert_attribute(Mesh::ATTRIBUTE_POSITION, self.positions);
         mesh.insert_attribute(Mesh::ATTRIBUTE_NORMAL, self.normals);
         mesh.insert_attribute(Mesh::ATTRIBUTE_UV_0, self.uvs);
+        mesh.insert_attribute(Mesh::ATTRIBUTE_COLOR, self.colors);
         mesh.insert_indices(Indices::U32(self.indices));
         mesh
     }
@@ -91,131 +168,216 @@ pub fn creature_mesh(variant: u8) -> Mesh {
         1 => curled(&mut sculpt),
         _ => thorax(&mut sculpt),
     }
-    sculpt.mesh()
+    let mut mesh = sculpt.mesh();
+    let positions = mesh
+        .attribute(Mesh::ATTRIBUTE_POSITION)
+        .unwrap()
+        .as_float3()
+        .unwrap();
+    let mut indices = Vec::new();
+    let mut weights = Vec::new();
+    for position in positions {
+        let joint = ((position[1] - BIND_START) / BIND_STEP).clamp(0.0, (SPINE_JOINTS - 1) as f32);
+        let lower = joint.floor() as u16;
+        let upper = (lower + 1).min((SPINE_JOINTS - 1) as u16);
+        let blend = joint.fract();
+        indices.push([lower, upper, 0, 0]);
+        weights.push([1.0 - blend, blend, 0.0, 0.0]);
+    }
+    mesh.insert_attribute(
+        Mesh::ATTRIBUTE_JOINT_INDEX,
+        bevy::mesh::VertexAttributeValues::Uint16x4(indices),
+    );
+    mesh.insert_attribute(Mesh::ATTRIBUTE_JOINT_WEIGHT, weights);
+    mesh
 }
 
+// Vertex colors separate pale armor, dark flexible conduits, and warm tissue.
+const ARMOR: [f32; 4] = [0.62, 0.51, 0.37, 1.0];
+const TISSUE: [f32; 4] = [0.16, 0.085, 0.065, 1.0];
+const HOSE: [f32; 4] = [0.045, 0.070, 0.063, 1.0];
+
 fn vertebral(sculpt: &mut Sculpt) {
-    let joints = [
-        (Vec3::new(0.0, -1.2, 0.0), 0.1),
-        (Vec3::new(0.04, -0.72, 0.06), 0.2),
-        (Vec3::new(-0.05, -0.22, -0.02), 0.14),
-        (Vec3::new(0.06, 0.28, 0.08), 0.26),
-        (Vec3::new(-0.02, 0.78, 0.0), 0.12),
-        (Vec3::new(0.1, 1.22, -0.04), 0.05),
-    ];
-    for pair in joints.windows(2) {
-        sculpt.tube(pair[0].0, pair[1].0, pair[0].1, pair[1].1, 7);
-    }
-    sculpt.ribs(joints[1].0, joints[2].0 - joints[1].0, 0.48, 7);
-    sculpt.ribs(joints[3].0, joints[4].0 - joints[3].0, 0.62, 8);
-    sculpt.tube(
-        joints[3].0,
-        joints[3].0 + Vec3::new(0.55, 0.15, 0.2),
-        0.06,
-        0.02,
-        5,
-    );
-    sculpt.tube(
-        joints[2].0,
-        joints[2].0 + Vec3::new(-0.42, -0.1, 0.28),
-        0.05,
-        0.015,
-        5,
-    );
-    let jaw = joints[5].0;
-    sculpt.tube(jaw, jaw + Vec3::new(0.16, 0.34, 0.08), 0.045, 0.008, 5);
-    sculpt.tube(jaw, jaw + Vec3::new(-0.14, 0.3, 0.1), 0.04, 0.008, 5);
-    sculpt.tube(
-        joints[4].0,
-        joints[4].0 + Vec3::new(0.05, -0.62, 0.2),
-        0.045,
-        0.012,
-        4,
-    );
-    sculpt.ribs(joints[2].0, joints[3].0 - joints[2].0, 0.36, 6);
+    larva(sculpt, 0.0, 1.0);
 }
 
 fn curled(sculpt: &mut Sculpt) {
-    let mut previous: Option<(Vec3, f32)> = None;
-    for step in 0..7 {
-        let t = step as f32 / 6.0;
-        let angle = t * 2.4;
-        let point = Vec3::new(angle.sin() * 0.55, t * 2.1 - 1.05, angle.cos() * 0.38);
-        let radius = 0.08 + (t * std::f32::consts::PI).sin() * 0.16;
-        if let Some((from, radius_a)) = previous {
-            sculpt.tube(from, point, radius_a, radius, 6);
-        }
-        previous = Some((point, radius));
-    }
-    let head = Vec3::new(0.55_f32.sin() * 0.15, 1.05, 0.2);
-    sculpt.ribs(head, Vec3::Y, 0.46, 6);
-    sculpt.tube(head, head + Vec3::new(0.35, 0.45, -0.1), 0.07, 0.02, 5);
-    sculpt.tube(
-        Vec3::new(0.0, -1.05, 0.38),
-        Vec3::new(-0.25, -1.45, 0.55),
-        0.06,
-        0.015,
-        5,
-    );
-    sculpt.tube(head, head + Vec3::new(0.22, 0.28, 0.16), 0.04, 0.008, 5);
-    sculpt.tube(head, head + Vec3::new(-0.18, 0.24, 0.18), 0.038, 0.008, 5);
-    sculpt.tube(head, head + Vec3::new(0.02, -0.48, 0.32), 0.035, 0.01, 4);
+    larva(sculpt, 0.75, 0.82);
 }
 
 fn thorax(sculpt: &mut Sculpt) {
-    sculpt.tube(
-        Vec3::new(-0.85, 0.0, 0.0),
-        Vec3::new(0.9, 0.08, 0.05),
-        0.16,
-        0.22,
-        8,
+    larva(sculpt, -0.32, 1.22);
+}
+
+fn centerline(t: f32, curl: f32) -> Vec3 {
+    Vec3::new(
+        curl * (t * 2.5).sin() * 0.32,
+        (t - 0.5) * 1.50,
+        0.10 * (t * 3.0).sin(),
+    )
+}
+
+fn larva(sculpt: &mut Sculpt, curl: f32, girth: f32) {
+    // Continuous soft abdomen, tapering into a small segmented tail.
+    sculpt.tint = TISSUE;
+    let body: Vec<_> = (0..=28)
+        .map(|step| {
+            let t = step as f32 / 28.0;
+            let radius =
+                (0.014 + 0.19 * (t * std::f32::consts::PI).sin().max(0.0).powf(0.8)) * girth;
+            (centerline(t, curl), radius)
+        })
+        .collect();
+    sculpt.conduit(&body, 16);
+    // Nested curved hoops resemble external ribs rather than radial spikes.
+    sculpt.tint = ARMOR;
+    for rib in 0..9 {
+        let t = 0.16 + rib as f32 * 0.075;
+        let center = centerline(t, curl);
+        let width = (0.065 + 0.16 * (t * std::f32::consts::PI).sin()) * girth;
+        let path: Vec<_> = (0..=20)
+            .map(|step| {
+                let angle = -0.25 + step as f32 / 20.0 * (std::f32::consts::TAU - 0.50);
+                let p = center
+                    + Vec3::new(
+                        angle.sin() * width,
+                        0.026 * angle.cos(),
+                        angle.cos() * width * 0.86,
+                    );
+                (p, 0.022 + 0.009 * (t * std::f32::consts::PI).sin())
+            })
+            .collect();
+        sculpt.conduit(&path, 8);
+    }
+    // Overlapping vertebral plates over the dorsal cable.
+    for plate in 0..8 {
+        let t = 0.18 + plate as f32 * 0.085;
+        let center = centerline(t, curl) + Vec3::new(0.0, 0.0, -0.17 * girth);
+        sculpt.organ(center, Vec3::new(0.085 * girth, 0.065, 0.045));
+    }
+    let head = centerline(0.92, curl);
+    sculpt.organ(head, Vec3::new(0.17 * girth, 0.22, 0.15));
+    // Dark port and short paired feeding mandibles; no long spear tips.
+    sculpt.tint = HOSE;
+    sculpt.organ(
+        head + Vec3::new(0.0, 0.14, 0.10),
+        Vec3::new(0.085, 0.07, 0.06),
     );
-    sculpt.tube(
-        Vec3::new(0.9, 0.08, 0.05),
-        Vec3::new(1.35, 0.22, -0.08),
-        0.22,
-        0.06,
-        6,
+    for sign in [-1.0, 1.0] {
+        let root = centerline(0.25, curl) + Vec3::new(sign * 0.13 * girth, 0.0, 0.10);
+        let end = head + Vec3::new(sign * 0.12 * girth, -0.04, 0.03);
+        sculpt.tendon(
+            [
+                root,
+                root + Vec3::new(sign * 0.32, 0.08, 0.18),
+                end + Vec3::new(sign * 0.25, -0.15, 0.20),
+                end,
+            ],
+            0.043,
+        );
+        sculpt.tint = HOSE;
+    }
+    // One flexible trailing conduit, ending in a rounded taper.
+    let tail = centerline(0.03, curl);
+    sculpt.tendon(
+        [
+            tail,
+            tail + Vec3::new(-0.10, -0.16, 0.06),
+            tail + Vec3::new(-0.24, -0.22, 0.16),
+            tail + Vec3::new(-0.21, -0.34, 0.18),
+        ],
+        0.035,
     );
-    sculpt.ribs(Vec3::new(0.05, 0.02, 0.0), Vec3::X, 0.58, 8);
-    sculpt.tube(
-        Vec3::new(-0.1, 0.12, 0.0),
-        Vec3::new(-0.05, 0.72, 0.08),
-        0.08,
-        0.03,
-        5,
+}
+
+pub fn mandible_mesh(sign: f32) -> Mesh {
+    let mut sculpt = Sculpt::new();
+    sculpt.tint = ARMOR;
+    sculpt.tendon(
+        [
+            Vec3::ZERO,
+            Vec3::new(sign * 0.13, 0.10, 0.05),
+            Vec3::new(sign * 0.10, 0.28, 0.17),
+            Vec3::new(-sign * 0.08, 0.25, 0.12),
+        ],
+        0.045,
     );
-    sculpt.tube(
-        Vec3::new(0.25, -0.05, 0.12),
-        Vec3::new(0.4, -0.55, 0.35),
-        0.07,
-        0.02,
-        5,
-    );
-    sculpt.tube(
-        Vec3::new(-0.35, 0.0, -0.1),
-        Vec3::new(-0.7, 0.35, -0.4),
-        0.06,
-        0.02,
-        5,
-    );
-    let snout = Vec3::new(1.35, 0.22, -0.08);
-    sculpt.tube(snout, snout + Vec3::new(0.28, 0.12, 0.1), 0.04, 0.008, 5);
-    sculpt.tube(
-        snout,
-        snout + Vec3::new(0.26, -0.02, -0.12),
-        0.036,
-        0.008,
-        5,
-    );
-    sculpt.ribs(Vec3::new(0.45, 0.06, 0.02), Vec3::X, 0.42, 6);
-    sculpt.tube(
-        Vec3::new(0.15, -0.02, -0.05),
-        Vec3::new(0.2, -0.7, -0.25),
-        0.05,
-        0.012,
-        4,
-    );
+    sculpt.tint = HOSE;
+    sculpt.organ(Vec3::ZERO, Vec3::splat(0.055));
+    sculpt.mesh()
+}
+
+pub fn rig_bind_positions() -> Vec<Vec3> {
+    let mut positions: Vec<_> = (0..SPINE_JOINTS)
+        .map(|index| Vec3::Y * (BIND_START + index as f32 * BIND_STEP))
+        .collect();
+    let head = positions[SPINE_JOINTS - 3];
+    positions.push(head + Vec3::new(-0.10, 0.15, 0.08));
+    positions.push(head + Vec3::new(0.10, 0.15, 0.08));
+    debug_assert_eq!(positions.len(), JOINTS);
+    positions
+}
+
+pub fn nutrient_mesh() -> Mesh {
+    let mut sculpt = Sculpt::new();
+    for (center, size) in [
+        (Vec3::ZERO, Vec3::new(0.75, 0.90, 0.65)),
+        (Vec3::new(0.45, 0.1, 0.0), Vec3::new(0.57, 0.64, 0.53)),
+        (Vec3::new(-0.3, -0.35, 0.15), Vec3::new(0.62, 0.55, 0.56)),
+        (Vec3::new(0.0, 0.53, -0.1), Vec3::new(0.50, 0.52, 0.49)),
+    ] {
+        sculpt.organ(center, size);
+    }
+    sculpt.mesh()
+}
+
+pub fn write_slime(
+    mesh: &mut Mesh,
+    paths: &std::collections::BTreeMap<u64, Vec<(u64, [f32; 3])>>,
+    tick: u64,
+) {
+    let mut sculpt = Sculpt::new();
+    // Fair per-animal budget: late IDs are not starved by the first long path.
+    let per_cell = (16_384 / paths.len().max(1)).clamp(2, 96);
+    for path in paths.values() {
+        let step = path.len().div_ceil(per_cell + 1).max(1);
+        let visible: Vec<_> = path.iter().filter(|(t, _)| *t <= tick).collect();
+        for index in (0..visible.len().saturating_sub(1)).step_by(step) {
+            let end = (index + step).min(visible.len() - 1);
+            if visible[index..=end].windows(2).any(|pair| {
+                Vec3::from_array(pair[0].1).distance(Vec3::from_array(pair[1].1))
+                    > crate::layout::SPACING * 2.0
+            }) {
+                continue;
+            }
+            let (time, a) = *visible[index];
+            let (_, b) = *visible[end];
+            let age = tick.saturating_sub(time) as f32 / 192.0;
+            let distance = Vec3::from_array(a).distance(Vec3::from_array(b));
+            if distance < 0.003 || distance > crate::layout::SPACING * 2.0 {
+                continue;
+            }
+            sculpt.tint = [0.45, 0.58, 0.32, (1.0 - age).max(0.0) * 0.36];
+            sculpt.tube(
+                Vec3::from_array(a),
+                Vec3::from_array(b),
+                0.028 * (1.0 - age * 0.65),
+                0.024 * (1.0 - age * 0.65),
+                6,
+            );
+        }
+    }
+    if sculpt.positions.is_empty() {
+        sculpt.tint = [0.0; 4];
+        sculpt.tube(Vec3::ZERO, Vec3::Y * 0.001, 0.001, 0.001, 3);
+    }
+    mesh.remove_attribute(Mesh::ATTRIBUTE_JOINT_INDEX);
+    mesh.remove_attribute(Mesh::ATTRIBUTE_JOINT_WEIGHT);
+    mesh.insert_attribute(Mesh::ATTRIBUTE_POSITION, sculpt.positions);
+    mesh.insert_attribute(Mesh::ATTRIBUTE_NORMAL, sculpt.normals);
+    mesh.insert_attribute(Mesh::ATTRIBUTE_UV_0, sculpt.uvs);
+    mesh.insert_attribute(Mesh::ATTRIBUTE_COLOR, sculpt.colors);
+    mesh.insert_indices(Indices::U32(sculpt.indices));
 }
 
 pub fn bone_cage(extent: Vec3, thickness: f32) -> Mesh {
@@ -253,6 +415,8 @@ pub fn bone_cage(extent: Vec3, thickness: f32) -> Mesh {
 }
 
 pub fn write_threads(mesh: &mut Mesh, segments: &[([f32; 3], [f32; 3])], radius: f32) {
+    mesh.remove_attribute(Mesh::ATTRIBUTE_JOINT_INDEX);
+    mesh.remove_attribute(Mesh::ATTRIBUTE_JOINT_WEIGHT);
     let mut sculpt = Sculpt::new();
     if segments.is_empty() {
         sculpt.tube(Vec3::ZERO, Vec3::Y * 0.001, 0.001, 0.001, 3);
@@ -270,15 +434,267 @@ pub fn write_threads(mesh: &mut Mesh, segments: &[([f32; 3], [f32; 3])], radius:
     mesh.insert_attribute(Mesh::ATTRIBUTE_POSITION, sculpt.positions);
     mesh.insert_attribute(Mesh::ATTRIBUTE_NORMAL, sculpt.normals);
     mesh.insert_attribute(Mesh::ATTRIBUTE_UV_0, sculpt.uvs);
+    mesh.insert_attribute(Mesh::ATTRIBUTE_COLOR, sculpt.colors);
     mesh.insert_indices(Indices::U32(sculpt.indices));
+}
+
+/// A single implicit surface makes neighboring deposits grow into necks and
+/// sheets. Geometry is derived from the conserved field; fusion adds no stock.
+pub fn fused_flesh_mesh(
+    deposits: &[moebius_core::farm::FleshDeposit],
+    dims: moebius_core::Dims,
+) -> Mesh {
+    use std::collections::{BTreeSet, HashMap};
+    type Grid = [i32; 3];
+    let mut field: HashMap<Grid, f32> = HashMap::new();
+    for deposit in deposits {
+        let center = [
+            deposit.site.x as i32 * 2,
+            deposit.site.y as i32 * 2,
+            deposit.site.z as i32 * 2,
+        ];
+        let weight = (deposit.amount as f32).cbrt();
+        let radius = 2.2 + (weight - 1.0) * 0.35;
+        let extent = radius.ceil() as i32;
+        for z in -extent..=extent {
+            for y in -extent..=extent {
+                for x in -extent..=extent {
+                    let distance2 = (x * x + y * y + z * z) as f32;
+                    let kernel = (1.0 - distance2 / (radius * radius)).max(0.0);
+                    if kernel == 0.0 {
+                        continue;
+                    }
+                    let point = [center[0] + x, center[1] + y, center[2] + z];
+                    *field.entry(point).or_default() += weight * kernel * kernel;
+                }
+            }
+        }
+    }
+    let mut cells = BTreeSet::new();
+    for point in field.keys() {
+        for z in -1..=0 {
+            for y in -1..=0 {
+                for x in -1..=0 {
+                    cells.insert([point[0] + x, point[1] + y, point[2] + z]);
+                }
+            }
+        }
+    }
+    let sample = |p: Grid| field.get(&p).copied().unwrap_or(0.0);
+    let gradient = |p: Grid| {
+        Vec3::new(
+            sample([p[0] - 1, p[1], p[2]]) - sample([p[0] + 1, p[1], p[2]]),
+            sample([p[0], p[1] - 1, p[2]]) - sample([p[0], p[1] + 1, p[2]]),
+            sample([p[0], p[1], p[2] - 1]) - sample([p[0], p[1], p[2] + 1]),
+        )
+    };
+    let half = Vec3::new(
+        (dims.width - 1) as f32,
+        (dims.height - 1) as f32,
+        (dims.depth - 1) as f32,
+    ) * crate::layout::SPACING
+        * 0.5;
+    let corners = [
+        [0, 0, 0],
+        [1, 0, 0],
+        [1, 1, 0],
+        [0, 1, 0],
+        [0, 0, 1],
+        [1, 0, 1],
+        [1, 1, 1],
+        [0, 1, 1],
+    ];
+    let tetrahedra = [
+        [0, 5, 1, 6],
+        [0, 1, 2, 6],
+        [0, 2, 3, 6],
+        [0, 3, 7, 6],
+        [0, 7, 4, 6],
+        [0, 4, 5, 6],
+    ];
+    let mut sculpt = Sculpt::new();
+    for cell in cells {
+        let points = corners.map(|offset| {
+            [
+                cell[0] + offset[0],
+                cell[1] + offset[1],
+                cell[2] + offset[2],
+            ]
+        });
+        let values = points.map(sample);
+        if values.iter().all(|v| *v < 0.72) || values.iter().all(|v| *v >= 0.72) {
+            continue;
+        }
+        let normals = points.map(gradient);
+        let edge = |a: usize, b: usize| {
+            let t = ((0.72 - values[a]) / (values[b] - values[a])).clamp(0.0, 1.0);
+            let p = Vec3::new(
+                points[a][0] as f32,
+                points[a][1] as f32,
+                points[a][2] as f32,
+            )
+            .lerp(
+                Vec3::new(
+                    points[b][0] as f32,
+                    points[b][1] as f32,
+                    points[b][2] as f32,
+                ),
+                t,
+            );
+            (
+                p * (crate::layout::SPACING * 0.5) - half,
+                normals[a].lerp(normals[b], t).normalize_or_zero(),
+            )
+        };
+        for tetra in tetrahedra {
+            let inside: Vec<_> = tetra
+                .iter()
+                .copied()
+                .filter(|i| values[*i] >= 0.72)
+                .collect();
+            let outside: Vec<_> = tetra
+                .iter()
+                .copied()
+                .filter(|i| values[*i] < 0.72)
+                .collect();
+            match inside.len() {
+                1 => emit_tissue_triangle(
+                    &mut sculpt,
+                    [
+                        edge(inside[0], outside[0]),
+                        edge(inside[0], outside[1]),
+                        edge(inside[0], outside[2]),
+                    ],
+                ),
+                3 => emit_tissue_triangle(
+                    &mut sculpt,
+                    [
+                        edge(outside[0], inside[0]),
+                        edge(outside[0], inside[1]),
+                        edge(outside[0], inside[2]),
+                    ],
+                ),
+                2 => {
+                    let a = edge(inside[0], outside[0]);
+                    let b = edge(inside[0], outside[1]);
+                    let c = edge(inside[1], outside[0]);
+                    let d = edge(inside[1], outside[1]);
+                    emit_tissue_triangle(&mut sculpt, [a, b, c]);
+                    emit_tissue_triangle(&mut sculpt, [b, d, c]);
+                }
+                _ => {}
+            }
+        }
+    }
+    if sculpt.positions.is_empty() {
+        sculpt.tube(Vec3::ZERO, Vec3::Y * 0.001, 0.001, 0.001, 3);
+    }
+    sculpt.mesh()
+}
+
+fn emit_tissue_triangle(sculpt: &mut Sculpt, mut vertices: [(Vec3, Vec3); 3]) {
+    let face = (vertices[1].0 - vertices[0].0).cross(vertices[2].0 - vertices[0].0);
+    if face.length_squared() < 1.0e-14 {
+        return;
+    }
+    let normal = vertices.iter().map(|(_, n)| *n).sum::<Vec3>();
+    if face.dot(normal) < 0.0 {
+        vertices.swap(1, 2);
+    }
+    let base = sculpt.positions.len() as u32;
+    for (position, normal) in vertices {
+        sculpt.positions.push(position.to_array());
+        sculpt.normals.push(normal.to_array());
+        sculpt.colors.push([1.0; 4]);
+        sculpt.uvs.push([0.0; 2]);
+    }
+    sculpt.indices.extend([base, base + 1, base + 2]);
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
+    fn surface_components(mesh: &Mesh) -> usize {
+        use std::collections::{BTreeMap, BTreeSet};
+        fn root(parents: &[usize], mut index: usize) -> usize {
+            while parents[index] != index {
+                index = parents[index];
+            }
+            index
+        }
+        let mut vertices = BTreeMap::new();
+        let mut parents = Vec::new();
+        let mapped: Vec<_> = mesh
+            .attribute(Mesh::ATTRIBUTE_POSITION)
+            .unwrap()
+            .as_float3()
+            .unwrap()
+            .iter()
+            .map(|p| {
+                let key = p.map(|v| (v * 1_000_000.0).round() as i64);
+                *vertices.entry(key).or_insert_with(|| {
+                    let id = parents.len();
+                    parents.push(id);
+                    id
+                })
+            })
+            .collect();
+        let indices: Vec<_> = mesh.indices().unwrap().iter().collect();
+        for triangle in indices.as_chunks::<3>().0 {
+            let a = root(&parents, mapped[triangle[0]]);
+            for index in &triangle[1..] {
+                let b = root(&parents, mapped[*index]);
+                parents[b] = a;
+            }
+        }
+        (0..parents.len())
+            .map(|index| root(&parents, index))
+            .collect::<BTreeSet<_>>()
+            .len()
+    }
+
     #[test]
-    fn costumes_are_elongated_pipes_not_spheres() {
+    fn fused_tissue_is_one_smooth_surface_and_empty_gaps_stay_open() {
+        use moebius_core::{Dims, Site, farm::FleshDeposit};
+        let dims = Dims {
+            width: 8,
+            height: 8,
+            depth: 8,
+        };
+        let deposits = [
+            FleshDeposit {
+                site: Site { x: 1, y: 1, z: 1 },
+                amount: 1,
+            },
+            FleshDeposit {
+                site: Site { x: 2, y: 1, z: 1 },
+                amount: 1,
+            },
+        ];
+        let mesh = fused_flesh_mesh(&deposits, dims);
+        assert_eq!(surface_components(&mesh), 1);
+        for normal in mesh
+            .attribute(Mesh::ATTRIBUTE_NORMAL)
+            .unwrap()
+            .as_float3()
+            .unwrap()
+        {
+            let n = Vec3::from_array(*normal);
+            assert!(n.is_finite() && n.length() > 0.9);
+        }
+        let separated = [
+            deposits[0].clone(),
+            FleshDeposit {
+                site: Site { x: 5, y: 1, z: 1 },
+                amount: 1,
+            },
+        ];
+        assert_eq!(surface_components(&fused_flesh_mesh(&separated, dims)), 2);
+    }
+
+    #[test]
+    fn costumes_have_finite_elongated_biomechanical_geometry() {
         for variant in 0..3 {
             let mesh = creature_mesh(variant);
             let positions = mesh

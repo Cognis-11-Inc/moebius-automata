@@ -1,4 +1,4 @@
-//! Playback of committed M0 snapshots, and an open hall that keeps ticking.
+//! Recorded snapshot inspection and the live Farm M1 vivarium.
 //!
 //! The opening slate can change the founding-cell rules before tick 0.
 //! Enter on an open run hands the world to a worker thread. Enter on a finite
@@ -34,7 +34,7 @@ use live::Hall;
 use rules::Draft;
 
 const PLAY_TICKS_PER_SEC: f32 = 30.0;
-const BODY_SCALE: f32 = 1.2;
+const BODY_SCALE: f32 = 0.48;
 
 #[derive(Parser)]
 #[command(
@@ -44,13 +44,13 @@ const BODY_SCALE: f32 = 1.2;
 )]
 struct Cli {
     /// Run directory that contains manifest.json and snapshots/.
-    /// Omit it to open the 128³ hall.
+    /// Omit it to open the 256³ farm.
     #[arg(long)]
     snapshots: Option<PathBuf>,
     /// Skip the rule slate and watch --snapshots immediately.
     #[arg(long)]
     start: bool,
-    /// Skip the rule slate and tick the open 128³ hall.
+    /// Skip the rule slate and tick the open 256³ farm.
     #[arg(long)]
     live: bool,
 }
@@ -95,6 +95,7 @@ struct Frame {
     live: u32,
     dead: u32,
     field: u64,
+    material_flesh: u64,
     reservoir: u64,
     waste: u64,
     external_input: u64,
@@ -124,11 +125,12 @@ struct ViewState {
     hypothesis: bool,
     hypothesis_drawn: bool,
     muted: bool,
+    audio_level: u8,
     yaw: f32,
     pitch: f32,
     distance: f32,
-    distance_min: f32,
-    distance_max: f32,
+    eye: Option<Vec3>,
+    fov: f32,
     body_scale: f32,
     lamp_reach: f32,
     fps: f32,
@@ -141,6 +143,7 @@ struct ViewState {
 struct AudioKey {
     bucket: u64,
     muted: bool,
+    level: u8,
 }
 
 #[derive(Resource)]
@@ -148,6 +151,12 @@ struct Gallery {
     creatures: [Handle<Mesh>; 3],
     creature_mats: [Handle<StandardMaterial>; 3],
     threads: Handle<Mesh>,
+    bindposes: Handle<bevy::mesh::skinning::SkinnedMeshInverseBindposes>,
+    mouth: Handle<Mesh>,
+    mouth_mat: Handle<StandardMaterial>,
+    flesh_mat: Handle<StandardMaterial>,
+    flesh_mesh: Handle<Mesh>,
+    mandibles: [Handle<Mesh>; 2],
     orbs: Handle<Mesh>,
     orb_mat: Handle<StandardMaterial>,
     mark: Handle<Mesh>,
@@ -229,17 +238,18 @@ fn main() {
     let mut app = App::new();
     app.add_plugins(DefaultPlugins.set(WindowPlugin {
         primary_window: Some(Window {
-            title: "Möbius Automata M0".into(),
+            title: "Möbius Automata — Vivarium".into(),
             ..default()
         }),
         ..default()
     }))
     .insert_resource(ClearColor(Color::srgb(0.006, 0.008, 0.007)))
     .insert_resource(GlobalAmbientLight {
-        color: Color::srgb(0.14, 0.13, 0.12),
-        brightness: 9.0,
+        color: Color::srgb(0.68, 0.74, 0.70),
+        brightness: 450.0,
         ..default()
     })
+    .init_resource::<show::FlyCamera>()
     .insert_resource(draft)
     .insert_resource(Boot {
         auto_start: cli.start || cli.live,
@@ -272,6 +282,9 @@ fn main() {
             show::hall_pump.run_if(resource_exists::<Hall>),
             show::embody.run_if(resource_exists::<Hall>),
             show::hall_bodies.run_if(resource_exists::<Hall>),
+            (show::rig_joints, show::feeding, show::flesh_surfaces)
+                .chain()
+                .run_if(resource_exists::<Hall>),
             show::hall_fluid.run_if(resource_exists::<Hall>),
             show::hall_threads.run_if(resource_exists::<Hall>),
             show::drift_lamp,
@@ -319,6 +332,7 @@ fn main() {
 
 fn material_residual(frame: &Frame) -> i128 {
     i128::from(frame.field)
+        + i128::from(frame.material_flesh)
         + i128::from(frame.reservoir)
         + i128::from(frame.waste)
         + i128::from(frame.external_output)
@@ -446,6 +460,7 @@ fn load_reel(dir: &Path) -> Result<Reel, String> {
             dead: u32::try_from(snapshot.deaths.len())
                 .map_err(|_| format!("{} death count exceeds u32", path.display()))?,
             field,
+            material_flesh: snapshot.flesh.iter().map(|deposit| deposit.amount).sum(),
             reservoir: snapshot.reservoir,
             waste: snapshot.waste,
             external_input: snapshot.external_input,
@@ -615,6 +630,7 @@ mod tests {
             reservoir_cap: 10_000,
             energy_cap: 1_000,
             genome_fill: GenomeFill::Zero,
+            farm: None,
         }
     }
 

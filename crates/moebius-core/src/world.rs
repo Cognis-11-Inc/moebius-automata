@@ -1,5 +1,8 @@
 use std::collections::BTreeMap;
 
+use crate::farm::{
+    BrainRig, DIG_START, JOINT_LIMIT, SECRETE_ACTION, SPINE_JOINTS, action_dir, fused_surface,
+};
 use rand::RngCore;
 
 use crate::config::{GenomeFill, SimConfig};
@@ -43,6 +46,10 @@ pub struct TickReceipt {
     pub deaths: u32,
     pub moves_applied: u32,
     pub moves_blocked: u32,
+    pub births: u32,
+    pub motor_energy: u64,
+    pub secreted: u64,
+    pub excavated: u64,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -51,6 +58,7 @@ pub struct Accounts {
     pub external_input: u64,
     pub external_output: u64,
     pub field: u64,
+    pub flesh: u64,
     pub reservoir: u64,
     pub waste: u64,
     pub energy_live: u64,
@@ -63,6 +71,7 @@ impl Accounts {
     pub fn material_residual(&self) -> i128 {
         let left = i128::from(self.material_initial) + i128::from(self.external_input);
         let right = i128::from(self.field)
+            + i128::from(self.flesh)
             + i128::from(self.reservoir)
             + i128::from(self.waste)
             + i128::from(self.external_output);
@@ -77,9 +86,10 @@ impl Accounts {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Stocks {
     pub field: u64,
+    pub flesh: u64,
     pub reservoir: u64,
     pub waste: u64,
     pub external_input: u64,
@@ -94,6 +104,7 @@ impl From<&Accounts> for Stocks {
     fn from(accounts: &Accounts) -> Self {
         Self {
             field: accounts.field,
+            flesh: accounts.flesh,
             reservoir: accounts.reservoir,
             waste: accounts.waste,
             external_input: accounts.external_input,
@@ -120,6 +131,9 @@ pub fn apply_receipt(stocks: &mut Stocks, receipt: &TickReceipt) -> Result<(), E
     )?;
     stocks.field = add(stocks.field, receipt.reservoir_to_field, "field injection")?;
     stocks.field = sub(stocks.field, receipt.nutrient_uptaken, "field uptake")?;
+    stocks.field = sub(stocks.field, receipt.secreted, "secretion substrate")?;
+    stocks.flesh = add(stocks.flesh, receipt.secreted, "deposited flesh")?;
+    stocks.flesh = sub(stocks.flesh, receipt.excavated, "excavated flesh")?;
     stocks.waste = add(stocks.waste, receipt.waste_created, "waste")?;
     stocks.waste = sub(stocks.waste, receipt.external_output, "waste export")?;
     stocks.external_output = add(
@@ -167,6 +181,8 @@ pub struct World {
     seed: u64,
     tick: u64,
     cells: BTreeMap<u64, Cell>,
+    brains: BTreeMap<u64, BrainRig>,
+    flesh: BTreeMap<Site, u64>,
     deaths: BTreeMap<u64, DeathRecord>,
     occupancy: Vec<u64>,
     nutrient: Vec<u64>,
@@ -254,8 +270,18 @@ impl World {
             config.initial_waste,
             "initial waste",
         )?;
+        let brains = if config.farm.is_some() {
+            cells
+                .values()
+                .map(|cell| (cell.id, BrainRig::new(cell, seed)))
+                .collect()
+        } else {
+            BTreeMap::new()
+        };
         let mut world = Self {
             config: config.clone(),
+            brains,
+            flesh: BTreeMap::new(),
             seed,
             tick: 0,
             cells,
@@ -312,7 +338,17 @@ impl World {
         let volume = dims_of(config).volume()? as usize;
         let mut world = Self {
             config: config.clone(),
+            flesh: snapshot
+                .flesh
+                .iter()
+                .map(|deposit| (deposit.site, deposit.amount))
+                .collect(),
             seed: snapshot.seed,
+            brains: snapshot
+                .brains
+                .iter()
+                .map(|brain| (brain.id, brain.clone()))
+                .collect(),
             tick: snapshot.tick,
             cells,
             deaths,
@@ -329,6 +365,10 @@ impl World {
             next_cell_id: snapshot.next_cell_id,
             inject_cursor: snapshot.inject_cursor,
         };
+        if world.brains.len() != snapshot.brains.len() || world.flesh.len() != snapshot.flesh.len()
+        {
+            return Err(Error::Snapshot("duplicate brain or flesh entry".into()));
+        }
         world.rebuild_occupancy()?;
         world.audit()?;
         Ok(world)
@@ -366,6 +406,14 @@ impl World {
         self.cells.values()
     }
 
+    pub fn flesh(&self) -> &BTreeMap<Site, u64> {
+        &self.flesh
+    }
+
+    pub fn brains(&self) -> &BTreeMap<u64, BrainRig> {
+        &self.brains
+    }
+
     pub fn deaths(&self) -> impl Iterator<Item = &DeathRecord> {
         self.deaths.values()
     }
@@ -396,6 +444,10 @@ impl World {
             external_input: self.external_input,
             external_output: self.external_output,
             field,
+            flesh: self
+                .flesh
+                .values()
+                .try_fold(0u64, |sum, amount| add(sum, *amount, "flesh stock"))?,
             reservoir: self.reservoir,
             waste: self.waste,
             energy_live,
@@ -425,6 +477,15 @@ impl World {
             cells: self.cells.values().cloned().collect(),
             deaths: self.deaths.values().cloned().collect(),
             nutrient: self.nutrient.clone(),
+            brains: self.brains.values().cloned().collect(),
+            flesh: self
+                .flesh
+                .iter()
+                .map(|(site, amount)| crate::farm::FleshDeposit {
+                    site: *site,
+                    amount: *amount,
+                })
+                .collect(),
         }
     }
 
@@ -471,17 +532,72 @@ impl World {
 
         let dims = self.dims();
         let mut proposals = Vec::with_capacity(self.cells.len());
+        let mut decisions = BTreeMap::new();
+        let mut motor_energy = 0;
         for cell in self.cells.values() {
-            let (_dir, to) = movement_target(self.seed, tick, cell.id, cell.site, dims)?;
+            let to = if let Some(brain) = self.brains.get_mut(&cell.id) {
+                let (action, features) = brain.choose(
+                    cell,
+                    &self.nutrient,
+                    &self.occupancy,
+                    &self.flesh,
+                    dims,
+                    (self.seed, tick),
+                )?;
+                let before = brain.clone();
+                // An empty energy balance cannot actuate a motor.
+                let action = if cell.energy == 0 { 0 } else { action };
+                let (to, cost) = brain.actuate(action, cell.site, dims)?;
+                decisions.insert(cell.id, (action, features, cost, before));
+                to
+            } else {
+                movement_target(self.seed, tick, cell.id, cell.site, dims)?.1
+            };
             proposals.push(MoveProposal {
                 id: cell.id,
                 from: cell.site,
                 to,
             });
         }
-        let outcomes = resolve_moves(&proposals)?;
+        // A mature deposit is a soft contact surface. It arrests a crossing;
+        // contact reverses and damps momentum, instead of erasing its existence.
+        let solid = fused_surface(&self.flesh, dims)?;
+        let flesh_blocked: std::collections::BTreeSet<_> = proposals
+            .iter()
+            .filter(|p| p.to != p.from && solid.contains(&p.to))
+            .map(|p| p.id)
+            .collect();
+        let resolved: Vec<_> = proposals
+            .iter()
+            .map(|p| {
+                if flesh_blocked.contains(&p.id) {
+                    MoveProposal {
+                        id: p.id,
+                        from: p.from,
+                        to: p.from,
+                    }
+                } else {
+                    *p
+                }
+            })
+            .collect();
+        let outcomes = resolve_moves(&resolved)?;
         let (moves_applied, moves_blocked) = apply_moves(&mut self.cells, &outcomes)?;
         self.rebuild_occupancy()?;
+        for proposal in &proposals {
+            if let Some((_, _, cost, before)) = decisions.get(&proposal.id) {
+                let brain = self.brains.get_mut(&proposal.id).expect("brain present");
+                if self.cells[&proposal.id].site != proposal.to {
+                    brain.offset = before.offset;
+                    brain.velocity = brain.velocity.map(|value| -value / 4);
+                }
+                let cell = self.cells.get_mut(&proposal.id).expect("moving cell");
+                cell.energy = sub(cell.energy, *cost, "motor effort")?;
+                motor_energy = add(motor_energy, *cost, "motor energy")?;
+                brain.last_meal = 0;
+                brain.last_dig = 0;
+            }
+        }
 
         let ids: Vec<u64> = self.cells.keys().copied().collect();
         let mut uptaken = 0u64;
@@ -499,6 +615,9 @@ impl World {
                 self.config.energy_cap,
                 self.config.energy_per_nutrient,
             );
+            if let Some(brain) = self.brains.get_mut(id) {
+                brain.last_meal = units;
+            }
             if units == 0 {
                 continue;
             }
@@ -516,12 +635,73 @@ impl World {
         }
         self.energy_credited = add(self.energy_credited, credited, "energy_credited")?;
 
-        let mut maintained = 0u64;
-        let mut disposed = 0u64;
+        let mut secretion_paid = std::collections::BTreeSet::new();
+        let mut secreted = 0u64;
+        let mut secretion_cost = 0u64;
+        for (id, (action, _, _, _)) in &decisions {
+            if *action != SECRETE_ACTION {
+                continue;
+            }
+            let cell = self.cells.get_mut(id).expect("secreting cell");
+            let index = site_index(cell.site, dims)?;
+            let stock = self.flesh.get(&cell.site).copied().unwrap_or(0);
+            if cell.energy >= 2
+                && self.nutrient[index] > 0
+                && stock < 64
+                && (self.flesh.len() < 8192 || stock > 0)
+            {
+                self.nutrient[index] -= 1;
+                self.flesh.insert(cell.site, stock + 1);
+                cell.energy -= 2;
+                secretion_paid.insert(*id);
+                secreted += 1;
+                secretion_cost += 2;
+            }
+        }
+        let mut excavated = 0u64;
+        let mut digging_paid = std::collections::BTreeSet::new();
+        let mut digging_cost = 0u64;
+        for (id, (action, _, _, _)) in &decisions {
+            if *action < DIG_START || self.brains[id].joints[SPINE_JOINTS] > 0 {
+                continue;
+            }
+            let cell = self.cells.get_mut(id).expect("digging cell");
+            let target = crate::step_site(cell.site, action_dir(*action)?, dims)?;
+            let amount = self.flesh.get(&target).copied().unwrap_or(0);
+            if amount == 0 || cell.energy < 1 {
+                continue;
+            }
+            // Chewed tissue becomes waste rather than disappearing or creating food.
+            let removed = amount.min(2);
+            if amount == removed {
+                self.flesh.remove(&target);
+            } else {
+                self.flesh.insert(target, amount - removed);
+            }
+            self.waste = add(self.waste, removed, "excavated tissue")?;
+            cell.energy -= 1;
+            digging_paid.insert(*id);
+            digging_cost += 1;
+            excavated += removed;
+            self.brains.get_mut(id).expect("digging brain").last_dig = removed;
+        }
+        let mut maintained = motor_energy;
+        let mut disposed = secretion_cost + digging_cost;
         let mut deaths = 0u32;
         let cost = self.config.maintenance_cost;
         for id in ids {
             let energy = self.cells[&id].energy;
+            if let Some((action, features, motor_cost, _)) = decisions.get(&id) {
+                let brain = self.brains.get_mut(&id).expect("learning brain");
+                let reward = (i128::from(brain.last_meal)
+                    * i128::from(self.config.energy_per_nutrient)
+                    - i128::from(cost)
+                    - i128::from(*motor_cost)
+                    - if secretion_paid.contains(&id) { 2 } else { 0 }
+                    - if digging_paid.contains(&id) { 1 } else { 0 })
+                .clamp(-16, 16) as i16;
+                brain.learn(*action, *features, reward);
+            }
             if energy >= cost {
                 let cell = self.cells.get_mut(&id).expect("survivor present");
                 cell.energy = sub(energy, cost, "maintenance")?;
@@ -529,6 +709,7 @@ impl World {
                 maintained = add(maintained, cost, "maintenance total")?;
             } else {
                 let cell = self.cells.remove(&id).expect("dying cell present");
+                self.brains.remove(&id);
                 disposed = add(disposed, cell.energy, "disposal")?;
                 self.deaths.insert(
                     id,
@@ -544,6 +725,8 @@ impl World {
                 deaths += 1;
             }
         }
+        let (births, birth_cost) = self.reproduce()?;
+        disposed = add(disposed, birth_cost, "birth energy disposed")?;
         self.energy_maintenance = add(self.energy_maintenance, maintained, "energy_maintenance")?;
         self.energy_disposed = add(self.energy_disposed, disposed, "energy_disposed")?;
         self.rebuild_occupancy()?;
@@ -558,7 +741,7 @@ impl World {
             external_input: inflow,
             reservoir_to_field: injected,
             nutrient_uptaken: uptaken,
-            waste_created: uptaken,
+            waste_created: uptaken + excavated,
             energy_credited: credited,
             energy_maintenance: maintained,
             energy_disposed: disposed,
@@ -566,7 +749,68 @@ impl World {
             deaths,
             moves_applied,
             moves_blocked,
+            births,
+            motor_energy,
+            secreted,
+            excavated,
         })
+    }
+
+    fn reproduce(&mut self) -> Result<(u32, u64), Error> {
+        let Some(rules) = self.config.farm.clone() else {
+            return Ok((0, 0));
+        };
+        // Rebuild after deaths before checking empty sites.
+        self.rebuild_occupancy()?;
+        let ids: Vec<_> = self.cells.keys().copied().collect();
+        let dims = self.dims();
+        let solid = fused_surface(&self.flesh, dims)?;
+        let mut births = 0;
+        let mut disposed = 0;
+        for id in ids {
+            if self.cells.len() >= rules.max_population as usize {
+                break;
+            }
+            let parent = &self.cells[&id];
+            let brain = &self.brains[&id];
+            if parent.energy < rules.birth_energy
+                || parent.age < rules.maturity_ticks
+                || self.tick.saturating_sub(brain.last_birth) < rules.birth_cooldown
+            {
+                continue;
+            }
+            let start = (id.wrapping_add(self.tick) % 6) as u32;
+            let mut destination = None;
+            for n in 0..6 {
+                let dir = crate::Dir::from_roll((start + n) % 6 + 1)?;
+                let site = crate::step_site(parent.site, dir, dims)?;
+                if self.occupancy[site_index(site, dims)?] == 0 && !solid.contains(&site) {
+                    destination = Some(site);
+                    break;
+                }
+            }
+            let Some(site) = destination else {
+                continue;
+            };
+            let child_id = self.next_cell_id;
+            self.next_cell_id = add(child_id, 1, "next cell id")?;
+            let mut child = parent.clone();
+            child.id = child_id;
+            child.site = site;
+            child.age = 0;
+            child.energy = (parent.energy - rules.birth_cost) / 2;
+            // A small inheritable controller mutation; display genome is inherited.
+            let child_brain = brain.child(child_id, self.seed, self.tick);
+            let parent = self.cells.get_mut(&id).expect("parent");
+            parent.energy = parent.energy - rules.birth_cost - child.energy;
+            self.brains.get_mut(&id).expect("parent brain").last_birth = self.tick;
+            self.brains.insert(child_id, child_brain);
+            self.occupancy[site_index(site, dims)?] = child_id;
+            self.cells.insert(child_id, child);
+            disposed = add(disposed, rules.birth_cost, "birth cost")?;
+            births += 1;
+        }
+        Ok((births, disposed))
     }
 
     fn inject(&mut self, budget: u64) -> Result<u64, Error> {
@@ -610,6 +854,56 @@ impl World {
 
     pub fn audit(&self) -> Result<(), Error> {
         self.config.validate()?;
+        if self.config.farm.is_none() && !self.flesh.is_empty() {
+            return Err(Error::Invariant("M0 has flesh state".into()));
+        }
+        if self.flesh.len() > 8192 {
+            return Err(Error::Invariant("flesh site limit".into()));
+        }
+        for (site, amount) in &self.flesh {
+            site_index(*site, self.dims())?;
+            if *amount == 0 || *amount > 64 {
+                return Err(Error::Invariant("invalid flesh amount".into()));
+            }
+        }
+        if self.config.farm.is_some() {
+            if self.brains.len() != self.cells.len()
+                || self.cells.len() > self.config.population_bound() as usize
+            {
+                return Err(Error::Invariant("brain/population count mismatch".into()));
+            }
+            for (id, brain) in &self.brains {
+                if *id != brain.id
+                    || !self.cells.contains_key(id)
+                    || brain.parent >= *id
+                    || brain.last_birth > self.tick
+                    || brain.updates > self.tick
+                    || brain
+                        .weights
+                        .iter()
+                        .flatten()
+                        .any(|w| w.unsigned_abs() > 128)
+                    || brain
+                        .eligibility
+                        .iter()
+                        .flatten()
+                        .any(|v| v.unsigned_abs() > 64)
+                    || brain
+                        .joints
+                        .iter()
+                        .any(|v| v.unsigned_abs() > JOINT_LIMIT as u16)
+                    || brain.twists.iter().any(|v| v.unsigned_abs() > 128)
+                    || brain.last_dig > 2
+                    || usize::from(brain.last_action) >= crate::farm::ACTIONS
+                    || brain.velocity.iter().any(|v| v.unsigned_abs() > 256)
+                    || brain.offset.iter().any(|v| *v < -512 || *v >= 512)
+                {
+                    return Err(Error::Invariant(format!("invalid brain/rig {id}")));
+                }
+            }
+        } else if !self.brains.is_empty() {
+            return Err(Error::Invariant("M0 has brain state".into()));
+        }
         let dims = self.dims();
         let volume = dims.volume()? as usize;
         if self.nutrient.len() != volume || self.occupancy.len() != volume {

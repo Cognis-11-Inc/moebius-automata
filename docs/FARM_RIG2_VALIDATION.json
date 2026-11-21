@@ -1,0 +1,114 @@
+{
+  "date": "2026-11-21",
+  "revision": "FARM2: 12 spine joints + 2 jaws, 32 controller actions",
+  "base_commit": "37787ae82a281ea8e401e06ecf95a7196ccd35df",
+  "uncommitted": true,
+  "provenance": "Manifests echo base HEAD. These records are from the local uncommitted rig revision; final source hashes include later presentation/test additions.",
+  "checks": {
+    "workspace_tests": 52,
+    "failed": 0,
+    "strict_clippy": "PASS",
+    "formatting": "PASS",
+    "independent_python_ledgers": "PASS",
+    "same_seed_smoke_hashes": "MATCH",
+    "focused_fusion_digging_and_paid_work": "PASS",
+    "smooth_mesh_fusion_and_separate_gaps": "PASS",
+    "legacy_FARM1": "explicitly rejected, original files preserved"
+  },
+  "runs": [
+    {
+      "directory": "runs/farm_rig2_smoke_a",
+      "ticks": 200,
+      "grid": [
+        12,
+        12,
+        12
+      ],
+      "state_hash": "05110eac8bddbe65f07bdbce49d806901ec3d0771b72154159b34d71b19de2f1",
+      "live": 96,
+      "dead": 5,
+      "births": 89,
+      "flesh": 68,
+      "flesh_sites": 64,
+      "highest_generation": 3,
+      "material_residual": 0,
+      "energy_residual": 0
+    },
+    {
+      "directory": "runs/farm_rig2_smoke_b",
+      "ticks": 200,
+      "grid": [
+        12,
+        12,
+        12
+      ],
+      "state_hash": "05110eac8bddbe65f07bdbce49d806901ec3d0771b72154159b34d71b19de2f1",
+      "live": 96,
+      "dead": 5,
+      "births": 89,
+      "flesh": 68,
+      "flesh_sites": 64,
+      "highest_generation": 3,
+      "material_residual": 0,
+      "energy_residual": 0
+    },
+    {
+      "directory": "runs/farm_rig2_256_a",
+      "ticks": 160,
+      "grid": [
+        256,
+        256,
+        256
+      ],
+      "state_hash": "51bb17682b2106fbb264c06e6260adb9d7eac261a69e630fbbdbae3793bd0962",
+      "live": 128,
+      "dead": 128,
+      "births": 64,
+      "flesh": 67,
+      "flesh_sites": 67,
+      "highest_generation": 1,
+      "material_residual": 0,
+      "energy_residual": 0
+    }
+  ],
+  "observations": {
+    "live_render_fps": "about 60",
+    "body_rig": "12 spinal joints, two mandibular joints, front and rear motor choices, bends and twists",
+    "fusion": "face-connected tissue; component mass >=4 gives contact; smooth implicit mesh is display geometry",
+    "excavation": "opening and closing separate; up to 2 units removed per successful closing bite; removed material becomes waste",
+    "learned_tunnelling": "NOT EVALUATED; capability test uses a commanded policy",
+    "learning_improvement": "NOT EVALUATED",
+    "genetic_body_generation": "future requirement recorded; current rig topology is fixed",
+    "full_body_physics": "not a rigid-body or soft-body physics solver",
+    "push": "NOT PERFORMED"
+  },
+  "source_sha256": {
+    "crates/moebius-cli/src/lib.rs": "aaf29d9f48cbd535b4cf0e8d0865e5e92024e3287f0beaf610133d278f2bcbbf",
+    "crates/moebius-cli/src/main.rs": "413a85e58ac9dc4afae8a6360ede85a558ee366347fb3b1c58e388b8a6185603",
+    "crates/moebius-cli/tests/batch.rs": "1dbf2fd5102eee6521670dde9702e602c474798bf2d7189d97155b063a130db2",
+    "crates/moebius-core/src/config.rs": "e9be85ad93fe2bcdce707c8052a8d72c5daa9c75d0c527238e9b45a4f0ad24dc",
+    "crates/moebius-core/src/error.rs": "7dbc4af0907196b089861f5b9de53064a4349a17d61ac21e16a3906fc9608e72",
+    "crates/moebius-core/src/farm.rs": "61898d512d9c144535cf735a43b4436827d811e2aa926dd6baf40ecdc042b477",
+    "crates/moebius-core/src/geom.rs": "120149fe2a3f1c02df0bca1ec0320e46a8937385c2a655b4ca73641fc78d79ff",
+    "crates/moebius-core/src/hashutil.rs": "07f5f068cc61af230829d38792d964521618f468d4a73ec4057ca38a539e2a4f",
+    "crates/moebius-core/src/layers.rs": "fb6e2de34d3b1040172cae907410db022f990f2a9c9783d9568c6c7fb4b0ba8d",
+    "crates/moebius-core/src/lib.rs": "f0862d052a2c67255b6cabc3cbbf92e0c9fdb18ca20e6a0152de893a74012ef9",
+    "crates/moebius-core/src/prng.rs": "b513cb799b581ab3abbed0e3c600c1b937249f169a232e0120f7ac4166744e97",
+    "crates/moebius-core/src/report.rs": "d781e84f1989ed0041c2d80997de96095b9685f0c1b5e84eb66dd577e7a72cd6",
+    "crates/moebius-core/src/snapshot.rs": "5c51e55775c9addff833ee25483a3c46120a1feb93b297008ace97678e7d9894",
+    "crates/moebius-core/src/world.rs": "350482db3bb0272d5b492c1692614cc6d97d14ddbffee0e5af5cce6e374b796b",
+    "crates/moebius-core/tests/farm.rs": "281f875b2fab1a5bec178fc50b13eedfa395cdc9645658f09021921623e1de40",
+    "crates/moebius-core/tests/invariants.rs": "4ce4981a9d43f47198f85afb934c4f3d56d08fab3347fb8653066d37793a119a",
+    "crates/moebius-viewer/src/audio.rs": "1998a30cdc89fc83c03e095c573cc7927f958f8859443863b015adfb2ff335d3",
+    "crates/moebius-viewer/src/body.rs": "4b1aa36c80ba26ee3d442827141238a27d9069830d00c1f61327e2c4c68d08e2",
+    "crates/moebius-viewer/src/layout.rs": "0769af51322a7cbc0dd8efea73a087a71ad31bae8aacfaaa431468401d5384fd",
+    "crates/moebius-viewer/src/live.rs": "a82efc2f1c8c4d3599535a81337287521a2d36315388e0e9fee7bbd107bfb7ec",
+    "crates/moebius-viewer/src/main.rs": "b1b43226fc239cc53024a5ea00c47d05f0080ffe858abd0cdb218e949226fca9",
+    "crates/moebius-viewer/src/rules.rs": "a4a7617ce4e280ad77318022f72a7566ca8ffe017913ba1e361c876b0e0ef2e4",
+    "crates/moebius-viewer/src/show.rs": "b03eec9d26a0b6e3c0e99f07711f466791389fc92be7c6c72ae9b26bb8428452",
+    "experiments/farm_256.json": "62250e168cc60fdaf2ef9b1318b6892491cdca0812cbca3c4b72dac363d083f9",
+    "experiments/farm_smoke.json": "2f96b9bedd49b73ce639fb81af0984692fa04681b7514e0caf87c59af669498e",
+    "experiments/m0_64.json": "71ac7280984cbe7c3edeee510ed0ced0bb14a111d3b5d8d0a468f419bd2d333f",
+    "python/check_metrics.py": "22bfcea583f3c4b5335a9977566ed85620992fd54eb0349e4493d5be0cdbf943"
+  }
+}

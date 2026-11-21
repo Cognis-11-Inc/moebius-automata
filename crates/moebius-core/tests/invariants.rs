@@ -26,6 +26,7 @@ fn base() -> SimConfig {
         reservoir_cap: 1_000_000,
         energy_cap: 100_000,
         genome_fill: GenomeFill::Derived,
+        farm: None,
     }
 }
 
@@ -73,6 +74,8 @@ fn manual(config: &SimConfig, seed: u64, cells: Vec<Cell>, nutrient: Vec<u64>) -
         cells,
         deaths: Vec::<DeathRecord>::new(),
         nutrient,
+        brains: Vec::new(),
+        flesh: Vec::new(),
     };
     World::restore(config, &snapshot).unwrap()
 }
@@ -230,8 +233,8 @@ fn invalid_configuration_is_rejected_without_clamping() {
     let mut wide = base();
     wide.width = 128;
     wide.validate().unwrap();
-    wide.width = 129;
-    assert!(wide.validate().unwrap_err().to_string().contains("129"));
+    wide.width = 257;
+    assert!(wide.validate().unwrap_err().to_string().contains("257"));
     let mut crowded = base();
     crowded.width = 2;
     crowded.height = 2;
@@ -469,15 +472,15 @@ fn inert_genome_does_not_change_dynamics() {
 
 #[test]
 fn hall_fits_the_cap_and_the_acceptance_grid_stays_64() {
-    assert_eq!(MAX_AXIS, 128);
-    assert_eq!(MAX_VOLUME, 128 * 128 * 128);
+    assert_eq!(MAX_AXIS, 256);
+    assert_eq!(MAX_VOLUME, 256 * 256 * 256);
     let hall = SimConfig::hall_128();
     assert_eq!((hall.width, hall.height, hall.depth), (128, 128, 128));
     assert_eq!(hall.initial_population, 192);
     hall.validate().unwrap();
     check_horizon(&hall, 1).unwrap();
     let mut wide = hall.clone();
-    wide.width = 129;
+    wide.width = 257;
     assert!(wide.validate().is_err());
     let acceptance = SimConfig::m0_64();
     assert_eq!(acceptance.width, 64);
@@ -579,6 +582,8 @@ fn illegal_coordinate_cannot_be_restored() {
             }],
             deaths: Vec::new(),
             nutrient: vec![0; 64],
+            brains: Vec::new(),
+            flesh: Vec::new(),
         },
     )
     .unwrap_err();

@@ -7,20 +7,98 @@ use std::sync::Arc;
 use std::time::{SystemTime, UNIX_EPOCH};
 
 use bevy::audio::Volume;
+use bevy::input::mouse::{AccumulatedMouseMotion, AccumulatedMouseScroll, MouseScrollUnit};
+use bevy::mesh::skinning::{SkinnedMesh, SkinnedMeshInverseBindposes};
 use bevy::prelude::*;
 use bevy::text::FontSize;
+use bevy::window::{CursorGrabMode, CursorOptions, PrimaryWindow};
 
 use super::{
     AudioKey, BODY_SCALE, Boot, Creature, Dims, Drawn, DriftLight, FluidOrb, Frame, FrameClock,
     Gallery, Hud, PLAY_TICKS_PER_SEC, Reel, Score, Site, Stage, Threads, ViewState, load_reel,
 };
-use crate::body::{bone_cage, creature_mesh, write_threads};
+use crate::body::{
+    BIND_START, BIND_STEP, bone_cage, creature_mesh, fused_flesh_mesh, mandible_mesh,
+    nutrient_mesh, rig_bind_positions, write_slime, write_threads,
+};
 use crate::layout::{self, CAMERA_FOV, FILAMENT_WINDOW, path_segments, position_at, site_to_view};
-use crate::live::{self, Founder, Hall, LIVE_TICKS_PER_SEC};
+use crate::live::{self, Hall};
 use crate::rules::{self, Draft};
+use moebius_core::farm::{DIG_START, JOINTS, SPINE_JOINTS, action_dir};
 
-const FLUID_HIDE: f32 = 0.08;
+const FLUID_HIDE: f32 = 0.008;
 const HALL_FOV: f32 = 64.0 * std::f32::consts::PI / 180.0;
+
+#[derive(Resource, Default)]
+pub struct FlyCamera {
+    captured: bool,
+}
+#[derive(Component)]
+pub struct MotorJoint {
+    id: u64,
+    index: usize,
+}
+#[derive(Component)]
+pub struct FeedingMaw {
+    id: u64,
+}
+
+#[derive(Component)]
+pub struct FleshSurface;
+
+pub fn flesh_surfaces(
+    mut commands: Commands,
+    hall: Res<Hall>,
+    gallery: Res<Gallery>,
+    mut meshes: ResMut<Assets<Mesh>>,
+    surface: Query<Entity, With<FleshSurface>>,
+    mut previous: Local<Vec<moebius_core::farm::FleshDeposit>>,
+) {
+    let Some(picture) = &hall.latest else {
+        return;
+    };
+    if *previous == picture.flesh {
+        return;
+    }
+    if let Some(mut mesh) = meshes.get_mut(&gallery.flesh_mesh) {
+        *mesh = fused_flesh_mesh(&picture.flesh, hall.dims);
+    }
+    previous.clone_from(&picture.flesh);
+    if surface.is_empty() {
+        commands.spawn((
+            Mesh3d(gallery.flesh_mesh.clone()),
+            MeshMaterial3d(gallery.flesh_mat.clone()),
+            Transform::default(),
+            FleshSurface,
+        ));
+    }
+}
+
+fn rig_assets(
+    meshes: &mut Assets<Mesh>,
+    materials: &mut Assets<StandardMaterial>,
+    bindposes: &mut Assets<SkinnedMeshInverseBindposes>,
+) -> (
+    Handle<SkinnedMeshInverseBindposes>,
+    Handle<Mesh>,
+    Handle<StandardMaterial>,
+) {
+    let poses = rig_bind_positions()
+        .into_iter()
+        .map(|position| Mat4::from_translation(position).inverse())
+        .collect::<Vec<_>>();
+    (
+        bindposes.add(poses),
+        meshes.add(Sphere::new(0.08).mesh().ico(2).expect("mouth")),
+        materials.add(StandardMaterial {
+            base_color: Color::srgb(0.27, 0.035, 0.045),
+            metallic: 0.18,
+            perceptual_roughness: 0.22,
+            clearcoat: 0.8,
+            ..default()
+        }),
+    )
+}
 
 pub fn boot(mut commands: Commands, boot: Res<Boot>, mut next: ResMut<NextState<Stage>>) {
     commands.spawn((
@@ -67,22 +145,26 @@ pub fn rules_keys(
                 .clone()
                 .ok_or_else(|| "recording path is missing".to_string())
                 .and_then(|path| load_reel(&path))
+                .map(Box::new)
                 .map(Started::Reel)
         } else if open_run {
-            live::open(&draft.config, draft.seed).map(Started::Hall)
+            live::open(&draft.config, draft.seed)
+                .map(Box::new)
+                .map(Started::Hall)
         } else {
             commit_new(&draft)
                 .and_then(|path| load_reel(&path))
+                .map(Box::new)
                 .map(Started::Reel)
         };
         draft.pending = false;
         match outcome {
             Ok(Started::Reel(reel)) => {
-                install_playback(&mut commands, reel);
+                install_playback(&mut commands, *reel);
                 next.set(Stage::Playing);
             }
             Ok(Started::Hall(hall)) => {
-                install_hall(&mut commands, hall);
+                install_hall(&mut commands, *hall);
                 next.set(Stage::Playing);
             }
             Err(err) => {
@@ -129,6 +211,7 @@ pub fn assemble(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
+    mut bindpose_assets: ResMut<Assets<SkinnedMeshInverseBindposes>>,
     reel: Res<Reel>,
 ) {
     let span = (reel
@@ -153,43 +236,30 @@ pub fn assemble(
         meshes.add(creature_mesh(1)),
         meshes.add(creature_mesh(2)),
     ];
-    let creature_mats = [
-        materials.add(oily(
-            Color::srgb(0.52, 0.48, 0.4),
-            LinearRgba::new(0.02, 0.015, 0.008, 1.0),
-            0.58,
-            0.26,
-            0.74,
-        )),
-        materials.add(oily(
-            Color::srgb(0.06, 0.07, 0.055),
-            LinearRgba::new(0.004, 0.014, 0.009, 1.0),
-            0.94,
-            0.08,
-            1.0,
-        )),
-        materials.add(oily(
-            Color::srgb(0.24, 0.16, 0.13),
-            LinearRgba::new(0.035, 0.008, 0.004, 1.0),
-            0.78,
-            0.18,
-            0.58,
-        )),
-    ];
-    let orb = meshes.add(Sphere::new(1.0).mesh().ico(3).expect("icosphere"));
+    let creature_mats = std::array::from_fn(|_| materials.add(carapace_material()));
+    diffuse_lights(&mut commands);
+    let orb = meshes.add(nutrient_mesh());
+    let (bindposes, mouth, mouth_mat) =
+        rig_assets(&mut meshes, &mut materials, &mut bindpose_assets);
     let orb_mat = materials.add(bile_material());
+    let flesh_mesh = meshes.add(nutrient_mesh());
+    let mandibles = [
+        meshes.add(mandible_mesh(-1.0)),
+        meshes.add(mandible_mesh(1.0)),
+    ];
+    let flesh_mat = materials.add(StandardMaterial {
+        base_color: Color::srgb(0.26, 0.075, 0.085),
+        metallic: 0.10,
+        perceptual_roughness: 0.28,
+        clearcoat: 0.85,
+        ..default()
+    });
     let empty = meshes.add(creature_mesh(0));
     if let Some(mut mesh) = meshes.get_mut(&empty) {
         write_threads(&mut mesh, &[], 0.01);
     }
     let threads = empty;
-    let thread_mat = materials.add(oily(
-        Color::srgb(0.45, 0.42, 0.32),
-        LinearRgba::new(0.02, 0.016, 0.006, 1.0),
-        0.7,
-        0.22,
-        0.65,
-    ));
+    let thread_mat = materials.add(filament_material());
     let mark = meshes.add(Sphere::new(0.08).mesh().ico(1).expect("mark sphere"));
     let mark_mat = materials.add(StandardMaterial {
         base_color: Color::srgb(0.95, 0.22, 0.55),
@@ -200,6 +270,12 @@ pub fn assemble(
         creatures,
         creature_mats,
         threads: threads.clone(),
+        bindposes,
+        mouth,
+        mouth_mat,
+        flesh_mat,
+        flesh_mesh,
+        mandibles,
         orbs: orb.clone(),
         orb_mat: orb_mat.clone(),
         mark: mark.clone(),
@@ -258,42 +334,95 @@ pub fn assemble(
     );
 }
 
+#[allow(clippy::too_many_arguments)] // Bevy system inputs.
 pub fn orbit(
     time: Res<Time>,
     keyboard: Res<ButtonInput<KeyCode>>,
+    mouse: Res<ButtonInput<MouseButton>>,
+    motion: Res<AccumulatedMouseMotion>,
+    scroll: Res<AccumulatedMouseScroll>,
+    mut fly: ResMut<FlyCamera>,
+    hall: Option<Res<Hall>>,
+    mut cursors: Query<(&Window, &mut CursorOptions), With<PrimaryWindow>>,
     mut view: ResMut<ViewState>,
-    mut camera: Query<&mut Transform, With<Camera3d>>,
+    mut camera: Query<(&mut Transform, &mut Projection), With<Camera3d>>,
 ) {
-    let dt = time.delta_secs();
-    view.yaw += dt * 0.08;
-    if keyboard.pressed(KeyCode::KeyJ) {
-        view.yaw -= dt * 1.3;
-    }
-    if keyboard.pressed(KeyCode::KeyL) {
-        view.yaw += dt * 1.3;
-    }
-    if keyboard.pressed(KeyCode::KeyI) {
-        view.pitch += dt * 1.0;
-    }
-    if keyboard.pressed(KeyCode::KeyK) {
-        view.pitch -= dt * 1.0;
-    }
-    if keyboard.pressed(KeyCode::Minus) {
-        view.distance += dt * view.distance * 0.45;
-    }
-    if keyboard.pressed(KeyCode::Equal) {
-        view.distance -= dt * view.distance * 0.45;
-    }
-    view.pitch = view.pitch.clamp(-1.05, 1.05);
-    view.distance = view.distance.clamp(view.distance_min, view.distance_max);
-    let Ok(mut transform) = camera.single_mut() else {
+    let Ok((window, mut cursor)) = cursors.single_mut() else {
         return;
     };
-    let (sy, cy) = view.yaw.sin_cos();
-    let (sp, cp) = view.pitch.sin_cos();
-    let eye = Vec3::new(sy * cp, sp, cy * cp) * view.distance;
-    transform.translation = eye;
-    transform.look_at(Vec3::ZERO, Vec3::Y);
+    if keyboard.just_pressed(KeyCode::Escape) || !window.focused {
+        fly.captured = false;
+    } else if mouse.just_pressed(MouseButton::Left) {
+        fly.captured = true;
+    }
+    cursor.visible = !fly.captured;
+    cursor.grab_mode = if fly.captured {
+        CursorGrabMode::Locked
+    } else {
+        CursorGrabMode::None
+    };
+    if fly.captured {
+        view.yaw -= motion.delta.x * 0.0025;
+        view.pitch = (view.pitch - motion.delta.y * 0.0025).clamp(-1.52, 1.52);
+    }
+    let rotation = Quat::from_rotation_y(view.yaw) * Quat::from_rotation_x(view.pitch);
+    let forward = rotation * Vec3::NEG_Z;
+    let right = rotation * Vec3::X;
+    let mut eye = view.eye.unwrap_or(Vec3::new(0.0, 0.4, view.distance));
+    if window.focused {
+        if keyboard.just_pressed(KeyCode::KeyF)
+            && let Some(hall) = &hall
+            && let Some(picture) = &hall.latest
+            && let Some(target) = picture
+                .cells
+                .iter()
+                .filter_map(|cell| hall.poses.get(&cell.id))
+                .map(|(_, p)| Vec3::from_array(*p))
+                .min_by(|a, b| a.distance_squared(eye).total_cmp(&b.distance_squared(eye)))
+        {
+            eye = target - forward * 2.2;
+        }
+        let mut direction = Vec3::ZERO;
+        if keyboard.pressed(KeyCode::KeyW) {
+            direction += forward;
+        }
+        if keyboard.pressed(KeyCode::KeyS) {
+            direction -= forward;
+        }
+        if keyboard.pressed(KeyCode::KeyA) {
+            direction -= right;
+        }
+        if keyboard.pressed(KeyCode::KeyD) {
+            direction += right;
+        }
+        if keyboard.pressed(KeyCode::KeyE) {
+            direction += Vec3::Y;
+        }
+        if keyboard.pressed(KeyCode::KeyQ) {
+            direction -= Vec3::Y;
+        }
+        let speed = if keyboard.pressed(KeyCode::ShiftLeft) {
+            12.0
+        } else {
+            3.0
+        };
+        eye += direction.normalize_or_zero() * speed * time.delta_secs().min(0.05);
+        let wheel = scroll.delta.y
+            * if scroll.unit == MouseScrollUnit::Pixel {
+                0.025
+            } else {
+                1.0
+            };
+        view.fov = (view.fov - wheel * 0.045).clamp(0.30, 1.55);
+    }
+    view.eye = Some(eye);
+    if let Ok((mut transform, mut projection)) = camera.single_mut() {
+        transform.translation = eye;
+        transform.rotation = rotation;
+        if let Projection::Perspective(p) = projection.as_mut() {
+            p.fov = view.fov;
+        }
+    }
 }
 
 pub fn picture_keys(keyboard: Res<ButtonInput<KeyCode>>, mut view: ResMut<ViewState>) {
@@ -311,6 +440,12 @@ pub fn picture_keys(keyboard: Res<ButtonInput<KeyCode>>, mut view: ResMut<ViewSt
     }
     if keyboard.just_pressed(KeyCode::KeyM) {
         view.muted = !view.muted;
+    }
+    if keyboard.just_pressed(KeyCode::BracketLeft) {
+        view.audio_level = view.audio_level.saturating_sub(1);
+    }
+    if keyboard.just_pressed(KeyCode::BracketRight) {
+        view.audio_level = (view.audio_level + 1).min(10);
     }
 }
 
@@ -444,7 +579,7 @@ pub fn glide_threads(
         if view.threads_for != Some(shown) {
             let segments = path_segments(&reel.paths, shown, FILAMENT_WINDOW, reel.dims);
             if let Some(mut mesh) = meshes.get_mut(&gallery.threads) {
-                write_threads(&mut mesh, &segments, layout::SPACING * 0.055);
+                write_threads(&mut mesh, &segments, layout::SPACING * 0.09);
             }
             view.threads_for = Some(shown);
         }
@@ -499,6 +634,7 @@ pub fn marks(
 }
 
 pub fn soundtrack(
+    time: Res<Time>,
     mut commands: Commands,
     mut sources: ResMut<Assets<AudioSource>>,
     reel: Res<Reel>,
@@ -510,8 +646,9 @@ pub fn soundtrack(
         return;
     };
     let key = AudioKey {
-        bucket: index as u64 / 2,
-        muted: view.muted,
+        bucket: (time.elapsed_secs_f64() / 8.0) as u64,
+        muted: view.muted || !view.playing || view.audio_level == 0,
+        level: view.audio_level,
     };
     if view.audio_for == Some(key) {
         return;
@@ -519,7 +656,7 @@ pub fn soundtrack(
     for entity in &existing {
         commands.entity(entity).despawn();
     }
-    if !view.muted {
+    if !key.muted {
         let bytes =
             crate::audio::synth_wav(frame.tick, frame.live, frame.dead, frame.field, frame.waste);
         let handle = sources.add(AudioSource {
@@ -527,7 +664,7 @@ pub fn soundtrack(
         });
         commands.spawn((
             AudioPlayer::new(handle),
-            PlaybackSettings::LOOP.with_volume(Volume::Linear(0.22)),
+            PlaybackSettings::DESPAWN.with_volume(Volume::Linear(0.022 * view.audio_level as f32)),
             Score,
         ));
     }
@@ -574,7 +711,11 @@ pub fn hud(reel: Res<Reel>, view: Res<ViewState>, mut text: Query<&mut Text, Wit
     } else {
         "paused"
     };
-    let sound = if view.muted { "muted" } else { "on" };
+    let sound = if view.muted {
+        "muted".into()
+    } else {
+        format!("bursts {}/10", view.audio_level)
+    };
     let hypothesis_source = if reel.hypothesis_from_file {
         "file"
     } else {
@@ -595,9 +736,9 @@ pub fn hud(reel: Res<Reel>, view: Res<ViewState>, mut text: Query<&mut Text, Wit
          material residual {}   action-energy residual {}   state {hash}\n\
          bodies are a bone-and-oil costume on committed cells, not organism membership, not in the state hash\n\
          rules locked at the start. space at the end replays this run. it does not retick the world\n\
-         1 bodies {}   2 fluid {}   3 filaments {}   4 hypothesis {} ({hypothesis_source}, off until pressed)\n\
+         1 bodies {}   2 fluid {}   3 slime {}   4 hypothesis {} ({hypothesis_source}, off until pressed)\n\
          {}\n\
-         audio {sound}: viewer pcm, not in the state hash. J/L yaw  I/K pitch  -/= zoom  M mute",
+         audio {sound}: viewer pcm, not in the state hash. WASD move  Q/E rise/fall  click: mouse look  Esc: release  wheel: zoom  F inspect nearest  M mute  [/] volume",
         view.tick,
         view.tick_end,
         reel.seed,
@@ -633,11 +774,12 @@ pub fn view_for(reel: &Reel) -> ViewState {
         hypothesis: false,
         hypothesis_drawn: false,
         muted: false,
+        audio_level: 3,
         yaw: 0.55,
         pitch: 0.28,
         distance,
-        distance_min: distance * 0.28,
-        distance_max: distance * 2.6,
+        eye: None,
+        fov: CAMERA_FOV,
         body_scale: BODY_SCALE,
         lamp_reach: layout::SPACING * reel.dims.width.max(1) as f32 * 0.28,
         fps: 0.0,
@@ -648,7 +790,7 @@ pub fn view_for(reel: &Reel) -> ViewState {
 }
 
 pub fn view_for_hall(hall: &Hall) -> ViewState {
-    let far = crate::layout::stage_distance(hall.dims);
+    let _ = hall.dims;
     ViewState {
         tick: 0.0,
         tick_end: 0.0,
@@ -659,12 +801,13 @@ pub fn view_for_hall(hall: &Hall) -> ViewState {
         hypothesis: false,
         hypothesis_drawn: false,
         muted: false,
-        yaw: 0.35,
-        pitch: 0.16,
+        audio_level: 3,
+        yaw: 0.0,
+        pitch: 0.0,
         distance: 9.0,
-        distance_min: 3.5,
-        distance_max: far,
-        body_scale: 1.7,
+        eye: None,
+        fov: HALL_FOV,
+        body_scale: BODY_SCALE,
         lamp_reach: 3.2,
         fps: 0.0,
         audio_for: None,
@@ -677,6 +820,7 @@ pub fn assemble_hall(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
+    mut bindpose_assets: ResMut<Assets<SkinnedMeshInverseBindposes>>,
     hall: Res<Hall>,
     mut cameras: Query<(Entity, &mut Projection), With<Camera3d>>,
 ) {
@@ -689,8 +833,8 @@ pub fn assemble_hall(
             directional_light_color: Color::NONE,
             directional_light_exponent: 8.0,
             falloff: FogFalloff::Linear {
-                start: 5.0,
-                end: 16.0,
+                start: 12.0,
+                end: 42.0,
             },
         });
     }
@@ -716,43 +860,30 @@ pub fn assemble_hall(
         meshes.add(creature_mesh(1)),
         meshes.add(creature_mesh(2)),
     ];
-    let creature_mats = [
-        materials.add(oily(
-            Color::srgb(0.46, 0.4, 0.32),
-            LinearRgba::new(0.03, 0.016, 0.006, 1.0),
-            0.42,
-            0.34,
-            0.86,
-        )),
-        materials.add(oily(
-            Color::srgb(0.03, 0.035, 0.028),
-            LinearRgba::new(0.002, 0.01, 0.004, 1.0),
-            0.96,
-            0.08,
-            1.0,
-        )),
-        materials.add(oily(
-            Color::srgb(0.32, 0.08, 0.06),
-            LinearRgba::new(0.05, 0.006, 0.004, 1.0),
-            0.7,
-            0.22,
-            0.7,
-        )),
-    ];
-    let orb = meshes.add(Sphere::new(1.0).mesh().ico(3).expect("icosphere"));
+    let creature_mats = std::array::from_fn(|_| materials.add(carapace_material()));
+    diffuse_lights(&mut commands);
+    let orb = meshes.add(nutrient_mesh());
+    let (bindposes, mouth, mouth_mat) =
+        rig_assets(&mut meshes, &mut materials, &mut bindpose_assets);
     let orb_mat = materials.add(bile_material());
+    let flesh_mesh = meshes.add(nutrient_mesh());
+    let mandibles = [
+        meshes.add(mandible_mesh(-1.0)),
+        meshes.add(mandible_mesh(1.0)),
+    ];
+    let flesh_mat = materials.add(StandardMaterial {
+        base_color: Color::srgb(0.26, 0.075, 0.085),
+        metallic: 0.10,
+        perceptual_roughness: 0.28,
+        clearcoat: 0.85,
+        ..default()
+    });
     let empty = meshes.add(creature_mesh(0));
     if let Some(mut mesh) = meshes.get_mut(&empty) {
         write_threads(&mut mesh, &[], 0.01);
     }
     let threads = empty;
-    let thread_mat = materials.add(oily(
-        Color::srgb(0.38, 0.3, 0.22),
-        LinearRgba::new(0.03, 0.01, 0.004, 1.0),
-        0.64,
-        0.28,
-        0.55,
-    ));
+    let thread_mat = materials.add(filament_material());
     let mark = meshes.add(Sphere::new(0.08).mesh().ico(1).expect("mark sphere"));
     let mark_mat = materials.add(StandardMaterial {
         base_color: Color::srgb(0.95, 0.22, 0.55),
@@ -763,6 +894,12 @@ pub fn assemble_hall(
         creatures,
         creature_mats,
         threads: threads.clone(),
+        bindposes,
+        mouth,
+        mouth_mat,
+        flesh_mat,
+        flesh_mesh,
+        mandibles,
         orbs: orb,
         orb_mat,
         mark,
@@ -800,7 +937,6 @@ pub fn hall_pump(mut hall: ResMut<Hall>) {
 }
 
 pub fn hall_clock(
-    time: Res<Time>,
     keyboard: Res<ButtonInput<KeyCode>>,
     hall: Res<Hall>,
     mut view: ResMut<ViewState>,
@@ -816,87 +952,241 @@ pub fn hall_clock(
         }
     }
     if view.playing && hall.halted.is_none() {
-        let target = hall.committed_tick() as f32;
-        let next = view.tick + time.delta_secs() * LIVE_TICKS_PER_SEC;
-        view.tick = next.min(target);
+        view.tick = hall.interpolated_tick();
     }
 }
 
-pub fn embody(mut commands: Commands, gallery: Res<Gallery>, mut hall: ResMut<Hall>) {
-    if hall.spawned {
-        return;
-    }
+pub fn embody(
+    mut commands: Commands,
+    gallery: Res<Gallery>,
+    mut hall: ResMut<Hall>,
+    mut view: ResMut<ViewState>,
+) {
     let Some(picture) = hall.latest.clone() else {
         return;
     };
-    if picture.error.is_some() && picture.cells.is_empty() {
-        hall.spawned = true;
-        eprintln!("VIEW_READY creatures 0 orbs 0");
-        return;
-    }
     for cell in &picture.cells {
+        if !hall.spawned_ids.insert(cell.id) {
+            continue;
+        }
         let costume = costume(cell.id, cell.genome);
-        commands.spawn((
-            Mesh3d(gallery.creatures[costume.variant as usize].clone()),
-            MeshMaterial3d(gallery.creature_mats[costume.variant as usize].clone()),
-            Transform::default(),
-            Visibility::Hidden,
-            costume.body,
-        ));
+        let root = commands
+            .spawn((
+                Mesh3d(gallery.creatures[costume.variant as usize].clone()),
+                MeshMaterial3d(gallery.creature_mats[costume.variant as usize].clone()),
+                Transform::default(),
+                Visibility::Hidden,
+                costume.body,
+            ))
+            .id();
+        if cell.rig.is_some() {
+            let mut joints = Vec::new();
+            let mut parent = root;
+            for index in 0..SPINE_JOINTS {
+                let joint = commands
+                    .spawn((
+                        Transform::from_xyz(
+                            0.0,
+                            if index == 0 { BIND_START } else { BIND_STEP },
+                            0.0,
+                        ),
+                        MotorJoint { id: cell.id, index },
+                    ))
+                    .id();
+                commands.entity(parent).add_child(joint);
+                joints.push(joint);
+                parent = joint;
+            }
+            let head_bone = joints[SPINE_JOINTS - 3];
+            for jaw in 0..2 {
+                let sign = if jaw == 0 { -1.0 } else { 1.0 };
+                let joint = commands
+                    .spawn((
+                        Transform::from_xyz(sign * 0.10, 0.15, 0.08),
+                        MotorJoint {
+                            id: cell.id,
+                            index: SPINE_JOINTS + jaw,
+                        },
+                        Mesh3d(gallery.mandibles[jaw].clone()),
+                        MeshMaterial3d(gallery.creature_mats[costume.variant as usize].clone()),
+                        Visibility::Inherited,
+                    ))
+                    .id();
+                commands.entity(head_bone).add_child(joint);
+                joints.push(joint);
+            }
+            debug_assert_eq!(joints.len(), JOINTS);
+            commands.entity(root).insert(SkinnedMesh {
+                inverse_bindposes: gallery.bindposes.clone(),
+                joints,
+            });
+            let mouth = commands
+                .spawn((
+                    Mesh3d(gallery.mouth.clone()),
+                    MeshMaterial3d(gallery.mouth_mat.clone()),
+                    Transform::from_xyz(0.0, 0.85, 0.1),
+                    FeedingMaw { id: cell.id },
+                ))
+                .id();
+            commands.entity(head_bone).add_child(mouth);
+            // Feeding organ follows the articulated head.
+            commands
+                .entity(mouth)
+                .insert(Transform::from_xyz(0.0, 0.15, 0.1));
+        }
     }
-    for index in 0..hall.fluid_origins.len() {
-        commands.spawn((
-            Mesh3d(gallery.orbs.clone()),
-            MeshMaterial3d(gallery.orb_mat.clone()),
-            Transform::default(),
-            Visibility::Hidden,
-            FluidOrb(index),
-        ));
+    if !hall.spawned {
+        if let Some(cell) = picture.cells.first() {
+            let position = hall
+                .poses
+                .get(&cell.id)
+                .map_or(Vec3::ZERO, |(_, p)| Vec3::from_array(*p));
+            view.eye = Some(position + Vec3::new(0.0, 0.20, 2.2));
+        }
+        for index in 0..hall.fluid_origins.len() {
+            commands.spawn((
+                Mesh3d(gallery.orbs.clone()),
+                MeshMaterial3d(gallery.orb_mat.clone()),
+                Transform::default(),
+                Visibility::Hidden,
+                FluidOrb(index),
+            ));
+        }
+        hall.spawned = true;
+        eprintln!(
+            "VIEW_READY creatures {} food colonies {}",
+            picture.cells.len(),
+            hall.fluid_origins.len()
+        );
     }
-    hall.spawned = true;
-    eprintln!(
-        "VIEW_READY creatures {} orbs {}",
-        picture.cells.len(),
-        hall.fluid_origins.len()
-    );
 }
 
 pub fn hall_bodies(
     time: Res<Time>,
     hall: Res<Hall>,
     view: Res<ViewState>,
-    mut bodies: Query<(&Creature, &mut Transform, &mut Visibility)>,
+    mut commands: Commands,
+    mut bodies: Query<(Entity, &Creature, &mut Transform, &mut Visibility)>,
 ) {
     let Some(picture) = &hall.latest else {
         return;
     };
-    let seconds = time.elapsed_secs();
-    let tick = view.tick;
-    for (body, mut transform, mut visibility) in &mut bodies {
-        let Some(path) = hall.paths.get(&body.id) else {
-            *visibility = Visibility::Hidden;
+    let blend = if hall.committed_tick() == view.tick.floor() as u64 + 1 {
+        view.tick.fract()
+    } else {
+        1.0
+    };
+    for (entity, body, mut transform, mut visibility) in &mut bodies {
+        let Ok(index) = picture.cells.binary_search_by_key(&body.id, |c| c.id) else {
+            commands.entity(entity).despawn();
             continue;
         };
-        let alive = path
-            .last()
-            .is_some_and(|(last, _)| tick <= *last as f32 + 0.02);
-        let Some(place) = position_at(path, tick, hall.dims) else {
-            *visibility = Visibility::Hidden;
-            continue;
+        let cell = &picture.cells[index];
+        *visibility = if view.cells {
+            Visibility::Visible
+        } else {
+            Visibility::Hidden
         };
-        if !view.cells || !alive {
-            *visibility = Visibility::Hidden;
-            continue;
+        if let Some((before, after)) = hall.poses.get(&body.id) {
+            transform.translation = Vec3::from_array(*before).lerp(Vec3::from_array(*after), blend);
         }
-        *visibility = Visibility::Visible;
-        pose_creature(
-            body,
-            Vec3::from_array(place),
-            founder_energy(&picture.cells, body.id),
-            seconds,
-            view.body_scale,
-            &mut transform,
+        if let Some(rig) = &cell.rig {
+            let velocity = Vec3::new(
+                rig.velocity[0] as f32,
+                rig.velocity[1] as f32,
+                rig.velocity[2] as f32,
+            );
+            let direction = if usize::from(rig.last_action) >= DIG_START {
+                let (x, y, z) = action_dir(usize::from(rig.last_action))
+                    .expect("valid motor action")
+                    .delta();
+                Vec3::new(x as f32, y as f32, z as f32)
+            } else {
+                velocity
+            };
+            if direction.length_squared() > 0.5 {
+                let facing = Quat::from_rotation_arc(Vec3::Y, direction.normalize());
+                transform.rotation = transform
+                    .rotation
+                    .slerp(facing, 1.0 - (-time.delta_secs() * 4.0).exp());
+            }
+            let size = if rig.parent > 0 {
+                (0.65 + rig.updates as f32 / 128.0).min(1.0)
+            } else {
+                1.0
+            };
+            let nutrition = 0.88 + 0.12 * (cell.energy as f32 / 40.0).min(1.0);
+            transform.scale = body.stretch * (view.body_scale * size * nutrition);
+        } else {
+            transform.scale = body.stretch * view.body_scale;
+        }
+    }
+}
+
+pub fn rig_joints(
+    time: Res<Time>,
+    hall: Res<Hall>,
+    mut joints: Query<(&MotorJoint, &mut Transform), Without<Creature>>,
+) {
+    let Some(picture) = &hall.latest else {
+        return;
+    };
+    for (joint, mut transform) in &mut joints {
+        let Ok(index) = picture.cells.binary_search_by_key(&joint.id, |c| c.id) else {
+            continue;
+        };
+        let Some(rig) = &picture.cells[index].rig else {
+            continue;
+        };
+        let angle = rig.joints[joint.index] as f32 / 256.0;
+        let target = if joint.index < SPINE_JOINTS {
+            let twist = rig.twists[joint.index] as f32 / 256.0;
+            Quat::from_rotation_z(angle)
+                * Quat::from_rotation_x(angle * 0.55)
+                * Quat::from_rotation_y(twist)
+        } else {
+            let sign = if joint.index == SPINE_JOINTS {
+                -1.0
+            } else {
+                1.0
+            };
+            Quat::from_rotation_z(sign * angle) * Quat::from_rotation_x(angle * 0.35)
+        };
+        transform.rotation = transform
+            .rotation
+            .slerp(target, 1.0 - (-time.delta_secs() * 12.0).exp());
+    }
+}
+
+pub fn feeding(
+    time: Res<Time>,
+    hall: Res<Hall>,
+    mut mouths: Query<(&FeedingMaw, &mut Transform), Without<Creature>>,
+) {
+    let Some(picture) = &hall.latest else {
+        return;
+    };
+    for (maw, mut transform) in &mut mouths {
+        let Ok(index) = picture.cells.binary_search_by_key(&maw.id, |c| c.id) else {
+            continue;
+        };
+        let Some(rig) = &picture.cells[index].rig else {
+            continue;
+        };
+        let amount = (rig.last_meal + rig.last_dig).min(4) as f32;
+        let feeding = if amount > 0.0 {
+            1.0 + (time.elapsed_secs() * 11.0).sin() * 0.16
+        } else {
+            0.0
+        };
+        let target = Vec3::new(
+            0.7 + amount * 0.12,
+            0.6 + amount * feeding,
+            0.7 + amount * 0.12,
         );
+        transform.scale = transform
+            .scale
+            .lerp(target, 1.0 - (-time.delta_secs() * 10.0).exp());
     }
 }
 
@@ -956,9 +1246,8 @@ pub fn hall_threads(
     if view.filaments && hall.latest.is_some() {
         let shown = view.tick.floor() as u64;
         if view.threads_for != Some(shown) {
-            let segments = path_segments(&hall.paths, shown, FILAMENT_WINDOW, hall.dims);
             if let Some(mut mesh) = meshes.get_mut(&gallery.threads) {
-                write_threads(&mut mesh, &segments, layout::SPACING * 0.055);
+                write_slime(&mut mesh, &hall.motion_paths, shown);
             }
             view.threads_for = Some(shown);
         }
@@ -969,6 +1258,7 @@ pub fn hall_threads(
 }
 
 pub fn hall_sound(
+    time: Res<Time>,
     mut commands: Commands,
     mut sources: ResMut<Assets<AudioSource>>,
     hall: Res<Hall>,
@@ -979,8 +1269,9 @@ pub fn hall_sound(
         return;
     };
     let key = AudioKey {
-        bucket: picture.tick / 16,
-        muted: view.muted,
+        bucket: (time.elapsed_secs_f64() / 8.0) as u64,
+        muted: view.muted || !view.playing || view.audio_level == 0,
+        level: view.audio_level,
     };
     if view.audio_for == Some(key) {
         return;
@@ -988,7 +1279,7 @@ pub fn hall_sound(
     for entity in &existing {
         commands.entity(entity).despawn();
     }
-    if !view.muted {
+    if !key.muted {
         let bytes = crate::audio::synth_wav(
             picture.tick,
             picture.live,
@@ -1001,7 +1292,7 @@ pub fn hall_sound(
         });
         commands.spawn((
             AudioPlayer::new(handle),
-            PlaybackSettings::LOOP.with_volume(Volume::Linear(0.22)),
+            PlaybackSettings::DESPAWN.with_volume(Volume::Linear(0.022 * view.audio_level as f32)),
             Score,
         ));
     }
@@ -1026,8 +1317,19 @@ pub fn hall_hud(hall: Res<Hall>, view: Res<ViewState>, mut text: Query<&mut Text
     } else {
         "paused"
     };
-    let sound = if view.muted { "muted" } else { "on" };
+    let sound = if view.muted {
+        "muted".into()
+    } else {
+        format!("bursts {}/10", view.audio_level)
+    };
     let hash: String = picture.state_hash.chars().take(16).collect();
+    let flesh = picture.material_flesh;
+    let generation = picture
+        .cells
+        .iter()
+        .filter_map(|c| c.rig.as_ref().map(|r| r.generation))
+        .max()
+        .unwrap_or(0);
     let config: String = hall.config_hash.chars().take(12).collect();
     let code: String = hall.code_version.chars().take(12).collect();
     let fps = if view.fps > 0.0 {
@@ -1043,17 +1345,17 @@ pub fn hall_hud(hall: Res<Hall>, view: Res<ViewState>, mut text: Query<&mut Text
         String::new()
     };
     text.0 = format!(
-        "Möbius Automata M0   tick {}   shown {:.1}   {fps}   {play}\n\
-         open run. founding cells {}. no division. no mutation. no new organism.\n\
+        "Möbius Automata — Farm M1   tick {}   shown {:.1}   {fps}   {play}\n\
+         M1 farm. founding cells {}. joint motors + inertia. inherited adaptive controllers.\n\
          seed {}   config {config}   code {code}   energy cap {}\n\
          live {}   dead {}   field {}   reservoir {}   waste {}\n\
          material residual {}   action-energy residual {}   state {hash} at tick {}\n\
-         bone, oil, fangs, and bile are a Giger costume. not membership. not in the state hash\n\
-         fluid stride {} hides thin blocks. the field line above is the stock.\n\
-         1 bodies {}   2 fluid {}   3 filaments {}   4 hypothesis {} (empty scaffold, not membership)\n\
+         generation {generation}   deposited flesh {flesh}   motors, feeding, and inheritance are live\n\
+         food colonies: block samples, stride {}. mouths respond to actual nutrient uptake.\n\
+         1 bodies {}   2 fluid {}   3 slime {}   4 hypothesis {} (empty scaffold, not membership)\n\
          {extra}\
          space pauses the scientific clock. closing the window stops it.\n\
-         audio {sound}: viewer pcm, not in the state hash. J/L yaw  I/K pitch  -/= zoom  M mute",
+         audio {sound}: viewer pcm, not in the state hash. WASD move  Q/E rise/fall  click: mouse look  Esc: release  wheel: zoom  F inspect nearest  M mute  [/] volume",
         picture.tick,
         view.tick,
         hall.founding,
@@ -1087,8 +1389,8 @@ fn install_hall(commands: &mut Commands, hall: Hall) {
 }
 
 enum Started {
-    Reel(Reel),
-    Hall(Hall),
+    Reel(Box<Reel>),
+    Hall(Box<Hall>),
 }
 
 fn install_playback(commands: &mut Commands, reel: Reel) {
@@ -1222,11 +1524,11 @@ fn costume(id: u64, genome: [u8; 8]) -> Costume {
         ^ (u64::from(genome[2]) << 16)
         ^ (u64::from(genome[5]) << 24);
     let stretch = Vec3::new(
-        0.78 + (genome[2] as f32 / 255.0) * 0.55 + ((id >> 3) % 5) as f32 * 0.04,
-        0.9 + (genome[3] as f32 / 255.0) * 0.7 + ((id >> 5) % 7) as f32 * 0.03,
-        0.78 + (genome[4] as f32 / 255.0) * 0.55 + ((id >> 7) % 5) as f32 * 0.04,
+        0.78 + (genome[2] as f32 / 255.0) * 0.25 + ((id >> 3) % 5) as f32 * 0.02,
+        0.9 + (genome[3] as f32 / 255.0) * 0.25 + ((id >> 5) % 7) as f32 * 0.02,
+        0.78 + (genome[4] as f32 / 255.0) * 0.25 + ((id >> 7) % 5) as f32 * 0.02,
     );
-    let spin_mag = 0.35 + ((mix >> 8) % 180) as f32 / 180.0;
+    let spin_mag = 0.06 + ((mix >> 8) % 180) as f32 / 180.0 * 0.16;
     Costume {
         variant: (mix % 3) as u8,
         body: Creature {
@@ -1261,27 +1563,69 @@ fn pose_creature(
     transform.scale = body.stretch * (body_scale * bulk * (1.0 + breathe));
 }
 
-fn founder_energy(cells: &[Founder], id: u64) -> f32 {
-    cells
-        .binary_search_by_key(&id, |cell| cell.id)
-        .ok()
-        .map(|index| cells[index].energy as f32)
-        .unwrap_or(0.0)
-}
-
 fn secretion_scale(size: Vec3, fraction: f32, pulse: f32) -> Vec3 {
-    Vec3::splat(size.max_element() * 0.45 * fraction * pulse)
+    // Volume, rather than radius, tracks the normalized block nutrient amount.
+    Vec3::splat(size.max_element() * 0.12 * fraction.cbrt() * pulse)
 }
 
 fn bile_material() -> StandardMaterial {
     StandardMaterial {
-        base_color: Color::srgba(0.05, 0.07, 0.032, 0.32),
-        emissive: LinearRgba::new(0.016, 0.028, 0.006, 1.0),
+        base_color: Color::srgba(0.30, 0.52, 0.13, 0.24),
+        emissive: LinearRgba::new(0.10, 0.22, 0.025, 1.0),
         alpha_mode: AlphaMode::Blend,
-        perceptual_roughness: 0.28,
-        metallic: 0.62,
-        reflectance: 0.46,
+        perceptual_roughness: 0.65,
+        metallic: 0.0,
+        reflectance: 0.25,
         ..default()
+    }
+}
+
+fn carapace_material() -> StandardMaterial {
+    StandardMaterial {
+        base_color: Color::WHITE,
+        metallic: 0.38,
+        perceptual_roughness: 0.34,
+        clearcoat: 0.65,
+        clearcoat_perceptual_roughness: 0.2,
+        ..default()
+    }
+}
+
+fn filament_material() -> StandardMaterial {
+    StandardMaterial {
+        base_color: Color::srgba(0.75, 0.88, 0.52, 0.65),
+        alpha_mode: AlphaMode::Blend,
+        perceptual_roughness: 0.16,
+        metallic: 0.12,
+        clearcoat: 0.85,
+        emissive: LinearRgba::new(0.025, 0.04, 0.012, 1.0),
+        ..default()
+    }
+}
+
+fn diffuse_lights(commands: &mut Commands) {
+    // Broad fill reaches the whole hall instead of falling off around a lamp.
+    for (color, illuminance, at) in [
+        (
+            Color::srgb(0.82, 0.90, 1.0),
+            2_000.0,
+            Vec3::new(1.0, 2.0, 1.0),
+        ),
+        (
+            Color::srgb(1.0, 0.83, 0.64),
+            900.0,
+            Vec3::new(-2.0, 0.5, -1.0),
+        ),
+    ] {
+        commands.spawn((
+            DirectionalLight {
+                color,
+                illuminance,
+                shadow_maps_enabled: false,
+                ..default()
+            },
+            Transform::from_translation(at).looking_at(Vec3::ZERO, Vec3::Y),
+        ));
     }
 }
 
@@ -1334,4 +1678,68 @@ fn block_pose(origin: Site, stride: u32, dims: Dims) -> (Vec3, Vec3) {
     let center = (near + far) * 0.5;
     let size = (far - near).abs() + Vec3::splat(layout::SPACING * 0.85);
     (center, size)
+}
+
+#[cfg(test)]
+mod camera_tests {
+    use super::*;
+
+    #[test]
+    fn fly_camera_responds_to_keyboard_mouse_zoom_and_escape() {
+        let mut config = moebius_core::SimConfig::m0_64();
+        config.width = 4;
+        config.height = 4;
+        config.depth = 4;
+        config.initial_population = 1;
+        config.inject_per_tick = 1;
+        let hall = live::open(&config, 7).unwrap();
+        let mut app = App::new();
+        let mut clock = Time::<()>::default();
+        clock.advance_by(std::time::Duration::from_millis(50));
+        app.insert_resource(clock)
+            .insert_resource(view_for_hall(&hall))
+            .init_resource::<FlyCamera>()
+            .init_resource::<ButtonInput<KeyCode>>()
+            .init_resource::<ButtonInput<MouseButton>>()
+            .init_resource::<AccumulatedMouseMotion>()
+            .init_resource::<AccumulatedMouseScroll>()
+            .add_systems(Update, orbit);
+        app.world_mut().spawn((
+            Window {
+                focused: true,
+                ..default()
+            },
+            CursorOptions::default(),
+            PrimaryWindow,
+        ));
+        app.world_mut().spawn((
+            Camera3d::default(),
+            Transform::default(),
+            Projection::default(),
+        ));
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyW);
+        app.update();
+        assert!(app.world().resource::<ViewState>().eye.unwrap().z < 9.0);
+        app.world_mut()
+            .resource_mut::<ButtonInput<MouseButton>>()
+            .press(MouseButton::Left);
+        app.world_mut()
+            .resource_mut::<AccumulatedMouseMotion>()
+            .delta = Vec2::new(40.0, -20.0);
+        app.world_mut()
+            .resource_mut::<AccumulatedMouseScroll>()
+            .delta = Vec2::new(0.0, 2.0);
+        app.update();
+        let view = app.world().resource::<ViewState>();
+        assert!(view.yaw < 0.0 && view.pitch > 0.0);
+        assert!(view.fov < HALL_FOV);
+        assert!(app.world().resource::<FlyCamera>().captured);
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::Escape);
+        app.update();
+        assert!(!app.world().resource::<FlyCamera>().captured);
+    }
 }

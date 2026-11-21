@@ -1,15 +1,17 @@
 # M0 laws
 
+These baseline laws apply when `farm` is absent. The default live viewer now
+uses [Farm M1](FARM_M1.md), which adds controllers, rigs, reproduction, and flesh.
+
 These are the rules the Rust core commits. A passing test is evidence that a
 build followed them. This page is not itself that evidence.
 
 A digital cell is an id, a site, an action-energy balance, an age, and eight
 inert genome bytes. It is not a lattice site. The lattice is a finite
-3D grid with one material nutrient field. Each axis is `1..=128`. Volume is
-`1..=2097152`. The acceptance experiment is 64×64×64 for 1000 ticks.
-The viewer's open hall is 128×128×128 and keeps ticking until a tick is
-refused or the operator stops. A longer run does not add division, mutation,
-or organism detection.
+3D grid with one material nutrient field. Each axis is `1..=256`. Volume is
+`1..=16777216`. The acceptance experiment is 64×64×64 for 1000 ticks.
+The original M0 acceptance laws do not add division, mutation, or organism
+detection with elapsed time. Farm M1 is a separate explicit law selection.
 
 Neighborhood: 6 face neighbors plus stay (`von-neumann-6-periodic`). Coordinates
 wrap with `rem_euclid`. Only periodic boundaries are implemented.

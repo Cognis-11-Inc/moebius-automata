@@ -24,8 +24,10 @@ Check a finished run:
 
 The checker recomputes two identities with Python integers:
 
-- `material_initial + external_input = field + reservoir + waste + external_output`
+- `material_initial + external_input = field + flesh + reservoir + waste + external_output`
 - `energy_credited = energy_live + energy_maintenance + energy_disposed`
 
 It also checks the row count, the final hash, the live and dead counts, and the
 extinction flag. A nonzero residual is a failure.
+
+`flesh` defaults to zero when checking historical M0 metrics.

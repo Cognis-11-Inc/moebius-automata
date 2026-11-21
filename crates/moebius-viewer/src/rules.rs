@@ -143,10 +143,10 @@ impl Draft {
 
     /// Game default. Keeps ticking. Does not pre-commit a length.
     pub fn hall() -> Self {
-        let mut draft = Self::from_parts(SimConfig::hall_128(), 20_261_026, 1_000, 50, true)
-            .expect("the 128³ hall is valid for one tick");
+        let mut draft = Self::from_parts(SimConfig::farm_256(), 20_261_026, 1_000, 50, true)
+            .expect("the 256³ farm is valid for one tick");
         draft.status =
-            "Open hall. 128 on a side. Founding cells only. M0 does not birth or mutate.".into();
+            "Open farm. 256 on a side. Adaptive joint motors, inertia, feeding, and inherited controllers.".into();
         draft
     }
 
@@ -260,11 +260,17 @@ pub fn slate(draft: &Draft) -> String {
          Up/Down selects. Left/Right steps. Shift steps further.\n\
          open_run keeps ticking until a tick is refused or the window closes.\n\
          span sets width, height, and depth to the same length.\n\
-         M0 does not divide, mutate, or detect an organism. Time will not make one.\n\
          Founding cells are the initial population. They are not a membership.\n\
          The acceptance experiment stays 64³ and 1000 ticks.\n\
          Fixed: 6-neighbor periodic grid, lowest id wins an empty site.\n",
     );
+    if draft.config.farm.is_some() {
+        lines.push_str(
+            "M1: joint motors, inertial coasting, adaptive controller and asexual reproduction.\n",
+        );
+    } else {
+        lines.push_str("M0 recording: no brain or reproduction.\n");
+    }
     if let Some(path) = &draft.recording {
         lines.push_str(&format!("recording {}\n", path.display()));
     }
@@ -467,11 +473,11 @@ mod tests {
     fn hall_is_open_and_names_the_founding_rules() {
         let draft = Draft::hall();
         assert!(draft.until_stopped);
-        assert_eq!(draft.config.width, 128);
+        assert_eq!(draft.config.width, 256);
         assert_eq!(draft.config.initial_population, 192);
         let text = slate(&draft);
         assert!(text.contains("open_run"));
-        assert!(text.contains("does not divide"));
+        assert!(text.contains("joint motors"));
         assert!(text.contains("> open_run"));
     }
 
@@ -480,8 +486,8 @@ mod tests {
         let mut draft = Draft::hall();
         draft.selected = knob("width");
         adjust(&mut draft, false, true);
-        assert_eq!(draft.config.width, 128);
-        assert_eq!(draft.config.height, 128);
+        assert_eq!(draft.config.width, 256);
+        assert_eq!(draft.config.height, 256);
         assert!(draft.status.contains("refused"), "{}", draft.status);
     }
 
@@ -490,14 +496,14 @@ mod tests {
         let mut draft = Draft::hall();
         draft.selected = knob("span");
         adjust(&mut draft, false, false);
-        assert_eq!(draft.config.width, 127);
-        assert_eq!(draft.config.height, 127);
-        assert_eq!(draft.config.depth, 127);
+        assert_eq!(draft.config.width, 255);
+        assert_eq!(draft.config.height, 255);
+        assert_eq!(draft.config.depth, 255);
         adjust(&mut draft, false, true);
-        assert_eq!(draft.config.width, 128);
+        assert_eq!(draft.config.width, 256);
         adjust(&mut draft, false, true);
-        assert_eq!(draft.config.width, 128);
-        assert_eq!(draft.config.depth, 128);
+        assert_eq!(draft.config.width, 256);
+        assert_eq!(draft.config.depth, 256);
         assert!(draft.status.contains("refused"), "{}", draft.status);
     }
 
@@ -538,6 +544,7 @@ mod tests {
             reservoir_cap: 10_000,
             energy_cap: 100,
             genome_fill: GenomeFill::Zero,
+            farm: None,
         };
         let mut draft = Draft::from_parts(config, 3, 20, 10, false).unwrap();
         draft.selected = knob("initial_population");

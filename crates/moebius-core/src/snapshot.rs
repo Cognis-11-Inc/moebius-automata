@@ -28,6 +28,8 @@ pub struct Snapshot {
     pub cells: Vec<Cell>,
     pub deaths: Vec<DeathRecord>,
     pub nutrient: Vec<u64>,
+    pub brains: Vec<crate::farm::BrainRig>,
+    pub flesh: Vec<crate::farm::FleshDeposit>,
 }
 
 impl Snapshot {
@@ -160,6 +162,16 @@ impl Snapshot {
         push_u32(&mut out, self.nutrient.len() as u32);
         for amount in &self.nutrient {
             push_u64(&mut out, *amount);
+        }
+        if !self.brains.is_empty() || !self.flesh.is_empty() {
+            out.extend_from_slice(b"FARM2");
+            let bytes = serde_json::to_vec(&crate::farm::FarmPayload {
+                brains: self.brains.clone(),
+                flesh: self.flesh.clone(),
+            })
+            .expect("integer farm state encodes");
+            push_u32(&mut out, bytes.len() as u32);
+            out.extend(bytes);
         }
         out
     }
@@ -341,10 +353,35 @@ fn decode_canonical(bytes: &[u8]) -> Result<Snapshot, Error> {
     for _ in 0..nutrient_count {
         nutrient.push(read_u64(bytes, &mut cursor)?);
     }
+    let mut brains = Vec::new();
+    let mut flesh = Vec::new();
     if cursor != bytes.len() {
-        return Err(Error::Snapshot(
-            "canonical payload has trailing bytes".into(),
-        ));
+        if bytes.get(cursor..cursor + 5) == Some(b"FARM1") {
+            return Err(Error::Snapshot("legacy FARM1 uses the five-joint controller; keep its original checkpoint for replay; current rigs use FARM2".into()));
+        }
+        if bytes.get(cursor..cursor + 5) != Some(b"FARM2") {
+            return Err(Error::Snapshot("unknown canonical extension".into()));
+        }
+        cursor += 5;
+        let length = read_u32(bytes, &mut cursor)? as usize;
+        if length > 16_000_000 || bytes.len() - cursor != length {
+            return Err(Error::Snapshot("invalid brain payload length".into()));
+        }
+        let payload: crate::farm::FarmPayload = serde_json::from_slice(&bytes[cursor..])
+            .map_err(|err| Error::Snapshot(err.to_string()))?;
+        brains = payload.brains;
+        flesh = payload.flesh;
+        if flesh.len() > 8192 || flesh.windows(2).any(|pair| pair[0].site >= pair[1].site) {
+            return Err(Error::Snapshot(
+                "flesh states exceed cap or are not ordered".into(),
+            ));
+        }
+        let states: &Vec<crate::farm::BrainRig> = &brains;
+        if states.len() > 8192 || states.windows(2).any(|p| p[0].id >= p[1].id) {
+            return Err(Error::Snapshot(
+                "brain states exceed cap or are not ordered".into(),
+            ));
+        }
     }
     Snapshot::try_from_parts(Snapshot {
         tick,
@@ -365,6 +402,8 @@ fn decode_canonical(bytes: &[u8]) -> Result<Snapshot, Error> {
         cells,
         deaths,
         nutrient,
+        brains,
+        flesh,
     })
 }
 

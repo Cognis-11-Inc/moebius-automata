@@ -31,7 +31,13 @@ pub fn synth_wav(tick: u64, live: u32, dead: u32, field: u64, waste: u64) -> Vec
             sample = sample * 0.55 + (std::f32::consts::TAU * 27.5 * time).sin() * 0.16;
         }
         let crushed = (sample * 12.0).round() / 12.0;
-        let bounded = crushed.clamp(-0.95, 0.95);
+        // Fade each short call in and out; no click at the clip boundaries.
+        let fade_in = (time / 0.15).clamp(0.0, 1.0);
+        let remaining = (FRAMES - 1 - index) as f32 / RATE as f32;
+        let fade_out = (remaining / 0.30).clamp(0.0, 1.0);
+        let envelope = (fade_in * std::f32::consts::FRAC_PI_2).sin().powi(2)
+            * (fade_out * std::f32::consts::FRAC_PI_2).sin().powi(2);
+        let bounded = crushed.clamp(-0.95, 0.95) * envelope;
         samples.push((bounded * i16::MAX as f32) as i16);
     }
     wav_pcm16(RATE, &samples)

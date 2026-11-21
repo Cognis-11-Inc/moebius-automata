@@ -1,5 +1,8 @@
 # Möbius Automata M0 design record
 
+This records the historical M0 design. The current live vivarium uses
+[Farm M1](FARM_M1.md); its additions are not claims about M0.
+
 This file records the operator brief that this repository implements, including
 the amendments made while the first version was being written. A separate
 manuscript titled "Research and Engineering Blueprint v0.1" was not in the
@@ -35,7 +38,8 @@ finite 3D lattice, plus a read-only viewer of committed snapshots.
   sets all three axes together. An open run keeps ticking on a worker thread.
   A finite change commits a new run. An unchanged recording is watched as stored.
   Render frames do not tick the world. Nothing in the law births a cell.
-- The picture is a Giger bone-and-oil costume: ribs, pipes, fangs, and bile.
+- The picture uses small biomechanical larval costumes: curved ribs, rounded
+  head shells, vertebral plates, soft cores, and looped conduits.
   It is not a species color and it is not organism membership. Fog and the
   camera inside the hall are costume. They are not a new boundary condition.
 - Filaments are the last 18 committed movement steps, split where a step wraps.

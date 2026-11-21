@@ -6,16 +6,15 @@ use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::mpsc::{self, Receiver, SyncSender};
 use std::sync::{Arc, Mutex};
 use std::thread;
-use std::time::Duration;
+use std::time::{Duration, Instant};
 
 use bevy::prelude::Resource;
 use moebius_core::{Dims, SimConfig, Site, World, check_horizon, config_hash, fluid_samples};
 
 use crate::layout::display_stride;
 
-pub const LIVE_TICKS_PER_SEC: f32 = 8.0;
 const LIVE_GAP: Duration = Duration::from_millis(125);
-const PATH_RING: usize = 24;
+const PATH_RING: usize = 192;
 
 #[derive(Clone)]
 pub struct Founder {
@@ -23,6 +22,7 @@ pub struct Founder {
     pub site: Site,
     pub energy: u64,
     pub genome: [u8; 8],
+    pub rig: Option<moebius_core::farm::BrainRig>,
 }
 
 #[derive(Clone)]
@@ -41,6 +41,8 @@ pub struct Picture {
     pub live: u32,
     pub dead: u32,
     pub field: u64,
+    pub material_flesh: u64,
+    pub flesh: Vec<moebius_core::farm::FleshDeposit>,
     pub reservoir: u64,
     pub waste: u64,
     pub external_input: u64,
@@ -56,6 +58,7 @@ pub struct Picture {
 impl Picture {
     pub fn material_residual(&self) -> i128 {
         i128::from(self.field)
+            + i128::from(self.material_flesh)
             + i128::from(self.reservoir)
             + i128::from(self.waste)
             + i128::from(self.external_output)
@@ -79,6 +82,8 @@ impl Picture {
             live: 0,
             dead: 0,
             field: 0,
+            material_flesh: 0,
+            flesh: Vec::new(),
             reservoir: 0,
             waste: 0,
             external_input: 0,
@@ -108,6 +113,9 @@ pub struct Hall {
     inbox: Mutex<Receiver<Picture>>,
     pub latest: Option<Picture>,
     pub paths: BTreeMap<u64, Vec<(u64, Site)>>,
+    pub motion_paths: BTreeMap<u64, Vec<(u64, [f32; 3])>>,
+    pub poses: BTreeMap<u64, ([f32; 3], [f32; 3])>,
+    pub spawned_ids: std::collections::BTreeSet<u64>,
     pub fluid_origins: Vec<Site>,
     pub fluid_sites: Vec<u32>,
     pub fluid_amounts: Vec<f32>,
@@ -116,9 +124,19 @@ pub struct Hall {
     pub halted: Option<String>,
     pub spawned: bool,
     committed: u64,
+    received: Instant,
+    gap: f32,
 }
 
 impl Hall {
+    pub fn interpolated_tick(&self) -> f32 {
+        if self.committed == 0 {
+            return 0.0;
+        }
+        self.committed as f32 - 1.0
+            + (self.received.elapsed().as_secs_f32() / self.gap).clamp(0.0, 1.0)
+    }
+
     pub fn committed_tick(&self) -> u64 {
         self.committed
     }
@@ -159,6 +177,25 @@ impl Hall {
             }
         }
         for cell in &picture.cells {
+            let mut position = crate::layout::site_to_view(cell.site, self.dims);
+            if let Some(rig) = &cell.rig {
+                for (axis, coordinate) in position.iter_mut().enumerate() {
+                    *coordinate += rig.offset[axis] as f32 / moebius_core::farm::SUBSITE as f32
+                        * crate::layout::SPACING;
+                }
+            }
+            let ring = self.motion_paths.entry(cell.id).or_default();
+            let prior = ring.last().map_or(position, |(_, p)| *p);
+            let wrap = prior
+                .iter()
+                .zip(position)
+                .any(|(a, b)| (*a - b).abs() > crate::layout::SPACING * 2.0);
+            self.poses
+                .insert(cell.id, (if wrap { position } else { prior }, position));
+            ring.push((picture.tick, position));
+            if ring.len() > PATH_RING {
+                ring.remove(0);
+            }
             let ring = self.paths.entry(cell.id).or_default();
             if ring.last().is_none_or(|(tick, _)| *tick != picture.tick) {
                 ring.push((picture.tick, cell.site));
@@ -182,6 +219,16 @@ impl Hall {
         if picture.error.is_none() {
             self.note.clear();
         }
+        let earliest = picture.tick.saturating_sub(PATH_RING as u64);
+        self.motion_paths
+            .retain(|_, path| path.last().is_some_and(|(tick, _)| *tick >= earliest));
+        self.paths
+            .retain(|_, path| path.last().is_some_and(|(tick, _)| *tick >= earliest));
+        let elapsed = self.received.elapsed().as_secs_f32();
+        if elapsed > 0.02 && self.latest.is_some() {
+            self.gap = (self.gap * 0.5 + elapsed * 0.5).clamp(0.08, 2.0);
+        }
+        self.received = Instant::now();
         self.committed = picture.tick;
         self.latest = Some(picture);
     }
@@ -230,6 +277,9 @@ pub fn open(config: &SimConfig, seed: u64) -> Result<Hall, String> {
         inbox: Mutex::new(rx),
         latest: None,
         paths: BTreeMap::new(),
+        motion_paths: BTreeMap::new(),
+        poses: BTreeMap::new(),
+        spawned_ids: std::collections::BTreeSet::new(),
         fluid_origins: Vec::new(),
         fluid_sites: Vec::new(),
         fluid_amounts: Vec::new(),
@@ -238,6 +288,8 @@ pub fn open(config: &SimConfig, seed: u64) -> Result<Hall, String> {
         halted: None,
         spawned: false,
         committed: 0,
+        received: Instant::now(),
+        gap: 0.25,
     })
 }
 
@@ -318,6 +370,7 @@ fn shoot(world: &World, stride: u32, error: Option<String>) -> Picture {
             site: cell.site,
             energy: cell.energy,
             genome: cell.genome,
+            rig: world.brains().get(&cell.id).cloned(),
         })
         .collect();
     cells.sort_by_key(|cell| cell.id);
@@ -329,6 +382,15 @@ fn shoot(world: &World, stride: u32, error: Option<String>) -> Picture {
         live: world.live_count(),
         dead: world.dead_count(),
         field: accounts.field,
+        material_flesh: accounts.flesh,
+        flesh: world
+            .flesh()
+            .iter()
+            .map(|(site, amount)| moebius_core::farm::FleshDeposit {
+                site: *site,
+                amount: *amount,
+            })
+            .collect(),
         reservoir: accounts.reservoir,
         waste: accounts.waste,
         external_input: accounts.external_input,
@@ -368,6 +430,7 @@ mod tests {
             reservoir_cap: 10_000,
             energy_cap: 1_000,
             genome_fill: GenomeFill::Zero,
+            farm: None,
         }
     }
 
@@ -420,6 +483,9 @@ mod tests {
             inbox: Mutex::new(rx),
             latest: None,
             paths: BTreeMap::new(),
+            motion_paths: BTreeMap::new(),
+            poses: BTreeMap::new(),
+            spawned_ids: std::collections::BTreeSet::new(),
             fluid_origins: Vec::new(),
             fluid_sites: Vec::new(),
             fluid_amounts: Vec::new(),
@@ -428,8 +494,10 @@ mod tests {
             halted: None,
             spawned: false,
             committed: 0,
+            received: Instant::now(),
+            gap: 0.25,
         };
-        for tick in 0..40 {
+        for tick in 0..(PATH_RING as u64 + 16) {
             hall.absorb(Picture {
                 tick,
                 state_hash: String::new(),
@@ -442,11 +510,14 @@ mod tests {
                     },
                     energy: 4,
                     genome: [0; 8],
+                    rig: None,
                 }],
                 fluid: Vec::new(),
                 live: 1,
                 dead: 0,
                 field: 0,
+                material_flesh: 0,
+                flesh: Vec::new(),
                 reservoir: 0,
                 waste: 0,
                 external_input: 0,
@@ -462,6 +533,6 @@ mod tests {
         let ring = &hall.paths[&1];
         assert_eq!(ring.len(), PATH_RING);
         assert_eq!(ring.first().unwrap().0, 16);
-        assert_eq!(ring.last().unwrap().0, 39);
+        assert_eq!(ring.last().unwrap().0, PATH_RING as u64 + 15);
     }
 }

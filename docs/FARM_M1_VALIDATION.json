@@ -1,0 +1,141 @@
+{
+  "date": "2026-11-21",
+  "base_commit": "37787ae82a281ea8e401e06ecf95a7196ccd35df",
+  "worktree_dirty": true,
+  "provenance_note": "Runs were produced by the local uncommitted M1 implementation. Manifests echo base HEAD, not an exact source revision. Final source hashes below include later camera/presentation and documentation cleanup.",
+  "checks": {
+    "workspace_tests": {
+      "passed": 46,
+      "failed": 0
+    },
+    "strict_clippy": "PASS",
+    "rustfmt": "PASS",
+    "diff_whitespace": "PASS",
+    "independent_python_ledgers": "PASS for all four listed runs",
+    "same_seed_smoke_hashes": "MATCH",
+    "historical_m0_hash": "MATCH"
+  },
+  "runs": [
+    {
+      "seed": 20261026,
+      "ticks": 200,
+      "grid": [
+        12,
+        12,
+        12
+      ],
+      "final_state_hash": "f5dde07cd60fb7b969cfea942a5a861fe291dbad15ec12d384ba9c6451fd5855",
+      "final_live_count": 96,
+      "final_dead_count": 1,
+      "material_residual": 0,
+      "energy_residual": 0,
+      "extinct": false,
+      "directory": "runs/farm_m1_smoke_a",
+      "births": 85,
+      "material_flesh": 172,
+      "highest_living_generation": 3,
+      "flesh_sites": 154,
+      "mature_flesh_sites": 0
+    },
+    {
+      "seed": 20261026,
+      "ticks": 200,
+      "grid": [
+        12,
+        12,
+        12
+      ],
+      "final_state_hash": "f5dde07cd60fb7b969cfea942a5a861fe291dbad15ec12d384ba9c6451fd5855",
+      "final_live_count": 96,
+      "final_dead_count": 1,
+      "material_residual": 0,
+      "energy_residual": 0,
+      "extinct": false,
+      "directory": "runs/farm_m1_smoke_b",
+      "births": 85,
+      "material_flesh": 172,
+      "highest_living_generation": 3,
+      "flesh_sites": 154,
+      "mature_flesh_sites": 0
+    },
+    {
+      "seed": 20261026,
+      "ticks": 160,
+      "grid": [
+        256,
+        256,
+        256
+      ],
+      "final_state_hash": "46464e9e74f8efea497b9fc6e344398f161f096f5686cdc686f66e61b754e7fb",
+      "final_live_count": 186,
+      "final_dead_count": 99,
+      "material_residual": 0,
+      "energy_residual": 0,
+      "extinct": false,
+      "directory": "runs/farm_m1_256_a",
+      "births": 93,
+      "material_flesh": 222,
+      "highest_living_generation": 1,
+      "flesh_sites": 212,
+      "mature_flesh_sites": 1
+    },
+    {
+      "seed": 20261026,
+      "ticks": 1000,
+      "grid": [
+        64,
+        64,
+        64
+      ],
+      "final_state_hash": "facbb77bb992e4213416a9b4d81aaec29da38fff6f1a3a5832d26bd0e3562096",
+      "final_live_count": 128,
+      "final_dead_count": 0,
+      "material_residual": 0,
+      "energy_residual": 0,
+      "extinct": false,
+      "directory": "runs/m0_regression_m1",
+      "births": 0,
+      "material_flesh": 0
+    }
+  ],
+  "observations": {
+    "live_viewer": "192 founding cells, 64 food block samples; articulated bodies, feeding mouths, and flesh deposits visually inspected in normal live window; about 60 render FPS",
+    "camera": "keyboard, mouse-look, scroll zoom and Escape covered by ECS input test; manual navigation remains user validation",
+    "simulation_tick_rate": "not render FPS; simulation worker advances independently",
+    "learned_locomotion_improvement": "NOT EVALUATED",
+    "learned_building": "NOT DEMONSTRATED",
+    "stable_ecosystem": "NOT ESTABLISHED",
+    "full_soft_body_physics": "NOT IMPLEMENTED",
+    "recorded_articulated_presentation": "live-only; recorded viewer inspects lattice positions and accounting",
+    "commit_push": "not performed for this M1 slice"
+  },
+  "source_sha256": {
+    "crates/moebius-cli/src/lib.rs": "aaf29d9f48cbd535b4cf0e8d0865e5e92024e3287f0beaf610133d278f2bcbbf",
+    "crates/moebius-cli/src/main.rs": "413a85e58ac9dc4afae8a6360ede85a558ee366347fb3b1c58e388b8a6185603",
+    "crates/moebius-cli/tests/batch.rs": "1dbf2fd5102eee6521670dde9702e602c474798bf2d7189d97155b063a130db2",
+    "crates/moebius-core/src/config.rs": "e9be85ad93fe2bcdce707c8052a8d72c5daa9c75d0c527238e9b45a4f0ad24dc",
+    "crates/moebius-core/src/error.rs": "7dbc4af0907196b089861f5b9de53064a4349a17d61ac21e16a3906fc9608e72",
+    "crates/moebius-core/src/farm.rs": "9adc5ea5ac0663e61b9bd53fde0e8d6cf458e1c35638032a08770f10a7e81ad3",
+    "crates/moebius-core/src/geom.rs": "120149fe2a3f1c02df0bca1ec0320e46a8937385c2a655b4ca73641fc78d79ff",
+    "crates/moebius-core/src/hashutil.rs": "07f5f068cc61af230829d38792d964521618f468d4a73ec4057ca38a539e2a4f",
+    "crates/moebius-core/src/layers.rs": "fb6e2de34d3b1040172cae907410db022f990f2a9c9783d9568c6c7fb4b0ba8d",
+    "crates/moebius-core/src/lib.rs": "f0862d052a2c67255b6cabc3cbbf92e0c9fdb18ca20e6a0152de893a74012ef9",
+    "crates/moebius-core/src/prng.rs": "b513cb799b581ab3abbed0e3c600c1b937249f169a232e0120f7ac4166744e97",
+    "crates/moebius-core/src/report.rs": "abe11d9d050ccb5eea35b995b82e589d30742bf79022c93ca4efe03426756b0e",
+    "crates/moebius-core/src/snapshot.rs": "2d606fee6aeb3e765e3287397bd429f34187e9236bcf3c90fe85acdc758f74fe",
+    "crates/moebius-core/src/world.rs": "b826661db6c0492df0f76b09d133563b1b295b8bf56ed9b4ae9135c83df40ffc",
+    "crates/moebius-core/tests/farm.rs": "0bab2df56bccc965cdeca1c713fd2718b3cf1653fa0057064bf8c302e63583dc",
+    "crates/moebius-core/tests/invariants.rs": "4ce4981a9d43f47198f85afb934c4f3d56d08fab3347fb8653066d37793a119a",
+    "crates/moebius-viewer/src/audio.rs": "1998a30cdc89fc83c03e095c573cc7927f958f8859443863b015adfb2ff335d3",
+    "crates/moebius-viewer/src/body.rs": "ddb13c575a828af272fe2480bef5bc2dcb10780077d7e13b4f0d68588e17ccff",
+    "crates/moebius-viewer/src/layout.rs": "0769af51322a7cbc0dd8efea73a087a71ad31bae8aacfaaa431468401d5384fd",
+    "crates/moebius-viewer/src/live.rs": "a82efc2f1c8c4d3599535a81337287521a2d36315388e0e9fee7bbd107bfb7ec",
+    "crates/moebius-viewer/src/main.rs": "5a0d2217a11dc747b20760808739703dd07bb96038d35b0197790143bf1669fc",
+    "crates/moebius-viewer/src/rules.rs": "a4a7617ce4e280ad77318022f72a7566ca8ffe017913ba1e361c876b0e0ef2e4",
+    "crates/moebius-viewer/src/show.rs": "29a1b854bed89ae6aa69d2f2d47567cf9ab5f9e11f0833003257eef8eaddb22c",
+    "experiments/farm_256.json": "62250e168cc60fdaf2ef9b1318b6892491cdca0812cbca3c4b72dac363d083f9",
+    "experiments/farm_smoke.json": "2f96b9bedd49b73ce639fb81af0984692fa04681b7514e0caf87c59af669498e",
+    "experiments/m0_64.json": "71ac7280984cbe7c3edeee510ed0ced0bb14a111d3b5d8d0a468f419bd2d333f",
+    "python/check_metrics.py": "22bfcea583f3c4b5335a9977566ed85620992fd54eb0349e4493d5be0cdbf943"
+  }
+}
