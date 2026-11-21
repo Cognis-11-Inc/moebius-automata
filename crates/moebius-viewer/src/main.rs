@@ -1,21 +1,27 @@
-//! Read-only 3D playback of committed M0 snapshots.
+//! Playback of committed M0 snapshots, and an open hall that keeps ticking.
 //!
-//! Render frames select a snapshot. They do not call `World::tick` and they
-//! do not write hypothesis marks back into the world. Filaments are movement
-//! samples. Fluid blocks are sums of the nutrient field. Audio is local PCM.
+//! The opening slate can change the founding-cell rules before tick 0.
+//! Enter on an open run hands the world to a worker thread. Enter on a finite
+//! run commits through the headless batch runner, or watches an unchanged
+//! recording. Render frames do not call `World::tick` and do not change the
+//! rules. Bone, oil, and bile are a viewing costume. Filaments are movement
+//! samples. Fluid orbs are sums of the nutrient field. Audio is local PCM.
+//! M0 does not divide, mutate, or detect an organism.
 
 #![forbid(unsafe_code)]
 
 mod audio;
+mod body;
 mod layout;
+mod live;
+mod rules;
+mod show;
 
+use std::collections::BTreeMap;
 use std::fs;
 use std::path::{Path, PathBuf};
-use std::sync::Arc;
 
-use bevy::audio::Volume;
 use bevy::prelude::*;
-use bevy::text::FontSize;
 use clap::Parser;
 use moebius_core::layers::validate_hypothesis_grid;
 use moebius_core::{
@@ -23,18 +29,42 @@ use moebius_core::{
     config_hash, fluid_samples, parse_hypothesis, parse_trails,
 };
 
-use layout::{FILAMENT_WINDOW, display_stride, filament_segments, site_to_view};
+use layout::display_stride;
+use live::Hall;
+use rules::Draft;
+
+const PLAY_TICKS_PER_SEC: f32 = 30.0;
+const BODY_SCALE: f32 = 1.2;
 
 #[derive(Parser)]
 #[command(
     name = "moebius-view",
     version,
-    about = "Play committed Möbius Automata M0 snapshots. This program does not advance the simulation."
+    about = "Choose founding rules, then watch. An open run keeps ticking off the render thread."
 )]
 struct Cli {
     /// Run directory that contains manifest.json and snapshots/.
+    /// Omit it to open the 128³ hall.
     #[arg(long)]
-    snapshots: PathBuf,
+    snapshots: Option<PathBuf>,
+    /// Skip the rule slate and watch --snapshots immediately.
+    #[arg(long)]
+    start: bool,
+    /// Skip the rule slate and tick the open 128³ hall.
+    #[arg(long)]
+    live: bool,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Default, States)]
+enum Stage {
+    #[default]
+    Rules,
+    Playing,
+}
+
+#[derive(Resource)]
+struct Boot {
+    auto_start: bool,
 }
 
 #[derive(Resource)]
@@ -47,7 +77,11 @@ struct Reel {
     dims: Dims,
     stride: u32,
     frames: Vec<Frame>,
-    trails: Vec<TrailPoint>,
+    paths: BTreeMap<u64, Vec<(u64, Site)>>,
+    fluid_origins: Vec<Site>,
+    fluid_sites: Vec<u32>,
+    fluid_amounts: Vec<Vec<f32>>,
+    seeds: Vec<(u64, [u8; 8])>,
     trails_present: bool,
     hypothesis: HypothesisLayer,
     hypothesis_from_file: bool,
@@ -56,7 +90,7 @@ struct Reel {
 struct Frame {
     tick: u64,
     state_hash: String,
-    cells: Vec<(u64, Site, u64)>,
+    cells: Vec<LiveCell>,
     nutrient: Vec<u64>,
     live: u32,
     dead: u32,
@@ -72,46 +106,78 @@ struct Frame {
     material_initial: u64,
 }
 
+struct LiveCell {
+    id: u64,
+    site: Site,
+    energy: u64,
+    genome: [u8; 8],
+}
+
 #[derive(Resource)]
 struct ViewState {
-    index: usize,
+    tick: f32,
+    tick_end: f32,
     playing: bool,
-    accumulator: f32,
     cells: bool,
     fluid: bool,
     filaments: bool,
     hypothesis: bool,
+    hypothesis_drawn: bool,
     muted: bool,
     yaw: f32,
     pitch: f32,
     distance: f32,
-    drawn_for: Option<DrawKey>,
+    distance_min: f32,
+    distance_max: f32,
+    body_scale: f32,
+    lamp_reach: f32,
+    fps: f32,
     audio_for: Option<AudioKey>,
+    threads_for: Option<u64>,
     note: String,
 }
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-struct DrawKey {
-    index: usize,
-    cells: bool,
-    fluid: bool,
-    filaments: bool,
-    hypothesis: bool,
-}
-
-#[derive(Clone, Copy, PartialEq, Eq)]
 struct AudioKey {
-    index: usize,
+    bucket: u64,
     muted: bool,
 }
 
 #[derive(Resource)]
-struct Shapes {
-    cell: Handle<Mesh>,
-    block: Handle<Mesh>,
-    filament: Handle<Mesh>,
+struct Gallery {
+    creatures: [Handle<Mesh>; 3],
+    creature_mats: [Handle<StandardMaterial>; 3],
+    threads: Handle<Mesh>,
+    orbs: Handle<Mesh>,
+    orb_mat: Handle<StandardMaterial>,
     mark: Handle<Mesh>,
+    mark_mat: Handle<StandardMaterial>,
 }
+
+#[derive(Resource)]
+struct FrameClock {
+    frames: u32,
+    seconds: f32,
+    reported: bool,
+}
+
+#[derive(Component)]
+struct Creature {
+    id: u64,
+    phase: f32,
+    spin: f32,
+    stretch: Vec3,
+    facing: Quat,
+}
+
+#[derive(Component)]
+struct FluidOrb(usize);
+
+#[derive(Component)]
+struct Threads;
+
+#[derive(Component)]
+struct DriftLight;
 
 #[derive(Component)]
 struct Drawn;
@@ -124,439 +190,131 @@ struct Hud;
 
 fn main() {
     let cli = Cli::parse();
-    let reel = match load_reel(&cli.snapshots) {
-        Ok(reel) => reel,
+    if cli.start && cli.live {
+        eprintln!("moebius-view: pass only one of --start and --live");
+        std::process::exit(1);
+    }
+    if cli.start && cli.snapshots.is_none() {
+        eprintln!("moebius-view: --start needs --snapshots");
+        std::process::exit(1);
+    }
+    if cli.live && cli.snapshots.is_some() {
+        eprintln!(
+            "moebius-view: --live starts the open hall. Omit --snapshots, or pass --start to watch that recording."
+        );
+        std::process::exit(1);
+    }
+    let draft = match &cli.snapshots {
+        Some(path) => Draft::from_run_dir(path),
+        None => Ok(Draft::hall()),
+    };
+    let draft = match draft {
+        Ok(draft) => draft,
         Err(err) => {
             eprintln!("moebius-view: {err}");
             std::process::exit(1);
         }
     };
-    App::new()
-        .add_plugins(DefaultPlugins.set(WindowPlugin {
-            primary_window: Some(Window {
-                title: "Möbius Automata M0".into(),
-                ..default()
-            }),
-            ..default()
-        }))
-        .insert_resource(ClearColor(Color::srgb(0.012, 0.015, 0.02)))
-        .insert_resource(reel)
-        .insert_resource(ViewState {
-            index: 0,
-            playing: false,
-            accumulator: 0.0,
-            cells: true,
-            fluid: true,
-            filaments: true,
-            hypothesis: false,
-            muted: false,
-            yaw: 0.7,
-            pitch: 0.45,
-            distance: 14.0,
-            drawn_for: None,
-            audio_for: None,
-            note: String::new(),
-        })
-        .add_systems(Startup, setup)
-        .add_systems(Update, (orbit, playback, redraw, soundtrack, hud).chain())
-        .run();
-}
-
-fn setup(mut commands: Commands, mut meshes: ResMut<Assets<Mesh>>) {
-    commands.insert_resource(Shapes {
-        cell: meshes.add(Sphere::new(1.0).mesh().ico(2).unwrap()),
-        block: meshes.add(Cuboid::new(1.0, 1.0, 1.0)),
-        filament: meshes.add(Cuboid::new(0.012, 1.0, 0.012)),
-        mark: meshes.add(Sphere::new(0.05).mesh().ico(2).unwrap()),
-    });
-    commands.spawn((
-        Camera3d::default(),
-        Transform::from_xyz(0.0, 4.0, 14.0).looking_at(Vec3::ZERO, Vec3::Y),
-    ));
-    commands.spawn((
-        PointLight {
-            intensity: 250_000.0,
-            shadow_maps_enabled: false,
-            ..default()
-        },
-        Transform::from_xyz(6.0, 10.0, 4.0),
-    ));
-    commands.spawn((
-        Text::new(""),
-        TextFont {
-            font_size: FontSize::Px(15.0),
-            ..default()
-        },
-        TextColor(Color::srgb(0.78, 0.9, 0.78)),
-        Node {
-            position_type: PositionType::Absolute,
-            top: px(12),
-            left: px(12),
-            ..default()
-        },
-        Hud,
-    ));
-}
-
-fn orbit(
-    time: Res<Time>,
-    keyboard: Res<ButtonInput<KeyCode>>,
-    mut view: ResMut<ViewState>,
-    mut camera: Query<&mut Transform, With<Camera3d>>,
-) {
-    let dt = time.delta_secs();
-    view.yaw += dt * 0.12;
-    if keyboard.pressed(KeyCode::KeyJ) {
-        view.yaw -= dt * 1.4;
-    }
-    if keyboard.pressed(KeyCode::KeyL) {
-        view.yaw += dt * 1.4;
-    }
-    if keyboard.pressed(KeyCode::KeyI) {
-        view.pitch += dt * 1.1;
-    }
-    if keyboard.pressed(KeyCode::KeyK) {
-        view.pitch -= dt * 1.1;
-    }
-    if keyboard.pressed(KeyCode::Minus) {
-        view.distance += dt * 6.0;
-    }
-    if keyboard.pressed(KeyCode::Equal) {
-        view.distance -= dt * 6.0;
-    }
-    view.pitch = view.pitch.clamp(-1.15, 1.15);
-    view.distance = view.distance.clamp(2.5, 48.0);
-    let Ok(mut transform) = camera.single_mut() else {
-        return;
-    };
-    let (sy, cy) = view.yaw.sin_cos();
-    let (sp, cp) = view.pitch.sin_cos();
-    let eye = Vec3::new(sy * cp, sp, cy * cp) * view.distance;
-    transform.translation = eye;
-    transform.look_at(Vec3::ZERO, Vec3::Y);
-}
-
-fn playback(
-    keyboard: Res<ButtonInput<KeyCode>>,
-    time: Res<Time>,
-    reel: Res<Reel>,
-    mut view: ResMut<ViewState>,
-) {
-    if keyboard.just_pressed(KeyCode::Digit1) {
-        view.cells = !view.cells;
-    }
-    if keyboard.just_pressed(KeyCode::Digit2) {
-        view.fluid = !view.fluid;
-    }
-    if keyboard.just_pressed(KeyCode::Digit3) {
-        view.filaments = !view.filaments;
-    }
-    if keyboard.just_pressed(KeyCode::Digit4) {
-        view.hypothesis = !view.hypothesis;
-    }
-    if keyboard.just_pressed(KeyCode::KeyM) {
-        view.muted = !view.muted;
-    }
-    if keyboard.just_pressed(KeyCode::Space) {
-        view.playing = !view.playing;
-    }
-    let last = reel.frames.len().saturating_sub(1);
-    if keyboard.just_pressed(KeyCode::ArrowLeft) {
-        view.playing = false;
-        view.index = view.index.saturating_sub(1);
-    }
-    if keyboard.just_pressed(KeyCode::ArrowRight) {
-        view.playing = false;
-        view.index = (view.index + 1).min(last);
-    }
-    if keyboard.just_pressed(KeyCode::Home) {
-        view.playing = false;
-        view.index = 0;
-    }
-    if keyboard.just_pressed(KeyCode::End) {
-        view.playing = false;
-        view.index = last;
-    }
-    if view.playing {
-        view.accumulator += time.delta_secs();
-        if view.accumulator >= 0.45 {
-            view.accumulator = 0.0;
-            if view.index >= last {
-                view.playing = false;
-            } else {
-                view.index += 1;
+    let prepared_hall = if cli.live {
+        match live::open(&draft.config, draft.seed) {
+            Ok(hall) => Some(hall),
+            Err(err) => {
+                eprintln!("moebius-view: {err}");
+                std::process::exit(1);
             }
         }
-    }
-}
-
-fn redraw(
-    mut commands: Commands,
-    mut materials: ResMut<Assets<StandardMaterial>>,
-    reel: Res<Reel>,
-    shapes: Res<Shapes>,
-    mut view: ResMut<ViewState>,
-    drawn: Query<Entity, With<Drawn>>,
-) {
-    let key = DrawKey {
-        index: view.index,
-        cells: view.cells,
-        fluid: view.fluid,
-        filaments: view.filaments,
-        hypothesis: view.hypothesis,
+    } else {
+        None
     };
-    if view.drawn_for == Some(key) {
-        return;
-    }
-    for entity in &drawn {
-        commands.entity(entity).despawn();
-    }
-    view.note.clear();
-    let Some(frame) = reel.frames.get(view.index) else {
-        view.drawn_for = Some(key);
-        return;
-    };
-    if view.cells {
-        for (_id, site, energy) in &frame.cells {
-            let place = Vec3::from_array(site_to_view(*site, reel.dims));
-            let fraction = energy_fraction(*energy, reel.energy_cap);
-            let radius = 0.035 + 0.07 * fraction;
-            let material = materials.add(StandardMaterial {
-                base_color: energy_color(fraction),
-                unlit: true,
-                ..default()
-            });
-            commands.spawn((
-                Mesh3d(shapes.cell.clone()),
-                MeshMaterial3d(material),
-                Transform::from_translation(place).with_scale(Vec3::splat(radius)),
-                Drawn,
-            ));
-        }
-    }
-    if view.fluid {
-        match fluid_samples(&frame.nutrient, reel.dims, reel.stride) {
-            Ok(samples) => {
-                let mut drawn_blocks = 0u32;
-                for sample in &samples {
-                    if sample.amount == 0 {
-                        continue;
-                    }
-                    let (center, size) = block_pose(sample.origin, reel.stride, reel.dims);
-                    let denom = (reel.site_cap as f32) * (sample.sites.max(1) as f32);
-                    let fraction = if denom > 0.0 {
-                        (sample.amount as f32 / denom).clamp(0.0, 1.0)
-                    } else {
-                        0.0
-                    };
-                    let material = materials.add(StandardMaterial {
-                        base_color: Color::srgba(
-                            0.15,
-                            0.55 + 0.35 * fraction,
-                            0.62,
-                            0.08 + 0.45 * fraction,
-                        ),
-                        alpha_mode: AlphaMode::Add,
-                        unlit: true,
-                        ..default()
+    let mut app = App::new();
+    app.add_plugins(DefaultPlugins.set(WindowPlugin {
+        primary_window: Some(Window {
+            title: "Möbius Automata M0".into(),
+            ..default()
+        }),
+        ..default()
+    }))
+    .insert_resource(ClearColor(Color::srgb(0.006, 0.008, 0.007)))
+    .insert_resource(GlobalAmbientLight {
+        color: Color::srgb(0.14, 0.13, 0.12),
+        brightness: 9.0,
+        ..default()
+    })
+    .insert_resource(draft)
+    .insert_resource(Boot {
+        auto_start: cli.start || cli.live,
+    })
+    .init_state::<Stage>()
+    .add_systems(Startup, show::boot)
+    .add_systems(
+        Update,
+        (show::rules_keys, show::rules_text)
+            .chain()
+            .run_if(in_state(Stage::Rules)),
+    )
+    .add_systems(
+        OnEnter(Stage::Playing),
+        (
+            show::assemble.run_if(resource_exists::<Reel>),
+            show::assemble_hall.run_if(resource_exists::<Hall>),
+        ),
+    )
+    .add_systems(
+        Update,
+        (
+            show::orbit,
+            show::picture_keys,
+            show::playback.run_if(resource_exists::<Reel>),
+            show::hall_clock.run_if(resource_exists::<Hall>),
+            show::glide_bodies.run_if(resource_exists::<Reel>),
+            show::glide_fluid.run_if(resource_exists::<Reel>),
+            show::glide_threads.run_if(resource_exists::<Reel>),
+            show::hall_pump.run_if(resource_exists::<Hall>),
+            show::embody.run_if(resource_exists::<Hall>),
+            show::hall_bodies.run_if(resource_exists::<Hall>),
+            show::hall_fluid.run_if(resource_exists::<Hall>),
+            show::hall_threads.run_if(resource_exists::<Hall>),
+            show::drift_lamp,
+            show::marks.run_if(resource_exists::<Reel>),
+            show::soundtrack.run_if(resource_exists::<Reel>),
+            show::hall_sound.run_if(resource_exists::<Hall>),
+            show::pace,
+            show::hud.run_if(resource_exists::<Reel>),
+            show::hall_hud.run_if(resource_exists::<Hall>),
+        )
+            .chain()
+            .run_if(in_state(Stage::Playing)),
+    );
+    if cli.start {
+        let path = cli.snapshots.expect("--start needs --snapshots");
+        match load_reel(&path) {
+            Ok(reel) => {
+                let view = show::view_for(&reel);
+                app.insert_resource(reel)
+                    .insert_resource(view)
+                    .insert_resource(FrameClock {
+                        frames: 0,
+                        seconds: 0.0,
+                        reported: false,
                     });
-                    commands.spawn((
-                        Mesh3d(shapes.block.clone()),
-                        MeshMaterial3d(material),
-                        Transform::from_translation(center).with_scale(size),
-                        Drawn,
-                    ));
-                    drawn_blocks += 1;
-                }
-                view.note = format!(
-                    "fluid stride {} draws {drawn_blocks} nonempty block sums; the sums are a downsample, not a new stock",
-                    reel.stride
-                );
             }
             Err(err) => {
-                view.note = format!("fluid layer withheld: {err}");
+                eprintln!("moebius-view: {err}");
+                std::process::exit(1);
             }
         }
     }
-    if view.filaments {
-        if reel.trails_present {
-            let segments = filament_segments(&reel.trails, frame.tick, FILAMENT_WINDOW, reel.dims);
-            let material = materials.add(StandardMaterial {
-                base_color: Color::srgb(0.62, 0.7, 0.5),
-                unlit: true,
-                ..default()
+    if let Some(hall) = prepared_hall {
+        let view = show::view_for_hall(&hall);
+        app.insert_resource(hall)
+            .insert_resource(view)
+            .insert_resource(FrameClock {
+                frames: 0,
+                seconds: 0.0,
+                reported: false,
             });
-            for (start, end) in segments {
-                let a = Vec3::from_array(start);
-                let b = Vec3::from_array(end);
-                let delta = b - a;
-                let length = delta.length();
-                if length < 1.0e-4 {
-                    continue;
-                }
-                let rotation = Quat::from_rotation_arc(Vec3::Y, delta / length);
-                commands.spawn((
-                    Mesh3d(shapes.filament.clone()),
-                    MeshMaterial3d(material.clone()),
-                    Transform {
-                        translation: (a + b) * 0.5,
-                        rotation,
-                        scale: Vec3::new(1.0, length, 1.0),
-                    },
-                    Drawn,
-                ));
-            }
-        } else if !view.note.is_empty() {
-            view.note
-                .push_str(" | trails.csv is absent, so filaments have no samples");
-        } else {
-            view.note = "trails.csv is absent, so filaments have no samples".into();
-        }
     }
-    if view.hypothesis {
-        let material = materials.add(StandardMaterial {
-            base_color: Color::srgb(0.95, 0.22, 0.55),
-            unlit: true,
-            ..default()
-        });
-        for mark in &reel.hypothesis.marks {
-            let place = Vec3::from_array(site_to_view(mark.site, reel.dims));
-            commands.spawn((
-                Mesh3d(shapes.mark.clone()),
-                MeshMaterial3d(material.clone()),
-                Transform::from_translation(place),
-                Drawn,
-            ));
-        }
-    }
-    view.drawn_for = Some(key);
-}
-
-fn soundtrack(
-    mut commands: Commands,
-    mut sources: ResMut<Assets<AudioSource>>,
-    reel: Res<Reel>,
-    mut view: ResMut<ViewState>,
-    existing: Query<Entity, With<Score>>,
-) {
-    let key = AudioKey {
-        index: view.index,
-        muted: view.muted,
-    };
-    if view.audio_for == Some(key) {
-        return;
-    }
-    for entity in &existing {
-        commands.entity(entity).despawn();
-    }
-    if !view.muted
-        && let Some(frame) = reel.frames.get(view.index)
-    {
-        let bytes = audio::synth_wav(frame.tick, frame.live, frame.dead, frame.field, frame.waste);
-        let handle = sources.add(AudioSource {
-            bytes: Arc::<[u8]>::from(bytes),
-        });
-        commands.spawn((
-            AudioPlayer::new(handle),
-            PlaybackSettings::LOOP.with_volume(Volume::Linear(0.22)),
-            Score,
-        ));
-    }
-    view.audio_for = Some(key);
-}
-
-fn hud(reel: Res<Reel>, view: Res<ViewState>, mut text: Query<&mut Text, With<Hud>>) {
-    let Ok(mut text) = text.single_mut() else {
-        return;
-    };
-    let Some(frame) = reel.frames.get(view.index) else {
-        text.0 = "no committed frame".into();
-        return;
-    };
-    let play = if view.playing { "playing" } else { "paused" };
-    let sound = if view.muted { "muted" } else { "on" };
-    let hypothesis_source = if reel.hypothesis_from_file {
-        "file"
-    } else {
-        "scaffold"
-    };
-    let hash: String = frame.state_hash.chars().take(16).collect();
-    let config: String = reel.config_hash.chars().take(16).collect();
-    text.0 = format!(
-        "Möbius Automata M0 — committed snapshots only\n\
-         tick {}   frame {}/{}   {play}\n\
-         seed {}   config {config}   code {}\n\
-         live {}   dead {}   field {}   reservoir {}   waste {}\n\
-         material residual {}   action-energy residual {}\n\
-         state {hash}\n\
-         layers  1 cells {}   2 fluid {}   3 filaments {}   4 hypothesis {} ({hypothesis_source}, off until pressed)\n\
-         hypothesis \"{}\": {} Marks are not organism membership and are not in the state hash.\n\
-         filaments: last {FILAMENT_WINDOW} committed steps, split on wraps. Not bonds.\n\
-         {}\n\
-         audio {sound}: viewer f32 PCM, not in the state hash, does not advance ticks\n\
-         space play/pause   arrows step   home/end   J/L yaw   I/K pitch   -/= zoom   M mute",
-        frame.tick,
-        view.index + 1,
-        reel.frames.len(),
-        reel.seed,
-        reel.code_version,
-        frame.live,
-        frame.dead,
-        frame.field,
-        frame.reservoir,
-        frame.waste,
-        material_residual(frame),
-        energy_residual(frame),
-        on_off(view.cells),
-        on_off(view.fluid),
-        on_off(view.filaments),
-        on_off(view.hypothesis),
-        reel.hypothesis.name,
-        reel.hypothesis.note,
-        if view.note.is_empty() {
-            "fluid hidden".to_string()
-        } else {
-            view.note.clone()
-        },
-    );
-}
-
-fn on_off(enabled: bool) -> &'static str {
-    if enabled { "on" } else { "off" }
-}
-
-fn energy_fraction(energy: u64, cap: u64) -> f32 {
-    if cap == 0 {
-        0.0
-    } else {
-        (energy as f32 / cap as f32).clamp(0.0, 1.0)
-    }
-}
-
-fn energy_color(fraction: f32) -> Color {
-    Color::srgb(
-        0.05 + 0.9 * fraction,
-        0.16 + 0.7 * fraction,
-        0.1 + 0.18 * fraction,
-    )
-}
-
-fn block_pose(origin: Site, stride: u32, dims: Dims) -> (Vec3, Vec3) {
-    let sx = stride.min(dims.width - origin.x).max(1);
-    let sy = stride.min(dims.height - origin.y).max(1);
-    let sz = stride.min(dims.depth - origin.z).max(1);
-    let near = Vec3::from_array(site_to_view(origin, dims));
-    let far = Vec3::from_array(site_to_view(
-        Site {
-            x: origin.x + sx - 1,
-            y: origin.y + sy - 1,
-            z: origin.z + sz - 1,
-        },
-        dims,
-    ));
-    let center = (near + far) * 0.5;
-    let size = (far - near).abs() + Vec3::splat(layout::SPACING * 0.72);
-    (center, size)
+    app.run();
 }
 
 fn material_residual(frame: &Frame) -> i128 {
@@ -668,11 +426,20 @@ fn load_reel(dir: &Path) -> Result<Reel, String> {
         frames.push(Frame {
             tick: snapshot.tick,
             state_hash: snapshot.state_hash(),
-            cells: snapshot
-                .cells
-                .iter()
-                .map(|cell| (cell.id, cell.site, cell.energy))
-                .collect(),
+            cells: {
+                let mut cells: Vec<LiveCell> = snapshot
+                    .cells
+                    .iter()
+                    .map(|cell| LiveCell {
+                        id: cell.id,
+                        site: cell.site,
+                        energy: cell.energy,
+                        genome: cell.genome,
+                    })
+                    .collect();
+                cells.sort_by_key(|cell| cell.id);
+                cells
+            },
             nutrient: snapshot.nutrient,
             live: u32::try_from(snapshot.cells.len())
                 .map_err(|_| format!("{} live count exceeds u32", path.display()))?,
@@ -718,6 +485,10 @@ fn load_reel(dir: &Path) -> Result<Reel, String> {
             false,
         )
     };
+    let stride = display_stride(dims);
+    let fluid = cache_fluid(&frames, dims, stride)?;
+    let motion = index_paths(&frames, &trails);
+    let seeds = costume_seeds(&frames);
     Ok(Reel {
         seed,
         config_hash: actual_hash,
@@ -725,13 +496,95 @@ fn load_reel(dir: &Path) -> Result<Reel, String> {
         energy_cap: config.energy_cap,
         site_cap: config.site_cap,
         dims,
-        stride: display_stride(dims),
+        stride,
         frames,
-        trails,
+        paths: motion,
+        fluid_origins: fluid.origins,
+        fluid_sites: fluid.sites,
+        fluid_amounts: fluid.amounts,
+        seeds,
         trails_present,
         hypothesis,
         hypothesis_from_file,
     })
+}
+
+struct FluidCache {
+    origins: Vec<Site>,
+    sites: Vec<u32>,
+    amounts: Vec<Vec<f32>>,
+}
+
+fn cache_fluid(frames: &[Frame], dims: Dims, stride: u32) -> Result<FluidCache, String> {
+    let mut origins = Vec::new();
+    let mut sites = Vec::new();
+    let mut amounts: Vec<Vec<f32>> = Vec::new();
+    for (frame_index, frame) in frames.iter().enumerate() {
+        let samples = fluid_samples(&frame.nutrient, dims, stride)
+            .map_err(|err| format!("tick {} fluid downsample rejected: {err}", frame.tick))?;
+        if frame_index == 0 {
+            origins = samples.iter().map(|sample| sample.origin).collect();
+            sites = samples.iter().map(|sample| sample.sites).collect();
+            amounts = vec![Vec::with_capacity(frames.len()); samples.len()];
+        } else if samples.len() != origins.len() {
+            return Err(format!(
+                "tick {} fluid block count {} != {}",
+                frame.tick,
+                samples.len(),
+                origins.len()
+            ));
+        }
+        for (index, sample) in samples.iter().enumerate() {
+            if sample.origin != origins[index] || sample.sites != sites[index] {
+                return Err(format!(
+                    "tick {} fluid block {index} does not match the first snapshot",
+                    frame.tick
+                ));
+            }
+            amounts[index].push(sample.amount as f32);
+        }
+    }
+    Ok(FluidCache {
+        origins,
+        sites,
+        amounts,
+    })
+}
+
+fn index_paths(frames: &[Frame], trails: &[TrailPoint]) -> BTreeMap<u64, Vec<(u64, Site)>> {
+    let mut paths: BTreeMap<u64, Vec<(u64, Site)>> = BTreeMap::new();
+    if trails.is_empty() {
+        for frame in frames {
+            for cell in &frame.cells {
+                paths
+                    .entry(cell.id)
+                    .or_default()
+                    .push((frame.tick, cell.site));
+            }
+        }
+    } else {
+        for point in trails {
+            paths
+                .entry(point.id)
+                .or_default()
+                .push((point.tick, point.site()));
+        }
+    }
+    for points in paths.values_mut() {
+        points.sort_by_key(|(tick, site)| (*tick, *site));
+        points.dedup_by_key(|(tick, _)| *tick);
+    }
+    paths
+}
+
+fn costume_seeds(frames: &[Frame]) -> Vec<(u64, [u8; 8])> {
+    let mut seeds = BTreeMap::new();
+    for frame in frames {
+        for cell in &frame.cells {
+            seeds.entry(cell.id).or_insert(cell.genome);
+        }
+    }
+    seeds.into_iter().collect()
 }
 
 #[cfg(test)]

@@ -5,8 +5,11 @@ build followed them. This page is not itself that evidence.
 
 A digital cell is an id, a site, an action-energy balance, an age, and eight
 inert genome bytes. It is not a lattice site. The lattice is a finite
-64-axis-capped 3D grid with one material nutrient field. The default experiment
-is 64×64×64. Axes are `1..=64`. Volume is `1..=262144`.
+3D grid with one material nutrient field. Each axis is `1..=128`. Volume is
+`1..=2097152`. The acceptance experiment is 64×64×64 for 1000 ticks.
+The viewer's open hall is 128×128×128 and keeps ticking until a tick is
+refused or the operator stops. A longer run does not add division, mutation,
+or organism detection.
 
 Neighborhood: 6 face neighbors plus stay (`von-neumann-6-periodic`). Coordinates
 wrap with `rem_euclid`. Only periodic boundaries are implemented.
@@ -92,8 +95,11 @@ is rejected before the first tick. Snapshot interval and trail-row budgets are
 rejected rather than subsampled. Snapshot files whose counts exceed the volume
 are rejected before those counts are allocated.
 
-Tick horizon for a run is at most 100,000. Snapshot count is at most 48.
-Trail rows are at most 200,000.
+A recorded batch is at most 100,000 ticks. Snapshot count is at most 48.
+Trail rows are at most 200,000. The open hall does not pre-declare a length.
+It checks that a single tick fits, then commits one tick at a time. The first
+refused tick leaves the previous state in place. The batch cap still applies
+to `moebius run`.
 
 ## Layers
 

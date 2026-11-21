@@ -39,31 +39,53 @@ the viewer, or a hypothesis file.
 ## Viewer
 
 ```bash
+cargo run -p moebius-viewer --release
+```
+
+With no arguments the window opens on the 128³ hall. Up and down select a
+founding rule. Left and right step it. Shift steps further. A step that fails
+validation is refused and the previous value stays. `span` sets width, height,
+and depth together. `open_run` keeps ticking until a tick is refused or the
+window closes. Enter locks the rules and starts from tick 0.
+
+M0 does not divide, mutate, or detect an organism. A longer run does not create
+one. Founding cells are the initial population. They are not a membership.
+
+The acceptance experiment is still 64³ and 1000 ticks:
+
+```bash
 cargo run -p moebius-viewer --release -- --snapshots runs/m0_64
 ```
 
-Playback shows committed snapshots. Render frames do not advance the simulation.
+Enter on an unchanged recording watches it. A changed finite rule commits a new
+run, then watches it. `--start` with `--snapshots` skips the slate. `--live`
+skips the slate and ticks the open hall.
 
 | Key | Effect |
 | --- | --- |
-| Space | Play or pause |
-| Left / Right | Step one snapshot and pause |
-| Home / End | First or last snapshot |
-| 1 2 3 4 | Toggle cells, nutrient fluid, filaments, hypothesis |
+| Up / Down | Select a rule, before Enter |
+| Left / Right | Step that rule. Shift steps further |
+| Enter | Lock the rules and start |
+| Space | Pause the open clock, or play / pause a recording |
+| Left / Right | During a recording, step one snapshot and pause |
+| Home / End | First or last tick of a recording |
+| 1 2 3 4 | Toggle bodies, nutrient fluid, filaments, hypothesis |
 | J / L | Yaw |
 | I / K | Pitch |
 | - / = | Zoom |
 | M | Mute |
 
-Cells are brighter when their action-energy is a larger fraction of `energy_cap`.
-Fluid blocks are sums of the nutrient field at a stride chosen so at most 512
-blocks are drawn. On 64³ the stride is 8. The HUD says so. Filaments use
-`trails.csv`, not the gaps between snapshots, and they break on a periodic wrap.
-Hypothesis marks stay off until `4` is pressed. If `hypothesis.json` is absent,
-the layer is the empty M0 scaffold.
+Bodies are a Giger bone-and-oil costume on committed cells, with ribs, pipes,
+and fangs. They are not organism membership and they are not in the state hash.
+The hall camera starts inside the tank. Fog hides the far cage. Both are
+costume. The picture glides between committed positions and does not stretch a
+periodic wrap. Fluid orbs are sums of the nutrient field. Thin blocks stay
+hidden. On 64³ the stride is 16. On 128³ it is 32. At most 64 orbs.
+Filaments are the last committed steps and break on a wrap. Hypothesis marks
+stay off until `4`. Render frames do not advance the simulation. The open hall
+ticks on a worker thread.
 
-Audio is a one-second WAV synthesized from the displayed tick, live count, dead
-count, field sum, and waste. It uses `f32` and is not part of the state hash.
+Audio is viewer PCM. It is not part of the state hash.
 
 ## Python
 

@@ -17,4 +17,5 @@ path = "src/main.rs"
 bevy = { version = "=0.20.0", features = ["wav"] }
 clap = { version = "4", features = ["derive"] }
 moebius-core = { workspace = true }
+moebius-cli = { path = "../moebius-cli" }
 serde_json = "1"

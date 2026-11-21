@@ -1,8 +1,8 @@
 use moebius_core::{
-    Cell, DeathRecord, Dir, GenomeFill, ObservationDeck, SimConfig, Site, Snapshot, SnapshotFile,
-    Stocks, World, apply_receipt, audit_with_config, check_horizon, config_hash, fluid_samples,
-    load_config_str, movement_dir, observe, parse_hypothesis, run_for, snapshot_schedule,
-    split_trail, step_site, validate_run,
+    Cell, DeathRecord, Dir, GenomeFill, MAX_AXIS, MAX_VOLUME, ObservationDeck, SimConfig, Site,
+    Snapshot, SnapshotFile, Stocks, World, apply_receipt, audit_with_config, check_horizon,
+    config_hash, fluid_samples, load_config_str, movement_dir, observe, parse_hypothesis, run_for,
+    snapshot_schedule, split_trail, step_site, validate_run,
 };
 
 fn base() -> SimConfig {
@@ -228,8 +228,10 @@ fn invalid_configuration_is_rejected_without_clamping() {
     zero.width = 0;
     assert!(zero.validate().unwrap_err().to_string().contains("grid"));
     let mut wide = base();
-    wide.width = 65;
-    assert!(wide.validate().unwrap_err().to_string().contains("65"));
+    wide.width = 128;
+    wide.validate().unwrap();
+    wide.width = 129;
+    assert!(wide.validate().unwrap_err().to_string().contains("129"));
     let mut crowded = base();
     crowded.width = 2;
     crowded.height = 2;
@@ -463,6 +465,31 @@ fn inert_genome_does_not_change_dynamics() {
     assert_eq!(left_body, right_body);
     assert_eq!(left.nutrient(), right.nutrient());
     assert_eq!(left.accounts().unwrap(), right.accounts().unwrap());
+}
+
+#[test]
+fn hall_fits_the_cap_and_the_acceptance_grid_stays_64() {
+    assert_eq!(MAX_AXIS, 128);
+    assert_eq!(MAX_VOLUME, 128 * 128 * 128);
+    let hall = SimConfig::hall_128();
+    assert_eq!((hall.width, hall.height, hall.depth), (128, 128, 128));
+    assert_eq!(hall.initial_population, 192);
+    hall.validate().unwrap();
+    check_horizon(&hall, 1).unwrap();
+    let mut wide = hall.clone();
+    wide.width = 129;
+    assert!(wide.validate().is_err());
+    let acceptance = SimConfig::m0_64();
+    assert_eq!(acceptance.width, 64);
+    let schedule = validate_run(&acceptance, 1_000, 50).unwrap();
+    assert_eq!(schedule.last().copied(), Some(1_000));
+    let mut world = World::genesis(&hall, 20261026).unwrap();
+    assert_eq!(world.live_count(), 192);
+    world.tick().unwrap();
+    let accounts = world.accounts().unwrap();
+    assert_eq!(accounts.material_residual(), 0);
+    assert_eq!(accounts.energy_residual(), 0);
+    assert_eq!(world.live_count(), 192);
 }
 
 #[test]

@@ -3,8 +3,9 @@ use serde::{Deserialize, Serialize};
 use crate::error::Error;
 
 /// Hard bounds for M0. Values outside these ranges are rejected.
-pub const MAX_AXIS: u32 = 64;
-pub const MAX_VOLUME: u64 = 64 * 64 * 64;
+/// The acceptance experiment stays 64³. The open hall uses the 128 cap.
+pub const MAX_AXIS: u32 = 128;
+pub const MAX_VOLUME: u64 = 128 * 128 * 128;
 pub const MAX_TICKS: u64 = 100_000;
 pub const MAX_SNAPSHOTS: u64 = 48;
 pub const MAX_TRAIL_ROWS: u64 = 200_000;
@@ -59,6 +60,32 @@ impl SimConfig {
             initial_energy: 12,
             initial_nutrient_per_site: 4,
             nutrient_wave_amplitude: 18,
+            initial_reservoir: 50_000,
+            initial_waste: 0,
+            inflow_per_tick: 256,
+            inject_per_tick: 256,
+            uptake_per_tick: 2,
+            energy_per_nutrient: 3,
+            maintenance_cost: 2,
+            export_per_tick: 128,
+            site_cap: 64,
+            reservoir_cap: 50_000_000,
+            energy_cap: 10_000,
+            genome_fill: GenomeFill::Derived,
+        }
+    }
+
+    /// Viewer default. A larger tank and a sparse founding population.
+    /// Not the acceptance experiment, and not an organism.
+    pub fn hall_128() -> Self {
+        Self {
+            width: 128,
+            height: 128,
+            depth: 128,
+            initial_population: 192,
+            initial_energy: 12,
+            initial_nutrient_per_site: 1,
+            nutrient_wave_amplitude: 14,
             initial_reservoir: 50_000,
             initial_waste: 0,
             inflow_per_tick: 256,

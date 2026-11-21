@@ -3752,6 +3752,7 @@ version = "0.1.0"
 dependencies = [
  "bevy",
  "clap",
+ "moebius-cli",
  "moebius-core",
  "serde_json",
 ]

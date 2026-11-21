@@ -13,8 +13,9 @@ finite 3D lattice, plus a read-only viewer of committed snapshots.
 
 - Each live cell has a unique nonzero id, one site, a nonnegative action-energy
   balance at most `energy_cap`, an age, and eight inert genome bytes.
-- The grid is at most 64×64×64. The default experiment is that size. Edges wrap.
-  The neighborhood is the six face neighbors. At most one live cell occupies a site.
+- Each axis is at most 128. Volume is at most 128³. The acceptance experiment
+  is 64×64×64 for 1000 ticks. Edges wrap. The neighborhood is the six face
+  neighbors. At most one live cell occupies a site.
 - One material nutrient field has an explicit reservoir, external input, waste,
   and external output. Every conversion is in the ledger.
 - The tick reads a snapshot, resolves movement and uptake and maintenance, audits,
@@ -28,11 +29,20 @@ finite 3D lattice, plus a read-only viewer of committed snapshots.
 ## Operator amendments included here
 
 - The lattice is 3D. 64×64×64 replaces an earlier 2D 128×128 candidate.
-- The viewer is a dark 3D reading of committed data. Cell brightness follows
-  action-energy. It is not a species color.
-- Filaments are the last 24 committed movement steps, split where a step wraps.
-  They are not bonds.
-- Fluid is a strided block-sum of the nutrient field, labeled as a downsample.
+  The open hall later raised the cap to 128 and uses that full cube. The
+  acceptance experiment was not lengthened and was not resized.
+- The viewer opens on founding-cell rules. They lock before tick 0. `span`
+  sets all three axes together. An open run keeps ticking on a worker thread.
+  A finite change commits a new run. An unchanged recording is watched as stored.
+  Render frames do not tick the world. Nothing in the law births a cell.
+- The picture is a Giger bone-and-oil costume: ribs, pipes, fangs, and bile.
+  It is not a species color and it is not organism membership. Fog and the
+  camera inside the hall are costume. They are not a new boundary condition.
+- Filaments are the last 18 committed movement steps, split where a step wraps.
+  The open hall keeps a short ring of those steps. They are not bonds.
+- Fluid is a strided block-sum of the nutrient field, drawn as orbs and labeled
+  as a downsample. Thin blocks are hidden. On 64³ the stride is 16. On 128³
+  the stride is 32. At most 64 blocks are drawn. The field sum stays on the HUD.
 - Sound is deterministic PCM in the viewer. It is not part of the state hash
   and it does not advance ticks. Byte-identical audio across platforms is not claimed.
 - A Python 3.13 virtual environment can check manifests. It is not a second simulator.
