@@ -32,7 +32,7 @@ pub struct DeathRecord {
     pub genome: [u8; 8],
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct TickReceipt {
     pub tick_after: u64,
     pub external_input: u64,
@@ -474,7 +474,7 @@ impl World {
 
     pub fn tick(&mut self) -> Result<TickReceipt, Error> {
         let mut next = self.clone();
-        let receipt = next.advance()?;
+        let receipt = next.advance(None)?;
         next.audit()?;
         *self = next;
         Ok(receipt)
@@ -484,11 +484,70 @@ impl World {
     pub fn tick_observed(&mut self) -> Result<(TickReceipt, Vec<OrganismTick>), Error> {
         let mut next = self.clone();
         next.observations = Some(BTreeMap::new());
-        let receipt = next.advance()?;
+        let receipt = next.advance(None)?;
         next.audit()?;
         let rows = next.observations.take().unwrap().into_values().collect();
         *self = next;
         Ok((receipt, rows))
+    }
+
+    /// Experimental command-input interface. Ordinary world/controller ticks
+    /// never call this. Commands are subject to existing muscle/energy laws;
+    /// no impulses, pose edits, food movement or reserve credits are injected.
+    /// A separate command stream is required when replaying controlled ticks.
+    pub fn tick_controlled(
+        &mut self,
+        controls: &BTreeMap<u64, Vec<i32>>,
+    ) -> Result<(TickReceipt, Vec<OrganismTick>), Error> {
+        let rules = self
+            .config
+            .neural
+            .as_ref()
+            .ok_or_else(|| Error::Run("diagnostic controls require neural laws".into()))?;
+        if rules.version != 2 || rules.spinal_wave {
+            return Err(Error::Run(
+                "diagnostic controls require law 2 with wave disabled".into(),
+            ));
+        }
+        for (id, commands) in controls {
+            let state = self
+                .brains
+                .get(id)
+                .and_then(|b| b.neural.as_ref())
+                .ok_or_else(|| {
+                    Error::Run(format!("diagnostic control has unknown/non-neural id {id}"))
+                })?;
+            if commands.len() != state.genome.anatomy.motors()
+                || commands.iter().any(|c| c.unsigned_abs() > 1024)
+            {
+                return Err(Error::Run(format!(
+                    "invalid diagnostic motor vector for {id}"
+                )));
+            }
+        }
+        let mut next = self.clone();
+        next.observations = Some(BTreeMap::new());
+        let receipt = next.advance(Some(controls))?;
+        next.audit()?;
+        let rows = next.observations.take().unwrap().into_values().collect();
+        *self = next;
+        Ok((receipt, rows))
+    }
+
+    /// Read the same local ABI that the ordinary controller would receive now.
+    /// This exposes no target IDs, food coordinates or world map.
+    pub fn organism_sensors(&self, id: u64) -> Result<Vec<i32>, Error> {
+        let cell = self
+            .cells
+            .get(&id)
+            .ok_or_else(|| Error::Run("unknown sensor subject".into()))?;
+        let state = self
+            .brains
+            .get(&id)
+            .and_then(|b| b.neural.as_ref())
+            .ok_or_else(|| Error::Run("sensor subject is not neural".into()))?;
+        let solid = fused_surface(&self.flesh, self.dims())?;
+        Ok(self.observe_neural(cell, state, &solid))
     }
 
     pub fn config(&self) -> &SimConfig {
@@ -632,7 +691,10 @@ impl World {
     /// 7. Maintenance is paid in full or the cell dies and its action-energy is disposed.
     /// 8. Waste is exported up to the available stock.
     /// 9. The committed tick index increments.
-    fn advance(&mut self) -> Result<TickReceipt, Error> {
+    fn advance(
+        &mut self,
+        controls: Option<&BTreeMap<u64, Vec<i32>>>,
+    ) -> Result<TickReceipt, Error> {
         let tick = self.tick;
         let inflow = self.config.inflow_per_tick;
         if inflow > 0 {
@@ -690,13 +752,14 @@ impl World {
                 if let Some(state) = &mut brain.neural {
                     let rules = self.config.neural.as_ref().expect("neural rules");
                     let before = brain.offset;
-                    let (neural_fee, motor_fee) = state.integrate(
+                    let (neural_fee, motor_fee) = state.integrate_with_commands(
                         neural_sensors.expect("sensors"),
                         rules,
                         self.seed,
                         cell.id,
                         tick,
                         cell.energy,
+                        controls.and_then(|c| c.get(&cell.id)).map(Vec::as_slice),
                     );
                     neural_energy += neural_fee;
                     if let Some(rows) = &mut self.observations {
@@ -1268,6 +1331,18 @@ impl World {
         let feedstock =
             self.nutrient[site_index(self.feeding_site(cell), dims).expect("feeding site")];
         let mut chemical = [0; 6];
+        let local_lobes = if self
+            .config
+            .neural
+            .as_ref()
+            .expect("neural law")
+            .chemical_sensing
+            == crate::neural::ChemicalSensing::LocalLobesV1
+        {
+            Some(self.local_chemical_lobes(cell.site, state.body.orientation))
+        } else {
+            None
+        };
         let mut contact = [0; 6];
         for face in 0..6 {
             let mut local = [0i64; 3];
@@ -1289,7 +1364,11 @@ impl World {
             let ahead =
                 self.ray_scent(cell.site, crate::Dir::from_roll(roll as u32).expect("face"));
             let scale = i128::from(self.config.site_cap.max(1)) * 8;
-            chemical[face] = (i128::from(ahead) * 1024 / scale).clamp(0, 1024) as i32;
+            chemical[face] = if let Some(lobes) = local_lobes {
+                lobes[face]
+            } else {
+                (i128::from(ahead) * 1024 / scale).clamp(0, 1024) as i32
+            };
             let index = site_index(site, dims).expect("neighbor index");
             contact[face] = if solid.contains(&site)
                 || (self.occupancy[index] != 0 && self.occupancy[index] != cell.id)
@@ -1328,6 +1407,59 @@ impl World {
             },
             self.config.neural.as_ref().expect("neural law"),
         )
+    }
+
+    /// Authored bounded field measurement, not diffusion or target navigation.
+    /// Minimum-image offsets visit each periodic site once (negative half-axis
+    /// tie on even dimensions). Six lobes use actual rotated body directions.
+    fn local_chemical_lobes(&self, center: Site, orientation: [i32; 3]) -> [i32; 6] {
+        let dims = self.dims();
+        let extents = [dims.width, dims.height, dims.depth];
+        let base = [center.x, center.y, center.z];
+        let lower = extents.map(|d| -(i64::from(d) / 2).min(8));
+        let upper = extents.map(|d| (i64::from(d - 1) / 2).min(8));
+        let axes: [[i64; 3]; 6] = std::array::from_fn(|face| {
+            let mut local = [0; 3];
+            local[face / 2] = if face % 2 == 0 { 1024 } else { -1024 };
+            crate::neural::body::rotate(local, orientation)
+        });
+        let mut total = [0i128; 6];
+        for z in lower[2]..=upper[2] {
+            for y in lower[1]..=upper[1] {
+                for x in lower[0]..=upper[0] {
+                    let displacement = [x, y, z];
+                    let d2 = x * x + y * y + z * z;
+                    if d2 == 0 || d2 > 64 {
+                        continue;
+                    }
+                    let p: [u32; 3] = std::array::from_fn(|a| {
+                        (i64::from(base[a]) + displacement[a]).rem_euclid(i64::from(extents[a]))
+                            as u32
+                    });
+                    let site = Site {
+                        x: p[0],
+                        y: p[1],
+                        z: p[2],
+                    };
+                    let stock = self.nutrient[site_index(site, dims).expect("local chemical site")];
+                    if stock == 0 {
+                        continue;
+                    }
+                    for (face, axis) in axes.iter().enumerate() {
+                        let projection = displacement
+                            .iter()
+                            .zip(axis)
+                            .map(|(d, a)| d * a)
+                            .sum::<i64>()
+                            .max(0);
+                        total[face] +=
+                            i128::from(stock) * i128::from(65 - d2) * i128::from(projection);
+                    }
+                }
+            }
+        }
+        let denominator = i128::from(self.config.site_cap.max(1)) * 65 * 8 * 1024;
+        total.map(|value| (value * 1024 / denominator).clamp(0, 1024) as i32)
     }
 
     /// Weighted nutrient along one facing, steps 1 through 8. Nearer stock

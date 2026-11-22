@@ -1,0 +1,585 @@
+{
+  "date_local": "2026-11-22",
+  "status": "VERIFIED_EXTERNAL_COPY_AND_FULL_RESTORE",
+  "experiment": "M5",
+  "archive_version": "v1",
+  "base_commit": "fd837e7e19c670311ee17ad600259f1c086c6d63",
+  "volume_label": "Mermogon",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "mount_path": "/run/media/cognis/Mermogon",
+  "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M5/fd837e7/v1",
+  "volume_relative_root": "Moebius-Automata/experiments/M5/fd837e7/v1",
+  "git_policy": "Keep authoritative reports, protocols, summaries, analysis/replay audits, code/configuration identities, checksums, classification and restore metadata in Git. Bulky raw evidence belongs in the external immutable archive.",
+  "raw_archives": 12,
+  "raw_bytes": 81864745,
+  "git_metadata_files": 40,
+  "git_metadata_bytes": 7686793,
+  "records": [
+    {
+      "repository_path": "docs/m5/artifacts/attribution_v1/RAW_MANIFEST.json",
+      "relative_path": "attribution_v1/RAW_MANIFEST.json",
+      "bytes": 45783,
+      "sha256": "df8d5789f772337e9d2fced62ef3d8f09e238312a51727bcae00f0fe680e3310",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/attribution_v1/protocol.json",
+      "relative_path": "attribution_v1/protocol.json",
+      "bytes": 4906,
+      "sha256": "0cd1399f4b530dc44e130ed03a71bb139b4633b55ab62db86a0968e1593a6e45",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "relative_path": "attribution_v1/raw.tar.gz",
+      "bytes": 1281391,
+      "sha256": "bfb72f3ce168a2e7154ae1642ed6e9dab04e46e441c9a8a03060dfda0e722053",
+      "purpose": "raw tick traces, snapshots, per-trial configurations and search logs",
+      "storage": "mermogon",
+      "raw_file_count": 316,
+      "former_repository_path": "docs/m5/artifacts/attribution_v1/raw.tar.gz",
+      "external_path": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M5/fd837e7/v1/attribution_v1/raw.tar.gz"
+    },
+    {
+      "repository_path": "docs/m5/artifacts/attribution_v1/results.json",
+      "relative_path": "attribution_v1/results.json",
+      "bytes": 143587,
+      "sha256": "d5909375e4e70b1a438d7e4eee60c4d70c21a9f3ffafe1b69da1fbcce27275f2",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/benchmark_v1/RAW_MANIFEST.json",
+      "relative_path": "benchmark_v1/RAW_MANIFEST.json",
+      "bytes": 37366,
+      "sha256": "95c3f14f5af1aa6f3129a47853b44931f6c8b366a19edfa7154fa0b0e1c8ffed",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/benchmark_v1/protocol.json",
+      "relative_path": "benchmark_v1/protocol.json",
+      "bytes": 4906,
+      "sha256": "0cd1399f4b530dc44e130ed03a71bb139b4633b55ab62db86a0968e1593a6e45",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "relative_path": "benchmark_v1/raw.tar.gz",
+      "bytes": 2611476,
+      "sha256": "10a30cad5f3c38d4117f02d5466338d5c9c1720e8bdae602a456c9cd73f2a9f8",
+      "purpose": "raw tick traces, snapshots, per-trial configurations and search logs",
+      "storage": "mermogon",
+      "raw_file_count": 252,
+      "former_repository_path": "docs/m5/artifacts/benchmark_v1/raw.tar.gz",
+      "external_path": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M5/fd837e7/v1/benchmark_v1/raw.tar.gz"
+    },
+    {
+      "repository_path": "docs/m5/artifacts/benchmark_v1/results.json",
+      "relative_path": "benchmark_v1/results.json",
+      "bytes": 106202,
+      "sha256": "36260e2c614573e766a98a0aa6c3c25b37c1468accab15ad239ddf335a25d963",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/braking_v1/RAW_MANIFEST.json",
+      "relative_path": "braking_v1/RAW_MANIFEST.json",
+      "bytes": 3631,
+      "sha256": "c76c08691b30a4f4bb85150323d5998e6e550156f71a287e853c0485a50e09c3",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/braking_v1/protocol.json",
+      "relative_path": "braking_v1/protocol.json",
+      "bytes": 4906,
+      "sha256": "0cd1399f4b530dc44e130ed03a71bb139b4633b55ab62db86a0968e1593a6e45",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "relative_path": "braking_v1/raw.tar.gz",
+      "bytes": 158424,
+      "sha256": "0de59a72b6f21a8dff4be492b11a65295de0f28a2fe7ef3c2991f821beb7dc74",
+      "purpose": "raw tick traces, snapshots, per-trial configurations and search logs",
+      "storage": "mermogon",
+      "raw_file_count": 24,
+      "former_repository_path": "docs/m5/artifacts/braking_v1/raw.tar.gz",
+      "external_path": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M5/fd837e7/v1/braking_v1/raw.tar.gz"
+    },
+    {
+      "repository_path": "docs/m5/artifacts/braking_v1/results.json",
+      "relative_path": "braking_v1/results.json",
+      "bytes": 11576,
+      "sha256": "5334e2664b5b41705c0ccd0fc3a19b6fe9c577a369f622f2d71337d78db2245c",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/confirmation_v1/RAW_MANIFEST.json",
+      "relative_path": "confirmation_v1/RAW_MANIFEST.json",
+      "bytes": 298907,
+      "sha256": "817c38cf24e316233273274c751590b14c29376adaac84b8617067388b7ee9cf",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/confirmation_v1/protocol.json",
+      "relative_path": "confirmation_v1/protocol.json",
+      "bytes": 5583,
+      "sha256": "3d1ff29da03aa6af87ceef45ecc8164e445a4152d12c8a9c21a5c164f48f22f4",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "relative_path": "confirmation_v1/raw.tar.gz",
+      "bytes": 20917052,
+      "sha256": "bc1f63830c7a90f14e8af7a8d3641e81a9c4d509453840d96942a57ce81a45d2",
+      "purpose": "raw tick traces, snapshots, per-trial configurations and search logs",
+      "storage": "mermogon",
+      "raw_file_count": 2016,
+      "former_repository_path": "docs/m5/artifacts/confirmation_v1/raw.tar.gz",
+      "external_path": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M5/fd837e7/v1/confirmation_v1/raw.tar.gz"
+    },
+    {
+      "repository_path": "docs/m5/artifacts/confirmation_v1/results.json",
+      "relative_path": "confirmation_v1/results.json",
+      "bytes": 848476,
+      "sha256": "b091e462567bf0d4e5b11c94f51ecf4511aa10683fe5932d625535c6108e2c1b",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/local_lobes_second_v1/RAW_MANIFEST.json",
+      "relative_path": "local_lobes_second_v1/RAW_MANIFEST.json",
+      "bytes": 58828,
+      "sha256": "c1c2ddafa37c347d67ab85c330bba219821fa625d5ceeeadacd4cbeea746d71c",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/local_lobes_second_v1/protocol.json",
+      "relative_path": "local_lobes_second_v1/protocol.json",
+      "bytes": 6465,
+      "sha256": "6f20335f17b5f177e8c5602f3a22ebd2492f8f35d899e4d9ebd84c5234a608a7",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "relative_path": "local_lobes_second_v1/raw.tar.gz",
+      "bytes": 1796635,
+      "sha256": "469fd3cccecaea1d8b0915ba062b41a68abeb330eae3930f7a1d156b370ce84a",
+      "purpose": "raw tick traces, snapshots, per-trial configurations and search logs",
+      "storage": "mermogon",
+      "raw_file_count": 384,
+      "former_repository_path": "docs/m5/artifacts/local_lobes_second_v1/raw.tar.gz",
+      "external_path": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M5/fd837e7/v1/local_lobes_second_v1/raw.tar.gz"
+    },
+    {
+      "repository_path": "docs/m5/artifacts/local_lobes_second_v1/results.json",
+      "relative_path": "local_lobes_second_v1/results.json",
+      "bytes": 170413,
+      "sha256": "4a0eb0b57c7fb2b92aaf6b42322d99566beb4fe308dd209fc5853758cae03cae",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/local_lobes_v1/RAW_MANIFEST.json",
+      "relative_path": "local_lobes_v1/RAW_MANIFEST.json",
+      "bytes": 58825,
+      "sha256": "a0c0239fd4234918b3933e9743baff871d985f88d47e71c474d218b47dc49d55",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/local_lobes_v1/protocol.json",
+      "relative_path": "local_lobes_v1/protocol.json",
+      "bytes": 6465,
+      "sha256": "6f20335f17b5f177e8c5602f3a22ebd2492f8f35d899e4d9ebd84c5234a608a7",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "relative_path": "local_lobes_v1/raw.tar.gz",
+      "bytes": 1725877,
+      "sha256": "5afda7fce68d9382586d7d59c9ba617df1220e67b82a4ee24d0a4b5223753f82",
+      "purpose": "raw tick traces, snapshots, per-trial configurations and search logs",
+      "storage": "mermogon",
+      "raw_file_count": 384,
+      "former_repository_path": "docs/m5/artifacts/local_lobes_v1/raw.tar.gz",
+      "external_path": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M5/fd837e7/v1/local_lobes_v1/raw.tar.gz"
+    },
+    {
+      "repository_path": "docs/m5/artifacts/local_lobes_v1/results.json",
+      "relative_path": "local_lobes_v1/results.json",
+      "bytes": 170658,
+      "sha256": "52d3910ea177f7222a8d327828ef7939553284c903b30698b0286cce96e484be",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/local_model_second_v1/RAW_MANIFEST.json",
+      "relative_path": "local_model_second_v1/RAW_MANIFEST.json",
+      "bytes": 58827,
+      "sha256": "56e4ef1ae7608edab70774e2e9a3d482f8a86c90333b97099212357bd4498b08",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/local_model_second_v1/protocol.json",
+      "relative_path": "local_model_second_v1/protocol.json",
+      "bytes": 6465,
+      "sha256": "6f20335f17b5f177e8c5602f3a22ebd2492f8f35d899e4d9ebd84c5234a608a7",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "relative_path": "local_model_second_v1/raw.tar.gz",
+      "bytes": 1501732,
+      "sha256": "a27b94627ae350fb7637ae02fe44c0eab9c8c0b9e3e054b3aa10f930bbab9467",
+      "purpose": "raw tick traces, snapshots, per-trial configurations and search logs",
+      "storage": "mermogon",
+      "raw_file_count": 384,
+      "former_repository_path": "docs/m5/artifacts/local_model_second_v1/raw.tar.gz",
+      "external_path": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M5/fd837e7/v1/local_model_second_v1/raw.tar.gz"
+    },
+    {
+      "repository_path": "docs/m5/artifacts/local_model_second_v1/results.json",
+      "relative_path": "local_model_second_v1/results.json",
+      "bytes": 168674,
+      "sha256": "c35c0ae2aa6438995a308168f678bf175b096c14ca0edf43bc5ec36c1a64ecf6",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/local_model_v1/RAW_MANIFEST.json",
+      "relative_path": "local_model_v1/RAW_MANIFEST.json",
+      "bytes": 58824,
+      "sha256": "f90800a9aeb4e766a592069d6dcc5ebc88bad52b962e1e350787ae414bb77be2",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/local_model_v1/protocol.json",
+      "relative_path": "local_model_v1/protocol.json",
+      "bytes": 5583,
+      "sha256": "3d1ff29da03aa6af87ceef45ecc8164e445a4152d12c8a9c21a5c164f48f22f4",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "relative_path": "local_model_v1/raw.tar.gz",
+      "bytes": 1460436,
+      "sha256": "c6ec7c5090f268cc34ef1c7e5aa5153739ef1488ef4e6d183c802b0734cce4e4",
+      "purpose": "raw tick traces, snapshots, per-trial configurations and search logs",
+      "storage": "mermogon",
+      "raw_file_count": 384,
+      "former_repository_path": "docs/m5/artifacts/local_model_v1/raw.tar.gz",
+      "external_path": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M5/fd837e7/v1/local_model_v1/raw.tar.gz"
+    },
+    {
+      "repository_path": "docs/m5/artifacts/local_model_v1/results.json",
+      "relative_path": "local_model_v1/results.json",
+      "bytes": 168851,
+      "sha256": "a7fdedd1eec3dfb95fb213abc82b607ef0271c9b529846f72d852155de3a1382",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/periodic_v1/RAW_MANIFEST.json",
+      "relative_path": "periodic_v1/RAW_MANIFEST.json",
+      "bytes": 187011,
+      "sha256": "e09f361286e8f885b248956a70dea7be4a46cd9dd92abd7da231071388e765dd",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/periodic_v1/protocol.json",
+      "relative_path": "periodic_v1/protocol.json",
+      "bytes": 4906,
+      "sha256": "0cd1399f4b530dc44e130ed03a71bb139b4633b55ab62db86a0968e1593a6e45",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "relative_path": "periodic_v1/raw.tar.gz",
+      "bytes": 6867619,
+      "sha256": "1fb91b373af0b42afab6b8ae6327ed2d463ad448d6b5a2ce4822f129837d1416",
+      "purpose": "raw tick traces, snapshots, per-trial configurations and search logs",
+      "storage": "mermogon",
+      "raw_file_count": 1152,
+      "former_repository_path": "docs/m5/artifacts/periodic_v1/raw.tar.gz",
+      "external_path": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M5/fd837e7/v1/periodic_v1/raw.tar.gz"
+    },
+    {
+      "repository_path": "docs/m5/artifacts/periodic_v1/results.json",
+      "relative_path": "periodic_v1/results.json",
+      "bytes": 570278,
+      "sha256": "f33f75797b2a43a97ad771d6a1463e11bfb5934da2358f61105645f0dd9037a6",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/screen_v1/RAW_MANIFEST.json",
+      "relative_path": "screen_v1/RAW_MANIFEST.json",
+      "bytes": 427764,
+      "sha256": "559dc216d163619a219f7adc1fbfc1e5f4656ad8dfdbfc454e805999c26d6528",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/screen_v1/protocol.json",
+      "relative_path": "screen_v1/protocol.json",
+      "bytes": 4906,
+      "sha256": "0cd1399f4b530dc44e130ed03a71bb139b4633b55ab62db86a0968e1593a6e45",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "relative_path": "screen_v1/raw.tar.gz",
+      "bytes": 19362569,
+      "sha256": "ffcf285ba04733916b88f5a6633de06d743012bec2bef3164d0e7ab5d68b6622",
+      "purpose": "raw tick traces, snapshots, per-trial configurations and search logs",
+      "storage": "mermogon",
+      "raw_file_count": 2688,
+      "former_repository_path": "docs/m5/artifacts/screen_v1/raw.tar.gz",
+      "external_path": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M5/fd837e7/v1/screen_v1/raw.tar.gz"
+    },
+    {
+      "repository_path": "docs/m5/artifacts/screen_v1/results.json",
+      "relative_path": "screen_v1/results.json",
+      "bytes": 1306059,
+      "sha256": "e3e3b4e937030ff316e00fc76a3b0b270d6fc650cf481e2414868f59d5065e9d",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/second_meal_confirmation_v1/RAW_MANIFEST.json",
+      "relative_path": "second_meal_confirmation_v1/RAW_MANIFEST.json",
+      "bytes": 298902,
+      "sha256": "e0a43b84dea512af4fc649424e3df36be0f1954d8d1a546e669a3d282f524b8c",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/second_meal_confirmation_v1/protocol.json",
+      "relative_path": "second_meal_confirmation_v1/protocol.json",
+      "bytes": 5583,
+      "sha256": "3d1ff29da03aa6af87ceef45ecc8164e445a4152d12c8a9c21a5c164f48f22f4",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "relative_path": "second_meal_confirmation_v1/raw.tar.gz",
+      "bytes": 21498632,
+      "sha256": "0751a8e69fc641c480e36f1886b9ccc7df00fae02383f22f9e42a9319dd46e5e",
+      "purpose": "raw tick traces, snapshots, per-trial configurations and search logs",
+      "storage": "mermogon",
+      "raw_file_count": 2016,
+      "former_repository_path": "docs/m5/artifacts/second_meal_confirmation_v1/raw.tar.gz",
+      "external_path": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M5/fd837e7/v1/second_meal_confirmation_v1/raw.tar.gz"
+    },
+    {
+      "repository_path": "docs/m5/artifacts/second_meal_confirmation_v1/results.json",
+      "relative_path": "second_meal_confirmation_v1/results.json",
+      "bytes": 846313,
+      "sha256": "f791be9707213b8f0b50b3d21b3c01a1b22fd5ff92da594a44a4c35e8585f5c1",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/second_meal_v1/RAW_MANIFEST.json",
+      "relative_path": "second_meal_v1/RAW_MANIFEST.json",
+      "bytes": 37365,
+      "sha256": "89dabf34fa9bf834e7826288f6d840b5f713b330752a29f1887b75f0e46d6eba",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/second_meal_v1/protocol.json",
+      "relative_path": "second_meal_v1/protocol.json",
+      "bytes": 4906,
+      "sha256": "0cd1399f4b530dc44e130ed03a71bb139b4633b55ab62db86a0968e1593a6e45",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "relative_path": "second_meal_v1/raw.tar.gz",
+      "bytes": 2682902,
+      "sha256": "2cd07fdc16ca7986486be211acaca850b8aaaa85085bc1ee842691893cbd0582",
+      "purpose": "raw tick traces, snapshots, per-trial configurations and search logs",
+      "storage": "mermogon",
+      "raw_file_count": 252,
+      "former_repository_path": "docs/m5/artifacts/second_meal_v1/raw.tar.gz",
+      "external_path": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M5/fd837e7/v1/second_meal_v1/raw.tar.gz"
+    },
+    {
+      "repository_path": "docs/m5/artifacts/second_meal_v1/results.json",
+      "relative_path": "second_meal_v1/results.json",
+      "bytes": 106088,
+      "sha256": "d42ae3a9ae6abe28cd73addc0ec827f7769c8ca73714490268bac4b2c49b590e",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/sensors_lobes_v1/protocol.json",
+      "relative_path": "sensors_lobes_v1/protocol.json",
+      "bytes": 6465,
+      "sha256": "6f20335f17b5f177e8c5602f3a22ebd2492f8f35d899e4d9ebd84c5234a608a7",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/sensors_lobes_v1/results.json",
+      "relative_path": "sensors_lobes_v1/results.json",
+      "bytes": 715890,
+      "sha256": "82abd3105468414b101e14c2acd1057c1ef1da7147f9a80df1cbbe01f39e8f08",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/sensors_v1/protocol.json",
+      "relative_path": "sensors_v1/protocol.json",
+      "bytes": 4906,
+      "sha256": "0cd1399f4b530dc44e130ed03a71bb139b4633b55ab62db86a0968e1593a6e45",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    },
+    {
+      "repository_path": "docs/m5/artifacts/sensors_v1/results.json",
+      "relative_path": "sensors_v1/results.json",
+      "bytes": 704744,
+      "sha256": "855fb62530ee86e6b6ee54abb4c895f45ce562cb9b527a07b9286de719d5dd30",
+      "purpose": "authoritative trial summary/protocol or reproducibility manifest",
+      "storage": "git",
+      "raw_file_count": null
+    }
+  ],
+  "other_generated_git_records": {
+    "docs/m5/ANALYSIS.json": "authoritative derived analysis",
+    "docs/m5/REPLAY_AUDIT.json": "reproducibility and per-case accounting audit metadata",
+    "docs/m5/GOAL_EVENTS.json": "authoritative successful-ingestion event observations",
+    "docs/m5/REPORT.md": "authoritative scientific report",
+    "docs/m5/PROTOCOL.json": "authored protocol and amendments",
+    "docs/m5/VALIDATION.json": "validation boundaries and source identities",
+    "docs/m5/M4_EVIDENCE_AUDIT.json": "baseline provenance and compatibility audit",
+    "docs/m5/CONFIGURATIONS.json": "complete deduplicated per-trial configurations and 2509 original-file identities"
+  },
+  "restoration_verification": {
+    "files_restored_and_sha256_verified": 10252,
+    "datasets": 14,
+    "native_replay_from_mermogon_restore": {
+      "dataset": "braking_v1",
+      "sensor_probes": 0,
+      "snapshots": 12,
+      "status": "PASS",
+      "ticks": 576,
+      "trials": 6
+    }
+  },
+  "external_index_sha256": "0f63b86a8d3866bcf37f6d5118f13d5a76632cc96ee839aa96c756b37f098a03",
+  "repository_raw_copies_removed_after_verification_and_reference_update": true,
+  "git_document_inventory": [
+    {
+      "path": "docs/m5/ANALYSIS.json",
+      "purpose": "authoritative derived analysis",
+      "bytes": 82988,
+      "sha256": "6f3ec41d8149fe29927b5ef9fa6cbf4d39e4d30bd01e0964683b757a1f0191cb"
+    },
+    {
+      "path": "docs/m5/ARTIFACT_MANIFEST.json",
+      "purpose": "authoritative reproducibility/provenance metadata",
+      "bytes": 16648,
+      "sha256": "f4faf805a1b7ecba3215db7465382e673650ad0f951d167d021ff4e536ae30fe"
+    },
+    {
+      "path": "docs/m5/CONFIGURATIONS.json",
+      "purpose": "complete deduplicated per-trial configurations and 2509 original-file identities",
+      "bytes": 468017,
+      "sha256": "fe9b2269d522aa7367bace5b72acc901cfc94d75ad1f0be9418bb116ebd4b718"
+    },
+    {
+      "path": "docs/m5/GOAL_EVENTS.json",
+      "purpose": "authoritative successful-ingestion event observations",
+      "bytes": 47732,
+      "sha256": "c3bc50645bb2350cd24cd6a65f3eb992466a80f65974e961abcc9c3f5c61e6fe"
+    },
+    {
+      "path": "docs/m5/M4_EVIDENCE_AUDIT.json",
+      "purpose": "baseline provenance and compatibility audit",
+      "bytes": 2025,
+      "sha256": "0e85df85faccc7d2d76bd04992e7bca646bdf722a806fb7be748212369aa8d48"
+    },
+    {
+      "path": "docs/m5/PROTOCOL.json",
+      "purpose": "authored protocol and amendments",
+      "bytes": 7740,
+      "sha256": "cb9527f72a7060f8f75bec032dd6670923ddccc2171e5a9d59d0868ab14e16b0"
+    },
+    {
+      "path": "docs/m5/REGRESSION_REAR_COMMANDS.json",
+      "purpose": "authoritative reproducibility/provenance metadata",
+      "bytes": 2881,
+      "sha256": "5445909e005249975552f1e26dd702d22310cfe518dcb858716b0e333ab7374a"
+    },
+    {
+      "path": "docs/m5/REPLAY_AUDIT.json",
+      "purpose": "reproducibility and per-case accounting audit metadata",
+      "bytes": 2282683,
+      "sha256": "6711fdb6baf0cd9ba4f77f0f80469fb5fede2e59874f538f89a6a62cb9fcfc8d"
+    },
+    {
+      "path": "docs/m5/REPORT.md",
+      "purpose": "authoritative scientific report",
+      "bytes": 22867,
+      "sha256": "b350c560844f214f4810e8b63a17eac38f8541dae575dcf71fabbb8549b2cd05"
+    },
+    {
+      "path": "docs/m5/VALIDATION.json",
+      "purpose": "validation boundaries and source identities",
+      "bytes": 6152,
+      "sha256": "e29b067772a6753fde92c352bd6e646255e3dc9e60e15e79adc1d8cf774612fe"
+    }
+  ]
+}

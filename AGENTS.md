@@ -1,5 +1,40 @@
 # Project instructions
 
+## Experimental artifact storage and commit gate
+
+Mandatory standing instruction from the user, effective 2026-11-22:
+
+Before committing experimental results, classify generated artifacts by size
+and purpose. Keep authoritative reports and reproducibility metadata in Git.
+Store bulky raw evidence in a versioned external archive on **Mermogon**, with
+verified hashes. Never discard or relocate evidence without verifying its
+integrity and updating its references.
+
+- Record artifact purpose, file count, byte size, experiment/run identity and
+  archive version before deciding what belongs in Git. Packaging raw files into
+  a tarball does not by itself make bulky evidence suitable for Git.
+- Keep protocols, authoritative reports, analysis/replay summaries, source and
+  configuration identities, manifests, checksums, archive locations and restore
+  instructions in Git. Preserve failures, nulls and chronology.
+- Put bulky tick traces, raw snapshots, search logs and equivalent raw evidence
+  in immutable, versioned experiment archives on Mermogon. The local cache is a
+  working copy, not the authoritative external archive.
+- Before a transfer, verify that Mermogon is actually mounted and confirm its
+  device identity; do not write into an unmounted directory or identify the
+  drive solely by a transient `/dev/sdX` name.
+- Copy to the external destination, verify archive and per-file hashes there,
+  verify restoration, and update every affected manifest/report/restore reference
+  before removing or relocating the previous copy. Retain the previous copy if
+  any verification or reference update fails. Never overwrite an archive version.
+- Before committing, verify that referenced external evidence exists, hashes
+  match, and bulky raw evidence is absent from the proposed Git additions.
+
+Mermogon was verified mounted at `/run/media/cognis/Mermogon` on 2026-11-22.
+Its verified volume UUID is `D0A02EEBA02ED82C` (label `Mermogon`). Re-verify
+its mount and identity at each archive operation. This gate applies to
+the pending M5 results as well as future experiments; storage references must be
+updated before those results are committed.
+
 ## External scientific research
 
 This is a mandatory standing rule requested by the user for future work.

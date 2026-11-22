@@ -1,4 +1,64 @@
-# Current checkpoint — M4 diagnosis (2026-11-21 local)
+# Current checkpoint — M5 reachability (2026-11-21 local)
+
+Storage gate applied 2026-11-22: raw M5 evidence now resides in the verified
+Mermogon archive `Moebius-Automata/experiments/M5/fd837e7/v1` (volume UUID
+`D0A02EEBA02ED82C`). See [storage classification](docs/m5/ARTIFACT_STORAGE.json).
+Reports, protocols, summaries, manifests and restore metadata stay in Git.
+All 12 destination archives and 10252 restored files passed hash verification;
+replay from the Mermogon restore passed. Local caches remain working copies.
+
+Read [AGENTS.md](AGENTS.md), [M5 report](docs/m5/REPORT.md),
+[protocol](docs/m5/PROTOCOL.json), [analysis](docs/m5/ANALYSIS.json),
+[bite events](docs/m5/GOAL_EVENTS.json), and [validation](docs/m5/VALIDATION.json).
+The committed M4 base is `fd837e7e19c670311ee17ad600259f1c086c6d63`.
+Use live Git state for publication status; older checkpoint text below is historical.
+
+**Some second meals are reachable at the original 128 energy, chiefly by folding
+and aiming the mouth into the existing rounded-head capture stencil. Swimming
+to new food and production autonomous foraging are NOT demonstrated.** The
+oracle reaches 24/96 designed placements, including literal founding-bite then
+second-site ingestion. COM moves only 0.002–0.023 sites before those second bites.
+Nine of twelve target placements fail. Forward three-site reachability remains
+NOT DEMONSTRATED under the default budget/drag; no universal impossibility proof.
+
+Same scalar-only motor model: 8/96 reaches with old rays; 9/96 with optional bounded
+lobes. Eight-seed confirmations include exploration seed1. These authored fixture
+controllers are isolated in examples/support/m5_control.rs, never production
+policies or learned discoveries. The rear-target local model keeps eating through
+tick127 but does not stop COM drift. Separate paid braking reaches zero velocity
+at ticks27–94 (sub-resolution residual momentum), then dies at95.
+
+Production nursery defaults remain law2, authored wave off, original RaysV1.
+Body, anatomy, energy/resource coefficients, material and momentum laws are
+unchanged. Optional `chemical_sensing: "local_lobes_v1"` measures authoritative
+nutrient inside radius8 using true body-direction lobes; it is an authored local
+sensor, not diffusion. Example config: experiments/nursery_m5_local_lobes_v1.json.
+That config does not install the experimental controller.
+
+World::tick_controlled validates raw diagnostic commands and routes them through
+ordinary smoothing/billing/physics/feeding. World::organism_sensors exposes only
+the ordinary scalar ABI. External command streams are required for controlled
+snapshot replay. All target coordinates stay in the oracle harness.
+
+89 workspace tests, strict Clippy, formatting and diff checks pass. All 2509 M5
+trials, 5018 snapshots, 325653 ticks and 480 static sensor probes replay exactly.
+Independent energy/material/momentum/fee-debt/geometry audits pass. All427 M4
+saved trials were read/replayed; all400 primary M4 trials replayed again after
+changes to verify compatibility. No external scientific publications consulted.
+
+The user flagged 10k Git paths. All raw evidence is now preserved in 12 archives
+on Mermogon, referenced by docs/m5/ARTIFACT_STORAGE.json, with Git SHA256 manifests
+and readable summaries.
+`python3 python/m5_artifacts.py unpack NEW_DIRECTORY` restores it. Expanded local
+cache: /home/cognis/.cache/moebius-automata/m5-fd837e7 (not required for portability).
+Every archive was verified and complete unpacking tested. No null trials discarded.
+
+Next boundary: efficient controllable COM propulsion and mouth alignment beyond
+fold-and-capture reach, then reliable local arrival/braking and sparse-habitat
+foraging. Preserve all eight verdict boundaries in the report. No new species.
+No M5 live viewer witness or hosted CI check is claimed; Git records publication.
+
+# Previous checkpoint — M4 diagnosis (committed fd837e7)
 
 Read [AGENTS.md](AGENTS.md), then [M4 report](docs/m4/REPORT.md),
 [protocol](docs/m4/PROTOCOL.json), [analysis](docs/m4/ANALYSIS.json), and

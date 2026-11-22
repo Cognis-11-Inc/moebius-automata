@@ -10,6 +10,16 @@ pub enum Policy {
     Recurrent,
     Random,
 }
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum ChemicalSensing {
+    #[default]
+    RaysV1,
+    LocalLobesV1,
+}
+fn is_rays(value: &ChemicalSensing) -> bool {
+    *value == ChemicalSensing::RaysV1
+}
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct NeuralRules {
@@ -24,6 +34,9 @@ pub struct NeuralRules {
     /// Explicit ablation; omitted/true preserves historical law encoding.
     #[serde(default = "enabled", skip_serializing_if = "is_enabled")]
     pub spinal_wave: bool,
+    /// Explicit authored sensor variant; omitted preserves historical config hashes.
+    #[serde(default, skip_serializing_if = "is_rays")]
+    pub chemical_sensing: ChemicalSensing,
 }
 fn enabled() -> bool {
     true
@@ -43,12 +56,16 @@ impl Default for NeuralRules {
             policy: Policy::Recurrent,
             drag: 8,
             spinal_wave: true,
+            chemical_sensing: ChemicalSensing::RaysV1,
         }
     }
 }
 impl NeuralRules {
     pub fn validate(&self) -> Result<(), Error> {
-        if !(1..=2).contains(&self.version) || self.drag > 128 {
+        if !(1..=2).contains(&self.version)
+            || self.drag > 128
+            || (self.version == 1 && self.chemical_sensing != ChemicalSensing::RaysV1)
+        {
             return Err(Error::Config("unsupported neural laws or drag".into()));
         }
         Ok(())
@@ -336,6 +353,22 @@ impl NeuralState {
         tick: u64,
         energy: u64,
     ) -> (u64, u64) {
+        self.integrate_with_commands(sensors, rules, seed, id, tick, energy, None)
+    }
+    /// Diagnostic input substitutes raw motor requests before the ordinary
+    /// muscle/cost path. Callers must validate dimensions and bounds; production
+    /// integration above always passes None. No target coordinates enter here.
+    #[allow(clippy::too_many_arguments)]
+    pub(crate) fn integrate_with_commands(
+        &mut self,
+        sensors: Vec<i32>,
+        rules: &NeuralRules,
+        seed: u64,
+        id: u64,
+        tick: u64,
+        energy: u64,
+        diagnostic_commands: Option<&[i32]>,
+    ) -> (u64, u64) {
         self.steps += 1;
         self.ensure_motor_memory();
         let fee = u64::from(self.steps.is_multiple_of(8));
@@ -427,6 +460,9 @@ impl NeuralState {
                 (i64::from(squash(drive)) * i64::from(self.genome.motor_gains[a]) / i64::from(Q))
                     .clamp(-i64::from(Q), i64::from(Q)) as i32
             };
+        }
+        if let Some(commands) = diagnostic_commands {
+            self.commands.copy_from_slice(commands);
         }
         // Version 1 bills raw neural output before the authored wave, retained
         // for historical replay. Version 2 bills the actual requested drive.

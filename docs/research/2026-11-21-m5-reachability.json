@@ -1,0 +1,66 @@
+{
+  "date_local": "2026-11-21",
+  "base_commit": "fd837e7e19c670311ee17ad600259f1c086c6d63",
+  "search_intent": {
+    "question": "What permits or prevents a single existing organism from reaching another meal under the current material, action-energy and momentum laws?",
+    "proposed_use": "Paid diagnostic motor inputs, matched medium/budget interventions, privileged oracle, sensor-only comparators and optional bounded sensing",
+    "external_scientific_queries": [],
+    "external_publications_consulted": []
+  },
+  "provenance": {
+    "type": "Repository source and preserved deterministic experiments; no external scientific research performed",
+    "source_checkpoint": "https://github.com/Cognis-11-Inc/moebius-automata/tree/fd837e7e19c670311ee17ad600259f1c086c6d63",
+    "M4_evidence": "docs/m5/M4_EVIDENCE_AUDIT.json records all 1732 artifact SHA256 checks, complete 427-trial replay and later original-law compatibility replay",
+    "limitations": "No publication or biological finding validates the kinematic rig, authored lunge, action-energy proxy, oral capture stencil, new sensor or controller competence. No literature was silently consulted."
+  },
+  "knowledge_transfer": [
+    {
+      "origin": "NeuralState::integrate and World::advance at the committed checkpoint",
+      "claim": "Physical reachability must use actual smoothing, billing and world feeding; M4 imposed-body assays bypassed metabolism",
+      "implementation": "Validated tick_controlled substitutes raw requests before the same muscle/cost path; ordinary tick passes no diagnostic input",
+      "deviation_or_assumption": "Target-aware control is external to the organism; its command stream is part of replay input"
+    },
+    {
+      "origin": "Body::head_site, local_geometry and feeding::mouth_sites",
+      "claim": "Mouth articulation plus rounded-head capture can consume distant-site food without substantial COM travel",
+      "implementation": "Continuous COM/mouth telemetry, exact ingestion eligibility audit, explicit founding bite and second-site benchmarks",
+      "deviation_or_assumption": "Capture is lattice distance squared <=2 after rounding, not continuous mesh contact or jaw closure"
+    },
+    {
+      "origin": "World::observe_neural and ray_scent, equal-radius probes, oracle/local comparison",
+      "claim": "Six snapped axial rays can be blind to physically reachable off-axis food; some aligned food is visible before control",
+      "implementation": "Optional ChemicalSensing::LocalLobesV1 with unique minimum-image radius8 samples and positive-dot body-direction lobes derived from authoritative nutrient stock",
+      "deviation_or_assumption": "Authored local field measurement, not chemical diffusion or a biologically validated receptor. Old RaysV1/default encoding retained. No global coordinates enter the sensor-only controller"
+    },
+    {
+      "origin": "Source actuator geometry, ordinary angle/rate/effort/velocity/nutrient channels",
+      "claim": "A limited sensor-only motor model can aim/hold the existing mouth in some fixtures",
+      "implementation": "LocalModelController in experimental support only; independent gradient/proprioceptive prediction and contact holding",
+      "deviation_or_assumption": "Approximate fixed reference anatomy/tissue/drag model, no learned weights and no oracle trajectory copied into production"
+    }
+  ],
+  "implementation_trace": [
+    "crates/moebius-core/src/world.rs: World::tick_controlled, organism_sensors, advance, local_chemical_lobes",
+    "crates/moebius-core/src/neural/controller.rs: NeuralState::integrate_with_commands, ChemicalSensing",
+    "crates/moebius-core/examples/m5_probe.rs",
+    "crates/moebius-core/examples/support/m5.rs",
+    "crates/moebius-core/examples/support/m5_control.rs",
+    "crates/moebius-core/examples/m5_replay.rs",
+    "crates/moebius-core/tests/m5.rs",
+    "python/analyze_m5.py",
+    "python/m5_artifacts.py",
+    "experiments/nursery_m5_local_lobes_v1.json"
+  ],
+  "chronology": "M4 reviewed and artifact bytes checked before edits; initial protocol saved before executed M5 trials. Controlled screening, periodic controls and oracle/local benchmark preceded sensor introduction. Protocol amendments disclose the independent local motor-model comparator and optional sensor. Exploration seed1 is included again in eight-seed confirmation; there is no blinded holdout/generalization study. All failed target-reaching conditions preserved. Raw evidence bundled after user raised 10k Git-file count; per-file hashes verified before moving expanded copies to local cache. Archives reconstruct every original raw file.",
+  "evidence_status": {
+    "CONSULTED": "Committed project source and complete M4 evidence; no external publications",
+    "IMPLEMENTED": "Paid raw motor input, read-only ordinary sensor ABI, isolated oracle/local prototypes, optional bounded directional sensor; no body/energy/material/momentum-law or production-controller change",
+    "VALIDATED_MECHANISMS": "Exact replay, independent per-tick energy/material/momentum and capture audits, backward compatibility, braking/heading interventions, bounded/rotating/off-axis sensor tests",
+    "VALIDATED_OBSERVATIONS": "Oracle second-meal target reaching in 24/96 designed runs; local model with old rays 8/96, optional lobes 9/96. Most successes are mouth articulation with <0.023 sites COM motion before ingestion",
+    "NULLS": "Most placements fail; all tested production recurrent/random/rest/pulse local baselines fail distant target; forward three-site fixture fails all 372 default-budget open-loop screen/periodic controls. These finite failures do not prove universal physical impossibility",
+    "NOT_DEMONSTRATED": "General 3D navigation, reliable stopping at arbitrary food, production autonomous foraging, learned improvement, sparse-habitat viability, continuous physical food contact, realistic hydrodynamics"
+  },
+  "not_run": "Initially listed256 amplitude /32-tick single-pulse screen cells and512-tick high-energy horizon were not executed. Actual matrices are in saved results and REPORT. No exhaustive optimum/reachable-set claim.",
+  "computational_boundary": "Oracle/model prediction runs externally in the harness. Existing neural fee is retained; extra planner CPU cost is not a separate metabolic charge. This is not proof that the original eight neurons implement the model controller or that its biological computation is efficient.",
+  "storage_transition_2026_11_22": "Pre-commit size/purpose classification and verified externalization to Mermogon version M5/fd837e7/v1. Git retains authoritative reports/reproducibility metadata. Archive bytes, member hashes, complete restored files and restore replay checked before removing repository raw copies; current pointers in docs/m5/ARTIFACT_STORAGE.json."
+}

@@ -1,0 +1,521 @@
+{
+  "failures": 0,
+  "results": [
+    {
+      "actuator_energy_per_com_path": 12.779594166138853,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 96,
+        "name": "brake_release",
+        "seed": 1,
+        "target_delta": null
+      },
+      "com_net": 0.9343912078574418,
+      "com_path": 0.9389969543630355,
+      "controller": {
+        "prefix": {
+          "ablate": null,
+          "amplitude": 1024,
+          "pattern": "bend_twist",
+          "period": 0,
+          "pulse": 16,
+          "recovery": 0
+        },
+        "suffix": "release",
+        "switch_tick": 16
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        96,
+        12,
+        12,
+        0,
+        0
+      ],
+      "death_tick": null,
+      "final_com_unwrapped": [
+        16509,
+        17321,
+        16532
+      ],
+      "final_energy": 8,
+      "final_hash": "bb0e05b55b2d819d9339b59e7408e1ca4480a6ed1e08b3e2ed70aceb84d38dc7",
+      "final_momentum": [
+        32,
+        127,
+        23
+      ],
+      "final_mouth": [
+        16381,
+        18344,
+        16559
+      ],
+      "final_orientation": [
+        0,
+        -72,
+        -67
+      ],
+      "final_velocity": [
+        2,
+        7,
+        1
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": null,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": null,
+      "minimum_continuous_target_distance": null,
+      "mouth_net": 0.9155110675636549,
+      "mouth_path": 5.694033538304534,
+      "peak_speed": 0.014970419645269425,
+      "rotation": 1777,
+      "status": "PASS",
+      "target": null,
+      "ticks": 96,
+      "zero_displacement_ticks": 0
+    },
+    {
+      "actuator_energy_per_com_path": 18.96827182228519,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 96,
+        "name": "brake_reverse4",
+        "seed": 1,
+        "target_delta": null
+      },
+      "com_net": 0.6810226481028394,
+      "com_path": 0.6853550034393083,
+      "controller": {
+        "prefix": {
+          "ablate": null,
+          "amplitude": 1024,
+          "pattern": "bend_twist",
+          "period": 0,
+          "pulse": 16,
+          "recovery": 0
+        },
+        "suffix": "reverse4",
+        "switch_tick": 16
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        96,
+        12,
+        13,
+        0,
+        0
+      ],
+      "death_tick": null,
+      "final_com_unwrapped": [
+        16460,
+        17076,
+        16425
+      ],
+      "final_energy": 7,
+      "final_hash": "ba46cfda8dfa3fe372235defd2f5929d8e05f6a49ef8fc65b0bd7061316d17ca",
+      "final_momentum": [
+        28,
+        109,
+        -7
+      ],
+      "final_mouth": [
+        16526,
+        18109,
+        16430
+      ],
+      "final_orientation": [
+        0,
+        -36,
+        -33
+      ],
+      "final_velocity": [
+        1,
+        6,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": null,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": null,
+      "minimum_continuous_target_distance": null,
+      "mouth_net": 0.6855969532991282,
+      "mouth_path": 6.573211483340062,
+      "peak_speed": 0.014970419645269425,
+      "rotation": 1847,
+      "status": "PASS",
+      "target": null,
+      "ticks": 96,
+      "zero_displacement_ticks": 0
+    },
+    {
+      "actuator_energy_per_com_path": 32.41103533684172,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 96,
+        "name": "brake_reverse8",
+        "seed": 1,
+        "target_delta": null
+      },
+      "com_net": 0.47296586417964587,
+      "com_path": 0.4936590218027609,
+      "controller": {
+        "prefix": {
+          "ablate": null,
+          "amplitude": 1024,
+          "pattern": "bend_twist",
+          "period": 0,
+          "pulse": 16,
+          "recovery": 0
+        },
+        "suffix": "reverse8",
+        "switch_tick": 16
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        96,
+        12,
+        16,
+        0,
+        0
+      ],
+      "death_tick": null,
+      "final_com_unwrapped": [
+        16533,
+        16843,
+        16425
+      ],
+      "final_energy": 4,
+      "final_hash": "aa17ae37d99c7812302511c2230416ea49497470a35ac36db18b36c3ca25b542",
+      "final_momentum": [
+        34,
+        50,
+        -2
+      ],
+      "final_mouth": [
+        16613,
+        17875,
+        16418
+      ],
+      "final_orientation": [
+        0,
+        62,
+        -20
+      ],
+      "final_velocity": [
+        2,
+        3,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": null,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": null,
+      "minimum_continuous_target_distance": null,
+      "mouth_net": 0.4959370523317332,
+      "mouth_path": 6.589258156042867,
+      "peak_speed": 0.014970419645269425,
+      "rotation": 2028,
+      "status": "PASS",
+      "target": null,
+      "ticks": 96,
+      "zero_displacement_ticks": 0
+    },
+    {
+      "actuator_energy_per_com_path": 51.36478284972915,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 96,
+        "name": "brake_reverse16",
+        "seed": 1,
+        "target_delta": null
+      },
+      "com_net": 0.20763381503854553,
+      "com_path": 0.42830902379870583,
+      "controller": {
+        "prefix": {
+          "ablate": null,
+          "amplitude": 1024,
+          "pattern": "bend_twist",
+          "period": 0,
+          "pulse": 16,
+          "recovery": 0
+        },
+        "suffix": "reverse16",
+        "switch_tick": 16
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        95,
+        11,
+        22,
+        0,
+        0
+      ],
+      "death_tick": 95,
+      "final_com_unwrapped": [
+        16534,
+        16529,
+        16425
+      ],
+      "final_energy": 0,
+      "final_hash": "717d5ce24fe929caa78b859283c0d24b4bf1bb5648e9182f320461fd943cd5ce",
+      "final_momentum": [
+        41,
+        -34,
+        4
+      ],
+      "final_mouth": [
+        17009,
+        17431,
+        16496
+      ],
+      "final_orientation": [
+        0,
+        87,
+        96
+      ],
+      "final_velocity": [
+        2,
+        -2,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": null,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": null,
+      "minimum_continuous_target_distance": null,
+      "mouth_net": 0.6201233390442916,
+      "mouth_path": 8.498854461383427,
+      "peak_speed": 0.014970419645269425,
+      "rotation": 3039,
+      "status": "PASS",
+      "target": null,
+      "ticks": 96,
+      "zero_displacement_ticks": 0
+    },
+    {
+      "actuator_energy_per_com_path": 14.230034450876223,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 96,
+        "name": "brake_turn",
+        "seed": 1,
+        "target_delta": null
+      },
+      "com_net": 1.042607048265206,
+      "com_path": 1.0541084810287558,
+      "controller": {
+        "prefix": {
+          "ablate": null,
+          "amplitude": 1024,
+          "pattern": "bend_twist",
+          "period": 0,
+          "pulse": 16,
+          "recovery": 0
+        },
+        "suffix": "turn",
+        "switch_tick": 16
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        96,
+        12,
+        15,
+        0,
+        0
+      ],
+      "death_tick": null,
+      "final_com_unwrapped": [
+        16537,
+        17434,
+        16502
+      ],
+      "final_energy": 5,
+      "final_hash": "3420158415ceed669b1996b23f9ac079d4751c2dcfdb728b50ca38da2c5e548b",
+      "final_momentum": [
+        48,
+        134,
+        10
+      ],
+      "final_mouth": [
+        16247,
+        18417,
+        16537
+      ],
+      "final_orientation": [
+        0,
+        -72,
+        -72
+      ],
+      "final_velocity": [
+        3,
+        8,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": null,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": null,
+      "minimum_continuous_target_distance": null,
+      "mouth_net": 0.9912056457678944,
+      "mouth_path": 6.412211592267609,
+      "peak_speed": 0.014970419645269425,
+      "rotation": 1772,
+      "status": "PASS",
+      "target": null,
+      "ticks": 96,
+      "zero_displacement_ticks": 0
+    },
+    {
+      "actuator_energy_per_com_path": 91.05840450259967,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 96,
+        "name": "brake_brake_oracle",
+        "seed": 1,
+        "target_delta": null
+      },
+      "com_net": 0.2409498523756827,
+      "com_path": 0.2416031789725891,
+      "controller": {
+        "prefix": {
+          "ablate": null,
+          "amplitude": 1024,
+          "pattern": "bend_twist",
+          "period": 0,
+          "pulse": 16,
+          "recovery": 0
+        },
+        "suffix": "brake_oracle",
+        "switch_tick": 16
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        95,
+        11,
+        22,
+        0,
+        0
+      ],
+      "death_tick": 95,
+      "final_com_unwrapped": [
+        16392,
+        16627,
+        16426
+      ],
+      "final_energy": 0,
+      "final_hash": "717d5ce24fe929caa78b859283c0d24b4bf1bb5648e9182f320461fd943cd5ce",
+      "final_momentum": [
+        0,
+        1,
+        -1
+      ],
+      "final_mouth": [
+        16623,
+        17575,
+        16459
+      ],
+      "final_orientation": [
+        0,
+        -236,
+        49
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 27,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 87,
+      "minimum_continuous_target_distance": null,
+      "mouth_net": 0.2861344789840549,
+      "mouth_path": 8.4127321943696,
+      "peak_speed": 0.014970419645269425,
+      "rotation": 3196,
+      "status": "PASS",
+      "target": null,
+      "ticks": 96,
+      "zero_displacement_ticks": 69
+    }
+  ]
+}

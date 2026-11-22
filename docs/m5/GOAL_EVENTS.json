@@ -1,0 +1,1944 @@
+{
+  "attribution_v1": [],
+  "benchmark_v1": [
+    {
+      "dataset": "benchmark_v1",
+      "name": "oracle_3_s1",
+      "seed": 1,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 6,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.537209881958676,
+      "com_displacement_to_bite": 0.018657200365764452,
+      "mouth_displacement_to_bite": 1.6074245448223576,
+      "spending_to_bite": 9
+    },
+    {
+      "dataset": "benchmark_v1",
+      "name": "oracle_8_s1",
+      "seed": 1,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 3,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0237650366843614,
+      "com_displacement_to_bite": 0.0029296875,
+      "mouth_displacement_to_bite": 1.0301114357230117,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "benchmark_v1",
+      "name": "oracle_11_s1",
+      "seed": 1,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.776035640702601,
+      "com_displacement_to_bite": 0.010517900013934578,
+      "mouth_displacement_to_bite": 1.3644381535689152,
+      "spending_to_bite": 10
+    }
+  ],
+  "braking_v1": [],
+  "confirmation_v1": [
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_3_s1",
+      "seed": 1,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 6,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.537209881958676,
+      "com_displacement_to_bite": 0.018657200365764452,
+      "mouth_displacement_to_bite": 1.6074245448223576,
+      "spending_to_bite": 9
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_8_s1",
+      "seed": 1,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 3,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0237650366843614,
+      "com_displacement_to_bite": 0.0029296875,
+      "mouth_displacement_to_bite": 1.0301114357230117,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_11_s1",
+      "seed": 1,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.776035640702601,
+      "com_displacement_to_bite": 0.010517900013934578,
+      "mouth_displacement_to_bite": 1.3644381535689152,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_3_s2",
+      "seed": 2,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 6,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.537209881958676,
+      "com_displacement_to_bite": 0.018657200365764452,
+      "mouth_displacement_to_bite": 1.6074245448223576,
+      "spending_to_bite": 9
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_8_s2",
+      "seed": 2,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 3,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0237650366843614,
+      "com_displacement_to_bite": 0.0029296875,
+      "mouth_displacement_to_bite": 1.0301114357230117,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_11_s2",
+      "seed": 2,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.7796521967868666,
+      "com_displacement_to_bite": 0.010517900013934578,
+      "mouth_displacement_to_bite": 1.3612107783220126,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_3_s3",
+      "seed": 3,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 6,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.537209881958676,
+      "com_displacement_to_bite": 0.018657200365764452,
+      "mouth_displacement_to_bite": 1.6074245448223576,
+      "spending_to_bite": 9
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_8_s3",
+      "seed": 3,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 3,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0237650366843614,
+      "com_displacement_to_bite": 0.0029296875,
+      "mouth_displacement_to_bite": 1.0301114357230117,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_11_s3",
+      "seed": 3,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.776035640702601,
+      "com_displacement_to_bite": 0.010517900013934578,
+      "mouth_displacement_to_bite": 1.3644381535689152,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_3_s4",
+      "seed": 4,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 6,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.537209881958676,
+      "com_displacement_to_bite": 0.018657200365764452,
+      "mouth_displacement_to_bite": 1.6074245448223576,
+      "spending_to_bite": 9
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_8_s4",
+      "seed": 4,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 3,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0237650366843614,
+      "com_displacement_to_bite": 0.0029296875,
+      "mouth_displacement_to_bite": 1.0301114357230117,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_11_s4",
+      "seed": 4,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.7796521967868666,
+      "com_displacement_to_bite": 0.010517900013934578,
+      "mouth_displacement_to_bite": 1.3612107783220126,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_3_s5",
+      "seed": 5,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 6,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5402969599176144,
+      "com_displacement_to_bite": 0.018165112536853784,
+      "mouth_displacement_to_bite": 1.6048832403476976,
+      "spending_to_bite": 9
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_8_s5",
+      "seed": 5,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 3,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0248907460068457,
+      "com_displacement_to_bite": 0.0029296875,
+      "mouth_displacement_to_bite": 1.029451593862696,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_11_s5",
+      "seed": 5,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.7800476299299792,
+      "com_displacement_to_bite": 0.010517900013934578,
+      "mouth_displacement_to_bite": 1.360999879162942,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_3_s6",
+      "seed": 6,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 6,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5374943058559765,
+      "com_displacement_to_bite": 0.019384212149686726,
+      "mouth_displacement_to_bite": 1.6076965468164406,
+      "spending_to_bite": 9
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_8_s6",
+      "seed": 6,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 3,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0226519028022762,
+      "com_displacement_to_bite": 0.0029296875,
+      "mouth_displacement_to_bite": 1.03170211591401,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_11_s6",
+      "seed": 6,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.764203334758233,
+      "com_displacement_to_bite": 0.010517900013934578,
+      "mouth_displacement_to_bite": 1.3778604750955614,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_3_s7",
+      "seed": 7,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 6,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.537209881958676,
+      "com_displacement_to_bite": 0.018657200365764452,
+      "mouth_displacement_to_bite": 1.6074245448223576,
+      "spending_to_bite": 9
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_8_s7",
+      "seed": 7,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 3,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0237650366843614,
+      "com_displacement_to_bite": 0.0029296875,
+      "mouth_displacement_to_bite": 1.0301114357230117,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_11_s7",
+      "seed": 7,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.776035640702601,
+      "com_displacement_to_bite": 0.010517900013934578,
+      "mouth_displacement_to_bite": 1.3644381535689152,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_3_s8",
+      "seed": 8,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 6,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.537209881958676,
+      "com_displacement_to_bite": 0.018657200365764452,
+      "mouth_displacement_to_bite": 1.6074245448223576,
+      "spending_to_bite": 9
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_8_s8",
+      "seed": 8,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 3,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0237650366843614,
+      "com_displacement_to_bite": 0.0029296875,
+      "mouth_displacement_to_bite": 1.0301114357230117,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "confirmation_v1",
+      "name": "oracle_11_s8",
+      "seed": 8,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.776035640702601,
+      "com_displacement_to_bite": 0.010517900013934578,
+      "mouth_displacement_to_bite": 1.3644381535689152,
+      "spending_to_bite": 10
+    }
+  ],
+  "local_lobes_second_v1": [
+    {
+      "dataset": "local_lobes_second_v1",
+      "name": "local_lobes_3_s1",
+      "seed": 1,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5947418118721297,
+      "com_displacement_to_bite": 0.021945512748285382,
+      "mouth_displacement_to_bite": 1.6483012500156706,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "local_lobes_second_v1",
+      "name": "local_lobes_3_s2",
+      "seed": 2,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5974825365905927,
+      "com_displacement_to_bite": 0.021945512748285382,
+      "mouth_displacement_to_bite": 1.6491688918217082,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "local_lobes_second_v1",
+      "name": "local_lobes_3_s3",
+      "seed": 3,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5947418118721297,
+      "com_displacement_to_bite": 0.021945512748285382,
+      "mouth_displacement_to_bite": 1.6483012500156706,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "local_lobes_second_v1",
+      "name": "local_lobes_3_s4",
+      "seed": 4,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5974825365905927,
+      "com_displacement_to_bite": 0.021945512748285382,
+      "mouth_displacement_to_bite": 1.6491688918217082,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "local_lobes_second_v1",
+      "name": "local_lobes_3_s5",
+      "seed": 5,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5980191366603882,
+      "com_displacement_to_bite": 0.019236050394133015,
+      "mouth_displacement_to_bite": 1.6479031388233496,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "local_lobes_second_v1",
+      "name": "local_lobes_3_s6",
+      "seed": 6,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5735334319765346,
+      "com_displacement_to_bite": 0.02231183527108567,
+      "mouth_displacement_to_bite": 1.6546971941295645,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "local_lobes_second_v1",
+      "name": "local_lobes_11_s6",
+      "seed": 6,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 10,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.8473842170578838,
+      "com_displacement_to_bite": 0.014874556847390447,
+      "mouth_displacement_to_bite": 1.3034709809602845,
+      "spending_to_bite": 13
+    },
+    {
+      "dataset": "local_lobes_second_v1",
+      "name": "local_lobes_3_s7",
+      "seed": 7,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5947418118721297,
+      "com_displacement_to_bite": 0.021945512748285382,
+      "mouth_displacement_to_bite": 1.6483012500156706,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "local_lobes_second_v1",
+      "name": "local_lobes_3_s8",
+      "seed": 8,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5947418118721297,
+      "com_displacement_to_bite": 0.021945512748285382,
+      "mouth_displacement_to_bite": 1.6483012500156706,
+      "spending_to_bite": 11
+    }
+  ],
+  "local_lobes_v1": [
+    {
+      "dataset": "local_lobes_v1",
+      "name": "local_lobes_3_s1",
+      "seed": 1,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5965527591942037,
+      "com_displacement_to_bite": 0.019652941208494246,
+      "mouth_displacement_to_bite": 1.6464811892948126,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "local_lobes_v1",
+      "name": "local_lobes_3_s2",
+      "seed": 2,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5992915730930997,
+      "com_displacement_to_bite": 0.019652941208494246,
+      "mouth_displacement_to_bite": 1.6473509475361177,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "local_lobes_v1",
+      "name": "local_lobes_3_s3",
+      "seed": 3,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5965527591942037,
+      "com_displacement_to_bite": 0.019652941208494246,
+      "mouth_displacement_to_bite": 1.6464811892948126,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "local_lobes_v1",
+      "name": "local_lobes_3_s4",
+      "seed": 4,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5992915730930997,
+      "com_displacement_to_bite": 0.019652941208494246,
+      "mouth_displacement_to_bite": 1.6473509475361177,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "local_lobes_v1",
+      "name": "local_lobes_3_s5",
+      "seed": 5,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.6032780089056085,
+      "com_displacement_to_bite": 0.018528970665049098,
+      "mouth_displacement_to_bite": 1.6440742201932084,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "local_lobes_v1",
+      "name": "local_lobes_3_s6",
+      "seed": 6,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5762593033566707,
+      "com_displacement_to_bite": 0.019236050394133015,
+      "mouth_displacement_to_bite": 1.6519518087530225,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "local_lobes_v1",
+      "name": "local_lobes_11_s6",
+      "seed": 6,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 9,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.8459570654508173,
+      "com_displacement_to_bite": 0.019457869965987574,
+      "mouth_displacement_to_bite": 1.3036966730258956,
+      "spending_to_bite": 12
+    },
+    {
+      "dataset": "local_lobes_v1",
+      "name": "local_lobes_3_s7",
+      "seed": 7,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5965527591942037,
+      "com_displacement_to_bite": 0.019652941208494246,
+      "mouth_displacement_to_bite": 1.6464811892948126,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "local_lobes_v1",
+      "name": "local_lobes_3_s8",
+      "seed": 8,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5965527591942037,
+      "com_displacement_to_bite": 0.019652941208494246,
+      "mouth_displacement_to_bite": 1.6464811892948126,
+      "spending_to_bite": 10
+    }
+  ],
+  "local_model_second_v1": [
+    {
+      "dataset": "local_model_second_v1",
+      "name": "local_model_3_s1",
+      "seed": 1,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5947418118721297,
+      "com_displacement_to_bite": 0.021945512748285382,
+      "mouth_displacement_to_bite": 1.6483012500156706,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "local_model_second_v1",
+      "name": "local_model_3_s2",
+      "seed": 2,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5974825365905927,
+      "com_displacement_to_bite": 0.021945512748285382,
+      "mouth_displacement_to_bite": 1.6491688918217082,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "local_model_second_v1",
+      "name": "local_model_3_s3",
+      "seed": 3,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5947418118721297,
+      "com_displacement_to_bite": 0.021945512748285382,
+      "mouth_displacement_to_bite": 1.6483012500156706,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "local_model_second_v1",
+      "name": "local_model_3_s4",
+      "seed": 4,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5974825365905927,
+      "com_displacement_to_bite": 0.021945512748285382,
+      "mouth_displacement_to_bite": 1.6491688918217082,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "local_model_second_v1",
+      "name": "local_model_3_s5",
+      "seed": 5,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5980191366603882,
+      "com_displacement_to_bite": 0.019236050394133015,
+      "mouth_displacement_to_bite": 1.6479031388233496,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "local_model_second_v1",
+      "name": "local_model_3_s6",
+      "seed": 6,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5735334319765346,
+      "com_displacement_to_bite": 0.02231183527108567,
+      "mouth_displacement_to_bite": 1.6546971941295645,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "local_model_second_v1",
+      "name": "local_model_3_s7",
+      "seed": 7,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5947418118721297,
+      "com_displacement_to_bite": 0.021945512748285382,
+      "mouth_displacement_to_bite": 1.6483012500156706,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "local_model_second_v1",
+      "name": "local_model_3_s8",
+      "seed": 8,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5947418118721297,
+      "com_displacement_to_bite": 0.021945512748285382,
+      "mouth_displacement_to_bite": 1.6483012500156706,
+      "spending_to_bite": 11
+    }
+  ],
+  "local_model_v1": [
+    {
+      "dataset": "local_model_v1",
+      "name": "local_model_3_s1",
+      "seed": 1,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5965527591942037,
+      "com_displacement_to_bite": 0.019652941208494246,
+      "mouth_displacement_to_bite": 1.6464811892948126,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "local_model_v1",
+      "name": "local_model_3_s2",
+      "seed": 2,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5992915730930997,
+      "com_displacement_to_bite": 0.019652941208494246,
+      "mouth_displacement_to_bite": 1.6473509475361177,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "local_model_v1",
+      "name": "local_model_3_s3",
+      "seed": 3,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5965527591942037,
+      "com_displacement_to_bite": 0.019652941208494246,
+      "mouth_displacement_to_bite": 1.6464811892948126,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "local_model_v1",
+      "name": "local_model_3_s4",
+      "seed": 4,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5992915730930997,
+      "com_displacement_to_bite": 0.019652941208494246,
+      "mouth_displacement_to_bite": 1.6473509475361177,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "local_model_v1",
+      "name": "local_model_3_s5",
+      "seed": 5,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.6032780089056085,
+      "com_displacement_to_bite": 0.018528970665049098,
+      "mouth_displacement_to_bite": 1.6440742201932084,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "local_model_v1",
+      "name": "local_model_3_s6",
+      "seed": 6,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5762593033566707,
+      "com_displacement_to_bite": 0.019236050394133015,
+      "mouth_displacement_to_bite": 1.6519518087530225,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "local_model_v1",
+      "name": "local_model_3_s7",
+      "seed": 7,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5965527591942037,
+      "com_displacement_to_bite": 0.019652941208494246,
+      "mouth_displacement_to_bite": 1.6464811892948126,
+      "spending_to_bite": 10
+    },
+    {
+      "dataset": "local_model_v1",
+      "name": "local_model_3_s8",
+      "seed": 8,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5965527591942037,
+      "com_displacement_to_bite": 0.019652941208494246,
+      "mouth_displacement_to_bite": 1.6464811892948126,
+      "spending_to_bite": 10
+    }
+  ],
+  "periodic_v1": [],
+  "screen_v1": [
+    {
+      "dataset": "screen_v1",
+      "name": "bend_512_8_d8_e2048",
+      "seed": 1,
+      "target_delta": [
+        0,
+        3,
+        0
+      ],
+      "tick": 250,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 2048,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5020753490784282,
+      "com_displacement_to_bite": 1.493810599785738,
+      "mouth_displacement_to_bite": 1.4894060505116733,
+      "spending_to_bite": 283
+    },
+    {
+      "dataset": "screen_v1",
+      "name": "bend_512_16_d8_e2048",
+      "seed": 1,
+      "target_delta": [
+        0,
+        3,
+        0
+      ],
+      "tick": 207,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 2048,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.4987889805450016,
+      "com_displacement_to_bite": 1.50180771301134,
+      "mouth_displacement_to_bite": 1.491965392194587,
+      "spending_to_bite": 237
+    },
+    {
+      "dataset": "screen_v1",
+      "name": "bend_1024_8_d8_e2048",
+      "seed": 1,
+      "target_delta": [
+        0,
+        3,
+        0
+      ],
+      "tick": 215,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 2048,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.4995911358864127,
+      "com_displacement_to_bite": 1.4954858246963345,
+      "mouth_displacement_to_bite": 1.4908169348923483,
+      "spending_to_bite": 246
+    },
+    {
+      "dataset": "screen_v1",
+      "name": "bend_1024_16_d8_e2048",
+      "seed": 1,
+      "target_delta": [
+        0,
+        3,
+        0
+      ],
+      "tick": 200,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 2048,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.4981321785523674,
+      "com_displacement_to_bite": 1.5007481298808338,
+      "mouth_displacement_to_bite": 1.4913055849547687,
+      "spending_to_bite": 232
+    },
+    {
+      "dataset": "screen_v1",
+      "name": "bend_twist_512_8_d8_e2048",
+      "seed": 1,
+      "target_delta": [
+        0,
+        3,
+        0
+      ],
+      "tick": 213,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 2048,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.517526908020066,
+      "com_displacement_to_bite": 1.513297899870492,
+      "mouth_displacement_to_bite": 1.5107879533105115,
+      "spending_to_bite": 243
+    },
+    {
+      "dataset": "screen_v1",
+      "name": "bend_twist_512_16_d8_e2048",
+      "seed": 1,
+      "target_delta": [
+        0,
+        3,
+        0
+      ],
+      "tick": 189,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 2048,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5212618428806042,
+      "com_displacement_to_bite": 1.523800850599447,
+      "mouth_displacement_to_bite": 1.5164632150758628,
+      "spending_to_bite": 219
+    },
+    {
+      "dataset": "screen_v1",
+      "name": "bend_twist_1024_4_d8_e2048",
+      "seed": 1,
+      "target_delta": [
+        0,
+        3,
+        0
+      ],
+      "tick": 252,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 2048,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5231028653909138,
+      "com_displacement_to_bite": 1.5165235864130082,
+      "mouth_displacement_to_bite": 1.5144648880362748,
+      "spending_to_bite": 287
+    },
+    {
+      "dataset": "screen_v1",
+      "name": "bend_twist_1024_8_d8_e2048",
+      "seed": 1,
+      "target_delta": [
+        0,
+        3,
+        0
+      ],
+      "tick": 202,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 2048,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5179491608239688,
+      "com_displacement_to_bite": 1.5099276397748196,
+      "mouth_displacement_to_bite": 1.507348814511226,
+      "spending_to_bite": 234
+    },
+    {
+      "dataset": "screen_v1",
+      "name": "bend_twist_1024_16_d8_e2048",
+      "seed": 1,
+      "target_delta": [
+        0,
+        3,
+        0
+      ],
+      "tick": 180,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 2048,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5340196124119954,
+      "com_displacement_to_bite": 1.5404752646951834,
+      "mouth_displacement_to_bite": 1.5292610173997043,
+      "spending_to_bite": 215
+    },
+    {
+      "dataset": "screen_v1",
+      "name": "bend_twist_1024_16_d32_e128",
+      "seed": 1,
+      "target_delta": [
+        0,
+        3,
+        0
+      ],
+      "tick": 88,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 32,
+      "mouth_to_food_at_bite": 1.515420486967012,
+      "com_displacement_to_bite": 1.554779816766827,
+      "mouth_displacement_to_bite": 1.5028636935234796,
+      "spending_to_bite": 112
+    },
+    {
+      "dataset": "screen_v1",
+      "name": "bend_1024_16_d32_e2048",
+      "seed": 1,
+      "target_delta": [
+        0,
+        3,
+        0
+      ],
+      "tick": 206,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 2048,
+      "drag": 32,
+      "mouth_to_food_at_bite": 1.5235079235525628,
+      "com_displacement_to_bite": 1.5248156451748585,
+      "mouth_displacement_to_bite": 1.509087690410545,
+      "spending_to_bite": 238
+    },
+    {
+      "dataset": "screen_v1",
+      "name": "bend_twist_512_16_d32_e2048",
+      "seed": 1,
+      "target_delta": [
+        0,
+        3,
+        0
+      ],
+      "tick": 140,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 2048,
+      "drag": 32,
+      "mouth_to_food_at_bite": 1.5325526710407575,
+      "com_displacement_to_bite": 1.5336602373912165,
+      "mouth_displacement_to_bite": 1.518218348504375,
+      "spending_to_bite": 164
+    },
+    {
+      "dataset": "screen_v1",
+      "name": "bend_twist_1024_16_d32_e2048",
+      "seed": 1,
+      "target_delta": [
+        0,
+        3,
+        0
+      ],
+      "tick": 88,
+      "founding_bite": false,
+      "first_signal": 0,
+      "energy": 2048,
+      "drag": 32,
+      "mouth_to_food_at_bite": 1.515420486967012,
+      "com_displacement_to_bite": 1.554779816766827,
+      "mouth_displacement_to_bite": 1.5028636935234796,
+      "spending_to_bite": 112
+    }
+  ],
+  "second_meal_confirmation_v1": [
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_3_s1",
+      "seed": 1,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.535626133261213,
+      "com_displacement_to_bite": 0.021683206358568866,
+      "mouth_displacement_to_bite": 1.609572315156957,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_8_s1",
+      "seed": 1,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 4,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0132593274356974,
+      "com_displacement_to_bite": 0.002392079826936697,
+      "mouth_displacement_to_bite": 1.0321230804917074,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_11_s1",
+      "seed": 1,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.951215130667303,
+      "com_displacement_to_bite": 0.009618025197066508,
+      "mouth_displacement_to_bite": 1.1499171683293343,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_3_s2",
+      "seed": 2,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.535626133261213,
+      "com_displacement_to_bite": 0.021683206358568866,
+      "mouth_displacement_to_bite": 1.609572315156957,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_8_s2",
+      "seed": 2,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 4,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0132593274356974,
+      "com_displacement_to_bite": 0.002392079826936697,
+      "mouth_displacement_to_bite": 1.0321230804917074,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_11_s2",
+      "seed": 2,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 10,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.8880716531863715,
+      "com_displacement_to_bite": 0.02161713244255728,
+      "mouth_displacement_to_bite": 1.2130753872458222,
+      "spending_to_bite": 14
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_3_s3",
+      "seed": 3,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.535626133261213,
+      "com_displacement_to_bite": 0.021683206358568866,
+      "mouth_displacement_to_bite": 1.609572315156957,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_8_s3",
+      "seed": 3,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 4,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0132593274356974,
+      "com_displacement_to_bite": 0.002392079826936697,
+      "mouth_displacement_to_bite": 1.0321230804917074,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_11_s3",
+      "seed": 3,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.951215130667303,
+      "com_displacement_to_bite": 0.009618025197066508,
+      "mouth_displacement_to_bite": 1.1499171683293343,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_3_s4",
+      "seed": 4,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.535626133261213,
+      "com_displacement_to_bite": 0.021683206358568866,
+      "mouth_displacement_to_bite": 1.609572315156957,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_8_s4",
+      "seed": 4,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 4,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0132593274356974,
+      "com_displacement_to_bite": 0.002392079826936697,
+      "mouth_displacement_to_bite": 1.0321230804917074,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_11_s4",
+      "seed": 4,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 10,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.8880716531863715,
+      "com_displacement_to_bite": 0.02161713244255728,
+      "mouth_displacement_to_bite": 1.2130753872458222,
+      "spending_to_bite": 14
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_3_s5",
+      "seed": 5,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5369260259335498,
+      "com_displacement_to_bite": 0.019384212149686726,
+      "mouth_displacement_to_bite": 1.607153090187071,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_8_s5",
+      "seed": 5,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 4,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0143918545710533,
+      "com_displacement_to_bite": 0.0029296875,
+      "mouth_displacement_to_bite": 1.0314663746725232,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_11_s5",
+      "seed": 5,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 10,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.888872074850207,
+      "com_displacement_to_bite": 0.022714264354712906,
+      "mouth_displacement_to_bite": 1.213480979264254,
+      "spending_to_bite": 14
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_3_s6",
+      "seed": 6,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.5337581723220095,
+      "com_displacement_to_bite": 0.022881590847382775,
+      "mouth_displacement_to_bite": 1.6114482673013355,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_8_s6",
+      "seed": 6,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 4,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.011914527033123,
+      "com_displacement_to_bite": 0.002392079826936697,
+      "mouth_displacement_to_bite": 1.033298653871794,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_11_s6",
+      "seed": 6,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.9299281661347993,
+      "com_displacement_to_bite": 0.010517900013934578,
+      "mouth_displacement_to_bite": 1.1693417443379286,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_3_s7",
+      "seed": 7,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.535626133261213,
+      "com_displacement_to_bite": 0.021683206358568866,
+      "mouth_displacement_to_bite": 1.609572315156957,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_8_s7",
+      "seed": 7,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 4,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0132593274356974,
+      "com_displacement_to_bite": 0.002392079826936697,
+      "mouth_displacement_to_bite": 1.0321230804917074,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_11_s7",
+      "seed": 7,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.951215130667303,
+      "com_displacement_to_bite": 0.009618025197066508,
+      "mouth_displacement_to_bite": 1.1499171683293343,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_3_s8",
+      "seed": 8,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.535626133261213,
+      "com_displacement_to_bite": 0.021683206358568866,
+      "mouth_displacement_to_bite": 1.609572315156957,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_8_s8",
+      "seed": 8,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 4,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0132593274356974,
+      "com_displacement_to_bite": 0.002392079826936697,
+      "mouth_displacement_to_bite": 1.0321230804917074,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "name": "oracle_11_s8",
+      "seed": 8,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.951215130667303,
+      "com_displacement_to_bite": 0.009618025197066508,
+      "mouth_displacement_to_bite": 1.1499171683293343,
+      "spending_to_bite": 11
+    }
+  ],
+  "second_meal_v1": [
+    {
+      "dataset": "second_meal_v1",
+      "name": "oracle_3_s1",
+      "seed": 1,
+      "target_delta": [
+        0,
+        -3,
+        0
+      ],
+      "tick": 7,
+      "founding_bite": true,
+      "first_signal": 0,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.535626133261213,
+      "com_displacement_to_bite": 0.021683206358568866,
+      "mouth_displacement_to_bite": 1.609572315156957,
+      "spending_to_bite": 11
+    },
+    {
+      "dataset": "second_meal_v1",
+      "name": "oracle_8_s1",
+      "seed": 1,
+      "target_delta": [
+        2,
+        -2,
+        1
+      ],
+      "tick": 4,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 2.0132593274356974,
+      "com_displacement_to_bite": 0.002392079826936697,
+      "mouth_displacement_to_bite": 1.0321230804917074,
+      "spending_to_bite": 6
+    },
+    {
+      "dataset": "second_meal_v1",
+      "name": "oracle_11_s1",
+      "seed": 1,
+      "target_delta": [
+        -1,
+        -2,
+        -2
+      ],
+      "tick": 8,
+      "founding_bite": true,
+      "first_signal": null,
+      "energy": 128,
+      "drag": 8,
+      "mouth_to_food_at_bite": 1.951215130667303,
+      "com_displacement_to_bite": 0.009618025197066508,
+      "mouth_displacement_to_bite": 1.1499171683293343,
+      "spending_to_bite": 11
+    }
+  ],
+  "sensors_lobes_v1": [],
+  "sensors_v1": []
+}

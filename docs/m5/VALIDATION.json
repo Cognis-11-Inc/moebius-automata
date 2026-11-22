@@ -1,0 +1,113 @@
+{
+  "date_local": "2026-11-21",
+  "base_commit": "fd837e7e19c670311ee17ad600259f1c086c6d63",
+  "status": "PASS_WITH_EXPLICIT_REACHABILITY_LIMITS",
+  "workspace_tests": 89,
+  "m5_regression_tests": 9,
+  "format": "PASS",
+  "strict_workspace_clippy": "PASS",
+  "git_diff_check": "PASS",
+  "dynamic_trials": 2509,
+  "snapshots_audited": 5018,
+  "ticks_replayed": 325653,
+  "sensor_probes_replayed": 480,
+  "every_tick_receipt_sensor_organism_state_hash_comparison": "PASS",
+  "independent_energy_material_momentum_fee_debt_geometry_audit": "PASS",
+  "execution_failures": 0,
+  "target_nulls": "All preserved; see ANALYSIS and per-dataset results. Execution PASS is separate from target reaching.",
+  "positive_controls": {
+    "oracle_second_meal": {
+      "successes": 24,
+      "trials": 96
+    },
+    "sensor_only_original_rays_second_meal": {
+      "successes": 8,
+      "trials": 96
+    },
+    "sensor_only_optional_lobes_second_meal": {
+      "successes": 9,
+      "trials": 96
+    },
+    "production_recurrent_second_meal": {
+      "successes": 0,
+      "trials": 96
+    }
+  },
+  "explicit_NOT_RUN": "Initially listed amplitude256 /single-pulse32 screen cells,512-tick capability horizon, generalization/retention, long-term ecology and live visual witness. No global motor optimum or physical-impossibility theorem.",
+  "unchanged_source_bytes": {
+    "crates/moebius-core/src/neural/body.rs": true,
+    "crates/moebius-core/src/config.rs": true,
+    "crates/moebius-core/src/feeding.rs": true,
+    "crates/moebius-core/src/neural/schema.rs": true,
+    "crates/moebius-core/src/neural/sensing.rs": true
+  },
+  "M4_complete_review_and_compatibility": "M4_EVIDENCE_AUDIT.json",
+  "expanded_archive_roundtrip": "All12 archives fully unpacked with per-file hash verification",
+  "portable_unpacked_replay": {
+    "dataset": "braking_v1",
+    "sensor_probes": 0,
+    "snapshots": 12,
+    "status": "PASS",
+    "ticks": 576,
+    "trials": 6
+  },
+  "raw_files_preserved_in_archives": 10252,
+  "archives": 12,
+  "readable_artifact_paths": 52,
+  "artifact_bytes": 89551538,
+  "maximum_archive_bytes": 21498632,
+  "source_sha256": {
+    "crates/moebius-core/src/world.rs": "0522f6de5d70a0aa593584ebf48cc688cfb20d92e55df56a7ba35076c0752cae",
+    "crates/moebius-core/src/neural/controller.rs": "c9b5a6a03e448171899b2867ddf1b2321feef4b2f6e4427269b3c3eab7a9a905",
+    "crates/moebius-core/src/neural/mod.rs": "a8fc9eecfa6ae4862b2860a67d889627ee12146707fe544d61cd7c1ea53fba7e",
+    "crates/moebius-core/src/neural/body.rs": "6ed9cb975b10a21c86388a2624cd0ade5ff8d79c573c9150d3a10b67ad80efd6",
+    "crates/moebius-core/src/config.rs": "9a94d854965294422fcd0fb8de0cf4fed4991b14a0323d49d237eb45c3a574c0",
+    "crates/moebius-core/examples/m5_probe.rs": "8e393dc35fa824b7bcb1687a972aedba8e59cf51ba8047947d35a84caa43a6e0",
+    "crates/moebius-core/examples/m5_replay.rs": "b2fb8413467f5682a1a7db4ed31027f8426c1b213ba49f5dda2ff56be57ede6a",
+    "crates/moebius-core/examples/support/m5.rs": "248b320e05f421204dd116aa4a68ed073d53d461b371237a425b819555269e3c",
+    "crates/moebius-core/examples/support/m5_control.rs": "e2793382c6780d3b84ef56a7e52ac77012739a219e38e2a4be8ffbcfe6b7b579",
+    "crates/moebius-core/tests/m5.rs": "1a334b4fa2ee499ba89b236cea77639b7d824cfa7fcac9c608cfa02782660448",
+    "python/analyze_m5.py": "fe2971eef5c9f05cba209073a645805f266a1ac0cfe082de5c8e8f5c87b9886d",
+    "python/m5_artifacts.py": "2ef8d700908dcbf68a1808effc6c1fca84a9b42853256911e53ed6d1c587aca2",
+    "experiments/nursery_m5_local_lobes_v1.json": "5f69df2b3a0b4dc59cc8d94b6c07d0371545267ebfbd863c563a68c9c34fe52c",
+    "docs/m5/PROTOCOL.json": "df3f16d29f2246efe5882bd04b9c33f2f2d7ac160666bbec67ec0614ed7d1c0e"
+  },
+  "production_default": "law2, spinal_wave=false, chemical_sensing=RaysV1 (unchanged)",
+  "oracle_and_local_policy_location": "experimental examples only; no production adoption",
+  "neural_plasticity_boundary": "Existing neural integration/plastic traces still run; external commands override motor output; no exposed brain/genome adopted by production",
+  "build_and_lint_chronology": "Initial harness compile errors (receipt serialization and integer type inference) corrected before executed trials. A collapsible-match lint corrected; final strict Clippy passes. No failed scientific trial removed.",
+  "live_visual_witness": "NOT RUN",
+  "experimental_controller_computation": "External oracle/local-model planning cost not separately metabolically modeled; current flat neural fee retained. No claim of eight-neuron realization or global minimality.",
+  "commit_push_hosted_ci_at_experiment_closeout": "NOT RUN for M5",
+  "source_fingerprints_scope": "Captured at experiment closeout before storage-policy changes; current storage-tool hash recorded separately.",
+  "storage_transition": {
+    "date_local": "2026-11-22",
+    "classification": "ARTIFACT_STORAGE.json",
+    "destination": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M5/fd837e7/v1",
+    "volume_uuid": "D0A02EEBA02ED82C",
+    "archive_version": "v1",
+    "archive_count": 12,
+    "archive_bytes": 81864745,
+    "git_artifact_metadata_files": 40,
+    "git_artifact_metadata_bytes": 7686793,
+    "archive_sha256_and_member_sha256": "PASS",
+    "complete_restored_file_sha256": "PASS",
+    "native_restored_replay": {
+      "dataset": "braking_v1",
+      "sensor_probes": 0,
+      "snapshots": 12,
+      "status": "PASS",
+      "ticks": 576,
+      "trials": 6
+    },
+    "storage_tool_sha256": "7baa74e9e2b3ea1ddce444509ab12a0e804c8350d445b24cd70c8d568cdc47e0",
+    "current_protocol_sha256": "cb9527f72a7060f8f75bec032dd6670923ddccc2171e5a9d59d0868ab14e16b0",
+    "repository_archive_copies_removed_after_reference_updates": true,
+    "tampered_member_checksum_rejected_with_python_optimization": true,
+    "fresh_workspace_tests_before_release": 89,
+    "fresh_strict_clippy_and_format": "PASS",
+    "configuration_metadata": "CONFIGURATIONS.json retains 2509 identities and all 10 unique full configurations in Git"
+  },
+  "publication_record": "Scientific validation precedes the release commit; consult Git. Hosted CI not checked.",
+  "git_paths_at_experiment_closeout": 76
+}

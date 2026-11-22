@@ -3,4 +3,6 @@ pub mod body;
 mod controller;
 pub mod schema;
 pub mod sensing;
-pub use controller::{ControllerGenome, NEURONS, NeuralRules, NeuralState, Policy, Q};
+pub use controller::{
+    ChemicalSensing, ControllerGenome, NEURONS, NeuralRules, NeuralState, Policy, Q,
+};

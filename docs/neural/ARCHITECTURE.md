@@ -1,5 +1,12 @@
 # Neural foundation v1
 
+M5 update: [reachability evidence](../m5/REPORT.md) demonstrates limited
+mouth-based second-meal capture, not general locomotion/foraging. Production
+defaults remain law2, wave off and RaysV1. The optional LocalLobesV1 sensor is
+a radius8 authoritative-stock measurement; controlled motor/ordinary-sensor
+interfaces are diagnostic. Oracle and local-model controllers exist only in
+examples, outside the production controller.
+
 M4 update: the default nursery now selects neural law 2 and disables the
 authored spinal wave. Explicit historical law-1 configs retain their behavior.
 See [M4 diagnosis and validation](../m4/REPORT.md); useful locomotion and

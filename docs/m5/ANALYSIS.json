@@ -1,0 +1,4261 @@
+{
+  "independent_audit": [
+    {
+      "dataset": "attribution_v1",
+      "status": "PASS",
+      "trials": 79,
+      "organism_ticks": 8812,
+      "sensor_probes": 0,
+      "target_successes": 0
+    },
+    {
+      "dataset": "benchmark_v1",
+      "status": "PASS",
+      "trials": 60,
+      "organism_ticks": 6415,
+      "sensor_probes": 0,
+      "target_successes": 3
+    },
+    {
+      "dataset": "braking_v1",
+      "status": "PASS",
+      "trials": 6,
+      "organism_ticks": 576,
+      "sensor_probes": 0,
+      "target_successes": 0
+    },
+    {
+      "dataset": "confirmation_v1",
+      "status": "PASS",
+      "trials": 480,
+      "organism_ticks": 51234,
+      "sensor_probes": 0,
+      "target_successes": 24
+    },
+    {
+      "dataset": "local_lobes_second_v1",
+      "status": "PASS",
+      "trials": 96,
+      "organism_ticks": 11257,
+      "sensor_probes": 0,
+      "target_successes": 9
+    },
+    {
+      "dataset": "local_lobes_v1",
+      "status": "PASS",
+      "trials": 96,
+      "organism_ticks": 10953,
+      "sensor_probes": 0,
+      "target_successes": 9
+    },
+    {
+      "dataset": "local_model_second_v1",
+      "status": "PASS",
+      "trials": 96,
+      "organism_ticks": 11488,
+      "sensor_probes": 0,
+      "target_successes": 8
+    },
+    {
+      "dataset": "local_model_v1",
+      "status": "PASS",
+      "trials": 96,
+      "organism_ticks": 11144,
+      "sensor_probes": 0,
+      "target_successes": 8
+    },
+    {
+      "dataset": "periodic_v1",
+      "status": "PASS",
+      "trials": 288,
+      "organism_ticks": 30182,
+      "sensor_probes": 0,
+      "target_successes": 0
+    },
+    {
+      "dataset": "screen_v1",
+      "status": "PASS",
+      "trials": 672,
+      "organism_ticks": 124064,
+      "sensor_probes": 0,
+      "target_successes": 13
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "status": "PASS",
+      "trials": 480,
+      "organism_ticks": 52907,
+      "sensor_probes": 0,
+      "target_successes": 24
+    },
+    {
+      "dataset": "second_meal_v1",
+      "status": "PASS",
+      "trials": 60,
+      "organism_ticks": 6621,
+      "sensor_probes": 0,
+      "target_successes": 3
+    },
+    {
+      "dataset": "sensors_lobes_v1",
+      "status": "PASS",
+      "trials": 0,
+      "organism_ticks": 0,
+      "sensor_probes": 240,
+      "target_successes": 0
+    },
+    {
+      "dataset": "sensors_v1",
+      "status": "PASS",
+      "trials": 0,
+      "organism_ticks": 0,
+      "sensor_probes": 240,
+      "target_successes": 0
+    }
+  ],
+  "groups": [
+    {
+      "dataset": "attribution_v1",
+      "controller": "schedule",
+      "trials": 79,
+      "successes": 0,
+      "deaths": 79,
+      "mean_com_path": 0.32359707945509164,
+      "mean_motor_energy": 3.7974683544303796,
+      "by_target": []
+    },
+    {
+      "dataset": "benchmark_v1",
+      "controller": "local",
+      "trials": 12,
+      "successes": 0,
+      "deaths": 12,
+      "mean_com_path": 0.17559108479679728,
+      "mean_motor_energy": 4,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "benchmark_v1",
+      "controller": "oracle",
+      "trials": 12,
+      "successes": 3,
+      "deaths": 9,
+      "mean_com_path": 0.26893080899904936,
+      "mean_motor_energy": 19.916666666666668,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 1,
+          "successes": 1
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 1,
+          "successes": 1
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 1,
+          "successes": 1
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "benchmark_v1",
+      "controller": "random",
+      "trials": 12,
+      "successes": 0,
+      "deaths": 12,
+      "mean_com_path": 0.06363503677750819,
+      "mean_motor_energy": 21,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "benchmark_v1",
+      "controller": "recurrent",
+      "trials": 12,
+      "successes": 0,
+      "deaths": 12,
+      "mean_com_path": 0.0,
+      "mean_motor_energy": 9,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "benchmark_v1",
+      "controller": "rest",
+      "trials": 12,
+      "successes": 0,
+      "deaths": 12,
+      "mean_com_path": 0.0,
+      "mean_motor_energy": 0,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "braking_v1",
+      "controller": "schedule",
+      "trials": 6,
+      "successes": 0,
+      "deaths": 2,
+      "mean_com_path": 0.640338610567526,
+      "mean_motor_energy": 16.666666666666668,
+      "by_target": []
+    },
+    {
+      "dataset": "confirmation_v1",
+      "controller": "local",
+      "trials": 96,
+      "successes": 0,
+      "deaths": 96,
+      "mean_com_path": 0.17651698916953965,
+      "mean_motor_energy": 3.9791666666666665,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "confirmation_v1",
+      "controller": "oracle",
+      "trials": 96,
+      "successes": 24,
+      "deaths": 72,
+      "mean_com_path": 0.2680923663266588,
+      "mean_motor_energy": 19.479166666666668,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 8,
+          "successes": 8
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 8,
+          "successes": 8
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 8,
+          "successes": 8
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "confirmation_v1",
+      "controller": "random",
+      "trials": 96,
+      "successes": 0,
+      "deaths": 96,
+      "mean_com_path": 0.040939389782197855,
+      "mean_motor_energy": 21,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "confirmation_v1",
+      "controller": "recurrent",
+      "trials": 96,
+      "successes": 0,
+      "deaths": 96,
+      "mean_com_path": 0.026774279618366124,
+      "mean_motor_energy": 10.125,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "confirmation_v1",
+      "controller": "rest",
+      "trials": 96,
+      "successes": 0,
+      "deaths": 96,
+      "mean_com_path": 0.0,
+      "mean_motor_energy": 0,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "local_lobes_second_v1",
+      "controller": "local_lobes",
+      "trials": 96,
+      "successes": 9,
+      "deaths": 87,
+      "mean_com_path": 0.12920308221296023,
+      "mean_motor_energy": 2.875,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 8,
+          "successes": 1
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 8,
+          "successes": 8
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "local_lobes_v1",
+      "controller": "local_lobes",
+      "trials": 96,
+      "successes": 9,
+      "deaths": 87,
+      "mean_com_path": 0.12884169626322858,
+      "mean_motor_energy": 2.6145833333333335,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 8,
+          "successes": 1
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 8,
+          "successes": 8
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "local_model_second_v1",
+      "controller": "local_model",
+      "trials": 96,
+      "successes": 8,
+      "deaths": 88,
+      "mean_com_path": 0.04512632651833921,
+      "mean_motor_energy": 0.3333333333333333,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 8,
+          "successes": 8
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "local_model_v1",
+      "controller": "local_model",
+      "trials": 96,
+      "successes": 8,
+      "deaths": 88,
+      "mean_com_path": 0.04487917574540773,
+      "mean_motor_energy": 0.25,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 8,
+          "successes": 8
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "periodic_v1",
+      "controller": "schedule",
+      "trials": 288,
+      "successes": 0,
+      "deaths": 288,
+      "mean_com_path": 0.4604924199590773,
+      "mean_motor_energy": 11.61111111111111,
+      "by_target": [
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 288,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "screen_v1",
+      "controller": "schedule",
+      "trials": 672,
+      "successes": 13,
+      "deaths": 335,
+      "mean_com_path": 0.3354866645446003,
+      "mean_motor_energy": 1.9761904761904763,
+      "by_target": [
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 672,
+          "successes": 13
+        }
+      ]
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "controller": "local",
+      "trials": 96,
+      "successes": 0,
+      "deaths": 96,
+      "mean_com_path": 0.18103731357667738,
+      "mean_motor_energy": 3.9791666666666665,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "controller": "oracle",
+      "trials": 96,
+      "successes": 24,
+      "deaths": 72,
+      "mean_com_path": 0.26231412264922394,
+      "mean_motor_energy": 19.8125,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 8,
+          "successes": 8
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 8,
+          "successes": 8
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 8,
+          "successes": 8
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "controller": "random",
+      "trials": 96,
+      "successes": 0,
+      "deaths": 96,
+      "mean_com_path": 0.04666574986007428,
+      "mean_motor_energy": 21.375,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "controller": "recurrent",
+      "trials": 96,
+      "successes": 0,
+      "deaths": 96,
+      "mean_com_path": 0.022690658797975445,
+      "mean_motor_energy": 10.520833333333334,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "second_meal_confirmation_v1",
+      "controller": "rest",
+      "trials": 96,
+      "successes": 0,
+      "deaths": 96,
+      "mean_com_path": 0.0,
+      "mean_motor_energy": 0,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 8,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 8,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "second_meal_v1",
+      "controller": "local",
+      "trials": 12,
+      "successes": 0,
+      "deaths": 12,
+      "mean_com_path": 0.1810790625679434,
+      "mean_motor_energy": 4,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "second_meal_v1",
+      "controller": "oracle",
+      "trials": 12,
+      "successes": 3,
+      "deaths": 9,
+      "mean_com_path": 0.2551866155577292,
+      "mean_motor_energy": 20.5,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 1,
+          "successes": 1
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 1,
+          "successes": 1
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 1,
+          "successes": 1
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "second_meal_v1",
+      "controller": "random",
+      "trials": 12,
+      "successes": 0,
+      "deaths": 12,
+      "mean_com_path": 0.09813167283252457,
+      "mean_motor_energy": 22,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "second_meal_v1",
+      "controller": "recurrent",
+      "trials": 12,
+      "successes": 0,
+      "deaths": 12,
+      "mean_com_path": 0.0,
+      "mean_motor_energy": 9.083333333333334,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        }
+      ]
+    },
+    {
+      "dataset": "second_meal_v1",
+      "controller": "rest",
+      "trials": 12,
+      "successes": 0,
+      "deaths": 12,
+      "mean_com_path": 0.0,
+      "mean_motor_energy": 0,
+      "by_target": [
+        {
+          "delta": [
+            -3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            -1,
+            -2,
+            -2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            -3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            -3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            0,
+            3
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            0,
+            3,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            1,
+            2,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            -2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            1,
+            2
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            2,
+            2,
+            1
+          ],
+          "trials": 1,
+          "successes": 0
+        },
+        {
+          "delta": [
+            3,
+            0,
+            0
+          ],
+          "trials": 1,
+          "successes": 0
+        }
+      ]
+    }
+  ],
+  "screen": [
+    {
+      "dataset": "screen_v1",
+      "drag": 0,
+      "energy": 128,
+      "trials": 84,
+      "target_successes": 0,
+      "maximum_com_net": 0.0,
+      "maximum_case": "bend_-1024_4_d0_e128",
+      "maximum_mouth_net": 0.47501710559763166,
+      "paid_actuator_for_maximum": 1,
+      "com_path_for_maximum": 0.0,
+      "paid_actuator_per_path": null,
+      "pending_actuator_energy": 0.598876953125
+    },
+    {
+      "dataset": "screen_v1",
+      "drag": 0,
+      "energy": 2048,
+      "trials": 84,
+      "target_successes": 0,
+      "maximum_com_net": 0.0,
+      "maximum_case": "bend_-1024_4_d0_e2048",
+      "maximum_mouth_net": 0.4805044765680681,
+      "paid_actuator_for_maximum": 1,
+      "com_path_for_maximum": 0.0,
+      "paid_actuator_per_path": null,
+      "pending_actuator_energy": 0.70361328125
+    },
+    {
+      "dataset": "screen_v1",
+      "drag": 8,
+      "energy": 128,
+      "trials": 84,
+      "target_successes": 0,
+      "maximum_com_net": 0.9912306609798759,
+      "maximum_case": "bend_twist_1024_16_d8_e128",
+      "maximum_mouth_net": 1.3109237651992058,
+      "paid_actuator_for_maximum": 12,
+      "com_path_for_maximum": 0.9964068702095167,
+      "paid_actuator_per_path": 12.043273043146254,
+      "pending_actuator_energy": 0.104736328125
+    },
+    {
+      "dataset": "screen_v1",
+      "drag": 8,
+      "energy": 2048,
+      "trials": 84,
+      "target_successes": 9,
+      "maximum_com_net": 2.1383911505970232,
+      "maximum_case": "bend_-1024_16_d8_e2048",
+      "maximum_mouth_net": 2.5234768040669726,
+      "paid_actuator_for_maximum": 6,
+      "com_path_for_maximum": 2.1398188693744524,
+      "paid_actuator_per_path": 2.8039756475995654,
+      "pending_actuator_energy": 0.1630859375
+    },
+    {
+      "dataset": "screen_v1",
+      "drag": 32,
+      "energy": 128,
+      "trials": 84,
+      "target_successes": 1,
+      "maximum_com_net": 1.6018822327568498,
+      "maximum_case": "bend_twist_1024_16_d32_e128",
+      "maximum_mouth_net": 1.6664096952063836,
+      "paid_actuator_for_maximum": 12,
+      "com_path_for_maximum": 1.7490134696340363,
+      "paid_actuator_per_path": 6.861010625899229,
+      "pending_actuator_energy": 0.139892578125
+    },
+    {
+      "dataset": "screen_v1",
+      "drag": 32,
+      "energy": 2048,
+      "trials": 84,
+      "target_successes": 3,
+      "maximum_com_net": 1.750170563151509,
+      "maximum_case": "bend_twist_1024_16_d32_e2048",
+      "maximum_mouth_net": 1.7310586100528162,
+      "paid_actuator_for_maximum": 12,
+      "com_path_for_maximum": 1.9655198205801412,
+      "paid_actuator_per_path": 6.1052551464263995,
+      "pending_actuator_energy": 0.327392578125
+    },
+    {
+      "dataset": "screen_v1",
+      "drag": 128,
+      "energy": 128,
+      "trials": 84,
+      "target_successes": 0,
+      "maximum_com_net": 1.5186086957839549,
+      "maximum_case": "bend_twist_1024_16_d128_e128",
+      "maximum_mouth_net": 1.6707785745654782,
+      "paid_actuator_for_maximum": 12,
+      "com_path_for_maximum": 2.560105842096598,
+      "paid_actuator_per_path": 4.687306205345246,
+      "pending_actuator_energy": 0.104736328125
+    },
+    {
+      "dataset": "screen_v1",
+      "drag": 128,
+      "energy": 2048,
+      "trials": 84,
+      "target_successes": 0,
+      "maximum_com_net": 1.5186086957839549,
+      "maximum_case": "bend_twist_1024_16_d128_e2048",
+      "maximum_mouth_net": 1.675922663486241,
+      "paid_actuator_for_maximum": 12,
+      "com_path_for_maximum": 2.560105842096598,
+      "paid_actuator_per_path": 4.687306205345246,
+      "pending_actuator_energy": 0.327392578125
+    },
+    {
+      "dataset": "periodic_v1",
+      "drag": 8,
+      "energy": 128,
+      "trials": 288,
+      "target_successes": 0,
+      "maximum_com_net": 1.4236934896479019,
+      "maximum_case": "bend_twist_512_p12_r32_back0",
+      "maximum_mouth_net": 2.3588207680214737,
+      "paid_actuator_for_maximum": 15,
+      "com_path_for_maximum": 1.4282905814180287,
+      "paid_actuator_per_path": 10.502064632469796,
+      "pending_actuator_energy": 0.350830078125
+    }
+  ],
+  "joint_ablation": [
+    {
+      "axis": 0,
+      "com_net_without_axis": 0.8869090947270585,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": -0.10432156625281741,
+      "change_in_mouth_net": -0.09903712763312833,
+      "change_in_rotation": -114,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 1,
+      "com_net_without_axis": 0.9900947186405363,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": -0.0011359423393395573,
+      "change_in_mouth_net": 0.0022879770990138493,
+      "change_in_rotation": -70,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 2,
+      "com_net_without_axis": 0.8794144581046727,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": -0.11181620287520322,
+      "change_in_mouth_net": -0.10626425780358428,
+      "change_in_rotation": -108,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 3,
+      "com_net_without_axis": 0.9644038012017896,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": -0.0268268597780863,
+      "change_in_mouth_net": -0.023580097680395484,
+      "change_in_rotation": -68,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 4,
+      "com_net_without_axis": 0.8867295050283883,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": -0.10450115595148757,
+      "change_in_mouth_net": -0.09513345772815385,
+      "change_in_rotation": -96,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 5,
+      "com_net_without_axis": 0.9682039752464898,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": -0.023026685733386065,
+      "change_in_mouth_net": -0.018114255757164077,
+      "change_in_rotation": -70,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 6,
+      "com_net_without_axis": 0.8444109553115683,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": -0.1468197056683076,
+      "change_in_mouth_net": -0.13841139254090506,
+      "change_in_rotation": -90,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 7,
+      "com_net_without_axis": 0.9963565255413193,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": 0.005125864561443372,
+      "change_in_mouth_net": 0.009147155864417833,
+      "change_in_rotation": -68,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 8,
+      "com_net_without_axis": 0.8357423928998929,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": -0.15548826807998295,
+      "change_in_mouth_net": -0.14818669297029052,
+      "change_in_rotation": -114,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 9,
+      "com_net_without_axis": 1.0280109748106072,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": 0.036780313830731326,
+      "change_in_mouth_net": 0.038517786445870006,
+      "change_in_rotation": -70,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 10,
+      "com_net_without_axis": 0.8609593438840705,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": -0.13027131709580542,
+      "change_in_mouth_net": -0.1210935923381341,
+      "change_in_rotation": -108,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 11,
+      "com_net_without_axis": 1.0242804630173052,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": 0.033049802037429354,
+      "change_in_mouth_net": 0.03378618401671518,
+      "change_in_rotation": -68,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 12,
+      "com_net_without_axis": 0.8717142811517241,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": -0.11951637982815178,
+      "change_in_mouth_net": -0.11215662159816753,
+      "change_in_rotation": -96,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 13,
+      "com_net_without_axis": 1.007511064265152,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": 0.016280403285276024,
+      "change_in_mouth_net": 0.017171246964883258,
+      "change_in_rotation": -70,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 14,
+      "com_net_without_axis": 0.8806244056759217,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": -0.11060625530395418,
+      "change_in_mouth_net": -0.10372304469993376,
+      "change_in_rotation": -90,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 15,
+      "com_net_without_axis": 1.0260777087908786,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": 0.034847047811002674,
+      "change_in_mouth_net": 0.038778710858358045,
+      "change_in_rotation": -68,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 16,
+      "com_net_without_axis": 0.8866445367484641,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": -0.10458612423141178,
+      "change_in_mouth_net": -0.101393498393052,
+      "change_in_rotation": -114,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 17,
+      "com_net_without_axis": 0.9913143611376042,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": 8.370015772829476e-05,
+      "change_in_mouth_net": 0.003632160270358842,
+      "change_in_rotation": -70,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 18,
+      "com_net_without_axis": 0.894414502650348,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": -0.09681615832952783,
+      "change_in_mouth_net": -0.0908938474889488,
+      "change_in_rotation": -108,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 19,
+      "com_net_without_axis": 0.9965790407919978,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": 0.005348379812121884,
+      "change_in_mouth_net": 0.008955967078697502,
+      "change_in_rotation": -68,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 20,
+      "com_net_without_axis": 0.8888816502064437,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": -0.10234901077343217,
+      "change_in_mouth_net": -0.0969361627822497,
+      "change_in_rotation": -96,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 21,
+      "com_net_without_axis": 0.9964297457217843,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": 0.005199084741908444,
+      "change_in_mouth_net": 0.006549707525520865,
+      "change_in_rotation": -70,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 22,
+      "com_net_without_axis": 0.8993318832909856,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": -0.09189877768889032,
+      "change_in_mouth_net": -0.08611845563193132,
+      "change_in_rotation": -90,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 23,
+      "com_net_without_axis": 0.9964297457217843,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": 0.005199084741908444,
+      "change_in_mouth_net": 0.006549707525520865,
+      "change_in_rotation": -68,
+      "change_in_paid_actuator": -1
+    },
+    {
+      "axis": 24,
+      "com_net_without_axis": 0.9912306609798759,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": 0.0,
+      "change_in_mouth_net": 0.0,
+      "change_in_rotation": 0,
+      "change_in_paid_actuator": 0
+    },
+    {
+      "axis": 25,
+      "com_net_without_axis": 0.9912306609798759,
+      "com_net_full": 0.9912306609798759,
+      "change_in_com_net": 0.0,
+      "change_in_mouth_net": 0.0,
+      "change_in_rotation": 0,
+      "change_in_paid_actuator": 0
+    }
+  ],
+  "braking": [
+    {
+      "name": "brake_release",
+      "first_eight_tick_zero_start": null,
+      "spending_after_switch": 1,
+      "minimum_speed_after_switch": 0.007176239480810092,
+      "final_momentum_last_living": [
+        32,
+        127,
+        23
+      ],
+      "death_tick": null
+    },
+    {
+      "name": "brake_reverse4",
+      "first_eight_tick_zero_start": null,
+      "spending_after_switch": 2,
+      "minimum_speed_after_switch": 0.005940197783494355,
+      "final_momentum_last_living": [
+        28,
+        109,
+        -7
+      ],
+      "death_tick": null
+    },
+    {
+      "name": "brake_reverse8",
+      "first_eight_tick_zero_start": null,
+      "spending_after_switch": 5,
+      "minimum_speed_after_switch": 0.003088161777508183,
+      "final_momentum_last_living": [
+        34,
+        50,
+        -2
+      ],
+      "death_tick": null
+    },
+    {
+      "name": "brake_reverse16",
+      "first_eight_tick_zero_start": null,
+      "spending_after_switch": 11,
+      "minimum_speed_after_switch": 0.001953125,
+      "final_momentum_last_living": [
+        41,
+        -34,
+        4
+      ],
+      "death_tick": 95
+    },
+    {
+      "name": "brake_turn",
+      "first_eight_tick_zero_start": null,
+      "spending_after_switch": 4,
+      "minimum_speed_after_switch": 0.00834375365753665,
+      "final_momentum_last_living": [
+        48,
+        134,
+        10
+      ],
+      "death_tick": null
+    },
+    {
+      "name": "brake_brake_oracle",
+      "first_eight_tick_zero_start": 27,
+      "spending_after_switch": 11,
+      "minimum_speed_after_switch": 0.0,
+      "final_momentum_last_living": [
+        0,
+        1,
+        -1
+      ],
+      "death_tick": 95
+    }
+  ],
+  "steering": [
+    {
+      "name": "brake_turn",
+      "tick": 31,
+      "release_velocity": [
+        1,
+        12,
+        2
+      ],
+      "controlled_velocity": [
+        1,
+        13,
+        3
+      ],
+      "heading_difference_degrees": 3.545522741417698
+    },
+    {
+      "name": "brake_reverse8",
+      "tick": 31,
+      "release_velocity": [
+        1,
+        12,
+        2
+      ],
+      "controlled_velocity": [
+        2,
+        3,
+        0
+      ],
+      "heading_difference_degrees": 30.297972515138436
+    },
+    {
+      "name": "brake_turn",
+      "tick": 47,
+      "release_velocity": [
+        1,
+        10,
+        1
+      ],
+      "controlled_velocity": [
+        1,
+        12,
+        1
+      ],
+      "heading_difference_degrees": 1.3280976361589407
+    },
+    {
+      "name": "brake_reverse8",
+      "tick": 47,
+      "release_velocity": [
+        1,
+        10,
+        1
+      ],
+      "controlled_velocity": [
+        2,
+        3,
+        0
+      ],
+      "heading_difference_degrees": 28.50492930382217
+    },
+    {
+      "name": "brake_turn",
+      "tick": 63,
+      "release_velocity": [
+        2,
+        8,
+        1
+      ],
+      "controlled_velocity": [
+        2,
+        11,
+        0
+      ],
+      "heading_difference_degrees": 7.852654702879234
+    },
+    {
+      "name": "brake_reverse8",
+      "tick": 63,
+      "release_velocity": [
+        2,
+        8,
+        1
+      ],
+      "controlled_velocity": [
+        2,
+        3,
+        0
+      ],
+      "heading_difference_degrees": 20.789168886622356
+    }
+  ],
+  "sensors": [
+    {
+      "dataset": "sensors_v1",
+      "anchor": "com",
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "aligned_visible": 6,
+      "off_axis_visible": 0,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    },
+    {
+      "dataset": "sensors_v1",
+      "anchor": "com",
+      "orientation": [
+        0,
+        0,
+        700
+      ],
+      "aligned_visible": 6,
+      "off_axis_visible": 0,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    },
+    {
+      "dataset": "sensors_v1",
+      "anchor": "com",
+      "orientation": [
+        0,
+        0,
+        804
+      ],
+      "aligned_visible": 4,
+      "off_axis_visible": 0,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    },
+    {
+      "dataset": "sensors_v1",
+      "anchor": "com",
+      "orientation": [
+        0,
+        600,
+        600
+      ],
+      "aligned_visible": 6,
+      "off_axis_visible": 0,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    },
+    {
+      "dataset": "sensors_v1",
+      "anchor": "mouth",
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "aligned_visible": 2,
+      "off_axis_visible": 0,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    },
+    {
+      "dataset": "sensors_v1",
+      "anchor": "mouth",
+      "orientation": [
+        0,
+        0,
+        700
+      ],
+      "aligned_visible": 0,
+      "off_axis_visible": 0,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    },
+    {
+      "dataset": "sensors_v1",
+      "anchor": "mouth",
+      "orientation": [
+        0,
+        0,
+        804
+      ],
+      "aligned_visible": 0,
+      "off_axis_visible": 0,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    },
+    {
+      "dataset": "sensors_v1",
+      "anchor": "mouth",
+      "orientation": [
+        0,
+        600,
+        600
+      ],
+      "aligned_visible": 0,
+      "off_axis_visible": 0,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    },
+    {
+      "dataset": "sensors_lobes_v1",
+      "anchor": "com",
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "aligned_visible": 6,
+      "off_axis_visible": 24,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    },
+    {
+      "dataset": "sensors_lobes_v1",
+      "anchor": "com",
+      "orientation": [
+        0,
+        0,
+        700
+      ],
+      "aligned_visible": 6,
+      "off_axis_visible": 24,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    },
+    {
+      "dataset": "sensors_lobes_v1",
+      "anchor": "com",
+      "orientation": [
+        0,
+        0,
+        804
+      ],
+      "aligned_visible": 6,
+      "off_axis_visible": 24,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    },
+    {
+      "dataset": "sensors_lobes_v1",
+      "anchor": "com",
+      "orientation": [
+        0,
+        600,
+        600
+      ],
+      "aligned_visible": 6,
+      "off_axis_visible": 24,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    },
+    {
+      "dataset": "sensors_lobes_v1",
+      "anchor": "mouth",
+      "orientation": [
+        0,
+        0,
+        0
+      ],
+      "aligned_visible": 6,
+      "off_axis_visible": 24,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    },
+    {
+      "dataset": "sensors_lobes_v1",
+      "anchor": "mouth",
+      "orientation": [
+        0,
+        0,
+        700
+      ],
+      "aligned_visible": 6,
+      "off_axis_visible": 24,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    },
+    {
+      "dataset": "sensors_lobes_v1",
+      "anchor": "mouth",
+      "orientation": [
+        0,
+        0,
+        804
+      ],
+      "aligned_visible": 6,
+      "off_axis_visible": 24,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    },
+    {
+      "dataset": "sensors_lobes_v1",
+      "anchor": "mouth",
+      "orientation": [
+        0,
+        600,
+        600
+      ],
+      "aligned_visible": 6,
+      "off_axis_visible": 24,
+      "aligned_trials": 6,
+      "off_axis_trials": 24
+    }
+  ],
+  "single_axis": [
+    {
+      "axis": 0,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.18948584205258953,
+      "rotation": 38,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 0,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12652044657239755,
+      "rotation": 46,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 1,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12538088941956277,
+      "rotation": 32,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 1,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.1244226473686469,
+      "rotation": 31,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 2,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.18754322825252556,
+      "rotation": 39,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 2,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12846530288529334,
+      "rotation": 46,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 3,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.1244226473686469,
+      "rotation": 31,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 3,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12538088941956277,
+      "rotation": 32,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 4,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.13934421079482007,
+      "rotation": 39,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 4,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.08516274523680839,
+      "rotation": 46,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 5,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12538088941956277,
+      "rotation": 32,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 5,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.1244226473686469,
+      "rotation": 31,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 6,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.09407495764681481,
+      "rotation": 39,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 6,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.05198762364924283,
+      "rotation": 45,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 7,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.1244226473686469,
+      "rotation": 31,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 7,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12538088941956277,
+      "rotation": 32,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 8,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.16500149812885223,
+      "rotation": 38,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 8,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12943782442016322,
+      "rotation": 46,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 9,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12444180788547186,
+      "rotation": 32,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 9,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12444180788547186,
+      "rotation": 31,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 10,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.15324565260229703,
+      "rotation": 39,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 10,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.13235574607120917,
+      "rotation": 46,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 11,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12444180788547186,
+      "rotation": 31,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 11,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12444180788547186,
+      "rotation": 32,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 12,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.11476167613611397,
+      "rotation": 39,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 12,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.10972756374142692,
+      "rotation": 46,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 13,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12444180788547186,
+      "rotation": 32,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 13,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12444180788547186,
+      "rotation": 31,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 14,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.09010343753468236,
+      "rotation": 39,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 14,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.10583432735266667,
+      "rotation": 45,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 15,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12444180788547186,
+      "rotation": 31,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 15,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12444180788547186,
+      "rotation": 32,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 16,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.10203092098913263,
+      "rotation": 38,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 16,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.1362470937996391,
+      "rotation": 46,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 17,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12446862765379689,
+      "rotation": 32,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 17,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12444180788547186,
+      "rotation": 31,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 18,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.07919795438648593,
+      "rotation": 39,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 18,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.1381930829891104,
+      "rotation": 46,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 19,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12444180788547186,
+      "rotation": 31,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 19,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12446862765379689,
+      "rotation": 32,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 20,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.08516274523680839,
+      "rotation": 39,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 20,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.13916615255721532,
+      "rotation": 46,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 21,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12446862765379689,
+      "rotation": 32,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 21,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12444180788547186,
+      "rotation": 31,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 22,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.08613701980937478,
+      "rotation": 39,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 22,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.1381930829891104,
+      "rotation": 45,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 23,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12444180788547186,
+      "rotation": 31,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 23,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.12446862765379689,
+      "rotation": 32,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 24,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.10867960438229156,
+      "rotation": 16,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 24,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.13722006304883044,
+      "rotation": 46,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 25,
+      "amplitude": -1024,
+      "com_net": 0.0,
+      "mouth_net": 0.13722006304883044,
+      "rotation": 12,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    },
+    {
+      "axis": 25,
+      "amplitude": 1024,
+      "com_net": 0.0,
+      "mouth_net": 0.08613701980937478,
+      "rotation": 39,
+      "paid_actuator": 0,
+      "pending_actuator_energy": 0.248291015625
+    }
+  ],
+  "forward_gap": {
+    "trials": 372,
+    "minimum_head_distance_squared": 4,
+    "maximum_head_y": 18,
+    "nearest_sample": {
+      "dataset": "periodic_v1",
+      "name": "bend_twist_512_p4_r16_back0",
+      "tick": 99,
+      "head": [
+        16,
+        18,
+        16
+      ],
+      "energy_before": 8
+    }
+  },
+  "limits": "Finite diagnostic search. Execution PASS is not a reachability PASS. Mouth capture is rounded-head lattice distance squared <=2. Model controller is authored, not learned. Paid actuator energy and pending fractional debt are distinct."
+}

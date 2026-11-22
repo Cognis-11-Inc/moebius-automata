@@ -1,0 +1,80 @@
+{
+  "base_commit": "fd837e7e19c670311ee17ad600259f1c086c6d63",
+  "artifact_sha256_verified": 1732,
+  "organism_tick_records_read": 764461,
+  "all_saved_json_read": true,
+  "complete_replay": [
+    {
+      "dataset": "docs/m4/artifacts/baseline_v1",
+      "snapshots_audited": 400,
+      "status": "PASS",
+      "ticks_replayed": 45168,
+      "trials_replayed": 200
+    },
+    {
+      "dataset": "docs/m4/artifacts/corrected_v2",
+      "snapshots_audited": 400,
+      "status": "PASS",
+      "ticks_replayed": 44986,
+      "trials_replayed": 200
+    },
+    {
+      "dataset": "docs/m4/artifacts/fixed_wave_v1",
+      "snapshots_audited": 16,
+      "status": "PASS",
+      "ticks_replayed": 2048,
+      "trials_replayed": 8
+    },
+    {
+      "dataset": "docs/m4/artifacts/fixed_wave_v2",
+      "snapshots_audited": 16,
+      "status": "PASS",
+      "ticks_replayed": 2048,
+      "trials_replayed": 8
+    },
+    {
+      "dataset": "docs/m4/artifacts/locked_wave_v1",
+      "snapshots_audited": 16,
+      "status": "PASS",
+      "ticks_replayed": 2048,
+      "trials_replayed": 8
+    },
+    {
+      "dataset": "docs/m4/artifacts/production_v1",
+      "snapshots_audited": 2,
+      "status": "PASS",
+      "ticks_replayed": 256,
+      "trials_replayed": 1
+    },
+    {
+      "dataset": "docs/m4/artifacts/production_v2",
+      "snapshots_audited": 2,
+      "status": "PASS",
+      "ticks_replayed": 256,
+      "trials_replayed": 1
+    },
+    {
+      "dataset": "docs/m4/artifacts/production_v2_no_wave",
+      "snapshots_audited": 2,
+      "status": "PASS",
+      "ticks_replayed": 256,
+      "trials_replayed": 1
+    }
+  ],
+  "post_change_compatibility_replay": [
+    {
+      "dataset": "docs/m4/artifacts/baseline_v1",
+      "snapshots_audited": 400,
+      "status": "PASS",
+      "ticks_replayed": 45168,
+      "trials_replayed": 200
+    },
+    {
+      "dataset": "docs/m4/artifacts/corrected_v2",
+      "snapshots_audited": 400,
+      "status": "PASS",
+      "ticks_replayed": 44986,
+      "trials_replayed": 200
+    }
+  ]
+}

@@ -1,0 +1,8165 @@
+{
+  "failures": 0,
+  "results": [
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_0_s1",
+        "seed": 1,
+        "target_delta": [
+          3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "41e6a58ba309bd9fe3c62b9ab20b843923b648307b1da1acd9e64ffa0fdc7924",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.8750041464070812,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 19,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_1_s1",
+        "seed": 1,
+        "target_delta": [
+          -3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "66163f5075e2d168aadbbd1156c68d357e23cb251dfdfe11d03f90efea76a080",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.002952553266603,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 13,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_2_s1",
+        "seed": 1,
+        "target_delta": [
+          0,
+          3,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "9d063c00ca86c313df5631574e5d95d413a05defd6ea74da24efc97043b28424",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16388,
+        17420,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.98828125,
+      "mouth_net": 0.0048828125,
+      "mouth_path": 0.0068359375,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 20,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": 5.516396466459402,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_3_s1",
+        "seed": 1,
+        "target_delta": [
+          0,
+          -3,
+          0
+        ]
+      },
+      "com_net": 0.5437313734350074,
+      "com_path": 0.5438332828759669,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        128,
+        16,
+        3,
+        0,
+        0
+      ],
+      "death_tick": null,
+      "final_com_unwrapped": [
+        16882,
+        16135,
+        16384
+      ],
+      "final_energy": 465,
+      "final_hash": "04056c0768d13bdf054e0f54cde3e92e82f4cff1fef74b913b85ab1361ce7b84",
+      "final_momentum": [
+        74,
+        -36,
+        0
+      ],
+      "final_mouth": [
+        17432,
+        15580,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        232
+      ],
+      "final_velocity": [
+        4,
+        -2,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": 7,
+      "first_target_tick": 7,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 121,
+      "last_eight_tick_zero_speed_start": null,
+      "minimum_continuous_target_distance": 1.5442846939811496,
+      "mouth_net": 2.0704398637857664,
+      "mouth_path": 2.6683787615253935,
+      "peak_speed": 0.004367320268554277,
+      "rotation": 244,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 14,
+        "z": 16
+      },
+      "ticks": 128,
+      "zero_displacement_ticks": 2
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_4_s1",
+        "seed": 1,
+        "target_delta": [
+          0,
+          0,
+          3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "c21727866188cc0c99e0e67f54b7616d7b9ac2a24a083a4b676484b655edbc52",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 19
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_5_s1",
+        "seed": 1,
+        "target_delta": [
+          0,
+          0,
+          -3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "6f98fe633c6e4496c2ab2edd601ccc5163e227b8e6cc518d28310af74294d8e4",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 13
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_6_s1",
+        "seed": 1,
+        "target_delta": [
+          2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "9d482909fed3e25b4b881b99c0598a404ea6303abaae3db71f94e636d19d285e",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9148100438721407,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_7_s1",
+        "seed": 1,
+        "target_delta": [
+          -2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "4cbd0151c24a9f71b94fa1cac17cf606307f2bf309d063f0ccf37f65c0ccea6b",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.994159257983852,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 14,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_8_s1",
+        "seed": 1,
+        "target_delta": [
+          2,
+          -2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "ebba0137f3a3b581c74d3cf5a2b38cb55d5a9986e9dab28bdcafb9ed5823a716",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.921503053542459,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 15,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_9_s1",
+        "seed": 1,
+        "target_delta": [
+          2,
+          1,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "9b63b25c1f652391764b1be8a351fda9ddfd119e36f685ae0a95de188b237bed",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9164847362634885,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 18,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_10_s1",
+        "seed": 1,
+        "target_delta": [
+          1,
+          2,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "66294c7d1173fa5b14b19b76a86110986d52de592ba8dc36751fb88b96f0dadc",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9573835719868855,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 17,
+        "y": 19,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_11_s1",
+        "seed": 1,
+        "target_delta": [
+          -1,
+          -2,
+          -2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "5657332dbe04a2997a39f0d641c12a6e8c20c9824ba9142a65aba77c2edec3b6",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.008800473140486,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 15,
+        "y": 15,
+        "z": 14
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_0_s2",
+        "seed": 2,
+        "target_delta": [
+          3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "10c25eaa425875e60b2bceba70a4f434f5fe0bf1ba78b46d47a8e549da33e14d",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.8750041464070812,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 19,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_1_s2",
+        "seed": 2,
+        "target_delta": [
+          -3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "457ccb9e21305d186a92fde5c95e0019b52e1f0e066db03b53c6cf4bf2a75ce7",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.002952553266603,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 13,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_2_s2",
+        "seed": 2,
+        "target_delta": [
+          0,
+          3,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "d9721916d16670ea3619b73892fd4514fdaadd52e6fbe0cdded6077d9560c886",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16388,
+        17420,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.98828125,
+      "mouth_net": 0.0048828125,
+      "mouth_path": 0.0068359375,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 20,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": 5.516396466459402,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_3_s2",
+        "seed": 2,
+        "target_delta": [
+          0,
+          -3,
+          0
+        ]
+      },
+      "com_net": 0.5437313734350074,
+      "com_path": 0.5438332828759669,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        128,
+        16,
+        3,
+        0,
+        0
+      ],
+      "death_tick": null,
+      "final_com_unwrapped": [
+        16882,
+        16135,
+        16384
+      ],
+      "final_energy": 465,
+      "final_hash": "deebf471e17dc2646ad22cef097c703576ff02c73765601c5aec45af0455831a",
+      "final_momentum": [
+        74,
+        -35,
+        0
+      ],
+      "final_mouth": [
+        17453,
+        15589,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        230
+      ],
+      "final_velocity": [
+        4,
+        -2,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": 7,
+      "first_target_tick": 7,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 121,
+      "last_eight_tick_zero_speed_start": null,
+      "minimum_continuous_target_distance": 1.5613185230424662,
+      "mouth_net": 2.073055422434447,
+      "mouth_path": 2.657185485814716,
+      "peak_speed": 0.004367320268554277,
+      "rotation": 244,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 14,
+        "z": 16
+      },
+      "ticks": 128,
+      "zero_displacement_ticks": 2
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_4_s2",
+        "seed": 2,
+        "target_delta": [
+          0,
+          0,
+          3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "d18a3c48bf8ebe5bf2be25f39455a649c176c343575ebbabb4ea303a27e232a8",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 19
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_5_s2",
+        "seed": 2,
+        "target_delta": [
+          0,
+          0,
+          -3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "5dad1ccc1739832b1c125acc4f74db2cd0fe3a159b2b2a6c43ce90ff6f669d54",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 13
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_6_s2",
+        "seed": 2,
+        "target_delta": [
+          2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "0061bd10d35196d2f01bfb9211a591eb818ae1cca5b3b40b69c563dfd13188f0",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9148100438721407,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_7_s2",
+        "seed": 2,
+        "target_delta": [
+          -2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "14c15e54c780d7d3fba29c17b47c555b3756aa813dfe6a217a08de06529fae87",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.994159257983852,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 14,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_8_s2",
+        "seed": 2,
+        "target_delta": [
+          2,
+          -2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "a4eea3156f457037a50fa8c699561445b63a6e386ef41608559d10789541c4c2",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.921503053542459,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 15,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_9_s2",
+        "seed": 2,
+        "target_delta": [
+          2,
+          1,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "d15cc5c984b5865fcd7c165d60710e096d23b59be321775c5616ec4807bc47c9",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9164847362634885,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 18,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_10_s2",
+        "seed": 2,
+        "target_delta": [
+          1,
+          2,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "b255fa449d84bcede748273557c6d5ae4961a894b392b774fe2d70e80539867b",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9573835719868855,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 17,
+        "y": 19,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_11_s2",
+        "seed": 2,
+        "target_delta": [
+          -1,
+          -2,
+          -2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "60c43f14aacfede86ff04e0e304af54a0a63a2026cff39096930d90a8e69ee7d",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.008800473140486,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 15,
+        "y": 15,
+        "z": 14
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_0_s3",
+        "seed": 3,
+        "target_delta": [
+          3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "e0e2414d3154280efc45a3a0d9e01e5a8472f6748251aa267520ef3e0d2d3ceb",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.8750041464070812,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 19,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_1_s3",
+        "seed": 3,
+        "target_delta": [
+          -3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "dc25acce94568f6890e6add459d144fb3c275e05f029c680c251576613279d37",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.002952553266603,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 13,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_2_s3",
+        "seed": 3,
+        "target_delta": [
+          0,
+          3,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "ffbf522d4de77a57bbb0b113278cfbea9872c8a024764ae1c6ce866b4efe4903",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16388,
+        17420,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.98828125,
+      "mouth_net": 0.0048828125,
+      "mouth_path": 0.0068359375,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 20,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": 5.516396466459402,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_3_s3",
+        "seed": 3,
+        "target_delta": [
+          0,
+          -3,
+          0
+        ]
+      },
+      "com_net": 0.5437313734350074,
+      "com_path": 0.5438332828759669,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        128,
+        16,
+        3,
+        0,
+        0
+      ],
+      "death_tick": null,
+      "final_com_unwrapped": [
+        16882,
+        16135,
+        16384
+      ],
+      "final_energy": 465,
+      "final_hash": "bac8947f44853b67b9cc76614e81ed69596f9b60b517babf3f7c62352c1c8c39",
+      "final_momentum": [
+        74,
+        -36,
+        0
+      ],
+      "final_mouth": [
+        17432,
+        15580,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        232
+      ],
+      "final_velocity": [
+        4,
+        -2,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": 7,
+      "first_target_tick": 7,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 121,
+      "last_eight_tick_zero_speed_start": null,
+      "minimum_continuous_target_distance": 1.5442846939811496,
+      "mouth_net": 2.0704398637857664,
+      "mouth_path": 2.6683787615253935,
+      "peak_speed": 0.004367320268554277,
+      "rotation": 244,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 14,
+        "z": 16
+      },
+      "ticks": 128,
+      "zero_displacement_ticks": 2
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_4_s3",
+        "seed": 3,
+        "target_delta": [
+          0,
+          0,
+          3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "99ac337121499dd0b87138f89f551af5d312b3d3d2caa7df52546a57a6d67175",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 19
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_5_s3",
+        "seed": 3,
+        "target_delta": [
+          0,
+          0,
+          -3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "74e5a5c0e4b5b9471ef213b98229953fc4c77ac9be86c0941877023826527758",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 13
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_6_s3",
+        "seed": 3,
+        "target_delta": [
+          2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "58c6b57db736786b978143de2e4a47839c3edd4870b5c85e203e2e769d12a5ae",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9148100438721407,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_7_s3",
+        "seed": 3,
+        "target_delta": [
+          -2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "100bed85b34c84a97534dcfb3f3af55271df415f9cc79f2662bdedde700e69c1",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.994159257983852,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 14,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_8_s3",
+        "seed": 3,
+        "target_delta": [
+          2,
+          -2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "ec574d7a1a70d6268fd9093e737a522e9de9ec108b1592b29a2b74ba8fc1dc38",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.921503053542459,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 15,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_9_s3",
+        "seed": 3,
+        "target_delta": [
+          2,
+          1,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "daf31e5f765e173d76d97fe10d472098f6f8c6b147c762e83c505f826ae634c7",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9164847362634885,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 18,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_10_s3",
+        "seed": 3,
+        "target_delta": [
+          1,
+          2,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "a0e6d2b96d4208915283302ee44f5ef683889ff7079b2bac57e5c5599a97a06a",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9573835719868855,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 17,
+        "y": 19,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_11_s3",
+        "seed": 3,
+        "target_delta": [
+          -1,
+          -2,
+          -2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "adf18a852fc389d0bc4c6566193da80d14b0a02769264982150ea5458b2b06db",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.008800473140486,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 15,
+        "y": 15,
+        "z": 14
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_0_s4",
+        "seed": 4,
+        "target_delta": [
+          3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "6e58b8b0f8c9c9a4437e7a8dcc3b8034159795e3b4312a038949cf3a9500adb7",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.8750041464070812,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 19,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_1_s4",
+        "seed": 4,
+        "target_delta": [
+          -3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "f2a3fadb47373ad7ebb34e8b35dc689dccf92fc4090e2f8192dc7f33183f2f94",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.002952553266603,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 13,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_2_s4",
+        "seed": 4,
+        "target_delta": [
+          0,
+          3,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "71181cd5ba7f3b0fd6d56eed26adae3b102831d7345969fe07c898658c7e95cb",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16388,
+        17420,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.98828125,
+      "mouth_net": 0.0048828125,
+      "mouth_path": 0.0068359375,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 20,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": 5.516396466459402,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_3_s4",
+        "seed": 4,
+        "target_delta": [
+          0,
+          -3,
+          0
+        ]
+      },
+      "com_net": 0.5437313734350074,
+      "com_path": 0.5438332828759669,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        128,
+        16,
+        3,
+        0,
+        0
+      ],
+      "death_tick": null,
+      "final_com_unwrapped": [
+        16882,
+        16135,
+        16384
+      ],
+      "final_energy": 465,
+      "final_hash": "9ed217c76ed51507a625d61e93635c16257a815b5cc64a7827a0edfd6714e46a",
+      "final_momentum": [
+        74,
+        -35,
+        0
+      ],
+      "final_mouth": [
+        17453,
+        15589,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        230
+      ],
+      "final_velocity": [
+        4,
+        -2,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": 7,
+      "first_target_tick": 7,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 121,
+      "last_eight_tick_zero_speed_start": null,
+      "minimum_continuous_target_distance": 1.5613185230424662,
+      "mouth_net": 2.073055422434447,
+      "mouth_path": 2.657185485814716,
+      "peak_speed": 0.004367320268554277,
+      "rotation": 244,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 14,
+        "z": 16
+      },
+      "ticks": 128,
+      "zero_displacement_ticks": 2
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_4_s4",
+        "seed": 4,
+        "target_delta": [
+          0,
+          0,
+          3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "903fbdfd82ef9d9e451410d9fe7a8f1490134e0e42a1007d9c0e13d9c0efc3c0",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 19
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_5_s4",
+        "seed": 4,
+        "target_delta": [
+          0,
+          0,
+          -3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "6327de870e12350c8d85cee4bf29895bed4297f023a1133f4a0fc99f1ab48fbe",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 13
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_6_s4",
+        "seed": 4,
+        "target_delta": [
+          2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "6200e5040872ab78c656e6637f2b8a2197031c791d0d67ab0e375d66b724569d",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9148100438721407,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_7_s4",
+        "seed": 4,
+        "target_delta": [
+          -2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "d3926d56ea3d8b7a5708de0e76c70a1e59758ace9137916d9ec6a34ad9c45b9b",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.994159257983852,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 14,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_8_s4",
+        "seed": 4,
+        "target_delta": [
+          2,
+          -2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "1ef51c4f025916ca05b866a28643e6b25dfbd2fc408906407c03e3f1fc13ae0e",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.921503053542459,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 15,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_9_s4",
+        "seed": 4,
+        "target_delta": [
+          2,
+          1,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "8ffac968d8546b1abfb0c620b43aca18a6dcfcfc8eb153b425a1f634b3d339fc",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9164847362634885,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 18,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_10_s4",
+        "seed": 4,
+        "target_delta": [
+          1,
+          2,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "b7ebf042716602f6985b74a926d09f296e3ffd0c84a726a7a2a1bbc606f722df",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9573835719868855,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 17,
+        "y": 19,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_11_s4",
+        "seed": 4,
+        "target_delta": [
+          -1,
+          -2,
+          -2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "bc2a8e9d3c3bc29b546a9db51de56f9dd5934fccca5eef52578880f7e8867f8b",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.008800473140486,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 15,
+        "y": 15,
+        "z": 14
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_0_s5",
+        "seed": 5,
+        "target_delta": [
+          3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "bad9d9e018d9a70e63da6b0614ad3bef1164691e557e57a48dc011aa8812eaa8",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.8750041464070812,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 19,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_1_s5",
+        "seed": 5,
+        "target_delta": [
+          -3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "1ecbd5e7d65c5325eb59a51d38572f735a6d98dcad2b60c0b854c9b3101b8c00",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.002952553266603,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 13,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_2_s5",
+        "seed": 5,
+        "target_delta": [
+          0,
+          3,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "2308fd75f5d0fc549310ac2c208d105816b94d24422b4b07dee857187bfd8b4e",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16388,
+        17420,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.98828125,
+      "mouth_net": 0.0048828125,
+      "mouth_path": 0.0068359375,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 20,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": 5.9771822102172,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_3_s5",
+        "seed": 5,
+        "target_delta": [
+          0,
+          -3,
+          0
+        ]
+      },
+      "com_net": 0.501652846711031,
+      "com_path": 0.501908741358411,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        128,
+        16,
+        3,
+        0,
+        0
+      ],
+      "death_tick": null,
+      "final_com_unwrapped": [
+        16882,
+        16258,
+        16384
+      ],
+      "final_energy": 465,
+      "final_hash": "3da39fbdf82a36e3b9a799664b0b7b497c8ce13e3d4271b5ab8795128559ed19",
+      "final_momentum": [
+        75,
+        -31,
+        0
+      ],
+      "final_mouth": [
+        17456,
+        15715,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        230
+      ],
+      "final_velocity": [
+        4,
+        -1,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": 7,
+      "first_target_tick": 7,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 121,
+      "last_eight_tick_zero_speed_start": null,
+      "minimum_continuous_target_distance": 1.5698876256877743,
+      "mouth_net": 1.9692808374128772,
+      "mouth_path": 2.6122604823862026,
+      "peak_speed": 0.004026470337517247,
+      "rotation": 244,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 14,
+        "z": 16
+      },
+      "ticks": 128,
+      "zero_displacement_ticks": 2
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_4_s5",
+        "seed": 5,
+        "target_delta": [
+          0,
+          0,
+          3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "21347893b64e16d01bc78f8bc43de5d5898d93335cd3fc40712d065dc344261b",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 19
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_5_s5",
+        "seed": 5,
+        "target_delta": [
+          0,
+          0,
+          -3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "02e8e5af63329f2825b696d06294d3c9fb8923024ab9ec500479f123cbf100fc",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 13
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_6_s5",
+        "seed": 5,
+        "target_delta": [
+          2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "47e7afe6d03343284ad7505146a0e981554ba714753aa7169140fa6aac817237",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9148100438721407,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_7_s5",
+        "seed": 5,
+        "target_delta": [
+          -2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "25321dd72e30e86315de4302b24c8dc648d62fabd33e9e7f56c5f7cf1e8c3409",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.994159257983852,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 14,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_8_s5",
+        "seed": 5,
+        "target_delta": [
+          2,
+          -2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "fa578bf58a047ab348c6b803be700d87985c8c2ed96023e0f8e47c49aa161387",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.921503053542459,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 15,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_9_s5",
+        "seed": 5,
+        "target_delta": [
+          2,
+          1,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "30ccd71e20d2439375fb664665da791adf060b2227080395b146749d29a98aed",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9164847362634885,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 18,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_10_s5",
+        "seed": 5,
+        "target_delta": [
+          1,
+          2,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "62f31eb8da2a4df93bbb16a5d65378ebd2efda711441f7303f3da17b75d43438",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9573835719868855,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 17,
+        "y": 19,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_11_s5",
+        "seed": 5,
+        "target_delta": [
+          -1,
+          -2,
+          -2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "773ce155ac34633cfa2307deb732087891fb8389aacd730df40b44da2bb80c30",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.008800473140486,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 15,
+        "y": 15,
+        "z": 14
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_0_s6",
+        "seed": 6,
+        "target_delta": [
+          3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "a5e95e7a16d2cb3c76b60dc528968458eab1709a2752b7d3b03f28e47017fe72",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16497,
+        17414,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.889654378056584,
+      "mouth_net": 0.11070101610111947,
+      "mouth_path": 0.11311922138982684,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 19,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_1_s6",
+        "seed": 6,
+        "target_delta": [
+          -3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "3d6e2b3d083fb6dc16df07025c15a8db28e3b2a1bc5263e2c977ce16d59b895a",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16497,
+        17414,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.002952553266603,
+      "mouth_net": 0.11070101610111947,
+      "mouth_path": 0.11311922138982684,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 13,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_2_s6",
+        "seed": 6,
+        "target_delta": [
+          0,
+          3,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "a559ac674a18e4340d315d4d1cafdbe3ebd5d921e79fcb2382eeeb6eb2c590d1",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16387,
+        17420,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.98828125,
+      "mouth_net": 0.0041432037960149265,
+      "mouth_path": 0.005859375,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 20,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": 5.519856060818383,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_3_s6",
+        "seed": 6,
+        "target_delta": [
+          0,
+          -3,
+          0
+        ]
+      },
+      "com_net": 0.5432953435492206,
+      "com_path": 0.5434924329449299,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        128,
+        16,
+        3,
+        0,
+        0
+      ],
+      "death_tick": null,
+      "final_com_unwrapped": [
+        16882,
+        16136,
+        16384
+      ],
+      "final_energy": 465,
+      "final_hash": "0a76d0793da0a875706ad8d02c13078e47efdba5b30948bd98121e7775d4baef",
+      "final_momentum": [
+        75,
+        -34,
+        0
+      ],
+      "final_mouth": [
+        17268,
+        15486,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        235
+      ],
+      "final_velocity": [
+        4,
+        -2,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": 7,
+      "first_target_tick": 7,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 121,
+      "last_eight_tick_zero_speed_start": null,
+      "minimum_continuous_target_distance": 1.4165058418689378,
+      "mouth_net": 2.0792813633209923,
+      "mouth_path": 2.6431042505207127,
+      "peak_speed": 0.004367320268554277,
+      "rotation": 243,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 14,
+        "z": 16
+      },
+      "ticks": 128,
+      "zero_displacement_ticks": 2
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_4_s6",
+        "seed": 6,
+        "target_delta": [
+          0,
+          0,
+          3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "07453f9f7fcd570e280fcbc5186d387dcfbd64128c45db34270703ce6b238095",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16497,
+        17414,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.11070101610111947,
+      "mouth_path": 0.11311922138982684,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 19
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_5_s6",
+        "seed": 6,
+        "target_delta": [
+          0,
+          0,
+          -3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "2d5ab543d603f4bfa3a0d23e24dc97ce45a069b3691896d09943cbeba3bf06f1",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16497,
+        17414,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.11070101610111947,
+      "mouth_path": 0.11311922138982684,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 13
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_6_s6",
+        "seed": 6,
+        "target_delta": [
+          2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "54ba51a35263adcf188e3ae4f3f38093d341779efbafa52de1a693eb3edfac9b",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16497,
+        17414,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9235882147836043,
+      "mouth_net": 0.11070101610111947,
+      "mouth_path": 0.11311922138982684,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_7_s6",
+        "seed": 6,
+        "target_delta": [
+          -2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "fb71bc2c67cdd113896da1e0136653b25779816272e085239f8084b12dc5f533",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16497,
+        17414,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.994159257983852,
+      "mouth_net": 0.11070101610111947,
+      "mouth_path": 0.11311922138982684,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 14,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_8_s6",
+        "seed": 6,
+        "target_delta": [
+          2,
+          -2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "ad5fdb96a6a10b50744c8aac9b243f3666094bddeddeda006d013a0a28e673ee",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16497,
+        17414,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9315939435095,
+      "mouth_net": 0.11070101610111947,
+      "mouth_path": 0.11311922138982684,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 15,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_9_s6",
+        "seed": 6,
+        "target_delta": [
+          2,
+          1,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "f731d661665e1dca592b1b4d31ae131941479e0516494a91a894180b8ea99c95",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16497,
+        17414,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9255917007712444,
+      "mouth_net": 0.11070101610111947,
+      "mouth_path": 0.11311922138982684,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 18,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_10_s6",
+        "seed": 6,
+        "target_delta": [
+          1,
+          2,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "1f18aa7a3a00bf915de0262f974c4e5019647203888c524d0a2758510b742584",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16497,
+        17414,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9610929020585597,
+      "mouth_net": 0.11070101610111947,
+      "mouth_path": 0.11311922138982684,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 17,
+        "y": 19,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_11_s6",
+        "seed": 6,
+        "target_delta": [
+          -1,
+          -2,
+          -2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "9f12f488c937b72c0a23dbe5c480a951846ee897b36156d2e71a5d737ea96403",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16497,
+        17414,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.008800473140486,
+      "mouth_net": 0.11070101610111947,
+      "mouth_path": 0.11311922138982684,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 15,
+        "y": 15,
+        "z": 14
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_0_s7",
+        "seed": 7,
+        "target_delta": [
+          3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "803445ee99326b12a62aa362b09110bb1c5df23b9c84e97959d1a235e67d64f2",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.8750041464070812,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 19,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_1_s7",
+        "seed": 7,
+        "target_delta": [
+          -3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "f131e439aa2c2be58388968d2032d70cef1b98b73386ff49c3f81f182c13c414",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.002952553266603,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 13,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_2_s7",
+        "seed": 7,
+        "target_delta": [
+          0,
+          3,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "7f628d5d1bc7f6258d50201a9c3d9736a377de3a5096e50c07aa7b52a1af2345",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16388,
+        17420,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.98828125,
+      "mouth_net": 0.0048828125,
+      "mouth_path": 0.0068359375,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 20,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": 5.516396466459402,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_3_s7",
+        "seed": 7,
+        "target_delta": [
+          0,
+          -3,
+          0
+        ]
+      },
+      "com_net": 0.5437313734350074,
+      "com_path": 0.5438332828759669,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        128,
+        16,
+        3,
+        0,
+        0
+      ],
+      "death_tick": null,
+      "final_com_unwrapped": [
+        16882,
+        16135,
+        16384
+      ],
+      "final_energy": 465,
+      "final_hash": "aec7bb37dcdaa9c2c7d2ed0bd9a45d6e8309a7b473e3d649d5c5b6cf0f0efab8",
+      "final_momentum": [
+        74,
+        -36,
+        0
+      ],
+      "final_mouth": [
+        17432,
+        15580,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        232
+      ],
+      "final_velocity": [
+        4,
+        -2,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": 7,
+      "first_target_tick": 7,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 121,
+      "last_eight_tick_zero_speed_start": null,
+      "minimum_continuous_target_distance": 1.5442846939811496,
+      "mouth_net": 2.0704398637857664,
+      "mouth_path": 2.6683787615253935,
+      "peak_speed": 0.004367320268554277,
+      "rotation": 244,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 14,
+        "z": 16
+      },
+      "ticks": 128,
+      "zero_displacement_ticks": 2
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_4_s7",
+        "seed": 7,
+        "target_delta": [
+          0,
+          0,
+          3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "fea3906ecd9eb294b671737456d24a9cd640960710f42b21b8b4bb1d1c0a9b86",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 19
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_5_s7",
+        "seed": 7,
+        "target_delta": [
+          0,
+          0,
+          -3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "d2407c4cd7619b66d05f99e5b09d1a74e7b876f5c66cbace8594574dde0fc105",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 13
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_6_s7",
+        "seed": 7,
+        "target_delta": [
+          2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "d91c958ae02d102ac7a3046c6e192c6f8254fb00e074cdadb6e81b7ec4f22a85",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9148100438721407,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_7_s7",
+        "seed": 7,
+        "target_delta": [
+          -2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "17e660ca1b9071f427db9c38b7020f8b4567534740aba79cc9185375190cc358",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.994159257983852,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 14,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_8_s7",
+        "seed": 7,
+        "target_delta": [
+          2,
+          -2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "616cc398f4acbf22d98ed65ef4a3da02d8e788d42dd6481b38035864a0e34253",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.921503053542459,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 15,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_9_s7",
+        "seed": 7,
+        "target_delta": [
+          2,
+          1,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "848a5b8c809eec91e9625d1091c5f85027f67c319a1e88e2abad9ddb8ff050d2",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9164847362634885,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 18,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_10_s7",
+        "seed": 7,
+        "target_delta": [
+          1,
+          2,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "57ea355d89b12c169b4e161cfbddcc1c8255df3daf5a760abcfc668a3494e187",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9573835719868855,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 17,
+        "y": 19,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_11_s7",
+        "seed": 7,
+        "target_delta": [
+          -1,
+          -2,
+          -2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "98f3cc25cb6a0253b5b8b287acfe8e3d7e0286da95712f45adbd259c5325d143",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.008800473140486,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 15,
+        "y": 15,
+        "z": 14
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_0_s8",
+        "seed": 8,
+        "target_delta": [
+          3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "97986e098691fe38ce943bb3ae88fd83c349b85e96c7378ef8f2b2c1e556d36f",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.8750041464070812,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 19,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_1_s8",
+        "seed": 8,
+        "target_delta": [
+          -3,
+          0,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "703ce83ef75163fad7db18fc7923ee24657cbaa1e2045c9a4404aaa27c84f26d",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.002952553266603,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 13,
+        "y": 17,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_2_s8",
+        "seed": 8,
+        "target_delta": [
+          0,
+          3,
+          0
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "7e241a00bda8b24e26fbcfced15dc2ea3064d15fbbdb19a9ee34388c7d045b54",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16388,
+        17420,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.98828125,
+      "mouth_net": 0.0048828125,
+      "mouth_path": 0.0068359375,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 20,
+        "z": 16
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": 5.516396466459402,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_3_s8",
+        "seed": 8,
+        "target_delta": [
+          0,
+          -3,
+          0
+        ]
+      },
+      "com_net": 0.5437313734350074,
+      "com_path": 0.5438332828759669,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        128,
+        16,
+        3,
+        0,
+        0
+      ],
+      "death_tick": null,
+      "final_com_unwrapped": [
+        16882,
+        16135,
+        16384
+      ],
+      "final_energy": 465,
+      "final_hash": "8b6ca38841bf00db2d998b73049c44b6d8f9e37eb293de6560779339b0905afe",
+      "final_momentum": [
+        74,
+        -36,
+        0
+      ],
+      "final_mouth": [
+        17432,
+        15580,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        232
+      ],
+      "final_velocity": [
+        4,
+        -2,
+        0
+      ],
+      "first_chemical_signal_tick": 0,
+      "first_food_tick": 7,
+      "first_target_tick": 7,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 121,
+      "last_eight_tick_zero_speed_start": null,
+      "minimum_continuous_target_distance": 1.5442846939811496,
+      "mouth_net": 2.0704398637857664,
+      "mouth_path": 2.6683787615253935,
+      "peak_speed": 0.004367320268554277,
+      "rotation": 244,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 14,
+        "z": 16
+      },
+      "ticks": 128,
+      "zero_displacement_ticks": 2
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_4_s8",
+        "seed": 8,
+        "target_delta": [
+          0,
+          0,
+          3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "8a1c8eec234aa70e5629ab4294ff6ea9028289f09c94ae7aab1c6da0b0bf699d",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 19
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_5_s8",
+        "seed": 8,
+        "target_delta": [
+          0,
+          0,
+          -3
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "3caa1bd700c48df4f72c35d1d595eafe74a24671e0e9b4e420ecf89da9f67727",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.0000243185965028,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 16,
+        "y": 17,
+        "z": 13
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_6_s8",
+        "seed": 8,
+        "target_delta": [
+          2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "f6867f8d2318d19ac0af0f12b0c6c2d75c61d22914806535ce41f4c1532b07eb",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9148100438721407,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_7_s8",
+        "seed": 8,
+        "target_delta": [
+          -2,
+          2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "842c3a8ccea9f6503f534b33f420f9abb33e454651dae1b1d46592755e873ae1",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.994159257983852,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 14,
+        "y": 19,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_8_s8",
+        "seed": 8,
+        "target_delta": [
+          2,
+          -2,
+          1
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "791507ac7e0aba32052f1e2d6a5bb0b07355c8f1834fa46ca9a8ec514ca14fd5",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.921503053542459,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 15,
+        "z": 17
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_9_s8",
+        "seed": 8,
+        "target_delta": [
+          2,
+          1,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "78ab9e75fc931c12e1c4cf8c31c5bf68a2f683efbada2e34a7bb4598b09e5d77",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9164847362634885,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 18,
+        "y": 18,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_10_s8",
+        "seed": 8,
+        "target_delta": [
+          1,
+          2,
+          2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "3e3736c8ecb531d708f1f820b8884cf34336dd413c50be22e20f344421a749d2",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 2.9573835719868855,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 17,
+        "y": 19,
+        "z": 18
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    },
+    {
+      "actuator_energy_per_com_path": null,
+      "case": {
+        "drag": 8,
+        "energy": 128,
+        "founding_bite": false,
+        "horizon": 128,
+        "name": "local_model_11_s8",
+        "seed": 8,
+        "target_delta": [
+          -1,
+          -2,
+          -2
+        ]
+      },
+      "com_net": 0.0,
+      "com_path": 0.0,
+      "controller": {
+        "kind": "local_model"
+      },
+      "costs_maintenance_neural_actuator_secretion_digging": [
+        114,
+        14,
+        0,
+        0,
+        0
+      ],
+      "death_tick": 114,
+      "final_com_unwrapped": [
+        16384,
+        16384,
+        16384
+      ],
+      "final_energy": 0,
+      "final_hash": "03d76758d5a427fb207229f36699e85a93873a832f57b28244b779b497dc3723",
+      "final_momentum": [
+        0,
+        0,
+        0
+      ],
+      "final_mouth": [
+        16512,
+        17413,
+        16384
+      ],
+      "final_orientation": [
+        0,
+        0,
+        0
+      ],
+      "final_velocity": [
+        0,
+        0,
+        0
+      ],
+      "first_chemical_signal_tick": null,
+      "first_food_tick": null,
+      "first_target_tick": null,
+      "first_zero_speed_tick": 0,
+      "initial_com": [
+        16384,
+        16384,
+        16384
+      ],
+      "initial_mouth": [
+        16384,
+        17423,
+        16384
+      ],
+      "intake": 0,
+      "last_eight_tick_zero_speed_start": 106,
+      "minimum_continuous_target_distance": 3.008800473140486,
+      "mouth_net": 0.12538088941956277,
+      "mouth_path": 0.12781512684209018,
+      "peak_speed": 0.0,
+      "rotation": 0,
+      "status": "PASS",
+      "target": {
+        "x": 15,
+        "y": 15,
+        "z": 14
+      },
+      "ticks": 115,
+      "zero_displacement_ticks": 115
+    }
+  ]
+}

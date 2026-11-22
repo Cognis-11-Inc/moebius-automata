@@ -183,3 +183,22 @@ finite-difference/force rounding. **Useful foraging is not demonstrated**: all
 three-site-food trials starved, while motionless controls ate at founding clots.
 See the [M4 report](docs/m4/REPORT.md) for 400 matched trials, three full-scale
 spot checks, per-organism traces, independent accounting audits, and exact replay.
+
+
+## M5 reachability checkpoint
+
+Some second meals are reachable at the existing budget through mouth articulation
+and the current capture stencil. This does not establish swimming or production
+foraging. The diagnostic oracle reaches 24/96 designed placements; a sensor-only
+motor model reaches 8/96 with old rays, 9/96 with the optional local lobes.
+The production controller/default sensor remain unchanged. See the
+[M5 report](docs/m5/REPORT.md) for all eight verdicts, failed forward-reaching
+conditions, paid braking, exact replay, and packed portable evidence.
+
+Raw M5 evidence is archived per experiment on Mermogon; authoritative summaries
+and checksum/restore metadata remain in Git. See
+[`ARTIFACT_STORAGE.json`](docs/m5/ARTIFACT_STORAGE.json).
+`python3 python/m5_artifacts.py unpack NEW_DIRECTORY` restores every file and
+verifies its SHA256. Readable protocols/results remain under docs/m5/artifacts/.
+Use `--archive-root VERSIONED_DIRECTORY` to restore a verified archive copy on
+another machine.
