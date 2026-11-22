@@ -5,8 +5,8 @@ live habitat is the **nursery**: a 256³ periodic cube with fixed edible clots.
 Eight recurrent neurons command 26 rotational axes and secretion. Feeding is
 authored mouth contact with a nearby clot, not a learned search. Cells can
 reproduce, and paid reaction mass can produce recoil and persistent flesh.
-Lifetime plasticity is separate from inherited controller genes. Useful
-learning and adaptive evolution have not been demonstrated.
+At birth, half of a lifetime weight change is written into the child genes.
+Useful learning and adaptive evolution have not been demonstrated.
 
 The original deterministic **M0** experiment remains available as
 `experiments/m0_64.json`, with its inert genomes and random lattice movement.
@@ -96,17 +96,22 @@ skips the slate and starts the live farm.
 Small biomechanical bodies have rounded head shells, curved ribs, vertebral
 plates, soft cores, and looped conduits. Twelve spinal joints and two mandible joints follow committed motor state.
 In neural mode, each spine has separate bend/twist effort and each jaw has an
-independent command. Internal articulation does not create COM thrust. Body
-orientation follows simulation state; movement has no authored gait. The mouth
-also displays actual nutrient uptake. The camera starts
+independent command. Internal articulation does not create COM thrust in vacuum.
+In a medium, a hard coordinated bend can lunge, and the opposite impulse stays
+on the environment ledger. An optional authored traveling spinal wave is retained
+for experiments, intensified by hunger; the default M4 nursery disables it.
+That drive is not a path to food. Body orientation follows simulation
+state. A committed bite gulps the mouth for a short hold. No strand is drawn
+from the lips to the clot. The camera starts
 near a founding cell and flies freely; it has no simulation body. Broad fill
 lighting and depth fog keep the habitat readable.
 
 In the nursery, each food site is one clot. A bite is one unit and credits 4
 energy. Maintenance is 1, so feeding pays for life and can fund a birth. The
-live mesh is folded tissue and its size follows the remaining stock. A short
-filament is drawn only when a committed tick records uptake at that site.
-Movement leaves a lasting flesh thread on the vacated site; the green ribbon
+live mesh is folded tissue and its size follows the remaining stock. A bite
+is the mouth gulping, not a strand to the clot.
+Movement leaves a lasting flesh thread on the vacated site. Flesh beside a clot
+can compost into one nutrient on that clot; other threads stay. The green ribbon
 is only recent gloss. Older views without nursery feeding
 still draw green lobed **block sums of the nutrient field**. At 256³ that
 aggregate stride is 64, and at most 64 clusters are drawn. Wet translucent
@@ -117,8 +122,9 @@ they cure on contact or under the configured medium law.
 Face-adjacent deposits weld into connected tissue, displayed as a single smooth
 surface. A closing mandible stroke can excavate adjacent tissue for an energy cost.
 
-The simulation runs on a worker thread. Render frames interpolate committed
-positions and joints; they never advance the world. The full articulated farm
+The simulation runs on a worker thread. Render frames play each committed step
+continuously, including the spine, facing, and body centroid. They never advance
+the world. The full articulated farm
 presentation currently runs in live mode; recorded playback inspects lattice
 positions and accounting, without the live joint/feeding/flesh presentation.
 
@@ -142,7 +148,7 @@ with flesh surfaces, and camera input. Extinction is recorded. It is not by
 itself a test failure.
 
 Neural tests cover recurrent/oscillatory capability, simultaneous axes, torque
-limits, vacuum COM invariance, bounded plasticity, germline separation,
+limits, vacuum COM invariance, bounded plasticity, weight assimilation,
 mutation, flexible controller mappings, atomic failure and snapshot replay.
 They validate mechanisms, not acquired competence.
 
@@ -165,3 +171,15 @@ remain unproven. No failure or null result is hidden.
 Scientific searches must be announced beforehand and recorded with provenance,
 implementation links and separate consultation/implementation/validation status;
 see [AGENTS.md](AGENTS.md) and [the research record](docs/research/2026-11-21-neural-foundation.json).
+
+
+## M4 diagnostic checkpoint
+
+The default nursery uses neural law 2 with the authored spinal wave disabled.
+Historical explicit JSON configs retain law 1; the current explicit config is
+[`experiments/nursery_m4_v2.json`](experiments/nursery_m4_v2.json).
+Law 2 corrects actual joint-rate reporting, actuator-drive billing, and bounded
+finite-difference/force rounding. **Useful foraging is not demonstrated**: all
+three-site-food trials starved, while motionless controls ate at founding clots.
+See the [M4 report](docs/m4/REPORT.md) for 400 matched trials, three full-scale
+spot checks, per-organism traces, independent accounting audits, and exact replay.

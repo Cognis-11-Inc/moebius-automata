@@ -1,0 +1,38 @@
+{
+  "date_local": "2026-11-21",
+  "scope": "M4 locomotion failure diagnosis and ecological viability",
+  "search_intent": {
+    "question": "Which existing source mechanisms explain negligible displacement and apparent nursery survival?",
+    "proposed_use": "Source audit, matched controller ablations, accounting and kinematic correction; no new biological model",
+    "external_queries": [],
+    "external_publications_consulted": []
+  },
+  "provenance": "No external scientific lookup occurred in this slice. AGENTS.md notification rule was observed by avoiding unannounced research; no published finding is claimed. Existing research records were listed, not re-consulted for design. All new claims derive from repository inspection or saved experiments.",
+  "knowledge_transfer": [
+    "Source: NeuralState::integrate bills raw commands before spinal_wave. v2 bills actuator_drive after smoothing/wave; same effort coefficient, energy conversion and maintenance.",
+    "Source: Body::step reports damped nonzero joint rate even when clamped angle does not move. v2 rate equals actual bounded angle change; orientation and medium interaction use that motion.",
+    "Source: shape_impulse skips derivative at upper joint bound and truncates each segment force before summing. v2 uses an inward finite difference at the upper bound and sums before dividing. Coarse authored drag/lunge laws remain approximations.",
+    "Observation: wave-only survives at founding food without meaningful travel and was unbilled in v1. Wave is now disabled in default nursery, retained as explicit experimental flag.",
+    "Source and regression: chemistry samples six axial rays, not an isotropic local concentration field. Off-ray nearby nutrients can be invisible. No chemical diffusion or global coordinates added."
+  ],
+  "implementation_trace": [
+    "crates/moebius-core/src/neural/controller.rs: NeuralRules, NeuralState::integrate, spinal_wave",
+    "crates/moebius-core/src/neural/body.rs: Body::step_with_law, shape_impulse",
+    "crates/moebius-core/src/world.rs: OrganismTick, World::tick_observed, World::advance",
+    "crates/moebius-core/src/config.rs: SimConfig::nursery_farm_256",
+    "experiments/nursery_m4_v2.json",
+    "crates/moebius-core/examples/m4_probe.rs",
+    "crates/moebius-core/examples/m4_mechanics.rs",
+    "crates/moebius-core/tests/m4.rs",
+    "python/analyze_m4.py"
+  ],
+  "evidence_status": {
+    "CONSULTED": "Repository mechanisms and user directive; no external publications",
+    "IMPLEMENTED": "Optional observation, explicit wave ablation, versioned accounting/kinematics, default nursery v2 with wave off",
+    "VALIDATED": "See docs/m4/REPORT.md, ANALYSIS.json and VALIDATION.json for mechanisms, matched observations and independent accounting/replay checks. Consultation/implementation are not empirical evidence of foraging.",
+    "NULL": "No successful easy or moderate foraging and no second-food-site meals in the primary 400 trials",
+    "UNTESTED": "Learned navigation, retention/generalization, long-term ecological viability, full fluid mechanics, evolved optimal gait, human visual assessment of new default"
+  },
+  "chronology": "Primary protocol written before 200 baseline v1 trials; measured baseline before introducing v2 corrections; 200 matched v2 trials next; complete v1 rerun reproduced saved result objects. Full-scale exploratory spot checks followed. The first production run command preceded its written amendment during compilation, so it is not strictly preregistered. See PROTOCOL.json. No earlier research evidence was removed.",
+  "control_audit": "Nominal wave-only ecology inherited nonzero motor output. Eight plasticity-off law-1 repeats failed to remove it: mutation remained. Preserve these control-isolation nulls. Sixteen fixed-wave-only trials additionally disable mutation. Do not attribute the nominal control drift to useful learning."
+}

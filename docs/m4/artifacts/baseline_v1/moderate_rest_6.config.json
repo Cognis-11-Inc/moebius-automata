@@ -1,0 +1,44 @@
+{
+  "width": 32,
+  "height": 32,
+  "depth": 32,
+  "initial_population": 1,
+  "initial_energy": 512,
+  "initial_nutrient_per_site": 0,
+  "nutrient_wave_amplitude": 0,
+  "initial_reservoir": 0,
+  "initial_waste": 0,
+  "inflow_per_tick": 0,
+  "inject_per_tick": 0,
+  "uptake_per_tick": 1,
+  "energy_per_nutrient": 4,
+  "maintenance_cost": 1,
+  "export_per_tick": 128,
+  "site_cap": 4096,
+  "reservoir_cap": 50000000,
+  "energy_cap": 10000,
+  "genome_fill": "derived",
+  "farm": {
+    "max_population": 1,
+    "birth_energy": 256,
+    "birth_cost": 8,
+    "maturity_ticks": 32,
+    "birth_cooldown": 128
+  },
+  "neural": {
+    "version": 1,
+    "plasticity": true,
+    "recurrence": true,
+    "proprioception": true,
+    "chemistry": true,
+    "mutation": true,
+    "policy": "recurrent",
+    "drag": 8,
+    "spinal_wave": false
+  },
+  "feeding": {
+    "version": 1,
+    "spacing": 8,
+    "initial_stock": 0
+  }
+}

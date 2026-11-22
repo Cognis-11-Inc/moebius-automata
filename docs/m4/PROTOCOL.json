@@ -1,0 +1,41 @@
+{
+  "registered_before_runs": true,
+  "date_local": "2026-11-21",
+  "question": "Can the present rig leave founding food, encounter additional food, and cover its costs?",
+  "source_state": "Existing dirty working tree retained; M4 adds observation and wave ablation before measuring baseline. Not the historical committed revision.",
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "ticks": 256,
+  "controllers": {
+    "current": "recurrent with authored spinal wave",
+    "no_wave": "same recurrent controller with wave disabled",
+    "random": "deterministic random commands, wave disabled",
+    "wave_only": "zero neural motor output plus authored wave; passive ligaments remain",
+    "rest": "zero neural motor output and no wave; passive ligaments remain"
+  },
+  "environments": {
+    "free": "one founder, 2048 energy, no nutrient/reservoir/injection; no foraging requirement",
+    "easy": "one founder, 128 energy, 512 nutrient three sites from initial head, six axial placements over eight seeds, no inflow",
+    "moderate": "one founder, 512 energy, 512 nutrient six sites from head, same axial placements, no inflow",
+    "sparse": "one founder in existing 32-cubed nursery spacing 8, energy 128, stock 512, inflow/injection 64; reproduction capped at one to isolate founder",
+    "ecology": "unaltered experiments/nursery_smoke.json, 12 founders, reproduction enabled"
+  },
+  "comparisons": "Matched seed/environment/genome and initial body; differences in controller mode and condition budgets explicit. Compare v1 baseline then v2 correction with identical fixtures. No parameter optimization after results.",
+  "telemetry": "Each organism each active tick: starting/ending energy, neural/actuator/maintenance/secretion/digging/birth/death accounts, intake, actual and reported joint increments, command/drive/effort/sensors/orientation, periodic COM travel, nearest extant food from head (observer only), exact automatic feeding attempt availability. Death before maintenance is retained.",
+  "distance_limits": "Geometric periodic distance is a lower bound, not path reachability through bodies or fused flesh; near means <=2 sites, capture requires squared lattice distance <=2. Food-distance list sampled before tick, exact availability at uptake captured separately.",
+  "gates": "Separately report mechanical translation, directional control, food encounter, consumption, costs/sustainability, survival, reproduction, learning. No retention/generalization experiment and no claim of learned improvement.",
+  "integrity": "No changes to ecological energy, food spacing or actuator strengths. Explicit v2 corrects billed drive and false motion only after baseline. Historical v1 retained. Every trial failure preserved. Snapshots/configs and every-tick JSONL saved; traces may be gzip compressed losslessly.",
+  "external_research": "None for this slice. Diagnosis uses source inspection and controlled interventions, not new biological claims. Existing references not re-consulted.",
+  "amendment_after_primary_runs": "Source audit found live default nursery spacing 16, whereas nursery_smoke uses 8. Add unmodified full 256-cubed nursery_256.json ecology/current seed 1, 256 ticks, laws v1 and v2. This production-scale spot check is separate from the matched eight-seed smoke study. No environmental or controller tuning.",
+  "production_chronology": "Production v1 run command issued before amendment was written, during compilation; production spot checks are therefore exploratory, not strictly preregistered. Primary 400 trial protocol was saved before either main run. Additional full-scale v2/no_wave seed 1 check selected after results, matching new viewer default; not used for tuning.",
+  "supplementary_control_amendment": "Final raw command audit: nominal wave_only ecology trials developed commands up to abs31 via retained plasticity/inheritance. Preserve main data and explicitly label imperfect ablation. Add eight seeds ecology/locked_wave_only per law (16 trials), identical founders/environment but plasticity=false and zero motor weights. Registered before supplementary runs. Primary current/no_wave comparisons and motionless rest controls unaffected.",
+  "supplementary_control_failure": "Eight law-1 ecology/locked_wave_only runs completed but disabling plasticity alone did not isolate zero output: germline mutation still yielded abs31 outputs in descendants. Preserve this unsuccessful control isolation. Add fixed_wave_only with plasticity=false AND mutation=false, eight seeds per law, before running. This separates prescribed drive from both lifetime and inherited motor-output drift. Never classify old wave_only outputs as proven lifetime learning."
+}

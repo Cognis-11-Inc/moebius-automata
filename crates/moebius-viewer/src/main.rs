@@ -308,13 +308,6 @@ fn main() {
             .chain()
             .run_if(in_state(Stage::Playing)),
     );
-    app.add_systems(
-        PostUpdate,
-        show::feeding_links
-            .after(bevy::transform::TransformSystems::Propagate)
-            .run_if(resource_exists::<Hall>)
-            .run_if(in_state(Stage::Playing)),
-    );
     if cli.start {
         let path = cli.snapshots.expect("--start needs --snapshots");
         match load_reel(&path) {

@@ -172,6 +172,10 @@ impl SimConfig {
     /// An explicitly provisioned nursery, not a learned-foraging result.
     pub fn nursery_farm_256() -> Self {
         let mut c = Self::neural_farm_256();
+        // M4: honest articulation/action costs; scripted wave is experimental.
+        let neural = c.neural.as_mut().expect("neural");
+        neural.version = 2;
+        neural.spinal_wave = false;
         c.feeding = Some(FeedingRules {
             version: 1,
             spacing: 16,

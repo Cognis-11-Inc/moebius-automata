@@ -107,6 +107,43 @@ fn one_bite_covers_maintenance_and_leaves_a_small_surplus() {
 }
 
 #[test]
+fn flesh_beside_a_clot_becomes_food_and_a_distant_thread_stays() {
+    let mut c = config();
+    c.maintenance_cost = 0;
+    c.uptake_per_tick = 0;
+    let world = World::genesis(&c, 1).unwrap();
+    let mut snapshot = world.snapshot();
+    snapshot.nutrient.fill(0);
+    snapshot.cells[0].site = Site { x: 0, y: 1, z: 0 };
+    snapshot.cells[0].energy = 400;
+    snapshot.energy_credited = 400;
+    snapshot.material_initial = 5;
+    snapshot.reservoir = 0;
+    snapshot.flesh = vec![
+        moebius_core::farm::FleshDeposit {
+            site: Site { x: 5, y: 4, z: 4 },
+            amount: 3,
+        },
+        moebius_core::farm::FleshDeposit {
+            site: Site { x: 0, y: 0, z: 0 },
+            amount: 2,
+        },
+    ];
+    let mut world = World::restore(&c, &snapshot).unwrap();
+    world.tick().unwrap();
+    let clot = 4 + 16 * (4 + 16 * 4);
+    assert_eq!(
+        world.nutrient()[clot],
+        1,
+        "the neighbor thread should feed the clot"
+    );
+    assert_eq!(world.flesh().get(&Site { x: 5, y: 4, z: 4 }), Some(&2));
+    assert_eq!(world.flesh().get(&Site { x: 0, y: 0, z: 0 }), Some(&2));
+    assert_eq!(world.accounts().unwrap().material_residual(), 0);
+    assert_eq!(world.accounts().unwrap().energy_residual(), 0);
+}
+
+#[test]
 fn a_crossing_leaves_flesh_that_stays() {
     let mut c = config();
     c.farm.as_mut().unwrap().birth_energy = c.energy_cap;
@@ -126,12 +163,13 @@ fn a_crossing_leaves_flesh_that_stays() {
         laid += world.tick().unwrap().trail_laid;
     }
     assert!(laid > 0, "passage should condense a thread");
-    let flesh = world.flesh().values().sum::<u64>();
-    assert_eq!(flesh, laid);
+    // A neighbor of a clot can be spent as compost during the crossing, so the
+    // map is not required to hold every condensed unit. The ledger still closes.
+    assert_eq!(world.accounts().unwrap().material_residual(), 0);
+    assert_eq!(world.accounts().unwrap().energy_residual(), 0);
     for _ in 0..16 {
         world.tick().unwrap();
     }
-    assert!(world.flesh().values().sum::<u64>() >= flesh);
     assert_eq!(world.accounts().unwrap().material_residual(), 0);
     assert_eq!(world.accounts().unwrap().energy_residual(), 0);
 }

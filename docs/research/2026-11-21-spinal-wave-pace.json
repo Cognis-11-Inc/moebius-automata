@@ -1,0 +1,66 @@
+{
+  "record_version": 1,
+  "date_local": "2026-11-21",
+  "question": "How can the spine visibly work without the body leaving its food, and how can a bite be told apart from a spit, without looking up a new locomotion model?",
+  "scientific_search": {
+    "status": "NOT_PERFORMED",
+    "reason": "No publications were consulted. The spinal wave, the signed lunge, the shape-force divisor, the valve gate, the mouth gulp, and the 40 ms live gap are authored presentation and motor changes. They do not demonstrate learning, foraging, or evolution. The earlier record docs/research/2026-11-21-drive-compost-assimilation.json keeps the previous hunger-gate and deadzone-80 assumptions; those numbers are historical."
+  },
+  "knowledge_transfer": {
+    "claims_from_publications": [],
+    "authored_assumptions": [
+      "Muscle follow uses step 2 when the command gap exceeds 128, otherwise the muscle_rate gene and at least 2. New founders store muscle_rate 3. A stored 0 still means 8.",
+      "Joint rate is half the previous rate plus effort/8, capped at 10, 40, or 64 as absolute effort crosses 64 and 256.",
+      "While energy remains, bend muscles are pulled toward a traveling wave of period 12 ticks. The ordinary target is ±640 with pull 512/1024. Energy under 96, or no intake after eight ticks, uses ±960 and pull 720/1024. Jaws and the valve are untouched. The wave is not aimed at food.",
+      "Shape force from anisotropic drag is divided by 512. A held pose still does not swim. Drag 0 still exchanges no center-of-mass momentum.",
+      "Lunge uses the signed sum of spinal bend rates. Opposing bends cancel. The absolute sum must exceed 280. Scale is sign * excess * drag / 256.",
+      "The secretion accumulator advances only when smoothed valve drive exceeds 480. A saturated open can still release. One release still costs one nutrient and two energy.",
+      "The viewer holds a mouth gulp for 0.32 s after a committed last_meal. The mouth-to-clot strand is not drawn. Jets are drawn at scale 0.18. The worker sleeps 40 ms. The pose-gap estimate is clamped from 0.03 s."
+    ]
+  },
+  "implementation_trace": [
+    "crates/moebius-core/src/neural/controller.rs::spinal_wave",
+    "crates/moebius-core/src/neural/controller.rs::slew_muscle",
+    "crates/moebius-core/src/neural/body.rs::lunge_impulse",
+    "crates/moebius-core/src/neural/body.rs::shape_impulse",
+    "crates/moebius-core/src/world.rs secretion valve gate",
+    "crates/moebius-viewer/src/show.rs::feeding",
+    "crates/moebius-viewer/src/show.rs mouth gulp; the mouth-to-clot strand is no longer spawned",
+    "crates/moebius-viewer/src/show.rs::jet_picture",
+    "crates/moebius-viewer/src/live.rs::LIVE_GAP",
+    "crates/moebius-core/tests/neural.rs::the_spine_works_a_wave_and_hunger_throws_it_harder"
+  ],
+  "evidence": [
+    {
+      "id": "spinal_wave",
+      "status": "MECHANISM_TEST",
+      "file": "crates/moebius-core/tests/neural.rs::the_spine_works_a_wave_and_hunger_throws_it_harder",
+      "observed": "With a silent nerve, one tick at energy 1000 sets a bend muscle to 320. Energy 40 sets it to 675. Jaw and valve muscles stay 0.",
+      "not_claimed": ["foraging", "search", "motivation", "learned locomotion"]
+    },
+    {
+      "id": "lunge_vacuum_and_traveling_bend",
+      "status": "MECHANISM_TEST",
+      "file": "crates/moebius-core/tests/neural.rs::a_hard_bend_lunges_in_a_medium_and_vacuum_stays_put",
+      "also": [
+        "crates/moebius-core/tests/neural.rs::a_traveling_bend_exchanges_momentum_with_the_medium",
+        "crates/moebius-core/tests/neural.rs::a_bent_joint_eases_back_instead_of_holding_a_servo_stop",
+        "crates/moebius-core/tests/neural.rs::world_replay_material_and_reaction_momentum_survive_reproduction"
+      ],
+      "not_claimed": ["the animals choose to move", "a measured gait"]
+    },
+    {
+      "id": "nursery_birth_still_happens",
+      "status": "MECHANISM_TEST",
+      "file": "crates/moebius-core/tests/nursery.rs::nursery_refill_is_material_transfer_and_replays_through_reproduction",
+      "observed": "The provisioned 96-tick fixture still records births. That is a resource check, not evidence the wave found food.",
+      "not_claimed": ["foraging", "adaptation"]
+    },
+    {
+      "id": "viewer_gulp_and_pace",
+      "status": "IMPLEMENTED",
+      "file": "crates/moebius-viewer/src/show.rs::feeding",
+      "note": "Not exercised in a window. The committed world is unchanged by the gulp hold, the hidden strand, the smaller jet mesh, and the 40 ms sleep."
+    }
+  ]
+}

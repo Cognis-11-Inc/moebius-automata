@@ -147,7 +147,7 @@ impl Draft {
             Self::from_parts(SimConfig::nursery_farm_256(), 20_261_026, 1_000, 50, true)
                 .expect("the 256³ farm is valid for one tick");
         draft.status =
-            "Nursery. 256 on a side. Local edible clots, mouth feeding, recurrent motors, germline inheritance.".into();
+            "Nursery. 256 on a side. The spine works, a bite gulps, trails compost, weights assimilate.".into();
         draft
     }
 

@@ -69,7 +69,7 @@ fn torque_has_rates_limits_and_no_vacuum_com_thrust() {
     assert!(body.angular_velocity.iter().all(|v| v.unsigned_abs() < 128));
 }
 #[test]
-fn learned_state_is_not_germline_and_offspring_reset_it() {
+fn learned_weights_are_assimilated_and_lifetime_traces_reset() {
     let mut state = NeuralState::new(ControllerGenome::founder(22, 2, Anatomy::reference()), 100);
     let genome = state.genome.clone();
     state.activations.fill(3000);
@@ -81,11 +81,17 @@ fn learned_state_is_not_germline_and_offspring_reset_it() {
         );
     }
     assert!(state.plastic.iter().any(|w| *w != 0));
+    // Life does not rewrite the parent. Birth does.
     assert_eq!(state.genome, genome);
+    state.plastic[0] = 100;
+    state.plastic_output[3] = -51;
     let child = state.offspring(9, 7, 10, 50, false);
-    assert_eq!(child.genome, genome);
+    assert_eq!(child.genome.recurrent[0], genome.recurrent[0] + 50);
+    assert_eq!(child.genome.output[3], genome.output[3] - 25);
     assert!(child.plastic.iter().all(|w| *w == 0));
+    assert!(child.plastic_output.iter().all(|w| *w == 0));
     assert!(child.activations.iter().all(|w| *w == 0));
+    assert_ne!(child.genome, genome);
     let a = state.offspring(9, 7, 10, 50, true);
     let b = state.offspring(9, 7, 10, 50, true);
     assert_eq!(a, b);
@@ -314,6 +320,86 @@ fn a_bent_joint_eases_back_instead_of_holding_a_servo_stop() {
 }
 
 #[test]
+fn the_spine_works_a_wave_and_hunger_throws_it_harder() {
+    let rules = NeuralRules {
+        plasticity: false,
+        ..NeuralRules::default()
+    };
+    let mut genome = ControllerGenome::founder(4, 1, Anatomy::reference());
+    genome.output.fill(0);
+    genome.motor_biases.fill(0);
+    genome.biases.fill(0);
+    genome.recurrent.fill(0);
+    let sensors = vec![0; genome.anatomy.sensors()];
+    let mut hungry = NeuralState::new(genome.clone(), 40);
+    let mut fed = NeuralState::new(genome, 1000);
+    hungry.integrate(sensors.clone(), &rules, 1, 1, 3, 40);
+    fed.integrate(sensors, &rules, 1, 1, 3, 1000);
+    let bend = |state: &NeuralState| {
+        state
+            .genome
+            .anatomy
+            .axes
+            .iter()
+            .enumerate()
+            .filter(|(_, binding)| binding.axis == moebius_core::neural::schema::Axis::Bend)
+            .map(|(index, _)| state.muscle[index].unsigned_abs())
+            .max()
+            .unwrap()
+    };
+    let fed_peak = bend(&fed);
+    let hungry_peak = bend(&hungry);
+    assert_eq!(fed_peak, 320, "a fed spine still works the wave");
+    assert_eq!(hungry_peak, 675, "hunger throws the same wave harder");
+    let jaw = hungry
+        .genome
+        .anatomy
+        .axes
+        .iter()
+        .enumerate()
+        .find(|(_, binding)| binding.axis == moebius_core::neural::schema::Axis::Jaw)
+        .map(|(index, _)| index)
+        .unwrap();
+    assert_eq!(hungry.muscle[jaw], 0, "the wave must not chew");
+    assert_eq!(fed.muscle[jaw], 0, "the wave must not chew");
+    let valve = hungry.genome.anatomy.axes.len();
+    assert_eq!(hungry.muscle[valve], 0, "the wave must not spit");
+    assert_eq!(fed.muscle[valve], 0, "the wave must not spit");
+}
+
+#[test]
+fn a_hard_bend_lunges_in_a_medium_and_vacuum_stays_put() {
+    let anatomy = Anatomy::reference();
+    let strengths = vec![Q; anatomy.motors()];
+    let loads = vec![0; anatomy.axes.len()];
+    let mut commands = vec![0; anatomy.motors()];
+    for joint in 0..anatomy.spine {
+        commands[joint * 2] = 1024;
+    }
+    let mut vacuum = Body::new(&anatomy);
+    for _ in 0..16 {
+        let absorbed = vacuum.step(&anatomy, &commands, &strengths, 0, &loads, 6, &[]);
+        assert_eq!(absorbed, [0; 3]);
+        assert_eq!(vacuum.momentum, [0; 3]);
+    }
+    let mut medium = Body::new(&anatomy);
+    let mut environment = [0i64; 3];
+    for _ in 0..24 {
+        let absorbed = medium.step(&anatomy, &commands, &strengths, 8, &loads, 6, &[]);
+        for axis in 0..3 {
+            environment[axis] += absorbed[axis];
+        }
+        medium.validate(&anatomy).unwrap();
+    }
+    assert_eq!(environment, medium.momentum.map(|momentum| -momentum));
+    assert!(
+        medium.momentum.iter().any(|axis| axis.unsigned_abs() > 64),
+        "a hard bend should lunge, momentum {:?}",
+        medium.momentum
+    );
+}
+
+#[test]
 fn a_traveling_bend_exchanges_momentum_with_the_medium() {
     let anatomy = Anatomy::reference();
     let mut body = Body::new(&anatomy);
@@ -347,7 +433,7 @@ fn a_traveling_bend_exchanges_momentum_with_the_medium() {
 }
 
 #[test]
-fn motor_synapses_follow_reward_and_are_not_inherited() {
+fn motor_synapses_follow_reward_and_half_enters_the_germline() {
     let mut state = NeuralState::new(ControllerGenome::founder(5, 1, Anatomy::reference()), 100);
     state.activations.fill(800);
     state.muscle.fill(400);
@@ -355,9 +441,14 @@ fn motor_synapses_follow_reward_and_are_not_inherited() {
         state.feedback(100 + step as u64, 1, &NeuralRules::default());
     }
     assert!(state.plastic_output.iter().any(|weight| *weight != 0));
+    let parent_output = state.genome.output.clone();
     let child = state.offspring(3, 9, 4, 40, false);
     assert!(child.plastic_output.iter().all(|weight| *weight == 0));
     assert!(child.muscle.iter().all(|drive| *drive == 0));
+    for (index, learned) in state.plastic_output.iter().enumerate() {
+        let expect = (parent_output[index] + learned / 2).clamp(-2048, 2048);
+        assert_eq!(child.genome.output[index], expect);
+    }
     let frozen = NeuralRules {
         plasticity: false,
         ..NeuralRules::default()

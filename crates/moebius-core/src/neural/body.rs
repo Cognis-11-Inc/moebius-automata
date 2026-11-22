@@ -41,6 +41,7 @@ impl Body {
         body.centroid = body.local_geometry(anatomy).1;
         body
     }
+    #[allow(clippy::too_many_arguments)] // Explicit legacy public actuator ABI.
     pub fn step(
         &mut self,
         anatomy: &Anatomy,
@@ -50,6 +51,31 @@ impl Body {
         contact: &[i32],
         ligament_stiffness: i32,
         ligament_rest: &[i32],
+    ) -> [i64; 3] {
+        self.step_with_law(
+            anatomy,
+            commands,
+            strengths,
+            drag,
+            contact,
+            ligament_stiffness,
+            ligament_rest,
+            1,
+        )
+    }
+    /// Version 1 preserves historical kinematics; version 2 reports actual
+    /// articulation and aggregates resistive forces before integer rounding.
+    #[allow(clippy::too_many_arguments)] // Same actuator ABI plus replay law version.
+    pub fn step_with_law(
+        &mut self,
+        anatomy: &Anatomy,
+        commands: &[i32],
+        strengths: &[i32],
+        drag: u32,
+        contact: &[i32],
+        ligament_stiffness: i32,
+        ligament_rest: &[i32],
+        version: u32,
     ) -> [i64; 3] {
         let previous = self.velocity;
         let mut relative = [0i64; 3];
@@ -65,7 +91,17 @@ impl Body {
             let effort = (commanded + spring).clamp(-1024, 1024) as i32;
             self.efforts[index] = effort;
             self.loads[index] = contact.get(index).copied().unwrap_or(0).clamp(0, Q);
-            let mut rate = (self.rates[index] * 3 / 4 + effort / 32).clamp(-16, 16);
+            // A shiver stays small. A real contraction sweeps the joint.
+            // The cap stays inside the audit bound of 64.
+            let mut rate = self.rates[index] / 2 + effort / 8;
+            let cap = if effort.unsigned_abs() > 256 {
+                64
+            } else if effort.unsigned_abs() > 64 {
+                40
+            } else {
+                10
+            };
+            rate = rate.clamp(-cap, cap);
             // Local unilateral contact opposes closing jaws. Spinal load is
             // exposed but complete capsule collision is a documented prerequisite.
             if binding.axis == Axis::Jaw && self.loads[index] > 0 && rate < 0 {
@@ -74,6 +110,9 @@ impl Body {
             let angle = (self.angles[index] + rate).clamp(binding.min, binding.max);
             if angle == binding.min || angle == binding.max {
                 rate /= 4;
+            }
+            if version >= 2 {
+                rate = angle - self.angles[index];
             }
             self.angles[index] = angle;
             self.rates[index] = rate;
@@ -107,7 +146,13 @@ impl Body {
         // The impulse put on the body is removed from the returned environment
         // transfer, and the caller adds that transfer to the environment ledger.
         if drag > 0 {
-            let thrust = shape_impulse(self, anatomy, drag);
+            let mut thrust = shape_impulse(self, anatomy, drag, version);
+            // A coordinated bend also lunges along the spine. Vacuum skips this
+            // block, so internal motion still cannot shove the center of mass.
+            let lunge = lunge_impulse(self, anatomy, drag);
+            for (axis, impulse) in lunge.into_iter().enumerate() {
+                thrust[axis] += impulse;
+            }
             for (axis, impulse) in thrust.into_iter().enumerate() {
                 let next = (self.momentum[axis] + impulse).clamp(-4096, 4096);
                 let applied = next - self.momentum[axis];
@@ -219,7 +264,7 @@ impl Body {
 /// Resistive drag on spine deformation. Normal drag is stronger than tangent
 /// drag, so a traveling bend can leave a net impulse. A held pose does not.
 /// This is a coarse authored coupling, not a Stokes solution.
-fn shape_impulse(body: &Body, anatomy: &Anatomy, drag: u32) -> [i64; 3] {
+fn shape_impulse(body: &Body, anatomy: &Anatomy, drag: u32, version: u32) -> [i64; 3] {
     if anatomy.spine < 2 {
         return [0; 3];
     }
@@ -231,7 +276,13 @@ fn shape_impulse(body: &Body, anatomy: &Anatomy, drag: u32) -> [i64; 3] {
             continue;
         }
         let mut probe = body.clone();
-        let bumped = (body.angles[index] + 64).clamp(binding.min, binding.max);
+        // One-sided derivative must face into the admissible range at a stop.
+        let probe_step = if version >= 2 && body.angles[index] + 64 > binding.max {
+            -64
+        } else {
+            64
+        };
+        let bumped = (body.angles[index] + probe_step).clamp(binding.min, binding.max);
         let delta = i64::from(bumped - body.angles[index]);
         if delta == 0 {
             continue;
@@ -274,10 +325,47 @@ fn shape_impulse(body: &Body, anatomy: &Anatomy, drag: u32) -> [i64; 3] {
         for axis in 0..3 {
             let tangent_part = along * tangent[axis] / span;
             let normal_part = speed[axis] - tangent_part;
-            force[axis] += (-tangent_drag * tangent_part - normal_drag * normal_part) / 128;
+            // Divisor keeps a hard stroke from pinning the body at the
+            // momentum cap. The spine can still travel; it does not become a jet.
+            let numerator = -tangent_drag * tangent_part - normal_drag * normal_part;
+            force[axis] += if version >= 2 {
+                numerator
+            } else {
+                numerator / 512
+            };
         }
     }
-    force
+    if version >= 2 {
+        force.map(|v| v / 512)
+    } else {
+        force
+    }
+}
+
+/// Push along the local spine when many bends are actually moving.
+/// A shiver under the deadzone does not swim. The impulse is paid by the
+/// caller as opposite environment momentum. This is an authored stroke,
+/// not a fluid solution and not a path toward food.
+fn lunge_impulse(body: &Body, anatomy: &Anatomy, drag: u32) -> [i64; 3] {
+    if drag == 0 {
+        return [0; 3];
+    }
+    let mut bend = 0i64;
+    for (index, binding) in anatomy.axes.iter().enumerate() {
+        if binding.axis == Axis::Bend {
+            bend += i64::from(body.rates[index]);
+        }
+    }
+    // Opposing bends in the living wave cancel. Only a same-direction throw
+    // clears this line, and that shove stays a stroke rather than a rocket.
+    let excess = bend.unsigned_abs().saturating_sub(280);
+    if excess == 0 {
+        return [0; 3];
+    }
+    let dir = rotate([0, TRIG, 0], body.orientation);
+    let sign = if bend < 0 { -1i64 } else { 1 };
+    let scale = sign * i64::try_from(excess).unwrap_or(i64::MAX) * i64::from(drag) / 256;
+    std::array::from_fn(|axis| dir[axis] * scale / TRIG)
 }
 
 fn sin_cos(angle: i32) -> (i64, i64) {

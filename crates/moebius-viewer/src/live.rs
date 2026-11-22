@@ -13,8 +13,69 @@ use moebius_core::{Dims, SimConfig, Site, World, check_horizon, config_hash, flu
 
 use crate::layout::display_stride;
 
-const LIVE_GAP: Duration = Duration::from_millis(125);
+const LIVE_GAP: Duration = Duration::from_millis(40);
 const PATH_RING: usize = 192;
+const ORIENT_TURN: f32 = 6434.0;
+
+/// One committed step, sampled continuously by the renderer.
+/// `lead` is 0 at the previous picture and 1 at this one. A late picture may
+/// run a little past 1 so the body does not freeze and then pop.
+#[derive(Clone, Debug)]
+pub struct PoseSpan {
+    pub from: [f32; 3],
+    pub to: [f32; 3],
+    pub angles_from: Vec<f32>,
+    pub angles_to: Vec<f32>,
+    pub rates: Vec<f32>,
+    pub orient_from: [f32; 3],
+    pub orient_to: [f32; 3],
+    pub ang_vel: [f32; 3],
+    pub centroid_from: [f32; 3],
+    pub centroid_to: [f32; 3],
+}
+
+fn wrap_delta(from: f32, to: f32) -> f32 {
+    let mut delta = to - from;
+    if delta > ORIENT_TURN * 0.5 {
+        delta -= ORIENT_TURN;
+    } else if delta < -ORIENT_TURN * 0.5 {
+        delta += ORIENT_TURN;
+    }
+    delta
+}
+
+impl PoseSpan {
+    pub fn translation(&self, lead: f32) -> [f32; 3] {
+        let t = lead.clamp(0.0, 1.45);
+        std::array::from_fn(|axis| self.from[axis] + (self.to[axis] - self.from[axis]) * t)
+    }
+
+    pub fn angle(&self, index: usize, lead: f32) -> f32 {
+        let t = lead.min(1.0);
+        let extra = (lead - 1.0).max(0.0);
+        let from = self.angles_from.get(index).copied().unwrap_or(0.0);
+        let to = self.angles_to.get(index).copied().unwrap_or(from);
+        let rate = self.rates.get(index).copied().unwrap_or(0.0);
+        from + (to - from) * t + rate * extra
+    }
+
+    pub fn orientation(&self, lead: f32) -> [f32; 3] {
+        let t = lead.min(1.0);
+        let extra = (lead - 1.0).max(0.0);
+        std::array::from_fn(|axis| {
+            self.orient_from[axis]
+                + wrap_delta(self.orient_from[axis], self.orient_to[axis]) * t
+                + self.ang_vel[axis] * extra
+        })
+    }
+
+    pub fn centroid(&self, lead: f32) -> [f32; 3] {
+        let t = lead.clamp(0.0, 1.45);
+        std::array::from_fn(|axis| {
+            self.centroid_from[axis] + (self.centroid_to[axis] - self.centroid_from[axis]) * t
+        })
+    }
+}
 
 #[derive(Clone)]
 pub struct Founder {
@@ -121,6 +182,7 @@ pub struct Hall {
     pub paths: BTreeMap<u64, Vec<(u64, Site)>>,
     pub motion_paths: BTreeMap<u64, Vec<(u64, [f32; 3])>>,
     pub poses: BTreeMap<u64, ([f32; 3], [f32; 3])>,
+    pub spans: BTreeMap<u64, PoseSpan>,
     pub spawned_ids: std::collections::BTreeSet<u64>,
     pub fluid_origins: Vec<Site>,
     pub fluid_sites: Vec<u32>,
@@ -139,8 +201,16 @@ impl Hall {
         if self.committed == 0 {
             return 0.0;
         }
-        self.committed as f32 - 1.0
-            + (self.received.elapsed().as_secs_f32() / self.gap).clamp(0.0, 1.0)
+        self.committed as f32 - 1.0 + self.motion_blend().min(1.0)
+    }
+
+    /// Fraction of the latest committed step. May run slightly past 1 while the
+    /// next picture is late, so joints keep the rate they already had.
+    pub fn motion_blend(&self) -> f32 {
+        if self.committed == 0 {
+            return 1.0;
+        }
+        (self.received.elapsed().as_secs_f32() / self.gap.max(0.03)).clamp(0.0, 1.45)
     }
 
     pub fn committed_tick(&self) -> u64 {
@@ -156,20 +226,19 @@ impl Hall {
     }
 
     pub fn drain(&mut self) {
-        let batch = {
+        // One picture per frame. A burst used to replace the pose mid-blend
+        // and the body popped. The worker blocks when the channel fills.
+        let picture = {
             let inbox = self.inbox.lock().unwrap_or_else(|err| err.into_inner());
-            let mut batch = Vec::new();
-            while let Ok(picture) = inbox.try_recv() {
-                batch.push(picture);
-            }
-            batch
+            inbox.try_recv().ok()
         };
-        for picture in batch {
+        if let Some(picture) = picture {
             self.absorb(picture);
         }
     }
 
     fn absorb(&mut self, picture: Picture) {
+        let lead = self.motion_blend();
         if let Some(err) = picture.error.clone() {
             self.halted = Some(err.clone());
             self.note = format!("tick refused: {err}. The last committed state stays.");
@@ -190,14 +259,54 @@ impl Hall {
                         * crate::layout::SPACING;
                 }
             }
-            let ring = self.motion_paths.entry(cell.id).or_default();
-            let prior = ring.last().map_or(position, |(_, p)| *p);
+            let prior = self
+                .motion_paths
+                .get(&cell.id)
+                .and_then(|path| path.last().map(|(_, point)| *point))
+                .unwrap_or(position);
             let wrap = prior
                 .iter()
                 .zip(position)
                 .any(|(a, b)| (*a - b).abs() > crate::layout::SPACING * 2.0);
-            self.poses
-                .insert(cell.id, (if wrap { position } else { prior }, position));
+            let shown = self
+                .spans
+                .get(&cell.id)
+                .map(|span| span.translation(lead))
+                .unwrap_or(position);
+            let from = if wrap { position } else { shown };
+            let (angles_to, rates, orient_to, ang_vel, centroid_to) = neural_kinematics(&cell.rig);
+            let continued = self
+                .spans
+                .get(&cell.id)
+                .filter(|span| span.angles_to.len() == angles_to.len())
+                .map(|span| {
+                    (
+                        (0..angles_to.len())
+                            .map(|index| span.angle(index, lead))
+                            .collect(),
+                        span.orientation(lead),
+                        span.centroid(lead),
+                    )
+                });
+            let (angles_from, orient_from, centroid_from) =
+                continued.unwrap_or_else(|| (angles_to.clone(), orient_to, centroid_to));
+            self.spans.insert(
+                cell.id,
+                PoseSpan {
+                    from,
+                    to: position,
+                    angles_from,
+                    angles_to,
+                    rates,
+                    orient_from,
+                    orient_to,
+                    ang_vel,
+                    centroid_from,
+                    centroid_to,
+                },
+            );
+            self.poses.insert(cell.id, (from, position));
+            let ring = self.motion_paths.entry(cell.id).or_default();
             ring.push((picture.tick, position));
             if ring.len() > PATH_RING {
                 ring.remove(0);
@@ -232,7 +341,7 @@ impl Hall {
             .retain(|_, path| path.last().is_some_and(|(tick, _)| *tick >= earliest));
         let elapsed = self.received.elapsed().as_secs_f32();
         if elapsed > 0.02 && self.latest.is_some() {
-            self.gap = (self.gap * 0.5 + elapsed * 0.5).clamp(0.08, 2.0);
+            self.gap = (self.gap * 0.5 + elapsed * 0.5).clamp(0.03, 2.0);
         }
         self.received = Instant::now();
         self.committed = picture.tick;
@@ -290,6 +399,7 @@ pub fn open(config: &SimConfig, seed: u64) -> Result<Hall, String> {
         paths: BTreeMap::new(),
         motion_paths: BTreeMap::new(),
         poses: BTreeMap::new(),
+        spans: BTreeMap::new(),
         spawned_ids: std::collections::BTreeSet::new(),
         fluid_origins: Vec::new(),
         fluid_sites: Vec::new(),
@@ -300,7 +410,7 @@ pub fn open(config: &SimConfig, seed: u64) -> Result<Hall, String> {
         spawned: false,
         committed: 0,
         received: Instant::now(),
-        gap: 0.25,
+        gap: 0.04,
     })
 }
 
@@ -344,18 +454,39 @@ fn pump(
 }
 
 fn wait(stop: &AtomicBool, pause: &AtomicBool) -> bool {
-    let mut slept = Duration::ZERO;
-    while slept < LIVE_GAP {
+    let mut left = LIVE_GAP;
+    while !left.is_zero() {
         if stop.load(Ordering::Relaxed) {
             return false;
         }
-        thread::sleep(Duration::from_millis(25));
+        let slice = left.min(Duration::from_millis(5));
+        thread::sleep(slice);
         if pause.load(Ordering::Relaxed) {
             continue;
         }
-        slept += Duration::from_millis(25);
+        left = left.saturating_sub(slice);
     }
     !stop.load(Ordering::Relaxed)
+}
+
+type NeuralKinematics = (Vec<f32>, Vec<f32>, [f32; 3], [f32; 3], [f32; 3]);
+
+fn neural_kinematics(rig: &Option<moebius_core::farm::BrainRig>) -> NeuralKinematics {
+    let Some(state) = rig.as_ref().and_then(|rig| rig.neural.as_ref()) else {
+        return (Vec::new(), Vec::new(), [0.0; 3], [0.0; 3], [0.0; 3]);
+    };
+    (
+        state
+            .body
+            .angles
+            .iter()
+            .map(|angle| *angle as f32)
+            .collect(),
+        state.body.rates.iter().map(|rate| *rate as f32).collect(),
+        state.body.orientation.map(|angle| angle as f32),
+        state.body.angular_velocity.map(|rate| rate as f32),
+        state.body.centroid.map(|point| point as f32),
+    )
 }
 
 fn shoot(world: &World, stride: u32, error: Option<String>) -> Picture {
@@ -517,6 +648,7 @@ mod tests {
             paths: BTreeMap::new(),
             motion_paths: BTreeMap::new(),
             poses: BTreeMap::new(),
+            spans: BTreeMap::new(),
             spawned_ids: std::collections::BTreeSet::new(),
             fluid_origins: Vec::new(),
             fluid_sites: Vec::new(),
@@ -527,7 +659,7 @@ mod tests {
             spawned: false,
             committed: 0,
             received: Instant::now(),
-            gap: 0.25,
+            gap: 0.04,
         };
         for tick in 0..(PATH_RING as u64 + 16) {
             hall.absorb(Picture {

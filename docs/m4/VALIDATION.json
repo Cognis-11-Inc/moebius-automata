@@ -1,0 +1,150 @@
+{
+  "status": "PASS_WITH_EXPLICIT_VIABILITY_NULLS",
+  "workspace_tests": 80,
+  "m4_tests": 7,
+  "clippy": "cargo clippy --workspace --all-targets -- -D warnings: PASS",
+  "format": "cargo fmt --all -- --check: PASS",
+  "whitespace": "git diff --check: PASS",
+  "primary_replay": [
+    {
+      "dataset": "docs/m4/artifacts/baseline_v1",
+      "snapshots_audited": 400,
+      "status": "PASS",
+      "ticks_replayed": 45168,
+      "trials_replayed": 200
+    },
+    {
+      "dataset": "docs/m4/artifacts/corrected_v2",
+      "snapshots_audited": 400,
+      "status": "PASS",
+      "ticks_replayed": 44986,
+      "trials_replayed": 200
+    }
+  ],
+  "exact_v1_results_rerun": true,
+  "independent_accounting": [
+    {
+      "dataset": "baseline_v1",
+      "status": "PASS",
+      "individual_ticks": 217328,
+      "trials": 200,
+      "failures": 0,
+      "false_motion_ticks": 698915,
+      "maximum_raw_command_by_controller": {
+        "current": 453,
+        "no_wave": 452,
+        "random": 1024,
+        "wave_only": 31,
+        "rest": 31
+      }
+    },
+    {
+      "dataset": "corrected_v2",
+      "status": "PASS",
+      "individual_ticks": 216221,
+      "trials": 200,
+      "failures": 0,
+      "false_motion_ticks": 0,
+      "maximum_raw_command_by_controller": {
+        "current": 453,
+        "no_wave": 457,
+        "random": 1024,
+        "wave_only": 31,
+        "rest": 31
+      }
+    },
+    {
+      "dataset": "fixed_wave_v1",
+      "status": "PASS",
+      "individual_ticks": 36768,
+      "trials": 8,
+      "failures": 0,
+      "false_motion_ticks": 0,
+      "maximum_raw_command_by_controller": {
+        "fixed_wave_only": 0
+      }
+    },
+    {
+      "dataset": "fixed_wave_v2",
+      "status": "PASS",
+      "individual_ticks": 36768,
+      "trials": 8,
+      "failures": 0,
+      "false_motion_ticks": 0,
+      "maximum_raw_command_by_controller": {
+        "fixed_wave_only": 0
+      }
+    },
+    {
+      "dataset": "locked_wave_v1",
+      "status": "PASS",
+      "individual_ticks": 36768,
+      "trials": 8,
+      "failures": 0,
+      "false_motion_ticks": 0,
+      "maximum_raw_command_by_controller": {
+        "locked_wave_only": 31
+      }
+    },
+    {
+      "dataset": "production_v1",
+      "status": "PASS",
+      "individual_ticks": 73536,
+      "trials": 1,
+      "failures": 0,
+      "false_motion_ticks": 446302,
+      "maximum_raw_command_by_controller": {
+        "current": 445
+      }
+    },
+    {
+      "dataset": "production_v2",
+      "status": "PASS",
+      "individual_ticks": 73536,
+      "trials": 1,
+      "failures": 0,
+      "false_motion_ticks": 0,
+      "maximum_raw_command_by_controller": {
+        "current": 434
+      }
+    },
+    {
+      "dataset": "production_v2_no_wave",
+      "status": "PASS",
+      "individual_ticks": 73536,
+      "trials": 1,
+      "failures": 0,
+      "false_motion_ticks": 0,
+      "maximum_raw_command_by_controller": {
+        "no_wave": 411
+      }
+    }
+  ],
+  "mechanical_assays": 30,
+  "mechanical_ledger_maximum": 0,
+  "artifact_files": 1732,
+  "artifact_bytes": 215135920,
+  "source_sha256": {
+    "crates/moebius-core/src/config.rs": "9a94d854965294422fcd0fb8de0cf4fed4991b14a0323d49d237eb45c3a574c0",
+    "crates/moebius-core/src/world.rs": "ec7b92eebb2b2c6f07dcd6036c7c08d73b0b772e9ee36b4d99f7e65aedab4f8a",
+    "crates/moebius-core/src/neural/body.rs": "6ed9cb975b10a21c86388a2624cd0ade5ff8d79c573c9150d3a10b67ad80efd6",
+    "crates/moebius-core/src/neural/controller.rs": "59080e1e1635353fcc6a09cca91d32a17ff7e5a3a96cea614c409f644931a8f6",
+    "crates/moebius-core/examples/m4_probe.rs": "b1178ffa7aa6e165aed15b012cbc1a559076f691c87912730ec57a6939f67928",
+    "crates/moebius-core/examples/m4_mechanics.rs": "5aec549b2247ff85755ad77e85ba3f57b3f713ca4f0b81858ff9e27124eb5b14",
+    "crates/moebius-core/examples/m4_replay.rs": "6057e0a2766d1ede2b5e4a5f4f39ee20db79a04557f3c6d3accb2157751bf2c2",
+    "crates/moebius-core/tests/m4.rs": "9b735794924ba25d6def14480bef482ba92e6f06a7b0c03b057bf2e34ffceb35",
+    "python/analyze_m4.py": "f63ef8d1993edbc9724d733b09bfab03b61fdd5e58af1793c10211d9d0bb65d1",
+    "experiments/nursery_smoke.json": "e989689af731f88db66c00838591c8918049346e226e9448d51c9892bebfd64a",
+    "experiments/nursery_256.json": "4fe151e7305ea571d3fb07e9d12eeb128e55b252281e1ec6f99384d1b302f4fd",
+    "experiments/nursery_m4_v2.json": "65d93ef555162e271d5c8f06d6a95c6fdb153019890e44039b5f5c3e23c49c95"
+  },
+  "base_commit": "ecfd933ed976199a45246a9bdf5fbf2694b4a628",
+  "source_status": "Uncommitted supplied changes plus M4 work; not the base commit alone. Baseline v1 equivalence verified by full results and replay.",
+  "human_live_visual_witness": "NOT RUN",
+  "long_term_full_scale_viability": "NOT RUN",
+  "learning_retention_generalization": "NOT RUN",
+  "active_braking": "NOT DEMONSTRATED",
+  "effective_foraging": "FAIL in easy/moderate; no second-food-site meals in primary/full-scale/supplementary conditions",
+  "control_isolation_failure_preserved": "locked_wave_v1 plasticity-off retained inherited command drift; fixed_wave_v1/v2 disable mutation too and raw commands audited zero",
+  "commit_push_hosted_ci": "NOT RUN"
+}

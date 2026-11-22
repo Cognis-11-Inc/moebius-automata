@@ -1,6 +1,7 @@
 //! Rule slate, the committed-run picture, and the open hall.
 //! These systems do not call `World::tick`. The hall worker does.
 
+use std::collections::BTreeMap;
 use std::fs;
 use std::path::PathBuf;
 use std::sync::Arc;
@@ -51,11 +52,6 @@ pub struct MotorJoint {
 }
 #[derive(Component)]
 pub struct FeedingMaw {
-    id: u64,
-}
-
-#[derive(Component)]
-pub struct FeedingLink {
     id: u64,
 }
 
@@ -249,7 +245,7 @@ pub fn neural_inspector(
             for row in state.genome.recurrent.chunks(8) {
                 lines.push_str(&format!("{row:?}\n"));
             }
-            lines.push_str("\nlifetime plastic deltas (not inherited):\n");
+            lines.push_str("\nlifetime plastic deltas (half is written into the child genes):\n");
             for row in state.plastic.chunks(8) {
                 lines.push_str(&format!("{row:?}\n"));
             }
@@ -296,7 +292,8 @@ pub fn jet_picture(
                 jet.position[2] as f32,
             ) / 1024.0;
             transform.translation = (p - half) * layout::SPACING;
-            transform.scale = Vec3::splat(0.45);
+            // A spent droplet, much smaller than the mouth. Spinal work is not a spit.
+            transform.scale = Vec3::splat(0.18);
         } else {
             *visibility = Visibility::Hidden;
         }
@@ -1272,15 +1269,6 @@ pub fn embody(
                 ))
                 .id();
             commands.entity(head_bone).add_child(mouth);
-            if hall.nursery {
-                commands.spawn((
-                    Mesh3d(gallery.mouth.clone()),
-                    MeshMaterial3d(gallery.mouth_mat.clone()),
-                    Transform::default(),
-                    Visibility::Hidden,
-                    FeedingLink { id: cell.id },
-                ));
-            }
             // Feeding organ follows the articulated head.
             commands
                 .entity(mouth)
@@ -1320,13 +1308,9 @@ pub fn hall_bodies(
     mut commands: Commands,
     mut bodies: Query<(Entity, &Creature, &mut Transform, &mut Visibility)>,
 ) {
+    let lead = hall.motion_blend();
     let Some(picture) = &hall.latest else {
         return;
-    };
-    let blend = if hall.committed_tick() == view.tick.floor() as u64 + 1 {
-        view.tick.fract()
-    } else {
-        1.0
     };
     for (entity, body, mut transform, mut visibility) in &mut bodies {
         let Ok(index) = picture.cells.binary_search_by_key(&body.id, |c| c.id) else {
@@ -1339,26 +1323,30 @@ pub fn hall_bodies(
         } else {
             Visibility::Hidden
         };
-        if let Some((before, after)) = hall.poses.get(&body.id) {
-            transform.translation = Vec3::from_array(*before).lerp(Vec3::from_array(*after), blend);
+        if let Some(span) = hall.spans.get(&body.id) {
+            transform.translation = Vec3::from_array(span.translation(lead));
+        } else if let Some((before, after)) = hall.poses.get(&body.id) {
+            transform.translation =
+                Vec3::from_array(*before).lerp(Vec3::from_array(*after), lead.min(1.0));
         }
         if let Some(rig) = &cell.rig {
             if let Some(state) = &rig.neural {
-                let o = state.body.orientation.map(|v| v as f32 / 1024.0);
-                let target = Quat::from_rotation_z(o[2])
-                    * Quat::from_rotation_y(o[1])
-                    * Quat::from_rotation_x(o[0]);
-                transform.rotation = transform
-                    .rotation
-                    .slerp(target, 1.0 - (-time.delta_secs() * 3.2).exp());
-                let center = Vec3::new(
-                    state.body.centroid[0] as f32,
-                    state.body.centroid[1] as f32,
-                    state.body.centroid[2] as f32,
-                ) / 1024.0
-                    * layout::SPACING;
-                let root_rotation = transform.rotation;
-                transform.translation -= root_rotation * center;
+                let (rotation, center) = if let Some(span) = hall.spans.get(&body.id) {
+                    let rotation = neural_orientation(span.orientation(lead));
+                    let center = Vec3::from_array(span.centroid(lead)) / 1024.0 * layout::SPACING;
+                    (rotation, center)
+                } else {
+                    let rotation = neural_orientation(state.body.orientation.map(|v| v as f32));
+                    let center = Vec3::new(
+                        state.body.centroid[0] as f32,
+                        state.body.centroid[1] as f32,
+                        state.body.centroid[2] as f32,
+                    ) / 1024.0
+                        * layout::SPACING;
+                    (rotation, center)
+                };
+                transform.rotation = rotation;
+                transform.translation -= rotation * center;
                 transform.scale = Vec3::splat(BODY_SCALE);
                 continue;
             }
@@ -1394,11 +1382,17 @@ pub fn hall_bodies(
     }
 }
 
+fn neural_orientation(angles: [f32; 3]) -> Quat {
+    let o = angles.map(|angle| angle / 1024.0);
+    Quat::from_rotation_z(o[2]) * Quat::from_rotation_y(o[1]) * Quat::from_rotation_x(o[0])
+}
+
 pub fn rig_joints(
     time: Res<Time>,
     hall: Res<Hall>,
     mut joints: Query<(&MotorJoint, &mut Transform), Without<Creature>>,
 ) {
+    let lead = hall.motion_blend();
     let Some(picture) = &hall.latest else {
         return;
     };
@@ -1420,7 +1414,12 @@ pub fn rig_joints(
                 .enumerate()
                 .filter(|(_, b)| b.joint == joint.index)
             {
-                let angle = state.body.angles[index] as f32 / 1024.0;
+                let angle = hall
+                    .spans
+                    .get(&joint.id)
+                    .filter(|span| span.angles_to.len() == state.body.angles.len())
+                    .map(|span| span.angle(index, lead) / 1024.0)
+                    .unwrap_or(state.body.angles[index] as f32 / 1024.0);
                 match binding.axis {
                     moebius_core::neural::schema::Axis::Twist => twist = angle,
                     _ => bend = angle,
@@ -1435,9 +1434,9 @@ pub fn rig_joints(
                     bend
                 })
             };
-            transform.rotation = transform
-                .rotation
-                .slerp(target, 1.0 - (-time.delta_secs() * 3.2).exp());
+            // The span already moves at a steady rate across the committed step.
+            // An extra ease would arrive early and then wait, which is the tick.
+            transform.rotation = target;
             continue;
         }
         let angle = rig.joints[joint.index] as f32 / 256.0;
@@ -1463,11 +1462,13 @@ pub fn rig_joints(
 pub fn feeding(
     time: Res<Time>,
     hall: Res<Hall>,
+    mut hold: Local<BTreeMap<u64, f32>>,
     mut mouths: Query<(&FeedingMaw, &mut Transform), Without<Creature>>,
 ) {
     let Some(picture) = &hall.latest else {
         return;
     };
+    let now = time.elapsed_secs();
     for (maw, mut transform) in &mut mouths {
         let Ok(index) = picture.cells.binary_search_by_key(&maw.id, |c| c.id) else {
             continue;
@@ -1475,69 +1476,21 @@ pub fn feeding(
         let Some(rig) = &picture.cells[index].rig else {
             continue;
         };
-        let amount = (rig.last_meal + rig.last_dig).min(4) as f32;
-        let feeding = if amount > 0.0 {
-            1.0 + (time.elapsed_secs() * 11.0).sin() * 0.16
+        if rig.last_meal > 0 {
+            // One committed bite is a single tick. Hold the gulp so it reads.
+            hold.insert(maw.id, now + 0.32);
+        }
+        let target = if hold.get(&maw.id).is_some_and(|until| now < *until) {
+            let chew = (now * 22.0).sin();
+            let open = chew.max(0.0);
+            let shut = (-chew).max(0.0);
+            Vec3::new(1.35 + open * 0.7, 0.28 + shut * 0.22, 1.35 + open * 0.7)
         } else {
-            0.0
+            Vec3::new(0.72, 0.62, 0.72)
         };
-        let target = Vec3::new(
-            0.7 + amount * 0.12,
-            0.6 + amount * feeding,
-            0.7 + amount * 0.12,
-        );
         transform.scale = transform
             .scale
-            .lerp(target, 1.0 - (-time.delta_secs() * 10.0).exp());
-    }
-}
-
-/// Draw a short feeding tether only for committed uptake at an actual food site.
-/// The source endpoint follows the rendered articulated mouth; the stock endpoint
-/// comes from the core's recorded consumption, never a guessed nearby target.
-pub fn feeding_links(
-    hall: Res<Hall>,
-    view: Res<ViewState>,
-    mouths: Query<(&FeedingMaw, &GlobalTransform)>,
-    mut links: Query<(&FeedingLink, &mut Transform, &mut Visibility)>,
-) {
-    let Some(picture) = &hall.latest else {
-        return;
-    };
-    for (link, mut transform, mut visibility) in &mut links {
-        *visibility = Visibility::Hidden;
-        if !view.cells {
-            continue;
-        }
-        let Ok(i) = picture.cells.binary_search_by_key(&link.id, |c| c.id) else {
-            continue;
-        };
-        let Some(state) = picture.cells[i]
-            .rig
-            .as_ref()
-            .and_then(|r| r.neural.as_ref())
-        else {
-            continue;
-        };
-        let Some(site) = state.last_food_site.filter(|_| state.last_intake > 0) else {
-            continue;
-        };
-        let Some((_, mouth)) = mouths.iter().find(|(m, _)| m.id == link.id) else {
-            continue;
-        };
-        let start = mouth.translation();
-        let end = Vec3::from_array(site_to_view(site, hall.dims));
-        let delta = end - start;
-        let length = delta.length();
-        // Do not draw a strand across a periodic seam.
-        if !(0.001..1.2).contains(&length) {
-            continue;
-        }
-        *visibility = Visibility::Visible;
-        transform.translation = (start + end) * 0.5;
-        transform.rotation = Quat::from_rotation_arc(Vec3::Y, delta / length);
-        let swallow = 1.0 + (view.tick * 2.0).sin() * 0.15;
-        transform.scale = Vec3::new(0.16 * swallow, length / 0.16, 0.16 * swallow);
+            .lerp(target, 1.0 - (-time.delta_secs() * 14.0).exp());
     }
 }
 

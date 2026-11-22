@@ -1,0 +1,57 @@
+{
+  "record_version": 1,
+  "date_local": "2026-11-21",
+  "question": "How can a neural organism leave a depleted clot, pass a lifetime motor change to its offspring, and use its own trail to bring food back, while the live view stops stepping between committed ticks?",
+  "scientific_search": {
+    "status": "NOT_PERFORMED",
+    "reason": "No publications were consulted for this slice. The hunger writhe, the spinal lunge, the half-weight germline write, the trail compost, and the viewer pose span are authored mechanisms. They must not be cited as a published model, and they do not demonstrate learning, foraging, or evolution."
+  },
+  "knowledge_transfer": {
+    "claims_from_publications": [],
+    "authored_assumptions": [
+      "A quiet joint stays slow. Absolute effort above 256 may raise the rate cap from 16 to 48. A command gap above 256 follows with half the muscle gene, and never faster than 2.",
+      "After eight ticks, an empty previous mouth or action-energy under 96 pulls spinal bends toward a traveling wave. A recent meal at or above 96 leaves the nerve in charge. Jaws and the valve are not driven. The wave is not aimed at a clot.",
+      "When the sum of absolute spinal bend rates exceeds 80 and drag is above 0, an impulse along the local spine is added to the body and removed from the environment ledger. Near the threshold the impulse is a drift. A spasm is large. Drag 0 still produces no center-of-mass thrust.",
+      "At birth, half of each lifetime recurrent weight and half of each lifetime motor weight, truncated toward zero, is added to the child gene and clamped to the existing gene bounds. The child's traces, muscle, and activations start empty. Mutation runs after the write.",
+      "One flesh unit on a face neighbor of a nursery clot becomes one nutrient on that clot, at most one unit per clot per tick. Distant flesh stays. This is not a global refill.",
+      "The viewer plays angles, facing, centroid, and translation across the measured gap between committed pictures. The committed tick remains the authority. Render frames do not advance the world."
+    ]
+  },
+  "implementation_trace": [
+    "crates/moebius-core/src/neural/body.rs::lunge_impulse",
+    "crates/moebius-core/src/neural/controller.rs::hunger_writhe",
+    "crates/moebius-core/src/neural/controller.rs::offspring",
+    "crates/moebius-core/src/world.rs::compost",
+    "crates/moebius-viewer/src/live.rs::PoseSpan",
+    "crates/moebius-viewer/src/show.rs::rig_joints",
+    "crates/moebius-core/tests/neural.rs",
+    "crates/moebius-core/tests/nursery.rs"
+  ],
+  "evidence": [
+    {
+      "id": "assimilation_tests",
+      "status": "MECHANISM_TEST",
+      "file": "crates/moebius-core/tests/neural.rs::learned_weights_are_assimilated_and_lifetime_traces_reset",
+      "not_claimed": ["learned foraging", "adaptive evolution"]
+    },
+    {
+      "id": "hunger_and_lunge_tests",
+      "status": "MECHANISM_TEST",
+      "file": "crates/moebius-core/tests/neural.rs::hunger_writhes_a_starving_spine_and_leaves_a_fed_one_alone",
+      "also": "crates/moebius-core/tests/neural.rs::a_hard_bend_lunges_in_a_medium_and_vacuum_stays_put",
+      "not_claimed": ["search", "motivation"]
+    },
+    {
+      "id": "compost_test",
+      "status": "MECHANISM_TEST",
+      "file": "crates/moebius-core/tests/nursery.rs::flesh_beside_a_clot_becomes_food_and_a_distant_thread_stays",
+      "not_claimed": ["organisms use compost", "ecology"]
+    },
+    {
+      "id": "viewer_span",
+      "status": "IMPLEMENTED",
+      "file": "crates/moebius-viewer/src/live.rs::PoseSpan",
+      "note": "Not exercised in a window. The committed world is unchanged by the renderer."
+    }
+  ]
+}

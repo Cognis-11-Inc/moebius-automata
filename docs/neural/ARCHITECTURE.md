@@ -1,5 +1,11 @@
 # Neural foundation v1
 
+M4 update: the default nursery now selects neural law 2 and disables the
+authored spinal wave. Explicit historical law-1 configs retain their behavior.
+See [M4 diagnosis and validation](../m4/REPORT.md); useful locomotion and
+foraging remain unestablished. The earlier foundation measurements below
+retain their original evidence scope.
+
 This is an authored deterministic model, inspired by recurrent-network research,
 not a reproduction or validation of a published biological model. Read the
 [baseline audit](PHASE_0_AUDIT.md), [research record](../research/2026-11-21-neural-foundation.json)
@@ -103,20 +109,44 @@ silently interpreted by version 1.
 ## Mechanics and costs
 
 The nerve writes a command. A heritable muscle follows it by
-`muscle += (command - muscle) / muscle_rate` (`muscle_rate` 2–16, founder 8).
-The body receives that smoothed drive, not the raw flicker. Effort is
-drive × strength / Q, clamped to ±1024, plus a ligament spring
+`muscle += (command - muscle) / step` (`muscle_rate` 2–16, founder 3; a stored
+0 still means 8 so older genomes load). `step` is 2 when the command gap
+exceeds 128, otherwise the gene and at least 2. A real contraction arrives in
+a few ticks. The body receives that smoothed drive, not the raw flicker. Effort
+is drive × strength / Q, clamped to ±1024, plus a ligament spring
 `-(angle - rest) / stiffness`. Stiffness is 2–24, founder 6. `ligament_rest`
 is one heritable angle per joint, founder values a shallow alien curl, jaws at 0.
-Rate integrates as `clamp(3/4 previous + effort/32, -16, 16)`. A limit bleeds
-rate instead of freezing it at zero. These three genes mutate. Lifetime muscle
-state and learned motor weights do not.
+Rate integrates as `1/2 previous + effort/8`, capped at ±10, ±40 when absolute
+effort exceeds 64, or ±64 when it exceeds 256. In law 1 a limit bleeds reported rate even when the angle is fixed. Law 2
+reports the actual bounded angle change, so a held stop has zero rate. These
+three genes mutate.
+
+When `spinal_wave` is enabled and energy remains, an authored spinal wave pulls bend muscles toward a
+traveling target. The ordinary stroke aims at ±640 with pull 512/1024. Hunger
+(action-energy under 96, or no intake after the first eight ticks) aims at
+±960 with pull 720/1024. The phase is `tick % 12`. Jaws and the valve are not
+driven. It is not a path to the nearest clot, and a fed animal still works
+the spine.
+
+With drag, a same-direction throw (the absolute value of the signed sum of
+spinal bend rates above 280) lunges along the local spine, scaled by
+`excess * drag / 256`, and the sign follows the throw. Opposing bends in the
+wave cancel, so the stroke does not become a one-way rocket. The impulse is
+clamped into the body momentum bound and the opposite amount is added to the
+environment ledger.
+Vacuum still has no center-of-mass thrust from internal motion. Lifetime muscle
+length is not inherited. Half of the lifetime recurrent and motor weights is
+written into the child genes at birth; the traces themselves reset. A learned
+weight of 1 truncates to nothing. That write is an authored assimilation, not
+a measured evolutionary result.
 
 Jaw load still limits closing rate to -8. Internal joint motion produces
 approximate opposite body rotation. In vacuum (`drag = 0`) that motion still
 creates **no COM thrust**. With drag, spine deformation feels anisotropic
-resistance: normal drag is four times tangential drag, and the net impulse is
-entered on the body and, with the opposite sign, on the environment ledger.
+resistance: normal drag is four times tangential drag. The finite-difference
+force is divided by 512 before it is entered on the body and, with the opposite
+sign, on the environment ledger. That divisor keeps a hard stroke off the
+momentum cap.
 This is a coarse authored coupling, not a Stokes solution. A held pose does
 not swim. Bend limits remain ±768, twist ±512, jaw -256..768.
 
@@ -128,9 +158,13 @@ absent: this is a torque-driven kinematic rig with approximate counter-rotation.
 
 One neural energy unit is charged every eight ticks. Aggregate absolute
 strength-weighted axis effort /8 accumulates debt; each 4096 debt units costs
-one energy unit. Unaffordable efforts are suppressed. Passive coasting remains
+one energy unit. Law 1 uses raw neural commands here, omitting downstream wave
+drive; law 2 bills the actual smoothed muscle request including any enabled
+wave. Law 2 suppresses unaffordable muscle drive. Passive coasting remains
 possible. Valve/nozzle strength affects actual release and recoil, not only
-stored genes. A release costs two energy plus one local nutrient unit, creates
+stored genes. The accumulator advances only when the smoothed valve drive
+exceeds 480, near the squashed ceiling of a saturated open. The spinal wave
+does not write that channel. A release costs two energy plus one local nutrient unit, creates
 one material-bearing jet, and gives the body exactly the opposite linear
 impulse. A 4096-jet cap and body-momentum bounds refuse release without losing
 material. There is no hidden desired velocity.
@@ -165,10 +199,12 @@ plastic_remainder_ij %= 8Q²
 ```
 
 The same authored rule also updates motor synapses from the smoothed muscle
-drive. Those weights are lifetime state. Offspring do not inherit them.
-Changing a synapse establishes the mechanism. It does not show that a lineage
+drive. Those weights stay lifetime state until birth. Offspring assimilate half
+of the recurrent plastic weights and half of the motor plastic weights into the
+germline, then start with empty traces. Changing a synapse, or finding it in a
+child genome, establishes the mechanism. It does not show that a lineage
 learned to forage. The matched study did not demonstrate that benefit, and the
-nursery has no new foraging trial since this rule was added.
+nursery has no new foraging trial since assimilation was added.
 
 ## Persistence and observation
 

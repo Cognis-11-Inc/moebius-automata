@@ -1,4 +1,45 @@
-# Current checkpoint — nursery habitat (2026-11-21 local)
+# Current checkpoint — M4 diagnosis (2026-11-21 local)
+
+Read [AGENTS.md](AGENTS.md), then [M4 report](docs/m4/REPORT.md),
+[protocol](docs/m4/PROTOCOL.json), [analysis](docs/m4/ANALYSIS.json), and
+[validation](docs/m4/VALIDATION.json). The earlier checkpoint below is retained
+for chronology; its wave/default/test statements are superseded here.
+
+The live nursery default now uses neural law **2**, with `spinal_wave: false`.
+Start: `cargo run -p moebius-viewer --release -- --live --inspect`.
+Equivalent explicit config: `experiments/nursery_m4_v2.json`.
+Old explicit nursery/neural configs remain law 1 for historical replay.
+
+**Movement/foraging is NOT solved.** 200 baseline + 200 corrected matched trials:
+all 40 easy trials in each dataset starved without a bite; all moderate trials
+had zero intake. No organism ate at a second food site. Strong imposed bends
+can translate the rig, but autonomous motion is negligible. Motionless controls
+feed/reproduce beside founding clots. Full 256-cubed exploratory seed-1 checks
+confirmed contact feeding/reproduction, not foraging. They ran only 256 ticks;
+do not infer the cause of later observed extinction.
+
+Law 2 fixes clamped-joint false rates, inward finite differences at upper stops,
+force rounding before summation, and billing raw neural output instead of actual
+muscle drive. The authored wave is available for experiments but disabled in the
+new nursery default. No ecological energy, food spacing, strengths or anatomy
+were increased. Six axial scent rays can miss nearby off-ray food; no new
+sensory model or gait was added.
+
+`World::tick_observed` records every organism's costs, feeding, commands, actual
+motion, birth transfers and death before removal without changing state hashes.
+403 main/production trials plus 24 supplementary control trials and compressed traces/configs/snapshots are under `docs/m4/artifacts/`.
+All 400 primary trials replay to exact hashes; independent Python per-organism
+energy audits pass. See VALIDATION.json for final checks and artifact sizes.
+80 workspace tests, strict Clippy, formatting and diff whitespace checks pass.
+No new external scientific sources consulted. Live visuals were not inspected.
+No commit, push, or hosted CI is claimed. Existing uncommitted work remains.
+
+Next: demonstrate a usable local sensing → articulation → controllable propulsion
+loop that can reach another meal before the existing budget expires. Isotropic
+local chemical sensing, per-joint propulsion attribution, active braking, and
+longer production-scale ecological observation remain unresolved. No new species.
+
+# Previous checkpoint — nursery habitat (retained historical text)
 
 Start: `cargo run -p moebius-viewer --release -- --live --inspect`.
 The default is the 256³ nursery: the neural farm plus fixed edible clots and
@@ -8,19 +49,30 @@ mutes. The viewer only observes committed ticks.
 
 Every neural organism carries the same alien tissue genes: muscle follow,
 ligament stiffness, and a resting curl. Nerves are the recurrent controller.
-Lifetime motor synapses can change after a meal and are not inherited. Germline
-mutation can change the tissue genes. That is a substrate for later evolution.
-It is not a demonstration that a new body plan has evolved. The next species
-is waiting on you.
+Lifetime motor and recurrent weights can change after a meal. At birth, half of
+those weights is written into the child genes and the lifetime traces reset.
+Germline mutation still runs after that write. This is an authored assimilation,
+not a demonstration that a new body plan has evolved. The next species is
+waiting on you.
 
 One bite of the basic clot is 1 nutrient and 4 energy. Maintenance is 1, and
 birth still costs a reserve of 256, so contact feeds them without turning a
 clot into a feast. Founders start at 128. A clot holds 512. Smell reaches 8
-sites and is silent beyond that.
+sites and is silent beyond that. The spine always works a traveling bend
+wave. Hunger, an empty mouth after eight ticks or energy under 96, throws that
+wave harder. Jaws and the valve stay out of it. A same-direction throw can
+lunge in a medium; opposing bends cancel. Vacuum still does not translate the
+center of mass. The wave is an authored drive, not a path to food.
 
 A site crossing condenses 1 reservoir unit into flesh on the vacated site.
-That thread stays. Four linked units still fuse into a soft wall. The green
-ribbon is only the wet gloss on recent steps. The next species is not started.
+Flesh beside a clot can turn back into one nutrient on that clot, one unit per
+clot per tick. Threads that do not touch a clot stay. Four linked units still
+fuse into a soft wall. The green ribbon is only the wet gloss on recent steps.
+The viewer plays each committed step across the gap, including joints, facing,
+and the body centroid, so the pose does not pulse and then wait. The worker
+waits 40 ms between ticks. The blend floor is 30 ms, so a fast step is not
+held at the old slow-motion gap. The next
+species is not started.
 
 Read [AGENTS.md](AGENTS.md) first: before searching scientific work, announce
 intent; afterwards preserve sources, knowledge transfer, implementation trace
@@ -45,9 +97,10 @@ Read these current records:
 
 Eight recurrent neurons command 26 torque axes plus valve and local nozzle xyz.
 Persistent bounded fixed-point state, physiological plasticity, and inherited
-parameter mutation are distinct. Offspring reset learned state. No authored gait
-or world-heading motor impulse runs in neural mode. Internal articulation cannot
-translate the COM; secretion jets exchange momentum with the body. All bodies,
+parameter mutation are distinct. Offspring assimilate half of the lifetime
+weights and then reset the traces. The spine works a traveling wave, and hunger
+throws it harder. A same-direction bend can lunge in a medium. Vacuum articulation still cannot
+translate the COM. Secretion jets exchange momentum with the body. All bodies,
 jets and the environment close an exact integer linear-momentum ledger. Material
 includes in-flight droplets. Energy is action/metabolic accounting, not mechanical
 energy conservation. Anatomical mapping is extensible in controller helpers;
@@ -74,7 +127,8 @@ a separate corrected run. No goal/reward/genotype/scenario tuning followed nulls
 An instrumentation-only rerun reproduces all 112 corrected trial results except
 wall time and exports auditable parent-child genomes/probes (257 records).
 
-`cargo test --workspace` now passes 70 tests. Strict Clippy was not re-run.
+`cargo test --workspace` now passes 73 tests. Strict Clippy was not re-run.
+The live window was not opened after the pose-span change.
 M0 1000-tick acceptance remains
 `facbb77bb992e4213416a9b4d81aaec29da38fff6f1a3a5832d26bd0e3562096`.
 Two new neural 200-tick runs match

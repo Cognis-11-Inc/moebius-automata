@@ -21,6 +21,15 @@ pub struct NeuralRules {
     pub mutation: bool,
     pub policy: Policy,
     pub drag: u32,
+    /// Explicit ablation; omitted/true preserves historical law encoding.
+    #[serde(default = "enabled", skip_serializing_if = "is_enabled")]
+    pub spinal_wave: bool,
+}
+fn enabled() -> bool {
+    true
+}
+fn is_enabled(value: &bool) -> bool {
+    *value
 }
 impl Default for NeuralRules {
     fn default() -> Self {
@@ -33,12 +42,13 @@ impl Default for NeuralRules {
             mutation: true,
             policy: Policy::Recurrent,
             drag: 8,
+            spinal_wave: true,
         }
     }
 }
 impl NeuralRules {
     pub fn validate(&self) -> Result<(), Error> {
-        if self.version != 1 || self.drag > 128 {
+        if !(1..=2).contains(&self.version) || self.drag > 128 {
             return Err(Error::Config("unsupported neural laws or drag".into()));
         }
         Ok(())
@@ -63,7 +73,8 @@ pub struct ControllerGenome {
     /// Higher is stiffer. This is an alien spring, not a vertebrate tendon.
     #[serde(default)]
     pub ligament_stiffness: i32,
-    /// Ticks of nerve command the muscle takes to follow. Zero means 8.
+    /// Ticks of nerve command the muscle takes to follow. Zero still means 8
+    /// so an older genome loads. New founders are written as 3.
     #[serde(default)]
     pub muscle_rate: i32,
     /// Heritable resting curve, one angle per joint axis. Empty means straight.
@@ -118,7 +129,7 @@ impl ControllerGenome {
             plastic_rates: vec![32; NEURONS],
             strengths: vec![Q; a],
             ligament_stiffness: 6,
-            muscle_rate: 8,
+            muscle_rate: 3,
             ligament_rest,
         };
         if id != 0 {
@@ -236,6 +247,11 @@ impl ControllerGenome {
 pub fn squash(x: i64) -> i32 {
     (i64::from(Q) * x / (i64::from(Q) + x.abs())) as i32
 }
+fn assimilate(genes: &mut [i32], learned: &[i32], limit: i32) {
+    for (gene, weight) in genes.iter_mut().zip(learned) {
+        *gene = (*gene + weight / 2).clamp(-limit, limit);
+    }
+}
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct NeuralState {
@@ -249,7 +265,8 @@ pub struct NeuralState {
     /// one-tick command flicker does not snap a joint or open the nozzle.
     #[serde(default)]
     pub muscle: Vec<i32>,
-    /// Lifetime change to motor synapses. Not inherited.
+    /// Lifetime change to motor synapses. Offspring assimilate half of it
+    /// into the germline and then start this trace at zero.
     #[serde(default)]
     pub plastic_output: Vec<i32>,
     #[serde(default)]
@@ -328,7 +345,14 @@ impl NeuralState {
         if energy == 0 || energy < fee {
             self.commands.fill(0);
             self.realized_efforts.fill(0);
-            self.slew_muscle();
+            if rules.version >= 2 {
+                self.muscle.fill(0);
+            } else {
+                self.slew_muscle();
+                if rules.spinal_wave {
+                    self.spinal_wave(energy, tick);
+                }
+            }
             return (0, 0);
         }
         if !rules.recurrence {
@@ -404,7 +428,20 @@ impl NeuralState {
                     .clamp(-i64::from(Q), i64::from(Q)) as i32
             };
         }
-        let effort: i64 = self.commands[..self.genome.anatomy.axes.len()]
+        // Version 1 bills raw neural output before the authored wave, retained
+        // for historical replay. Version 2 bills the actual requested drive.
+        if rules.version >= 2 {
+            self.slew_muscle();
+            if rules.spinal_wave {
+                self.spinal_wave(energy, tick);
+            }
+        }
+        let billed = if rules.version >= 2 {
+            self.actuator_drive()
+        } else {
+            &self.commands
+        };
+        let effort: i64 = billed[..self.genome.anatomy.axes.len()]
             .iter()
             .enumerate()
             .map(|(i, x)| {
@@ -417,11 +454,19 @@ impl NeuralState {
         if motor_fee > energy - fee {
             self.commands.fill(0);
             self.realized_efforts.fill(0);
+            if rules.version >= 2 {
+                self.muscle.fill(0);
+            }
         } else {
             self.actuator_debt = debt % 4096;
             self.spent_actuator = motor_fee;
         }
-        self.slew_muscle();
+        if rules.version == 1 {
+            self.slew_muscle();
+            if rules.spinal_wave {
+                self.spinal_wave(energy, tick);
+            }
+        }
         self.neural_updates += 1;
         (self.spent_neural, self.spent_actuator)
     }
@@ -441,7 +486,35 @@ impl NeuralState {
         self.ensure_motor_memory();
         let follow = self.genome.muscle_rate();
         for (muscle, command) in self.muscle.iter_mut().zip(&self.commands) {
-            *muscle += (*command - *muscle) / follow;
+            let gap = (*command - *muscle).unsigned_abs();
+            // A small correction stays smooth. A real contraction arrives in a few ticks.
+            let step = if gap > 128 { 2 } else { follow.max(2) };
+            *muscle += (*command - *muscle) / step;
+        }
+    }
+    /// The spine always works a traveling wave. Hunger throws it harder.
+    /// Jaws and the valve are left alone, so a meal is not a vomit and a
+    /// spit is not how the body moves. This is an authored motor drive, not
+    /// a path to food and not evidence of foraging.
+    fn spinal_wave(&mut self, energy: u64, tick: u64) {
+        if energy == 0 || self.muscle.is_empty() {
+            return;
+        }
+        let throwing = energy < 96 || (self.steps > 8 && self.last_intake == 0);
+        let amplitude = if throwing { 960 } else { 640 };
+        let pull = if throwing { 720 } else { 512 };
+        let phase = (tick % 12) as i32;
+        for (index, binding) in self.genome.anatomy.axes.iter().enumerate() {
+            if binding.axis != super::schema::Axis::Bend || index >= self.muscle.len() {
+                continue;
+            }
+            let wave = if ((index as i32 + phase) % 6) < 3 {
+                1
+            } else {
+                -1
+            };
+            let target = amplitude * wave;
+            self.muscle[index] += (target - self.muscle[index]) * pull / 1024;
         }
     }
     /// What the joints and the valve actually receive this tick.
@@ -485,15 +558,16 @@ impl NeuralState {
             }
         }
         // Motor synapses use the same authored three-factor rule. A meal can
-        // strengthen the drive that preceded it. This is not an inherited gait
-        // and it does not by itself prove useful foraging.
+        // strengthen the drive that preceded it. Birth writes half of that
+        // change into the genes. The write is not evidence of useful foraging.
         let motors = self.genome.anatomy.motors();
         for a in 0..motors {
             let post = self.actuator_drive()[a];
-            for n in 0..NEURONS {
+            for (n, firing_value) in firing.iter().enumerate() {
                 let k = a * NEURONS + n;
-                self.output_eligibility[k] =
-                    (self.output_eligibility[k] * 7 / 8 + post * firing[n] / (8 * Q)).clamp(-Q, Q);
+                self.output_eligibility[k] = (self.output_eligibility[k] * 7 / 8
+                    + post * firing_value / (8 * Q))
+                    .clamp(-Q, Q);
                 if rules.plasticity {
                     self.output_residual[k] += i64::from(self.genome.plastic_rates[n])
                         * i64::from(modulation)
@@ -510,6 +584,12 @@ impl NeuralState {
     }
     pub fn offspring(&self, seed: u64, id: u64, tick: u64, energy: u64, mutation: bool) -> Self {
         let mut genome = self.genome.clone();
+        // Authored assimilation. Half of the lifetime weights, integer-truncated,
+        // is written into the child genes before mutation. The child still
+        // starts with empty traces, so it can learn further. A weight of 1
+        // contributes nothing. This is not a demonstrated evolutionary result.
+        assimilate(&mut genome.recurrent, &self.plastic, 4 * Q);
+        assimilate(&mut genome.output, &self.plastic_output, 2 * Q);
         if mutation {
             for k in 0..4 {
                 genome.mutate(seed, id, tick as usize + k);

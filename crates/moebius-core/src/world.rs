@@ -198,6 +198,38 @@ pub fn apply_receipt(stocks: &mut Stocks, receipt: &TickReceipt) -> Result<(), E
     Ok(())
 }
 
+/// Observational telemetry, deliberately absent from snapshots and state hashes.
+/// Positions are fixed point (1024 per site); tick is zero based.
+#[derive(Clone, Debug, Default, serde::Serialize, serde::Deserialize)]
+pub struct OrganismTick {
+    pub id: u64,
+    pub tick: u64,
+    pub energy_before: u64,
+    pub energy_after: u64,
+    pub neural: u64,
+    pub actuator: u64,
+    pub maintenance: u64,
+    pub secretion: u64,
+    pub digging: u64,
+    pub intake: u64,
+    pub gain: u64,
+    pub birth_out: u64,
+    pub death_disposal: u64,
+    pub died: bool,
+    pub position_before: [i64; 3],
+    pub position_after: [i64; 3],
+    pub head: Option<Site>,
+    pub food_available_at_attempt: u64,
+    pub food_site: Option<Site>,
+    pub commands: Vec<i32>,
+    pub drive: Vec<i32>,
+    pub angles: Vec<i32>,
+    pub rates: Vec<i32>,
+    pub efforts: Vec<i32>,
+    pub orientation: [i32; 3],
+    pub sensors: Vec<i32>,
+}
+
 /// Authoritative world. Mutation of scientific state goes through [`World::tick`].
 #[derive(Clone, Debug)]
 pub struct World {
@@ -222,6 +254,7 @@ pub struct World {
     material_initial: u64,
     next_cell_id: u64,
     inject_cursor: u64,
+    observations: Option<BTreeMap<u64, OrganismTick>>,
 }
 
 impl World {
@@ -354,6 +387,7 @@ impl World {
             material_initial,
             next_cell_id: u64::from(config.initial_population) + 1,
             inject_cursor: 0,
+            observations: None,
         };
         world.rebuild_occupancy()?;
         world.audit()?;
@@ -427,6 +461,7 @@ impl World {
             material_initial: snapshot.material_initial,
             next_cell_id: snapshot.next_cell_id,
             inject_cursor: snapshot.inject_cursor,
+            observations: None,
         };
         if world.brains.len() != snapshot.brains.len() || world.flesh.len() != snapshot.flesh.len()
         {
@@ -443,6 +478,17 @@ impl World {
         next.audit()?;
         *self = next;
         Ok(receipt)
+    }
+
+    /// Identical scientific transition to `tick`, with optional external telemetry.
+    pub fn tick_observed(&mut self) -> Result<(TickReceipt, Vec<OrganismTick>), Error> {
+        let mut next = self.clone();
+        next.observations = Some(BTreeMap::new());
+        let receipt = next.advance()?;
+        next.audit()?;
+        let rows = next.observations.take().unwrap().into_values().collect();
+        *self = next;
+        Ok((receipt, rows))
     }
 
     pub fn config(&self) -> &SimConfig {
@@ -581,10 +627,11 @@ impl World {
     /// 2. Reservoir injection walks at most one full sweep, at most one unit per site.
     /// 3. Movement intents are drawn from independent per-cell streams.
     /// 4. Contention is resolved by [`resolve_moves`].
-    /// 5. Uptake converts site nutrient into waste 1:1 and credits action-energy.
-    /// 6. Maintenance is paid in full or the cell dies and its action-energy is disposed.
-    /// 7. Waste is exported up to the available stock.
-    /// 8. The committed tick index increments.
+    /// 5. A flesh unit beside a nursery clot becomes one nutrient on that clot.
+    /// 6. Uptake converts site nutrient into waste 1:1 and credits action-energy.
+    /// 7. Maintenance is paid in full or the cell dies and its action-energy is disposed.
+    /// 8. Waste is exported up to the available stock.
+    /// 9. The committed tick index increments.
     fn advance(&mut self) -> Result<TickReceipt, Error> {
         let tick = self.tick;
         let inflow = self.config.inflow_per_tick;
@@ -609,6 +656,28 @@ impl World {
         let solid = fused_surface(&self.flesh, dims)?;
         let mut proposals = Vec::with_capacity(self.cells.len());
         let mut decisions = BTreeMap::new();
+        if let Some(rows) = &mut self.observations {
+            for cell in self.cells.values() {
+                let offset = self
+                    .brains
+                    .get(&cell.id)
+                    .map(|b| b.offset)
+                    .unwrap_or([0; 3]);
+                let coords = [cell.site.x, cell.site.y, cell.site.z];
+                let position =
+                    std::array::from_fn(|a| i64::from(coords[a]) * 1024 + i64::from(offset[a]));
+                rows.insert(
+                    cell.id,
+                    OrganismTick {
+                        id: cell.id,
+                        tick,
+                        energy_before: cell.energy,
+                        position_before: position,
+                        ..OrganismTick::default()
+                    },
+                );
+            }
+        }
         let mut motor_energy = 0;
         let mut neural_energy = 0;
         for cell in self.cells.values() {
@@ -630,6 +699,11 @@ impl World {
                         cell.energy,
                     );
                     neural_energy += neural_fee;
+                    if let Some(rows) = &mut self.observations {
+                        let row = rows.get_mut(&cell.id).unwrap();
+                        row.neural = neural_fee;
+                        row.actuator = motor_fee;
+                    }
                     let mut loads = vec![0; state.genome.anatomy.axes.len()];
                     let base = state.sensors.len() - 2;
                     let mut jaw = 0;
@@ -642,7 +716,7 @@ impl World {
                     let drive = state.actuator_drive().to_vec();
                     let stiffness = state.genome.ligament_stiffness();
                     let rest = state.genome.ligament_rest.clone();
-                    let absorbed = state.body.step(
+                    let absorbed = state.body.step_with_law(
                         &state.genome.anatomy,
                         &drive,
                         &state.genome.strengths,
@@ -650,6 +724,7 @@ impl World {
                         &loads,
                         stiffness,
                         &rest,
+                        rules.version,
                     );
                     for (axis, value) in absorbed.into_iter().enumerate() {
                         self.environment_momentum[axis] += value;
@@ -776,6 +851,9 @@ impl World {
                 trail_laid = add(trail_laid, 1, "trail units")?;
             }
         }
+        // A flesh unit beside a clot becomes one nutrient on that clot.
+        // Threads elsewhere stay. The organism can keep laying beside food.
+        self.compost()?;
 
         let ids: Vec<u64> = self.cells.keys().copied().collect();
         let mut uptaken = 0u64;
@@ -786,6 +864,16 @@ impl World {
                 (self.feeding_site(cell), cell.energy)
             };
             let index = site_index(site, dims)?;
+            let head = self
+                .brains
+                .get(id)
+                .and_then(|b| b.neural.as_ref())
+                .map(|state| self.neural_jaw_target(&self.cells[id], state));
+            if let Some(rows) = &mut self.observations {
+                let row = rows.get_mut(id).unwrap();
+                row.head = head;
+                row.food_available_at_attempt = self.nutrient[index];
+            }
             let units = uptake_units(
                 self.nutrient[index],
                 self.config.uptake_per_tick,
@@ -807,6 +895,12 @@ impl World {
             let gain = units
                 .checked_mul(self.config.energy_per_nutrient)
                 .ok_or_else(|| Error::Overflow(format!("energy credit for cell {id}")))?;
+            if let Some(rows) = &mut self.observations {
+                let row = rows.get_mut(id).unwrap();
+                row.intake = units;
+                row.gain = gain;
+                row.food_site = Some(site);
+            }
             self.nutrient[index] = sub(self.nutrient[index], units, "site nutrient")?;
             self.waste = add(self.waste, units, "waste from uptake")?;
             self.cells
@@ -853,9 +947,11 @@ impl World {
             let cell = &self.cells[id];
             let count = state.genome.anatomy.axes.len();
             let drive = state.actuator_drive();
-            // A resting flicker must not spend the clot as exhaust.
+            // The spinal wave does not write this channel. A resting flicker
+            // stays shut. A saturated open, command near the squashed ceiling,
+            // spends one nutrient as a droplet.
             let valve = drive[count];
-            if valve > 256 {
+            if valve > 480 {
                 state.valve_accumulator +=
                     (i64::from(valve) * i64::from(state.genome.strengths[count]) / 1024).min(1024)
                         as i32;
@@ -982,6 +1078,30 @@ impl World {
         let cost = self.config.maintenance_cost;
         for id in ids {
             let energy = self.cells[&id].energy;
+            if let Some(rows) = &mut self.observations {
+                let row = rows.get_mut(&id).unwrap();
+                row.secretion = if secretion_paid.contains(&id) { 2 } else { 0 };
+                row.digging = u64::from(digging_paid.contains(&id));
+                row.maintenance = if energy >= cost { cost } else { 0 };
+                row.died = energy < cost;
+                row.death_disposal = if row.died { energy } else { 0 };
+                let cell = &self.cells[&id];
+                let coords = [cell.site.x, cell.site.y, cell.site.z];
+                let offset = self.brains.get(&id).map(|b| b.offset).unwrap_or([0; 3]);
+                row.position_after =
+                    std::array::from_fn(|a| i64::from(coords[a]) * 1024 + i64::from(offset[a]));
+                if let Some(state) = self.brains.get(&id).and_then(|b| b.neural.as_ref()) {
+                    row.commands = state.commands.clone();
+                    row.drive = state.actuator_drive().to_vec();
+                    row.angles = state.body.angles.clone();
+                    row.rates = state.body.rates.clone();
+                    row.efforts = state.body.efforts.clone();
+                    row.orientation = state.body.orientation;
+                    row.sensors = state.sensors.clone();
+                } else {
+                    row.actuator = decisions.get(&id).map(|d| d.2).unwrap_or(0);
+                }
+            }
             if let Some((action, features, motor_cost, _)) = decisions.get(&id)
                 && self.brains[&id].neural.is_none()
             {
@@ -1029,6 +1149,19 @@ impl World {
                 if let Some(state) = &mut brain.neural {
                     state.feedback(self.cells[id].energy, brain.last_meal, rules);
                 }
+            }
+        }
+        if let Some(rows) = &mut self.observations {
+            for row in rows.values_mut() {
+                row.energy_after = self.cells.get(&row.id).map(|c| c.energy).unwrap_or(0);
+                let remaining = row.energy_before + row.gain
+                    - row.neural
+                    - row.actuator
+                    - row.secretion
+                    - row.digging
+                    - row.maintenance
+                    - row.death_disposal;
+                row.birth_out = remaining - row.energy_after;
             }
         }
         disposed = add(disposed, birth_cost, "birth energy disposed")?;
@@ -1307,6 +1440,43 @@ impl World {
             births += 1;
         }
         Ok((births, disposed))
+    }
+
+    /// One neighbor flesh unit per clot becomes nutrient. No new matter.
+    /// A clot with no adjacent thread does not recover by this rule.
+    fn compost(&mut self) -> Result<(), Error> {
+        let dims = self.dims();
+        let origins = {
+            let Some(food) = self.config.feeding.as_ref() else {
+                return Ok(());
+            };
+            crate::feeding::sites(food, dims)
+        };
+        for origin in origins {
+            let index = site_index(origin, dims)?;
+            if self.nutrient[index] >= self.config.site_cap {
+                continue;
+            }
+            let mut donor = None;
+            for roll in 1..=6 {
+                let site = crate::step_site(origin, crate::Dir::from_roll(roll)?, dims)?;
+                if self.flesh.get(&site).copied().unwrap_or(0) > 0 {
+                    donor = Some(site);
+                    break;
+                }
+            }
+            let Some(site) = donor else {
+                continue;
+            };
+            let amount = self.flesh.get(&site).copied().unwrap_or(0);
+            if amount <= 1 {
+                self.flesh.remove(&site);
+            } else {
+                self.flesh.insert(site, amount - 1);
+            }
+            self.nutrient[index] = add(self.nutrient[index], 1, "compost")?;
+        }
+        Ok(())
     }
 
     fn inject(&mut self, budget: u64) -> Result<u64, Error> {
