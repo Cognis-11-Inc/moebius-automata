@@ -143,10 +143,11 @@ impl Draft {
 
     /// Game default. Keeps ticking. Does not pre-commit a length.
     pub fn hall() -> Self {
-        let mut draft = Self::from_parts(SimConfig::farm_256(), 20_261_026, 1_000, 50, true)
-            .expect("the 256³ farm is valid for one tick");
+        let mut draft =
+            Self::from_parts(SimConfig::nursery_farm_256(), 20_261_026, 1_000, 50, true)
+                .expect("the 256³ farm is valid for one tick");
         draft.status =
-            "Open farm. 256 on a side. Adaptive joint motors, inertia, feeding, and inherited controllers.".into();
+            "Nursery. 256 on a side. Local edible clots, mouth feeding, recurrent motors, germline inheritance.".into();
         draft
     }
 
@@ -264,7 +265,11 @@ pub fn slate(draft: &Draft) -> String {
          The acceptance experiment stays 64³ and 1000 ticks.\n\
          Fixed: 6-neighbor periodic grid, lowest id wins an empty site.\n",
     );
-    if draft.config.farm.is_some() {
+    if draft.config.neural.is_some() {
+        lines.push_str(
+            "CTRNN1: continuous joint motors; secretion reaction mass; no authored gait.\n",
+        );
+    } else if draft.config.farm.is_some() {
         lines.push_str(
             "M1: joint motors, inertial coasting, adaptive controller and asexual reproduction.\n",
         );
@@ -545,6 +550,8 @@ mod tests {
             energy_cap: 100,
             genome_fill: GenomeFill::Zero,
             farm: None,
+            neural: None,
+            feeding: None,
         };
         let mut draft = Draft::from_parts(config, 3, 20, 10, false).unwrap();
         draft.selected = knob("initial_population");

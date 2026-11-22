@@ -48,8 +48,14 @@ pub struct TickReceipt {
     pub moves_blocked: u32,
     pub births: u32,
     pub motor_energy: u64,
+    pub neural_energy: u64,
+    pub jet_released: u64,
+    pub jet_deposited: u64,
+    pub jet_wasted: u64,
     pub secreted: u64,
     pub excavated: u64,
+    /// Reservoir material condensed into lasting flesh on a vacated site.
+    pub trail_laid: u64,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -59,6 +65,7 @@ pub struct Accounts {
     pub external_output: u64,
     pub field: u64,
     pub flesh: u64,
+    pub in_flight: u64,
     pub reservoir: u64,
     pub waste: u64,
     pub energy_live: u64,
@@ -72,6 +79,7 @@ impl Accounts {
         let left = i128::from(self.material_initial) + i128::from(self.external_input);
         let right = i128::from(self.field)
             + i128::from(self.flesh)
+            + i128::from(self.in_flight)
             + i128::from(self.reservoir)
             + i128::from(self.waste)
             + i128::from(self.external_output);
@@ -90,6 +98,7 @@ impl Accounts {
 pub struct Stocks {
     pub field: u64,
     pub flesh: u64,
+    pub in_flight: u64,
     pub reservoir: u64,
     pub waste: u64,
     pub external_input: u64,
@@ -105,6 +114,7 @@ impl From<&Accounts> for Stocks {
         Self {
             field: accounts.field,
             flesh: accounts.flesh,
+            in_flight: accounts.in_flight,
             reservoir: accounts.reservoir,
             waste: accounts.waste,
             external_input: accounts.external_input,
@@ -133,7 +143,21 @@ pub fn apply_receipt(stocks: &mut Stocks, receipt: &TickReceipt) -> Result<(), E
     stocks.field = sub(stocks.field, receipt.nutrient_uptaken, "field uptake")?;
     stocks.field = sub(stocks.field, receipt.secreted, "secretion substrate")?;
     stocks.flesh = add(stocks.flesh, receipt.secreted, "deposited flesh")?;
+    stocks.reservoir = sub(stocks.reservoir, receipt.trail_laid, "trail condensate")?;
+    stocks.flesh = add(stocks.flesh, receipt.trail_laid, "trail flesh")?;
     stocks.flesh = sub(stocks.flesh, receipt.excavated, "excavated flesh")?;
+    stocks.field = sub(
+        stocks.field,
+        receipt.jet_released,
+        "reaction mass feedstock",
+    )?;
+    stocks.flesh = add(stocks.flesh, receipt.jet_deposited, "jet deposition")?;
+    stocks.in_flight = add(stocks.in_flight, receipt.jet_released, "jet launch")?;
+    stocks.in_flight = sub(
+        stocks.in_flight,
+        receipt.jet_deposited + receipt.jet_wasted,
+        "jet arrival",
+    )?;
     stocks.waste = add(stocks.waste, receipt.waste_created, "waste")?;
     stocks.waste = sub(stocks.waste, receipt.external_output, "waste export")?;
     stocks.external_output = add(
@@ -183,6 +207,8 @@ pub struct World {
     cells: BTreeMap<u64, Cell>,
     brains: BTreeMap<u64, BrainRig>,
     flesh: BTreeMap<Site, u64>,
+    jets: Vec<crate::neural::body::Jet>,
+    environment_momentum: [i64; 3],
     deaths: BTreeMap<u64, DeathRecord>,
     occupancy: Vec<u64>,
     nutrient: Vec<u64>,
@@ -204,8 +230,17 @@ impl World {
         let dims = dims_of(config);
         let volume_u64 = dims.volume()?;
         let volume = usize::try_from(volume_u64).expect("volume fits usize");
-        let mut index: Vec<u32> =
-            (0..u32::try_from(volume_u64).expect("volume fits u32")).collect();
+        let mut index: Vec<u32> = if let Some(food) = &config.feeding {
+            crate::feeding::sites(food, dims)
+                .into_iter()
+                .map(|mut site| {
+                    site.y -= 1;
+                    site_index(site, dims).expect("founding food site") as u32
+                })
+                .collect()
+        } else {
+            (0..u32::try_from(volume_u64).expect("volume fits u32")).collect()
+        };
         let mut rng = placement_rng(seed);
         let mut cursor = index.len();
         while cursor > 1 {
@@ -237,6 +272,12 @@ impl World {
         }
 
         let mut cells = BTreeMap::new();
+        if let Some(food) = &config.feeding {
+            for site in crate::feeding::sites(food, dims) {
+                nutrient[site_index(site, dims)?] = food.initial_stock;
+                field_sum = add(field_sum, food.initial_stock, "initial nursery food")?;
+            }
+        }
         for n in 0..config.initial_population {
             let id = u64::from(n) + 1;
             let site = site_from_index(index[n as usize], dims)?;
@@ -273,7 +314,20 @@ impl World {
         let brains = if config.farm.is_some() {
             cells
                 .values()
-                .map(|cell| (cell.id, BrainRig::new(cell, seed)))
+                .map(|cell| {
+                    let mut brain = BrainRig::new(cell, seed);
+                    if config.neural.is_some() {
+                        brain.neural = Some(crate::neural::NeuralState::new(
+                            crate::neural::ControllerGenome::founder(
+                                seed,
+                                cell.id,
+                                crate::neural::schema::Anatomy::reference(),
+                            ),
+                            cell.energy,
+                        ));
+                    }
+                    (cell.id, brain)
+                })
                 .collect()
         } else {
             BTreeMap::new()
@@ -282,6 +336,8 @@ impl World {
             config: config.clone(),
             brains,
             flesh: BTreeMap::new(),
+            jets: Vec::new(),
+            environment_momentum: [0; 3],
             seed,
             tick: 0,
             cells,
@@ -309,6 +365,11 @@ impl World {
         snapshot: &crate::snapshot::Snapshot,
     ) -> Result<Self, Error> {
         config.validate()?;
+        if snapshot.neural_format != config.neural.is_some() {
+            return Err(Error::Snapshot(
+                "neural snapshot mode does not match configuration".into(),
+            ));
+        }
         if snapshot.width != config.width
             || snapshot.height != config.height
             || snapshot.depth != config.depth
@@ -343,6 +404,8 @@ impl World {
                 .iter()
                 .map(|deposit| (deposit.site, deposit.amount))
                 .collect(),
+            jets: snapshot.jets.clone(),
+            environment_momentum: snapshot.environment_momentum,
             seed: snapshot.seed,
             brains: snapshot
                 .brains
@@ -406,6 +469,13 @@ impl World {
         self.cells.values()
     }
 
+    pub fn jets(&self) -> &[crate::neural::body::Jet] {
+        &self.jets
+    }
+    pub fn environment_momentum(&self) -> [i64; 3] {
+        self.environment_momentum
+    }
+
     pub fn flesh(&self) -> &BTreeMap<Site, u64> {
         &self.flesh
     }
@@ -444,6 +514,7 @@ impl World {
             external_input: self.external_input,
             external_output: self.external_output,
             field,
+            in_flight: self.jets.len() as u64,
             flesh: self
                 .flesh
                 .values()
@@ -478,6 +549,9 @@ impl World {
             deaths: self.deaths.values().cloned().collect(),
             nutrient: self.nutrient.clone(),
             brains: self.brains.values().cloned().collect(),
+            jets: self.jets.clone(),
+            environment_momentum: self.environment_momentum,
+            neural_format: self.config.neural.is_some(),
             flesh: self
                 .flesh
                 .iter()
@@ -531,25 +605,98 @@ impl World {
         self.reservoir = sub(self.reservoir, injected, "reservoir after injection")?;
 
         let dims = self.dims();
+        let (jet_deposited, jet_wasted) = self.advance_jets()?;
+        let solid = fused_surface(&self.flesh, dims)?;
         let mut proposals = Vec::with_capacity(self.cells.len());
         let mut decisions = BTreeMap::new();
         let mut motor_energy = 0;
+        let mut neural_energy = 0;
         for cell in self.cells.values() {
+            let neural_sensors = self
+                .brains
+                .get(&cell.id)
+                .and_then(|brain| brain.neural.as_ref())
+                .map(|state| self.observe_neural(cell, state, &solid));
             let to = if let Some(brain) = self.brains.get_mut(&cell.id) {
-                let (action, features) = brain.choose(
-                    cell,
-                    &self.nutrient,
-                    &self.occupancy,
-                    &self.flesh,
-                    dims,
-                    (self.seed, tick),
-                )?;
-                let before = brain.clone();
-                // An empty energy balance cannot actuate a motor.
-                let action = if cell.energy == 0 { 0 } else { action };
-                let (to, cost) = brain.actuate(action, cell.site, dims)?;
-                decisions.insert(cell.id, (action, features, cost, before));
-                to
+                if let Some(state) = &mut brain.neural {
+                    let rules = self.config.neural.as_ref().expect("neural rules");
+                    let before = brain.offset;
+                    let (neural_fee, motor_fee) = state.integrate(
+                        neural_sensors.expect("sensors"),
+                        rules,
+                        self.seed,
+                        cell.id,
+                        tick,
+                        cell.energy,
+                    );
+                    neural_energy += neural_fee;
+                    let mut loads = vec![0; state.genome.anatomy.axes.len()];
+                    let base = state.sensors.len() - 2;
+                    let mut jaw = 0;
+                    for (index, binding) in state.genome.anatomy.axes.iter().enumerate() {
+                        if binding.axis == crate::neural::schema::Axis::Jaw {
+                            loads[index] = state.sensors[base + jaw];
+                            jaw += 1;
+                        }
+                    }
+                    let drive = state.actuator_drive().to_vec();
+                    let stiffness = state.genome.ligament_stiffness();
+                    let rest = state.genome.ligament_rest.clone();
+                    let absorbed = state.body.step(
+                        &state.genome.anatomy,
+                        &drive,
+                        &state.genome.strengths,
+                        rules.drag,
+                        &loads,
+                        stiffness,
+                        &rest,
+                    );
+                    for (axis, value) in absorbed.into_iter().enumerate() {
+                        self.environment_momentum[axis] += value;
+                    }
+                    state.realized_efforts.fill(0);
+                    let count = state.body.efforts.len();
+                    state.realized_efforts[..count].clone_from_slice(&state.body.efforts);
+                    for (index, rate) in state.body.rates.iter().enumerate() {
+                        state.participation[index] += u64::from(*rate != 0);
+                    }
+                    let coordinates = [cell.site.x, cell.site.y, cell.site.z];
+                    let extents = [dims.width, dims.height, dims.depth];
+                    let next: [u32; 3] = std::array::from_fn(|axis| {
+                        let position =
+                            i64::from(before[axis]) + i64::from(state.body.velocity[axis]);
+                        let crossing = (position + 512).div_euclid(1024);
+                        brain.offset[axis] = (position - crossing * 1024) as i32;
+                        (i64::from(coordinates[axis]) + crossing)
+                            .rem_euclid(i64::from(extents[axis])) as u32
+                    });
+                    // The legacy tuple is bookkeeping only; no primitive is chosen.
+                    let mut old = brain.clone();
+                    old.offset = before;
+                    decisions.insert(cell.id, (0, [0; 5], neural_fee + motor_fee, old));
+                    brain.updates += 1;
+                    brain.sync_neural_pose();
+                    Site {
+                        x: next[0],
+                        y: next[1],
+                        z: next[2],
+                    }
+                } else {
+                    let (action, features) = brain.choose(
+                        cell,
+                        &self.nutrient,
+                        &self.occupancy,
+                        &self.flesh,
+                        dims,
+                        (self.seed, tick),
+                    )?;
+                    let before = brain.clone();
+                    // An empty energy balance cannot actuate a motor.
+                    let action = if cell.energy == 0 { 0 } else { action };
+                    let (to, cost) = brain.actuate(action, cell.site, dims)?;
+                    decisions.insert(cell.id, (action, features, cost, before));
+                    to
+                }
             } else {
                 movement_target(self.seed, tick, cell.id, cell.site, dims)?.1
             };
@@ -561,7 +708,6 @@ impl World {
         }
         // A mature deposit is a soft contact surface. It arrests a crossing;
         // contact reverses and damps momentum, instead of erasing its existence.
-        let solid = fused_surface(&self.flesh, dims)?;
         let flesh_blocked: std::collections::BTreeSet<_> = proposals
             .iter()
             .filter(|p| p.to != p.from && solid.contains(&p.to))
@@ -590,6 +736,19 @@ impl World {
                 if self.cells[&proposal.id].site != proposal.to {
                     brain.offset = before.offset;
                     brain.velocity = brain.velocity.map(|value| -value / 4);
+                    if let Some(state) = &mut brain.neural {
+                        for axis in 0..3 {
+                            let previous_velocity = state.body.velocity[axis];
+                            let old = state.body.momentum[axis];
+                            state.body.momentum[axis] = -old / 4;
+                            self.environment_momentum[axis] += old - state.body.momentum[axis];
+                            state.body.velocity[axis] =
+                                (state.body.momentum[axis] / crate::neural::body::INERTIA) as i32;
+                            state.body.acceleration[axis] +=
+                                state.body.velocity[axis] - previous_velocity;
+                        }
+                        brain.sync_neural_pose();
+                    }
                 }
                 let cell = self.cells.get_mut(&proposal.id).expect("moving cell");
                 cell.energy = sub(cell.energy, *cost, "motor effort")?;
@@ -599,13 +758,32 @@ impl World {
             }
         }
 
+        // A crossing leaves one unit of flesh on the site just vacated. The
+        // material comes from the reservoir, so the thread stays in the ledger
+        // and does not fade. Four linked units still fuse into a soft wall.
+        let mut trail_laid = 0u64;
+        if self.config.neural.is_some() {
+            for outcome in &outcomes {
+                if !outcome.moved || self.reservoir == 0 {
+                    continue;
+                }
+                let stock = self.flesh.get(&outcome.from).copied().unwrap_or(0);
+                if stock >= 64 || (self.flesh.len() >= 8192 && stock == 0) {
+                    continue;
+                }
+                self.reservoir = sub(self.reservoir, 1, "trail condensate")?;
+                self.flesh.insert(outcome.from, stock + 1);
+                trail_laid = add(trail_laid, 1, "trail units")?;
+            }
+        }
+
         let ids: Vec<u64> = self.cells.keys().copied().collect();
         let mut uptaken = 0u64;
         let mut credited = 0u64;
         for id in &ids {
             let (site, energy) = {
                 let cell = &self.cells[id];
-                (cell.site, cell.energy)
+                (self.feeding_site(cell), cell.energy)
             };
             let index = site_index(site, dims)?;
             let units = uptake_units(
@@ -617,6 +795,11 @@ impl World {
             );
             if let Some(brain) = self.brains.get_mut(id) {
                 brain.last_meal = units;
+                if self.config.feeding.is_some()
+                    && let Some(n) = &mut brain.neural
+                {
+                    n.last_food_site = if units > 0 { Some(site) } else { None };
+                }
             }
             if units == 0 {
                 continue;
@@ -635,10 +818,14 @@ impl World {
         }
         self.energy_credited = add(self.energy_credited, credited, "energy_credited")?;
 
+        let mut jet_released = 0;
         let mut secretion_paid = std::collections::BTreeSet::new();
         let mut secreted = 0u64;
         let mut secretion_cost = 0u64;
         for (id, (action, _, _, _)) in &decisions {
+            if self.brains[id].neural.is_some() {
+                continue;
+            }
             if *action != SECRETE_ACTION {
                 continue;
             }
@@ -658,10 +845,77 @@ impl World {
                 secretion_cost += 2;
             }
         }
+        for id in decisions.keys() {
+            let source = self.feeding_site(&self.cells[id]);
+            let Some(state) = self.brains.get_mut(id).and_then(|b| b.neural.as_mut()) else {
+                continue;
+            };
+            let cell = &self.cells[id];
+            let count = state.genome.anatomy.axes.len();
+            let drive = state.actuator_drive();
+            // A resting flicker must not spend the clot as exhaust.
+            let valve = drive[count];
+            if valve > 256 {
+                state.valve_accumulator +=
+                    (i64::from(valve) * i64::from(state.genome.strengths[count]) / 1024).min(1024)
+                        as i32;
+            }
+            if state.valve_accumulator < 1024 {
+                continue;
+            }
+            state.valve_accumulator -= 1024;
+            let index = site_index(source, dims)?;
+            let drive = state.actuator_drive();
+            let local = std::array::from_fn(|axis| {
+                (i64::from(drive[count + 1 + axis])
+                    * i64::from(state.genome.strengths[count + 1 + axis])
+                    / 4096)
+                    .clamp(-512, 512)
+            });
+            let momentum = crate::neural::body::rotate(local, state.body.orientation);
+            let opposite = momentum.map(|x| -x);
+            if cell.energy >= 2
+                && self.nutrient[index] > 0
+                && self.jets.len() < 4096
+                && state.body.can_impulse(opposite)
+            {
+                let coordinates = [cell.site.x, cell.site.y, cell.site.z];
+                let extents = [dims.width, dims.height, dims.depth];
+                let offset = self.brains[id].offset;
+                let state = self
+                    .brains
+                    .get_mut(id)
+                    .and_then(|b| b.neural.as_mut())
+                    .expect("neural state");
+                state.body.impulse(opposite);
+                state.realized_efforts[count] = 1024;
+                for axis in 0..3 {
+                    state.realized_efforts[count + 1 + axis] = state.commands[count + 1 + axis];
+                }
+                self.jets.push(crate::neural::body::Jet {
+                    owner: *id,
+                    position: std::array::from_fn(|axis| {
+                        (i64::from(coordinates[axis]) * 1024 + i64::from(offset[axis]))
+                            .rem_euclid(i64::from(extents[axis]) * 1024)
+                    }),
+                    momentum,
+                    life: 4,
+                });
+                self.nutrient[index] -= 1;
+                self.cells.get_mut(id).expect("secreting cell").energy -= 2;
+                secretion_paid.insert(*id);
+                secretion_cost += 2;
+                jet_released += 1;
+                self.brains.get_mut(id).expect("brain").sync_neural_pose();
+            }
+        }
         let mut excavated = 0u64;
         let mut digging_paid = std::collections::BTreeSet::new();
         let mut digging_cost = 0u64;
         for (id, (action, _, _, _)) in &decisions {
+            if self.brains[id].neural.is_some() {
+                continue;
+            }
             if *action < DIG_START || self.brains[id].joints[SPINE_JOINTS] > 0 {
                 continue;
             }
@@ -685,13 +939,52 @@ impl World {
             excavated += removed;
             self.brains.get_mut(id).expect("digging brain").last_dig = removed;
         }
-        let mut maintained = motor_energy;
+        for id in decisions.keys() {
+            let Some(state) = self.brains[id].neural.as_ref() else {
+                continue;
+            };
+            let jaw_closed = state
+                .genome
+                .anatomy
+                .axes
+                .iter()
+                .enumerate()
+                .filter(|(_, b)| b.axis == crate::neural::schema::Axis::Jaw)
+                .any(|(i, _)| {
+                    state.body.rates[i] < 0 && state.body.loads[i] > 0 && state.body.efforts[i] < 0
+                });
+            if !jaw_closed || self.cells[id].energy < 1 {
+                continue;
+            }
+            let target = self.neural_jaw_target(&self.cells[id], state);
+            let amount = self.flesh.get(&target).copied().unwrap_or(0);
+            if amount == 0 {
+                continue;
+            }
+            let removed = amount.min(2);
+            if amount == removed {
+                self.flesh.remove(&target);
+            } else {
+                self.flesh.insert(target, amount - removed);
+            }
+            self.waste = add(self.waste, removed, "neural jaw excavation")?;
+            self.cells.get_mut(id).expect("cell").energy -= 1;
+            self.brains.get_mut(id).expect("brain").last_dig = removed;
+            digging_paid.insert(*id);
+            digging_cost += 1;
+            excavated += removed;
+        }
+        // The tuple paid both charges; expose actuator and neural fees separately.
+        motor_energy -= neural_energy;
+        let mut maintained = motor_energy + neural_energy;
         let mut disposed = secretion_cost + digging_cost;
         let mut deaths = 0u32;
         let cost = self.config.maintenance_cost;
         for id in ids {
             let energy = self.cells[&id].energy;
-            if let Some((action, features, motor_cost, _)) = decisions.get(&id) {
+            if let Some((action, features, motor_cost, _)) = decisions.get(&id)
+                && self.brains[&id].neural.is_none()
+            {
                 let brain = self.brains.get_mut(&id).expect("learning brain");
                 let reward = (i128::from(brain.last_meal)
                     * i128::from(self.config.energy_per_nutrient)
@@ -709,6 +1002,11 @@ impl World {
                 maintained = add(maintained, cost, "maintenance total")?;
             } else {
                 let cell = self.cells.remove(&id).expect("dying cell present");
+                if let Some(state) = self.brains.get(&id).and_then(|brain| brain.neural.as_ref()) {
+                    for axis in 0..3 {
+                        self.environment_momentum[axis] += state.body.momentum[axis];
+                    }
+                }
                 self.brains.remove(&id);
                 disposed = add(disposed, cell.energy, "disposal")?;
                 self.deaths.insert(
@@ -726,6 +1024,13 @@ impl World {
             }
         }
         let (births, birth_cost) = self.reproduce()?;
+        if let Some(rules) = &self.config.neural {
+            for (id, brain) in &mut self.brains {
+                if let Some(state) = &mut brain.neural {
+                    state.feedback(self.cells[id].energy, brain.last_meal, rules);
+                }
+            }
+        }
         disposed = add(disposed, birth_cost, "birth energy disposed")?;
         self.energy_maintenance = add(self.energy_maintenance, maintained, "energy_maintenance")?;
         self.energy_disposed = add(self.energy_disposed, disposed, "energy_disposed")?;
@@ -741,7 +1046,7 @@ impl World {
             external_input: inflow,
             reservoir_to_field: injected,
             nutrient_uptaken: uptaken,
-            waste_created: uptaken + excavated,
+            waste_created: uptaken + excavated + jet_wasted,
             energy_credited: credited,
             energy_maintenance: maintained,
             energy_disposed: disposed,
@@ -751,9 +1056,168 @@ impl World {
             moves_blocked,
             births,
             motor_energy,
+            neural_energy,
+            jet_released,
+            jet_deposited,
+            jet_wasted,
             secreted,
             excavated,
+            trail_laid,
         })
+    }
+
+    fn advance_jets(&mut self) -> Result<(u64, u64), Error> {
+        let dims = self.dims();
+        let solid = fused_surface(&self.flesh, dims)?;
+        let curing = self
+            .config
+            .neural
+            .as_ref()
+            .is_some_and(|rules| rules.drag > 0);
+        let mut deposited = 0;
+        let mut wasted = 0;
+        for mut jet in std::mem::take(&mut self.jets) {
+            jet.advance(dims);
+            let site = jet.site(dims);
+            let occupant = self.occupancy[site_index(site, dims)?];
+            let stopped = solid.contains(&site)
+                || (occupant != 0 && occupant != jet.owner)
+                || (curing && jet.life == 0);
+            if stopped {
+                for axis in 0..3 {
+                    self.environment_momentum[axis] += jet.momentum[axis];
+                }
+                let stock = self.flesh.get(&site).copied().unwrap_or(0);
+                if stock < 64 && (self.flesh.len() < 8192 || stock > 0) {
+                    self.flesh.insert(site, stock + 1);
+                    deposited += 1;
+                } else {
+                    self.waste = add(self.waste, 1, "saturated jet destination")?;
+                    wasted += 1;
+                }
+            } else {
+                self.jets.push(jet);
+            }
+        }
+        Ok((deposited, wasted))
+    }
+    fn feeding_site(&self, cell: &Cell) -> Site {
+        if self.config.feeding.is_none() {
+            return cell.site;
+        }
+        let state = self.brains[&cell.id]
+            .neural
+            .as_ref()
+            .expect("nursery brain");
+        let head = self.neural_jaw_target(cell, state);
+        crate::feeding::mouth_sites(head, self.dims())
+            .into_iter()
+            .find(|site| self.nutrient[site_index(*site, self.dims()).expect("mouth site")] > 0)
+            .unwrap_or(head)
+    }
+
+    fn neural_jaw_target(&self, cell: &Cell, state: &crate::neural::NeuralState) -> Site {
+        state.body.head_site(
+            &state.genome.anatomy,
+            cell.site,
+            self.brains[&cell.id].offset,
+            self.dims(),
+        )
+    }
+    fn observe_neural(
+        &self,
+        cell: &Cell,
+        state: &crate::neural::NeuralState,
+        solid: &std::collections::BTreeSet<Site>,
+    ) -> Vec<i32> {
+        let dims = self.dims();
+        let current = self.nutrient[site_index(cell.site, dims).expect("cell site")];
+        let feedstock =
+            self.nutrient[site_index(self.feeding_site(cell), dims).expect("feeding site")];
+        let mut chemical = [0; 6];
+        let mut contact = [0; 6];
+        for face in 0..6 {
+            let mut local = [0i64; 3];
+            local[face / 2] = if face % 2 == 0 { 1024 } else { -1024 };
+            let direction = crate::neural::body::rotate(local, state.body.orientation);
+            let axis = (0..3)
+                .max_by_key(|axis| direction[*axis].abs())
+                .expect("axis");
+            let roll = axis * 2 + if direction[axis] >= 0 { 1 } else { 2 };
+            let site = crate::step_site(
+                cell.site,
+                crate::Dir::from_roll(roll as u32).expect("face"),
+                dims,
+            )
+            .expect("neighbor");
+            // Eight steps of falloff, not a map. A clot several sites away can
+            // change one body-facing channel. The channel is silent in the gap
+            // beyond that reach.
+            let ahead =
+                self.ray_scent(cell.site, crate::Dir::from_roll(roll as u32).expect("face"));
+            let scale = i128::from(self.config.site_cap.max(1)) * 8;
+            chemical[face] = (i128::from(ahead) * 1024 / scale).clamp(0, 1024) as i32;
+            let index = site_index(site, dims).expect("neighbor index");
+            contact[face] = if solid.contains(&site)
+                || (self.occupancy[index] != 0 && self.occupancy[index] != cell.id)
+            {
+                1024
+            } else {
+                0
+            };
+        }
+        let target = self.neural_jaw_target(cell, state);
+        let resistance = (self.flesh.get(&target).copied().unwrap_or(0).min(8) * 128) as i32;
+        crate::neural::sensing::encode(
+            state,
+            crate::neural::sensing::Observation {
+                energy: cell.energy,
+                energy_cap: if self.config.feeding.is_some() {
+                    self.config
+                        .farm
+                        .as_ref()
+                        .expect("farm")
+                        .birth_energy
+                        .saturating_mul(2)
+                        .max(1)
+                } else {
+                    self.config.energy_cap
+                },
+                nutrient: if self.config.feeding.is_some() {
+                    feedstock
+                } else {
+                    current
+                },
+                site_cap: self.config.site_cap,
+                chemical,
+                contact,
+                jaw_load: [resistance; 2],
+            },
+            self.config.neural.as_ref().expect("neural law"),
+        )
+    }
+
+    /// Weighted nutrient along one facing, steps 1 through 8. Nearer stock
+    /// counts more. Zero past that reach.
+    fn ray_scent(&self, start: Site, dir: crate::Dir) -> i64 {
+        let dims = self.dims();
+        let mut site = start;
+        let mut total = 0i64;
+        for step in 1..=8 {
+            site = match crate::step_site(site, dir, dims) {
+                Ok(site) => site,
+                Err(_) => break,
+            };
+            let index = match site_index(site, dims) {
+                Ok(index) => index,
+                Err(_) => break,
+            };
+            let amount = self.nutrient[index] as i64;
+            if amount > 0 {
+                total += amount * i64::from(9 - step);
+            }
+        }
+        total
     }
 
     fn reproduce(&mut self) -> Result<(u32, u64), Error> {
@@ -800,10 +1264,42 @@ impl World {
             child.age = 0;
             child.energy = (parent.energy - rules.birth_cost) / 2;
             // A small inheritable controller mutation; display genome is inherited.
-            let child_brain = brain.child(child_id, self.seed, self.tick);
+            let mut child_brain = brain.child(child_id, self.seed, self.tick);
+            if let Some(state) = &brain.neural {
+                if let Some(site) = state.last_food_site {
+                    site_index(site, self.dims())?;
+                    if self.config.feeding.is_none() {
+                        return Err(Error::Invariant(
+                            "oral feeding record outside nursery mode".into(),
+                        ));
+                    }
+                }
+                let mut offspring = state.offspring(
+                    self.seed,
+                    child_id,
+                    self.tick,
+                    child.energy,
+                    self.config.neural.as_ref().expect("rules").mutation,
+                );
+                offspring.body.orientation = state.body.orientation;
+                offspring.body.impulse(state.body.momentum.map(|p| p / 2));
+                child_brain.neural = Some(offspring);
+                child_brain.sync_neural_pose();
+            }
             let parent = self.cells.get_mut(&id).expect("parent");
             parent.energy = parent.energy - rules.birth_cost - child.energy;
-            self.brains.get_mut(&id).expect("parent brain").last_birth = self.tick;
+            let parent_brain = self.brains.get_mut(&id).expect("parent brain");
+            parent_brain.last_birth = self.tick;
+            if let Some(state) = &mut parent_brain.neural {
+                let transferred = child_brain
+                    .neural
+                    .as_ref()
+                    .expect("neural child")
+                    .body
+                    .momentum;
+                state.body.impulse(transferred.map(|p| -p));
+                parent_brain.sync_neural_pose();
+            }
             self.brains.insert(child_id, child_brain);
             self.occupancy[site_index(site, dims)?] = child_id;
             self.cells.insert(child_id, child);
@@ -816,6 +1312,24 @@ impl World {
     fn inject(&mut self, budget: u64) -> Result<u64, Error> {
         if budget == 0 {
             return Ok(0);
+        }
+        if let Some(food) = &self.config.feeding {
+            let sites = crate::feeding::sites(food, self.dims());
+            let mut cursor = self.inject_cursor as usize % sites.len();
+            let mut moved = 0;
+            for _ in 0..sites.len() {
+                if moved >= budget {
+                    break;
+                }
+                let index = site_index(sites[cursor], self.dims())?;
+                if self.nutrient[index] < self.config.site_cap {
+                    self.nutrient[index] += 1;
+                    moved += 1;
+                }
+                cursor = (cursor + 1) % sites.len();
+            }
+            self.inject_cursor = cursor as u64;
+            return Ok(moved);
         }
         let volume = self.nutrient.len();
         if volume == 0 {
@@ -903,6 +1417,50 @@ impl World {
             }
         } else if !self.brains.is_empty() {
             return Err(Error::Invariant("M0 has brain state".into()));
+        }
+        let mut momentum = self.environment_momentum.map(i128::from);
+        for brain in self.brains.values() {
+            if brain.neural.is_some() != self.config.neural.is_some() {
+                return Err(Error::Invariant("controller mode mismatch".into()));
+            }
+            if let Some(state) = &brain.neural {
+                state.validate()?;
+                if state.genome.anatomy != crate::neural::schema::Anatomy::reference() {
+                    return Err(Error::Invariant("world/render anatomy is currently the reference schema; alternate mappings are supported by controller probes only".into()));
+                }
+                if state.steps > self.tick {
+                    return Err(Error::Invariant("neural steps exceed world age".into()));
+                }
+                for (axis, total) in momentum.iter_mut().enumerate() {
+                    *total += i128::from(state.body.momentum[axis]);
+                }
+            }
+        }
+        if self.jets.len() > 4096 {
+            return Err(Error::Invariant("reaction mass capacity".into()));
+        }
+        for jet in &self.jets {
+            if jet.owner == 0
+                || jet.owner >= self.next_cell_id
+                || jet.life > 4
+                || jet.momentum.iter().any(|p| p.unsigned_abs() > 1024)
+            {
+                return Err(Error::Invariant("invalid reaction mass".into()));
+            }
+            for (axis, extent) in [self.config.width, self.config.height, self.config.depth]
+                .into_iter()
+                .enumerate()
+            {
+                if jet.position[axis] < 0 || jet.position[axis] >= i64::from(extent) * 1024 {
+                    return Err(Error::Invariant("reaction mass position".into()));
+                }
+                momentum[axis] += i128::from(jet.momentum[axis]);
+            }
+        }
+        if momentum != [0; 3] {
+            return Err(Error::Invariant(format!(
+                "linear momentum residual {momentum:?}"
+            )));
         }
         let dims = self.dims();
         let volume = dims.volume()? as usize;

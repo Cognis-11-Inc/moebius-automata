@@ -41,6 +41,7 @@ def main(argv: list[str]) -> int:
             + int(row["external_input"])
             - int(row["field"])
             - int(row.get("flesh", 0))
+            - int(row.get("in_flight", 0))
             - int(row["reservoir"])
             - int(row["waste"])
             - int(row["external_output"])

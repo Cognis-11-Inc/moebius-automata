@@ -49,6 +49,19 @@ pub struct SimConfig {
     pub genome_fill: GenomeFill,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub farm: Option<FarmRules>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub neural: Option<crate::neural::NeuralRules>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub feeding: Option<FeedingRules>,
+}
+
+/// Optional nursery substrate and mouth-contact feeding. Absent in prior studies.
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FeedingRules {
+    pub version: u32,
+    pub spacing: u32,
+    pub initial_stock: u64,
 }
 
 /// Optional M1 laws; absence preserves M0 and its historical config hashes.
@@ -98,6 +111,8 @@ impl SimConfig {
             energy_cap: 10_000,
             genome_fill: GenomeFill::Derived,
             farm: None,
+            neural: None,
+            feeding: None,
         }
     }
 
@@ -125,6 +140,8 @@ impl SimConfig {
             energy_cap: 10_000,
             genome_fill: GenomeFill::Derived,
             farm: None,
+            neural: None,
+            feeding: None,
         }
     }
 
@@ -137,10 +154,43 @@ impl SimConfig {
         config
     }
 
+    pub fn neural_farm_256() -> Self {
+        let mut config = Self::farm_256();
+        config.neural = Some(crate::neural::NeuralRules::default());
+        config.initial_energy = 48;
+        config.maintenance_cost = 1;
+        config.farm.as_mut().expect("farm").max_population = 512;
+        config
+    }
+
     pub fn population_bound(&self) -> u32 {
         self.farm
             .as_ref()
             .map_or(self.initial_population, |farm| farm.max_population)
+    }
+
+    /// An explicitly provisioned nursery, not a learned-foraging result.
+    pub fn nursery_farm_256() -> Self {
+        let mut c = Self::neural_farm_256();
+        c.feeding = Some(FeedingRules {
+            version: 1,
+            spacing: 16,
+            initial_stock: 512,
+        });
+        // One bite is 4 energy. Maintenance is 1, so contact feeds the animal
+        // and can pay for a birth, without filling the cap in a few ticks.
+        c.uptake_per_tick = 1;
+        c.initial_energy = 128;
+        c.initial_nutrient_per_site = 0;
+        c.nutrient_wave_amplitude = 0;
+        c.site_cap = 4096;
+        c.energy_per_nutrient = 4;
+        c.inflow_per_tick = 1024;
+        c.inject_per_tick = 1024;
+        let farm = c.farm.as_mut().expect("farm");
+        farm.birth_energy = 256;
+        farm.maturity_ticks = 32;
+        c
     }
 
     pub fn volume(&self) -> Result<u64, Error> {
@@ -167,6 +217,37 @@ impl SimConfig {
 
     pub fn validate(&self) -> Result<(), Error> {
         let volume = self.volume()?;
+        if let Some(food) = &self.feeding {
+            if food.version != 1
+                || !(4..=32).contains(&food.spacing)
+                || self.neural.is_none()
+                || self.initial_nutrient_per_site != 0
+                || self.nutrient_wave_amplitude != 0
+                || food.initial_stock > self.site_cap
+                || [self.width, self.height, self.depth]
+                    .iter()
+                    .any(|n| *n < food.spacing)
+            {
+                return Err(Error::Config(
+                    "invalid nursery food laws, spacing or field".into(),
+                ));
+            }
+            let count: u64 = [self.width, self.height, self.depth]
+                .iter()
+                .map(|n| u64::from((n - 1 - food.spacing / 2) / food.spacing + 1))
+                .product();
+            if u64::from(self.initial_population) > count || count > 4096 {
+                return Err(Error::Config("nursery needs one distinct founding food patch per founder; at most 4096 patches".into()));
+            }
+        }
+        if let Some(neural) = &self.neural {
+            neural.validate()?;
+            if self.farm.is_none() || self.population_bound() > 512 {
+                return Err(Error::Config(
+                    "neural mode needs a farm and population bound <=512".into(),
+                ));
+            }
+        }
         if let Some(farm) = &self.farm
             && (farm.max_population < self.initial_population
                 || farm.max_population > 8192

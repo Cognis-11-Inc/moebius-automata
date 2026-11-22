@@ -1,0 +1,59 @@
+{
+  "record_version": 1,
+  "date_local": "2026-11-21",
+  "question": "Can an authored local food substrate and mouth-contact uptake give the existing neural organisms enough energy and time for reproduction to occur?",
+  "scientific_search": {
+    "status": "NOT_PERFORMED",
+    "reason": "The nursery protocol registered this as an authored habitat slice. No publications were consulted, and none should be cited as support for the feeding rule or the probe."
+  },
+  "knowledge_transfer": {
+    "claims_from_publications": [],
+    "authored_assumptions": [
+      "Food sits on a fixed lattice of sites.",
+      "A mouth can take stock only from sites at distance-squared <= 2, preferring the head site and then nearer sites.",
+      "Uptake is automatic on contact. It is not a learned action.",
+      "The basic bite is 1 nutrient credited as 4 energy. Maintenance is 1. A clot starts at 512. Founders start at 128 energy. Birth still requires 256.",
+      "Smell is an 8-step weighted ray in the body facing. It is not a map.",
+      "Muscle rate, ligament stiffness, and ligament rest are germline genes on every neural organism. The muscle smooths the nerve command. The ligament springs toward the heritable curl.",
+      "With drag, a bending spine can exchange momentum with the medium. Vacuum still has no center-of-mass thrust from internal motion.",
+      "Crossing a site condenses 1 reservoir unit into permanent flesh on the vacated site. It does not fade.",
+      "No new publications were consulted for the tissue, the scent, the trail, or the bite."
+    ]
+  },
+  "implementation_trace": [
+    "crates/moebius-core/src/feeding.rs",
+    "crates/moebius-core/src/config.rs::SimConfig::nursery_farm_256",
+    "crates/moebius-core/src/world.rs::feeding_site",
+    "crates/moebius-core/src/world.rs::reproduce",
+    "crates/moebius-core/tests/nursery.rs",
+    "crates/moebius-core/examples/nursery_probe.rs",
+    "crates/moebius-viewer/src/body.rs::food_clot_mesh",
+    "crates/moebius-viewer/src/show.rs::feeding_links",
+    "experiments/nursery_smoke.json",
+    "experiments/nursery_256.json"
+  ],
+  "evidence": [
+    {
+      "id": "oral_contact_test",
+      "status": "MECHANISM_TEST",
+      "file": "crates/moebius-core/tests/nursery.rs::intake_is_at_the_articulated_mouth_and_cannot_reach_distant_food"
+    },
+    {
+      "id": "reproduction_replay_test",
+      "status": "MECHANISM_TEST",
+      "file": "crates/moebius-core/tests/nursery.rs::nursery_refill_is_material_transfer_and_replays_through_reproduction",
+      "deviation": "Fixture birth cooldown is 32 ticks. The 256³ nursery cooldown remains 128."
+    },
+    {
+      "id": "probe_v1",
+      "status": "EXPERIMENTAL_OBSERVATION",
+      "record": "docs/nursery/PROBE_V1.md",
+      "not_claimed": [
+        "learned foraging",
+        "motivation",
+        "adaptive evolution",
+        "distinct body kinds"
+      ]
+    }
+  ]
+}

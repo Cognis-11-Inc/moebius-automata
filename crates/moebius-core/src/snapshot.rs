@@ -30,6 +30,9 @@ pub struct Snapshot {
     pub nutrient: Vec<u64>,
     pub brains: Vec<crate::farm::BrainRig>,
     pub flesh: Vec<crate::farm::FleshDeposit>,
+    pub jets: Vec<crate::neural::body::Jet>,
+    pub environment_momentum: [i64; 3],
+    pub neural_format: bool,
 }
 
 impl Snapshot {
@@ -163,11 +166,17 @@ impl Snapshot {
         for amount in &self.nutrient {
             push_u64(&mut out, *amount);
         }
-        if !self.brains.is_empty() || !self.flesh.is_empty() {
-            out.extend_from_slice(b"FARM2");
+        if self.neural_format || !self.brains.is_empty() || !self.flesh.is_empty() {
+            out.extend_from_slice(if self.neural_format {
+                b"FARM3"
+            } else {
+                b"FARM2"
+            });
             let bytes = serde_json::to_vec(&crate::farm::FarmPayload {
                 brains: self.brains.clone(),
                 flesh: self.flesh.clone(),
+                jets: self.jets.clone(),
+                environment_momentum: self.environment_momentum,
             })
             .expect("integer farm state encodes");
             push_u32(&mut out, bytes.len() as u32);
@@ -355,11 +364,15 @@ fn decode_canonical(bytes: &[u8]) -> Result<Snapshot, Error> {
     }
     let mut brains = Vec::new();
     let mut flesh = Vec::new();
+    let mut jets = Vec::new();
+    let mut environment_momentum = [0; 3];
+    let mut neural_format = false;
     if cursor != bytes.len() {
         if bytes.get(cursor..cursor + 5) == Some(b"FARM1") {
             return Err(Error::Snapshot("legacy FARM1 uses the five-joint controller; keep its original checkpoint for replay; current rigs use FARM2".into()));
         }
-        if bytes.get(cursor..cursor + 5) != Some(b"FARM2") {
+        neural_format = bytes.get(cursor..cursor + 5) == Some(b"FARM3");
+        if !neural_format && bytes.get(cursor..cursor + 5) != Some(b"FARM2") {
             return Err(Error::Snapshot("unknown canonical extension".into()));
         }
         cursor += 5;
@@ -371,6 +384,8 @@ fn decode_canonical(bytes: &[u8]) -> Result<Snapshot, Error> {
             .map_err(|err| Error::Snapshot(err.to_string()))?;
         brains = payload.brains;
         flesh = payload.flesh;
+        jets = payload.jets;
+        environment_momentum = payload.environment_momentum;
         if flesh.len() > 8192 || flesh.windows(2).any(|pair| pair[0].site >= pair[1].site) {
             return Err(Error::Snapshot(
                 "flesh states exceed cap or are not ordered".into(),
@@ -404,6 +419,9 @@ fn decode_canonical(bytes: &[u8]) -> Result<Snapshot, Error> {
         nutrient,
         brains,
         flesh,
+        jets,
+        environment_momentum,
+        neural_format,
     })
 }
 

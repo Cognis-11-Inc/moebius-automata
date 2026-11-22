@@ -53,6 +53,9 @@ struct Cli {
     /// Skip the rule slate and tick the open 256³ farm.
     #[arg(long)]
     live: bool,
+    /// Open the read-only neural inspector (N toggles it; Tab changes page).
+    #[arg(long)]
+    inspect: bool,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Default, States)]
@@ -96,6 +99,7 @@ struct Frame {
     dead: u32,
     field: u64,
     material_flesh: u64,
+    in_flight: u64,
     reservoir: u64,
     waste: u64,
     external_input: u64,
@@ -249,7 +253,7 @@ fn main() {
         brightness: 450.0,
         ..default()
     })
-    .init_resource::<show::FlyCamera>()
+    .insert_resource(show::FlyCamera::with_inspector(cli.inspect))
     .insert_resource(draft)
     .insert_resource(Boot {
         auto_start: cli.start || cli.live,
@@ -282,7 +286,13 @@ fn main() {
             show::hall_pump.run_if(resource_exists::<Hall>),
             show::embody.run_if(resource_exists::<Hall>),
             show::hall_bodies.run_if(resource_exists::<Hall>),
-            (show::rig_joints, show::feeding, show::flesh_surfaces)
+            (
+                show::rig_joints,
+                show::feeding,
+                show::flesh_surfaces,
+                show::neural_inspector,
+                show::jet_picture,
+            )
                 .chain()
                 .run_if(resource_exists::<Hall>),
             show::hall_fluid.run_if(resource_exists::<Hall>),
@@ -296,6 +306,13 @@ fn main() {
             show::hall_hud.run_if(resource_exists::<Hall>),
         )
             .chain()
+            .run_if(in_state(Stage::Playing)),
+    );
+    app.add_systems(
+        PostUpdate,
+        show::feeding_links
+            .after(bevy::transform::TransformSystems::Propagate)
+            .run_if(resource_exists::<Hall>)
             .run_if(in_state(Stage::Playing)),
     );
     if cli.start {
@@ -333,6 +350,7 @@ fn main() {
 fn material_residual(frame: &Frame) -> i128 {
     i128::from(frame.field)
         + i128::from(frame.material_flesh)
+        + i128::from(frame.in_flight)
         + i128::from(frame.reservoir)
         + i128::from(frame.waste)
         + i128::from(frame.external_output)
@@ -461,6 +479,7 @@ fn load_reel(dir: &Path) -> Result<Reel, String> {
                 .map_err(|_| format!("{} death count exceeds u32", path.display()))?,
             field,
             material_flesh: snapshot.flesh.iter().map(|deposit| deposit.amount).sum(),
+            in_flight: snapshot.jets.len() as u64,
             reservoir: snapshot.reservoir,
             waste: snapshot.waste,
             external_input: snapshot.external_input,
@@ -631,6 +650,8 @@ mod tests {
             energy_cap: 1_000,
             genome_fill: GenomeFill::Zero,
             farm: None,
+            neural: None,
+            feeding: None,
         }
     }
 

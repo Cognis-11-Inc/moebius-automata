@@ -74,3 +74,25 @@ Its old run artifacts remain unchanged; replay requires the original implementat
 Older binaries cannot decode the new extension. Existing M0 recordings keep their config hashes and state hashes.
 The live viewer uses full rig state; recorded viewer playback currently shows
 lattice positions and accounting without the live articulated presentation.
+
+## Neural FARM3 extension
+
+`neural` configurations use `FARM3` in the same length-delimited JSON envelope.
+It contains controller genotype and separate lifetime neural state (including
+integration/plasticity remainders), authoritative body orientation/rates/momentum,
+in-flight secretion jets and environment momentum. An explicit mode marker
+preserves FARM3 even after extinction. The config hash includes neural laws.
+Restore rejects mode mismatch, unsupported anatomy, invalid neural bounds and
+nonzero total linear momentum. Jets count toward material stocks.
+
+Empty optional neural/jet/momentum fields are omitted from legacy FARM2 canonical
+JSON; M0 and FARM2 byte/hash contracts remain. FARM1 remains intentionally refused.
+The eight-neuron/variable-axis schema is versioned; future topology changes must
+introduce explicit compatibility handling. The implementation audit and neural
+tests cover save/restore and deterministic continuation.
+
+For an existing batch, audit stored snapshots and replay between checkpoints:
+
+```bash
+cargo run -p moebius-core --release --example audit_run -- runs/neural_smoke_a
+```

@@ -1,15 +1,25 @@
 # Möbius Automata
 
 An artificial-life vivarium with small biomechanical inhabitants. The default
-**Farm M1** runs in a 256³ periodic cube: adaptive motor controllers drive
-articulated bodies, strokes produce thrust and coasting, cells feed and reproduce,
-and paid secretion leaves persistent flesh in the environment.
+live habitat is the **nursery**: a 256³ periodic cube with fixed edible clots.
+Eight recurrent neurons command 26 rotational axes and secretion. Feeding is
+authored mouth contact with a nearby clot, not a learned search. Cells can
+reproduce, and paid reaction mass can produce recoil and persistent flesh.
+Lifetime plasticity is separate from inherited controller genes. Useful
+learning and adaptive evolution have not been demonstrated.
 
 The original deterministic **M0** experiment remains available as
 `experiments/m0_64.json`, with its inert genomes and random lattice movement.
 Farm rules are opt-in in the core; the live viewer selects them by default.
 See [the farm laws and limits](docs/FARM_M1.md), [M0 laws](docs/LAWS.md),
-and [snapshot format](docs/SNAPSHOT.md). Hypothesis marks remain annotations.
+and [snapshot format](docs/SNAPSHOT.md). The new mode's authoritative laws are in
+[the neural architecture](docs/neural/ARCHITECTURE.md); see its
+[results and limitations](docs/neural/artifacts/main_v2/REPORT.md).
+`farm_256.json` retains the legacy stroke-based M1 model;
+`neural_farm_256.json` selects the neural mode without nursery clots.
+`nursery_256.json` is the 256³ nursery, and `nursery_smoke.json` is the 32³
+probe grid. The measured probe is [docs/nursery/PROBE_V1.md](docs/nursery/PROBE_V1.md).
+Hypothesis marks remain annotations.
 
 The license is MIT. Copyright 2026 Cognis 11 Inc.
 
@@ -78,21 +88,32 @@ skips the slate and starts the live farm.
 | Left click / Mouse | Capture the mouse / look around |
 | Escape | Release the mouse |
 | F | Move close to the nearest living creature |
+| N / Tab | Toggle neural inspection / cycle its six pages |
 | Mouse wheel | Zoom the lens in / out |
 | M | Mute |
 | [ / ] | Lower / raise audio volume |
 
 Small biomechanical bodies have rounded head shells, curved ribs, vertebral
 plates, soft cores, and looped conduits. Twelve spinal joints and two mandible joints follow committed motor state.
-Front and rear sections have separate stroke choices and wide bending/twisting ranges. The mouth contracts when nutrient uptake occurs. The camera starts
+In neural mode, each spine has separate bend/twist effort and each jaw has an
+independent command. Internal articulation does not create COM thrust. Body
+orientation follows simulation state; movement has no authored gait. The mouth
+also displays actual nutrient uptake. The camera starts
 near a founding cell and flies freely; it has no simulation body. Broad fill
 lighting and depth fog keep the habitat readable.
 
-Green lobed food colonies are **block sums of the nutrient field**, not discrete
-physical food balls. At 256³ the display stride is 64; at most 64 clusters are
-drawn. Cells eat local field nutrient. Wet translucent movement traces fade over
-192 ticks; they are viewer samples. Brown-red flesh deposits are separate,
+In the nursery, each food site is one clot. A bite is one unit and credits 4
+energy. Maintenance is 1, so feeding pays for life and can fund a birth. The
+live mesh is folded tissue and its size follows the remaining stock. A short
+filament is drawn only when a committed tick records uptake at that site.
+Movement leaves a lasting flesh thread on the vacated site; the green ribbon
+is only recent gloss. Older views without nursery feeding
+still draw green lobed **block sums of the nutrient field**. At 256³ that
+aggregate stride is 64, and at most 64 clusters are drawn. Wet translucent
+movement traces fade over 192 ticks; they are viewer samples. Brown-red flesh deposits are separate,
 material-bearing state: secretion creates them and they persist after death.
+Neural-mode droplets carry actual material and opposite reaction momentum;
+they cure on contact or under the configured medium law.
 Face-adjacent deposits weld into connected tissue, displayed as a single smooth
 surface. A closing mandible stroke can excavate adjacent tissue for an energy cost.
 
@@ -119,3 +140,28 @@ snapshot restore, observer purity, paid motor impulses, inertial coasting,
 reproduction and inherited state, secretion accounting and persistence, contact
 with flesh surfaces, and camera input. Extinction is recorded. It is not by
 itself a test failure.
+
+Neural tests cover recurrent/oscillatory capability, simultaneous axes, torque
+limits, vacuum COM invariance, bounded plasticity, germline separation,
+mutation, flexible controller mappings, atomic failure and snapshot replay.
+They validate mechanisms, not acquired competence.
+
+Reproduce the 112-trial matched neural study in a new directory:
+
+```bash
+cargo run -p moebius-cli --release --bin neural-study -- \
+  --out runs/my_neural_study --replicates 8 --ticks 256
+.venv/bin/python python/analyze_neural_study.py runs/my_neural_study \
+  --dest runs/my_neural_analysis
+```
+
+The [protocol](docs/neural/STUDY_PROTOCOL.json) preserves the pilot, first
+dataset, discovered acceleration-feedback defect and corrected rerun. Random
+commands obtained more food than the recurrent controller in the tested foraging
+environment. Lineage extinction was 8/8 with mutation and 7/8 without mutation. Mutation produced inherited
+differences; adaptive evolution, learned locomotion and learned tunnelling
+remain unproven. No failure or null result is hidden.
+
+Scientific searches must be announced beforehand and recorded with provenance,
+implementation links and separate consultation/implementation/validation status;
+see [AGENTS.md](AGENTS.md) and [the research record](docs/research/2026-11-21-neural-foundation.json).

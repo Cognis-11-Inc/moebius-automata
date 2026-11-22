@@ -1,0 +1,37 @@
+{
+  "status": "REGISTERED_BEFORE_NURSERY_PROBE",
+  "purpose": "Test provisioned mouth-contact feeding and reproductive opportunity, not learned competence or adaptive evolution",
+  "conditions": [
+    "provisioned",
+    "food_absent"
+  ],
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "ticks": 1024,
+  "grid": [
+    32,
+    32,
+    32
+  ],
+  "founders": 12,
+  "max_population": 96,
+  "observations": [
+    "survival",
+    "births",
+    "deaths",
+    "intake",
+    "lineage and generation",
+    "material/energy/momentum audits"
+  ],
+  "controls": "food_absent has zero initial food and zero inflow/injection; same genetic founders and reserves. Feeding is authored oral capture, not learned navigation.",
+  "failure_policy": "retain all results, including extinction and revisions; do not overwrite earlier study datasets",
+  "scientific_research": "No additional external scientific search for this authored nursery slice."
+}

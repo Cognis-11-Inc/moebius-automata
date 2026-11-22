@@ -1,0 +1,68 @@
+{
+  "protocol_version": 1,
+  "status": "REGISTERED_BEFORE_MAIN_RUN",
+  "date_local": "2026-11-21",
+  "pilot": "runs/neural_foundation_pilot_v1: 28 trials, 2 seeds, 64 ticks; retained separately. Pilot checked pipeline and revealed null/limited movement, not a success criterion. No goal rewards or locomotion assistance were introduced in response.",
+  "main_run": "runs/neural_foundation_v1_main",
+  "replicates": 8,
+  "ticks_per_trial": 256,
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "foraging_and_contact_conditions": [
+    "plastic_on",
+    "plastic_off",
+    "random",
+    "recurrence_off",
+    "proprioception_off",
+    "chemistry_off"
+  ],
+  "lineage_conditions": [
+    "plastic_on",
+    "mutation_off"
+  ],
+  "primary_comparisons": "Paired same-seed plastic_on versus plastic_off and random; other ablations descriptive. Assert identical initial state hashes and founder genotype IDs across matched conditions.",
+  "measurements": [
+    "early and late quarter nutrient intake",
+    "final and credited energy",
+    "all deaths/extinction",
+    "distance in sites and recoil events",
+    "excavated material",
+    "per-axis actual rate participation",
+    "plastic delta magnitude",
+    "parent/child germline identity",
+    "fresh-state common-garden motor commands",
+    "linear momentum and material/energy residuals"
+  ],
+  "uncertainty": "Report all seed values, paired differences, means, sample standard deviations and deterministic 95% percentile bootstrap intervals. Eight seeds and multiple exploratory contrasts limit inference; do not turn a positive metric into purposeful learned behaviour.",
+  "verdict_rules": {
+    "motor_activity": "continuous command diversity and physically integrated joint rates; not smooth pixels alone",
+    "locomotion": "measured centre-of-mass displacement caused by modeled reaction mass; not evidence of swimming",
+    "experience_change": "plastic state and behaviour differ with experience, separate from genotype changes",
+    "learned_competence": "not established by physiology alone; retain NOT_DEMONSTRATED without appropriate causal generalization/retention tests",
+    "genetic_divergence": "inherited mutated genome and distinct fresh-state common-garden response",
+    "evolutionary_adaptation": "not established by mutation or offspring differences alone",
+    "construction_or_tunnelling": "physical excavation events are not evidence of purposeful learned construction or tunnelling"
+  },
+  "performance": "64 World::tick steps on a 16^3 grid at initial populations 1,16,64,192,512. Includes atomic cloning and integrity audits; excludes rendering and snapshot hashing. These are local measurements, not whole-world scalability guarantees.",
+  "failure_policy": "retain every condition/seed and pipeline failure; never overwrite prior run directories",
+  "amendments": [
+    {
+      "version": 2,
+      "announced_before_rerun": true,
+      "reason": "Final review found recoil impulses missing from reported acceleration. Correct acceleration includes all within-tick impulse velocity changes as well as drag. Regression test added; no reward, genotype, controller or scenario parameter tuning.",
+      "prior_run": "runs/neural_foundation_v1_main",
+      "prior_data_status": "PRESERVED; acceleration feedback incomplete. First-dataset nulls remain part of the record.",
+      "replacement_run": "runs/neural_foundation_v2_main",
+      "replicates": 8,
+      "ticks": 256
+    }
+  ]
+}

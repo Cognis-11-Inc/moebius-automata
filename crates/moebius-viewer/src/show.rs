@@ -18,8 +18,8 @@ use super::{
     Gallery, Hud, PLAY_TICKS_PER_SEC, Reel, Score, Site, Stage, Threads, ViewState, load_reel,
 };
 use crate::body::{
-    BIND_START, BIND_STEP, bone_cage, creature_mesh, fused_flesh_mesh, mandible_mesh,
-    nutrient_mesh, rig_bind_positions, write_slime, write_threads,
+    BIND_START, BIND_STEP, bone_cage, creature_mesh, food_clot_mesh, fused_flesh_mesh,
+    mandible_mesh, nutrient_mesh, rig_bind_positions, write_slime, write_threads,
 };
 use crate::layout::{self, CAMERA_FOV, FILAMENT_WINDOW, path_segments, position_at, site_to_view};
 use crate::live::{self, Hall};
@@ -32,6 +32,17 @@ const HALL_FOV: f32 = 64.0 * std::f32::consts::PI / 180.0;
 #[derive(Resource, Default)]
 pub struct FlyCamera {
     captured: bool,
+    selected: Option<u64>,
+    inspect: bool,
+    page: usize,
+}
+impl FlyCamera {
+    pub fn with_inspector(inspect: bool) -> Self {
+        Self {
+            inspect,
+            ..default()
+        }
+    }
 }
 #[derive(Component)]
 pub struct MotorJoint {
@@ -40,6 +51,11 @@ pub struct MotorJoint {
 }
 #[derive(Component)]
 pub struct FeedingMaw {
+    id: u64,
+}
+
+#[derive(Component)]
+pub struct FeedingLink {
     id: u64,
 }
 
@@ -100,7 +116,213 @@ fn rig_assets(
     )
 }
 
+#[derive(Component)]
+pub struct NeuralPanel;
+#[derive(Component)]
+pub struct JetVisual(usize);
+
+pub fn neural_inspector(
+    keyboard: Res<ButtonInput<KeyCode>>,
+    hall: Res<Hall>,
+    view: Res<ViewState>,
+    mut fly: ResMut<FlyCamera>,
+    mut panels: Query<(&mut Text, &mut Node), With<NeuralPanel>>,
+    mut history: Local<(u64, Option<u64>, Vec<[i32; 8]>)>,
+) {
+    if keyboard.just_pressed(KeyCode::KeyN) {
+        fly.inspect = !fly.inspect;
+    }
+    if fly.inspect && keyboard.just_pressed(KeyCode::Tab) {
+        fly.page = (fly.page + 1) % 6;
+    }
+    let Ok((mut text, mut node)) = panels.single_mut() else {
+        return;
+    };
+    node.display = if fly.inspect {
+        Display::Flex
+    } else {
+        Display::None
+    };
+    if !fly.inspect {
+        return;
+    }
+    let Some(picture) = &hall.latest else {
+        return;
+    };
+    if fly
+        .selected
+        .is_none_or(|id| picture.cells.binary_search_by_key(&id, |c| c.id).is_err())
+    {
+        fly.selected = picture.cells.first().map(|c| c.id);
+    }
+    let Some(id) = fly.selected else {
+        text.0 = "No living organism".into();
+        return;
+    };
+    let cell = &picture.cells[picture
+        .cells
+        .binary_search_by_key(&id, |c| c.id)
+        .expect("selected")];
+    let Some(rig) = &cell.rig else {
+        return;
+    };
+    let Some(state) = &rig.neural else {
+        text.0 = "Legacy FARM2 discrete motor controller; no neural activations".into();
+        return;
+    };
+    if history.1 != Some(id) {
+        history.1 = Some(id);
+        history.2.clear();
+    }
+    if history.0 != picture.tick {
+        history.0 = picture.tick;
+        history.2.push(
+            state
+                .activations
+                .as_slice()
+                .try_into()
+                .expect("eight neurons"),
+        );
+        if history.2.len() > 48 {
+            history.2.remove(0);
+        }
+    }
+    let mut lines = format!(
+        "NEURAL INSPECTOR  id {id}  parent {}  gen {}\ncommitted {}  rendered {:.2}  page {}/6  Tab: next  N: close\ngenotype {}\n",
+        rig.parent,
+        rig.generation,
+        picture.tick,
+        view.tick,
+        fly.page + 1,
+        &state.genome.id()[..20]
+    );
+    match fly.page {
+        0 => {
+            lines.push_str(&format!("energy {}   last intake {}   physiological signal {}\nneural cost {}   actuator cost {}   jets {}\nvelocity {:?}   acceleration {:?}\norientation {:?}   angular rate {:?}\nactivations {:?}\ntime constants {:?}\nplastic changed updates {}   delta L1 {}\n\nSignals below are committed simulation state.\nBody display blends observations; it does not tick or choose motors.\nFull body/soft-tissue physics and learned locomotion are unproven.\n",cell.energy,state.last_intake,state.reward,state.spent_neural,state.spent_actuator,picture.jets.len(),state.body.velocity,state.body.acceleration,state.body.orientation,state.body.angular_velocity,state.activations,state.genome.tau,state.changed_connections,state.plastic.iter().map(|v|v.unsigned_abs() as u64).sum::<u64>()));
+            lines.push_str("\nObserved activation history (render sampling):\n");
+            let shades = b" .:-=+*#%@";
+            for neuron in 0..8 {
+                let spark: String = history
+                    .2
+                    .iter()
+                    .map(|frame| {
+                        let firing = moebius_core::neural::Q as i64 * i64::from(frame[neuron])
+                            / (1024 + i64::from(frame[neuron]).abs());
+                        let bucket = ((firing + 1024) * 9 / 2048).clamp(0, 9) as usize;
+                        shades[bucket] as char
+                    })
+                    .collect();
+                lines.push_str(&format!("n{neuron} |{spark}\n"));
+            }
+        }
+        1 => {
+            lines.push_str("axis: command / delivered torque / angle / rate / active ticks\n");
+            for (i, binding) in state.genome.anatomy.axes.iter().enumerate() {
+                lines.push_str(&format!(
+                    "j{:02} {:?}: {:+5} / {:+5} / {:+4} / {:+3} / {}\n",
+                    binding.joint,
+                    binding.axis,
+                    state.commands[i],
+                    state.realized_efforts[i],
+                    state.body.angles[i],
+                    state.body.rates[i],
+                    state.participation[i]
+                ));
+            }
+            let n = state.genome.anatomy.axes.len();
+            lines.push_str(&format!(
+                "valve/nozzle commands {:?}\nrealized {:?}\n",
+                &state.commands[n..],
+                &state.realized_efforts[n..]
+            ));
+        }
+        2..=4 => {
+            let names = state.genome.anatomy.sensor_names();
+            let start = (fly.page - 2) * 36;
+            lines.push_str("sensor ABI 1: bounded fixed-point normalized [-1024,1024]\n");
+            for (i, name) in names.iter().enumerate().skip(start).take(36) {
+                lines.push_str(&format!("{i:03} {name}: {:+5}\n", state.sensors[i]));
+            }
+        }
+        _ => {
+            lines.push_str("inherited recurrent weights (rows):\n");
+            for row in state.genome.recurrent.chunks(8) {
+                lines.push_str(&format!("{row:?}\n"));
+            }
+            lines.push_str("\nlifetime plastic deltas (not inherited):\n");
+            for row in state.plastic.chunks(8) {
+                lines.push_str(&format!("{row:?}\n"));
+            }
+            lines.push_str(&format!(
+                "\nplasticity parameters {:?}\n",
+                state.genome.plastic_rates
+            ));
+        }
+    }
+    text.0 = lines;
+}
+
+pub fn jet_picture(
+    mut commands: Commands,
+    hall: Res<Hall>,
+    gallery: Res<Gallery>,
+    mut pool: Local<usize>,
+    mut jets: Query<(&JetVisual, &mut Transform, &mut Visibility)>,
+) {
+    let Some(picture) = &hall.latest else {
+        return;
+    };
+    while *pool < picture.jets.len() {
+        commands.spawn((
+            Mesh3d(gallery.mouth.clone()),
+            MeshMaterial3d(gallery.flesh_mat.clone()),
+            Transform::default(),
+            Visibility::Hidden,
+            JetVisual(*pool),
+        ));
+        *pool += 1;
+    }
+    let half = Vec3::new(
+        (hall.dims.width - 1) as f32,
+        (hall.dims.height - 1) as f32,
+        (hall.dims.depth - 1) as f32,
+    ) * 0.5;
+    for (JetVisual(index), mut transform, mut visibility) in &mut jets {
+        if let Some(jet) = picture.jets.get(*index) {
+            *visibility = Visibility::Visible;
+            let p = Vec3::new(
+                jet.position[0] as f32,
+                jet.position[1] as f32,
+                jet.position[2] as f32,
+            ) / 1024.0;
+            transform.translation = (p - half) * layout::SPACING;
+            transform.scale = Vec3::splat(0.45);
+        } else {
+            *visibility = Visibility::Hidden;
+        }
+    }
+}
+
 pub fn boot(mut commands: Commands, boot: Res<Boot>, mut next: ResMut<NextState<Stage>>) {
+    commands.spawn((
+        Text::new(""),
+        TextFont {
+            font_size: FontSize::Px(12.0),
+            ..default()
+        },
+        TextColor(Color::srgb(0.85, 0.84, 0.75)),
+        Node {
+            position_type: PositionType::Absolute,
+            right: px(12),
+            bottom: px(12),
+            width: px(580),
+            padding: UiRect::all(px(10)),
+            display: Display::None,
+            ..default()
+        },
+        BackgroundColor(Color::srgba(0.015, 0.02, 0.018, 0.94)),
+        NeuralPanel,
+    ));
     commands.spawn((
         Camera3d::default(),
         Projection::Perspective(PerspectiveProjection {
@@ -376,11 +598,18 @@ pub fn orbit(
             && let Some(target) = picture
                 .cells
                 .iter()
-                .filter_map(|cell| hall.poses.get(&cell.id))
-                .map(|(_, p)| Vec3::from_array(*p))
-                .min_by(|a, b| a.distance_squared(eye).total_cmp(&b.distance_squared(eye)))
+                .filter_map(|cell| {
+                    hall.poses
+                        .get(&cell.id)
+                        .map(|(_, p)| (cell.id, Vec3::from_array(*p)))
+                })
+                .min_by(|a, b| {
+                    a.1.distance_squared(eye)
+                        .total_cmp(&b.1.distance_squared(eye))
+                })
         {
-            eye = target - forward * 2.2;
+            fly.selected = Some(target.0);
+            eye = target.1 - forward * 2.2;
         }
         let mut direction = Vec3::ZERO;
         if keyboard.pressed(KeyCode::KeyW) {
@@ -862,10 +1091,24 @@ pub fn assemble_hall(
     ];
     let creature_mats = std::array::from_fn(|_| materials.add(carapace_material()));
     diffuse_lights(&mut commands);
-    let orb = meshes.add(nutrient_mesh());
+    let orb = meshes.add(if hall.nursery {
+        food_clot_mesh()
+    } else {
+        nutrient_mesh()
+    });
     let (bindposes, mouth, mouth_mat) =
         rig_assets(&mut meshes, &mut materials, &mut bindpose_assets);
-    let orb_mat = materials.add(bile_material());
+    let orb_mat = materials.add(if hall.nursery {
+        StandardMaterial {
+            base_color: Color::WHITE,
+            perceptual_roughness: 0.23,
+            clearcoat: 0.9,
+            metallic: 0.08,
+            ..default()
+        }
+    } else {
+        bile_material()
+    });
     let flesh_mesh = meshes.add(nutrient_mesh());
     let mandibles = [
         meshes.add(mandible_mesh(-1.0)),
@@ -1029,6 +1272,15 @@ pub fn embody(
                 ))
                 .id();
             commands.entity(head_bone).add_child(mouth);
+            if hall.nursery {
+                commands.spawn((
+                    Mesh3d(gallery.mouth.clone()),
+                    MeshMaterial3d(gallery.mouth_mat.clone()),
+                    Transform::default(),
+                    Visibility::Hidden,
+                    FeedingLink { id: cell.id },
+                ));
+            }
             // Feeding organ follows the articulated head.
             commands
                 .entity(mouth)
@@ -1091,6 +1343,25 @@ pub fn hall_bodies(
             transform.translation = Vec3::from_array(*before).lerp(Vec3::from_array(*after), blend);
         }
         if let Some(rig) = &cell.rig {
+            if let Some(state) = &rig.neural {
+                let o = state.body.orientation.map(|v| v as f32 / 1024.0);
+                let target = Quat::from_rotation_z(o[2])
+                    * Quat::from_rotation_y(o[1])
+                    * Quat::from_rotation_x(o[0]);
+                transform.rotation = transform
+                    .rotation
+                    .slerp(target, 1.0 - (-time.delta_secs() * 3.2).exp());
+                let center = Vec3::new(
+                    state.body.centroid[0] as f32,
+                    state.body.centroid[1] as f32,
+                    state.body.centroid[2] as f32,
+                ) / 1024.0
+                    * layout::SPACING;
+                let root_rotation = transform.rotation;
+                transform.translation -= root_rotation * center;
+                transform.scale = Vec3::splat(BODY_SCALE);
+                continue;
+            }
             let velocity = Vec3::new(
                 rig.velocity[0] as f32,
                 rig.velocity[1] as f32,
@@ -1138,6 +1409,37 @@ pub fn rig_joints(
         let Some(rig) = &picture.cells[index].rig else {
             continue;
         };
+        if let Some(state) = &rig.neural {
+            let mut bend = 0.0;
+            let mut twist = 0.0;
+            for (index, binding) in state
+                .genome
+                .anatomy
+                .axes
+                .iter()
+                .enumerate()
+                .filter(|(_, b)| b.joint == joint.index)
+            {
+                let angle = state.body.angles[index] as f32 / 1024.0;
+                match binding.axis {
+                    moebius_core::neural::schema::Axis::Twist => twist = angle,
+                    _ => bend = angle,
+                }
+            }
+            let target = if joint.index < SPINE_JOINTS {
+                Quat::from_rotation_z(bend) * Quat::from_rotation_y(twist)
+            } else {
+                Quat::from_rotation_z(if joint.index == SPINE_JOINTS {
+                    -bend
+                } else {
+                    bend
+                })
+            };
+            transform.rotation = transform
+                .rotation
+                .slerp(target, 1.0 - (-time.delta_secs() * 3.2).exp());
+            continue;
+        }
         let angle = rig.joints[joint.index] as f32 / 256.0;
         let target = if joint.index < SPINE_JOINTS {
             let twist = rig.twists[joint.index] as f32 / 256.0;
@@ -1154,7 +1456,7 @@ pub fn rig_joints(
         };
         transform.rotation = transform
             .rotation
-            .slerp(target, 1.0 - (-time.delta_secs() * 12.0).exp());
+            .slerp(target, 1.0 - (-time.delta_secs() * 3.2).exp());
     }
 }
 
@@ -1187,6 +1489,55 @@ pub fn feeding(
         transform.scale = transform
             .scale
             .lerp(target, 1.0 - (-time.delta_secs() * 10.0).exp());
+    }
+}
+
+/// Draw a short feeding tether only for committed uptake at an actual food site.
+/// The source endpoint follows the rendered articulated mouth; the stock endpoint
+/// comes from the core's recorded consumption, never a guessed nearby target.
+pub fn feeding_links(
+    hall: Res<Hall>,
+    view: Res<ViewState>,
+    mouths: Query<(&FeedingMaw, &GlobalTransform)>,
+    mut links: Query<(&FeedingLink, &mut Transform, &mut Visibility)>,
+) {
+    let Some(picture) = &hall.latest else {
+        return;
+    };
+    for (link, mut transform, mut visibility) in &mut links {
+        *visibility = Visibility::Hidden;
+        if !view.cells {
+            continue;
+        }
+        let Ok(i) = picture.cells.binary_search_by_key(&link.id, |c| c.id) else {
+            continue;
+        };
+        let Some(state) = picture.cells[i]
+            .rig
+            .as_ref()
+            .and_then(|r| r.neural.as_ref())
+        else {
+            continue;
+        };
+        let Some(site) = state.last_food_site.filter(|_| state.last_intake > 0) else {
+            continue;
+        };
+        let Some((_, mouth)) = mouths.iter().find(|(m, _)| m.id == link.id) else {
+            continue;
+        };
+        let start = mouth.translation();
+        let end = Vec3::from_array(site_to_view(site, hall.dims));
+        let delta = end - start;
+        let length = delta.length();
+        // Do not draw a strand across a periodic seam.
+        if !(0.001..1.2).contains(&length) {
+            continue;
+        }
+        *visibility = Visibility::Visible;
+        transform.translation = (start + end) * 0.5;
+        transform.rotation = Quat::from_rotation_arc(Vec3::Y, delta / length);
+        let swallow = 1.0 + (view.tick * 2.0).sin() * 0.15;
+        transform.scale = Vec3::new(0.16 * swallow, length / 0.16, 0.16 * swallow);
     }
 }
 
@@ -1225,6 +1576,14 @@ pub fn hall_fluid(
             *visibility = Visibility::Hidden;
             continue;
         };
+        if hall.nursery {
+            *visibility = Visibility::Visible;
+            transform.translation = Vec3::from_array(site_to_view(origin, hall.dims));
+            // The clot is one exact stock site. Volume follows its committed amount.
+            transform.scale = Vec3::splat(layout::SPACING * 1.6 * fraction.cbrt());
+            transform.rotation = Quat::from_rotation_z((*index as f32 * 2.399).sin() * 0.55);
+            continue;
+        }
         let (center, size) = block_pose(origin, hall.stride, hall.dims);
         let pulse = 1.0 + (seconds * 0.55 + *index as f32).sin() * 0.04;
         *visibility = Visibility::Visible;
@@ -1346,11 +1705,11 @@ pub fn hall_hud(hall: Res<Hall>, view: Res<ViewState>, mut text: Query<&mut Text
     };
     text.0 = format!(
         "Möbius Automata — Farm M1   tick {}   shown {:.1}   {fps}   {play}\n\
-         M1 farm. founding cells {}. joint motors + inertia. inherited adaptive controllers.\n\
+         farm. founding cells {}. mode is identified in the neural inspector (N).\n\
          seed {}   config {config}   code {code}   energy cap {}\n\
          live {}   dead {}   field {}   reservoir {}   waste {}\n\
          material residual {}   action-energy residual {}   state {hash} at tick {}\n\
-         generation {generation}   deposited flesh {flesh}   motors, feeding, and inheritance are live\n\
+         generation {generation}   deposited flesh {flesh}   N: neural inspector / Tab: pages\n\
          food colonies: block samples, stride {}. mouths respond to actual nutrient uptake.\n\
          1 bodies {}   2 fluid {}   3 slime {}   4 hypothesis {} (empty scaffold, not membership)\n\
          {extra}\

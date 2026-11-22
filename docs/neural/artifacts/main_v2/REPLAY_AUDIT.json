@@ -1,0 +1,170 @@
+{
+  "status": "PASS",
+  "main": "runs/neural_foundation_v2_main",
+  "instrumented_replay": "runs/neural_foundation_v2_replay",
+  "matched_trials": 112,
+  "comparison": "all result fields except elapsed_seconds identical",
+  "scope": "exported parent-child genetic structures and fresh-state command probes independently compared; state hashes compared, not independently recomputed; no adaptation verdict",
+  "lineages": [
+    {
+      "file": "lineage_evidence_mutation_off_1.jsonl.gz",
+      "uncompressed_sha256": "ce3e544766fdd62c76bb347613756a8de7eb11028dbc8114d3412abaa3b38c0c",
+      "condition": "mutation_off",
+      "seed": 1,
+      "records": 16,
+      "descendants": 12,
+      "changed_genotypes": 0,
+      "changed_command_probes": 0
+    },
+    {
+      "file": "lineage_evidence_mutation_off_2.jsonl.gz",
+      "uncompressed_sha256": "b8ef89218599c02c59f4cca858e4caf711338274848ea444a399e07a196b81c2",
+      "condition": "mutation_off",
+      "seed": 2,
+      "records": 16,
+      "descendants": 12,
+      "changed_genotypes": 0,
+      "changed_command_probes": 0
+    },
+    {
+      "file": "lineage_evidence_mutation_off_3.jsonl.gz",
+      "uncompressed_sha256": "c2d56844efc077ffc9f0da320e80697c7a28f66bc5b9c706bbe5c2f4bb07e77d",
+      "condition": "mutation_off",
+      "seed": 3,
+      "records": 16,
+      "descendants": 12,
+      "changed_genotypes": 0,
+      "changed_command_probes": 0
+    },
+    {
+      "file": "lineage_evidence_mutation_off_4.jsonl.gz",
+      "uncompressed_sha256": "7a47368aa44dca448d9bebb7f0bcc45b0d0c5747992669c3072bda192a029fb3",
+      "condition": "mutation_off",
+      "seed": 4,
+      "records": 16,
+      "descendants": 12,
+      "changed_genotypes": 0,
+      "changed_command_probes": 0
+    },
+    {
+      "file": "lineage_evidence_mutation_off_5.jsonl.gz",
+      "uncompressed_sha256": "390f82d58cbd2c6eb276a59ad76d0fd1dec9cfff5e01fdef0449983da027559e",
+      "condition": "mutation_off",
+      "seed": 5,
+      "records": 16,
+      "descendants": 12,
+      "changed_genotypes": 0,
+      "changed_command_probes": 0
+    },
+    {
+      "file": "lineage_evidence_mutation_off_6.jsonl.gz",
+      "uncompressed_sha256": "6a3a2f560a966af21056a74963d3f85b480483e87a5b19a58e189cf22eb83da2",
+      "condition": "mutation_off",
+      "seed": 6,
+      "records": 16,
+      "descendants": 12,
+      "changed_genotypes": 0,
+      "changed_command_probes": 0
+    },
+    {
+      "file": "lineage_evidence_mutation_off_7.jsonl.gz",
+      "uncompressed_sha256": "f9acf51d5d5f8f526406014e3ecd891ee2c3d0acf7458402637615d4bbe1f945",
+      "condition": "mutation_off",
+      "seed": 7,
+      "records": 16,
+      "descendants": 12,
+      "changed_genotypes": 0,
+      "changed_command_probes": 0
+    },
+    {
+      "file": "lineage_evidence_mutation_off_8.jsonl.gz",
+      "uncompressed_sha256": "530a71f6e10e4d205502be270a8a2e6186361d24a2d5a1eb0044a21468601f0e",
+      "condition": "mutation_off",
+      "seed": 8,
+      "records": 16,
+      "descendants": 12,
+      "changed_genotypes": 0,
+      "changed_command_probes": 0
+    },
+    {
+      "file": "lineage_evidence_plastic_on_1.jsonl.gz",
+      "uncompressed_sha256": "71b44aa1905e358ee7ac46baca1afdca76b09a46a4f4e2209254048433b9293e",
+      "condition": "plastic_on",
+      "seed": 1,
+      "records": 16,
+      "descendants": 12,
+      "changed_genotypes": 12,
+      "changed_command_probes": 12
+    },
+    {
+      "file": "lineage_evidence_plastic_on_2.jsonl.gz",
+      "uncompressed_sha256": "f8ed38731be218a9a5c1eb1fedac9c335333aee43a0b19c4aef914ebc631a2e4",
+      "condition": "plastic_on",
+      "seed": 2,
+      "records": 16,
+      "descendants": 12,
+      "changed_genotypes": 12,
+      "changed_command_probes": 11
+    },
+    {
+      "file": "lineage_evidence_plastic_on_3.jsonl.gz",
+      "uncompressed_sha256": "6bc094443bfbc368d38e4a8d2c0f9f5a77ca2db34bbb8eae309fc860b2dc7e40",
+      "condition": "plastic_on",
+      "seed": 3,
+      "records": 16,
+      "descendants": 12,
+      "changed_genotypes": 12,
+      "changed_command_probes": 12
+    },
+    {
+      "file": "lineage_evidence_plastic_on_4.jsonl.gz",
+      "uncompressed_sha256": "ce03810a6bde83f8071a0af05a746283330e828bbc1c8fe031e565eaa9b6bfd5",
+      "condition": "plastic_on",
+      "seed": 4,
+      "records": 16,
+      "descendants": 12,
+      "changed_genotypes": 12,
+      "changed_command_probes": 12
+    },
+    {
+      "file": "lineage_evidence_plastic_on_5.jsonl.gz",
+      "uncompressed_sha256": "012ff4c14cafa8c84e780ab2a759cd6c2cf733b80213cb3e937f84002df470e7",
+      "condition": "plastic_on",
+      "seed": 5,
+      "records": 17,
+      "descendants": 13,
+      "changed_genotypes": 13,
+      "changed_command_probes": 13
+    },
+    {
+      "file": "lineage_evidence_plastic_on_6.jsonl.gz",
+      "uncompressed_sha256": "4b4698d0605490d010f4f36e4d63a46bb6443af3e757acc8fddee22f07b575a9",
+      "condition": "plastic_on",
+      "seed": 6,
+      "records": 16,
+      "descendants": 12,
+      "changed_genotypes": 12,
+      "changed_command_probes": 11
+    },
+    {
+      "file": "lineage_evidence_plastic_on_7.jsonl.gz",
+      "uncompressed_sha256": "449092d9438eaf8379122da617b5059c3ef8ac66f5e7e747c024eea5cffff2e1",
+      "condition": "plastic_on",
+      "seed": 7,
+      "records": 16,
+      "descendants": 12,
+      "changed_genotypes": 12,
+      "changed_command_probes": 12
+    },
+    {
+      "file": "lineage_evidence_plastic_on_8.jsonl.gz",
+      "uncompressed_sha256": "a49a05b7afd1cfd5c4c3fd79e1c0d43831f31fb58ef415a415cbfee4e94b4d4d",
+      "condition": "plastic_on",
+      "seed": 8,
+      "records": 16,
+      "descendants": 12,
+      "changed_genotypes": 12,
+      "changed_command_probes": 11
+    }
+  ]
+}

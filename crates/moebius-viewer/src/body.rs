@@ -331,6 +331,56 @@ pub fn nutrient_mesh() -> Mesh {
     sculpt.mesh()
 }
 
+/// Folded edible tissue: an asymmetric fluted spindle, pale constrictions and
+/// exposed vessels. Material amount controls its volume in the live picture.
+pub fn food_clot_mesh() -> Mesh {
+    let mut s = Sculpt::new();
+    s.tint = [0.32, 0.055, 0.08, 1.0];
+    let path: Vec<_> = (0..=10)
+        .map(|i| {
+            let t = i as f32 / 10.0;
+            (
+                Vec3::new(
+                    (t * 6.0).sin() * 0.12,
+                    (t - 0.5) * 1.8,
+                    (t * 4.0).cos() * 0.1,
+                ),
+                0.025 + (t * std::f32::consts::PI).sin() * 0.48,
+            )
+        })
+        .collect();
+    s.conduit(&path, 10);
+    s.tint = [0.66, 0.39, 0.34, 1.0];
+    for ring in 1..8 {
+        let t = ring as f32 / 8.0;
+        let center = Vec3::new(
+            (t * 6.0).sin() * 0.12,
+            (t - 0.5) * 1.8,
+            (t * 4.0).cos() * 0.1,
+        );
+        let radius = (t * std::f32::consts::PI).sin() * 0.48;
+        let fold: Vec<_> = (0..=12)
+            .map(|i| {
+                let a = i as f32 / 12.0 * std::f32::consts::TAU;
+                (
+                    center + Vec3::new(a.cos() * radius, a.sin() * 0.045, a.sin() * radius),
+                    0.028,
+                )
+            })
+            .collect();
+        s.conduit(&fold, 5);
+    }
+    s.tint = [0.20, 0.025, 0.04, 1.0];
+    for sign in [-1.0, 1.0] {
+        let vessel: Vec<_> = path
+            .iter()
+            .map(|(p, r)| (*p + Vec3::new(sign * r * 0.7, 0.0, r * 0.65), 0.035))
+            .collect();
+        s.conduit(&vessel, 6);
+    }
+    s.mesh()
+}
+
 pub fn write_slime(
     mesh: &mut Mesh,
     paths: &std::collections::BTreeMap<u64, Vec<(u64, [f32; 3])>>,
@@ -357,12 +407,14 @@ pub fn write_slime(
             if distance < 0.003 || distance > crate::layout::SPACING * 2.0 {
                 continue;
             }
-            sculpt.tint = [0.45, 0.58, 0.32, (1.0 - age).max(0.0) * 0.36];
+            // The ribbon is only the wet gloss. The lasting thread is flesh.
+            let wet = (1.0 - age * 0.35).clamp(0.62, 1.0);
+            sculpt.tint = [0.45, 0.58, 0.32, 0.42 * wet];
             sculpt.tube(
                 Vec3::from_array(a),
                 Vec3::from_array(b),
-                0.028 * (1.0 - age * 0.65),
-                0.024 * (1.0 - age * 0.65),
+                0.03 * wet,
+                0.026 * wet,
                 6,
             );
         }

@@ -1,0 +1,50 @@
+{
+  "DOI": "10.1177/105971239500300405",
+  "URL": "https://doi.org/10.1177/105971239500300405",
+  "title": [
+    "On the Dynamics of Small Continuous-Time Recurrent Neural Networks"
+  ],
+  "author": [
+    {
+      "given": "Randall D.",
+      "family": "Beer",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "Case Western Reserve University"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "container-title": [
+    "Adaptive Behavior"
+  ],
+  "publisher": "SAGE Publications",
+  "published": {
+    "date-parts": [
+      [
+        1995,
+        3
+      ]
+    ]
+  },
+  "published-print": {
+    "date-parts": [
+      [
+        1995,
+        3
+      ]
+    ]
+  },
+  "volume": "3",
+  "issue": "4",
+  "page": "469-509",
+  "type": "journal-article",
+  "retrieved_from": "https://api.crossref.org/works/10.1177/105971239500300405"
+}

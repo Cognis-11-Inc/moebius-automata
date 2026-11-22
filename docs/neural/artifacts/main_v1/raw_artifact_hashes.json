@@ -1,0 +1,15 @@
+{
+  "runs/neural_foundation_v1_main/config_contact_1.json": "5291ca700c4b35e5ae0402af1407f75fdd93f483e59da9dbabaaf8a819887bb9",
+  "runs/neural_foundation_v1_main/config_foraging_1.json": "5291ca700c4b35e5ae0402af1407f75fdd93f483e59da9dbabaaf8a819887bb9",
+  "runs/neural_foundation_v1_main/config_lineage_1.json": "550a5ffb4ed8819c5fa69d6e2aadde22c8b53df90a11e5f85b34a06c215bea36",
+  "runs/neural_foundation_v1_main/final_contact_1.bin": "9dd397f27586e253c093bc371de3563386d169569c089d522f73b14dfbae7372",
+  "runs/neural_foundation_v1_main/final_foraging_1.bin": "df3982c01f0dbc785e85edc907d7b10cde66c2a87b8be27b6404af085767f28d",
+  "runs/neural_foundation_v1_main/final_lineage_1.bin": "5993121163df34e3e8d99e3f4eb11b8a0290a663bce07d80630e844e4bfd3a7a",
+  "runs/neural_foundation_v1_main/interfaces.json": "bacf826e2854b324beef52c9dbc347e2a4dacfe7848a54c212655dd9e5d48d25",
+  "runs/neural_foundation_v1_main/plan.json": "5fc667dec25ecb9265e485a8dcf213778ad7e626c8d236d8631344cdf86c5845",
+  "runs/neural_foundation_v1_main/results.json": "f6d9fd3592d6cbad4933439d2e06e9739475cfde55414852337ad3ed47989d55",
+  "runs/neural_foundation_v1_main/results.partial.json": "6e5920573e81f6b91e4d999a0871a8848d6b7a87b7af4cc12aac34fdd648a411",
+  "runs/neural_foundation_v1_main/trace_contact_1.jsonl": "a13a12bdcb638e34c62267031da44b71d9cf91dedf2fdb420c7d1cb7eb3bf812",
+  "runs/neural_foundation_v1_main/trace_foraging_1.jsonl": "b534894e13cba8a0493e21ec4e40bc24d833b63a12a70e3b62f32fa5dd3e664d",
+  "runs/neural_foundation_v1_main/trace_lineage_1.jsonl": "5e09e91877dae6f77ac7e182b5e6c8caee52120b78d93d9178f5acbf1a854aee"
+}

@@ -17,6 +17,7 @@ pub struct Metrics {
     pub dead: u32,
     pub field: u64,
     pub flesh: u64,
+    pub in_flight: u64,
     pub reservoir: u64,
     pub waste: u64,
     pub external_input: u64,
@@ -42,6 +43,7 @@ fn metrics_from(world: &World, accounts: &Accounts) -> Metrics {
         dead: world.dead_count(),
         field: accounts.field,
         flesh: accounts.flesh,
+        in_flight: accounts.in_flight,
         reservoir: accounts.reservoir,
         waste: accounts.waste,
         external_input: accounts.external_input,
@@ -65,16 +67,17 @@ pub fn metrics_csv(rows: &[Metrics]) -> Result<String, Error> {
         )));
     }
     let mut out = String::from(
-        "tick,live,dead,field,flesh,reservoir,waste,external_input,external_output,material_residual,energy_live,energy_credited,energy_maintenance,energy_disposed,energy_residual,state_hash\n",
+        "tick,live,dead,field,flesh,in_flight,reservoir,waste,external_input,external_output,material_residual,energy_live,energy_credited,energy_maintenance,energy_disposed,energy_residual,state_hash\n",
     );
     for row in rows {
         out.push_str(&format!(
-            "{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}\n",
+            "{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}\n",
             row.tick,
             row.live,
             row.dead,
             row.field,
             row.flesh,
+            row.in_flight,
             row.reservoir,
             row.waste,
             row.external_input,
@@ -125,6 +128,7 @@ pub struct RunManifest {
     pub external_output: u64,
     pub material_field: u64,
     pub material_flesh: u64,
+    pub material_in_flight: u64,
     pub material_reservoir: u64,
     pub material_waste: u64,
     pub material_residual: i64,
@@ -164,7 +168,10 @@ pub fn build_manifest(
         seed,
         prng: PRNG.into(),
         placement_stream: PLACEMENT_STREAM.into(),
-        movement_stream: if config.farm.is_some() {
+        movement_stream: if config.neural.is_some() {
+            "CTRNN1 fixed-step neural dynamics; seeded germline mutation; no discrete gait policy"
+                .into()
+        } else if config.farm.is_some() {
             "M1 adaptive motor policy; domain-separated brain, motor-explore and motor-mutation BLAKE3 draws".into()
         } else {
             MOVEMENT_STREAM.into()
@@ -174,7 +181,9 @@ pub fn build_manifest(
         } else {
             NEIGHBORHOOD.into()
         },
-        state_format: if config.farm.is_some() {
+        state_format: if config.neural.is_some() {
+            "canonical-le-v1+FARM3".into()
+        } else if config.farm.is_some() {
             "canonical-le-v1+FARM2".into()
         } else {
             STATE_FORMAT.into()
@@ -191,6 +200,7 @@ pub fn build_manifest(
         external_output: accounts.external_output,
         material_field: accounts.field,
         material_flesh: accounts.flesh,
+        material_in_flight: accounts.in_flight,
         material_reservoir: accounts.reservoir,
         material_waste: accounts.waste,
         material_residual: 0,

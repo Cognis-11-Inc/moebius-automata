@@ -1,0 +1,32 @@
+{
+  "conditions": [
+    "plastic_on",
+    "plastic_off",
+    "random",
+    "recurrence_off",
+    "proprioception_off",
+    "chemistry_off"
+  ],
+  "environments": [
+    "foraging",
+    "contact"
+  ],
+  "lineage_conditions": [
+    "plastic_on",
+    "mutation_off"
+  ],
+  "motor_probe": "automated neural capability tests; controlled, not learned",
+  "null_reporting": "no direct locomotion/building/digging reward; all seeds and conditions retained, including failures/deaths; no purposeful learning verdict from reward alone",
+  "primary_measures": [
+    "paired intake and energy outcomes",
+    "early versus late intake",
+    "distance and recoil events",
+    "actuator participation",
+    "plastic changes",
+    "common-garden descendant commands"
+  ],
+  "replicates": 8,
+  "seeds": "1..=replicates",
+  "ticks": 256,
+  "version": 1
+}

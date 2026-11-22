@@ -1,0 +1,439 @@
+{
+  "additional_motors": [
+    "secretion_valve",
+    "nozzle_body_x",
+    "nozzle_body_y",
+    "nozzle_body_z"
+  ],
+  "anatomy": {
+    "axes": [
+      {
+        "axis": "Bend",
+        "joint": 0,
+        "max": 768,
+        "min": -768
+      },
+      {
+        "axis": "Twist",
+        "joint": 0,
+        "max": 512,
+        "min": -512
+      },
+      {
+        "axis": "Bend",
+        "joint": 1,
+        "max": 768,
+        "min": -768
+      },
+      {
+        "axis": "Twist",
+        "joint": 1,
+        "max": 512,
+        "min": -512
+      },
+      {
+        "axis": "Bend",
+        "joint": 2,
+        "max": 768,
+        "min": -768
+      },
+      {
+        "axis": "Twist",
+        "joint": 2,
+        "max": 512,
+        "min": -512
+      },
+      {
+        "axis": "Bend",
+        "joint": 3,
+        "max": 768,
+        "min": -768
+      },
+      {
+        "axis": "Twist",
+        "joint": 3,
+        "max": 512,
+        "min": -512
+      },
+      {
+        "axis": "Bend",
+        "joint": 4,
+        "max": 768,
+        "min": -768
+      },
+      {
+        "axis": "Twist",
+        "joint": 4,
+        "max": 512,
+        "min": -512
+      },
+      {
+        "axis": "Bend",
+        "joint": 5,
+        "max": 768,
+        "min": -768
+      },
+      {
+        "axis": "Twist",
+        "joint": 5,
+        "max": 512,
+        "min": -512
+      },
+      {
+        "axis": "Bend",
+        "joint": 6,
+        "max": 768,
+        "min": -768
+      },
+      {
+        "axis": "Twist",
+        "joint": 6,
+        "max": 512,
+        "min": -512
+      },
+      {
+        "axis": "Bend",
+        "joint": 7,
+        "max": 768,
+        "min": -768
+      },
+      {
+        "axis": "Twist",
+        "joint": 7,
+        "max": 512,
+        "min": -512
+      },
+      {
+        "axis": "Bend",
+        "joint": 8,
+        "max": 768,
+        "min": -768
+      },
+      {
+        "axis": "Twist",
+        "joint": 8,
+        "max": 512,
+        "min": -512
+      },
+      {
+        "axis": "Bend",
+        "joint": 9,
+        "max": 768,
+        "min": -768
+      },
+      {
+        "axis": "Twist",
+        "joint": 9,
+        "max": 512,
+        "min": -512
+      },
+      {
+        "axis": "Bend",
+        "joint": 10,
+        "max": 768,
+        "min": -768
+      },
+      {
+        "axis": "Twist",
+        "joint": 10,
+        "max": 512,
+        "min": -512
+      },
+      {
+        "axis": "Bend",
+        "joint": 11,
+        "max": 768,
+        "min": -768
+      },
+      {
+        "axis": "Twist",
+        "joint": 11,
+        "max": 512,
+        "min": -512
+      },
+      {
+        "axis": "Jaw",
+        "joint": 12,
+        "max": 768,
+        "min": -256
+      },
+      {
+        "axis": "Jaw",
+        "joint": 13,
+        "max": 768,
+        "min": -256
+      }
+    ],
+    "jaws": 2,
+    "spine": 12,
+    "version": 1
+  },
+  "motor_axes": [
+    {
+      "axis": "Bend",
+      "joint": 0,
+      "max": 768,
+      "min": -768
+    },
+    {
+      "axis": "Twist",
+      "joint": 0,
+      "max": 512,
+      "min": -512
+    },
+    {
+      "axis": "Bend",
+      "joint": 1,
+      "max": 768,
+      "min": -768
+    },
+    {
+      "axis": "Twist",
+      "joint": 1,
+      "max": 512,
+      "min": -512
+    },
+    {
+      "axis": "Bend",
+      "joint": 2,
+      "max": 768,
+      "min": -768
+    },
+    {
+      "axis": "Twist",
+      "joint": 2,
+      "max": 512,
+      "min": -512
+    },
+    {
+      "axis": "Bend",
+      "joint": 3,
+      "max": 768,
+      "min": -768
+    },
+    {
+      "axis": "Twist",
+      "joint": 3,
+      "max": 512,
+      "min": -512
+    },
+    {
+      "axis": "Bend",
+      "joint": 4,
+      "max": 768,
+      "min": -768
+    },
+    {
+      "axis": "Twist",
+      "joint": 4,
+      "max": 512,
+      "min": -512
+    },
+    {
+      "axis": "Bend",
+      "joint": 5,
+      "max": 768,
+      "min": -768
+    },
+    {
+      "axis": "Twist",
+      "joint": 5,
+      "max": 512,
+      "min": -512
+    },
+    {
+      "axis": "Bend",
+      "joint": 6,
+      "max": 768,
+      "min": -768
+    },
+    {
+      "axis": "Twist",
+      "joint": 6,
+      "max": 512,
+      "min": -512
+    },
+    {
+      "axis": "Bend",
+      "joint": 7,
+      "max": 768,
+      "min": -768
+    },
+    {
+      "axis": "Twist",
+      "joint": 7,
+      "max": 512,
+      "min": -512
+    },
+    {
+      "axis": "Bend",
+      "joint": 8,
+      "max": 768,
+      "min": -768
+    },
+    {
+      "axis": "Twist",
+      "joint": 8,
+      "max": 512,
+      "min": -512
+    },
+    {
+      "axis": "Bend",
+      "joint": 9,
+      "max": 768,
+      "min": -768
+    },
+    {
+      "axis": "Twist",
+      "joint": 9,
+      "max": 512,
+      "min": -512
+    },
+    {
+      "axis": "Bend",
+      "joint": 10,
+      "max": 768,
+      "min": -768
+    },
+    {
+      "axis": "Twist",
+      "joint": 10,
+      "max": 512,
+      "min": -512
+    },
+    {
+      "axis": "Bend",
+      "joint": 11,
+      "max": 768,
+      "min": -768
+    },
+    {
+      "axis": "Twist",
+      "joint": 11,
+      "max": 512,
+      "min": -512
+    },
+    {
+      "axis": "Jaw",
+      "joint": 12,
+      "max": 768,
+      "min": -256
+    },
+    {
+      "axis": "Jaw",
+      "joint": 13,
+      "max": 768,
+      "min": -256
+    }
+  ],
+  "normalization": "Q=1024; see docs/neural/ARCHITECTURE.md",
+  "sensor_names": [
+    "joint_0_Bend_angle",
+    "joint_0_Bend_rate",
+    "joint_0_Bend_effort",
+    "joint_0_Twist_angle",
+    "joint_0_Twist_rate",
+    "joint_0_Twist_effort",
+    "joint_1_Bend_angle",
+    "joint_1_Bend_rate",
+    "joint_1_Bend_effort",
+    "joint_1_Twist_angle",
+    "joint_1_Twist_rate",
+    "joint_1_Twist_effort",
+    "joint_2_Bend_angle",
+    "joint_2_Bend_rate",
+    "joint_2_Bend_effort",
+    "joint_2_Twist_angle",
+    "joint_2_Twist_rate",
+    "joint_2_Twist_effort",
+    "joint_3_Bend_angle",
+    "joint_3_Bend_rate",
+    "joint_3_Bend_effort",
+    "joint_3_Twist_angle",
+    "joint_3_Twist_rate",
+    "joint_3_Twist_effort",
+    "joint_4_Bend_angle",
+    "joint_4_Bend_rate",
+    "joint_4_Bend_effort",
+    "joint_4_Twist_angle",
+    "joint_4_Twist_rate",
+    "joint_4_Twist_effort",
+    "joint_5_Bend_angle",
+    "joint_5_Bend_rate",
+    "joint_5_Bend_effort",
+    "joint_5_Twist_angle",
+    "joint_5_Twist_rate",
+    "joint_5_Twist_effort",
+    "joint_6_Bend_angle",
+    "joint_6_Bend_rate",
+    "joint_6_Bend_effort",
+    "joint_6_Twist_angle",
+    "joint_6_Twist_rate",
+    "joint_6_Twist_effort",
+    "joint_7_Bend_angle",
+    "joint_7_Bend_rate",
+    "joint_7_Bend_effort",
+    "joint_7_Twist_angle",
+    "joint_7_Twist_rate",
+    "joint_7_Twist_effort",
+    "joint_8_Bend_angle",
+    "joint_8_Bend_rate",
+    "joint_8_Bend_effort",
+    "joint_8_Twist_angle",
+    "joint_8_Twist_rate",
+    "joint_8_Twist_effort",
+    "joint_9_Bend_angle",
+    "joint_9_Bend_rate",
+    "joint_9_Bend_effort",
+    "joint_9_Twist_angle",
+    "joint_9_Twist_rate",
+    "joint_9_Twist_effort",
+    "joint_10_Bend_angle",
+    "joint_10_Bend_rate",
+    "joint_10_Bend_effort",
+    "joint_10_Twist_angle",
+    "joint_10_Twist_rate",
+    "joint_10_Twist_effort",
+    "joint_11_Bend_angle",
+    "joint_11_Bend_rate",
+    "joint_11_Bend_effort",
+    "joint_11_Twist_angle",
+    "joint_11_Twist_rate",
+    "joint_11_Twist_effort",
+    "joint_12_Jaw_angle",
+    "joint_12_Jaw_rate",
+    "joint_12_Jaw_effort",
+    "joint_13_Jaw_angle",
+    "joint_13_Jaw_rate",
+    "joint_13_Jaw_effort",
+    "velocity_x",
+    "velocity_y",
+    "velocity_z",
+    "acceleration_x",
+    "acceleration_y",
+    "acceleration_z",
+    "angular_velocity_x",
+    "angular_velocity_y",
+    "angular_velocity_z",
+    "energy",
+    "secretion_feedstock",
+    "last_intake",
+    "last_metabolic_delta",
+    "last_motor_cost",
+    "local_nutrient",
+    "chemical_xp",
+    "chemical_xm",
+    "chemical_yp",
+    "chemical_ym",
+    "chemical_zp",
+    "chemical_zm",
+    "contact_xp",
+    "contact_xm",
+    "contact_yp",
+    "contact_ym",
+    "contact_zp",
+    "contact_zm",
+    "jaw_load_left",
+    "jaw_load_right"
+  ]
+}

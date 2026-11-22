@@ -1,0 +1,30 @@
+--- a/crates/moebius-core/src/neural/body.rs
++++ b/crates/moebius-core/src/neural/body.rs
+@@ -153,10 +153,8 @@
+     }
+     pub fn impulse(&mut self, impulse: [i64; 3]) {
+         for (axis, value) in impulse.into_iter().enumerate() {
+-            let previous = self.velocity[axis];
+             self.momentum[axis] += value;
+             self.velocity[axis] = (self.momentum[axis] / INERTIA) as i32;
+-            self.acceleration[axis] += self.velocity[axis] - previous;
+         }
+     }
+     pub fn can_impulse(&self, impulse: [i64; 3]) -> bool {
+--- a/crates/moebius-core/src/world.rs
++++ b/crates/moebius-core/src/world.rs
+@@ -714,14 +714,11 @@
+                     brain.velocity = brain.velocity.map(|value| -value / 4);
+                     if let Some(state) = &mut brain.neural {
+                         for axis in 0..3 {
+-                            let previous_velocity = state.body.velocity[axis];
+                             let old = state.body.momentum[axis];
+                             state.body.momentum[axis] = -old / 4;
+                             self.environment_momentum[axis] += old - state.body.momentum[axis];
+                             state.body.velocity[axis] =
+                                 (state.body.momentum[axis] / crate::neural::body::INERTIA) as i32;
+-                            state.body.acceleration[axis] +=
+-                                state.body.velocity[axis] - previous_velocity;
+                         }
+                         brain.sync_neural_pose();
+                     }

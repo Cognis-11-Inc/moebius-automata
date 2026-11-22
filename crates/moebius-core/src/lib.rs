@@ -15,8 +15,10 @@
 
 mod error;
 pub mod farm;
+pub mod feeding;
 mod geom;
 mod hashutil;
+pub mod neural;
 mod prng;
 
 pub mod config;

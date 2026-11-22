@@ -1,0 +1,81 @@
+{
+  "record_version": 1,
+  "date_local": "2026-11-21",
+  "question": "What compact recurrent dynamics and physically defensible momentum exchange can support an evolvable embodied controller without authored gaits or hidden locomotion assistance?",
+  "chronology": [
+    {
+      "stage": "initial_discovery",
+      "queries": [
+        "Beer 1995 continuous time recurrent neural networks dynamics small biological networks pdf",
+        "resistive force theory slender body swimming drag anisotropic low Reynolds review pdf university"
+      ],
+      "announcement_status": "Initial lookup preceded the user's notification rule and was disclosed afterward. Do not represent it as announced beforehand.",
+      "access": "Search-result metadata and abstracts/snippets; no full-text equation verification was performed."
+    },
+    {
+      "stage": "bibliographic_verification",
+      "intent": "Verify exact bibliographic identity of the two previously consulted references and preserve the provenance/implementation/validation distinction.",
+      "announcement_status": "Announced to the user before the verification tool call.",
+      "status": "COMPLETED",
+      "queries": [
+        "Theoretical models in low-Reynolds-number locomotion Pak Lauga 2015 DOI",
+        "10.1177/105971239500300405 469"
+      ],
+      "methods": [
+        "SAGE publisher page and abstract",
+        "author-hosted manuscript title page and introductory sections",
+        "arXiv author submission metadata",
+        "CrossRef publisher-deposited bibliographic metadata API"
+      ],
+      "access_failures": [
+        "web tool could not fetch CrossRef; direct metadata API succeeded",
+        "RSC publisher redirect inaccessible via web tool; CrossRef metadata and author/arXiv records supplied identity"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "beer1995",
+      "bibliography": "Beer, Randall D. (1995). On the Dynamics of Small Continuous-Time Recurrent Neural Networks. Adaptive Behavior 3(4), 469-509. SAGE. DOI:10.1177/105971239500300405.",
+      "links": [
+        "https://doi.org/10.1177/105971239500300405",
+        "https://journals.sagepub.com/doi/10.1177/105971239500300405"
+      ],
+      "metadata_record": "beer-1995-metadata.json",
+      "access": "Publisher metadata and abstract consulted. Paywalled full text not reviewed.",
+      "status": "CONSULTED",
+      "knowledge_transfer": "Motivates persistent nonlinear recurrent neural dynamics as an alternative to authored discrete gait selection.",
+      "implementation_trace": [
+        "crates/moebius-core/src/neural/controller.rs::NeuralState::integrate",
+        "crates/moebius-core/tests/neural.rs::recurrent_state_and_simultaneous_continuous_axis_outputs",
+        "crates/moebius-cli/src/bin/neural_study.rs"
+      ],
+      "implementation_status": "IMPLEMENTED_IN_WORKING_TREE",
+      "deviations": "Eight neurons, fixed-point arithmetic, four substeps and rational softsign are authored choices; this is not a reproduction of Beer's numerical models or bifurcation analysis. Lifetime plasticity is also authored, not attributed to this source.",
+      "validation_status": "Focused mechanism tests pass; final experiment analysis pending. No validation of source-specific dynamical theorems, learned coordination or oscillatory competence is claimed."
+    },
+    {
+      "id": "pak_lauga2015",
+      "bibliography": "Pak, On Shun, and Eric Lauga (2015). Theoretical Models of Low-Reynolds-Number Locomotion. In Fluid-Structure Interactions in Low-Reynolds-Number Flows, pp. 100-167. Royal Society of Chemistry. DOI:10.1039/9781782628491-00100.",
+      "links": [
+        "https://doi.org/10.1039/9781782628491-00100",
+        "https://www.damtp.cam.ac.uk/user/lauga/papers/96.pdf",
+        "https://arxiv.org/abs/1410.4321"
+      ],
+      "metadata_record": "pak-lauga-2015-metadata.json",
+      "access": "2014 author manuscript title page and introductory discussion consulted; arXiv record and 2015 publication metadata verified. The full chapter was not exhaustively reviewed.",
+      "status": "CONSULTED",
+      "knowledge_transfer": "Clarifies that movement depends on an explicit medium/mechanical coupling and that low Reynolds number is not equivalent to low gravity. Supports treating swimming as a separate unresolved physical-model prerequisite.",
+      "implementation_trace": [
+        "docs/neural/PHASE_0_AUDIT.md",
+        "crates/moebius-core/src/neural/body.rs",
+        "crates/moebius-core/src/world.rs::advance",
+        "crates/moebius-core/tests/neural.rs::torque_has_rates_limits_and_no_vacuum_com_thrust"
+      ],
+      "implementation_status": "NO_HYDRODYNAMIC_MODEL_IMPORTED",
+      "deviations": "The new mode instead tests authored reaction-mass expulsion with inertia and a momentum ledger. It does not implement this chapter's Stokes-flow or resistive-force models.",
+      "validation_status": "Only our own vacuum/no-thrust, reaction-momentum and accounting mechanisms have focused tests. Hydrodynamic swimming and learned locomotion are not validated."
+    }
+  ],
+  "evidence_boundary": "Published reference findings do not establish our implementation's physical validity, learned locomotion, tunnelling, construction, evolutionary adaptation, or ecological emergence."
+}

@@ -42,6 +42,8 @@ pub struct Picture {
     pub dead: u32,
     pub field: u64,
     pub material_flesh: u64,
+    pub in_flight: u64,
+    pub jets: Vec<moebius_core::neural::body::Jet>,
     pub flesh: Vec<moebius_core::farm::FleshDeposit>,
     pub reservoir: u64,
     pub waste: u64,
@@ -59,6 +61,7 @@ impl Picture {
     pub fn material_residual(&self) -> i128 {
         i128::from(self.field)
             + i128::from(self.material_flesh)
+            + i128::from(self.in_flight)
             + i128::from(self.reservoir)
             + i128::from(self.waste)
             + i128::from(self.external_output)
@@ -83,6 +86,8 @@ impl Picture {
             dead: 0,
             field: 0,
             material_flesh: 0,
+            in_flight: 0,
+            jets: Vec::new(),
             flesh: Vec::new(),
             reservoir: 0,
             waste: 0,
@@ -108,6 +113,7 @@ pub struct Hall {
     pub founding: u32,
     pub dims: Dims,
     pub stride: u32,
+    pub nursery: bool,
     pause: Arc<AtomicBool>,
     stop: Arc<AtomicBool>,
     inbox: Mutex<Receiver<Picture>>,
@@ -249,7 +255,11 @@ pub fn open(config: &SimConfig, seed: u64) -> Result<Hall, String> {
         height: config.height,
         depth: config.depth,
     };
-    let stride = display_stride(dims);
+    let stride = if config.feeding.is_some() {
+        1
+    } else {
+        display_stride(dims)
+    };
     let energy_cap = config.energy_cap;
     let site_cap = config.site_cap;
     let founding = config.initial_population;
@@ -272,6 +282,7 @@ pub fn open(config: &SimConfig, seed: u64) -> Result<Hall, String> {
         founding,
         dims,
         stride,
+        nursery: config.feeding.is_some(),
         pause,
         stop,
         inbox: Mutex::new(rx),
@@ -352,16 +363,32 @@ fn shoot(world: &World, stride: u32, error: Option<String>) -> Picture {
         Ok(accounts) => accounts,
         Err(err) => return Picture::failed(err.to_string()),
     };
-    let fluid = match fluid_samples(world.nutrient(), world.dims(), stride) {
-        Ok(samples) => samples
+    let fluid = if let Some(food) = &world.config().feeding {
+        moebius_core::feeding::sites(food, world.dims())
             .into_iter()
-            .map(|sample| FluidBit {
-                origin: sample.origin,
-                sites: sample.sites,
-                amount: sample.amount as f32,
+            .map(|origin| {
+                let i = origin.x as usize
+                    + world.dims().width as usize
+                        * (origin.y as usize + world.dims().height as usize * origin.z as usize);
+                FluidBit {
+                    origin,
+                    sites: 1,
+                    amount: world.nutrient()[i] as f32,
+                }
             })
-            .collect(),
-        Err(err) => return Picture::failed(err.to_string()),
+            .collect()
+    } else {
+        match fluid_samples(world.nutrient(), world.dims(), stride) {
+            Ok(samples) => samples
+                .into_iter()
+                .map(|sample| FluidBit {
+                    origin: sample.origin,
+                    sites: sample.sites,
+                    amount: sample.amount as f32,
+                })
+                .collect(),
+            Err(err) => return Picture::failed(err.to_string()),
+        }
     };
     let mut cells: Vec<Founder> = world
         .cells()
@@ -383,6 +410,8 @@ fn shoot(world: &World, stride: u32, error: Option<String>) -> Picture {
         dead: world.dead_count(),
         field: accounts.field,
         material_flesh: accounts.flesh,
+        in_flight: accounts.in_flight,
+        jets: world.jets().to_vec(),
         flesh: world
             .flesh()
             .iter()
@@ -431,6 +460,8 @@ mod tests {
             energy_cap: 1_000,
             genome_fill: GenomeFill::Zero,
             farm: None,
+            neural: None,
+            feeding: None,
         }
     }
 
@@ -478,6 +509,7 @@ mod tests {
                 depth: 4,
             },
             stride: 1,
+            nursery: false,
             pause: Arc::new(AtomicBool::new(false)),
             stop: Arc::new(AtomicBool::new(false)),
             inbox: Mutex::new(rx),
@@ -517,6 +549,8 @@ mod tests {
                 dead: 0,
                 field: 0,
                 material_flesh: 0,
+                in_flight: 0,
+                jets: Vec::new(),
                 flesh: Vec::new(),
                 reservoir: 0,
                 waste: 0,

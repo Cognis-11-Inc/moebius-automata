@@ -1,0 +1,4053 @@
+{
+  "trials": 112,
+  "matched_initial_state_and_founders": "PASS",
+  "failed_trials": 0,
+  "summaries": [
+    {
+      "environment": "foraging",
+      "condition": "plastic_on",
+      "n": 8,
+      "intake": {
+        "mean": 8.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          8,
+          8,
+          9,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "early_intake": {
+        "mean": 7.875,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          8,
+          8,
+          7,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "late_intake": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "final_energy": {
+        "mean": 41.875,
+        "sample_sd": 8.236460751699465,
+        "values": [
+          50,
+          54,
+          39,
+          35,
+          44,
+          30,
+          47,
+          36
+        ]
+      },
+      "distance_sites": {
+        "mean": 0.136478758392321,
+        "sample_sd": 0.3860202221885224,
+        "values": [
+          0.0,
+          0.0,
+          1.091830067138568,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "jets_released": {
+        "mean": 0.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "excavated": {
+        "mean": 0.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dead": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "plastic_l1_max": {
+        "mean": 124.625,
+        "sample_sd": 91.6841433556378,
+        "values": [
+          51,
+          18,
+          76,
+          251,
+          99,
+          159,
+          78,
+          265
+        ]
+      }
+    },
+    {
+      "environment": "foraging",
+      "condition": "plastic_off",
+      "n": 8,
+      "intake": {
+        "mean": 8.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          8,
+          8,
+          9,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "early_intake": {
+        "mean": 7.875,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          8,
+          8,
+          7,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "late_intake": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "final_energy": {
+        "mean": 41.875,
+        "sample_sd": 8.236460751699465,
+        "values": [
+          50,
+          54,
+          39,
+          35,
+          44,
+          30,
+          47,
+          36
+        ]
+      },
+      "distance_sites": {
+        "mean": 0.136478758392321,
+        "sample_sd": 0.3860202221885224,
+        "values": [
+          0.0,
+          0.0,
+          1.091830067138568,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "jets_released": {
+        "mean": 0.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "excavated": {
+        "mean": 0.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dead": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "plastic_l1_max": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "environment": "foraging",
+      "condition": "random",
+      "n": 8,
+      "intake": {
+        "mean": 25.25,
+        "sample_sd": 37.625029663016306,
+        "values": [
+          16,
+          16,
+          8,
+          13,
+          14,
+          118,
+          8,
+          9
+        ]
+      },
+      "early_intake": {
+        "mean": 8.125,
+        "sample_sd": 0.9910312089651149,
+        "values": [
+          9,
+          10,
+          8,
+          7,
+          8,
+          8,
+          8,
+          7
+        ]
+      },
+      "late_intake": {
+        "mean": 5.375,
+        "sample_sd": 12.805551251591742,
+        "values": [
+          1,
+          0,
+          0,
+          2,
+          2,
+          37,
+          0,
+          1
+        ]
+      },
+      "final_energy": {
+        "mean": 57.375,
+        "sample_sd": 93.72899764747301,
+        "values": [
+          35,
+          37,
+          16,
+          29,
+          30,
+          288,
+          10,
+          14
+        ]
+      },
+      "distance_sites": {
+        "mean": 2.932274287131931,
+        "sample_sd": 3.135660273091092,
+        "values": [
+          2.9305799094619056,
+          3.3835315026226267,
+          0.0,
+          1.8842756173426733,
+          2.2194776377224636,
+          10.171062066598143,
+          0.5593035472472594,
+          2.309964016060378
+        ]
+      },
+      "jets_released": {
+        "mean": 5,
+        "sample_sd": 9.335033858688309,
+        "values": [
+          2,
+          2,
+          0,
+          1,
+          2,
+          28,
+          2,
+          3
+        ]
+      },
+      "excavated": {
+        "mean": 0.5,
+        "sample_sd": 0.7559289460184545,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          1,
+          1
+        ]
+      },
+      "dead": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "plastic_l1_max": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "environment": "foraging",
+      "condition": "recurrence_off",
+      "n": 8,
+      "intake": {
+        "mean": 8,
+        "sample_sd": 0.0,
+        "values": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "early_intake": {
+        "mean": 8,
+        "sample_sd": 0.0,
+        "values": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "late_intake": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "final_energy": {
+        "mean": 103.875,
+        "sample_sd": 4.155461122770509,
+        "values": [
+          107,
+          108,
+          99,
+          101,
+          107,
+          98,
+          108,
+          103
+        ]
+      },
+      "distance_sites": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "jets_released": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "excavated": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dead": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "plastic_l1_max": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "environment": "foraging",
+      "condition": "proprioception_off",
+      "n": 8,
+      "intake": {
+        "mean": 8.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          8,
+          8,
+          9,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "early_intake": {
+        "mean": 7.875,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          8,
+          8,
+          7,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "late_intake": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "final_energy": {
+        "mean": 44.5,
+        "sample_sd": 13.212548148310702,
+        "values": [
+          52,
+          72,
+          43,
+          37,
+          44,
+          29,
+          45,
+          34
+        ]
+      },
+      "distance_sites": {
+        "mean": 0.12947511862546687,
+        "sample_sd": 0.36621093750000117,
+        "values": [
+          0.0,
+          0.0,
+          1.035800949003735,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "jets_released": {
+        "mean": 0.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "excavated": {
+        "mean": 0.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dead": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "plastic_l1_max": {
+        "mean": 135.125,
+        "sample_sd": 93.39690649511441,
+        "values": [
+          52,
+          12,
+          77,
+          178,
+          111,
+          237,
+          128,
+          286
+        ]
+      }
+    },
+    {
+      "environment": "foraging",
+      "condition": "chemistry_off",
+      "n": 8,
+      "intake": {
+        "mean": 8.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          8,
+          8,
+          9,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "early_intake": {
+        "mean": 7.875,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          8,
+          8,
+          7,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "late_intake": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "final_energy": {
+        "mean": 41.5,
+        "sample_sd": 8.298020417975776,
+        "values": [
+          49,
+          55,
+          39,
+          34,
+          44,
+          30,
+          45,
+          36
+        ]
+      },
+      "distance_sites": {
+        "mean": 0.136478758392321,
+        "sample_sd": 0.3860202221885224,
+        "values": [
+          0.0,
+          0.0,
+          1.091830067138568,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "jets_released": {
+        "mean": 0.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "excavated": {
+        "mean": 0.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dead": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "plastic_l1_max": {
+        "mean": 130,
+        "sample_sd": 90.9049739327518,
+        "values": [
+          65,
+          18,
+          77,
+          255,
+          105,
+          175,
+          82,
+          263
+        ]
+      }
+    },
+    {
+      "environment": "contact",
+      "condition": "plastic_on",
+      "n": 8,
+      "intake": {
+        "mean": 8.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          9,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "early_intake": {
+        "mean": 7.875,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          7,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "late_intake": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "final_energy": {
+        "mean": 38.625,
+        "sample_sd": 8.667467911679857,
+        "values": [
+          45,
+          55,
+          34,
+          31,
+          37,
+          30,
+          44,
+          33
+        ]
+      },
+      "distance_sites": {
+        "mean": 0.13052512477095946,
+        "sample_sd": 0.3691808033630626,
+        "values": [
+          1.0442009981676756,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "jets_released": {
+        "mean": 0.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "excavated": {
+        "mean": 7,
+        "sample_sd": 2.8284271247461903,
+        "values": [
+          8,
+          8,
+          8,
+          8,
+          12,
+          4,
+          4,
+          4
+        ]
+      },
+      "dead": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "plastic_l1_max": {
+        "mean": 136.25,
+        "sample_sd": 85.31914874667434,
+        "values": [
+          56,
+          48,
+          89,
+          244,
+          83,
+          216,
+          105,
+          249
+        ]
+      }
+    },
+    {
+      "environment": "contact",
+      "condition": "plastic_off",
+      "n": 8,
+      "intake": {
+        "mean": 8.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          9,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "early_intake": {
+        "mean": 7.875,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          7,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "late_intake": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "final_energy": {
+        "mean": 38.625,
+        "sample_sd": 8.667467911679857,
+        "values": [
+          45,
+          55,
+          34,
+          31,
+          37,
+          30,
+          44,
+          33
+        ]
+      },
+      "distance_sites": {
+        "mean": 0.13052512477095946,
+        "sample_sd": 0.3691808033630626,
+        "values": [
+          1.0442009981676756,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "jets_released": {
+        "mean": 0.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "excavated": {
+        "mean": 7,
+        "sample_sd": 2.8284271247461903,
+        "values": [
+          8,
+          8,
+          8,
+          8,
+          12,
+          4,
+          4,
+          4
+        ]
+      },
+      "dead": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "plastic_l1_max": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "environment": "contact",
+      "condition": "random",
+      "n": 8,
+      "intake": {
+        "mean": 10.125,
+        "sample_sd": 2.9001231500945415,
+        "values": [
+          9,
+          16,
+          8,
+          13,
+          8,
+          9,
+          8,
+          10
+        ]
+      },
+      "early_intake": {
+        "mean": 8.125,
+        "sample_sd": 0.9910312089651149,
+        "values": [
+          9,
+          10,
+          8,
+          7,
+          8,
+          8,
+          8,
+          7
+        ]
+      },
+      "late_intake": {
+        "mean": 0.5,
+        "sample_sd": 0.9258200997725514,
+        "values": [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          2
+        ]
+      },
+      "final_energy": {
+        "mean": 12.625,
+        "sample_sd": 10.636023693091325,
+        "values": [
+          10,
+          33,
+          10,
+          23,
+          0,
+          4,
+          8,
+          13
+        ]
+      },
+      "distance_sites": {
+        "mean": 1.6769610308268308,
+        "sample_sd": 1.0825442593286145,
+        "values": [
+          1.4416136250863978,
+          3.3835315026226267,
+          0.0,
+          1.8842756173426733,
+          1.3581166929472464,
+          2.389919534674515,
+          0.5593035472472594,
+          2.398927726693928
+        ]
+      },
+      "jets_released": {
+        "mean": 1.625,
+        "sample_sd": 0.9161253813129043,
+        "values": [
+          1,
+          2,
+          0,
+          1,
+          2,
+          3,
+          2,
+          2
+        ]
+      },
+      "excavated": {
+        "mean": 12.875,
+        "sample_sd": 5.914570386523678,
+        "values": [
+          12,
+          8,
+          12,
+          12,
+          25,
+          16,
+          5,
+          13
+        ]
+      },
+      "dead": {
+        "mean": 0.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "plastic_l1_max": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "environment": "contact",
+      "condition": "recurrence_off",
+      "n": 8,
+      "intake": {
+        "mean": 8,
+        "sample_sd": 0.0,
+        "values": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "early_intake": {
+        "mean": 8,
+        "sample_sd": 0.0,
+        "values": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "late_intake": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "final_energy": {
+        "mean": 103.125,
+        "sample_sd": 5.693040864574423,
+        "values": [
+          106,
+          109,
+          93,
+          107,
+          107,
+          96,
+          104,
+          103
+        ]
+      },
+      "distance_sites": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "jets_released": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "excavated": {
+        "mean": 1,
+        "sample_sd": 2.8284271247461903,
+        "values": [
+          0,
+          0,
+          8,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "dead": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "plastic_l1_max": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "environment": "contact",
+      "condition": "proprioception_off",
+      "n": 8,
+      "intake": {
+        "mean": 8.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          8,
+          8,
+          9,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "early_intake": {
+        "mean": 7.75,
+        "sample_sd": 0.4629100498862757,
+        "values": [
+          7,
+          8,
+          7,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "late_intake": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "final_energy": {
+        "mean": 40.625,
+        "sample_sd": 11.488348134398734,
+        "values": [
+          46,
+          65,
+          38,
+          35,
+          40,
+          27,
+          42,
+          32
+        ]
+      },
+      "distance_sites": {
+        "mean": 0.2597712557143611,
+        "sample_sd": 0.4887678411928021,
+        "values": [
+          1.2014295500210075,
+          0.0,
+          0.8767404956938815,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "jets_released": {
+        "mean": 0.375,
+        "sample_sd": 0.7440238091428449,
+        "values": [
+          2,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "excavated": {
+        "mean": 7.625,
+        "sample_sd": 3.9977672339873487,
+        "values": [
+          12,
+          12,
+          9,
+          4,
+          12,
+          4,
+          4,
+          4
+        ]
+      },
+      "dead": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "plastic_l1_max": {
+        "mean": 133.625,
+        "sample_sd": 82.20694704741895,
+        "values": [
+          40,
+          50,
+          73,
+          186,
+          96,
+          213,
+          146,
+          265
+        ]
+      }
+    },
+    {
+      "environment": "contact",
+      "condition": "chemistry_off",
+      "n": 8,
+      "intake": {
+        "mean": 8.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          9,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "early_intake": {
+        "mean": 7.875,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          7,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "late_intake": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "final_energy": {
+        "mean": 38.75,
+        "sample_sd": 8.396427811873332,
+        "values": [
+          46,
+          54,
+          34,
+          32,
+          37,
+          30,
+          44,
+          33
+        ]
+      },
+      "distance_sites": {
+        "mean": 0.13052512477095946,
+        "sample_sd": 0.3691808033630626,
+        "values": [
+          1.0442009981676756,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "jets_released": {
+        "mean": 0.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "excavated": {
+        "mean": 6.75,
+        "sample_sd": 2.8157719063467175,
+        "values": [
+          8,
+          8,
+          8,
+          6,
+          12,
+          4,
+          4,
+          4
+        ]
+      },
+      "dead": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "plastic_l1_max": {
+        "mean": 132,
+        "sample_sd": 86.44403639680084,
+        "values": [
+          58,
+          46,
+          86,
+          257,
+          82,
+          191,
+          87,
+          249
+        ]
+      }
+    },
+    {
+      "environment": "lineage",
+      "condition": "plastic_on",
+      "n": 8,
+      "intake": {
+        "mean": 127.75,
+        "sample_sd": 29.226944515537127,
+        "values": [
+          134,
+          116,
+          116,
+          116,
+          198,
+          110,
+          116,
+          116
+        ]
+      },
+      "early_intake": {
+        "mean": 58.5,
+        "sample_sd": 2.2677868380553634,
+        "values": [
+          59,
+          60,
+          54,
+          60,
+          56,
+          59,
+          60,
+          60
+        ]
+      },
+      "late_intake": {
+        "mean": 0.5,
+        "sample_sd": 1.4142135623730951,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0
+        ]
+      },
+      "final_energy": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "distance_sites": {
+        "mean": 2.779999369241364,
+        "sample_sd": 4.636226953231933,
+        "values": [
+          1.7494418793633133,
+          0.0,
+          4.605471892042929,
+          0.0,
+          13.503590588862224,
+          2.381490593662445,
+          0.0,
+          0.0
+        ]
+      },
+      "jets_released": {
+        "mean": 6.25,
+        "sample_sd": 8.447315719040153,
+        "values": [
+          6,
+          0,
+          16,
+          0,
+          22,
+          6,
+          0,
+          0
+        ]
+      },
+      "excavated": {
+        "mean": 1.875,
+        "sample_sd": 3.9438016467073274,
+        "values": [
+          0,
+          0,
+          11,
+          0,
+          4,
+          0,
+          0,
+          0
+        ]
+      },
+      "dead": {
+        "mean": 16.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          16,
+          16,
+          16,
+          16,
+          17,
+          16,
+          16,
+          16
+        ]
+      },
+      "plastic_l1_max": {
+        "mean": 253.875,
+        "sample_sd": 134.70967459158763,
+        "values": [
+          134,
+          35,
+          226,
+          320,
+          334,
+          385,
+          172,
+          425
+        ]
+      }
+    },
+    {
+      "environment": "lineage",
+      "condition": "mutation_off",
+      "n": 8,
+      "intake": {
+        "mean": 129.625,
+        "sample_sd": 33.64918806067774,
+        "values": [
+          135,
+          116,
+          116,
+          116,
+          211,
+          111,
+          116,
+          116
+        ]
+      },
+      "early_intake": {
+        "mean": 58.5,
+        "sample_sd": 2.2677868380553634,
+        "values": [
+          59,
+          60,
+          54,
+          60,
+          56,
+          59,
+          60,
+          60
+        ]
+      },
+      "late_intake": {
+        "mean": 0.75,
+        "sample_sd": 2.1213203435596424,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          6,
+          0,
+          0,
+          0
+        ]
+      },
+      "final_energy": {
+        "mean": 0,
+        "sample_sd": 0.0,
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "distance_sites": {
+        "mean": 3.2450755615421447,
+        "sample_sd": 6.228411188019237,
+        "values": [
+          1.4851654612561307,
+          0.0,
+          4.643815468403213,
+          0.0,
+          18.14315884988047,
+          1.6884647127973416,
+          0.0,
+          0.0
+        ]
+      },
+      "jets_released": {
+        "mean": 6.75,
+        "sample_sd": 10.180513599168616,
+        "values": [
+          5,
+          0,
+          16,
+          0,
+          28,
+          5,
+          0,
+          0
+        ]
+      },
+      "excavated": {
+        "mean": 1.625,
+        "sample_sd": 3.8521793460696654,
+        "values": [
+          0,
+          0,
+          11,
+          0,
+          2,
+          0,
+          0,
+          0
+        ]
+      },
+      "dead": {
+        "mean": 16.125,
+        "sample_sd": 0.3535533905932738,
+        "values": [
+          16,
+          16,
+          16,
+          16,
+          17,
+          16,
+          16,
+          16
+        ]
+      },
+      "plastic_l1_max": {
+        "mean": 265.25,
+        "sample_sd": 158.92293729981208,
+        "values": [
+          134,
+          33,
+          227,
+          320,
+          523,
+          288,
+          172,
+          425
+        ]
+      }
+    }
+  ],
+  "paired_comparisons": [
+    {
+      "environment": "foraging",
+      "baseline": "plastic_off",
+      "metric": "intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "plastic_off",
+      "metric": "early_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "plastic_off",
+      "metric": "late_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "plastic_off",
+      "metric": "final_energy",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "plastic_off",
+      "metric": "distance_sites",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_difference": 0.0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "plastic_off",
+      "metric": "jets_released",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "plastic_off",
+      "metric": "excavated",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "plastic_off",
+      "metric": "dead",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "plastic_off",
+      "metric": "plastic_l1_max",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        51,
+        18,
+        76,
+        251,
+        99,
+        159,
+        78,
+        265
+      ],
+      "mean_difference": 124.625,
+      "sample_sd": 91.6841433556378,
+      "bootstrap95": [
+        67.25,
+        186.25
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "random",
+      "metric": "intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -8,
+        -8,
+        1,
+        -5,
+        -6,
+        -110,
+        0,
+        -1
+      ],
+      "mean_difference": -17.125,
+      "sample_sd": 37.69212687779012,
+      "bootstrap95": [
+        -44.125,
+        -1.875
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "random",
+      "metric": "early_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -1,
+        -2,
+        -1,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mean_difference": -0.25,
+      "sample_sd": 1.0350983390135313,
+      "bootstrap95": [
+        -0.875,
+        0.375
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "random",
+      "metric": "late_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -1,
+        0,
+        0,
+        -2,
+        -2,
+        -37,
+        0,
+        -1
+      ],
+      "mean_difference": -5.375,
+      "sample_sd": 12.805551251591742,
+      "bootstrap95": [
+        -14.5,
+        -0.375
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "random",
+      "metric": "final_energy",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        15,
+        17,
+        23,
+        6,
+        14,
+        -258,
+        37,
+        22
+      ],
+      "mean_difference": -15.5,
+      "sample_sd": 98.39425070312072,
+      "bootstrap95": [
+        -85.875,
+        24.125
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "random",
+      "metric": "distance_sites",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -2.9305799094619056,
+        -3.3835315026226267,
+        1.091830067138568,
+        -1.8842756173426733,
+        -2.2194776377224636,
+        -10.171062066598143,
+        -0.5593035472472594,
+        -2.309964016060378
+      ],
+      "mean_difference": -2.7957955287396103,
+      "sample_sd": 3.300924744562113,
+      "bootstrap95": [
+        -5.12967535262883,
+        -0.9154282783779357
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "random",
+      "metric": "jets_released",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -2,
+        -2,
+        1,
+        -1,
+        -2,
+        -28,
+        -2,
+        -3
+      ],
+      "mean_difference": -4.875,
+      "sample_sd": 9.417878135303544,
+      "bootstrap95": [
+        -11.625,
+        -0.875
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "random",
+      "metric": "excavated",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        -2,
+        -1,
+        -1
+      ],
+      "mean_difference": -0.375,
+      "sample_sd": 0.9161253813129043,
+      "bootstrap95": [
+        -1,
+        0.25
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "random",
+      "metric": "dead",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "random",
+      "metric": "plastic_l1_max",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        51,
+        18,
+        76,
+        251,
+        99,
+        159,
+        78,
+        265
+      ],
+      "mean_difference": 124.625,
+      "sample_sd": 91.6841433556378,
+      "bootstrap95": [
+        67.25,
+        186.25
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "recurrence_off",
+      "metric": "intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0.125,
+      "sample_sd": 0.3535533905932738,
+      "bootstrap95": [
+        0,
+        0.375
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "recurrence_off",
+      "metric": "early_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": -0.125,
+      "sample_sd": 0.3535533905932738,
+      "bootstrap95": [
+        -0.375,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "recurrence_off",
+      "metric": "late_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "recurrence_off",
+      "metric": "final_energy",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -57,
+        -54,
+        -60,
+        -66,
+        -63,
+        -68,
+        -61,
+        -67
+      ],
+      "mean_difference": -62,
+      "sample_sd": 4.956957592256421,
+      "bootstrap95": [
+        -65,
+        -58.625
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "recurrence_off",
+      "metric": "distance_sites",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0.0,
+        0.0,
+        1.091830067138568,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_difference": 0.136478758392321,
+      "sample_sd": 0.3860202221885224,
+      "bootstrap95": [
+        0.0,
+        0.40943627517696296
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "recurrence_off",
+      "metric": "jets_released",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0.125,
+      "sample_sd": 0.3535533905932738,
+      "bootstrap95": [
+        0,
+        0.375
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "recurrence_off",
+      "metric": "excavated",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0.125,
+      "sample_sd": 0.3535533905932738,
+      "bootstrap95": [
+        0,
+        0.375
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "recurrence_off",
+      "metric": "dead",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "recurrence_off",
+      "metric": "plastic_l1_max",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        51,
+        18,
+        76,
+        251,
+        99,
+        159,
+        78,
+        265
+      ],
+      "mean_difference": 124.625,
+      "sample_sd": 91.6841433556378,
+      "bootstrap95": [
+        67.25,
+        186.25
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "proprioception_off",
+      "metric": "intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "proprioception_off",
+      "metric": "early_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "proprioception_off",
+      "metric": "late_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "proprioception_off",
+      "metric": "final_energy",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -2,
+        -18,
+        -4,
+        -2,
+        0,
+        1,
+        2,
+        2
+      ],
+      "mean_difference": -2.625,
+      "sample_sd": 6.566962768281849,
+      "bootstrap95": [
+        -7.5,
+        0.625
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "proprioception_off",
+      "metric": "distance_sites",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0.0,
+        0.0,
+        0.05602911813483291,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_difference": 0.007003639766854114,
+      "sample_sd": 0.019809284688521257,
+      "bootstrap95": [
+        0.0,
+        0.021010919300562342
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "proprioception_off",
+      "metric": "jets_released",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "proprioception_off",
+      "metric": "excavated",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "proprioception_off",
+      "metric": "dead",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "proprioception_off",
+      "metric": "plastic_l1_max",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -1,
+        6,
+        -1,
+        73,
+        -12,
+        -78,
+        -50,
+        -21
+      ],
+      "mean_difference": -10.5,
+      "sample_sd": 44.165274012185506,
+      "bootstrap95": [
+        -37.875,
+        18.875
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "chemistry_off",
+      "metric": "intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "chemistry_off",
+      "metric": "early_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "chemistry_off",
+      "metric": "late_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "chemistry_off",
+      "metric": "final_energy",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        1,
+        -1,
+        0,
+        1,
+        0,
+        0,
+        2,
+        0
+      ],
+      "mean_difference": 0.375,
+      "sample_sd": 0.9161253813129043,
+      "bootstrap95": [
+        -0.125,
+        1
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "chemistry_off",
+      "metric": "distance_sites",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_difference": 0.0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "chemistry_off",
+      "metric": "jets_released",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "chemistry_off",
+      "metric": "excavated",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "chemistry_off",
+      "metric": "dead",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "foraging",
+      "baseline": "chemistry_off",
+      "metric": "plastic_l1_max",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -14,
+        0,
+        -1,
+        -4,
+        -6,
+        -16,
+        -4,
+        2
+      ],
+      "mean_difference": -5.375,
+      "sample_sd": 6.4793628434548145,
+      "bootstrap95": [
+        -10,
+        -1.375
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "plastic_off",
+      "metric": "intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "plastic_off",
+      "metric": "early_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "plastic_off",
+      "metric": "late_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "plastic_off",
+      "metric": "final_energy",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "plastic_off",
+      "metric": "distance_sites",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_difference": 0.0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "plastic_off",
+      "metric": "jets_released",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "plastic_off",
+      "metric": "excavated",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "plastic_off",
+      "metric": "dead",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "plastic_off",
+      "metric": "plastic_l1_max",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        56,
+        48,
+        89,
+        244,
+        83,
+        216,
+        105,
+        249
+      ],
+      "mean_difference": 136.25,
+      "sample_sd": 85.31914874667434,
+      "bootstrap95": [
+        83.25,
+        194
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "random",
+      "metric": "intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        -8,
+        0,
+        -5,
+        0,
+        -1,
+        0,
+        -2
+      ],
+      "mean_difference": -2,
+      "sample_sd": 2.9760952365713798,
+      "bootstrap95": [
+        -4.25,
+        -0.25
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "random",
+      "metric": "early_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -2,
+        -2,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "mean_difference": -0.25,
+      "sample_sd": 1.164964745021435,
+      "bootstrap95": [
+        -1.125,
+        0.5
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "random",
+      "metric": "late_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        -2,
+        0,
+        0,
+        0,
+        -2
+      ],
+      "mean_difference": -0.5,
+      "sample_sd": 0.9258200997725514,
+      "bootstrap95": [
+        -1.25,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "random",
+      "metric": "final_energy",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        35,
+        22,
+        24,
+        8,
+        37,
+        26,
+        36,
+        20
+      ],
+      "mean_difference": 26,
+      "sample_sd": 9.870591240071256,
+      "bootstrap95": [
+        19,
+        32.375
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "random",
+      "metric": "distance_sites",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -0.39741262691872214,
+        -3.3835315026226267,
+        0.0,
+        -1.8842756173426733,
+        -1.3581166929472464,
+        -2.389919534674515,
+        -0.5593035472472594,
+        -2.398927726693928
+      ],
+      "mean_difference": -1.5464359060558714,
+      "sample_sd": 1.1740574191860471,
+      "bootstrap95": [
+        -2.2857596847596025,
+        -0.8003972563241383
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "random",
+      "metric": "jets_released",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        -2,
+        0,
+        -1,
+        -2,
+        -3,
+        -2,
+        -2
+      ],
+      "mean_difference": -1.5,
+      "sample_sd": 1.0690449676496976,
+      "bootstrap95": [
+        -2.125,
+        -0.75
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "random",
+      "metric": "excavated",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -4,
+        0,
+        -4,
+        -4,
+        -13,
+        -12,
+        -1,
+        -9
+      ],
+      "mean_difference": -5.875,
+      "sample_sd": 4.882549100038393,
+      "bootstrap95": [
+        -9.125,
+        -2.875
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "random",
+      "metric": "dead",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        -1,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": -0.125,
+      "sample_sd": 0.3535533905932738,
+      "bootstrap95": [
+        -0.375,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "random",
+      "metric": "plastic_l1_max",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        56,
+        48,
+        89,
+        244,
+        83,
+        216,
+        105,
+        249
+      ],
+      "mean_difference": 136.25,
+      "sample_sd": 85.31914874667434,
+      "bootstrap95": [
+        83.25,
+        194
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "recurrence_off",
+      "metric": "intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0.125,
+      "sample_sd": 0.3535533905932738,
+      "bootstrap95": [
+        0,
+        0.375
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "recurrence_off",
+      "metric": "early_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": -0.125,
+      "sample_sd": 0.3535533905932738,
+      "bootstrap95": [
+        -0.375,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "recurrence_off",
+      "metric": "late_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "recurrence_off",
+      "metric": "final_energy",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -61,
+        -54,
+        -59,
+        -76,
+        -70,
+        -66,
+        -60,
+        -70
+      ],
+      "mean_difference": -64.5,
+      "sample_sd": 7.250615737399726,
+      "bootstrap95": [
+        -69.625,
+        -59.75
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "recurrence_off",
+      "metric": "distance_sites",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        1.0442009981676756,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_difference": 0.13052512477095946,
+      "sample_sd": 0.3691808033630626,
+      "bootstrap95": [
+        0.0,
+        0.39157537431287837
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "recurrence_off",
+      "metric": "jets_released",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0.125,
+      "sample_sd": 0.3535533905932738,
+      "bootstrap95": [
+        0,
+        0.375
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "recurrence_off",
+      "metric": "excavated",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        8,
+        8,
+        0,
+        8,
+        12,
+        4,
+        4,
+        4
+      ],
+      "mean_difference": 6,
+      "sample_sd": 3.7032803990902057,
+      "bootstrap95": [
+        3.5,
+        8.5
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "recurrence_off",
+      "metric": "dead",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "recurrence_off",
+      "metric": "plastic_l1_max",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        56,
+        48,
+        89,
+        244,
+        83,
+        216,
+        105,
+        249
+      ],
+      "mean_difference": 136.25,
+      "sample_sd": 85.31914874667434,
+      "bootstrap95": [
+        83.25,
+        194
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "proprioception_off",
+      "metric": "intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        1,
+        0,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.5345224838248488,
+      "bootstrap95": [
+        -0.375,
+        0.375
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "proprioception_off",
+      "metric": "early_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0.125,
+      "sample_sd": 0.3535533905932738,
+      "bootstrap95": [
+        0,
+        0.375
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "proprioception_off",
+      "metric": "late_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "proprioception_off",
+      "metric": "final_energy",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -1,
+        -10,
+        -4,
+        -4,
+        -3,
+        3,
+        2,
+        1
+      ],
+      "mean_difference": -2,
+      "sample_sd": 4.20883424647321,
+      "bootstrap95": [
+        -4.875,
+        0.625
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "proprioception_off",
+      "metric": "distance_sites",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -0.15722855185333184,
+        0.0,
+        -0.8767404956938815,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_difference": -0.12924613094340165,
+      "sample_sd": 0.30700354009050995,
+      "bootstrap95": [
+        -0.34843125486687204,
+        0.0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "proprioception_off",
+      "metric": "jets_released",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -1,
+        0,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": -0.25,
+      "sample_sd": 0.4629100498862757,
+      "bootstrap95": [
+        -0.625,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "proprioception_off",
+      "metric": "excavated",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -4,
+        -4,
+        -1,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": -0.625,
+      "sample_sd": 2.559994419636775,
+      "bootstrap95": [
+        -2.25,
+        1
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "proprioception_off",
+      "metric": "dead",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "proprioception_off",
+      "metric": "plastic_l1_max",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        16,
+        -2,
+        16,
+        58,
+        -13,
+        3,
+        -41,
+        -16
+      ],
+      "mean_difference": 2.625,
+      "sample_sd": 29.129942866895078,
+      "bootstrap95": [
+        -15,
+        22.5
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "chemistry_off",
+      "metric": "intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "chemistry_off",
+      "metric": "early_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "chemistry_off",
+      "metric": "late_intake",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "chemistry_off",
+      "metric": "final_energy",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -1,
+        1,
+        0,
+        -1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": -0.125,
+      "sample_sd": 0.6408699444616558,
+      "bootstrap95": [
+        -0.5,
+        0.25
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "chemistry_off",
+      "metric": "distance_sites",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_difference": 0.0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "chemistry_off",
+      "metric": "jets_released",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "chemistry_off",
+      "metric": "excavated",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0.25,
+      "sample_sd": 0.7071067811865476,
+      "bootstrap95": [
+        0,
+        0.75
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "chemistry_off",
+      "metric": "dead",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mean_difference": 0,
+      "sample_sd": 0.0,
+      "bootstrap95": [
+        0,
+        0
+      ]
+    },
+    {
+      "environment": "contact",
+      "baseline": "chemistry_off",
+      "metric": "plastic_l1_max",
+      "sign": "plastic_on minus baseline",
+      "n": 8,
+      "paired_differences": [
+        -2,
+        2,
+        3,
+        -13,
+        1,
+        25,
+        18,
+        0
+      ],
+      "mean_difference": 4.25,
+      "sample_sd": 11.901380472149318,
+      "bootstrap95": [
+        -3,
+        12
+      ]
+    }
+  ],
+  "lineage": {
+    "mutating_descendants": 97,
+    "mutated_germlines": 97,
+    "different_fresh_state_command_probes": 94,
+    "mutation_off_changed_germlines": 0,
+    "mutation_off_changed_command_probes": 0,
+    "mutating_extinct_replicates": 8,
+    "nonmutating_extinct_replicates": 8,
+    "adaptive_evolution": "NOT DEMONSTRATED"
+  },
+  "independent_final_snapshot_checks": [
+    {
+      "file": "runs/neural_foundation_v1_main/final_contact_1.bin",
+      "tick": 256,
+      "seed": 1,
+      "live": 1,
+      "dead": 0,
+      "material_residual": 0,
+      "energy_residual": 0,
+      "momentum_residual": [
+        0,
+        0,
+        0
+      ],
+      "hash_status": "BLAKE3 not independently recomputed by this Python audit; Rust decode/replay tests verify it"
+    },
+    {
+      "file": "runs/neural_foundation_v1_main/final_foraging_1.bin",
+      "tick": 256,
+      "seed": 1,
+      "live": 1,
+      "dead": 0,
+      "material_residual": 0,
+      "energy_residual": 0,
+      "momentum_residual": [
+        0,
+        0,
+        0
+      ],
+      "hash_status": "BLAKE3 not independently recomputed by this Python audit; Rust decode/replay tests verify it"
+    },
+    {
+      "file": "runs/neural_foundation_v1_main/final_lineage_1.bin",
+      "tick": 256,
+      "seed": 1,
+      "live": 0,
+      "dead": 16,
+      "material_residual": 0,
+      "energy_residual": 0,
+      "momentum_residual": [
+        0,
+        0,
+        0
+      ],
+      "hash_status": "BLAKE3 not independently recomputed by this Python audit; Rust decode/replay tests verify it"
+    }
+  ],
+  "performance": [
+    {
+      "final_population": 1,
+      "grid": [
+        16,
+        16,
+        16
+      ],
+      "includes": "World::tick cloning, integration, contact, material/momentum audits; excludes rendering and snapshot hashing",
+      "initial_population": 1,
+      "seconds": 0.000897919,
+      "ticks": 64
+    },
+    {
+      "final_population": 16,
+      "grid": [
+        16,
+        16,
+        16
+      ],
+      "includes": "World::tick cloning, integration, contact, material/momentum audits; excludes rendering and snapshot hashing",
+      "initial_population": 16,
+      "seconds": 0.009343686,
+      "ticks": 64
+    },
+    {
+      "final_population": 64,
+      "grid": [
+        16,
+        16,
+        16
+      ],
+      "includes": "World::tick cloning, integration, contact, material/momentum audits; excludes rendering and snapshot hashing",
+      "initial_population": 64,
+      "seconds": 0.038442546,
+      "ticks": 64
+    },
+    {
+      "final_population": 192,
+      "grid": [
+        16,
+        16,
+        16
+      ],
+      "includes": "World::tick cloning, integration, contact, material/momentum audits; excludes rendering and snapshot hashing",
+      "initial_population": 192,
+      "seconds": 0.117399111,
+      "ticks": 64
+    },
+    {
+      "final_population": 512,
+      "grid": [
+        16,
+        16,
+        16
+      ],
+      "includes": "World::tick cloning, integration, contact, material/momentum audits; excludes rendering and snapshot hashing",
+      "initial_population": 512,
+      "seconds": 0.327635948,
+      "ticks": 64
+    }
+  ],
+  "verdicts": {
+    "motor_activity": "IMPLEMENTED AND MEASURED; individual participation in raw results",
+    "recurrence": "mechanism and controlled constant-input oscillation test PASS; spontaneous useful coordination NOT DEMONSTRATED",
+    "experience_dependent_parameter_change": "MEASURED",
+    "improved_foraging_from_plasticity": "NOT DEMONSTRATED",
+    "learned_locomotion": "NOT DEMONSTRATED",
+    "heritable_command_divergence": "MEASURED in fresh-state probes; mechanism is mutation, not adaptive success",
+    "learned_tunnelling": "NOT DEMONSTRATED",
+    "evolutionary_adaptation": "NOT DEMONSTRATED; all lineage replicates ended extinct",
+    "emergent_ecosystem": "NOT DEMONSTRATED"
+  },
+  "limitations": [
+    "8 seeds; exploratory multiple comparisons; no retention/generalization transfer test",
+    "mutation/common-garden probe measures commands, not all possible phenotype effects",
+    "chemistry ablation removes named external chemical channels; feedstock readiness and intake remain",
+    "recurrence knockout also changes dynamic response amplitude; not a gain-matched control",
+    "no full articulated rigid-body, capsule contact or hydrodynamic solver; angular counter-rotation approximate",
+    "effective inertia is not tracked biomass; mechanical energy is not the action-energy ledger",
+    "local material supplies secretion; a stored internal secretion reservoir is not modeled",
+    "microbenchmark on 16^3 excludes rendering/hashing; not a 256^3 scalability guarantee"
+  ]
+}

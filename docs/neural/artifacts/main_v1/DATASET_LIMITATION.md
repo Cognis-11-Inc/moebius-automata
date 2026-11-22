@@ -1,0 +1,1 @@
+This first main dataset is preserved unchanged. Final review found that the acceleration sensor omitted within-tick recoil/collision impulse changes and exposed only the drag update. A corrected run uses the same eight seeds, conditions and 256-tick protocol under amendment 2. This dataset is not evidence that the corrected sensor interface was validated.

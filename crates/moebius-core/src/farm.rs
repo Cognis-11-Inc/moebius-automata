@@ -32,6 +32,8 @@ pub struct BrainRig {
     pub updates: u64,
     pub last_meal: u64,
     pub reward_mean: i16,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub neural: Option<crate::neural::NeuralState>,
 }
 
 impl BrainRig {
@@ -61,6 +63,25 @@ impl BrainRig {
             updates: 0,
             last_meal: 0,
             reward_mean: 0,
+            neural: None,
+        }
+    }
+
+    pub fn sync_neural_pose(&mut self) {
+        if let Some(neural) = &self.neural {
+            for (index, binding) in neural.genome.anatomy.axes.iter().enumerate() {
+                if binding.joint >= JOINTS {
+                    continue;
+                }
+                match binding.axis {
+                    crate::neural::schema::Axis::Twist => {
+                        self.twists[binding.joint] = (neural.body.angles[index] / 4) as i16
+                    }
+                    _ => self.joints[binding.joint] = (neural.body.angles[index] / 4) as i16,
+                }
+            }
+            self.velocity = neural.body.velocity;
+            self.last_action = 0;
         }
     }
 
@@ -236,7 +257,13 @@ impl BrainRig {
         let action = usize::from(random[0]) % ACTIONS;
         let feature = usize::from(random[1]) % 5;
         let delta = if random[2] & 1 == 0 { -1 } else { 1 };
-        child.weights[action][feature] = (child.weights[action][feature] + delta).clamp(-128, 128);
+        if self.neural.is_none() {
+            child.weights[action][feature] =
+                (child.weights[action][feature] + delta).clamp(-128, 128);
+        }
+        if let Some(neural) = &self.neural {
+            child.neural = Some(neural.offspring(seed, id, tick, 0, true));
+        }
         child
     }
 }
@@ -266,6 +293,10 @@ pub struct FleshDeposit {
 pub(crate) struct FarmPayload {
     pub brains: Vec<BrainRig>,
     pub flesh: Vec<FleshDeposit>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub jets: Vec<crate::neural::body::Jet>,
+    #[serde(default, skip_serializing_if = "momentum_zero")]
+    pub environment_momentum: [i64; 3],
 }
 
 /// Deposits sharing a face weld immediately, including across periodic seams.
@@ -296,4 +327,8 @@ pub fn fused_surface(
         }
     }
     Ok(solid)
+}
+
+fn momentum_zero(value: &[i64; 3]) -> bool {
+    *value == [0; 3]
 }

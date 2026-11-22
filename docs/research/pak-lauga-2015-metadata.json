@@ -1,0 +1,66 @@
+{
+  "DOI": "10.1039/9781782628491-00100",
+  "URL": "https://doi.org/10.1039/9781782628491-00100",
+  "title": [
+    "Theoretical Models of Low-Reynolds-Number Locomotion"
+  ],
+  "author": [
+    {
+      "given": "On Shun",
+      "family": "Pak",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "Department of Mechanical Engineering, Santa Clara University 500 El Camino Real Santa Clara CA 95053 USA"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    },
+    {
+      "given": "Eric",
+      "family": "Lauga",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Department of Applied Mathematics and Theoretical Physics, Centre for Mathematical Sciences, University of Cambridge Wilberforce Road Cambridge CB3 0WA United Kingdom e.lauga@damtp.cam.ac.uk"
+        }
+      ],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "container-title": [
+    "Fluid\u2013Structure Interactions in Low-Reynolds-Number Flows"
+  ],
+  "publisher": "The Royal Society of Chemistry",
+  "published": {
+    "date-parts": [
+      [
+        2015,
+        11,
+        16
+      ]
+    ]
+  },
+  "published-print": {
+    "date-parts": [
+      [
+        2015,
+        11,
+        16
+      ]
+    ]
+  },
+  "page": "100-167",
+  "type": "book-chapter",
+  "retrieved_from": "https://api.crossref.org/works/10.1039/9781782628491-00100"
+}

@@ -27,6 +27,8 @@ fn base() -> SimConfig {
         energy_cap: 100_000,
         genome_fill: GenomeFill::Derived,
         farm: None,
+        neural: None,
+        feeding: None,
     }
 }
 
@@ -76,6 +78,9 @@ fn manual(config: &SimConfig, seed: u64, cells: Vec<Cell>, nutrient: Vec<u64>) -
         nutrient,
         brains: Vec::new(),
         flesh: Vec::new(),
+        jets: Vec::new(),
+        environment_momentum: [0; 3],
+        neural_format: false,
     };
     World::restore(config, &snapshot).unwrap()
 }
@@ -584,6 +589,9 @@ fn illegal_coordinate_cannot_be_restored() {
             nutrient: vec![0; 64],
             brains: Vec::new(),
             flesh: Vec::new(),
+            jets: Vec::new(),
+            environment_momentum: [0; 3],
+            neural_format: false,
         },
     )
     .unwrap_err();
