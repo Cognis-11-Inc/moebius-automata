@@ -1,5 +1,7 @@
 //! Independent anatomical generation. Preview geometry grants no simulation capability.
+mod anatomy;
 mod compiler;
+pub use anatomy::*;
 mod math;
 mod spec;
 mod surface;
@@ -38,8 +40,11 @@ pub fn load(path: &Path) -> Result<WormSpec, MorphError> {
 }
 /// Save is an explicit editor action. Write/flush a sibling before replacing the file.
 pub fn save(path: &Path, spec: &WormSpec) -> Result<(), MorphError> {
-    use std::io::Write;
     let data = to_json(spec)?;
+    write_atomic(path, &data)
+}
+pub(crate) fn write_atomic(path: &Path, data: &str) -> Result<(), MorphError> {
+    use std::io::Write;
     if let Some(parent) = path.parent().filter(|p| !p.as_os_str().is_empty()) {
         std::fs::create_dir_all(parent).map_err(|e| MorphError(e.to_string()))?;
     }

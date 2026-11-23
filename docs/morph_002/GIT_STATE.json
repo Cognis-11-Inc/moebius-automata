@@ -1,0 +1,29 @@
+{
+  "date_local": "2026-11-23",
+  "branch": "main",
+  "head": "9171f0dada9e66c4e92dc548c6ed8a552f9ab1fa",
+  "clean": false,
+  "commit_authorized": false,
+  "diff_check": "git diff --check exited 0",
+  "status_short_before_this_file": [
+    "M AGENTS.md",
+    "M HANDOFF.md",
+    "M README.md",
+    "M crates/moebius-morph-lab/src/lib.rs",
+    "M crates/moebius-morph-lab/src/main.rs",
+    "M crates/moebius-morph/examples/replay_lab.rs",
+    "M crates/moebius-morph/src/compiler.rs",
+    "M crates/moebius-morph/src/lib.rs",
+    "?? MORPH_002_IMPLEMENTATION_PLAN.md",
+    "?? MORPH_002_RESULTS.md",
+    "?? crates/moebius-morph-lab/src/composition.rs",
+    "?? crates/moebius-morph/examples/validate_composition.rs",
+    "?? crates/moebius-morph/src/anatomy.rs",
+    "?? crates/moebius-morph/tests/composition.rs",
+    "?? docs/morph_002/",
+    "?? docs/research/2026-11-23-morph-002-composition.json",
+    "?? python/morph_002_artifacts.py",
+    "?? python/morph_002_atlas.py"
+  ],
+  "this_file": "untracked after that status snapshot"
+}

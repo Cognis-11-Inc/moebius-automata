@@ -203,22 +203,28 @@ verifies its SHA256. Readable protocols/results remain under docs/m5/artifacts/.
 Use `--archive-root VERSIONED_DIRECTORY` to restore a verified archive copy on
 another machine.
 
-## Anatomical Forge — MORPH-001
+## Anatomical Forge — MORPH-001 and MORPH-002
 
 A separate local Bevy laboratory generates an actual configurable worm from a
 versioned JSON definition. Its headless Rust engine produces the body, recessed
-mouth, two attached flagella, optional ridges and live deformation without Blender.
-Motion is an authored preview; simulation binding remains absent.
+mouth, attached flagella and live deformation without Blender. Motion is an
+authored preview; simulation binding remains absent.
+
+The laboratory binary now edits MORPH-002 compositions: independent flagella,
+spines, and an unbound secretion nozzle. Version1 definitions still load.
+The previous 1–7 / F / G key map is no longer in this binary.
 
 ```sh
 cargo run --release -p moebius-morph-lab --offline
 ```
 
-Use1-7 to select a parameter, Left/Right to edit, R for the next seed, F for
-flagella count, G for ridges, Space for animation, M for mouth cycling, S to save
-and L to reload. Right-drag or Alt+arrows orbit; the wheel zooms. Default save path:
-`runs/morph_001/organism.json`. The lab reopens an existing saved definition.
-A portable example is `experiments/morph_001_worm.json`.
+Tab selects a component. A, P, and N add a flagellum, spine, or nozzle.
+D duplicates. Delete removes. Up/Down chooses a parameter and Left/Right edits it.
+`[` `]` change body length. `-` `=` change thickness. `,` `.` set the mouth.
+M cycles the mouth. H loads a short showcase. R steps the seed. Space pauses
+motion. S saves and L reloads. Right-drag or Alt+arrows orbit; the wheel zooms.
+Default save path: `runs/morph_002/organism.json`.
 
-Read [results](MORPH_001_RESULTS.md), [existing-system audit](MORPH_001_EXISTING_SYSTEM_AUDIT.md),
-[donor assessment](MORPH_001_DONOR_ASSESSMENT.md) and [architecture](MORPH_001_ARCHITECTURE.md).
+Read [MORPH-002 results](MORPH_002_RESULTS.md) and [MORPH-001 results](MORPH_001_RESULTS.md).
+MORPH-001's audit, donor assessment, and architecture notes remain the baseline
+record. A portable version1 example is `experiments/morph_001_worm.json`.

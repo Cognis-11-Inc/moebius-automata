@@ -25,10 +25,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         if value.get("geometry_digest").is_none() {
             continue;
         }
-        let spec: WormSpec = serde_json::from_value(value["specification"].clone())?;
+        let spec = anatomy_from_json(&serde_json::to_string(&value["specification"])?)?;
         let pose: Pose = serde_json::from_value(value["pose"].clone())?;
-        let compiled = CompiledWorm::new(spec.clone())?;
-        let geometry = compiled.pose(pose)?;
+        let geometry = if value["specification"]["version"] == 1 {
+            CompiledWorm::new(from_json(&serde_json::to_string(&value["specification"])?)?)?
+                .pose(pose)?
+        } else {
+            CompiledAnatomy::new(spec.clone())?.pose(pose)?.geometry
+        };
         geometry.audit()?;
         if geometry.digest() != value["geometry_digest"].as_str().unwrap()
             || geometry.topology_digest() != value["topology_digest"].as_str().unwrap()
@@ -42,7 +46,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 flag_positions.push(geometry.surfaces[1].positions.clone());
             }
         }
-        seeds.insert(spec.seed);
+        seeds.insert(spec.body.seed);
         captures += 1;
     }
     let changed = |list: &Vec<Vec<[f32; 3]>>| list.windows(2).any(|w| w[0] != w[1]);

@@ -1,3 +1,110 @@
+# Current checkpoint — MORPH-002 completion pass (2026-11-23T17:20:12-05:00)
+
+Agent: Grok. Slice: MORPH-002, continued in place. No new anatomical system.
+Scope: re-verify the existing engine, close honest-red, preserve the Mermogon
+archive, and record acceptance. Commit and push are not authorized.
+Status: **PARTIAL**. The slice success criterion is met. The UAP clean-commit
+broad suite is the remaining blocker.
+
+Repo: `/home/cognis/Cognis_Lab/Möbius Automata`, branch `main`,
+HEAD `9171f0dada9e66c4e92dc548c6ed8a552f9ab1fa`. Working tree dirty.
+Branches: `main`, `origin/main` only. No stash. One worktree.
+Geometry source hashes are unchanged from `docs/morph_002/SOURCE_IDENTITY.json`.
+
+This pass changed reports only: `MORPH_002_RESULTS.md`,
+`MORPH_002_IMPLEMENTATION_PLAN.md`, `docs/morph_002/VALIDATION.json`,
+`docs/research/2026-11-23-morph-002-composition.json`, and this handoff.
+`anatomy.rs` and `composition.rs` were temporarily weakened for honest-red
+and restored. Their SHA-256 values match the identity file.
+
+Commands this pass, all exit 0 unless noted:
+`cargo fmt --all -- --check`;
+`cargo clippy -p moebius-morph -p moebius-morph-lab --all-targets --offline -- -D warnings`;
+`cargo test -p moebius-morph -p moebius-morph-lab --offline -- --test-threads=8`
+(composition 5, forge 6, morph-lab lib 5, morph-lab main 1);
+honest-red nozzle guard exit 101 at `tests/composition.rs:23`, then pass after restore;
+honest-red edit guard exit 101 at `composition.rs:374`, then pass after restore;
+`python3 python/morph_002_artifacts.py verify` PASS, 4 archives, 255 files;
+`python3 python/morph_002_atlas.py` PASS, 28 notes, 94 links.
+`cargo test --workspace` was not rerun. The earlier dirty-tree run remains
+historical for these source hashes and is not clean-commit certification.
+rustc 1.99.1. `git diff --check` exited 0 after these report edits.
+
+Archive, re-verified and not overwritten, UUID `D0A02EEBA02ED82C`:
+`/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-002/2026-11-23`.
+Index SHA-256 `558a634320b89c8ad2b545074fc8fceaa02e395a0fda5352edd5fcd76d1e3812`.
+Atlas UUID `8CA451CDA451BA82`. Authority: Git for source and reports once
+committed; Mermogon for the raw evidence; the atlas is interpretive.
+
+Blocker: an authorized local commit, then `cargo test --workspace --offline`
+on that clean HEAD. Until then the release gate stays open.
+Non-claims are unchanged: no secretion, propulsion, learning, secondary
+mouths, welded roots, global intersection certificate, or cross-platform
+bit identity. No viewport picking. Preview phase stops at 99999.
+Next experiment, not started: a measured nozzle substrate with `operational`
+still false. Safe inspection: `MORPH_002_RESULTS.md` and `git status --short`.
+
+The previous checkpoint below remains the implementation record.
+
+---
+
+# Current checkpoint — MORPH-002 composable anatomy (2026-11-23)
+
+Agent: Grok, resumed from Codex session `01a20139-97a6-7153-b9c0-7b1b225889bc`.
+Slice: MORPH-002 anatomical composition. Scope is the morph engine, its lab,
+reports, and the external atlas/archive. Simulation crates were not edited.
+Status: **PARTIAL**. Focused gates pass on a dirty tree. Clean-commit
+broad-suite certification is pending. No commit or push.
+
+Repo: `/home/cognis/Cognis_Lab/Möbius Automata`, branch `main`,
+HEAD `9171f0dada9e66c4e92dc548c6ed8a552f9ab1fa`. Working tree dirty.
+`AGENTS.md` now keeps the UAP and the restored Mermogon archive rule.
+
+Uncommitted implementation: `crates/moebius-morph/src/anatomy.rs`,
+`compiler.rs`, `lib.rs`, `tests/composition.rs`,
+`examples/validate_composition.rs`, `examples/replay_lab.rs`,
+`crates/moebius-morph-lab/src/composition.rs`, `lib.rs`, `main.rs`.
+Reports: `MORPH_002_RESULTS.md`, `MORPH_002_IMPLEMENTATION_PLAN.md`,
+`docs/morph_002/`, `docs/research/2026-11-23-morph-002-composition.json`,
+`python/morph_002_atlas.py`, `python/morph_002_artifacts.py`, README section.
+`AGENTS.md` also contains the operator's UAP edit plus the restored Mermogon rule. The UAP master and this installed copy now include the instruction-preservation principle. The Mermogon rule was left in place.
+
+Commands that exited 0 on this dirty tree: `cargo fmt --all -- --check`;
+`cargo clippy -p moebius-morph -p moebius-morph-lab --all-targets --offline -- -D warnings`;
+`cargo test -p moebius-morph -p moebius-morph-lab --offline`;
+`cargo test --workspace --offline -- --test-threads=8` (124 tests listed;
+this is not clean-commit certification). Release runs PASS:
+`validate` -> `baseline-v1-reread` (108/108 members match the MORPH-001 archive);
+`validate_composition` -> `population-v2` (100/100, 800 poses);
+lab `--walkthrough` -> `walkthrough-v1` (19 captures);
+`replay_lab` rebuilt those 19. rustc 1.99.1, RTX 5060 Ti, Vulkan.
+Honest-red source mutation was not run. Rejection tests cover the asserted
+invalid cases only.
+
+Archive, re-verified UUID `D0A02EEBA02ED82C`:
+`/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-002/2026-11-23`.
+Index SHA-256 `558a634320b89c8ad2b545074fc8fceaa02e395a0fda5352edd5fcd76d1e3812`.
+`python3 python/morph_002_artifacts.py verify` and unpack to
+`/tmp/morph002-restore-check` both PASS, 255 files. Cache copies remain.
+Atlas: `/run/media/cognis/Stable Diffusion Drive/MOEBIUS_AUTOMATA_Atlas`,
+UUID `8CA451CDA451BA82`. `python3 python/morph_002_atlas.py` PASS, 28 notes,
+94 links. Authority: Git for source and reports once committed; Mermogon for
+raw evidence; the atlas is interpretive.
+
+Non-claims: no secretion, propulsion, learning, secondary mouths, welded
+roots, global intersection certificate, or cross-platform bit identity.
+No viewport picking. Preview phase stops at 99999. Architecture convergence
+for a simulation bridge is unresolved and was not attempted.
+
+Next, in order: operator authorizes a commit or leaves the tree dirty;
+if committing, confirm bulky raw files are absent from the commit, then
+rerun `cargo test --workspace --offline` on the clean HEAD and record that
+HEAD. Safe inspection: `git status --short` and `MORPH_002_RESULTS.md`.
+
+Earlier checkpoints below remain historical.
+
+---
+
 # Release checkpoint — user-authorized commit/push (2026-11-23)
 
 This checkpoint packages the pending M6 motor nursery, conserved cathedral

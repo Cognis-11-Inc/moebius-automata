@@ -254,3 +254,6 @@ mod continuity_tests {
         }
     }
 }
+
+mod composition;
+pub use composition::{ComponentField, CompositionSession, Edit};

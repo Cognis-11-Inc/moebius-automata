@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "date_local": "2026-11-23",
+  "atlas_path": "/run/media/cognis/Stable Diffusion Drive/MOEBIUS_AUTOMATA_Atlas",
+  "volume_uuid": "8CA451CDA451BA82",
+  "existing_convention_source": "/run/media/cognis/Stable Diffusion Drive/ZEITGEIST_Vault_Architecture",
+  "consulted": [
+    "00_START_HERE/VAULT_ARCHITECTURE.md",
+    "00_START_HERE/CANON_STATUS_GUIDE.md",
+    "99_TEMPLATES/Decision_Record.md"
+  ],
+  "role": "Research, architecture, design canon, experiment and evidence navigation. Live repository authoritative for implementation; Mermogon archives authoritative for bulky raw evidence.",
+  "versioning": "Independent version1 foundation snapshot inventoried by hashes; immutable external archive referenced by ARTIFACT_STORAGE.json. No Atlas stored inside source repository.",
+  "snapshot_members": [
+    {
+      "path": "00_HOME/INDEX.md",
+      "bytes": 1360,
+      "sha256": "96f16d3e031a619c2a7a0b99ad8858117935877626e7f472ae1356c10bf8b06a"
+    },
+    {
+      "path": "00_HOME/STATUS_GUIDE.md",
+      "bytes": 996,
+      "sha256": "d49c59d682465bbf57165b14a8993091ea071b882b99316dc0beefa8a81104b7"
+    },
+    {
+      "path": "00_HOME/VAULT_ARCHITECTURE.md",
+      "bytes": 1337,
+      "sha256": "d79566e1a272049c0ed0562188320ef1a869a5e5c1aed4dd6be20c872363f15c"
+    },
+    {
+      "path": "01_CANON/INDEX.md",
+      "bytes": 464,
+      "sha256": "eb2a6b62292edecc36bb092add95383531cf716177a7351820d1f5736991a787"
+    },
+    {
+      "path": "01_CANON/MOEBIUS_VESSEL.md",
+      "bytes": 697,
+      "sha256": "bf21b4a328e74eb22b81a1c1c88af8eb99f02bd16674b4fd5e0080780aa7cf30"
+    },
+    {
+      "path": "02_ANATOMY/COMPONENT_LIBRARY.md",
+      "bytes": 866,
+      "sha256": "ae68b3b8b1e2af25c5c4f243ac1b1332c2774d63cec806b632f2c5e96e5980d4"
+    },
+    {
+      "path": "02_ANATOMY/INDEX.md",
+      "bytes": 466,
+      "sha256": "37ca2df6f92de73f58f1fd145c2d512fe15df87463c8b4545786602e34319415"
+    },
+    {
+      "path": "03_PHYSIOLOGY/INDEX.md",
+      "bytes": 469,
+      "sha256": "ebaf03edd10c5241cbaaa194275ce05dea6e55f5c44b6f69d6ebd7297fd37884"
+    },
+    {
+      "path": "04_COGNITION/INDEX.md",
+      "bytes": 468,
+      "sha256": "bc7a89ea6353f1b1501bdfd5ac824261703157e5cc579cdaae242b419c90fe0a"
+    },
+    {
+      "path": "05_ECOLOGY/ENVIRONMENTAL_HYPOTHESIS.md",
+      "bytes": 728,
+      "sha256": "45ad3cdba3842d2281c5e816dacd882c084d40e69df239f792853cdc23bc0415"
+    },
+    {
+      "path": "05_ECOLOGY/INDEX.md",
+      "bytes": 466,
+      "sha256": "e45cc0a5d7b5656d86c299b7a58a2eec5180f51363e985585ac7c1ddbe818088"
+    },
+    {
+      "path": "06_SPECIES/ARACHNITECH.md",
+      "bytes": 754,
+      "sha256": "60e31090e703d6c8941fe3b12d27f526200d21cd256a6a1d25414bed8b99e905"
+    },
+    {
+      "path": "06_SPECIES/INDEX.md",
+      "bytes": 466,
+      "sha256": "15e8014b2f71096f3c3ff41f7ffc49f40bdff7896d81daf64784583a06d7ada7"
+    },
+    {
+      "path": "07_EXPERIMENTS/INDEX.md",
+      "bytes": 470,
+      "sha256": "37fa720f4691708d836318df2a14a7781f2e7960c77e38d14921fe1edb0edf41"
+    },
+    {
+      "path": "07_EXPERIMENTS/MORPH_001.md",
+      "bytes": 1073,
+      "sha256": "def467c3a8ec18c3336bfb01cf690c578a0f35b4ec358496b569c5710c7c3d36"
+    },
+    {
+      "path": "07_EXPERIMENTS/MORPH_002.md",
+      "bytes": 1122,
+      "sha256": "f93e2364dbef99c67527a4b355083f15ea93a48fe5cad8841665a2a5d8ed67fe"
+    },
+    {
+      "path": "08_ARCHITECTURE/ANATOMY_SPEC_V2.md",
+      "bytes": 1353,
+      "sha256": "b2964d16e4af1367af879e3dfa5b282008651e17eadcf34792447c4e6ba19c15"
+    },
+    {
+      "path": "08_ARCHITECTURE/INDEX.md",
+      "bytes": 471,
+      "sha256": "47cdc3748d85ec0ce534ef5030fbdceaed1851133253da4ba27c9a67db1501a2"
+    },
+    {
+      "path": "09_EVIDENCE/EVIDENCE_POLICY.md",
+      "bytes": 1171,
+      "sha256": "93788c1e60545aa109f24adca9aae60b9c3893c7c6c09770a37ca592b47530c0"
+    },
+    {
+      "path": "09_EVIDENCE/INDEX.md",
+      "bytes": 467,
+      "sha256": "3d80b313bf05797eb1661908404103136721080c49ed0bfdd61b8d98c51abc0c"
+    },
+    {
+      "path": "90_INBOX/INDEX.md",
+      "bytes": 464,
+      "sha256": "f99ef45eaf0369b5cad93a6e94b1ff3e78cc5f01e8367c6e211d4aab33d3b3a4"
+    },
+    {
+      "path": "99_ARCHIVE/INDEX.md",
+      "bytes": 466,
+      "sha256": "17eb683963eaa69f255d07eb91bb4a17406f2b1af86f6c2b7b66f822bf163cdd"
+    },
+    {
+      "path": "_TEMPLATES/Anatomical_Component.md",
+      "bytes": 374,
+      "sha256": "285e0660934a13e47a69b61c78a26f8457c07d67e4978ed66823db1c8c5bf186"
+    },
+    {
+      "path": "_TEMPLATES/Architectural_Decision.md",
+      "bytes": 376,
+      "sha256": "d61960ff7bdf5a5225193054516da4267c58629e099c52cd24acbb143aac2678"
+    },
+    {
+      "path": "_TEMPLATES/Environmental_Mechanism.md",
+      "bytes": 376,
+      "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+    },
+    {
+      "path": "_TEMPLATES/Experimental_Protocol.md",
+      "bytes": 376,
+      "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+    },
+    {
+      "path": "_TEMPLATES/Experimental_Result.md",
+      "bytes": 376,
+      "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+    },
+    {
+      "path": "_TEMPLATES/Organism_Species.md",
+      "bytes": 377,
+      "sha256": "d6aa2ec5611cb9712c2f89d7769f00a53b4eca8cb0c2c4f3ecaf2957782b5963"
+    }
+  ],
+  "snapshot_note": "Foundation notes hashed after the 2026-11-23 MORPH-002 focused-result update. Clean-commit certification is pending."
+}

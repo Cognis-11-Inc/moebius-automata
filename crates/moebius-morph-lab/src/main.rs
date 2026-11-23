@@ -11,21 +11,21 @@ use bevy::{
     },
 };
 use clap::Parser;
-use moebius_morph::{Organism, Surface, WormSpec};
-use moebius_morph_lab::{Action, Field, Session};
+use moebius_morph::{AnatomySpec, Organism, Surface};
+use moebius_morph_lab::{ComponentField, CompositionSession, Edit};
 use std::path::PathBuf;
 #[derive(Parser)]
 struct Cli {
     #[arg(long, default_value_t = 20261123)]
     seed: u64,
-    #[arg(long, default_value = "runs/morph_001/organism.json")]
+    #[arg(long, default_value = "runs/morph_002/organism.json")]
     definition: PathBuf,
     /// New evidence directory; drives real keyboard handlers and records internal screenshots.
     #[arg(long)]
     walkthrough: Option<PathBuf>,
 }
 #[derive(Resource)]
-struct Lab(Session);
+struct Lab(CompositionSession);
 #[derive(Resource, Default)]
 struct Rendered {
     geometry: Option<Organism>,
@@ -51,7 +51,7 @@ struct Walk {
     out: PathBuf,
     frame: u64,
     saved_digest: Option<String>,
-    saved_spec: Option<WormSpec>,
+    saved_spec: Option<AnatomySpec>,
     events: Vec<serde_json::Value>,
     failure: Option<String>,
     captures: usize,
@@ -66,15 +66,15 @@ fn main() {
         std::fs::create_dir(p).expect("walkthrough requires a new directory");
     }
     let spec = if path.exists() {
-        moebius_morph::load(&path).expect("valid definition file")
+        moebius_morph::load_anatomy(&path).expect("valid definition file")
     } else {
-        WormSpec::from_seed(cli.seed)
+        AnatomySpec::showcase(cli.seed)
     };
-    let session = Session::new(spec, path).expect("valid initial anatomy");
+    let session = CompositionSession::new(spec, path).expect("valid initial anatomy");
     let mut app = App::new();
     app.add_plugins(DefaultPlugins.set(WindowPlugin {
         primary_window: Some(Window {
-            title: "MOEBIUS — Anatomical Forge / MORPH-001".into(),
+            title: "MOEBIUS — Anatomical Forge / MORPH-002".into(),
             resolution: (1600, 1000).into(),
             ..default()
         }),
@@ -123,7 +123,6 @@ fn main() {
 fn setup(
     mut commands: Commands,
     mut materials: ResMut<Assets<StandardMaterial>>,
-    mut meshes: ResMut<Assets<Mesh>>,
     mut rendered: ResMut<Rendered>,
 ) {
     commands.spawn((
@@ -145,15 +144,6 @@ fn setup(
             Transform::from_translation(position).looking_at(Vec3::ZERO, Vec3::Y),
         ));
     }
-    commands.spawn((
-        Mesh3d(meshes.add(Plane3d::default().mesh().size(30., 30.))),
-        MeshMaterial3d(materials.add(StandardMaterial {
-            base_color: Color::srgb(0.025, 0.033, 0.04),
-            perceptual_roughness: 0.95,
-            ..default()
-        })),
-        Transform::from_xyz(0., -1.45, 0.),
-    ));
     rendered.material = materials.add(StandardMaterial {
         base_color: Color::WHITE,
         perceptual_roughness: 0.36,
@@ -162,9 +152,9 @@ fn setup(
     });
     commands.spawn((Node {position_type:PositionType::Absolute,left:Val::Px(20.),top:Val::Px(20.),bottom:Val::Px(20.),width:Val::Px(326.),padding:UiRect::all(Val::Px(18.)),flex_direction:FlexDirection::Column,row_gap:Val::Px(18.),..default()},BackgroundColor(Color::srgba(0.018,0.027,0.034,0.96)))).with_children(|p| {
         p.spawn((Text::new("MOEBIUS\nANATOMICAL FORGE"),TextFont {font_size: FontSize::Px(25.),..default()},TextColor(Color::srgb(0.89,0.84,0.70))));
-        p.spawn((Text::new("MORPH-001   /   WORM\nLive procedural geometry"),TextFont {font_size: FontSize::Px(14.),..default()},TextColor(Color::srgb(0.42,0.73,0.70))));
-        p.spawn((Text::new("Compiling anatomy…"),TextFont {font_size: FontSize::Px(16.),..default()},TextColor(Color::srgb(0.88,0.87,0.80)),UiText::Controls));
-        p.spawn((Text::new("1-7 / Up / Down: select\nLeft / Right: edit\nShift: larger changes\n\nR: seed   F: flagella count\nG: ridges  Space: animation\nM: auto mouth\nS: save    L: reload\n\nRight-drag: orbit\nWheel: zoom\nAlt + arrows: orbit"),TextFont {font_size: FontSize::Px(14.),..default()},TextColor(Color::srgb(0.56,0.64,0.66))));
+        p.spawn((Text::new("MORPH-002 / COMPOSABLE\nSuspended anatomical preview"),TextFont {font_size: FontSize::Px(14.),..default()},TextColor(Color::srgb(0.42,0.73,0.70))));
+        p.spawn((Text::new("Compiling anatomy…"),TextFont {font_size: FontSize::Px(14.),..default()},TextColor(Color::srgb(0.88,0.87,0.80)),UiText::Controls));
+        p.spawn((Text::new("Tab: next component (Shift: previous)\nA: flagellum  P: spine  N: nozzle\nD: duplicate  Delete: remove\nUp/Down: parameter  Left/Right: edit\n[/]: body length  -/=: thickness\n, / .: mouth aperture  M: cycle\nH: short-body showcase  R: seed\nSpace: animate  S: save  L: reload\nRight-drag / wheel: orbit / zoom\nAlt + arrows: orbit\nRoot markers: amber=selected"),TextFont {font_size: FontSize::Px(14.),..default()},TextColor(Color::srgb(0.56,0.64,0.66))));
         p.spawn((Text::new("Authored preview only.\nNo simulation or learning."),TextFont {font_size: FontSize::Px(13.),..default()},TextColor(Color::srgb(0.68,0.49,0.39))));
     });
     commands.spawn((
@@ -199,67 +189,76 @@ fn setup(
         UiText::Status,
     ));
 }
-fn keys(input: Res<ButtonInput<KeyCode>>, mut lab: ResMut<Lab>, walk: Option<Res<Walk>>) {
+fn keys(input: Res<ButtonInput<KeyCode>>, mut lab: ResMut<Lab>) {
     if input.pressed(KeyCode::AltLeft) || input.pressed(KeyCode::AltRight) {
         return;
     }
-    let mut actions = vec![];
-    for (i, key) in [
-        KeyCode::Digit1,
-        KeyCode::Digit2,
-        KeyCode::Digit3,
-        KeyCode::Digit4,
-        KeyCode::Digit5,
-        KeyCode::Digit6,
-        KeyCode::Digit7,
-    ]
-    .into_iter()
-    .enumerate()
-    {
-        if input.just_pressed(key) {
-            actions.push(Action::Select(i));
-        }
-    }
-    let current = Field::ALL.iter().position(|f| *f == lab.0.field).unwrap();
+    let mut edits = vec![];
+    let i = ComponentField::ALL
+        .iter()
+        .position(|f| *f == lab.0.field)
+        .unwrap();
     if input.just_pressed(KeyCode::ArrowDown) {
-        actions.push(Action::Select(current + 1));
+        edits.push(Edit::Field(i + 1));
     }
     if input.just_pressed(KeyCode::ArrowUp) {
-        actions.push(Action::Select((current + 6) % 7));
+        edits.push(Edit::Field((i + 11) % 12));
     }
-    let step = if input.pressed(KeyCode::ShiftLeft) || input.pressed(KeyCode::ShiftRight) {
+    if input.just_pressed(KeyCode::Tab) {
+        edits.push(if input.pressed(KeyCode::ShiftLeft) {
+            Edit::SelectPrevious
+        } else {
+            Edit::SelectNext
+        });
+    }
+    let step = if input.pressed(KeyCode::ShiftLeft) {
         3.
     } else {
         1.
     };
-    for (key, action) in [
-        (KeyCode::ArrowLeft, Action::Adjust(-step)),
-        (KeyCode::ArrowRight, Action::Adjust(step)),
-        (KeyCode::KeyR, Action::NextSeed),
-        (KeyCode::KeyF, Action::CycleFlagCount),
-        (KeyCode::KeyG, Action::ToggleRidges),
-        (KeyCode::Space, Action::ToggleAnimation),
-        (KeyCode::KeyM, Action::ToggleMouthCycle),
-        (KeyCode::KeyS, Action::Save),
-        (KeyCode::KeyL, Action::Reload),
+    for (key, edit) in [
+        (KeyCode::ArrowLeft, Edit::Adjust(-step)),
+        (KeyCode::ArrowRight, Edit::Adjust(step)),
+        (KeyCode::KeyA, Edit::AddFlagellum),
+        (KeyCode::KeyP, Edit::AddSpine),
+        (KeyCode::KeyN, Edit::AddNozzle),
+        (KeyCode::KeyD, Edit::Duplicate),
+        (KeyCode::Delete, Edit::Remove),
+        (KeyCode::BracketLeft, Edit::BodyLength(-step)),
+        (KeyCode::BracketRight, Edit::BodyLength(step)),
+        (KeyCode::Minus, Edit::BodyRadius(-step)),
+        (KeyCode::Equal, Edit::BodyRadius(step)),
+        (KeyCode::Comma, Edit::Mouth(-step)),
+        (KeyCode::Period, Edit::Mouth(step)),
+        (KeyCode::KeyH, Edit::Showcase),
+        (KeyCode::KeyR, Edit::Seed),
+        (KeyCode::KeyS, Edit::Save),
+        (KeyCode::KeyL, Edit::Reload),
     ] {
         if input.just_pressed(key) {
-            actions.push(action);
+            edits.push(edit);
         }
     }
-    for action in actions {
-        if let Err(e) = lab.0.action(action) {
-            lab.0.status = format!("REFUSED: {e}");
-            eprintln!("MORPH_EDIT_REFUSED {action:?}: {e}");
-        }
-        if walk.is_none() {
-            println!("MORPH_EDIT {action:?} seed{}", lab.0.spec.seed);
+    if input.just_pressed(KeyCode::Space) {
+        lab.0.animation = !lab.0.animation;
+    }
+    if input.just_pressed(KeyCode::KeyM) {
+        lab.0.mouth_cycle = !lab.0.mouth_cycle;
+    }
+    for e in edits {
+        if let Err(error) = lab.0.edit(e) {
+            lab.0.status = format!("REFUSED: {error}");
+            eprintln!("MORPH_EDIT_REFUSED {e:?}: {error}");
         }
     }
 }
 fn advance(time: Res<Time>, mut lab: ResMut<Lab>) {
     if lab.0.animation {
-        lab.0.phase = moebius_morph_lab::advance_phase(lab.0.phase, time.delta_secs());
+        lab.0.phase = (lab.0.phase + time.delta_secs() * 0.9).min(99999.);
+        if lab.0.phase >= 99999. {
+            lab.0.animation = false;
+            lab.0.status = "Preview time limit reached; reload session to restart".into();
+        }
     }
 }
 fn mesh(surface: &Surface) -> Mesh {
@@ -314,7 +313,7 @@ fn render_geometry(
         }
     }
     if let Some(mut m) = materials.get_mut(&rendered.material) {
-        m.perceptual_roughness = lab.0.spec.appearance.roughness;
+        m.perceptual_roughness = lab.0.spec.body.appearance.roughness;
     }
     rendered.geometry = Some(geometry);
 }
@@ -354,70 +353,73 @@ fn orbit(
         *t = Transform::from_translation(target + pos).looking_at(target, Vec3::Y);
     }
 }
-fn update_text(lab: Res<Lab>, rendered: Res<Rendered>, mut text: Query<(&UiText, &mut Text)>) {
+fn update_text(
+    lab: Res<Lab>,
+    rendered: Res<Rendered>,
+    mut text: Query<(&UiText, &mut Text)>,
+    mut gizmos: Gizmos,
+) {
     let s = &lab.0.spec;
-    let flag = s.flagella.first().map_or(0., |f| f.length);
-    let values = [
-        s.seed.to_string(),
-        format!("{:.2}", s.length),
-        format!("{:.2}", s.radius),
-        format!(
-            "{:.0}%{}",
-            lab.0.pose().mouth * 100.,
-            if lab.0.mouth_cycle { " cycling" } else { "" }
-        ),
-        format!("{flag:.2}"),
-        s.flagella.len().to_string(),
-        format!("{:.2}", s.curvature),
-    ];
-    let controls = Field::ALL
-        .iter()
-        .zip(values)
-        .enumerate()
-        .map(|(i, (field, value))| {
-            format!(
-                "{} {}  {}: {}",
-                if *field == lab.0.field { ">" } else { " " },
-                i + 1,
-                field.label(),
-                value
-            )
-        })
-        .collect::<Vec<_>>()
-        .join("\n\n");
+    let component = lab.0.component();
+    let selected = component.map_or("No component selected".into(), |c| {
+        format!("{} #{}  / parent trunk0", c.kind(), c.id)
+    });
+    let controls = format!(
+        "{} components\n{}\n\n{}",
+        s.components.len(),
+        selected,
+        ComponentField::ALL
+            .iter()
+            .map(|f| format!(
+                "{} {}: {}",
+                if *f == lab.0.field { ">" } else { " " },
+                f.label(),
+                component
+                    .and_then(|c| f.value(c))
+                    .map_or("--".into(), |v| format!("{v:.3}"))
+            ))
+            .collect::<Vec<_>>()
+            .join("\n")
+    );
+    if let Some(g) = &rendered.geometry {
+        for (c, a) in s.components.iter().zip(&g.attachments) {
+            let color = if Some(c.id) == lab.0.selected {
+                Color::srgb(1., 0.65, 0.15)
+            } else {
+                Color::srgb(0.2, 0.8, 0.65)
+            };
+            gizmos.sphere(
+                Isometry3d::from_translation(Vec3::from_array(a.origin)),
+                0.045,
+                color,
+            );
+        }
+    }
     for (role, mut text) in &mut text {
         text.0 = match role {
             UiText::Controls => controls.clone(),
             UiText::Status => {
                 if let Some(g) = &rendered.geometry {
-                    let vertices: usize = g.surfaces.iter().map(|m| m.positions.len()).sum();
-                    let tris: usize = g.surfaces.iter().map(|m| m.indices.len() / 3).sum();
                     format!(
-                        "{}\n{vertices} vertices | {tris} triangles | {} attachments | {} | ridges {}",
+                        "{}\n{} vertices | {} triangles | body {:.2} x {:.2} | mouth {:.0}%\nOverlap-mounted roots; nozzle anatomy only",
                         lab.0.status,
-                        g.attachments.len(),
-                        if lab.0.animation {
-                            "motion running"
-                        } else {
-                            "motion paused"
-                        },
-                        if s.ridges.is_some() { "on" } else { "off" }
+                        g.surfaces.iter().map(|s| s.positions.len()).sum::<usize>(),
+                        g.surfaces
+                            .iter()
+                            .map(|s| s.indices.len() / 3)
+                            .sum::<usize>(),
+                        s.body.length,
+                        s.body.radius,
+                        lab.0.pose().mouth * 100.
                     )
                 } else {
-                    "Compiling geometry".into()
+                    "Compiling".into()
                 }
             }
-            UiText::Specimen => {
-                if let Some(g) = &rendered.geometry {
-                    format!(
-                        "WORM / seed {}\n{} | UNBOUND PREVIEW",
-                        s.seed,
-                        &g.digest()[..12]
-                    )
-                } else {
-                    "WORM / compiling".into()
-                }
-            }
+            UiText::Specimen => format!(
+                "COMPOSABLE WORM / seed {}\nUNBOUND ANATOMICAL PREVIEW",
+                s.body.seed
+            ),
         };
     }
 }
@@ -431,20 +433,23 @@ fn inject_walk(walk: Option<ResMut<Walk>>, mut input: ResMut<ButtonInput<KeyCode
     let key = match f {
         100 => Some(KeyCode::Space),
         102 => Some(KeyCode::KeyM),
-        104 => Some(KeyCode::Digit4),
-        110..=128 if f % 2 == 0 => Some(KeyCode::ArrowLeft),
-        150..=168 if f % 2 == 0 => Some(KeyCode::ArrowRight),
-        190 => Some(KeyCode::Digit2),
-        192 | 194 | 196 => Some(KeyCode::ArrowRight),
-        200 => Some(KeyCode::Digit3),
-        202 => Some(KeyCode::ArrowRight),
-        204 => Some(KeyCode::Digit5),
-        206 | 222 => Some(KeyCode::ArrowRight),
-        208 | 214 | 216 => Some(KeyCode::KeyF),
-        218 | 220 => Some(KeyCode::KeyG),
-        224 => Some(KeyCode::KeyS),
-        234 | 250 => Some(KeyCode::KeyR),
-        270 => Some(KeyCode::KeyL),
+        104..=122 if f % 2 == 0 => Some(KeyCode::Comma),
+        144..=162 if f % 2 == 0 => Some(KeyCode::Period),
+        180 => Some(KeyCode::KeyA),
+        182 => Some(KeyCode::ArrowRight),
+        184 => Some(KeyCode::KeyD),
+        186 => Some(KeyCode::ArrowDown),
+        188 => Some(KeyCode::ArrowDown),
+        190 => Some(KeyCode::ArrowRight),
+        192 => Some(KeyCode::Delete),
+        194 => Some(KeyCode::KeyP),
+        196 => Some(KeyCode::KeyN),
+        198 => Some(KeyCode::ArrowRight),
+        200 => Some(KeyCode::BracketLeft),
+        202 => Some(KeyCode::KeyS),
+        220 => Some(KeyCode::KeyR),
+        240 => Some(KeyCode::KeyL),
+        260 => Some(KeyCode::Tab),
         _ => None,
     };
     if let Some(key) = key {
@@ -473,31 +478,30 @@ fn record_walk(
     };
     let frame = walk.frame;
     let mut tag = match frame {
-        30 => Some("motion_early"),
-        80 => Some("motion_later"),
-        140 => Some("mouth_closed"),
-        180 => Some("mouth_open"),
-        212 => Some("flagella_removed"),
-        230 => Some("edited_saved"),
-        246 => Some("seed_variant_a"),
-        262 => Some("seed_variant_b"),
-        280 => Some("edited_reloaded"),
-        338 => Some("camera_orbited"),
+        30 => Some("showcase_early"),
+        80 => Some("showcase_later"),
+        132 => Some("mouth_closed"),
+        172 => Some("mouth_open"),
+        204 => Some("composed_saved"),
+        230 => Some("seed_variant"),
+        250 => Some("composed_reloaded"),
+        270 => Some("selected_component"),
+        338 => Some("orbited"),
         _ => None,
     }
     .map(str::to_string);
-    if tag.is_none() && (12..100).contains(&frame) && frame.is_multiple_of(4) {
-        tag = Some(format!("motion_seq_{frame:04}"));
+    if tag.is_none() && (12..100).contains(&frame) && frame.is_multiple_of(8) {
+        tag = Some(format!("motion_{frame:04}"));
     }
-    if frame == 230 {
+    if frame == 204 {
         walk.saved_digest = Some(g.digest());
         walk.saved_spec = Some(lab.0.spec.clone());
     }
-    if frame == 280
+    if frame == 250
         && (walk.saved_digest.as_deref() != Some(g.digest().as_str())
             || walk.saved_spec.as_ref() != Some(&lab.0.spec))
     {
-        walk.failure = Some("saved/reloaded spec or posed structure mismatch".into());
+        walk.failure = Some("save/reload mismatch".into());
     }
     if let Some(tag) = tag {
         walk.captures += 1;

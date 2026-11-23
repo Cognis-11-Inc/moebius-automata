@@ -1,0 +1,19 @@
+{
+  "date_local": "2026-11-23",
+  "base_revision": "9171f0dada9e66c4e92dc548c6ed8a552f9ab1fa",
+  "working_tree": "uncommitted MORPH-002 changes on main",
+  "rustc": "1.99.1 (58cf8f9c3 2026-10-13)",
+  "target": "x86_64-unknown-linux-gnu",
+  "host": "Linux EndeavourOS, kernel 6.18.60-1-lts, AMD Ryzen 9 7950X, NVIDIA GeForce RTX 5060 Ti, driver 615.78.08, Vulkan",
+  "geometry_sources_sha256": {
+    "crates/moebius-morph/src/anatomy.rs": "f346e40f5c4699d976b0d9fea6bf016a7a9022d1dcebb68a9ea2d7735a76bd30",
+    "crates/moebius-morph/src/compiler.rs": "137f8391a9c14c9f0ca741f84d61f6903e7a7d3ade9c6094bbd3f1463c19976a",
+    "crates/moebius-morph/src/lib.rs": "cf3d59b8cb58a9eb38996bac150bda4c25935980cdfe86a1e6e3ff89eb2e4ae4",
+    "crates/moebius-morph/tests/composition.rs": "0e8aafc0375b71c6bde2cd590fc711de3dc5325c344b56af9be5dd35b4329917",
+    "crates/moebius-morph/examples/validate_composition.rs": "373354224a1c2f4deec162be764f6be1f02550c5334f7a137b762733acf70ae7",
+    "crates/moebius-morph/examples/replay_lab.rs": "63dbe8661a5f2e2a05713d69c7ad207e837705e28e60c5fa878f32b6befc21c8",
+    "crates/moebius-morph-lab/src/composition.rs": "222e707c2a5b905f831b515cf9905c3909f1789aec0386e8112a8804a126367f",
+    "crates/moebius-morph-lab/src/lib.rs": "2f6b2fcba80d9887a9dd13a354aa31acd07beaa4fd85c18f58ede9634af3f4dc",
+    "crates/moebius-morph-lab/src/main.rs": "69d0bc00af650e4020ac09d72c9fc9bd50bc2b41c2516bc21caf37b20f15e744"
+  }
+}

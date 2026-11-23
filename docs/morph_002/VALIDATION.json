@@ -1,0 +1,66 @@
+{
+  "date_local": "2026-11-23",
+  "mission": "MORPH-002",
+  "verdict": "PARTIAL: MORPH-002 success criterion met on the dirty tree. Clean-commit broad-suite certification is BLOCKED until a commit is explicitly authorized.",
+  "completion_pass_local": "2026-11-23T17:20:12-05:00",
+  "honest_red": {
+    "operational_nozzle": "FAIL while guard removed (exit 101, composition.rs:23), PASS after restore",
+    "transactional_edit": "FAIL while candidate validation bypassed (exit 101, composition.rs:374), PASS after restore",
+    "restored_sha256": {
+      "crates/moebius-morph/src/anatomy.rs": "f346e40f5c4699d976b0d9fea6bf016a7a9022d1dcebb68a9ea2d7735a76bd30",
+      "crates/moebius-morph-lab/src/composition.rs": "222e707c2a5b905f831b515cf9905c3909f1789aec0386e8112a8804a126367f"
+    }
+  },
+  "base_revision": "9171f0dada9e66c4e92dc548c6ed8a552f9ab1fa",
+  "committed": false,
+  "literature_search": "none for this slice",
+  "gates": {
+    "G1_specification_integrity": "PASS",
+    "G2_anatomical_composition": "PASS",
+    "G3_geometry_integrity": "PASS within sampled audits",
+    "G4_editing_integrity": "PASS",
+    "G5_determinism": "PASS in this build",
+    "G6_backward_compatibility": "PASS; 108/108 version1 archive members bit-identical",
+    "G7_regression_and_performance": "Focused morph tests, clippy, fmt, version1 reread and version2 population PASS on the dirty tree. cargo test --workspace --offline exited 0 on that same dirty tree (124 tests listed). That workspace run is not clean-commit certification. Clean-commit broad suite is PENDING.",
+    "G8_atlas_provenance": "PASS: python3 python/morph_002_atlas.py on 2026-11-23. 28 notes, 94 internal links, zero errors. Volume UUID 8CA451CDA451BA82. Interpretive atlas only."
+  },
+  "workspace_tests": 124,
+  "version1_population": {
+    "status": "PASS",
+    "configurations": 100,
+    "poses_checked": 800,
+    "maximum_attachment_error": 0.0,
+    "minimum_double_triangle_area": 2.1619300241582096e-05,
+    "distinct_rest_geometry_digests": 100,
+    "archive_member_match_with_morph_001": "108/108"
+  },
+  "version2_population": {
+    "status": "PASS",
+    "configurations": 100,
+    "poses": 800,
+    "failed": [],
+    "distinct_geometry_digests": 100,
+    "maximum_root_error": 0.0,
+    "minimum_double_area": 2.491658779035788e-05,
+    "near_closure_gap_showcase": 0.010323475115001202,
+    "compile_us": {"min": 533, "median": 1110, "max": 1979},
+    "representative_rows": [
+      {"seed": 0, "flagella": 0, "components": 2, "vertices": 1876, "triangles": 3740, "compile_us": 838},
+      {"seed": 1, "flagella": 2, "components": 2, "vertices": 2698, "triangles": 5384, "compile_us": 953},
+      {"seed": 2, "flagella": 8, "components": 9, "vertices": 4598, "triangles": 9156, "compile_us": 1176},
+      {"seed": 3, "flagella": 16, "components": 17, "vertices": 6656, "triangles": 13240, "compile_us": 1667}
+    ]
+  },
+  "walkthrough": {
+    "status": "PASS",
+    "screenshots": 19,
+    "captures_replayed": 19,
+    "saved_digest": "b167c4c76dd207abff528e00ad8d6f3cae63a7520386eed67ecdf13802050851",
+    "saved_reloaded_geometry_matches": true,
+    "body_positions_changed": true,
+    "flagellar_positions_changed": true,
+    "seed_variants": 2,
+    "observed_edit_us": {"mouth_open_status": 3336, "reload_status": 3804}
+  },
+  "physical_neural_or_secretion_capability": "NOT DEMONSTRATED"
+}

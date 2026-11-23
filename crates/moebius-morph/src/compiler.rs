@@ -167,7 +167,7 @@ fn radius(s: &WormSpec, t: f32, angle: f32) -> f32 {
     }
     r
 }
-fn ring(
+pub(crate) fn ring(
     mesh: &mut Surface,
     c: V,
     axes: (V, V),
@@ -189,7 +189,7 @@ fn ring(
     }
     start
 }
-fn generate(s: &WormSpec, p: Pose) -> Organism {
+pub(crate) fn generate(s: &WormSpec, p: Pose) -> Organism {
     let n = s.radial_segments;
     let mut body = Surface::new("body_lips_and_recessed_throat");
     let mut side = [1., 0., 0.];
@@ -267,41 +267,14 @@ fn generate(s: &WormSpec, p: Pose) -> Organism {
     let mut attachments = vec![];
     let mut appendages = vec![];
     for (id, f) in s.flagella.iter().enumerate() {
-        let a = f.attachment.station * s.body_rings as f32;
-        let i = a.floor() as u32;
-        let u = a - i as f32;
-        let b = f.attachment.azimuth.rem_euclid(TAU) / TAU * n as f32;
-        let j = b.floor() as u32;
-        let v = b - j as f32;
-        let first = 1 + i * n as u32 + j;
-        let next = 1 + i * n as u32 + (j + 1) % n as u32;
-        let (tri, weights) = if u + v <= 1. {
-            ([first, next, first + n as u32], [1. - u - v, v, u])
-        } else {
-            (
-                [next, next + n as u32, first + n as u32],
-                [1. - u, u + v - 1., 1. - v],
-            )
-        };
-        let interpolate = |array: &[V]| {
-            tri.iter()
-                .zip(weights)
-                .fold([0.; 3], |p, (&i, w)| add(p, mul(array[i as usize], w)))
-        };
-        let origin = interpolate(&body.positions);
-        let normal = unit(interpolate(&body.normals));
-        let t = tangent(s, p, f.attachment.station);
-        let tangent = unit(sub(t, mul(normal, dot(t, normal))));
-        let binormal = unit(cross(normal, tangent));
-        let mount = AttachmentFrame {
+        let mount = attachment(s, p, &body, &f.attachment);
+        let AttachmentFrame {
             origin,
             normal,
             tangent,
             binormal,
-            triangle: tri,
-            barycentric: weights,
-            capability: "decorative_unbound".into(),
-        };
+            ..
+        } = mount;
         let direction = unit(sub(mul(normal, 0.65), mul(tangent, 0.76)));
         let (sx, sy) = frame(direction, binormal);
         let mut part = Surface::new(&format!("flagellum_{id}"));
@@ -359,5 +332,49 @@ fn generate(s: &WormSpec, p: Pose) -> Organism {
         throat_base: base,
         mechanical_binding: None,
         deformation: "continuous parametric CPU preview; no production motor binding".into(),
+    }
+}
+
+pub(crate) fn attachment(
+    s: &WormSpec,
+    p: Pose,
+    body: &Surface,
+    coord: &crate::SurfaceCoordinate,
+) -> AttachmentFrame {
+    let n = s.radial_segments;
+    let a = coord.station * s.body_rings as f32;
+    let i = a.floor() as u32;
+    let u = a - i as f32;
+    let b = coord.azimuth.rem_euclid(TAU) / TAU * n as f32;
+    let j = b.floor() as u32;
+    let v = b - j as f32;
+    let first = 1 + i * n as u32 + j;
+    let next = 1 + i * n as u32 + (j + 1) % n as u32;
+    let (tri, weights) = if u + v <= 1. {
+        ([first, next, first + n as u32], [1. - u - v, v, u])
+    } else {
+        (
+            [next, next + n as u32, first + n as u32],
+            [1. - u, u + v - 1., 1. - v],
+        )
+    };
+    let interpolate = |array: &[V]| {
+        tri.iter()
+            .zip(weights)
+            .fold([0.; 3], |p, (&i, w)| add(p, mul(array[i as usize], w)))
+    };
+    let origin = interpolate(&body.positions);
+    let normal = unit(interpolate(&body.normals));
+    let t = tangent(s, p, coord.station);
+    let tangent = unit(sub(t, mul(normal, dot(t, normal))));
+    let binormal = unit(cross(normal, tangent));
+    AttachmentFrame {
+        origin,
+        normal,
+        tangent,
+        binormal,
+        triangle: tri,
+        barycentric: weights,
+        capability: "decorative_unbound".into(),
     }
 }
