@@ -12,7 +12,7 @@
   "VALIDATED": [
     "Focused geometry, migration, edit-rejection, population, and walkthrough replay tests on the dirty working tree",
     "Honest-red: operational nozzle guard and transactional edit guard each failed while removed and passed after byte-identical restore",
-    "Clean-commit broad-suite certification was not run"
+    "Clean commit 24580f01f54bf149bf7d68b66e177763ff0591f5 passed cargo test --workspace --offline: 124 tests, 0 failures"
   ],
   "knowledge_transfer": [],
   "limits": [

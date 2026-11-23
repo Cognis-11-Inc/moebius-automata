@@ -38,8 +38,7 @@ MOEBIUS_AUTOMATA_Atlas on that drive. No vault in source repository. Lightweight
 location/provenance reference only. Evidence remains independently archived on
 Mermogon UUID D0A02EEBA02ED82C. No commits/push authorized for this slice.
 
-Status 2026-11-23, completion pass: the slice criterion is met in the dirty
-working tree. Focused tests, honest-red, and the existing Mermogon archive
-verification are recorded in MORPH_002_RESULTS.md. The archive was not
-replaced. Clean-commit workspace certification remains blocked until a
-commit is explicitly authorized.
+Status 2026-11-23, after authorization: committed as
+24580f01f54bf149bf7d68b66e177763ff0591f5. The clean tree passed
+cargo test --workspace --offline, 124 tests, 0 failures. The Mermogon
+archive was not replaced.

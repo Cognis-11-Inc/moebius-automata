@@ -1,6 +1,6 @@
 # MORPH-002 — Composable anatomy
 
-2026-11-23. **PARTIAL.** The MORPH-002 success criterion is met on the dirty working tree: an operator can compose independent structures, inspect and animate them, save and reload them, and reproduce the geometry. Clean-commit broad-suite certification remains blocked because commit and push are not authorized. This is an authored anatomical preview. It does not establish swimming, secretion, learning, or a living organism.
+2026-11-23. **DONE** for the bounded slice. The operator can compose independent structures, inspect and animate them, save and reload them, and reproduce the geometry. Clean commit `24580f01f54bf149bf7d68b66e177763ff0591f5` passed `cargo test --workspace --offline` with a clean tree: 124 tests, 0 failures. This is an authored anatomical preview. It does not establish swimming, secretion, learning, or a living organism.
 
 Base revision `9171f0dada9e66c4e92dc548c6ed8a552f9ab1fa` on `main`. The MORPH-002 diff is uncommitted. No external scientific literature search was performed for this slice.
 
@@ -34,7 +34,7 @@ Branch inventory on 2026-11-23: only `main` and `origin/main`. No stash entries.
 | G4 editing | PASS, focused | Add, duplicate, delete, per-component edits, save/reload, and a refused edit that leaves the accepted spec in place. |
 | G5 determinism | PASS in this build | 100/100 version2 configurations, 800 poses, 100 distinct rest digests, save/reload match. Same-build replay. Cross-platform bit identity is undemonstrated. |
 | G6 compatibility | PASS | Fresh version1 population: 100/100, 800 poses, attachment error 0. All 108 archive members match the MORPH-001 `population-v1` hashes. |
-| G7 regression and cost | focused PASS; clean-commit PENDING | Morph tests, Clippy, and `cargo fmt --all -- --check` passed. `cargo test --workspace --offline` exited 0 on this dirty tree and lists 124 tests. That run is not a clean-commit certificate. |
+| G7 regression and cost | PASS on clean `24580f01f54bf149bf7d68b66e177763ff0591f5` | `cargo test --workspace --offline -- --test-threads=8` exited 0. `--list` reports 124 tests. Tree was clean before and after. |
 | G8 atlas | PASS for note links | `python3 python/morph_002_atlas.py` on the Stable Diffusion Drive, UUID `8CA451CDA451BA82`: 28 notes, 94 internal links, zero errors. The atlas is navigation. It does not validate biology. |
 
 Honest-red, same day, after the focused suite and before this report. Both guards were restored and the source hashes match `docs/morph_002/SOURCE_IDENTITY.json`.
@@ -121,8 +121,7 @@ Manifest: [docs/morph_002/ARTIFACT_STORAGE.json](docs/morph_002/ARTIFACT_STORAGE
 - No viewport picking gizmo.
 - Long component labels wrap in the side panel.
 - The lab binary is now the version2 editor. The old 1–7 / F / G key map is gone from this binary. Version1 definitions still load.
-- Clean-commit workspace certification has not been run. `cargo test --workspace` was not repeated in the completion pass. The earlier dirty-tree run, on these same geometry-source hashes, exited 0 and listed 124 tests. That run is not a release certificate.
-- No commit and no push were made.
+- Clean-commit workspace certification passed on `24580f01f54bf149bf7d68b66e177763ff0591f5`: 124 tests, 0 failures, clean tree before and after.
 
 ## Next slice
 

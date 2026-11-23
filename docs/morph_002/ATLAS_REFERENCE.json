@@ -39,8 +39,8 @@
     },
     {
       "path": "02_ANATOMY/COMPONENT_LIBRARY.md",
-      "bytes": 866,
-      "sha256": "ae68b3b8b1e2af25c5c4f243ac1b1332c2774d63cec806b632f2c5e96e5980d4"
+      "bytes": 889,
+      "sha256": "97c44c06d344566255e380be40f56685d07a85e281aed87a7e369b00a607b973"
     },
     {
       "path": "02_ANATOMY/INDEX.md",
@@ -89,13 +89,13 @@
     },
     {
       "path": "07_EXPERIMENTS/MORPH_002.md",
-      "bytes": 1122,
-      "sha256": "f93e2364dbef99c67527a4b355083f15ea93a48fe5cad8841665a2a5d8ed67fe"
+      "bytes": 1062,
+      "sha256": "90fa455f1ad328b1ea256a42b04b008f0e92b99ed2d968be294bff9d1c51358f"
     },
     {
       "path": "08_ARCHITECTURE/ANATOMY_SPEC_V2.md",
-      "bytes": 1353,
-      "sha256": "b2964d16e4af1367af879e3dfa5b282008651e17eadcf34792447c4e6ba19c15"
+      "bytes": 1351,
+      "sha256": "811e3009c84ac1267c72914f501331de8eb52affb6430f67e9782a01a7129d4d"
     },
     {
       "path": "08_ARCHITECTURE/INDEX.md",
@@ -153,5 +153,5 @@
       "sha256": "d6aa2ec5611cb9712c2f89d7769f00a53b4eca8cb0c2c4f3ecaf2957782b5963"
     }
   ],
-  "snapshot_note": "Foundation notes hashed after the 2026-11-23 MORPH-002 focused-result update. Clean-commit certification is pending."
+  "snapshot_note": "Notes rehashed after clean commit 24580f01f54bf149bf7d68b66e177763ff0591f5 passed the workspace suite."
 }

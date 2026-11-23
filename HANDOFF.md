@@ -1,3 +1,32 @@
+# Current checkpoint — MORPH-002 committed (2026-11-23)
+
+Agent: Grok. Operator authorized commit and push.
+Status: **DONE** for the bounded anatomical slice.
+Commit: `24580f01f54bf149bf7d68b66e177763ff0591f5` on `main`.
+Command: `cargo test --workspace --offline -- --test-threads=8`.
+Outcome on `24580f0`: exit 0, 124 tests listed, 0 failures. `git status --short`
+was empty before and after that run. rustc 1.99.1. This paragraph's commit
+is the documentation of that run and must itself be retested before push.
+
+This follow-up records that result, refreshes the atlas snapshot hashes,
+and leaves the Mermogon archive untouched at
+`/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-002/2026-11-23`,
+UUID `D0A02EEBA02ED82C`, index
+`558a634320b89c8ad2b545074fc8fceaa02e395a0fda5352edd5fcd76d1e3812`.
+Atlas verifier PASS after the note update: 28 notes, 94 links, UUID
+`8CA451CDA451BA82`.
+
+Non-claims stand: no secretion, propulsion, learning, secondary mouths,
+welded roots, global intersection certificate, or cross-platform bit
+identity. Preview phase stops at 99999. No viewport picking.
+Next experiment, not started: a measured nozzle substrate with
+`operational` still false.
+Safe inspection: `git log -1` and `MORPH_002_RESULTS.md`.
+
+The completion-pass checkpoint below is the pre-commit record.
+
+---
+
 # Current checkpoint — MORPH-002 completion pass (2026-11-23T17:20:12-05:00)
 
 Agent: Grok. Slice: MORPH-002, continued in place. No new anatomical system.
