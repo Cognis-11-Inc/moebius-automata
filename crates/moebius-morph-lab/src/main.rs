@@ -11,8 +11,10 @@ use bevy::{
     },
 };
 use clap::Parser;
-use moebius_morph::{AnatomySpec, Organism, Surface};
-use moebius_morph_lab::{ComponentField, CompositionSession, Edit};
+use moebius_morph::{AnatomySpec, Organism, Shape, Surface};
+use moebius_morph_lab::{
+    ComponentField, CompositionSession, Edit, PreviewCommand, PreviewControls, world_point,
+};
 use std::path::PathBuf;
 #[derive(Parser)]
 struct Cli {
@@ -26,6 +28,8 @@ struct Cli {
 }
 #[derive(Resource)]
 struct Lab(CompositionSession);
+#[derive(Resource)]
+struct Emission(PreviewControls);
 #[derive(Resource, Default)]
 struct Rendered {
     geometry: Option<Organism>,
@@ -40,6 +44,8 @@ struct Orbit {
 }
 #[derive(Component)]
 struct CameraTag;
+#[derive(Component)]
+struct CreatureMesh;
 #[derive(Component)]
 enum UiText {
     Controls,
@@ -70,11 +76,14 @@ fn main() {
     } else {
         AnatomySpec::showcase(cli.seed)
     };
+    let preview =
+        PreviewControls::from_spec(&spec, PathBuf::from("runs/morph_003/preview_book.json"))
+            .expect("valid material book");
     let session = CompositionSession::new(spec, path).expect("valid initial anatomy");
     let mut app = App::new();
     app.add_plugins(DefaultPlugins.set(WindowPlugin {
         primary_window: Some(Window {
-            title: "MOEBIUS — Anatomical Forge / MORPH-002".into(),
+            title: "MOEBIUS — Anatomical Forge / MORPH-003".into(),
             resolution: (1600, 1000).into(),
             ..default()
         }),
@@ -87,6 +96,7 @@ fn main() {
         ..default()
     })
     .insert_resource(Lab(session))
+    .insert_resource(Emission(preview))
     .insert_resource(Orbit {
         yaw: 0.98,
         pitch: 0.29,
@@ -99,8 +109,11 @@ fn main() {
         (
             inject_walk,
             keys,
+            emission_keys,
             advance,
+            simulate,
             render_geometry,
+            place_creature,
             orbit,
             update_text,
             record_walk,
@@ -152,10 +165,10 @@ fn setup(
     });
     commands.spawn((Node {position_type:PositionType::Absolute,left:Val::Px(20.),top:Val::Px(20.),bottom:Val::Px(20.),width:Val::Px(326.),padding:UiRect::all(Val::Px(18.)),flex_direction:FlexDirection::Column,row_gap:Val::Px(18.),..default()},BackgroundColor(Color::srgba(0.018,0.027,0.034,0.96)))).with_children(|p| {
         p.spawn((Text::new("MOEBIUS\nANATOMICAL FORGE"),TextFont {font_size: FontSize::Px(25.),..default()},TextColor(Color::srgb(0.89,0.84,0.70))));
-        p.spawn((Text::new("MORPH-002 / COMPOSABLE\nSuspended anatomical preview"),TextFont {font_size: FontSize::Px(14.),..default()},TextColor(Color::srgb(0.42,0.73,0.70))));
+        p.spawn((Text::new("MORPH-003 / SECRETION\nFree-space material book"),TextFont {font_size: FontSize::Px(14.),..default()},TextColor(Color::srgb(0.42,0.73,0.70))));
         p.spawn((Text::new("Compiling anatomy…"),TextFont {font_size: FontSize::Px(14.),..default()},TextColor(Color::srgb(0.88,0.87,0.80)),UiText::Controls));
-        p.spawn((Text::new("Tab: next component (Shift: previous)\nA: flagellum  P: spine  N: nozzle\nD: duplicate  Delete: remove\nUp/Down: parameter  Left/Right: edit\n[/]: body length  -/=: thickness\n, / .: mouth aperture  M: cycle\nH: short-body showcase  R: seed\nSpace: animate  S: save  L: reload\nRight-drag / wheel: orbit / zoom\nAlt + arrows: orbit\nRoot markers: amber=selected"),TextFont {font_size: FontSize::Px(14.),..default()},TextColor(Color::srgb(0.56,0.64,0.66))));
-        p.spawn((Text::new("Authored preview only.\nNo simulation or learning."),TextFont {font_size: FontSize::Px(13.),..default()},TextColor(Color::srgb(0.68,0.49,0.39))));
+        p.spawn((Text::new("Tab: next component (Shift: previous)\nA: flagellum  P: spine  N: nozzle\nD: duplicate  Delete: remove\nUp/Down: parameter  Left/Right: edit\n[/]: body length  -/=: thickness\n, / .: mouth aperture  M: cycle\nH: short-body showcase  R: seed\nS: save anatomy  L: reload anatomy\nE: emission  C: material clock\nU/I: rate  J/K: reset reservoir\nF/V: drag  G: weak +X accel\nO: medium flow  Q: trajectory\nX: reset book  F5/F9: book save/load\nSpace: pause the active clock\nRight-drag / wheel or Alt+arrows: orbit"),TextFont {font_size: FontSize::Px(14.),..default()},TextColor(Color::srgb(0.56,0.64,0.66))));
+        p.spawn((Text::new("Anatomy does not grant emission.\nTrail lines are visual only, not pipes.\nNo floor. No locomotion claim."),TextFont {font_size: FontSize::Px(13.),..default()},TextColor(Color::srgb(0.68,0.49,0.39))));
     });
     commands.spawn((
         Text::new("WORM / compiling"),
@@ -239,9 +252,6 @@ fn keys(input: Res<ButtonInput<KeyCode>>, mut lab: ResMut<Lab>) {
             edits.push(edit);
         }
     }
-    if input.just_pressed(KeyCode::Space) {
-        lab.0.animation = !lab.0.animation;
-    }
     if input.just_pressed(KeyCode::KeyM) {
         lab.0.mouth_cycle = !lab.0.mouth_cycle;
     }
@@ -252,7 +262,86 @@ fn keys(input: Res<ButtonInput<KeyCode>>, mut lab: ResMut<Lab>) {
         }
     }
 }
-fn advance(time: Res<Time>, mut lab: ResMut<Lab>) {
+fn emission_keys(
+    input: Res<ButtonInput<KeyCode>>,
+    mut lab: ResMut<Lab>,
+    mut emission: ResMut<Emission>,
+) {
+    if input.pressed(KeyCode::AltLeft) || input.pressed(KeyCode::AltRight) {
+        return;
+    }
+    if input.just_pressed(KeyCode::Space) {
+        if emission.0.clock_armed {
+            emission.0.clock = !emission.0.clock;
+            emission.0.note = if emission.0.clock {
+                "Material clock running.".into()
+            } else {
+                "Material clock paused.".into()
+            };
+        } else {
+            lab.0.animation = !lab.0.animation;
+        }
+    }
+    let shift = input.pressed(KeyCode::ShiftLeft) || input.pressed(KeyCode::ShiftRight);
+    for key in [
+        KeyCode::KeyE,
+        KeyCode::KeyC,
+        KeyCode::KeyU,
+        KeyCode::KeyI,
+        KeyCode::KeyJ,
+        KeyCode::KeyK,
+        KeyCode::KeyF,
+        KeyCode::KeyV,
+        KeyCode::KeyG,
+        KeyCode::KeyO,
+        KeyCode::KeyQ,
+        KeyCode::KeyX,
+        KeyCode::F5,
+        KeyCode::F9,
+    ] {
+        if input.just_pressed(key) {
+            let Some(command) = preview_command(key, shift) else {
+                continue;
+            };
+            if matches!(command, PreviewCommand::Reset) {
+                lab.0.phase = 0.;
+            }
+            if let Err(error) = emission.0.command(&lab.0.spec, command) {
+                lab.0.status = format!("MATERIAL REFUSED: {error}");
+            }
+        }
+    }
+}
+fn preview_command(key: KeyCode, shift: bool) -> Option<PreviewCommand> {
+    let step = if shift { 10 } else { 1 };
+    Some(match key {
+        KeyCode::KeyE => PreviewCommand::ToggleEmission,
+        KeyCode::KeyC => PreviewCommand::ToggleClock,
+        KeyCode::KeyU => PreviewCommand::Rate(-step),
+        KeyCode::KeyI => PreviewCommand::Rate(step),
+        KeyCode::KeyJ => PreviewCommand::StageReservoir {
+            numerator: 1,
+            denominator: 2,
+        },
+        KeyCode::KeyK => PreviewCommand::StageReservoir {
+            numerator: 2,
+            denominator: 1,
+        },
+        KeyCode::KeyF => PreviewCommand::Drag(-50),
+        KeyCode::KeyV => PreviewCommand::Drag(50),
+        KeyCode::KeyG => PreviewCommand::ToggleAcceleration,
+        KeyCode::KeyO => PreviewCommand::ToggleFlow,
+        KeyCode::KeyQ => PreviewCommand::ToggleTrajectory,
+        KeyCode::KeyX => PreviewCommand::Reset,
+        KeyCode::F5 => PreviewCommand::Save,
+        KeyCode::F9 => PreviewCommand::Load,
+        _ => return None,
+    })
+}
+fn advance(time: Res<Time>, emission: Res<Emission>, mut lab: ResMut<Lab>) {
+    if emission.0.clock {
+        return;
+    }
     if lab.0.animation {
         lab.0.phase = (lab.0.phase + time.delta_secs() * 0.9).min(99999.);
         if lab.0.phase >= 99999. {
@@ -301,6 +390,7 @@ fn render_geometry(
                     MeshMaterial3d(material.clone()),
                     Transform::default(),
                     NoFrustumCulling,
+                    CreatureMesh,
                 ))
                 .id();
             rendered.handles.push((entity, handle));
@@ -353,8 +443,48 @@ fn orbit(
         *t = Transform::from_translation(target + pos).looking_at(target, Vec3::Y);
     }
 }
+fn simulate(time: Res<Time>, mut lab: ResMut<Lab>, mut emission: ResMut<Emission>) {
+    if !emission.0.clock {
+        return;
+    }
+    emission.0.accumulator += time.delta_secs();
+    let mut steps = 0;
+    while emission.0.accumulator >= emission.0.dt && steps < 4 {
+        emission.0.accumulator -= emission.0.dt;
+        if let Err(error) = emission.0.begin_tick() {
+            lab.0.status = format!("MATERIAL STEP REFUSED: {error}");
+            emission.0.clock = false;
+            return;
+        }
+        lab.0.phase = PreviewControls::phase_for_tick(emission.0.book.tick);
+        let pose = lab.0.pose();
+        let selected = lab.0.selected;
+        if let Err(error) = emission.0.emit_current(&lab.0.compiled, pose, selected) {
+            lab.0.status = format!("MATERIAL EMIT REFUSED: {error}");
+            emission.0.clock = false;
+            return;
+        }
+        steps += 1;
+    }
+    if steps == 4 && emission.0.accumulator >= emission.0.dt {
+        emission.0.accumulator = 0.;
+        emission.0.note = "Preview dropped stalled ticks. The benchmark clock does not.".into();
+    }
+}
+fn body_transform(emission: &PreviewControls) -> Transform {
+    let translation = Vec3::from_array(world_point(emission.body_rigid.translation));
+    let yaw = (emission.body_rigid.yaw_sin as f64).atan2(emission.body_rigid.yaw_cos as f64) as f32;
+    Transform::from_translation(translation).with_rotation(Quat::from_rotation_y(yaw))
+}
+fn place_creature(emission: Res<Emission>, mut bodies: Query<&mut Transform, With<CreatureMesh>>) {
+    let transform = body_transform(&emission.0);
+    for mut body in &mut bodies {
+        *body = transform;
+    }
+}
 fn update_text(
     lab: Res<Lab>,
+    emission: Res<Emission>,
     rendered: Res<Rendered>,
     mut text: Query<(&UiText, &mut Text)>,
     mut gizmos: Gizmos,
@@ -381,6 +511,7 @@ fn update_text(
             .collect::<Vec<_>>()
             .join("\n")
     );
+    let body = body_transform(&emission.0);
     if let Some(g) = &rendered.geometry {
         for (c, a) in s.components.iter().zip(&g.attachments) {
             let color = if Some(c.id) == lab.0.selected {
@@ -389,11 +520,30 @@ fn update_text(
                 Color::srgb(0.2, 0.8, 0.65)
             };
             gizmos.sphere(
-                Isometry3d::from_translation(Vec3::from_array(a.origin)),
+                Isometry3d::from_translation(body.transform_point(Vec3::from_array(a.origin))),
                 0.045,
                 color,
             );
         }
+    }
+    // Each vertex is a parcel coordinate from the book. The segment between
+    // consecutive parcels of one nozzle is a visual aid, not a body or a pipe.
+    let mut previous: Option<(u64, Vec3)> = None;
+    for parcel in &emission.0.book.parcels {
+        let point = Vec3::from_array(world_point(parcel.position));
+        if let Some((nozzle, prior)) = previous
+            && nozzle == parcel.nozzle_id
+        {
+            gizmos.line(prior, point, Color::srgba(0.96, 0.58, 0.24, 0.9));
+        }
+        previous = Some((parcel.nozzle_id, point));
+    }
+    if let Some(parcel) = emission.0.book.parcels.last() {
+        gizmos.sphere(
+            Isometry3d::from_translation(Vec3::from_array(world_point(parcel.position))),
+            0.04,
+            Color::srgb(1., 0.82, 0.48),
+        );
     }
     for (role, mut text) in &mut text {
         text.0 = match role {
@@ -401,7 +551,7 @@ fn update_text(
             UiText::Status => {
                 if let Some(g) = &rendered.geometry {
                     format!(
-                        "{}\n{} vertices | {} triangles | body {:.2} x {:.2} | mouth {:.0}%\nOverlap-mounted roots; nozzle anatomy only",
+                        "{}\n{} vertices | {} triangles | body {:.2} x {:.2} | mouth {:.0}%\n{}\nTrail lines are visual only. They are not pipes.",
                         lab.0.status,
                         g.surfaces.iter().map(|s| s.positions.len()).sum::<usize>(),
                         g.surfaces
@@ -410,16 +560,38 @@ fn update_text(
                             .sum::<usize>(),
                         s.body.length,
                         s.body.radius,
-                        lab.0.pose().mouth * 100.
+                        lab.0.pose().mouth * 100.,
+                        emission.0.ledger_line()
                     )
                 } else {
                     "Compiling".into()
                 }
             }
-            UiText::Specimen => format!(
-                "COMPOSABLE WORM / seed {}\nUNBOUND ANATOMICAL PREVIEW",
-                s.body.seed
-            ),
+            UiText::Specimen => {
+                let nozzle = lab
+                    .0
+                    .selected
+                    .filter(|id| emission.0.book.registered.contains(id))
+                    .or_else(|| emission.0.book.registered.iter().next().copied());
+                let admitted = nozzle.is_some_and(|id| emission.0.book.runtime_operational(id));
+                let anatomical = s
+                    .components
+                    .iter()
+                    .find_map(|component| match &component.shape {
+                        Shape::SecretionNozzle { output, .. } => Some(output.operational),
+                        _ => None,
+                    });
+                format!(
+                    "COMPOSABLE WORM / seed {}\nruntime nozzle {} | anatomical operational {}",
+                    s.body.seed,
+                    if admitted {
+                        "admitted"
+                    } else {
+                        "not yet admitted"
+                    },
+                    anatomical.map_or("no nozzle", |flag| if flag { "true" } else { "false" })
+                )
+            }
         };
     }
 }
@@ -578,5 +750,52 @@ mod tests {
         assert_ne!(before, after);
         assert!(after.is_finite());
         assert!(app.world().resource::<Orbit>().distance < 7.8);
+    }
+
+    #[test]
+    fn material_keys_cover_the_operator_controls() {
+        assert_eq!(
+            preview_command(KeyCode::KeyE, false),
+            Some(PreviewCommand::ToggleEmission)
+        );
+        assert_eq!(
+            preview_command(KeyCode::KeyC, false),
+            Some(PreviewCommand::ToggleClock)
+        );
+        assert_eq!(
+            preview_command(KeyCode::KeyI, true),
+            Some(PreviewCommand::Rate(10))
+        );
+        assert_eq!(
+            preview_command(KeyCode::KeyJ, false),
+            Some(PreviewCommand::StageReservoir {
+                numerator: 1,
+                denominator: 2
+            })
+        );
+        assert_eq!(
+            preview_command(KeyCode::KeyF, false),
+            Some(PreviewCommand::Drag(-50))
+        );
+        assert_eq!(
+            preview_command(KeyCode::KeyG, false),
+            Some(PreviewCommand::ToggleAcceleration)
+        );
+        assert_eq!(
+            preview_command(KeyCode::KeyX, false),
+            Some(PreviewCommand::Reset)
+        );
+        assert_eq!(
+            preview_command(KeyCode::F5, false),
+            Some(PreviewCommand::Save)
+        );
+        assert_eq!(
+            preview_command(KeyCode::F9, false),
+            Some(PreviewCommand::Load)
+        );
+        assert_eq!(
+            preview_command(KeyCode::KeyQ, false),
+            Some(PreviewCommand::ToggleTrajectory)
+        );
     }
 }

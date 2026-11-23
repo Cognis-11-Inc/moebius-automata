@@ -1,0 +1,146 @@
+{
+  "slice": "MORPH-003 conserving free-space secretion",
+  "model": "Integer quanta. Fixed-point position and velocity, scale 1000000. Each step adds explicit acceleration, blends velocity toward uniform flow by drag_per_mille * response_per_mille / 1000, then adds velocity to position. Division truncates toward zero. No gravity term is implied. Drag is not an atmosphere.",
+  "numerical_limits": "Parcel motion is integer and matches on any platform that implements Rust i128 division toward zero. Nozzle frames are quantized from the f32 anatomical pose; that quantization is same-build deterministic. Cross-platform f32 identity of the pose is not claimed. The interactive preview drops stalled ticks above four per frame; the benchmark does not.",
+  "nursery_paths_left_untouched": [
+    "crates/moebius-core/src/neural/body.rs Jet",
+    "crates/moebius-core/src/world.rs World::advance_jets",
+    "crates/moebius-core/src/world.rs SECRETE_ACTION",
+    "crates/moebius-core/src/layers.rs FluidSample",
+    "crates/moebius-core/src/layers.rs TrailPoint"
+  ],
+  "experiment_a": {
+    "initial": 100,
+    "reservoir": 100,
+    "parcels": 0,
+    "sinks": 0,
+    "residual": 0,
+    "tick": 20
+  },
+  "experiment_b": {
+    "birth": [
+      -12647,
+      -636378,
+      297751
+    ],
+    "after_steps": [
+      -13077,
+      -1134568,
+      255321
+    ],
+    "expected_after_steps": [
+      -13077,
+      -1134568,
+      255321
+    ],
+    "nozzle_after_body_shift": [
+      9987353,
+      -636378,
+      297751
+    ],
+    "parcel_after_body_shift": [
+      -13077,
+      -1134568,
+      255321
+    ],
+    "residual": 0,
+    "runtime_operational": true
+  },
+  "experiment_c": {
+    "first_birth": [
+      -12647,
+      -636378,
+      297751
+    ],
+    "first_after_motion": [
+      -12647,
+      -636378,
+      297751
+    ],
+    "nozzle_at_end": [
+      7987353,
+      -636378,
+      297751
+    ],
+    "separation": [
+      8000000,
+      0,
+      0
+    ],
+    "residual": 0,
+    "parcels": 8
+  },
+  "experiment_d": {
+    "drag_free": [
+      -13475,
+      -1592910,
+      216283
+    ],
+    "drag_full": [
+      -12647,
+      -636378,
+      297751
+    ],
+    "accelerated": [
+      298525,
+      -1592910,
+      216283
+    ],
+    "residuals": [
+      0,
+      0,
+      0
+    ]
+  },
+  "experiment_e": {
+    "initial": 5,
+    "reservoir": 2,
+    "in_world": 3,
+    "parcels": 1,
+    "second_status": "ReservoirExhausted { requested: 3, available: 2 }",
+    "residual": 0
+  },
+  "experiment_f": {
+    "hash": "cff18b1d0174646fd6b852f6d7cff059894420420fe5d2809cb6641c77e90cfb",
+    "repeat_hash": "cff18b1d0174646fd6b852f6d7cff059894420420fe5d2809cb6641c77e90cfb",
+    "reloaded_hash": "cff18b1d0174646fd6b852f6d7cff059894420420fe5d2809cb6641c77e90cfb",
+    "equal": true
+  },
+  "conservation_faults": {
+    "duplicate_residual": 4,
+    "deletion_residual": -4,
+    "honest_residual": 0
+  },
+  "capacity": {
+    "capacity": 2,
+    "parcels": 2,
+    "extra_status": "CapacityExhausted { capacity: 2 }",
+    "reservoir": 6,
+    "residual": 0,
+    "full_bound_parcels": 4096,
+    "full_bound_status": "CapacityExhausted { capacity: 4096 }"
+  },
+  "nozzle": {
+    "anatomical_operational": false,
+    "runtime_before": false,
+    "runtime_after": true,
+    "translated": true,
+    "rotated": true,
+    "bent": true,
+    "reattached": true,
+    "channel": "future_conserved_substrate"
+  },
+  "model_check": {
+    "drag_free_steps": 120000,
+    "drag_full_stays": true,
+    "accel_displacement": 165000,
+    "expected_accel_displacement": 165000,
+    "negative_blend": -2
+  },
+  "cost": {
+    "parcel_bytes": 96,
+    "bound_bytes": 393216,
+    "fill_steps_micros": 138027,
+    "integrate_steps": 100
+  }
+}

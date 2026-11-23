@@ -256,4 +256,6 @@ mod continuity_tests {
 }
 
 mod composition;
+pub mod emission_preview;
 pub use composition::{ComponentField, CompositionSession, Edit};
+pub use emission_preview::{PreviewCommand, PreviewControls, world_point};

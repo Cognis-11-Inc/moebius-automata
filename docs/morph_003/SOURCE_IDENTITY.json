@@ -1,0 +1,35 @@
+{
+  "date_local": "2026-11-23",
+  "parent": "1296ce4d338c5863eb023863e39a45554447f47f",
+  "note": "Hashes of the MORPH-003 sources after clippy -D warnings. They are not the MORPH-002 source identity.",
+  "files": [
+    {
+      "path": "crates/moebius-morph/src/emission.rs",
+      "sha256": "56efe0b5ae3916b3a46c179314c5263c627e307f9ce852e5fc2a938f30f4bbe7"
+    },
+    {
+      "path": "crates/moebius-morph/src/lib.rs",
+      "sha256": "d04a5abfa029f79de064a4eeb4a1370d8874ec1f6cee6d706a0a3cff1354754d"
+    },
+    {
+      "path": "crates/moebius-morph/tests/emission.rs",
+      "sha256": "0cb15463035087866f1f593c847b96a9881ce7bfd4199df02c0ceb21c990fb02"
+    },
+    {
+      "path": "crates/moebius-morph/examples/morph_003_bench.rs",
+      "sha256": "f768b482842dc410a55b9fc60dd90196d6480ab6b743775f4985f2efe2ba5936"
+    },
+    {
+      "path": "crates/moebius-morph-lab/src/emission_preview.rs",
+      "sha256": "c6deb3e37865333e045715ad7f1d92ad6641ec390b650686bdbba350189dba1a"
+    },
+    {
+      "path": "crates/moebius-morph-lab/src/lib.rs",
+      "sha256": "ba9337375d26216f3c502e9dcc0a8674ce33ac44ee4bfbdbbe5aaac8c31960ed"
+    },
+    {
+      "path": "crates/moebius-morph-lab/src/main.rs",
+      "sha256": "55623c28659fa9e7016b7e03740931535af1ecfe98eea444c28059b042fc2620"
+    }
+  ]
+}

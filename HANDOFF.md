@@ -1,3 +1,78 @@
+# Current checkpoint — MORPH-003 secretion book (2026-11-23)
+
+Agent: Grok. Conserving free-space emission. Local commit is authorized. No push.
+Status: **PARTIAL**. Focused gates passed. Clean-tree workspace suite is not recorded yet.
+
+Repo: `/home/cognis/Cognis_Lab/Möbius Automata`, `main`, parent
+`1296ce4d338c5863eb023863e39a45554447f47f`.
+`MaterialBook` lives in `crates/moebius-morph/src/emission.rs`. Nursery `Jet`,
+`advance_jets`, and `SECRETE_ACTION` were not modified. Anatomical
+`operational` stays false. Runtime operational is true only after admission.
+
+Release report SHA-256
+`ed97e76ce073a481abe17d222648af076a42e2c0f040dc0550ff4c479e0fbe67`.
+Repeat hash `cff18b1d0174646fd6b852f6d7cff059894420420fe5d2809cb6641c77e90cfb`.
+Mermogon UUID `D0A02EEBA02ED82C`, new archive
+`/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-003/2026-11-23`,
+index `b0b96e92aab4aa91cf33551509d99389be29c08b1e548a044799ab14a4f69674`.
+MORPH-002 archive untouched. Verify with `python3 python/morph_003_artifacts.py verify`.
+
+No biological validation, locomotion, metabolism, or pipe claim.
+
+Atlas rehash before the implementation commit: `python3 python/morph_002_atlas.py`
+PASS, 30 notes, 128 links, UUID `8CA451CDA451BA82`. Six notes changed
+(`MOEBIUS_SHIP`, `COMPONENT_LIBRARY`, `ENVIRONMENTAL_HYPOTHESIS`,
+`ARACHNITECH`, experiments `INDEX`, `MORPH_003`). Those notes still cite
+parent `1296ce4`. Archive verify PASS on the new MORPH-003 path above.
+Focused re-run before commit:
+`cargo test -p moebius-morph -p moebius-morph-lab --offline -- --test-threads=8`
+exit 0 (morph 17, lab 12). `git diff --check` clean.
+
+Next gate: clean-tree `cargo test --workspace --offline`. Do not start MORPH-004.
+Safe inspection: `MORPH_003_RESULTS.md` and `docs/morph_003/SUBSTRATE.md`.
+
+The ship-brief checkpoint below is historical. Its "MORPH-003 is NOT_RUN"
+line is the state before this book. The top checkpoint supersedes it.
+
+The ship-brief checkpoint below is design canon and was already on disk.
+
+---
+
+# Current checkpoint — MŒBIUS Ship design brief (2026-11-23)
+
+Agent: Grok. Docs only. No runtime change and no commit requested.
+Status: **DONE** for the atlas brief. MORPH-003 is named and **NOT_RUN**.
+
+Repo: `/home/cognis/Cognis_Lab/Möbius Automata`, `main`, HEAD
+`1296ce4d338c5863eb023863e39a45554447f47f` at the start of this slice.
+The working tree now has uncommitted atlas-reference and research files.
+Stable Diffusion Drive re-verified UUID `8CA451CDA451BA82`.
+
+Added `01_CANON/MOEBIUS_SHIP.md` and `07_EXPERIMENTS/MORPH_003.md` in
+`/run/media/cognis/Stable Diffusion Drive/MOEBIUS_AUTOMATA_Atlas`.
+Reconciled the vessel, environmental hypothesis, Arachnitech, component
+library, MORPH-002, and the canon/ecology/species/experiment indexes.
+`python3 python/morph_002_atlas.py` PASS: 30 notes, 126 internal links,
+0 errors. Snapshot hashes updated in `docs/morph_002/ATLAS_REFERENCE.json`.
+Provenance with no paper search: `docs/research/2026-11-23-moebius-ship-brief.json`.
+
+The ship, particulate interior, breathing hull, colonization, and human
+encounter are DESIGN. Hull transport, energy, pressure boundary, and
+conservation rules stay unresolved. Passive inflow through an open
+aperture is an authored exclusion. MORPH-002 remains an anatomical
+preview with `operational: false`. The named MORPH-003 objective is
+conserving secretion emission in free space. It has no protocol, run,
+or archive. Vessel physics was not added.
+
+Mermogon archive unchanged:
+`/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-002/2026-11-23`.
+Next authorized dependency, not started: MORPH-003 secretion conservation.
+Safe inspection: the ship note above, then `git status --short`.
+
+The committed MORPH-002 checkpoint below remains the implementation record.
+
+---
+
 # Current checkpoint — MORPH-002 committed (2026-11-23)
 
 Agent: Grok. Operator authorized commit and push.

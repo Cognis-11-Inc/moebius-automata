@@ -1,0 +1,33 @@
+{
+  "date_local": "2026-11-23",
+  "search_intent": "No external scientific literature search. The question was which existing Möbius substrate could own persistent free-space secretion without changing nursery experiments.",
+  "queries": [],
+  "source_provenance": "Repository source only: moebius-core world.rs, neural/body.rs, layers.rs, snapshot.rs, and moebius-morph anatomy.rs. No papers, abstracts, or search metadata were consulted.",
+  "CONSULTED": [],
+  "IMPLEMENTED": [
+    "MaterialBook integer quanta and fixed-point step",
+    "Nozzle placement from OutputFrame under translation, yaw, bend, and attachment change",
+    "Experiments A-F and honest-red residual faults"
+  ],
+  "VALIDATED": [],
+  "knowledge_transfer": [
+    {
+      "source": "Repository inspection, not a publication",
+      "concept": "Nursery Jet is short-lived lattice reaction mass",
+      "implementation": "Left untouched. MORPH-003 uses MaterialBook in moebius-morph instead.",
+      "deviation": "The book is an authored per-tick blend, not a cited drag law and not the ship's particulate atmosphere."
+    }
+  ],
+  "implementation_trace": [
+    "crates/moebius-morph/src/emission.rs MaterialBook, try_emit, step, residual",
+    "crates/moebius-morph/tests/emission.rs",
+    "crates/moebius-morph-lab/src/emission_preview.rs",
+    "docs/morph_003/SUBSTRATE.md"
+  ],
+  "evidence_status": "IMPLEMENTED mechanism tests. Not biological validation. VALIDATED is empty on purpose.",
+  "limits": [
+    "No CFD, atmosphere, metabolism, locomotion, learning, or pipe construction",
+    "Cross-platform f32 pose identity is not claimed",
+    "Integer steps assume Rust i128 division toward zero"
+  ]
+}

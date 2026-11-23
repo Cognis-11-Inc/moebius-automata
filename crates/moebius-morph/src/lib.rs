@@ -1,6 +1,8 @@
-//! Independent anatomical generation. Preview geometry grants no simulation capability.
+//! Anatomical generation, plus an experiment-local secretion book.
+//! Preview meshes are not the material authority. The book is not the nursery world.
 mod anatomy;
 mod compiler;
+pub mod emission;
 pub use anatomy::*;
 mod math;
 mod spec;

@@ -1,0 +1,23 @@
+{
+  "date_local": "2026-11-23",
+  "search_intent": "No external scientific literature search. Record the operator's MŒBIUS Ship design brief as atlas canon and separate it from implemented software.",
+  "queries": [],
+  "source_provenance": "Operator brief in the 2026-11-23 session. No papers consulted.",
+  "CONSULTED": [],
+  "IMPLEMENTED": [],
+  "VALIDATED": [],
+  "knowledge_transfer": [
+    {
+      "source": "Operator brief",
+      "concept": "Hollow drifting vessel, particulate interior, breathing hull, Arachnitech colonization, unscripted human encounter",
+      "implementation": "Atlas notes only. No vessel physics, ecology, autonomous behavior, or hull transport added."
+    }
+  ],
+  "atlas": "/run/media/cognis/Stable Diffusion Drive/MOEBIUS_AUTOMATA_Atlas/01_CANON/MOEBIUS_SHIP.md",
+  "named_next_objective": "MORPH-003 conserving secretion emission in free space. Not started.",
+  "limits": [
+    "Hull transport mechanism, energy, pressure boundary, and conservation rules remain unresolved",
+    "Passive inflow through an open aperture into a pressurized habitat is an authored exclusion",
+    "MORPH-002 nozzle remains operational false"
+  ]
+}

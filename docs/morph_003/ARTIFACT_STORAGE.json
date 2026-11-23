@@ -1,0 +1,27 @@
+{
+  "date_local": "2026-11-23",
+  "version": 1,
+  "mount_path": "/run/media/cognis/Mermogon",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-003/2026-11-23",
+  "external_index_path": "ARCHIVE_INDEX.json",
+  "external_index_sha256": "b0b96e92aab4aa91cf33551509d99389be29c08b1e548a044799ab14a4f69674",
+  "raw_files": 1,
+  "raw_bytes": 3694,
+  "records": [
+    {
+      "phase": "report-v1",
+      "purpose": "Release run of cargo run -p moebius-morph --release --offline --example morph_003_bench. Authoritative integer book report for experiments A-F.",
+      "relative_path": "v1/report-v1.tar",
+      "bytes": 10240,
+      "sha256": "2a91c824648ab272aa1520d6687483d1930447d3bb648fa5f4dacbb56f65cc9e",
+      "members": [
+        {
+          "name": "report.json",
+          "bytes": 3694,
+          "sha256": "ed97e76ce073a481abe17d222648af076a42e2c0f040dc0550ff4c479e0fbe67"
+        }
+      ]
+    }
+  ]
+}
