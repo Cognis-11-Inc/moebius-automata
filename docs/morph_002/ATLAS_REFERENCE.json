@@ -35,7 +35,7 @@
     {
       "path": "01_CANON/MOEBIUS_SHIP.md",
       "bytes": 5226,
-      "sha256": "2b5c0a6cf8942b504c63126acbb081e1165b92fbf16cab4e81252b8585c08a57"
+      "sha256": "3d44386625fe8ac024da7a06bd87a13f600098aca476aaa9f4ef0ea48621e268"
     },
     {
       "path": "01_CANON/MOEBIUS_VESSEL.md",
@@ -45,7 +45,7 @@
     {
       "path": "02_ANATOMY/COMPONENT_LIBRARY.md",
       "bytes": 1148,
-      "sha256": "4a8f2d549df1e33f218620d37c3b9edf675b470a9307d5892c29b774a4308bcf"
+      "sha256": "4e448d9c48376d527a973f14f3b2931d2eaaad3af5c39041d6aba750bf706cb1"
     },
     {
       "path": "02_ANATOMY/INDEX.md",
@@ -65,7 +65,7 @@
     {
       "path": "05_ECOLOGY/ENVIRONMENTAL_HYPOTHESIS.md",
       "bytes": 1623,
-      "sha256": "28b005bc9c6bf577fad2c93aa8d063efa4488bc6ef1f61c9e9ef0d5018288f52"
+      "sha256": "7c852c150d3a85f5630db0cb85d9dc6cf7b2789a544d4ed8d2388d8664c992ef"
     },
     {
       "path": "05_ECOLOGY/INDEX.md",
@@ -75,7 +75,7 @@
     {
       "path": "06_SPECIES/ARACHNITECH.md",
       "bytes": 1238,
-      "sha256": "c2f5fc4ef2b0d10a0d116f80b7a32116623d566700c1ae0efd15aec305e4c4d4"
+      "sha256": "4dbe4db3a1c6583086bb1b84a3be7bfd1efd0ffa0a535eb9f757b07976cb583f"
     },
     {
       "path": "06_SPECIES/INDEX.md",
@@ -84,8 +84,8 @@
     },
     {
       "path": "07_EXPERIMENTS/INDEX.md",
-      "bytes": 626,
-      "sha256": "35f591ae39cbb44025bed26676185a6aa9eb0c59de905338e868b1e361ed2a6e"
+      "bytes": 699,
+      "sha256": "4aba8f3336b9665d3b632f421e5a5de130740c404a716f89bbcba91458cf5fbe"
     },
     {
       "path": "07_EXPERIMENTS/MORPH_001.md",
@@ -99,8 +99,8 @@
     },
     {
       "path": "07_EXPERIMENTS/MORPH_003.md",
-      "bytes": 2201,
-      "sha256": "7610eb7ab5a011a7ac7e2430906ca927031d2683f399061a2da612c3682e57d6"
+      "bytes": 2411,
+      "sha256": "aa272208df1826c18d6551ce4ebe655e4096382a3ac44508066ac7b99b5f3850"
     },
     {
       "path": "08_ARCHITECTURE/ANATOMY_SPEC_V2.md",
@@ -163,5 +163,5 @@
       "sha256": "d6aa2ec5611cb9712c2f89d7769f00a53b4eca8cb0c2c4f3ecaf2957782b5963"
     }
   ],
-  "snapshot_note": "Rehashed after MORPH-003 conserving emission notes. Ship design canon is unchanged. Edited notes still cite the MORPH-002 parent until the implementation commit exists."
+  "snapshot_note": "Rehashed after the clean MORPH-003 suite on a8cb705. Six edited notes cite that implementation commit. Ship design canon is unchanged."
 }

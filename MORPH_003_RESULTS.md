@@ -1,6 +1,6 @@
 # MORPH-003 — The first secretion
 
-2026-11-23. **PARTIAL** until the clean-tree workspace suite is recorded. Focused mechanism gates passed. This is a conserving material book attached to an anatomical nozzle. It is not metabolism, locomotion, learning, pipe construction, or a living organism.
+2026-11-23. **DONE** for this bounded slice. Focused mechanism gates passed, and the clean-tree workspace suite passed on implementation commit `a8cb705661f3dc19cdba22b97e97f63b5795665f`. The documentation commit that records this paragraph must itself be retested. This is a conserving material book attached to an anatomical nozzle. It is not metabolism, locomotion, learning, pipe construction, or a living organism.
 
 Parent revision `1296ce4d338c5863eb023863e39a45554447f47f`. No external literature search. The motion rule is authored and recorded in `docs/morph_003/SUBSTRATE.md`.
 
@@ -20,7 +20,7 @@ Nursery `Jet` / `advance_jets` / `SECRETE_ACTION` stay untouched. They are latti
 | G4 environment | PASS, focused | Same launch, 12 steps. Drag 0, drag 1000, and +X acceleration 4000 produce three different positions, residuals 0. Cardinal check: 6 undragged steps displace +Z by 120000; full drag stays at the origin; 10 steps of acceleration 3000 from rest displace +X by 165000. |
 | G5 persistence | PASS, focused | JSON and filesystem round trip match. A forged quantity 9 is rejected. Preview save/load matches the state hash. |
 | G6 bound | PASS, focused | Capacity 2 rejects the third parcel with residual 0 and reservoir 6. Capacity 4096 holds 4096 and rejects the next. Parcel is 96 bytes; the full list is 393216 bytes. Release fill of 4096 admissions plus 100 steps: 138027 µs on this machine. |
-| G7 regression | PENDING clean tree | `cargo test -p moebius-morph` and `cargo test -p moebius-morph-lab` passed. `cargo clippy -p moebius-morph -p moebius-morph-lab --all-targets --offline -- -D warnings` passed. The workspace suite on a clean commit is not yet the certificate. |
+| G7 regression | PASS on `a8cb705` | Clean tree. `cargo test --workspace --offline -- --test-threads=8` exit 0. 136 tests, 0 failures. rustc 1.99.1 (`58cf8f9c3` 2026-10-13). Focused morph and lab tests and clippy `-D warnings` had already passed. The documentation commit that records this row must be retested. |
 | G8 observability | PASS, focused | Ledger reports initial, reservoir, in-world, sinks, and residual without reading the renderer. The release report is `docs/morph_003/REPORT.json`. |
 
 ## Experiments
@@ -62,6 +62,14 @@ cargo test -p moebius-morph-lab --offline -- --test-threads=8
 cargo clippy -p moebius-morph -p moebius-morph-lab --all-targets --offline -- -D warnings
 ```
 
+Clean-tree certificate, HEAD `a8cb705661f3dc19cdba22b97e97f63b5795665f`, `git status --short` empty:
+
+```sh
+cargo test --workspace --offline -- --test-threads=8
+```
+
+Exit 0. 136 tests, 0 failures. Counted from the per-target lines: batch 1, core 6, farm 11, invariants 13, m4 7, m5 9, m6 4, neural 16, nursery 5, terrain 6, morph unit 2, composition 5, emission 4, forge 6, lab library 10, lab binary 2, view 29.
+
 ## Archive
 
 Mermogon re-verified UUID `D0A02EEBA02ED82C` at `/run/media/cognis/Mermogon`.
@@ -80,4 +88,4 @@ There is no bulky tick trace. The benchmark state is the JSON book. The external
 
 ## Limitations
 
-Drag is not an atmosphere. Acceleration is not gravity and there is no floor. Flagella do not propel the body. The trajectory is a test input. The organism is not physiologically functional. No neural control, metabolism, reproduction, evolution, pipe, or hull transport was added. The preview can drop stalled ticks. Cross-platform f32 identity of the anatomical pose is not claimed. G7 clean-tree certification is still open. No push.
+Drag is not an atmosphere. Acceleration is not gravity and there is no floor. Flagella do not propel the body. The trajectory is a test input. The organism is not physiologically functional. No neural control, metabolism, reproduction, evolution, pipe, or hull transport was added. The preview can drop stalled ticks. Cross-platform f32 identity of the anatomical pose is not claimed. G7 passed on `a8cb705`. The documentation commit must be retested. No push. Do not start MORPH-004.

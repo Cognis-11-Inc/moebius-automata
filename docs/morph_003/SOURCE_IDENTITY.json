@@ -1,6 +1,7 @@
 {
   "date_local": "2026-11-23",
   "parent": "1296ce4d338c5863eb023863e39a45554447f47f",
+  "implementation_commit": "a8cb705661f3dc19cdba22b97e97f63b5795665f",
   "note": "Hashes of the MORPH-003 sources after clippy -D warnings. They are not the MORPH-002 source identity.",
   "files": [
     {

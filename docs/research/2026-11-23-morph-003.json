@@ -24,7 +24,7 @@
     "crates/moebius-morph-lab/src/emission_preview.rs",
     "docs/morph_003/SUBSTRATE.md"
   ],
-  "evidence_status": "IMPLEMENTED mechanism tests. Not biological validation. VALIDATED is empty on purpose.",
+  "evidence_status": "IMPLEMENTED mechanism tests. Clean workspace suite on a8cb705661f3dc19cdba22b97e97f63b5795665f passed: 136 tests, 0 failures. Not biological validation. VALIDATED is empty on purpose.",
   "limits": [
     "No CFD, atmosphere, metabolism, locomotion, learning, or pipe construction",
     "Cross-platform f32 pose identity is not claimed",

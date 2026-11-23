@@ -1,6 +1,7 @@
 # MORPH-003 implementation plan — 2026-11-23
 
 Baseline: `main` at `1296ce4d338c5863eb023863e39a45554447f47f` (MORPH-002 pushed).
+Implemented on `a8cb705661f3dc19cdba22b97e97f63b5795665f`. The clean workspace suite on that commit passed: 136 tests, 0 failures. See `MORPH_003_RESULTS.md`.
 The MŒBIUS Ship note is design canon. It does not add vessel physics.
 
 ## Archaeology

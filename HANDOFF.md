@@ -1,3 +1,26 @@
+# Current checkpoint — MORPH-003 suite recorded (2026-11-23)
+
+Agent: Grok. Documentation of the clean suite. No push.
+Status: **DONE** for the bounded secretion-book slice. Not biological validation.
+
+Repo: `/home/cognis/Cognis_Lab/Möbius Automata`, `main`.
+Implementation commit: `a8cb705661f3dc19cdba22b97e97f63b5795665f`.
+Command on that clean commit: `cargo test --workspace --offline -- --test-threads=8`.
+Outcome: exit 0, 136 tests, 0 failures. `git status --short` was empty before the run.
+rustc 1.99.1 (`58cf8f9c3` 2026-10-13). This paragraph's commit records that result,
+refreshes the six edited Atlas notes to cite `a8cb705`, and must itself be retested.
+Atlas verifier after that refresh: `python3 python/morph_002_atlas.py` PASS,
+30 notes, 128 links, UUID `8CA451CDA451BA82`.
+
+Archive unchanged:
+`/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-003/2026-11-23`,
+index `b0b96e92aab4aa91cf33551509d99389be29c08b1e548a044799ab14a4f69674`.
+MORPH-002 archive untouched. Do not start MORPH-004.
+
+The checkpoint below is the pre-suite PARTIAL record.
+
+---
+
 # Current checkpoint — MORPH-003 secretion book (2026-11-23)
 
 Agent: Grok. Conserving free-space emission. Local commit is authorized. No push.
