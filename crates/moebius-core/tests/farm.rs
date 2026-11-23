@@ -14,6 +14,7 @@ fn farm() -> SimConfig {
     config.inflow_per_tick = 8;
     config.maintenance_cost = 1;
     config.farm = Some(FarmRules {
+        terrain_law: moebius_core::TerrainLaw::RecyclableV1,
         max_population: 24,
         birth_energy: 16,
         birth_cost: 2,

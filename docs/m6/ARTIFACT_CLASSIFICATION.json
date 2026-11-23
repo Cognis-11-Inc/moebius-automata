@@ -1,0 +1,131 @@
+{
+  "date_local": "2026-11-22",
+  "before_archive": true,
+  "raw": [
+    {
+      "phase": "babble-v1",
+      "purpose": "Raw full-state trials and lineage",
+      "files": 4,
+      "bytes": 22990769,
+      "working_copy": "/home/cognis/.cache/moebius-automata/m6-8e351e2-babble-v1",
+      "classification": "external raw evidence; retain working copy"
+    },
+    {
+      "phase": "capability-v1",
+      "purpose": "Raw full-state trials and lineage",
+      "files": 4,
+      "bytes": 5367979,
+      "working_copy": "/home/cognis/.cache/moebius-automata/m6-8e351e2-capability-v1",
+      "classification": "external raw evidence; retain working copy"
+    },
+    {
+      "phase": "direction-heldout-v1",
+      "purpose": "INVALID CUE: preserve failed sensor-interface campaign",
+      "files": 3,
+      "bytes": 11665450,
+      "working_copy": "/home/cognis/.cache/moebius-automata/m6-8e351e2-direction-heldout-v1",
+      "classification": "external raw evidence; retain working copy"
+    },
+    {
+      "phase": "direction-heldout-v2",
+      "purpose": "Raw full-state trials and lineage",
+      "files": 3,
+      "bytes": 12312453,
+      "working_copy": "/home/cognis/.cache/moebius-automata/m6-8e351e2-direction-heldout-v2",
+      "classification": "external raw evidence; retain working copy"
+    },
+    {
+      "phase": "direction-v1",
+      "purpose": "INVALID CUE: preserve failed sensor-interface campaign",
+      "files": 8,
+      "bytes": 35023644,
+      "working_copy": "/home/cognis/.cache/moebius-automata/m6-8e351e2-direction-v1",
+      "classification": "external raw evidence; retain working copy"
+    },
+    {
+      "phase": "direction-v2",
+      "purpose": "Raw full-state trials and lineage",
+      "files": 8,
+      "bytes": 35591301,
+      "working_copy": "/home/cognis/.cache/moebius-automata/m6-8e351e2-direction-v2",
+      "classification": "external raw evidence; retain working copy"
+    },
+    {
+      "phase": "falsify-v1",
+      "purpose": "Raw full-state trials and lineage",
+      "files": 3,
+      "bytes": 7299259,
+      "working_copy": "/home/cognis/.cache/moebius-automata/m6-8e351e2-falsify-v1",
+      "classification": "external raw evidence; retain working copy"
+    },
+    {
+      "phase": "heldout-v1",
+      "purpose": "Raw full-state trials and lineage",
+      "files": 4,
+      "bytes": 25351118,
+      "working_copy": "/home/cognis/.cache/moebius-automata/m6-8e351e2-heldout-v1",
+      "classification": "external raw evidence; retain working copy"
+    },
+    {
+      "phase": "lifetime-v1",
+      "purpose": "Raw full-state trials and lineage",
+      "files": 9,
+      "bytes": 59585166,
+      "working_copy": "/home/cognis/.cache/moebius-automata/m6-8e351e2-lifetime-v1",
+      "classification": "external raw evidence; retain working copy"
+    },
+    {
+      "phase": "optimize-v1",
+      "purpose": "Raw full-state trials and lineage",
+      "files": 8,
+      "bytes": 83998030,
+      "working_copy": "/home/cognis/.cache/moebius-automata/m6-8e351e2-optimize-v1",
+      "classification": "external raw evidence; retain working copy"
+    },
+    {
+      "phase": "source-v1",
+      "purpose": "Runnable working-tree source provenance",
+      "files": 3,
+      "bytes": 311502,
+      "working_copy": "/home/cognis/.cache/moebius-automata/m6-8e351e2-source-v1",
+      "classification": "external raw evidence; retain working copy"
+    },
+    {
+      "phase": "validation-v1",
+      "purpose": "Validation chronology/logs",
+      "files": 37,
+      "bytes": 42436,
+      "working_copy": "/home/cognis/.cache/moebius-automata/m6-8e351e2-validation-v1",
+      "classification": "external raw evidence; retain working copy"
+    },
+    {
+      "phase": "visual-v1",
+      "purpose": "Rendered witnesses",
+      "files": 12,
+      "bytes": 2101396,
+      "working_copy": "/home/cognis/.cache/moebius-automata/m6-8e351e2-visual-v1",
+      "classification": "external raw evidence; retain working copy"
+    },
+    {
+      "phase": "source-v2",
+      "purpose": "Corrected source provenance",
+      "files": 3,
+      "bytes": 327341,
+      "working_copy": "/home/cognis/.cache/moebius-automata/m6-8e351e2-source-v2",
+      "classification": "external raw evidence; retain working copy"
+    },
+    {
+      "phase": "audit-correction-v2",
+      "purpose": "Preserved superseded analysis/report and correction/Rust-crosscheck evidence",
+      "files": 12,
+      "bytes": 436521,
+      "working_copy": "/home/cognis/.cache/moebius-automata/m6-8e351e2-audit-correction-v2",
+      "classification": "external raw evidence; retain working copy"
+    }
+  ],
+  "git": {
+    "purpose": "Authoritative reports, analysis/statistics, protocol/config/source identity, archive/member hashes, replay summaries, selected/untrained small genotype metadata and demo configuration",
+    "large_traces_in_git": false
+  },
+  "source_version_addendum": "v1 source and superseded mechanism analysis retained. v2 corrected source, explicit correction and independent rerun logs added without replacing evidence."
+}

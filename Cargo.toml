@@ -4,6 +4,8 @@ members = [
     "crates/moebius-core",
     "crates/moebius-cli",
     "crates/moebius-viewer",
+    "crates/moebius-morph",
+    "crates/moebius-morph-lab",
 ]
 
 [workspace.package]

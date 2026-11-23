@@ -1,0 +1,598 @@
+{
+  "date_local": "2026-11-22",
+  "scope": "local renderer/asset authoring only, no new motor-learning result",
+  "workspace_tests": 103,
+  "new_tests": [
+    "physical mouth anchor across bent/twisted poses",
+    "jaw closing/opening aperture direction",
+    "actual ingestion at mouth versus remote-food null"
+  ],
+  "clippy": "PASS",
+  "format": "PASS",
+  "core_source_matches_cathedral": true,
+  "original_source_sha256": "b0e3fcd1655c88f78831111078879d1aa75fac3de098ee7674781ab28430043f",
+  "rigged_sha256": "41646185ded1ab476f76ee302cf7c4fcc333f467a976d923c3074cead7b678fd",
+  "sculpt_vertices": 17325,
+  "flesh_vertices": 1560,
+  "joints": 14,
+  "weights_sum_error": 2.220446049250313e-16,
+  "source_collision_proxy": "preserved; not installed into core physics",
+  "deformation_audit": {
+    "scope": "six recorded poses of first locked selected heldout episode; visual engineering evidence, not independent controller testing",
+    "rejected_v1": [
+      {
+        "primitive": 0,
+        "tick": 0,
+        "max_edge_stretch": 4.731431502701682,
+        "p99": 1.4384231482389083,
+        "p999": 2.1737622168097483
+      },
+      {
+        "primitive": 0,
+        "tick": 15,
+        "max_edge_stretch": 42.028007932623176,
+        "p99": 4.384900511631866,
+        "p999": 16.603566707818764
+      },
+      {
+        "primitive": 0,
+        "tick": 31,
+        "max_edge_stretch": 15.504798229630602,
+        "p99": 3.8450969287757006,
+        "p999": 7.426628445420103
+      },
+      {
+        "primitive": 0,
+        "tick": 63,
+        "max_edge_stretch": 13.795420008196816,
+        "p99": 3.52393613000516,
+        "p999": 6.891691041528319
+      },
+      {
+        "primitive": 0,
+        "tick": 127,
+        "max_edge_stretch": 11.075762026541739,
+        "p99": 3.89338750806434,
+        "p999": 5.511694431051854
+      },
+      {
+        "primitive": 0,
+        "tick": 255,
+        "max_edge_stretch": 43.07337594749027,
+        "p99": 4.541017046757866,
+        "p999": 19.34957960564507
+      }
+    ],
+    "final_v8": [
+      {
+        "primitive": 0,
+        "tick": 0,
+        "max_edge_stretch": 1.3792205549059326,
+        "p99": 1.098533041754131,
+        "p999": 1.232449469888706
+      },
+      {
+        "primitive": 0,
+        "tick": 15,
+        "max_edge_stretch": 3.077033522862732,
+        "p99": 2.086094609795864,
+        "p999": 2.6578992885824038
+      },
+      {
+        "primitive": 0,
+        "tick": 31,
+        "max_edge_stretch": 2.8403006178667383,
+        "p99": 2.056260645952807,
+        "p999": 2.5441753657352106
+      },
+      {
+        "primitive": 0,
+        "tick": 63,
+        "max_edge_stretch": 2.6973862909105355,
+        "p99": 1.989620208440236,
+        "p999": 2.4404386881483506
+      },
+      {
+        "primitive": 0,
+        "tick": 127,
+        "max_edge_stretch": 2.542642405494015,
+        "p99": 1.773009507781481,
+        "p999": 2.145289472506392
+      },
+      {
+        "primitive": 0,
+        "tick": 255,
+        "max_edge_stretch": 3.283272128358196,
+        "p99": 1.9274394579779968,
+        "p999": 2.4989789301241463
+      },
+      {
+        "primitive": 1,
+        "tick": 0,
+        "max_edge_stretch": 1.0807665531958774,
+        "p99": 1.0658870833310674,
+        "p999": 1.0778590863058957
+      },
+      {
+        "primitive": 1,
+        "tick": 15,
+        "max_edge_stretch": 1.4096930161329653,
+        "p99": 1.265971748552851,
+        "p999": 1.3854522063894492
+      },
+      {
+        "primitive": 1,
+        "tick": 31,
+        "max_edge_stretch": 1.278241318982623,
+        "p99": 1.2313055107524424,
+        "p999": 1.2697646225579584
+      },
+      {
+        "primitive": 1,
+        "tick": 63,
+        "max_edge_stretch": 1.3628599002464303,
+        "p99": 1.2729220878232854,
+        "p999": 1.3495877131237568
+      },
+      {
+        "primitive": 1,
+        "tick": 127,
+        "max_edge_stretch": 1.527140760669904,
+        "p99": 1.35416667157454,
+        "p999": 1.4996353371693332
+      },
+      {
+        "primitive": 1,
+        "tick": 255,
+        "max_edge_stretch": 1.5402257000152615,
+        "p99": 1.3508571724672807,
+        "p999": 1.5134041401032994
+      }
+    ],
+    "maximum_edge_stretch_rejected": 43.07337594749027,
+    "maximum_edge_stretch_final": 3.283272128358196,
+    "maximum_p99_rejected": 4.541017046757866,
+    "maximum_p99_final": 2.086094609795864
+  },
+  "pixel_inspection": [
+    "source_front/source_side/source_threequarter",
+    "rejected live_t128 and rigid live_binding_v3_t128",
+    "final-flexible-studio neutral/closed/open/bend",
+    "final_flesh_t128",
+    "painted_mouth_following_head"
+  ],
+  "failed_witnesses_preserved": [
+    "Abrupt initial head binding: long strips",
+    "Rigid carapace revision rejected by user; corrected to flesh/fine cuticle",
+    "Selected mouth camera originally followed body frame, exposing back/side; corrected to accumulated head frame",
+    "Compile/style errors from initial integration and script edits retained"
+  ],
+  "publication": "uncommitted; no push",
+  "limitations": [
+    "Extremal pose stretching/compression remains; no volume-preserving soft-body solver",
+    "Existing rounded-head bite stencil, not mesh-triangle feeding collision",
+    "No new swimming, steering or lifetime-learning claim",
+    "Legacy Reel visual remains historical"
+  ],
+  "archive_verify": {
+    "status": "PASS",
+    "command": "verify",
+    "archives": 6,
+    "files": 106,
+    "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/Worm_A/8e351e2/v1"
+  },
+  "archive_restore": {
+    "status": "PASS",
+    "command": "unpack",
+    "archives": 6,
+    "files": 106,
+    "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/Worm_A/8e351e2/v1"
+  },
+  "restored_source_rebuild": {
+    "status": "PASS",
+    "restored_model_rebuild_sha256": "41646185ded1ab476f76ee302cf7c4fcc333f467a976d923c3074cead7b678fd",
+    "backup_integrity": "exact; verified original editor backup removed only after archive/member/restore checks; raw copies retained"
+  },
+  "jaw_motion_v2": {
+    "status": "PASS",
+    "cause": "Mouth view auto-paused native ticking at16; keep-open captures also paused",
+    "workspace_tests_passed": 106,
+    "strict_clippy": "PASS",
+    "format": "PASS",
+    "native_actual_lips": {
+      "scope": "Actual GLB surface vertices with jaw weights>0.05. Isolated jaw movement in head-relative rest frame; no body motion credited.",
+      "weighted_lip_vertices": 1172,
+      "controls": {
+        "selected": {
+          "samples": 256,
+          "jaw_angle_range": [
+            [
+              0,
+              768
+            ],
+            [
+              -256,
+              698
+            ]
+          ],
+          "maximum_lip_displacement_mesh_units": 0.1284395005147512,
+          "maximum_rms_lip_displacement_mesh_units": 0.05797518941908768,
+          "native_jaw_angles_change": true
+        },
+        "untrained": {
+          "samples": 256,
+          "jaw_angle_range": [
+            [
+              -256,
+              368
+            ],
+            [
+              -256,
+              100
+            ]
+          ],
+          "maximum_lip_displacement_mesh_units": 0.06267185543691982,
+          "maximum_rms_lip_displacement_mesh_units": 0.02497882901586918,
+          "native_jaw_angles_change": true
+        }
+      }
+    },
+    "render_replay": {
+      "frames": 16,
+      "ticks": [
+        16,
+        32,
+        48,
+        64,
+        80,
+        96,
+        112,
+        128,
+        144,
+        160,
+        176,
+        192,
+        208,
+        224,
+        240,
+        256
+      ],
+      "native_state_hash_matches": 16,
+      "native_jaw_angle_matches": 16
+    },
+    "source_identity_sha256": "c9ee3b66c310d926af8ccdb75cf0045304a9232f5a4f74b9af2ff096ef56ec01",
+    "archive_verify_and_restore": {
+      "status": "PASS",
+      "archives": 10,
+      "files": 184,
+      "restored_lip_audit": "exact report match"
+    },
+    "failures_preserved": "Wayland window lookup and stale X11 window captures; not accepted as validation",
+    "controller_physics_or_model_changed": false
+  },
+  "mouth_closure_v3": {
+    "date_local": "2026-11-23",
+    "workspace_tests_passed": 107,
+    "final_viewer_tests_passed": 29,
+    "strict_clippy": "PASS",
+    "format": "PASS",
+    "geometry": {
+      "status": "PASS",
+      "scope": "Actual GLB lip triangles;9 frontal rays. Not feeding collision.",
+      "controlled_samples": [
+        {
+          "tick": 32,
+          "angles": [
+            -256,
+            -256
+          ],
+          "mean_seam_gap": 0.0,
+          "max_seam_gap": 0,
+          "central_rays_blocked": 9
+        },
+        {
+          "tick": 64,
+          "angles": [
+            768,
+            768
+          ],
+          "mean_seam_gap": 0.5046329562484281,
+          "max_seam_gap": 0.5046329562484281,
+          "central_rays_blocked": 0
+        },
+        {
+          "tick": 96,
+          "angles": [
+            -256,
+            -256
+          ],
+          "mean_seam_gap": 0.0,
+          "max_seam_gap": 0,
+          "central_rays_blocked": 9
+        },
+        {
+          "tick": 128,
+          "angles": [
+            768,
+            768
+          ],
+          "mean_seam_gap": 0.5046329562484281,
+          "max_seam_gap": 0.5046329562484281,
+          "central_rays_blocked": 0
+        },
+        {
+          "tick": 160,
+          "angles": [
+            -256,
+            -256
+          ],
+          "mean_seam_gap": 0.0,
+          "max_seam_gap": 0,
+          "central_rays_blocked": 9
+        },
+        {
+          "tick": 192,
+          "angles": [
+            768,
+            768
+          ],
+          "mean_seam_gap": 0.5046329562484281,
+          "max_seam_gap": 0.5046329562484281,
+          "central_rays_blocked": 0
+        },
+        {
+          "tick": 224,
+          "angles": [
+            -256,
+            -256
+          ],
+          "mean_seam_gap": 0.0,
+          "max_seam_gap": 0,
+          "central_rays_blocked": 9
+        },
+        {
+          "tick": 256,
+          "angles": [
+            768,
+            768
+          ],
+          "mean_seam_gap": 0.5046329562484281,
+          "max_seam_gap": 0.5046329562484281,
+          "central_rays_blocked": 0
+        }
+      ],
+      "energy_spent_ticks_1_to_256": 301,
+      "material_and_energy_residuals": "zero every tick",
+      "teeth_count": 20,
+      "throat_depth_mesh_units": 0.43,
+      "tongue_separate_mesh": true,
+      "native_selected": {
+        "samples": 256,
+        "minimum_mean_gap": 0.09658241270334754,
+        "maximum_mean_gap": 0.48969186492498146,
+        "full_closure_demonstrated": false
+      }
+    },
+    "replay": {
+      "status": "PASS",
+      "native_before_after_byte_identical_rows": 512,
+      "controlled_render_frames": 16,
+      "exact_replay_state_and_jaw_matches": 16
+    },
+    "source_identity_sha256": "ae65864d6337eba404d04665d80037414ebb13a6d9e14877d7e6fcd4dcd1436a",
+    "archive_and_restore": {
+      "status": "PASS",
+      "archives": 18,
+      "files": 280,
+      "restored_source_files_verified": 97,
+      "restored_geometry_audit": "exact report match"
+    },
+    "native_full_closure": "NOT DEMONSTRATED",
+    "autonomous_chewing": "NOT DEMONSTRATED",
+    "feeding_capacity": "unchanged; not tested as mesh collision",
+    "visual_inspection": [
+      "studio-v1 rejected chin alignment",
+      "studio-v2 prominent flat lips",
+      "studio-v3 wrinkled closed/open lips, tongue cap",
+      "live controlled frames tick32 closed and64 open"
+    ],
+    "publication": "uncommitted; no push"
+  },
+  "sculpt_repair_v4": {
+    "date_local": "2026-11-23",
+    "previous_v3": "Rejected by user for basic replacement geometry and damaged sculpt",
+    "first_v4": "Rejected sideways contraction; corrected to vertical upper/lower closure",
+    "workspace_tests_passed": 107,
+    "strict_clippy": "PASS",
+    "format": "PASS",
+    "geometry": {
+      "status": "PASS",
+      "basis_positions_exactly_equal_pre_v3": true,
+      "triangle_order_and_count_exactly_equal_pre_v3": true,
+      "source_uv_exact": true,
+      "vertices": 17325,
+      "triangles": 25168,
+      "fixed_vertices": 15778,
+      "fixed_fraction": 0.9107070707070707,
+      "max_horizontal_displacement": 0,
+      "max_vertical_displacement": 0.18228457868099213,
+      "frontal_rays": 49,
+      "open_rays_reaching_behind_y_0_52": 22,
+      "closed_rays_reaching_behind_y_0_52": 7,
+      "geometry_only": "Not new feeding collision, learning or automatic chewing."
+    },
+    "native_morph_motion": {
+      "scope": "Actual sculpt morph displacements in head-relative frame; no body movement credited.",
+      "controls": {
+        "selected": {
+          "samples": 256,
+          "max_morph_displacement": 0.13776491564301074,
+          "jaw_angle_range": [
+            [
+              0,
+              768
+            ],
+            [
+              -256,
+              698
+            ]
+          ]
+        },
+        "untrained": {
+          "samples": 256,
+          "max_morph_displacement": 0.06601235541227599,
+          "jaw_angle_range": [
+            [
+              -256,
+              368
+            ],
+            [
+              -256,
+              100
+            ]
+          ]
+        }
+      }
+    },
+    "render_replay": {
+      "status": "PASS",
+      "frames": 16,
+      "state_and_jaw_matches": 16,
+      "morph_weights_match_interpolated_motor_angles": true,
+      "recorded_model_matches_final_glb": true
+    },
+    "core_config_and_original_asset_hashes_unchanged": 44,
+    "archive_restore": {
+      "status": "PASS",
+      "archives": 29,
+      "files": 397,
+      "restored_source_files": 99,
+      "restored_sculpt_audit": "exact report match"
+    },
+    "not_demonstrated": [
+      "Airtight seal",
+      "Autonomous chewing",
+      "Finished artistic quality"
+    ],
+    "deferred": [
+      "Silver tooth paint",
+      "Throat/tongue redesign"
+    ],
+    "publication": "uncommitted; no push"
+  },
+  "lip_teeth_refinement_v5": {
+    "date_local": "2026-11-23",
+    "viewer_tests_passed": 29,
+    "strict_workspace_clippy": "PASS",
+    "format": "PASS",
+    "diff_check": "PASS",
+    "geometry": {
+      "status": "PASS",
+      "basis_positions_exactly_equal_pre_v3": true,
+      "triangle_connectivity_and_count_exactly_equal_baseline": true,
+      "source_uv_exact": true,
+      "vertices": 17325,
+      "triangles": 25168,
+      "fixed_vertices": 15778,
+      "fixed_fraction": 0.9107070707070707,
+      "max_horizontal_displacement": 0,
+      "max_vertical_displacement": 0.2553696632385254,
+      "frontal_rays": 49,
+      "open_rays_reaching_behind_y_0_52": 22,
+      "closed_rays_reaching_behind_y_0_52": 0,
+      "geometry_only": "Not new feeding collision, learning or automatic chewing."
+    },
+    "changes": {
+      "upper_max_vertical_before": 0.18228457868099213,
+      "upper_max_vertical_after": 0.08202806115150452,
+      "upper_vertical_reduction_fraction": 0.55,
+      "teeth_triangles": 221,
+      "existing_vertices_shared": true,
+      "transmission": 0.3,
+      "alpha_mode": "BLEND"
+    },
+    "live_replay": {
+      "status": "PASS",
+      "frames": 16,
+      "exact_state_and_jaw_matches": 16,
+      "imposed_control_explicitly_labelled": true
+    },
+    "archive_and_restore": {
+      "status": "PASS",
+      "archives": 36,
+      "files": 460,
+      "source_file_hashes_verified": 100,
+      "restored_geometry_audit": "exact report match"
+    },
+    "iterations_preserved": [
+      "Hard-edged dark material attempt",
+      "Stale two-primitive test failure",
+      "Feathered tint and lower upper-lip travel"
+    ],
+    "scope": "User accepted v4, requested upper-lip restraint and tint only on existing human-like teeth; no new tooth geometry",
+    "publication": "uncommitted; no push"
+  },
+  "metal_crowns_v6": {
+    "date_local": "2026-11-23",
+    "viewer_tests_passed": 29,
+    "strict_workspace_clippy": "PASS",
+    "format": "PASS",
+    "diff_check": "PASS",
+    "crown_and_closing_audit": {
+      "status": "PASS",
+      "all_original_skin_attributes_unchanged": true,
+      "closing_position_and_normal_targets_exactly_unchanged": true,
+      "all_source_faces_preserved_as_skin_or_crown_caps": true,
+      "crown_caps": 15,
+      "source_crown_triangles": 78,
+      "finished_dental_triangles": 290,
+      "maximum_crown_exposure_mesh_units": 0.028635655406451747,
+      "root_vertices_at_original_positions": 425,
+      "crown_skinning_and_closing_targets_copied_exactly": true,
+      "material": {
+        "name": "Existing raised crowns - opaque brushed gunmetal",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.24,
+            0.28,
+            0.32,
+            1
+          ],
+          "metallicFactor": 0.86,
+          "roughnessFactor": 0.34
+        },
+        "alphaMode": "OPAQUE",
+        "doubleSided": true
+      },
+      "limitations": "Authored crown refinement; not new physical feeding geometry or user-approved final art."
+    },
+    "replay": {
+      "status": "PASS",
+      "frames": 16,
+      "state_and_jaw_matches": 16,
+      "imposed_control_labelled": true
+    },
+    "archive_and_restore": {
+      "status": "PASS",
+      "archives": 44,
+      "files": 534,
+      "restored_source_files_verified": 101,
+      "restored_crown_audit": "exact report match"
+    },
+    "failed_iterations_preserved": [
+      "Fragmented shiny cap surfaces",
+      "Flat-looking raised caps with gum normals"
+    ],
+    "visual_inspection": [
+      "Unpainted straight-on anatomy",
+      "Studio-v1,v2,v3",
+      "Live tick32 closed and64 open"
+    ],
+    "not_demonstrated": [
+      "Anatomical segmentation validation",
+      "Final user-approved appearance",
+      "New physical tooth collisions"
+    ],
+    "publication": "uncommitted; no push"
+  }
+}

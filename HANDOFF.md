@@ -1,3 +1,296 @@
+# Release checkpoint — user-authorized commit/push (2026-11-23)
+
+This checkpoint packages the pending M6 motor nursery, conserved cathedral
+terrain, Worm_A rig/material revisions, and MORPH-001 Anatomical Forge.
+User explicitly authorized committing and pushing the complete worktree.
+Generated artifacts are classified; bulky raw evidence remains in verified,
+versioned Mermogon archives. Production models and authoritative reports,
+source identities and reproducibility metadata belong in Git.
+MORPH-001:117 workspace tests, strict Clippy and formatting pass;100 seeded
+configurations/800 poses;31 rendered poses reproduce through the headless
+engine; restored standalone source passes10 tests. No new learning/foraging
+or physical capability claim. Earlier reports' "uncommitted/no push" statements
+are pre-publication evidence snapshots. Use git status/log for current state.
+
+---
+
+# Current checkpoint — MORPH-001 Anatomical Forge (2026-11-23)
+
+Read MORPH_001_RESULTS.md, MORPH_001_EXISTING_SYSTEM_AUDIT.md,
+MORPH_001_DONOR_ASSESSMENT.md and MORPH_001_ARCHITECTURE.md.
+New headless moebius-morph engine + isolated moebius-morph-lab Bevy0.20 app.
+Versioned seeded WormSpec -> CompiledWorm -> posed indexed surfaces/attachment
+frames. Actual annular mouth with recessed throat;2 configurable bending
+flagella; optional geometric ridges. CPU deformation keeps topology fixed.
+No Blender/donor asset dependency and no simulation/controller binding.
+
+100/100 seeded configurations pass800 poses, all saved/reloaded/repeated.
+Closed manifold/winding/finite/normals/area checks pass; attachment error0.
+117 workspace tests and strict Clippy pass.31 internal live screenshots replay
+exactly through the headless consumer; real keyboard handlers exercise edits,
+closed/open mouth, flagella0/1/2, seeds, save/reload and orbit.
+Right-drag/wheel handler tested. Roots are overlap-mounted, not welded; global
+self-intersection and cross-platform float bit identity not established.
+
+Run: cargo run --release -p moebius-morph-lab --offline
+1-7 selects; Left/Right edits; R seed; F flag count; G ridges; Space animation;
+M auto mouth; S save; L reload; right-drag/wheel or Alt+arrows orbit.
+Default saved definition runs/morph_001/organism.json; portable example under
+experiments/morph_001_worm.json. Root Cargo files add only the two packages.
+All prior core/viewer/Worm_A/scientific files unchanged except this prepended
+handoff and added README section. No commits, pushes or Zeitgeist integration.
+Evidence: docs/morph_001 metadata and immutable Mermogon MORPH-001/v1 archives.
+All old checkpoints/evidence below remain historical.
+
+---
+
+# Current checkpoint — raised opaque metal crown patches (2026-11-23)
+
+Read docs/worm_a/METAL_CROWNS.md. User accepted closing and rejected translucent
+tooth paint. V6 removes tint/transmission, bounds connected original crown
+patches and lifts them0.028 inward/0.006 forward with rooted collars.15 authored
+patches,78 original cap triangles,290 final dental triangles; opaque gunmetal.
+Skin attributes and both closing targets EXACTLY unchanged from v5. Tooth
+vertices inherit original skin/morph data. This is localized dental refinement,
+not generic replacement teeth or new physical collision. Angular source patches
+remain; final anatomy/user approval not claimed.29 viewer tests, strict Clippy,
+format/diff and source/provenance audit pass.16 live frames match controlled
+replay; studio/live pixels inspected. Failed shiny/flat passes retained.
+V6 evidence immutable on Mermogon; no commit/push. Older records historical.
+
+---
+
+# Current checkpoint — upper-lip restraint and existing dark teeth (2026-11-23)
+
+User accepted v4 direction and requested two final tweaks. Read
+docs/worm_a/LIP_TEETH_REFINEMENT.md. Upper vertical travel reduced55%; lower
+lip meets a higher seam. Existing human-like crowns now have a dark smoky
+translucent glaze;221 original triangles partitioned to a material with shared
+positions/UV/skin/morph data. No tooth geometry added. Basis and full sculpt
+connectivity unchanged;3 primitives reflect materials only.29 viewer tests,
+strict Clippy, format and diff checks pass. Live/studio open/closed inspected;
+16 frames match controlled replay. No physics/controller/feeding change.
+V5 immutable evidence on Mermogon; all earlier records historical. No commit/push.
+Further redesign deferred per user acceptance for now.
+
+---
+
+# Current checkpoint — restore sculpt, close up/down (2026-11-23)
+
+User rejected crude v3 replacement plates/head warp, then corrected sideways
+closure. Read docs/worm_a/SCULPT_REPAIR.md. Current basis positions, triangle
+order/count and UVs exactly equal accepted pre-v3 asset. Two primitives again.
+No replacement mouth plates, fabricated teeth, funnel or tongue. Palette restored;
+silver/throat redesign deferred. Local upper/lower shape keys preserve X width
+and leave91.07% of sculpt vertices fixed; actual jaw angles drive them. Oral
+skin anchored to head9. Full close/open exercise is explicitly diagnostic.
+A narrow seam remains; airtight seal/native autonomous chewing NOT DEMONSTRATED.
+Studio-rim and vertical-render inspected. Sideways, squeeze and hinge/horn
+failures retained.107 workspace tests, strict Clippy and format pass.
+Core/controller/config/source GLB unchanged. V4 raw evidence on Mermogon;
+prior v1/v2/v3 immutable and historical. Uncommitted; no push.
+
+---
+
+# Current checkpoint — actual mouth closure and silver dentition (2026-11-23)
+
+Read docs/worm_a/MOUTH_CLOSURE.md and v3 artifact metadata. Prior v2 established
+lip displacement, NOT full closure. User screenshot exposed persistent gape.
+New derived asset: closing wrinkled lips,20 silver hooked teeth, recessed throat,
+separate tongue;6 primitives/14 existing bones. Source sculpt and core unchanged.
+Native selected controller holds one jaw open; full native closure NOT DEMONSTRATED.
+Explicit --jaw-exercise closes32 ticks/opens32 using actual controlled muscles
+(all other actuators rest), labelled HUD/metadata; never enabled by default.
+Both jaws hit their existing stops;9/9 central rays blocked closed,0/9 open.
+16 internal rendered frames exactly match controlled replay.107 workspace tests,
+strict Clippy and format pass.512 native telemetry rows unchanged. No new learning
+or feeding-capacity claim. No commit/push. Immutable archives v1/v2 preserved;
+v3 adds source, rejected alignment, renders and replay/geometry evidence.
+
+---
+
+# Current checkpoint — moving mouth correction (2026-11-22)
+
+Removed accidental auto-pause from mouth view and keep-open captures. Native jaw
+commands deform1172 actual lip vertices;16 internal renderer frames at ticks16–256
+match native replay state hashes and angles exactly. No controller/physics change.
+106 workspace tests, strict Clippy and formatting pass. Regression tests cover
+actual weighted skin and both pause paths. `--record-mouth NEW_DIRECTORY` records
+real frames without motor overrides. Food-free demo eventually dies; HUD now says so.
+Read docs/worm_a/JAW_MOTION_FIX.md and current artifact metadata. Immutable v1
+evidence remains preserved; v2 adds native-motion proof and failed desktop captures.
+Uncommitted, no push. Older checkpoints below are historical.
+
+---
+
+# Current checkpoint — Worm_A rig and local flesh painting (2026-11-22)
+
+User supplied `Worm_A.glb` and `Worm_A_collision.glb`, requested the new first
+creature, proper mouth use, creepiness, reduced stretching and flexible flesh
+with subtle exoskeleton. Original files preserved. Read docs/worm_a/README.md,
+VALIDATION.json, SOURCE_IDENTITY.json and ARTIFACT_STORAGE.json.
+
+Live reference creatures default to the derived Worm_A rig:12 spine+2 jaws,
+painted living tissue and muted cuticle, separate flexible underlayer. The rear
+hood contour is adapted; the original source remains intact. Physics, neural
+inputs/outputs, controller genes and resource laws are unchanged from cathedral.
+The collision proxy is not installed as new physics. No baked swimming gait.
+
+Mouth anchors to the authoritative feeding joint9; jaw skin uses actual jaw
+channels. Tested mouth tracking, opening/closing, positive actual food contact
+and negative remote food. Existing rounded-head bite stencil remains; no
+triangle collision or full soft-body simulation claim.103 workspace tests,
+strict Clippy and formatting pass. Initial over-stretched binding and later
+rigid-shell style rejected/preserved; final soft binding still has extreme-pose
+stretching/self-intersection limits, quantified in the report.
+
+Runtime: assets/creatures/worm_a/Worm_A_rigged.glb; editable neutral source:
+Worm_A_rigged.blend in the same directory. `scripts/rig_worm_a.py` builds it from
+the root source; scripts/preview_worm_a.py saves the Blender rig and renders;
+scripts/check_worm_a.py audits skin deformation on recorded native poses.
+
+`cargo run --release -p moebius-viewer -- --motor-nursery experiments/motor_land_demo.json --motor-control selected --mouth-view`
+Keeps running. Space pauses/resumes; V returns to the body view. The corrected
+close-up follows accumulated head orientation, not just root-body rotation.
+`--capture-keep-open` leaves a captured viewer open. `--creature-skin procedural`
+selects the old visual; legacy Reel playback remains on its historical path.
+The final painted head-following view was inspected and left open for the user.
+
+Motor competence verdicts are unchanged: evolutionary selection gave sustained
+propulsion, not demonstrated steering or useful lifetime motor learning. The
+new look must not be represented as new learning or biomechanical validation.
+Evidence: six immutable Mermogon Worm_A/8e351e2/v1 archives,106 files,
+39916818 raw bytes. Destination/member/restored hashes pass; restored source
+rebuilds the exact GLB SHA256. Original editor backup removed only after this
+verification; raw copies/references kept. Production assets (about4.58MB) remain
+in Git scope; raw renders/prototypes do not. Use python/worm_a_artifacts.py.
+
+Working tree remains uncommitted; no push. Current source adds this renderer
+slice on top of the frozen M6/cathedral identities below.
+
+---
+
+# Current checkpoint — cathedral foundation (2026-11-22 local)
+
+User direction after M6: slime is the first land; the organisms build the
+cathedral. Matter must persist, but can be sculpted by reshaping/relocating it,
+not erasing it or exporting it as waste. These are authored material mechanics;
+purposeful architectural reasoning/learned construction is not demonstrated.
+
+Read [cathedral foundation](docs/cathedral/README.md),
+[validation](docs/cathedral/VALIDATION.json),
+[source identity](docs/cathedral/SOURCE_IDENTITY.json), and
+[storage/restore metadata](docs/cathedral/ARTIFACT_STORAGE.json).
+M6 identities/reports below are the frozen earlier slice. Current code adds this
+post-M6 material variant; do not present its source fingerprint as frozen M6.
+
+`farm.terrain_law`: omitted/recyclable_v1 retains exact old behavior/encoding;
+permanent_v1 is immovable, non-eroding material; conserved_sculpt_v1 permits paid
+local relocation of up to2 units from mouth/action target to creature site.
+No compost/destructive digging in permanent variants. Sculpting costs1 energy,
+produces no waste/nutrient/energy and respects capacity/funding. Native jaws
+require loaded moving active closing drive<-256; passive closure cannot sculpt.
+The normal interactive viewer default now uses conserved_sculpt_v1. Historical
+constructors/configs and M6 DEMO remain unchanged for replay compatibility.
+
+Live green path-history ribbon removed: it was an unaccounted fading visual.
+Visible slime/land now comes only from authoritative flesh deposits; it has no
+age factor or192-sample limit. Key3 toggles that material surface. Capture mode
+locks camera input; ordinary manual camera controls remain available.
+
+New native demo:
+`cargo run --release -p moebius-viewer -- --motor-nursery experiments/motor_land_demo.json --motor-control compare`
+Selected ID1 versus untrained ID2;4096 initial energy each,1024 material units.
+At1024ticks both alive,14 land units+1010 reservoir, zero ledger residuals.
+Actual fixed-camera PNG inspected and its state hash matches recorded headless
+native replay. An earlier strict immovable variant produces17 units and is
+preserved/reproduced separately; neither is new M6 optimization evidence.
+
+100 workspace tests pass (six new terrain tests), strict Clippy/fmt pass.
+All1724 M6 episodes and400 M4 primary trials replay unchanged. The new1024tick
+land run replays each receipt, land map and state hash exactly. No commit/push.
+Original Mermogon M6 archives remain intact; cathedral evidence is separately
+classified/verified under experiments/Cathedral/8e351e2/v1: five archives,
+48 files,4026088 raw bytes; all destination/restored hashes and restored replay
+pass. Use python/cathedral_artifacts.py verify/unpack. Working copies kept.
+
+---
+
+# Current checkpoint — M6 motor nursery (2026-11-22 local)
+
+M6 is an **uncommitted working tree** based on `8e351e212d1f979a32b1bb3a862719a06ea1b70d`.
+The attached directive explicitly says no commit/push without a new instruction.
+Read [M6 report](docs/m6/REPORT.md), [audit](docs/m6/AUDIT.md),
+[protocol](docs/m6/PROTOCOL.json), [analysis](docs/m6/ANALYSIS.json),
+[validation](docs/m6/VALIDATION.json), and [archive index](docs/m6/ARTIFACT_STORAGE.json).
+The older M5 checkpoint below is historical; its second-meal findings remain unchanged.
+
+**Evolutionary optimization improved native recurrent locomotion; useful lifetime
+motor learning and directional control are NOT demonstrated.** Selected frozen
+mean COM net1.718 sites /256ticks versus factory0.159; sustained8/8 held-out starts,
+no jets. Paired advantage mean1.559, bootstrap95% [1.407,1.720], one optimizer seed.
+Physical periodic reference remains faster (~5.038sites). This is an explicitly
+4096-energy, food-free motor nursery, not ordinary128-energy survival.
+
+Gates: G1 physical PASS; G2 exploratory activity PASS; G3 optimization PASS;
+G4 sustained locomotion PASS; G5 direction FAIL; G6 bounded held-out robustness PASS;
+G7 lifetime learning FAIL/NOT DEMONSTRATED; G8 ecological transfer NOT RUN;
+G9 exact replay/lawful accounting PASS. Curriculum A/B passed; C failed;
+D integrated stopping/recovery, E exploration, F ecological transfer NOT RUN.
+Do not advance those or claim autonomous foraging based on movement alone.
+
+Movement search:16 candidates ×12 generations ×3 short conditions, seed60620261122;
+selected genotype `204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c`.
+Existing body/anatomy/energy/resource/momentum laws unchanged. NN genes only;
+no imposed gait in selected policy, no privileged observations, original107-scalar
+sensor ABI. Optional `physiological_feedback:false` is a disclosed law2 ablation;
+true/default omitted from serialization, old law1 remains compatible. It also
+zeros an ordinary physiological sensor, so is not a pure weight-update control.
+
+Lifetime512tick experience: original38 and selected113 nonzero plastic weights;
+frozen held-out post/pre mean+0.01151 and-0.00361sites, intervals include0;
+controls exactly0 difference. Carry-state and half-assimilated fresh-genome probes
+preserved. No new learning law implemented. Report proposes a small separate test.
+
+Direction chronology matters: first12×6 pilot ran before cue interface validation;
+all six lobes saturated. Both v1 campaign/heldout retained as INVALID CUE. V2 lowered
+only explicit environmental cue concentration, passed sensor/material/no-impulse
+regression **before** rerun. Corrected candidate0/8 direction-change successes.
+This bounded null does not prove physical steering impossibility. Cue coast clones
+retain pre-switch field and cannot support matched-environment steering claims.
+
+Mechanism probes: vacuum0 travel; bias-only0/8 sustained; shuffled mapping8/8 but
+slower. Corrected analysis finds19–30 late bend-threshold crossings/trial; compiled Rust
+decomposition confirms1–24 nonzero lunge ticks plus111–128 shape-impulse ticks.
+Earlier shape-only attribution was a Python case-sensitive axis-filter error;
+old analysis/source/report preserved and explicitly superseded in v2 addenda.
+Quantized drag leaves residual momentum; coast control rejects a one-kick-only
+explanation, but resolution-independent locomotion remains untested.
+
+Optional native viewer (default production nursery unchanged):
+`cargo run --release -p moebius-viewer -- --motor-nursery docs/m6/DEMO.json --motor-control compare`
+ID1 selected, ID2 factory. Solo `selected`/`untrained`; N inspector, Tab pages.
+Actual six PNG witnesses inspected, including one unsuccessful early blank capture;
+later comparison and solo bodies/activations/velocity visible. See VISUAL_WITNESS.json.
+No head or eye aesthetics changed; no procedural swimming animation added.
+
+94 workspace tests, strict Clippy, formatting/whitespace pass. Full1724 episodes,
+253440 primary ticks (+126720 coast ticks) replay exactly. Independent Python
+arithmetic passes all10 trace sets. Both M4 primary datasets still replay exactly:
+400 trials/90154ticks/800 snapshots. Restored M6 heldout88 trials replay exactly.
+No hosted CI claim. Failures and corrected audit assumptions are recorded.
+
+Raw M6:15 immutable archives,121 files,302404365 raw bytes on verified Mermogon
+UUID `D0A02EEBA02ED82C`, `Moebius-Automata/experiments/M6/8e351e2`.
+Keep immutable v1 raw archives and v2 correction/source addenda together;
+current index is v2/ARCHIVE_INDEX.json. No v1 archive was overwritten.
+Archive/member hashes and all restored hashes verified; working copies retained.
+`python3 python/m6_artifacts.py verify` and `unpack NEW_DIRECTORY` restore evidence.
+Git holds reports/config/source identities/checksums and small selected/factory
+metadata, not bulky raw traces. No M4/M5 evidence was moved, deleted or modified.
+
+---
+
 # Current checkpoint — M5 reachability (2026-11-21 local)
 
 Storage gate applied 2026-11-22: raw M5 evidence now resides in the verified

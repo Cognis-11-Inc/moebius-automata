@@ -1,0 +1,31 @@
+{
+  "date_local": "2026-11-23",
+  "intent": "User rejected v3 replacement geometry and corrected sideways closure; restore sculpt fidelity and vertical articulation",
+  "external_queries": [],
+  "external_scientific_sources": [],
+  "CONSULTED": [
+    "Pre-v3 source snapshot and hashes",
+    "Original and rejected GLB triangle/UV data",
+    "Local Bevy0.20 MorphWeights API",
+    "Studio and actual live rendered pixels"
+  ],
+  "IMPLEMENTED": [
+    "Restore exact pre-v3 basis positions, indices, UVs and palette",
+    "Localized vertical upper/lower lip shape keys driven by existing jaw signals",
+    "Anchor oral skin to head9; camera aims at existing aperture"
+  ],
+  "VALIDATED": [
+    "107 workspace tests, strict Clippy and format",
+    "15778/17325 sculpt vertices fixed during closure",
+    "Zero transverse X displacement",
+    "16 live frames match controlled replay and morph-weight mapping"
+  ],
+  "NOT_DEMONSTRATED": [
+    "Airtight closure",
+    "Autonomous chewing",
+    "Polished final artistic quality",
+    "Silver tooth segmentation and new throat/tongue anatomy"
+  ],
+  "chronology": "V3 rejected by user; first v4 sideways contraction rejected; vertical squeeze and hinge/horn trials rejected; final local rim restored mesh is an engineering candidate, not user-approved final art. All available witnesses retained; original first v4 helper source unavailable, GLB/render witnesses preserved.",
+  "report": "docs/worm_a/SCULPT_REPAIR.md"
+}

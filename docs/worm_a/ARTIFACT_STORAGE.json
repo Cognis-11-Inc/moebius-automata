@@ -1,0 +1,3082 @@
+{
+  "date_local": "2026-11-23",
+  "version": 6,
+  "mount_path": "/run/media/cognis/Mermogon",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/Worm_A/8e351e2",
+  "external_index_sha256": "7b22b0920995affceade097dfffcbbac4d4a10b4a7e954536585600192da73f8",
+  "raw_files": 534,
+  "raw_bytes": 240531748,
+  "records": [
+    {
+      "phase": "final-flexible-studio",
+      "purpose": "raw studio, source provenance or validation evidence",
+      "relative_path": "v1/final-flexible-studio.tar",
+      "bytes": 3215360,
+      "sha256": "1e82ec3eb04447cec9d9568a74afeb88b130e534c1b3f99b94fce8d9ca947e39",
+      "members": [
+        {
+          "name": "bend.png",
+          "bytes": 807106,
+          "sha256": "b0d076d37d892379a34984de238a6ca45315070f14304a5e44cbc485d3408b5d"
+        },
+        {
+          "name": "closed.png",
+          "bytes": 799678,
+          "sha256": "d89900843cc682b7d3b67abe46d156ae71f10d2acecab1a617844030b068a6d3"
+        },
+        {
+          "name": "neutral.png",
+          "bytes": 799506,
+          "sha256": "66b3481383a1015bf2b64801e8cb0e990dc48aafccb99d8b225e5b8533a0eace"
+        },
+        {
+          "name": "open.png",
+          "bytes": 801190,
+          "sha256": "322927c8dc330b1154edb7ed56af5edd3221c2b8d2d6ec4debabbed5962fc8ec"
+        }
+      ]
+    },
+    {
+      "phase": "final-studio",
+      "purpose": "raw studio, source provenance or validation evidence",
+      "relative_path": "v1/final-studio.tar",
+      "bytes": 3389440,
+      "sha256": "7c97ad45e47714880560f2d06dfd4a191ad2d8824f27208bdf1326ed9e2e7552",
+      "members": [
+        {
+          "name": "bend.png",
+          "bytes": 846183,
+          "sha256": "3a047903d05b0b8290a9a7d0c5fd0976035d1c02436ed80aa3544a8b9d04f9b9"
+        },
+        {
+          "name": "closed.png",
+          "bytes": 843248,
+          "sha256": "2dfe084d1b2d85bcee41c5659106c1f00df262943d2b73b455c6fb4c7e0e85ed"
+        },
+        {
+          "name": "neutral.png",
+          "bytes": 844094,
+          "sha256": "6958a6bf96d137d9571313568bd39d611e02573012937424dd3803d79522a623"
+        },
+        {
+          "name": "open.png",
+          "bytes": 846759,
+          "sha256": "adeab614b91447e2dbdb16a48473bae2653c257c13b5ccb43d86c63c7e8d7b79"
+        }
+      ]
+    },
+    {
+      "phase": "flesh-studio-v5",
+      "purpose": "raw studio, source provenance or validation evidence",
+      "relative_path": "v1/flesh-studio-v5.tar",
+      "bytes": 3235840,
+      "sha256": "ffd195301d4147ef246ffa87f59e97e3f9015a62b95fbdc59ef5c919b3dd2d5d",
+      "members": [
+        {
+          "name": "bend.png",
+          "bytes": 810859,
+          "sha256": "5503abe7d4f83a682166e73093f47c1ec802b09d7c171feaa69f9ea8a142604c"
+        },
+        {
+          "name": "closed.png",
+          "bytes": 801211,
+          "sha256": "c9bc4e24eb8bca0aaeaf3fe857c2d77c18c0c8cf9633936e7dbebf74f01dfd4e"
+        },
+        {
+          "name": "neutral.png",
+          "bytes": 802590,
+          "sha256": "8643ebd0a15dd0f3d5f4fec055afb4a63df0d53c52404126c40ba83e2ca24fbf"
+        },
+        {
+          "name": "open.png",
+          "bytes": 808012,
+          "sha256": "fae4e3c3cfcb42a08b03f35867d185916159c60cd9dba09dc3b6713eebdd9bea"
+        }
+      ]
+    },
+    {
+      "phase": "iterations",
+      "purpose": "all source/failed binding and camera iterations preserved",
+      "relative_path": "v1/iterations.tar",
+      "bytes": 24852480,
+      "sha256": "f4cb301488ee2ac0da87b4563ab424eec62326ddb83b904edbe7c9436179f41d",
+      "members": [
+        {
+          "name": "authoring_backup_before_final.blend",
+          "bytes": 1593931,
+          "sha256": "5ebc997fe36357c35ddfe4b9353564589e21e2531a7ddb9ee0342999058dea71"
+        },
+        {
+          "name": "check_deformation.py",
+          "bytes": 2657,
+          "sha256": "8737d5bc1cc6426e68884d1b530fc8a44750a9838723d6385e6316e9e01dc480"
+        },
+        {
+          "name": "failed_binding_v1.blend",
+          "bytes": 1348724,
+          "sha256": "d34ce786ab3d687da33f980882f6bec7180ee6d117748549baa20048025d7c20"
+        },
+        {
+          "name": "failed_binding_v1.glb",
+          "bytes": 1150028,
+          "sha256": "b58096918b3861c08089c7daef44abf154b062b20ee54f7927643db641a9f2db"
+        },
+        {
+          "name": "failed_binding_v1.json",
+          "bytes": 1868,
+          "sha256": "7abea57560a92f11e404d7e73da59c2007a5fc88cf636ac11bf44541bcd3ab5b"
+        },
+        {
+          "name": "failed_binding_v2.glb",
+          "bytes": 1150028,
+          "sha256": "ad29cb67b0a845584fe5545fde92953f5204b9e52170cfca53ebf0569c314edb"
+        },
+        {
+          "name": "final_flesh_t128.capture.json",
+          "bytes": 679,
+          "sha256": "9c984da3000ec76d7f52d67ad16dbf48a9c7b7df3ddd2e223db66abd4a7efdf0"
+        },
+        {
+          "name": "final_flesh_t128.png",
+          "bytes": 335965,
+          "sha256": "4fe7fc26bf25221f6ed81b039f0164cb55060c8e8f020c4515d26a03da9fe228"
+        },
+        {
+          "name": "flesh_v4_t128.capture.json",
+          "bytes": 679,
+          "sha256": "9c984da3000ec76d7f52d67ad16dbf48a9c7b7df3ddd2e223db66abd4a7efdf0"
+        },
+        {
+          "name": "flesh_v4_t128.png",
+          "bytes": 337049,
+          "sha256": "a2755d6fd1e9b774282ea6fce3f3c8cafd69431f7eaad77e773e3503ef6a1b77"
+        },
+        {
+          "name": "flexible_binding_v4.glb",
+          "bytes": 1559556,
+          "sha256": "ff2bed98a88fce41bef59261c8fb629cc6ed8a1e9551d2cbe9b7a2db2307c11d"
+        },
+        {
+          "name": "flexible_binding_v7.glb",
+          "bytes": 1559500,
+          "sha256": "c38ef9de28b4d3922e7f42ee8a6124d0634e27868e64ba44f8ce7994d676d20b"
+        },
+        {
+          "name": "inspect.py",
+          "bytes": 1814,
+          "sha256": "a603180ad1a587ab1c088e6292b167ce9b5ddfc5240ce9827767b909f6f6808f"
+        },
+        {
+          "name": "live_binding_v2_t128.capture.json",
+          "bytes": 679,
+          "sha256": "9c984da3000ec76d7f52d67ad16dbf48a9c7b7df3ddd2e223db66abd4a7efdf0"
+        },
+        {
+          "name": "live_binding_v2_t128.png",
+          "bytes": 377829,
+          "sha256": "efad203bad773fb1c874706c99c8b80c001460a79dd29519caec0841fee4ce3e"
+        },
+        {
+          "name": "live_binding_v3_t128.capture.json",
+          "bytes": 679,
+          "sha256": "9c984da3000ec76d7f52d67ad16dbf48a9c7b7df3ddd2e223db66abd4a7efdf0"
+        },
+        {
+          "name": "live_binding_v3_t128.png",
+          "bytes": 371593,
+          "sha256": "563dc87e4c956def7e45aace63996bfbffdf286eece700dcb485210ee9ad5bf9"
+        },
+        {
+          "name": "live_t128.capture.json",
+          "bytes": 679,
+          "sha256": "9c984da3000ec76d7f52d67ad16dbf48a9c7b7df3ddd2e223db66abd4a7efdf0"
+        },
+        {
+          "name": "live_t128.png",
+          "bytes": 377743,
+          "sha256": "b5a63063f2c8ca6b171dbffc3e18a429a3771adede376cde3f918874bc85fbaf"
+        },
+        {
+          "name": "mouth_bend.png",
+          "bytes": 730012,
+          "sha256": "b27080819e2dd7b3c0073598d99fc8370800374270737cda26f720cc3c237b86"
+        },
+        {
+          "name": "mouth_closeup_v3.capture.json",
+          "bytes": 491,
+          "sha256": "e85f87e912b0612ee85b4346e20e2ece6c9b487f3b902ab6ee79faf547f48a51"
+        },
+        {
+          "name": "mouth_closeup_v3.png",
+          "bytes": 600991,
+          "sha256": "b6ac2ca2683ec073458551bc99144038b37dc6439bfc9d21e68193d35000cb4b"
+        },
+        {
+          "name": "mouth_jaws_open.png",
+          "bytes": 731116,
+          "sha256": "273d3349ed9d01b94690df9cbbcc853073d97850f97439a7d4a0f32bee609c6c"
+        },
+        {
+          "name": "mouth_preview.py",
+          "bytes": 2669,
+          "sha256": "41f351e7aea7a0ac6d3ed1e06733ac1059d27050dd5cbb161d70985c77919f9e"
+        },
+        {
+          "name": "mouth_rest.png",
+          "bytes": 730190,
+          "sha256": "d719c5f230e4afe85aba320554166a898bee60e5eb8e13e48228624024b1e9a2"
+        },
+        {
+          "name": "original_blender_backup_v1.blend",
+          "bytes": 1348724,
+          "sha256": "d34ce786ab3d687da33f980882f6bec7180ee6d117748549baa20048025d7c20"
+        },
+        {
+          "name": "painted_mouth_final.capture.json",
+          "bytes": 491,
+          "sha256": "c814f1936d65242a6e846ecc0ca1077a49c09ba78a4cf7e9b6ce2dbdb8202cb9"
+        },
+        {
+          "name": "painted_mouth_final.png",
+          "bytes": 284551,
+          "sha256": "c33eb7c4fe630ff6ab737b71e823184cb557538bf797acaeb694ab6797e46b53"
+        },
+        {
+          "name": "painted_mouth_following_head.capture.json",
+          "bytes": 491,
+          "sha256": "c814f1936d65242a6e846ecc0ca1077a49c09ba78a4cf7e9b6ce2dbdb8202cb9"
+        },
+        {
+          "name": "painted_mouth_following_head.png",
+          "bytes": 334676,
+          "sha256": "71e180cd1bd7618fbc38237e076bf44893e81b67570e2bfc0cea4a535daa9e05"
+        },
+        {
+          "name": "rejected_rigid_shell_v3.blend",
+          "bytes": 1427988,
+          "sha256": "c3b47044b7ecc34d28242aac69cb0d4e8a375b3a1c3bae035391a860ff6945ed"
+        },
+        {
+          "name": "rejected_rigid_shell_v3.glb",
+          "bytes": 1150120,
+          "sha256": "0819ec28e0a6b4889db240fc12983028b0ab188428a5b4a9b238143e829479f7"
+        },
+        {
+          "name": "rejected_transition_v5.glb",
+          "bytes": 1559556,
+          "sha256": "2e606cba9cbe65de2c3b3626b0c875504689350ad853800445edd5f857e30c90"
+        },
+        {
+          "name": "rig_bend.png",
+          "bytes": 742100,
+          "sha256": "d0a55180f703310ff8f8908d962dbf7184002c8ba43c500f4b02b2d96111639c"
+        },
+        {
+          "name": "rig_jaws_open.png",
+          "bytes": 740761,
+          "sha256": "066c69b32ab803930cc2d8c556987aa1051ef7f1c7095a7e13b90752d2d8d9d6"
+        },
+        {
+          "name": "rig_preview.py",
+          "bytes": 2714,
+          "sha256": "96e39b7606a2f3d6b594d5ba61a419fc5d267fbd71c3e8289c7027c5e35a199a"
+        },
+        {
+          "name": "rig_rest.png",
+          "bytes": 740564,
+          "sha256": "460369bb5971fec18256456ebe00a1e0bf8ba9e8a782173d0d2a755167aecea7"
+        },
+        {
+          "name": "source_front.png",
+          "bytes": 621521,
+          "sha256": "4ebfe1e173084248da0e4fe38b1e5f42b36878cbf6b71c25db0fb6fdda3b141d"
+        },
+        {
+          "name": "source_side.png",
+          "bytes": 643019,
+          "sha256": "0ff851999d689cf58b88d0e28f7ea9171ae2c4aabd7cbc1463701f83dee80ab8"
+        },
+        {
+          "name": "source_threequarter.png",
+          "bytes": 647505,
+          "sha256": "98d44a83162f7a399f4cbd4841441d024ab187165e80dc3f67e6e25838b4ecb2"
+        },
+        {
+          "name": "transition_v6.glb",
+          "bytes": 1559500,
+          "sha256": "0c9eb9da92fb5dea9a0171773bce71e75b389d74bb469b494a26118df1773a07"
+        }
+      ]
+    },
+    {
+      "phase": "source",
+      "purpose": "raw studio, source provenance or validation evidence",
+      "relative_path": "v1/source.tar",
+      "bytes": 5263360,
+      "sha256": "cd26897f12b064d4d857b523081e4598db266d3e73aad81505eb5be7647637f5",
+      "members": [
+        {
+          "name": "SOURCE_IDENTITY.json",
+          "bytes": 6601,
+          "sha256": "36eba51707bd7156281c4ea82cce9671397b2f348d18be6e2dbf43af172afa58"
+        },
+        {
+          "name": "tracked_diff.patch",
+          "bytes": 54376,
+          "sha256": "f419a1d0b866896ad4c40586c374d274ae45035f7ab62d2f73fd42d5cb8b7828"
+        },
+        {
+          "name": "working_tree_source.tar",
+          "bytes": 5191680,
+          "sha256": "036abd97623dcd0b7436cbc83fbd8f617a7824effac99e7159d362227d167993"
+        }
+      ]
+    },
+    {
+      "phase": "validation",
+      "purpose": "raw studio, source provenance or validation evidence",
+      "relative_path": "v1/validation.tar",
+      "bytes": 174080,
+      "sha256": "44631c0c9bef02f98b31f6e1354789c918799def9ecc1e08f504636c3946a2db",
+      "members": [
+        {
+          "name": "moebius-worm-build-final-v2.log",
+          "bytes": 162,
+          "sha256": "d6033a59852151f2b204ca283cb3bd688f567efbfafd88ace57bbf48ce1507ae"
+        },
+        {
+          "name": "moebius-worm-build-final.log",
+          "bytes": 318,
+          "sha256": "4853af6a0e6a9500378ee5109bce08f6a6d31a5d88906f69b18ac1ba5cd34022"
+        },
+        {
+          "name": "moebius-worm-build-mouth-final.log",
+          "bytes": 162,
+          "sha256": "5f4960e14cfc94990b1c3ffc081eb1ce8111d76ac461e5216441ac45cc5e2251"
+        },
+        {
+          "name": "moebius-worm-build-v2.log",
+          "bytes": 162,
+          "sha256": "bc98b35616f051e33edcd269e9abfeaecc0a48ba7ca6ee293b6be5cd3a4e505a"
+        },
+        {
+          "name": "moebius-worm-build-v3.log",
+          "bytes": 162,
+          "sha256": "85c74a878004968e86794fb67f267ff6fbf0c75546d63c632b7be2cec31366f3"
+        },
+        {
+          "name": "moebius-worm-build-v4.log",
+          "bytes": 162,
+          "sha256": "547b51c6b8acfbe9658169bdccb2b00c5c08ca8042c776e89666d1609d29f6e5"
+        },
+        {
+          "name": "moebius-worm-build.log",
+          "bytes": 162,
+          "sha256": "bc237097a42b7e18dcb5d9d2fcc4807ed010fb92b718fde05d2315c7b3e70ad2"
+        },
+        {
+          "name": "moebius-worm-clippy-complete.log",
+          "bytes": 172,
+          "sha256": "b41801fad356bf96e2f5ea19f8a776b43feac9b0a71ce073e96b9d540c0157fd"
+        },
+        {
+          "name": "moebius-worm-clippy-final-v2.log",
+          "bytes": 382,
+          "sha256": "24529fd2d8c9133d0b0d0a3e0af6a6cdc86f8994b8ab41ce3264f7645ce17303"
+        },
+        {
+          "name": "moebius-worm-clippy-final.log",
+          "bytes": 226,
+          "sha256": "6f598896d6ac94601d57c87ce155c07bfe94e018e77bb2f39f0cc6d500e755f7"
+        },
+        {
+          "name": "moebius-worm-clippy-release.log",
+          "bytes": 172,
+          "sha256": "1a06acfcaaf1554dce04fb481aa8e04049698ecff2c54af758076b6826ed5528"
+        },
+        {
+          "name": "moebius-worm-clippy.log",
+          "bytes": 1180,
+          "sha256": "3974c4b269ba9679c46d038c2a9527b705e8f55d2d46d60cc5c2eafcc98b16b1"
+        },
+        {
+          "name": "moebius-worm-deformation-final.json",
+          "bytes": 1807,
+          "sha256": "3e041f9d78196c75f5579c90423b951348809d648d83c03ee9f6593faa9a8d74"
+        },
+        {
+          "name": "moebius-worm-deformation-rejected-v1.json",
+          "bytes": 898,
+          "sha256": "25e4411f39cd9d2a02effef545b5259584c3819843710101a9b596c19ff02a68"
+        },
+        {
+          "name": "moebius-worm-deformation-v4.json",
+          "bytes": 1808,
+          "sha256": "ddbfcce5b62689fe00676da96f789c752bb11c5bdf98c6733b3eddc4d9ee172d"
+        },
+        {
+          "name": "moebius-worm-deformation-v5.json",
+          "bytes": 1807,
+          "sha256": "3e041f9d78196c75f5579c90423b951348809d648d83c03ee9f6593faa9a8d74"
+        },
+        {
+          "name": "moebius-worm-deformation-v6.json",
+          "bytes": 1802,
+          "sha256": "2028d5533aa05f221461f87df868c1fe23e1f5712bafef090e2637486702e3af"
+        },
+        {
+          "name": "moebius-worm-deformation-v7.json",
+          "bytes": 1806,
+          "sha256": "0d862a639b2c5d8eb89b31f946b3e59e3abc84f58954be558515927c2700a2a4"
+        },
+        {
+          "name": "moebius-worm-deformation-v8.json",
+          "bytes": 1802,
+          "sha256": "8f473fba79b261f92304a178ae8d284e78d17a5070f2bae9447f4ba657607f16"
+        },
+        {
+          "name": "moebius-worm-diff.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "moebius-worm-final-flexible-studio.log",
+          "bytes": 1726,
+          "sha256": "203c3a8fb0bf7ba0ca5305e76f0ff06a84d4ea6af4f700c1476c86b07f060e23"
+        },
+        {
+          "name": "moebius-worm-final-live.log",
+          "bytes": 124,
+          "sha256": "1ee05297be19150cbcc470fbdb18884761ee70296f80137d6d3989ecf28e9867"
+        },
+        {
+          "name": "moebius-worm-final-studio.log",
+          "bytes": 1690,
+          "sha256": "4b4503f4290f037e5eb116b0e05a8573e89d315bfc8468c63016fc8e9e612a35"
+        },
+        {
+          "name": "moebius-worm-flesh-studio.log",
+          "bytes": 1702,
+          "sha256": "eb51022a6c1429c5c9448be5017ce7e1668eb09ebe6ecf96d285aa22ab91b00d"
+        },
+        {
+          "name": "moebius-worm-flesh-v4.log",
+          "bytes": 124,
+          "sha256": "1ee05297be19150cbcc470fbdb18884761ee70296f80137d6d3989ecf28e9867"
+        },
+        {
+          "name": "moebius-worm-fmt.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "moebius-worm-inspect.log",
+          "bytes": 1946,
+          "sha256": "5e6b0c561935786ddd07b7889ed294c860cc60b66ba58e03e2625f604ad4e271"
+        },
+        {
+          "name": "moebius-worm-live-v2.log",
+          "bytes": 124,
+          "sha256": "1ee05297be19150cbcc470fbdb18884761ee70296f80137d6d3989ecf28e9867"
+        },
+        {
+          "name": "moebius-worm-live-v3.log",
+          "bytes": 124,
+          "sha256": "1ee05297be19150cbcc470fbdb18884761ee70296f80137d6d3989ecf28e9867"
+        },
+        {
+          "name": "moebius-worm-live.log",
+          "bytes": 124,
+          "sha256": "1ee05297be19150cbcc470fbdb18884761ee70296f80137d6d3989ecf28e9867"
+        },
+        {
+          "name": "moebius-worm-mouth-following.log",
+          "bytes": 124,
+          "sha256": "91d350125af3b25b39f650c9aa083100530150b6db67284ed7cd2422eb8d81d6"
+        },
+        {
+          "name": "moebius-worm-mouth-live.log",
+          "bytes": 124,
+          "sha256": "91d350125af3b25b39f650c9aa083100530150b6db67284ed7cd2422eb8d81d6"
+        },
+        {
+          "name": "moebius-worm-mouth-preview.log",
+          "bytes": 1707,
+          "sha256": "5e87de8c42adac36beb9e3f56961ee57510ebbbc49cbb4a8cd24880edd9e94a7"
+        },
+        {
+          "name": "moebius-worm-painted-mouth.log",
+          "bytes": 124,
+          "sha256": "91d350125af3b25b39f650c9aa083100530150b6db67284ed7cd2422eb8d81d6"
+        },
+        {
+          "name": "moebius-worm-preview.log",
+          "bytes": 1736,
+          "sha256": "3b52111e5c506ef7b406c41569d2f44f344faa07effa7e90739ac50230fef91f"
+        },
+        {
+          "name": "moebius-worm-rig-v2.log",
+          "bytes": 1867,
+          "sha256": "709bb8b66418af4010df2124edf070d82de62a092da241708e780c2b30a1e109"
+        },
+        {
+          "name": "moebius-worm-rig-v3.log",
+          "bytes": 1868,
+          "sha256": "8d02dd58e41a0e5f54a101b94e574cb05fdc1ab5ee8c732c2680d169ce69bb0f"
+        },
+        {
+          "name": "moebius-worm-rig-v4.log",
+          "bytes": 2016,
+          "sha256": "c74ce6143a3b3beb79d7197b570117f64b51c7c6e0debea657cede50d9aaf7de"
+        },
+        {
+          "name": "moebius-worm-rig-v5.log",
+          "bytes": 2016,
+          "sha256": "b7a66fa633b8b763ff468445eedd438fb997328ecdfed33702a257521c4111ee"
+        },
+        {
+          "name": "moebius-worm-rig-v6.log",
+          "bytes": 2016,
+          "sha256": "e67187834b70b92616d71a34c7c80114f6aa3a5aac6e59f8eb002417912d4e72"
+        },
+        {
+          "name": "moebius-worm-rig-v7.log",
+          "bytes": 2014,
+          "sha256": "b1e8547c80baedf1e1e6fbf5351c251ea001e67152d83c9c1d99fe348f909aee"
+        },
+        {
+          "name": "moebius-worm-rig-v8.log",
+          "bytes": 2014,
+          "sha256": "323e1a2e4748532c598a67c1136d2730766712e52d02c15b19723fd816348fdc"
+        },
+        {
+          "name": "moebius-worm-rig.log",
+          "bytes": 1868,
+          "sha256": "7abea57560a92f11e404d7e73da59c2007a5fc88cf636ac11bf44541bcd3ab5b"
+        },
+        {
+          "name": "moebius-worm-tests-complete.log",
+          "bytes": 10318,
+          "sha256": "1abaa48e2e818b09c4ce26bdca29c27c7640269a66561beee0805bb5ab8aace7"
+        },
+        {
+          "name": "moebius-worm-tests-final-v2.log",
+          "bytes": 10318,
+          "sha256": "a517b62280c4b666b4fe3058cb5bba7ed07366c787602f6b76073adf9efd3d0d"
+        },
+        {
+          "name": "moebius-worm-tests-final.log",
+          "bytes": 10508,
+          "sha256": "5d664ca7c9cbb47ae3fc9ecbba4df9c588993c29449a605e452a8e20633ecdcd"
+        },
+        {
+          "name": "moebius-worm-tests-v2.log",
+          "bytes": 2665,
+          "sha256": "61975a24515612afffa4e4e4517f218b7ff8cac758d009f3dd42f847e9069e21"
+        },
+        {
+          "name": "moebius-worm-tests-v3.log",
+          "bytes": 854,
+          "sha256": "471fb6870b8ed5fe605e7f51bb07980e62f636d3adbe60ac7efda8e4cf7096f0"
+        },
+        {
+          "name": "moebius-worm-tests-v4.log",
+          "bytes": 2123,
+          "sha256": "11c2ff1eae697ab6b4fb0e22d4cef22d134a95c68f1854d39f9ff87c33fb3dd4"
+        },
+        {
+          "name": "moebius-worm-tests.log",
+          "bytes": 3179,
+          "sha256": "55a7de4cfdd9c66f55d1385fb29babcb942e4c5724c214c9d9369a67f31d1127"
+        }
+      ]
+    },
+    {
+      "phase": "jaw-iterations-v2",
+      "purpose": "All attempted window recordings, failed witnesses, contact sheets and native-sequence GIF",
+      "relative_path": "v2/jaw-iterations-v2.tar",
+      "bytes": 1689600,
+      "sha256": "3164d9df0b796de407fe86c6f11cc21a23024c6e35f8fca0d9e51d477b83a0e0",
+      "members": [
+        {
+          "name": "active_contact.png",
+          "bytes": 101082,
+          "sha256": "9c9195b52e768c20c3c53be539337ce75aaeeeea872c1efe8517fe4b8ab067f8"
+        },
+        {
+          "name": "failed_background_capture.mp4",
+          "bytes": 62366,
+          "sha256": "f39187f2c60566f30c4c1c5d4659e257b096994e736cb83d7e4ea7677af651d8"
+        },
+        {
+          "name": "mouth_motion_contact.png",
+          "bytes": 206539,
+          "sha256": "ec98f4672ada9efa3b1fd5826e345c1362517212901bc2566de7eff80d9e19c4"
+        },
+        {
+          "name": "native_mouth.gif",
+          "bytes": 518562,
+          "sha256": "c4d2fa2e7b1cef919458d821f51a09a6bfd4d772a7f59ce802e367bedfc31848"
+        },
+        {
+          "name": "native_mouth_8s.mp4",
+          "bytes": 62366,
+          "sha256": "f39187f2c60566f30c4c1c5d4659e257b096994e736cb83d7e4ea7677af651d8"
+        },
+        {
+          "name": "native_mouth_active.mp4",
+          "bytes": 29501,
+          "sha256": "80dba4c6ac66e209f6a9c3c0f4c30cb5ef38a5fe5ff0368f3c721b3faf0fdd62"
+        },
+        {
+          "name": "record_window.py",
+          "bytes": 1996,
+          "sha256": "423755059d34a947b533e16623dc1ad26d5375d3cd298a5d81f814e9a3021d9d"
+        },
+        {
+          "name": "rendered_contact_16.png",
+          "bytes": 679330,
+          "sha256": "d46c2362ea758a9ef62a0fa747e2580333b72667c04a7f1d724c07816bd3e1a5"
+        },
+        {
+          "name": "window_record.json",
+          "bytes": 584,
+          "sha256": "1a5e94bc1957568083721f852ed0994c4b84d21369c35311c8f49f882530d650"
+        },
+        {
+          "name": "window_record_active.json",
+          "bytes": 588,
+          "sha256": "2576374d4560c4d446f3ab21e5b8a1f51879f308fc4965e573dff366b680dde9"
+        }
+      ]
+    },
+    {
+      "phase": "jaw-rendered-v2",
+      "purpose": "16 internal renderer frames with native provenance",
+      "relative_path": "v2/jaw-rendered-v2.tar",
+      "bytes": 5795840,
+      "sha256": "eb45a486581e6a0175515eda6d955d9422d441c52c0b822521d22118dbe02a54",
+      "members": [
+        {
+          "name": "frame_000000.json",
+          "bytes": 498,
+          "sha256": "db9335fd80da39c53fac2337717bff75730f25622805d3f286cdcf5eb0e13109"
+        },
+        {
+          "name": "frame_000000.png",
+          "bytes": 328291,
+          "sha256": "2b9f3e0f13fed527afc645f2c2692637846c774be88e45dd32035d069fbb6c86"
+        },
+        {
+          "name": "frame_000001.json",
+          "bytes": 484,
+          "sha256": "931c2afc6b427c24ca220e9552b27a4d132bed5a9a6b13c71e8596e463489ec9"
+        },
+        {
+          "name": "frame_000001.png",
+          "bytes": 304418,
+          "sha256": "c8d388ea0ec6561b4ad48f0e86e1a04b241b84e3c432c76faeda09a2b071923a"
+        },
+        {
+          "name": "frame_000002.json",
+          "bytes": 499,
+          "sha256": "3df724ee1aaa0104d6b2fa3c62e103b2e1c4a5e3ec39cd832ab5c7c5d2262be8"
+        },
+        {
+          "name": "frame_000002.png",
+          "bytes": 374596,
+          "sha256": "caebc0fd618b30f669bb6f2f7217bb1a1bc8faa2d84e051ab51aa401483fcf23"
+        },
+        {
+          "name": "frame_000003.json",
+          "bytes": 485,
+          "sha256": "274496af90ed447de005f3cf5c3e1bde4e5cd8041d9c59cd2ef6da917af91aa3"
+        },
+        {
+          "name": "frame_000003.png",
+          "bytes": 312557,
+          "sha256": "0411807e5b072e7e5f9107c3ca2ff6f2a498605b07cc2c2d85c21f02dc147cfc"
+        },
+        {
+          "name": "frame_000004.json",
+          "bytes": 501,
+          "sha256": "6f71821e1b7afec2c657aa936f405b93fe48b24bcfaee3eb3a29cfe31f626303"
+        },
+        {
+          "name": "frame_000004.png",
+          "bytes": 371674,
+          "sha256": "60fa1bc2c90c08b11db70cfd59ac438d483ff9c78d5837af4f2b821313cd5d6e"
+        },
+        {
+          "name": "frame_000005.json",
+          "bytes": 487,
+          "sha256": "270ed68a0a20e8b3d24113630cb7a502559d40ed23eecc82e5cd4ade1ec5a8ed"
+        },
+        {
+          "name": "frame_000005.png",
+          "bytes": 316153,
+          "sha256": "e1d4bf2863e0007e931cf3997a3b7c2aadd74f1bf3e95e8d6bdca9c2a9ebea65"
+        },
+        {
+          "name": "frame_000006.json",
+          "bytes": 491,
+          "sha256": "f8c6f0ea76cdf1aff6b6a7c2ba0cabcc597c7c99ad8b4d945bcde6bde7a5ae2f"
+        },
+        {
+          "name": "frame_000006.png",
+          "bytes": 374127,
+          "sha256": "6118bb63bb73a0b6830e71756da1ea6897755337cf2146c76e502eeb82fdcfd6"
+        },
+        {
+          "name": "frame_000007.json",
+          "bytes": 487,
+          "sha256": "f6b7c134e16eb7229a6cd777d96c2d83585af1646ef47aa7b6c7a7eed01de402"
+        },
+        {
+          "name": "frame_000007.png",
+          "bytes": 313164,
+          "sha256": "376b6e5d6f2146c6e123bcd5851e8852faec740b3847bf70aa63789289763e8e"
+        },
+        {
+          "name": "frame_000008.json",
+          "bytes": 478,
+          "sha256": "d3e6b347c37ae12a9a2ee3a2c6187bb5415f0ee8b91c808c650b1149ba6aaafe"
+        },
+        {
+          "name": "frame_000008.png",
+          "bytes": 403658,
+          "sha256": "695944d3ae6c94d482ffa31fcc57881a9081e9ca5af133b233ae9bf7e072c502"
+        },
+        {
+          "name": "frame_000009.json",
+          "bytes": 487,
+          "sha256": "a965c9fda618902031e445e78ef693356510d93d5ddbfab2b082281bf495b369"
+        },
+        {
+          "name": "frame_000009.png",
+          "bytes": 337069,
+          "sha256": "6b2fa0c3d15605667653f3b74fb938831354431ef7b6af095496340638d6851a"
+        },
+        {
+          "name": "frame_000010.json",
+          "bytes": 489,
+          "sha256": "f101d8cfea9abafc0d1cd8d7cd8bb88976a1071a8685d6999efccaf7fbadcbae"
+        },
+        {
+          "name": "frame_000010.png",
+          "bytes": 373647,
+          "sha256": "0d94835f3b6b1eedc573c72790bbe229c17cd453cd90e16780436bb5aac7d565"
+        },
+        {
+          "name": "frame_000011.json",
+          "bytes": 487,
+          "sha256": "49c231be28be13f3df105c57566cfd081e24450e5f844256058d02c24062c319"
+        },
+        {
+          "name": "frame_000011.png",
+          "bytes": 392856,
+          "sha256": "27b4e0a59150f3731cf0617e66bac48cdfc790f63b52c7aa79125024b16e7eec"
+        },
+        {
+          "name": "frame_000012.json",
+          "bytes": 487,
+          "sha256": "8d121f408ff88a2a08509ff7806a08575d087265553c37a9b42786b9fa30f9dd"
+        },
+        {
+          "name": "frame_000012.png",
+          "bytes": 293457,
+          "sha256": "0019b57bd8b55c4753ad17bb04388efc140dadab6fec0f8b0de1e44b8530e4b5"
+        },
+        {
+          "name": "frame_000013.json",
+          "bytes": 489,
+          "sha256": "0e37df47e71b0559ba6160517d994b4ae3d000aa4b09cab5ba58e761a17dd17d"
+        },
+        {
+          "name": "frame_000013.png",
+          "bytes": 430264,
+          "sha256": "591410a135e8ce8f822913b4825c68fbb2b90633d334fffad2887518eaa04bf6"
+        },
+        {
+          "name": "frame_000014.json",
+          "bytes": 487,
+          "sha256": "54a4739cb69f9ee4a1ae8b45696b97bd3caeec2d44c1ebffe22348c6dd7b8a64"
+        },
+        {
+          "name": "frame_000014.png",
+          "bytes": 294082,
+          "sha256": "50449963cce7709074e2340865bfb0f60a2b10f1dba28eef36b4db131496078c"
+        },
+        {
+          "name": "frame_000015.json",
+          "bytes": 487,
+          "sha256": "341e266f65bdac6377e5f4e8e0f032b5b037331b8581f859e085d9c97329e340"
+        },
+        {
+          "name": "frame_000015.png",
+          "bytes": 507219,
+          "sha256": "0ec76f4a0df817c4fad924a51065100695efaa23825f3d6717837295caa5eb36"
+        }
+      ]
+    },
+    {
+      "phase": "jaw-source-v2",
+      "purpose": "Exact source snapshot, fingerprint and tracked patch",
+      "relative_path": "v2/jaw-source-v2.tar",
+      "bytes": 5785600,
+      "sha256": "6cd148b2324972aa200b56c6f30aea10922c757c88aafd90e306ba475bc2d3eb",
+      "members": [
+        {
+          "name": "SOURCE_IDENTITY.json",
+          "bytes": 15799,
+          "sha256": "c9ee3b66c310d926af8ccdb75cf0045304a9232f5a4f74b9af2ff096ef56ec01"
+        },
+        {
+          "name": "tracked_diff.patch",
+          "bytes": 58086,
+          "sha256": "deb74fce88ac7041943da7a38327c8c60131c40c4f4ff8b304fd01ef60739bf5"
+        },
+        {
+          "name": "working_tree_source.tar",
+          "bytes": 5703680,
+          "sha256": "725da3a0a40c7501f917a383bad99d7acb2a08f3233974781d787f737800b13f"
+        }
+      ]
+    },
+    {
+      "phase": "jaw-validation-v2",
+      "purpose": "Native every-tick probes, lip audit, replay comparison and all test/build/capture logs",
+      "relative_path": "v2/jaw-validation-v2.tar",
+      "bytes": 307200,
+      "sha256": "a248f82b0bab61b12a6f719d443b38c1769a15e42018988a0cfedf8a0f89bab2",
+      "members": [
+        {
+          "name": "moebius-jaw-actual-lips.json",
+          "bytes": 912,
+          "sha256": "d9f38683ad3d1057c8c48435f1d1a18756147f89b798555e806a3b63497f73fe"
+        },
+        {
+          "name": "moebius-jaw-build-final.log",
+          "bytes": 162,
+          "sha256": "80688d49bc33eff41959d61d0547e79df1b76f83f287b8ff4bea6fb3c5396799"
+        },
+        {
+          "name": "moebius-jaw-build-moving.log",
+          "bytes": 162,
+          "sha256": "bc60abdc47875f9fe2c04185da84f64b8653ebae85b48ede3c70ee3276650e9d"
+        },
+        {
+          "name": "moebius-jaw-build-record.log",
+          "bytes": 162,
+          "sha256": "bc60abdc47875f9fe2c04185da84f64b8653ebae85b48ede3c70ee3276650e9d"
+        },
+        {
+          "name": "moebius-jaw-build-verified.log",
+          "bytes": 62,
+          "sha256": "b65d97c967cb13bb2fd061b2f5b86011ef366acea387375a92a9808f93395384"
+        },
+        {
+          "name": "moebius-jaw-build.log",
+          "bytes": 211,
+          "sha256": "30641b0c834da59e3b3a7b6ef91e6ccfdacfd8ea17f56d043e03a2d272c401df"
+        },
+        {
+          "name": "moebius-jaw-clippy-final.log",
+          "bytes": 172,
+          "sha256": "b46745909a62694277d0ca3ff53745ee0019142db6fd727ac427e227cb880454"
+        },
+        {
+          "name": "moebius-jaw-clippy-verified.log",
+          "bytes": 172,
+          "sha256": "3952ce922b1f400a3f78082b8a87b5f10eeecd59839e87f00826afdfe365d399"
+        },
+        {
+          "name": "moebius-jaw-clippy.log",
+          "bytes": 172,
+          "sha256": "48c7825202154a97fd7d7cf556336cd698d87e31b36a7ca799596e0bd9e00331"
+        },
+        {
+          "name": "moebius-jaw-contact-active.log",
+          "bytes": 3390,
+          "sha256": "07e3a604730d758fe4badc3c93bf403b38c24f601dd9761d59021345a654e8c9"
+        },
+        {
+          "name": "moebius-jaw-contact.log",
+          "bytes": 3399,
+          "sha256": "44554bf030e084eede7089b20cfadbc30a9d8ff682c455d044a2dafbe71d0264"
+        },
+        {
+          "name": "moebius-jaw-format-final.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "moebius-jaw-format.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "moebius-jaw-gif.log",
+          "bytes": 2796,
+          "sha256": "428a5c0f4324ac0b9f7ad48a7c7cf205fd45988721a9167697ae33f52aa10dfe"
+        },
+        {
+          "name": "moebius-jaw-moving-view.log",
+          "bytes": 124,
+          "sha256": "1adcd87d869f9bf0c0d6fbb1b8e119de96b28cce0017363eadc11a75fe8322ad"
+        },
+        {
+          "name": "moebius-jaw-native-final-build.log",
+          "bytes": 211,
+          "sha256": "7904a2e7aa2276b39da10a71fdfd7c85a7427c6ec8b76ee9cb325ad3b324ebdf"
+        },
+        {
+          "name": "moebius-jaw-native-final.jsonl",
+          "bytes": 101756,
+          "sha256": "b561c1797789cad2f4d49c005fe4cb00ab35142390855a9f026c9d7d81d5b57c"
+        },
+        {
+          "name": "moebius-jaw-native-full.jsonl",
+          "bytes": 60796,
+          "sha256": "26703d8c7b7c501ee6c64d59c607ecf82ae752a7fb3ff4f655bc71710906fa51"
+        },
+        {
+          "name": "moebius-jaw-native.jsonl",
+          "bytes": 8258,
+          "sha256": "d0f17ec69fd97d2caf4e988283cfc8b11455486e859a7fe7120b3aa2856512d6"
+        },
+        {
+          "name": "moebius-jaw-probe-build.log",
+          "bytes": 211,
+          "sha256": "7904a2e7aa2276b39da10a71fdfd7c85a7427c6ec8b76ee9cb325ad3b324ebdf"
+        },
+        {
+          "name": "moebius-jaw-render-contact.log",
+          "bytes": 2961,
+          "sha256": "12a4ea1273005cc36ed909a4721d109857a60e3acae41bfc8c24a7bf61b9adf5"
+        },
+        {
+          "name": "moebius-jaw-render-replay.json",
+          "bytes": 243,
+          "sha256": "dc173b4e167b354632144758169d15f23f6f668ae9dfd801febf59b21594b544"
+        },
+        {
+          "name": "moebius-jaw-render-sequence.log",
+          "bytes": 188,
+          "sha256": "40d01beabb5b3245669d8f5486f8ce0335adff8f9c69b2a281af0ee5a7267879"
+        },
+        {
+          "name": "moebius-jaw-tests-capture.log",
+          "bytes": 2432,
+          "sha256": "5e3be23a83ab82c54561204d829416797b93c08b06831387d01d6d95670a99bb"
+        },
+        {
+          "name": "moebius-jaw-tests-complete.log",
+          "bytes": 10470,
+          "sha256": "6b83745ec1566aa94b42adecc7c77890bb6d0ca4bced4d31758831af0d49c58b"
+        },
+        {
+          "name": "moebius-jaw-tests-final.log",
+          "bytes": 10434,
+          "sha256": "a7496869dd3f5f0860901945f977cef83d5b2adad333775ff46b7d1fb331ac52"
+        },
+        {
+          "name": "moebius-jaw-tests-verified.log",
+          "bytes": 10534,
+          "sha256": "45368e094cd914f8bdc2385de7e7b98e37c1be13a44c223aab48074dfca0c835"
+        },
+        {
+          "name": "moebius-jaw-tests.log",
+          "bytes": 2368,
+          "sha256": "1f0207f57b13317a10b15af3e689c096882f852c4d41347b4ed7d6948b35fdd8"
+        },
+        {
+          "name": "moebius-jaw-video-active.log",
+          "bytes": 6663,
+          "sha256": "cd8baf6c56051e11dc57086c7c068716135aed0e450492acb0ccb210678d1f4b"
+        },
+        {
+          "name": "moebius-jaw-video-v2.log",
+          "bytes": 418,
+          "sha256": "bdf3a0932d6e866334f8dfd123a640275f7d80b1e00c1b2767af1144efe21f0a"
+        },
+        {
+          "name": "moebius-jaw-video-v3.log",
+          "bytes": 6710,
+          "sha256": "47c63b0d1a53a13d13923bdd93f7da45cca674f083f8fa822e00fb8f69700a8b"
+        },
+        {
+          "name": "moebius-jaw-video.log",
+          "bytes": 273,
+          "sha256": "013522ae93afe53d9b1a69f91642fb10a27a159ea2ff82ebfab367ddd5e0a225"
+        },
+        {
+          "name": "moebius-jaw-x11-view.log",
+          "bytes": 124,
+          "sha256": "1adcd87d869f9bf0c0d6fbb1b8e119de96b28cce0017363eadc11a75fe8322ad"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v3-iterations",
+      "purpose": "Iteration chronology, authoring backup and live diagnostic GIF",
+      "relative_path": "v3/mouth-v3-iterations.tar",
+      "bytes": 2242560,
+      "sha256": "ded096a7dc593232117a9ccad3048475f6c699ddadf62be31432fbfce506be94",
+      "members": [
+        {
+          "name": "ITERATION_LOG.json",
+          "bytes": 808,
+          "sha256": "2d2f82f221d37a50e266a5e6c8e1b88231a8aedc066d2d578c8c53fc5c384c6f"
+        },
+        {
+          "name": "authoring-backup-v3.blend1",
+          "bytes": 1597841,
+          "sha256": "1f626199b70e496c20af27f4a57fdfeee9fbe96fd8f7fc7b28c39f8e4054296e"
+        },
+        {
+          "name": "jaw-exercise.gif",
+          "bytes": 637746,
+          "sha256": "75abb5d680159cee694e59537f917e7c6468c8d0b8fd3099d3f159cd77b4619c"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v3-prechange",
+      "purpose": "Raw model/render witness: prechange; rejected alignments retained",
+      "relative_path": "v3/mouth-v3-prechange.tar",
+      "bytes": 3112960,
+      "sha256": "d5267c57da3aaa611212232b96194c4e40b46e423e3ff1f4891696d08ad4d6d8",
+      "members": [
+        {
+          "name": "Worm_A_rigged.blend",
+          "bytes": 1536205,
+          "sha256": "9b4c35f3ff5148997ae333b00ffc764176083bf3de367782de79447274e0fafe"
+        },
+        {
+          "name": "Worm_A_rigged.glb",
+          "bytes": 1559500,
+          "sha256": "41646185ded1ab476f76ee302cf7c4fcc333f467a976d923c3074cead7b678fd"
+        },
+        {
+          "name": "rig.json",
+          "bytes": 2014,
+          "sha256": "323e1a2e4748532c598a67c1136d2730766712e52d02c15b19723fd816348fdc"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v3-rendered-exercise",
+      "purpose": "Raw model/render witness: rendered-exercise; rejected alignments retained",
+      "relative_path": "v3/mouth-v3-rendered-exercise.tar",
+      "bytes": 5662720,
+      "sha256": "a565742a1b9d640b71bb82621915a0412f4137d75710112a43a2175684db9091",
+      "members": [
+        {
+          "name": "frame_000000.json",
+          "bytes": 481,
+          "sha256": "0fdbae43bd1afdd356f61df9b854bb6dc6ea68a32a9e0022000905295032d584"
+        },
+        {
+          "name": "frame_000000.png",
+          "bytes": 320834,
+          "sha256": "35cde477acbc374db97e310cb008b58c56e9ac4f6d407bace8f23b9ea132c57c"
+        },
+        {
+          "name": "frame_000001.json",
+          "bytes": 481,
+          "sha256": "28dbc1572f3bac0c4e95d7ef6a232cb61e08e48f0241b6e2c4cc3f1943480511"
+        },
+        {
+          "name": "frame_000001.png",
+          "bytes": 320320,
+          "sha256": "2551997e2a08790e32be58a6d6c6f160e2a818334ff214c134eb9b4490509329"
+        },
+        {
+          "name": "frame_000002.json",
+          "bytes": 495,
+          "sha256": "e0e37370bfd095592d8727fffa3207eccce9feda8ea34d589882eafed78471a1"
+        },
+        {
+          "name": "frame_000002.png",
+          "bytes": 377552,
+          "sha256": "ac07101a09f9cee8828f71c5df2835d44ec77f573dac9bed81eba2de011f3d36"
+        },
+        {
+          "name": "frame_000003.json",
+          "bytes": 475,
+          "sha256": "4c2480618c58d83aebfd4f8994cd962f0a977e510d895d85636334a092aeb17b"
+        },
+        {
+          "name": "frame_000003.png",
+          "bytes": 376939,
+          "sha256": "f9eb8d1878ed08505285581186a1f3bec97901c5a1ccb3b41e1051a812d73794"
+        },
+        {
+          "name": "frame_000004.json",
+          "bytes": 497,
+          "sha256": "26443de843730ff997fdd2cd14a37fd1b29372af981a5b0ea6f60a049fd75125"
+        },
+        {
+          "name": "frame_000004.png",
+          "bytes": 324498,
+          "sha256": "f60f3b5bde585cca68081290895fb126158e71ca031b122f615692c8155b41ad"
+        },
+        {
+          "name": "frame_000005.json",
+          "bytes": 481,
+          "sha256": "84f034ac3f535ebefabdf9cfce5017f38e77bb6a8d0cf87d51bf6161ea9b1772"
+        },
+        {
+          "name": "frame_000005.png",
+          "bytes": 321352,
+          "sha256": "e37b767d31bd2f042991ec3e61275eaa3271f63945bb9fdf8776554a2c193ba7"
+        },
+        {
+          "name": "frame_000006.json",
+          "bytes": 500,
+          "sha256": "f82efa0d05a86189cff709e79bd8541f8b180ca144ef003b5f0220d110a589ff"
+        },
+        {
+          "name": "frame_000006.png",
+          "bytes": 377228,
+          "sha256": "0e5fac71e44a4a0237cdfe0f35b12e97b91f5b2c946c0537a43f3c36aab6d607"
+        },
+        {
+          "name": "frame_000007.json",
+          "bytes": 476,
+          "sha256": "6f2697b805b0bb0872bd7fe9185d40a47504e07a674df4e9604dc4cbc54f1176"
+        },
+        {
+          "name": "frame_000007.png",
+          "bytes": 377602,
+          "sha256": "f57f974eb4492535611754bf47780c43b7ec572092029a6e6322aa0f8297df95"
+        },
+        {
+          "name": "frame_000008.json",
+          "bytes": 508,
+          "sha256": "0dc16598d2e70e85bfb03ae4ff5e2cdc7f592b634345777788226a22808f8e17"
+        },
+        {
+          "name": "frame_000008.png",
+          "bytes": 325512,
+          "sha256": "9b787165e35c36668680ebab78372aedabac89f68b40ced664f5e961d69526da"
+        },
+        {
+          "name": "frame_000009.json",
+          "bytes": 482,
+          "sha256": "4bd36829aab87af470f7866247d94d9c54cc5d221cee7bc2bcde8e8ead29b4d3"
+        },
+        {
+          "name": "frame_000009.png",
+          "bytes": 321201,
+          "sha256": "d97b59ae90feba5481ee1b2acd440c21f0dca78a39c6b13a65e13e15cc4051cf"
+        },
+        {
+          "name": "frame_000010.json",
+          "bytes": 500,
+          "sha256": "bb9da09c22e59e5aadc4a6032792ba11ea8081f29cfa53b88931f72a2007b617"
+        },
+        {
+          "name": "frame_000010.png",
+          "bytes": 377490,
+          "sha256": "2fb814f76850df4023dde937e8a075310d7c8c453bc100934d2c4c0d3b6c025b"
+        },
+        {
+          "name": "frame_000011.json",
+          "bytes": 476,
+          "sha256": "0b18e94619955bc587071a9be55ad6723d200df5b4ce82ae232252dadf304e02"
+        },
+        {
+          "name": "frame_000011.png",
+          "bytes": 377336,
+          "sha256": "d6680fb6251090b99210a98c4af9b17f90933f7bf998762f9c8547cf843d3961"
+        },
+        {
+          "name": "frame_000012.json",
+          "bytes": 508,
+          "sha256": "0a6d33830737408d4836c7712270311c53c61763e918a1a2960d2dc0dc26bf7b"
+        },
+        {
+          "name": "frame_000012.png",
+          "bytes": 325672,
+          "sha256": "88547272ff33e07c9858c6686713d141a321d9fd5745d739ffa513ff98abb9d0"
+        },
+        {
+          "name": "frame_000013.json",
+          "bytes": 482,
+          "sha256": "788e67b8439d67376cc384570ab96edbb40acb055a8fd26e3894269ae2db1b8c"
+        },
+        {
+          "name": "frame_000013.png",
+          "bytes": 320591,
+          "sha256": "dfbff059ba52a24dcc58a98d6ae31ef03f724a7d52b812c7f0203a252a84d897"
+        },
+        {
+          "name": "frame_000014.json",
+          "bytes": 496,
+          "sha256": "9263125d47c92d482ba55e04a7fcc60dd2cf67870c70d9f28dde867048f16214"
+        },
+        {
+          "name": "frame_000014.png",
+          "bytes": 376578,
+          "sha256": "69c11c2f3e71a1faae3b44c8fb6e6601620ebdb7a5c5ead9f3f3bd8232ca94ac"
+        },
+        {
+          "name": "frame_000015.json",
+          "bytes": 476,
+          "sha256": "ff098d12dd28f4c8bf3156f5b19667272d11a0aae2853c5e54756284231fdece"
+        },
+        {
+          "name": "frame_000015.png",
+          "bytes": 376739,
+          "sha256": "13dd3a6af1984731596a9437c2183516183315c7ef6c8c22da7ce957f1bbeffd"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v3-source",
+      "purpose": "Exact source snapshot and fingerprint, tracked patch, authoritative report snapshot",
+      "relative_path": "v3/mouth-v3-source.tar",
+      "bytes": 6410240,
+      "sha256": "ed3968615aa8128ec01122785f6d34c037741b1b736dfba3a9a4f6da7528c8a0",
+      "members": [
+        {
+          "name": "MOUTH_CLOSURE.md",
+          "bytes": 4258,
+          "sha256": "a9ddfe72baa4cfcbf925f0ca20666c1676d0873583eccf02a99b6578b03404d3"
+        },
+        {
+          "name": "SOURCE_IDENTITY.json",
+          "bytes": 16484,
+          "sha256": "ae65864d6337eba404d04665d80037414ebb13a6d9e14877d7e6fcd4dcd1436a"
+        },
+        {
+          "name": "tracked_diff.patch",
+          "bytes": 61534,
+          "sha256": "39f37e32c792d2c0309394cc038bce82b0ed9cbd010c20d1f31d5357c4d2c878"
+        },
+        {
+          "name": "working_tree_source.tar",
+          "bytes": 6318080,
+          "sha256": "209ef15bee69c8add95994c10d72bc6440662969b4f5cb915604bb0dcac4b69b"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v3-studio-v1",
+      "purpose": "Raw model/render witness: studio-v1; rejected alignments retained",
+      "relative_path": "v3/mouth-v3-studio-v1.tar",
+      "bytes": 9103360,
+      "sha256": "19048b6af9af2a525278f219c7eb57e3f6991a8b7c834edb0db389c0f516f8aa",
+      "members": [
+        {
+          "name": "Worm_A_rigged.glb",
+          "bytes": 2060352,
+          "sha256": "c8d481cba9d428c9eb21764122c785d73f0d9ef6198603279dddda34a9742cae"
+        },
+        {
+          "name": "bend.png",
+          "bytes": 819481,
+          "sha256": "390339889b4170d780728ad6cbfe5e746607f2750dd6677fad889810a5fdea4f"
+        },
+        {
+          "name": "closed.png",
+          "bytes": 808352,
+          "sha256": "4c4ee8ecc8ecf1f473a3f7e5ef82848a62917cfd939b7dc492199326242c7ae3"
+        },
+        {
+          "name": "mouth_bend.png",
+          "bytes": 940214,
+          "sha256": "570ec8587c8a1dc6b59eee7632a91d04b20a3807b858ee99fbfbaa7aaf534c65"
+        },
+        {
+          "name": "mouth_closed.png",
+          "bytes": 921756,
+          "sha256": "ffc9440aff18c2e438e352a7d367d371168c87862e9ba0417575e5dd0e89635b"
+        },
+        {
+          "name": "mouth_neutral.png",
+          "bytes": 934211,
+          "sha256": "6bc7352484640e980f135d23baf94dafe7a17b6a02e9faaf13bb0e1d6e0c5bbf"
+        },
+        {
+          "name": "mouth_open.png",
+          "bytes": 955867,
+          "sha256": "9fccea826737fad7aacba6d044abcd41958920b97887cb4453e48fe6a0b8bc65"
+        },
+        {
+          "name": "neutral.png",
+          "bytes": 812912,
+          "sha256": "bc42eda3635235d2051ff3f4517b7b90158773bcf4ad994c719029a3e7f0a793"
+        },
+        {
+          "name": "open.png",
+          "bytes": 817960,
+          "sha256": "2189168d3a722b491eeeafcd40d3830a98bdd9f3fe983a28f488b87eb665ce2a"
+        },
+        {
+          "name": "rig.json",
+          "bytes": 4861,
+          "sha256": "a42223de6482a83071b4e4dea4a748093d5e66ed6da9bdd699ba2740f3d50348"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v3-studio-v2",
+      "purpose": "Raw model/render witness: studio-v2; rejected alignments retained",
+      "relative_path": "v3/mouth-v3-studio-v2.tar",
+      "bytes": 9359360,
+      "sha256": "6a3937b4386564d10a790307b6d283c4be2ed8106dc671722ca521f7ae72f8f3",
+      "members": [
+        {
+          "name": "bend.png",
+          "bytes": 824329,
+          "sha256": "b7885672decc1be534bfd2372fda1b6df01dff6e2ff7bc955d9878181dd392e9"
+        },
+        {
+          "name": "closed.png",
+          "bytes": 815296,
+          "sha256": "c7cd3fea27ece4d558a3a1b3b6ee9a53fae811d1aaef8343daf03a30870d80c3"
+        },
+        {
+          "name": "model.glb",
+          "bytes": 2064360,
+          "sha256": "e072ef737b7003dbef77c4c7c2e778e2113eb1c7daa550678e91f47549006978"
+        },
+        {
+          "name": "mouth_bend.png",
+          "bytes": 984669,
+          "sha256": "526473d16604f66a5510d507f9c060044d3a12ba963957b0b2b2c6f55a58030a"
+        },
+        {
+          "name": "mouth_closed.png",
+          "bytes": 999330,
+          "sha256": "4b9e5c333c28d95f53aeaa11c6abf36e0526cd3d64e8fc47f9d3c0563cdbee0a"
+        },
+        {
+          "name": "mouth_neutral.png",
+          "bytes": 999983,
+          "sha256": "185dc27f48ec2c84c8217c5b516c2ac6ba72396ed39f4fccdd2e16877b076894"
+        },
+        {
+          "name": "mouth_open.png",
+          "bytes": 1006011,
+          "sha256": "03d1cf736f6d4b7495f085c7cd102970a20cf5c4018c8fc83d1595cad48be4f7"
+        },
+        {
+          "name": "neutral.png",
+          "bytes": 818555,
+          "sha256": "e2c13a7c020bdd5ea2606f9be0ce5b560bc2b73e7616aeccd736226417b72f4b"
+        },
+        {
+          "name": "open.png",
+          "bytes": 821422,
+          "sha256": "902a6d9fc9803f8a4bbfc2a0489e343789d2a4cc669150e2df7f9eb7911c423b"
+        },
+        {
+          "name": "worm_oral.py",
+          "bytes": 5600,
+          "sha256": "65595851726914b9b10da80d353a755efd0cabd94b22e9bf78da7243198b7d31"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v3-studio-v3",
+      "purpose": "Raw model/render witness: studio-v3; rejected alignments retained",
+      "relative_path": "v3/mouth-v3-studio-v3.tar",
+      "bytes": 7280640,
+      "sha256": "b92bbde86317f8bb1aa20f48427ed0261fddcfb30fe41c37c004e2fad30ba565",
+      "members": [
+        {
+          "name": "bend.png",
+          "bytes": 823341,
+          "sha256": "816049ffbc4b10c6c7d2d40e49efecee35a8ad9a2eada91c4c37903c19f9b4a5"
+        },
+        {
+          "name": "closed.png",
+          "bytes": 818532,
+          "sha256": "dc822b8adaf4f97d8a88e836616d2906add5f719cc923306c2720ba4375c22f0"
+        },
+        {
+          "name": "mouth_bend.png",
+          "bytes": 976417,
+          "sha256": "0d2cf6c925fc385e6b2dd19f2f118ef9ecd62279c50c444a001834f70f7bcd08"
+        },
+        {
+          "name": "mouth_closed.png",
+          "bytes": 1004217,
+          "sha256": "7fbfd7315f75825ef230058abcb09e16e8e081755751ece0803708b6a8163f67"
+        },
+        {
+          "name": "mouth_neutral.png",
+          "bytes": 992090,
+          "sha256": "2abe16728c13d29dac3e73ff7dea69f209b90a8b969cf9481a5fa7dbcec4d7b1"
+        },
+        {
+          "name": "mouth_open.png",
+          "bytes": 1002938,
+          "sha256": "2a02e0b64891855ef58d1bbbfcbba58c9d0e07d3f6a345c7519963f9d46c6b0c"
+        },
+        {
+          "name": "neutral.png",
+          "bytes": 818244,
+          "sha256": "25ee60ebca68741a8a5d413bb1bfd2f1a053bb99fddcbd9d73ad74e26edfb235"
+        },
+        {
+          "name": "open.png",
+          "bytes": 820559,
+          "sha256": "312ca61dfa3b240e4e941b8c119bf976aac6c48cd5476e628baedd28e891ba07"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v3-validation",
+      "purpose": "All model/build/test logs, native and imposed-control telemetry, geometry and replay audits",
+      "relative_path": "v3/mouth-v3-validation.tar",
+      "bytes": 276480,
+      "sha256": "22a9925d8f247728e353e7598671e7a132ad06b8be3da4fff40a240120933eb4",
+      "members": [
+        {
+          "name": "moebius-mouth-v3-blender-v2.log",
+          "bytes": 2159,
+          "sha256": "4e6e5f78faad37208d4045608c4df504fbe3eddbc2b59e15d38d39d6b3cb4c5e"
+        },
+        {
+          "name": "moebius-mouth-v3-blender-v3.log",
+          "bytes": 2159,
+          "sha256": "35573a9042d7b886a8f4e468a5cda883ddc497fffc8da50be06a70b8375efb08"
+        },
+        {
+          "name": "moebius-mouth-v3-blender.log",
+          "bytes": 2159,
+          "sha256": "32fbed700920c983a6ea111e514105ebd434bda2b3dee81ec20e4d990f5dd7bc"
+        },
+        {
+          "name": "moebius-mouth-v3-build-final.log",
+          "bytes": 162,
+          "sha256": "a7bbe0d75957fe3b15edb7dfa29cbd25d36cfe73b10393788d116c81d3be7721"
+        },
+        {
+          "name": "moebius-mouth-v3-build-model-final.json",
+          "bytes": 4991,
+          "sha256": "55462ea5eace87dd811e21c92a7e5dbbf5a55a9a838c0a5798c6a04a5bb4d4ca"
+        },
+        {
+          "name": "moebius-mouth-v3-build-model-v2.json",
+          "bytes": 4862,
+          "sha256": "215a82b3c9a8502d0fada0c14d4a60bcd43f454a0eb978f73782be11974b06c5"
+        },
+        {
+          "name": "moebius-mouth-v3-build-model-v3.json",
+          "bytes": 4862,
+          "sha256": "4bf4fc8a0c130d72f75c68779730e39a0d9d9dd1d4d46d63f468d9b5625a8949"
+        },
+        {
+          "name": "moebius-mouth-v3-build-model.json",
+          "bytes": 4861,
+          "sha256": "a42223de6482a83071b4e4dea4a748093d5e66ed6da9bdd699ba2740f3d50348"
+        },
+        {
+          "name": "moebius-mouth-v3-clippy-final.log",
+          "bytes": 172,
+          "sha256": "3d135d6bd90aded2941cb66a26ad10b4b91e708d0a082f9cbc6cd62f45ed7064"
+        },
+        {
+          "name": "moebius-mouth-v3-clippy.log",
+          "bytes": 172,
+          "sha256": "768eceb3e571bf28e0191613cf29db979cf00d3a999259db09b05e03607af6d1"
+        },
+        {
+          "name": "moebius-mouth-v3-exercise-build-fixed.log",
+          "bytes": 216,
+          "sha256": "805ab971de79efc8259ac3bc24650e036b222ac47516c957f95ac731b4e750c0"
+        },
+        {
+          "name": "moebius-mouth-v3-exercise-build.log",
+          "bytes": 637,
+          "sha256": "cc90e86ee384751d505d114c6528995afa27501673e4edc9b2a9aede996935e9"
+        },
+        {
+          "name": "moebius-mouth-v3-exercise.jsonl",
+          "bytes": 75064,
+          "sha256": "85e0cdcd48163cfa3ea8db754e1defd0aea2b9e01c4896e327d15ee374c259fe"
+        },
+        {
+          "name": "moebius-mouth-v3-format.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "moebius-mouth-v3-geometry.json",
+          "bytes": 1973,
+          "sha256": "2df3720becbb044410056aa583f3ef5c327c1342465819bc81364b47efde40ff"
+        },
+        {
+          "name": "moebius-mouth-v3-gif.log",
+          "bytes": 2804,
+          "sha256": "bdffcee4027455fdf07aa8af6662c09d511157067e5ec5a60a57a61fdf4aec06"
+        },
+        {
+          "name": "moebius-mouth-v3-native-build.log",
+          "bytes": 111,
+          "sha256": "21f153c5e5334d82b6fdd8d99ef6ed9ac074af5a5a0a30bd9ae217da7671688c"
+        },
+        {
+          "name": "moebius-mouth-v3-native.jsonl",
+          "bytes": 101756,
+          "sha256": "b561c1797789cad2f4d49c005fe4cb00ab35142390855a9f026c9d7d81d5b57c"
+        },
+        {
+          "name": "moebius-mouth-v3-render-exercise.log",
+          "bytes": 202,
+          "sha256": "ebc78b3660df2792f7a375de090916579010a86a2ce9d3dfb5a1da90e32d87f0"
+        },
+        {
+          "name": "moebius-mouth-v3-replay.json",
+          "bytes": 151,
+          "sha256": "ed2fb9ba8e18edd4fd0f48e3ea78aed4ed2d649aa0910e52999aaed08e5bd0d4"
+        },
+        {
+          "name": "moebius-mouth-v3-tests-final-viewer.log",
+          "bytes": 2525,
+          "sha256": "a7f16bcb22b70398e3f675f00490f04c5780a3b55a01402eea3bd0f36f2bc276"
+        },
+        {
+          "name": "moebius-mouth-v3-tests-initial.log",
+          "bytes": 2432,
+          "sha256": "bd8b0f4e553fce6f8fe70da7d08cb0917d9c90710c24e4559b4e24ff782ea39a"
+        },
+        {
+          "name": "moebius-mouth-v3-tests.log",
+          "bytes": 10627,
+          "sha256": "cb0d422fec136a604fb8fb70cc1312984916ea1e0da5e6a4e3ae843a679b8a99"
+        },
+        {
+          "name": "moebius-mouth-v3-view-build-final.log",
+          "bytes": 162,
+          "sha256": "bc60abdc47875f9fe2c04185da84f64b8653ebae85b48ede3c70ee3276650e9d"
+        },
+        {
+          "name": "moebius-mouth-v3-view-build-record.log",
+          "bytes": 162,
+          "sha256": "547b51c6b8acfbe9658169bdccb2b00c5c08ca8042c776e89666d1609d29f6e5"
+        },
+        {
+          "name": "moebius-mouth-v3-view-build.log",
+          "bytes": 162,
+          "sha256": "f5bf6b473079776931f38feed8746f9a4baafea3c55360b6df6df78f4dfd057b"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v4-baseline-pre-v3",
+      "purpose": "Raw model/render witness: baseline-pre-v3; rejected alignments retained",
+      "relative_path": "v4/mouth-v4-baseline-pre-v3.tar",
+      "bytes": 1566720,
+      "sha256": "745d224088d9fec701c743f1783c3fb7603cbc878beaeb9b280bdda677b68b19",
+      "members": [
+        {
+          "name": "Worm_A_rigged.glb",
+          "bytes": 1559500,
+          "sha256": "41646185ded1ab476f76ee302cf7c4fcc333f467a976d923c3074cead7b678fd"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v4-iterations",
+      "purpose": "Iteration chronology, authoring backup and live diagnostic GIF",
+      "relative_path": "v4/mouth-v4-iterations.tar",
+      "bytes": 2211840,
+      "sha256": "607ac9c6bcb8c7d97be10e57f360a0baae9f9caaf3bc0c72ee8ad1d5aea8afa8",
+      "members": [
+        {
+          "name": "ITERATION_LOG.json",
+          "bytes": 764,
+          "sha256": "99407ea1c645864289c485a587f9eb0e2483da3dbc9122131faf2322101ee3a3"
+        },
+        {
+          "name": "authoring-backup.blend1",
+          "bytes": 1696999,
+          "sha256": "ec4605360d0ab07c45138188949903ae9d8d5d1e6846b95870a3a347efa2d108"
+        },
+        {
+          "name": "morph-v2.py",
+          "bytes": 4308,
+          "sha256": "5c6c454541368ee1d4bee3489d54904a7f660367a121048a9e6b3b05fd505c0d"
+        },
+        {
+          "name": "rejected-sideways-morph.py",
+          "bytes": 4308,
+          "sha256": "5c6c454541368ee1d4bee3489d54904a7f660367a121048a9e6b3b05fd505c0d"
+        },
+        {
+          "name": "vertical-mouth.gif",
+          "bytes": 487162,
+          "sha256": "f6404e2945ac86c3d5e156eb929ced36c56c16148f6aa6ff7bf835dbe735e975"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v4-native-render",
+      "purpose": "Raw model/render witness: native-render; rejected alignments retained",
+      "relative_path": "v4/mouth-v4-native-render.tar",
+      "bytes": 5437440,
+      "sha256": "7da0531d239ba37dc56fe3fd6f37f2aa53ed7e53fde7a2bb34c4cabe6e1abdff",
+      "members": [
+        {
+          "name": "frame_000000.json",
+          "bytes": 568,
+          "sha256": "2e617f33816f971bce8664bcb882485bbdabd704fdd76a7e033207cc7d664430"
+        },
+        {
+          "name": "frame_000000.png",
+          "bytes": 313831,
+          "sha256": "40e5205ed2498abbf651ef63eb54710a44a375ec228d4662e24facd73e7931ec"
+        },
+        {
+          "name": "frame_000001.json",
+          "bytes": 550,
+          "sha256": "c7707a70cfad98e44f2c530f54b4032fe145cd4d8105662241d532179bc50996"
+        },
+        {
+          "name": "frame_000001.png",
+          "bytes": 250905,
+          "sha256": "bef003a146b3f9536b81b096c34a50d7180c2b23bd276ec37681b5d205894881"
+        },
+        {
+          "name": "frame_000002.json",
+          "bytes": 579,
+          "sha256": "7cb870a8f4d1f7614b010b3d9f696221eeb49716022c0a3973b41ec148e5a5f0"
+        },
+        {
+          "name": "frame_000002.png",
+          "bytes": 352733,
+          "sha256": "bb2bd47f4b7bbfddd5c12221cb1e84e5aca466a9bfc7ddb9bccdd2742d8814f8"
+        },
+        {
+          "name": "frame_000003.json",
+          "bytes": 551,
+          "sha256": "261f6b21be55203fae890c37e7c09f276ccb2cf23ce4372b3d08592a8d7cc81b"
+        },
+        {
+          "name": "frame_000003.png",
+          "bytes": 280843,
+          "sha256": "c2f47df17cead3c4dca0fb0ec59cf28e0ab2ef43460427863df70816fa19f140"
+        },
+        {
+          "name": "frame_000004.json",
+          "bytes": 582,
+          "sha256": "e1421c4d0555953ed4d6b715bb1307b4b43819250255e17dd0918fe8a539d6d2"
+        },
+        {
+          "name": "frame_000004.png",
+          "bytes": 339241,
+          "sha256": "0db27431959316741a48929046457606f3fb43e01df4a8b001af14d78a7397b6"
+        },
+        {
+          "name": "frame_000005.json",
+          "bytes": 552,
+          "sha256": "8cad5711170dc955c20d624c6649b5fcaad93aa95b3a1269e428df689294a375"
+        },
+        {
+          "name": "frame_000005.png",
+          "bytes": 294519,
+          "sha256": "929c9a8ee1d63c20ccc9945b0afead954b31a8ff6caad4204cbf967efe262b85"
+        },
+        {
+          "name": "frame_000006.json",
+          "bytes": 555,
+          "sha256": "6eebacee841c3b4bb57af4acdd40f6f65d5514797abfba9a694a7592faa707cc"
+        },
+        {
+          "name": "frame_000006.png",
+          "bytes": 358204,
+          "sha256": "7b497d050ceb3f19246a2a251aa8da7c866fbe01631ab28e399cab66c70b7207"
+        },
+        {
+          "name": "frame_000007.json",
+          "bytes": 552,
+          "sha256": "5481687f738e70127a79caaf4e4933e37f18483be171c9b5cb8f23cf69fea041"
+        },
+        {
+          "name": "frame_000007.png",
+          "bytes": 287387,
+          "sha256": "e940d404c22f08c92c23353b343a2f3ee93fca797da44f1ac008fd71f80b81ed"
+        },
+        {
+          "name": "frame_000008.json",
+          "bytes": 541,
+          "sha256": "bd31835d178c71f48b4066c618b931bc9ff1ca51a627f8ad305f03f5ad14e4f1"
+        },
+        {
+          "name": "frame_000008.png",
+          "bytes": 408411,
+          "sha256": "67f43f3774b3853b9307f468c0a5e53dca79cc9c1e77934c5a262cbbd5e8f2d0"
+        },
+        {
+          "name": "frame_000009.json",
+          "bytes": 552,
+          "sha256": "30d64c7e6e38ce316e93c3fc1e91d56f98597115e211a1e56d34216a1adccf28"
+        },
+        {
+          "name": "frame_000009.png",
+          "bytes": 331114,
+          "sha256": "94ddc528bbe067feeed7a7ebf25546d9f9a93b27920aa81ff9627f5a9e8f8d0e"
+        },
+        {
+          "name": "frame_000010.json",
+          "bytes": 554,
+          "sha256": "567c0e1fb4e0c6de97e477d594188f60f0e0bef352d87ae75c8d8f0b9c0bbdf1"
+        },
+        {
+          "name": "frame_000010.png",
+          "bytes": 348719,
+          "sha256": "d0d188cb2b3d1f1c98334c8a55ae02a6d019c021ffb66b0648d64ea721fa0544"
+        },
+        {
+          "name": "frame_000011.json",
+          "bytes": 554,
+          "sha256": "ccf7b223450203a6027d1b1d6e7d4fdf5748431c393000647c8dae2f4a593e03"
+        },
+        {
+          "name": "frame_000011.png",
+          "bytes": 365847,
+          "sha256": "a628b1eb90313db224e612aaca0072cfd969b19fe665d4713c6f8a3d7c78e4b3"
+        },
+        {
+          "name": "frame_000012.json",
+          "bytes": 552,
+          "sha256": "5da0d7274ef23c8a3902368464267879b1514dabea33b1e28933eb4580deb3dc"
+        },
+        {
+          "name": "frame_000012.png",
+          "bytes": 278697,
+          "sha256": "b0d2717f281e720cd699ab1961e262c903b82172400571ce40b708f1835d9fe2"
+        },
+        {
+          "name": "frame_000013.json",
+          "bytes": 554,
+          "sha256": "3bb46ae3acc6895b1eca84c31d00e33c43eb13ef1de78f1a599e062212d27277"
+        },
+        {
+          "name": "frame_000013.png",
+          "bytes": 407642,
+          "sha256": "4f78d2d73234845e514ab1cc4f9ace740abdbcc177b899183a3014c3c06c5f49"
+        },
+        {
+          "name": "frame_000014.json",
+          "bytes": 553,
+          "sha256": "77572cfa9a68275e4665f39e5108227ca287402f553688d14b108cd3adf6f9c5"
+        },
+        {
+          "name": "frame_000014.png",
+          "bytes": 268092,
+          "sha256": "c1c81a2bb2d60b2dca18b1c600a72994514aad9333205fcd6f50ca62bea2f6d5"
+        },
+        {
+          "name": "frame_000015.json",
+          "bytes": 553,
+          "sha256": "fce64933ad7ae53ca4633da7640e305f9f76f28871d0b6d90fdeb13877c18945"
+        },
+        {
+          "name": "frame_000015.png",
+          "bytes": 477620,
+          "sha256": "8bb88ccf092e213865a0944c67c15fcd18d80e3881c32bcadf36e8dece9281d2"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v4-rejected-v3",
+      "purpose": "Raw model/render witness: rejected-v3; rejected alignments retained",
+      "relative_path": "v4/mouth-v4-rejected-v3.tar",
+      "bytes": 3696640,
+      "sha256": "f4accad5262e12cb00f6f8955849b8f142e1d4e98139626250e072d8c0c69855",
+      "members": [
+        {
+          "name": "Worm_A_rigged.blend",
+          "bytes": 1611085,
+          "sha256": "8b47befaf57073a9b689574b5110f23c65c499979879a0ddb929aeff6925f766"
+        },
+        {
+          "name": "Worm_A_rigged.glb",
+          "bytes": 2064548,
+          "sha256": "01dc21d01943bc5f1e9e1b11c844727d94bbf8ea5864a69ba1c94609ff9fb3a6"
+        },
+        {
+          "name": "rig.json",
+          "bytes": 4991,
+          "sha256": "55462ea5eace87dd811e21c92a7e5dbbf5a55a9a838c0a5798c6a04a5bb4d4ca"
+        },
+        {
+          "name": "worm_oral.py",
+          "bytes": 5826,
+          "sha256": "9b4e2d47a93b54fd41413201e47bc1f7fc0583aab14fb45136204297137597a2"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v4-source",
+      "purpose": "Exact source snapshot and fingerprint, tracked patch, authoritative report snapshot",
+      "relative_path": "v4/mouth-v4-source.tar",
+      "bytes": 6830080,
+      "sha256": "fec6e1d7e77d7d491e7f5ff83601b2bcf5b43f86e2e0e4009e6341c555adcb1b",
+      "members": [
+        {
+          "name": "SCULPT_REPAIR.md",
+          "bytes": 3551,
+          "sha256": "7d9c3a6a5f28bfa74d38e4a6026eaab282dbeca9eeae5e1b57fee59a4d0f8574"
+        },
+        {
+          "name": "SOURCE_IDENTITY.json",
+          "bytes": 16802,
+          "sha256": "137f24ff940c637227a102f1c0a5d79518220ad6432b3882e7bd7fd825618384"
+        },
+        {
+          "name": "tracked_diff.patch",
+          "bytes": 62259,
+          "sha256": "b8444f05de0d8a88cc716b8f1833254ca631f621a431fc7541204a2b13d373ff"
+        },
+        {
+          "name": "working_tree_source.tar",
+          "bytes": 6737920,
+          "sha256": "38d7e30955e98f22ef47c3750ae9a4291d6a56755bf770b5b7348fec3ad1fcc2"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v4-studio-hinge",
+      "purpose": "Raw model/render witness: studio-hinge; rejected alignments retained",
+      "relative_path": "v4/mouth-v4-studio-hinge.tar",
+      "bytes": 9512960,
+      "sha256": "3526612983e663fb79ff7bbfba95922c80f5b152f2841a4a8637544f579ccc26",
+      "members": [
+        {
+          "name": "bend.png",
+          "bytes": 806799,
+          "sha256": "09594cabf5791bc9cb3049608b6f9e0e943761fe26c271bd8c78518ad466dd7c"
+        },
+        {
+          "name": "closed.png",
+          "bytes": 796761,
+          "sha256": "17a8c2a197c67d1e708a7f84bb720e53eea7285097fe2003a855f7f5d8921b1a"
+        },
+        {
+          "name": "model.glb",
+          "bytes": 2410704,
+          "sha256": "95e0b3e7c55c24cc6d529bd96d690c2680a8f5b5a77b7db4548f01defd26f733"
+        },
+        {
+          "name": "morph.py",
+          "bytes": 4069,
+          "sha256": "e50ced0d8303658932a60995ed3ed93018367f6618c76f2425b3de5a6517dbdd"
+        },
+        {
+          "name": "mouth_bend.png",
+          "bytes": 956412,
+          "sha256": "25d0c6ef614121ef2057833c1b92132f4da48abd4dfd0d6519c2fac1bb5e12dc"
+        },
+        {
+          "name": "mouth_closed.png",
+          "bytes": 962711,
+          "sha256": "22ffffe1d86c17acc3ade5ac1afaff88aa2e24425b3fca6625043674c46e0fd8"
+        },
+        {
+          "name": "mouth_neutral.png",
+          "bytes": 976669,
+          "sha256": "a11f64553b1fc1a2ab536b2a87ff4c2f716f6ef4dff2510e97e46b70ae3dd796"
+        },
+        {
+          "name": "mouth_open.png",
+          "bytes": 976669,
+          "sha256": "7c7172c2b2cb09de64de8a8c0fac614e0d50a486048cc18c58b9de6c38a9185e"
+        },
+        {
+          "name": "neutral.png",
+          "bytes": 799450,
+          "sha256": "91acebe308f2853e345bff72741130107e15dcc3df4122303d65d8fa3208c25a"
+        },
+        {
+          "name": "open.png",
+          "bytes": 799450,
+          "sha256": "9fe5a62b16c45b920c87e3c09f3b2902f9ac5703cf47ef67f778422805f126b6"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v4-studio-rim",
+      "purpose": "Raw model/render witness: studio-rim; rejected alignments retained",
+      "relative_path": "v4/mouth-v4-studio-rim.tar",
+      "bytes": 7106560,
+      "sha256": "81cc3c4e5c7956aab03c6e71af80d1221bf3f1410f23b2bfc869e16e4166090d",
+      "members": [
+        {
+          "name": "bend.png",
+          "bytes": 806799,
+          "sha256": "fbe89fff7b748a80baf0557cb354cdd101314fe2c66d9ec52b27ec55b4752852"
+        },
+        {
+          "name": "closed.png",
+          "bytes": 798296,
+          "sha256": "b2516a415c5dbc22f4992161ed48c37b984f2286f359cbbd75e83476b5c755d7"
+        },
+        {
+          "name": "mouth_bend.png",
+          "bytes": 956412,
+          "sha256": "17f66f241e62859a6f6328961b3b38636fd27fa0643592a1c365c000c16147cf"
+        },
+        {
+          "name": "mouth_closed.png",
+          "bytes": 976726,
+          "sha256": "22f6a6ef478f87f25fdb734e592709a95e8e2165aa1c2483077222af0607ae9c"
+        },
+        {
+          "name": "mouth_neutral.png",
+          "bytes": 976669,
+          "sha256": "01740d28019ac610223661f10c5cf89ac97dc08280a116b2da229379ca952abd"
+        },
+        {
+          "name": "mouth_open.png",
+          "bytes": 976669,
+          "sha256": "782cc905403b35673d41298e10687678ccd682d735eeaf8c3ef956f18070fe4b"
+        },
+        {
+          "name": "neutral.png",
+          "bytes": 799450,
+          "sha256": "54cc7e8551a676b3aeedd9b8420429f5c5509536b434355184429f0422dfc0c4"
+        },
+        {
+          "name": "open.png",
+          "bytes": 799450,
+          "sha256": "ea7264d02f18af622766ab12f2f0468836d8dab898d2515b9fba6694014acf73"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v4-studio-v1",
+      "purpose": "Raw model/render witness: studio-v1; rejected alignments retained",
+      "relative_path": "v4/mouth-v4-studio-v1.tar",
+      "bytes": 10260480,
+      "sha256": "061e90229835ba0d6f1fafb0be1a098fb8c01307f110cf517a78ecb1b710b639",
+      "members": [
+        {
+          "name": "bend.png",
+          "bytes": 814523,
+          "sha256": "f97bf62fba2942506016b0899820602b990f6876866a5c6429237bacf9f57276"
+        },
+        {
+          "name": "closed.png",
+          "bytes": 804959,
+          "sha256": "ca9b714a1e2203c49b5f8c2b19b44561244bb12b00681ad2f145c6a4613e2283"
+        },
+        {
+          "name": "model.glb",
+          "bytes": 2990684,
+          "sha256": "940563e0731c347a70751572f3b00cd51cf38a938a272af78a81489b1a7b2678"
+        },
+        {
+          "name": "mouth_bend.png",
+          "bytes": 985336,
+          "sha256": "56eb43918f924489d2776bf82fbae0eb3ed82247efdaa15314abf5b8de3ab87f"
+        },
+        {
+          "name": "mouth_closed.png",
+          "bytes": 1007340,
+          "sha256": "1ab1f74cd9f6504cc5f604620ff9db31cded34b2fb94a20ea4de48f2ad90a7ce"
+        },
+        {
+          "name": "mouth_neutral.png",
+          "bytes": 1007555,
+          "sha256": "e8d6de5c148618d285fc8f2305a5773f1d2a10129d8951937245f5b98a41b4cc"
+        },
+        {
+          "name": "mouth_open.png",
+          "bytes": 1014814,
+          "sha256": "f6150886c70e6d5d072d6d6510e7ea013e846a6d523b0fd8b652f037e2986fbc"
+        },
+        {
+          "name": "neutral.png",
+          "bytes": 807339,
+          "sha256": "fadccb62cc8532d76158e1c9cb613f29ea001652f607620cbb246bea97972b44"
+        },
+        {
+          "name": "open.png",
+          "bytes": 810110,
+          "sha256": "6d6f71c83793df3cc1e492184db091d62d8ad50b910bf3b71c46a3dcb1e82f5b"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v4-studio-vertical",
+      "purpose": "Raw model/render witness: studio-vertical; rejected alignments retained",
+      "relative_path": "v4/mouth-v4-studio-vertical.tar",
+      "bytes": 9543680,
+      "sha256": "4456014e598f7fa41723fe667cfb03522f9f63c978119a5439fb781fd72bf91f",
+      "members": [
+        {
+          "name": "bend.png",
+          "bytes": 806799,
+          "sha256": "7f4f7afc0c79b7288e9f346a83a7479d34b8e278df5fd97604a26fe178f4f32d"
+        },
+        {
+          "name": "closed.png",
+          "bytes": 802492,
+          "sha256": "83d0510aeb5dac35c640348134a3af744b9c7ab58e9f8e65a56a917430c42cfe"
+        },
+        {
+          "name": "model.glb",
+          "bytes": 2410704,
+          "sha256": "793beb907911455955a39a98068b23a0aa2e543830ba03ad05a4555cdb553c68"
+        },
+        {
+          "name": "morph.py",
+          "bytes": 3880,
+          "sha256": "589bef50d141965a7e2ee9c712a31d1a533d0c1309f580014a9b785488d765f6"
+        },
+        {
+          "name": "mouth_bend.png",
+          "bytes": 956412,
+          "sha256": "c1578d8c6224312bfd47564d8876491d428097b001a934c546aeacc5e9dc0a09"
+        },
+        {
+          "name": "mouth_closed.png",
+          "bytes": 990893,
+          "sha256": "e3dd14ec3984bee9f5d341e7ef0d1add14e9c5966cf67579dceb8aae14695de5"
+        },
+        {
+          "name": "mouth_neutral.png",
+          "bytes": 976669,
+          "sha256": "1708ba624560c79cbc1f00d4d2ecdb223b986b8ef90beaeb413a27c715bf7e38"
+        },
+        {
+          "name": "mouth_open.png",
+          "bytes": 976669,
+          "sha256": "56e645c1d02121278803aa1e7540c0b3ab92bba62276b90d8a0e82a495616c7d"
+        },
+        {
+          "name": "neutral.png",
+          "bytes": 799450,
+          "sha256": "4919511ffc83eee0e38e0938f8bbf9995978d6a270c276687e8509454b785e41"
+        },
+        {
+          "name": "open.png",
+          "bytes": 799450,
+          "sha256": "e11873587b4b61caca897e22b000f5b96355674794e819bc2de1016d7f16402e"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v4-validation",
+      "purpose": "All model/build/test logs, native and imposed-control telemetry, geometry and replay audits",
+      "relative_path": "v4/mouth-v4-validation.tar",
+      "bytes": 184320,
+      "sha256": "ab7660e7b206bc0df164c795315c1ea5bc63fa093589f8a214a2562ab7b2fa04",
+      "members": [
+        {
+          "name": "moebius-jaw-native-final.jsonl",
+          "bytes": 101756,
+          "sha256": "b561c1797789cad2f4d49c005fe4cb00ab35142390855a9f026c9d7d81d5b57c"
+        },
+        {
+          "name": "moebius-mouth-v3-exercise.jsonl",
+          "bytes": 75064,
+          "sha256": "85e0cdcd48163cfa3ea8db754e1defd0aea2b9e01c4896e327d15ee374c259fe"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v4-vertical-render",
+      "purpose": "Raw model/render witness: vertical-render; rejected alignments retained",
+      "relative_path": "v4/mouth-v4-vertical-render.tar",
+      "bytes": 4648960,
+      "sha256": "d9f316caeb6978e54b6bc3092802a45aa008ef47f48eda2a63e8cf2370fd1bd7",
+      "members": [
+        {
+          "name": "frame_000000.json",
+          "bytes": 531,
+          "sha256": "7bfe77bfa4d16fbb2e19b556cc4761803d6b6c9f8f2d5054e29fb227160df3bb"
+        },
+        {
+          "name": "frame_000000.png",
+          "bytes": 278970,
+          "sha256": "353d48b8b82b1a8790458314604bf4979e24d263acade6cd878ad66d303eb09e"
+        },
+        {
+          "name": "frame_000001.json",
+          "bytes": 531,
+          "sha256": "045a7e7aeda419b1ccd1c12c985a5ecaaf6d5dbb4f4c3fd9669fdf6b6a41ec5a"
+        },
+        {
+          "name": "frame_000001.png",
+          "bytes": 280435,
+          "sha256": "751f1b0a9e3ae083446ef56c4d52278adfe5f48bff25c61e8231cc44298e46b1"
+        },
+        {
+          "name": "frame_000002.json",
+          "bytes": 579,
+          "sha256": "faa5dae824e914808ff60901d415b2116d3d556b655a34951dbeb2779971616f"
+        },
+        {
+          "name": "frame_000002.png",
+          "bytes": 290496,
+          "sha256": "8cf9c46eab6a7088b2bb66d2e4142f0ba74b86748c19fcfad2574fd2eea3e181"
+        },
+        {
+          "name": "frame_000003.json",
+          "bytes": 525,
+          "sha256": "596ab958a12a03dd2f42e3132f33bf9f1d9d20895cdd95bae60ed6a058717675"
+        },
+        {
+          "name": "frame_000003.png",
+          "bytes": 290681,
+          "sha256": "52d059ab9dfff834a84554ad9f11302fa4cfb9ec9cfa3a7ebe15d41768c1bac6"
+        },
+        {
+          "name": "frame_000004.json",
+          "bytes": 585,
+          "sha256": "eeff8fe9dd4cb8403e963003930b811b14c3bc04c49c551b11a8d62079ab71a4"
+        },
+        {
+          "name": "frame_000004.png",
+          "bytes": 282097,
+          "sha256": "99d295c389124eb22df820e8d345f6b1e62f48b48937a5bfe064bb16a08380bc"
+        },
+        {
+          "name": "frame_000005.json",
+          "bytes": 531,
+          "sha256": "faa7c5a48bf460b1d6de9770ee041010262df1e06543cb9061802f6b3b03a35d"
+        },
+        {
+          "name": "frame_000005.png",
+          "bytes": 281364,
+          "sha256": "1eff82f045ecd495b3393864bf93dcd21859857e5dca422e92df2d768ae42c58"
+        },
+        {
+          "name": "frame_000006.json",
+          "bytes": 582,
+          "sha256": "e8343c9fc482ec477d5c2c57c2ecd668b124959500c46e78f8d33738f328fa8a"
+        },
+        {
+          "name": "frame_000006.png",
+          "bytes": 290720,
+          "sha256": "b25d2f1441873254702139214da60ba3475ded5021b4d88a2a49940ea1e1a7da"
+        },
+        {
+          "name": "frame_000007.json",
+          "bytes": 526,
+          "sha256": "2dbf83cc8235a042e267605e66678f50ad6eab1739133f61d28826dc2965ac32"
+        },
+        {
+          "name": "frame_000007.png",
+          "bytes": 291310,
+          "sha256": "cd2ef748cb5818be82e8a3fc2d3cca2a0a0ba27aa928f5b8c28c52a7db735043"
+        },
+        {
+          "name": "frame_000008.json",
+          "bytes": 588,
+          "sha256": "a95c01d2105c718fd4a05ead5eebdcc3abada4786056b0f36247ac7f6cc23875"
+        },
+        {
+          "name": "frame_000008.png",
+          "bytes": 282140,
+          "sha256": "d86ea1d106929bb9dcb817c61fc7845e94473dea335be03aed2903a8be1050a8"
+        },
+        {
+          "name": "frame_000009.json",
+          "bytes": 532,
+          "sha256": "d2b36c1a5a5f78d6d8f59b2385e1be0111c270237c45ba2dca001bff4b50caaf"
+        },
+        {
+          "name": "frame_000009.png",
+          "bytes": 281052,
+          "sha256": "63cc73839a15b0b414510b62cf6b46363f941569b233efed12fc28ade10c064e"
+        },
+        {
+          "name": "frame_000010.json",
+          "bytes": 580,
+          "sha256": "83e87fb01c56f8de61023e38ac81c280a088a7eefea18694ae1f6b1b525f3c6a"
+        },
+        {
+          "name": "frame_000010.png",
+          "bytes": 291023,
+          "sha256": "bfda81e0214727d53c8b878f1df0ae4582a1423e8ec8d14b9c62d06664162473"
+        },
+        {
+          "name": "frame_000011.json",
+          "bytes": 526,
+          "sha256": "0bc679ceb0f095c8f49979f5b3e0a9d69c92139b585629df27069174fef34bd1"
+        },
+        {
+          "name": "frame_000011.png",
+          "bytes": 291031,
+          "sha256": "40284d8c9738b21fdf3e415aa03d16c45eca0ba950dfb172679c497bf7d32c65"
+        },
+        {
+          "name": "frame_000012.json",
+          "bytes": 586,
+          "sha256": "c861732f596bd458cd494db1271441487b993062d99c01ccfd32b3fe1b009ecf"
+        },
+        {
+          "name": "frame_000012.png",
+          "bytes": 281949,
+          "sha256": "eb2c918e15c594f4e91ee0511ab7ec5db51f47b65eaf8019864f09a1b74b9f1a"
+        },
+        {
+          "name": "frame_000013.json",
+          "bytes": 532,
+          "sha256": "403655cfbbf3ce4526f331941e7a7cd9eb3c6358001acf5c04f932b75c06dd28"
+        },
+        {
+          "name": "frame_000013.png",
+          "bytes": 280401,
+          "sha256": "66727095d70cc3bb4d56873260dad639ceb37c0ae1b92fbd95dab92acabf8821"
+        },
+        {
+          "name": "frame_000014.json",
+          "bytes": 582,
+          "sha256": "660065c4effa233702d4149fa9b78a0a55e2dd56083d84a260b907c44925af1d"
+        },
+        {
+          "name": "frame_000014.png",
+          "bytes": 290072,
+          "sha256": "fcec2c60f3bb92f7086d5310af523696a2fb9ca835c673a643b6ac1f4fd405d3"
+        },
+        {
+          "name": "frame_000015.json",
+          "bytes": 526,
+          "sha256": "7eab22cd5872d073001d9df1167b378b72b53615ace0a4974ac566efc9ad2e0f"
+        },
+        {
+          "name": "frame_000015.png",
+          "bytes": 290223,
+          "sha256": "697554dfb5143690f8372e3ccaced396136c7fd5c3e1bacef8c74c2b24e5a7ad"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v5-iterations",
+      "purpose": "Iteration chronology, authoring backup and live diagnostic GIF",
+      "relative_path": "v5/mouth-v5-iterations.tar",
+      "bytes": 2191360,
+      "sha256": "8394cb56174edf854917bded5e4071b3cd334d22970ef6475b971dba6c29575b",
+      "members": [
+        {
+          "name": "authoring-backup.blend1",
+          "bytes": 1691419,
+          "sha256": "5f5b57dd833ba27d7a476f40c242b8d86c2f94f5db1722d9bdbcc326768b7c7b"
+        },
+        {
+          "name": "pick_teeth.py",
+          "bytes": 1027,
+          "sha256": "ac7d94585d1d869952c0f48294cef1368b44f08e4d5f824f51cc810a1d6d4669"
+        },
+        {
+          "name": "refined-mouth.gif",
+          "bytes": 487928,
+          "sha256": "6b68e17e0c1f9068560d835ce7dd9376eb027dd7ebc0b5641c9a3f661165f3c5"
+        },
+        {
+          "name": "tooth_picks.json",
+          "bytes": 1568,
+          "sha256": "9ade30460d52af9c4319386df1474c4a6f311f5dde1aefc08223d7342d16c909"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v5-live-render",
+      "purpose": "Raw model/render witness: live-render; rejected alignments retained",
+      "relative_path": "v5/mouth-v5-live-render.tar",
+      "bytes": 4710400,
+      "sha256": "9826d50028e1a05458d61b8245628bb9c8194c8a0e9a4ec8f5acf8e61efa1996",
+      "members": [
+        {
+          "name": "frame_000000.json",
+          "bytes": 531,
+          "sha256": "7bfe77bfa4d16fbb2e19b556cc4761803d6b6c9f8f2d5054e29fb227160df3bb"
+        },
+        {
+          "name": "frame_000000.png",
+          "bytes": 283536,
+          "sha256": "eeec4639177e59a7c37d0801c8054f95b945b34c22d88061958f20d02e4d1612"
+        },
+        {
+          "name": "frame_000001.json",
+          "bytes": 531,
+          "sha256": "045a7e7aeda419b1ccd1c12c985a5ecaaf6d5dbb4f4c3fd9669fdf6b6a41ec5a"
+        },
+        {
+          "name": "frame_000001.png",
+          "bytes": 284739,
+          "sha256": "ee3be50f19d7cad44fd09689c012f86db83c885a9284f34bd700c6def6cee7e7"
+        },
+        {
+          "name": "frame_000002.json",
+          "bytes": 581,
+          "sha256": "457fa050ca508e3b8850e5845e343c66c6554ed26d9dd58a50e0c9cafb7b466f"
+        },
+        {
+          "name": "frame_000002.png",
+          "bytes": 293230,
+          "sha256": "5127caa8178de9e0dd2e3e0e15bf8b469a1ad5974854c8bc42cdfd237975f754"
+        },
+        {
+          "name": "frame_000003.json",
+          "bytes": 525,
+          "sha256": "596ab958a12a03dd2f42e3132f33bf9f1d9d20895cdd95bae60ed6a058717675"
+        },
+        {
+          "name": "frame_000003.png",
+          "bytes": 293375,
+          "sha256": "ec3e2f042b5a9913a6a5986bf8240c27728f431f5aa77f1f72125cb4c0ab7b0f"
+        },
+        {
+          "name": "frame_000004.json",
+          "bytes": 585,
+          "sha256": "2395e4175dea3aadce33b51611e416a074a81740e5ca115263212ab77f3321d2"
+        },
+        {
+          "name": "frame_000004.png",
+          "bytes": 286424,
+          "sha256": "a5d8fd86efcb5c5f9f0e59c5c91af8ec971572d3856c170e51638bf40d075615"
+        },
+        {
+          "name": "frame_000005.json",
+          "bytes": 531,
+          "sha256": "faa7c5a48bf460b1d6de9770ee041010262df1e06543cb9061802f6b3b03a35d"
+        },
+        {
+          "name": "frame_000005.png",
+          "bytes": 285691,
+          "sha256": "d1eb4aa980ffd0b7b4245f14b0955f8a3f8aa12ed8bbdbbfc3edaa1ddb7fc7e1"
+        },
+        {
+          "name": "frame_000006.json",
+          "bytes": 582,
+          "sha256": "6070f95650e75cca2ccaaa257feb914d1d844f230206c83036f5253943ff024b"
+        },
+        {
+          "name": "frame_000006.png",
+          "bytes": 293559,
+          "sha256": "51e577e8174a98e4d4b822fa51e86c83c0509116cc44aa5d685a450a395e8e85"
+        },
+        {
+          "name": "frame_000007.json",
+          "bytes": 526,
+          "sha256": "2dbf83cc8235a042e267605e66678f50ad6eab1739133f61d28826dc2965ac32"
+        },
+        {
+          "name": "frame_000007.png",
+          "bytes": 294016,
+          "sha256": "1f40aa107f9c89fe10411bd2024a241e8fba5768ad72de9b8204c4edc2ed16b8"
+        },
+        {
+          "name": "frame_000008.json",
+          "bytes": 588,
+          "sha256": "8ead05d3b3401ef811938796126dd1a481353e57365b271db669f27d68e1cf31"
+        },
+        {
+          "name": "frame_000008.png",
+          "bytes": 286810,
+          "sha256": "a5c410218cc64dc71a1ddae02f8590c7aee97c96ce4b26555315a7ee9fde608b"
+        },
+        {
+          "name": "frame_000009.json",
+          "bytes": 532,
+          "sha256": "d2b36c1a5a5f78d6d8f59b2385e1be0111c270237c45ba2dca001bff4b50caaf"
+        },
+        {
+          "name": "frame_000009.png",
+          "bytes": 285428,
+          "sha256": "22933de3ffbec604eab80b07c6aeec4ed4557a477ce64911ee2af83cba4944a7"
+        },
+        {
+          "name": "frame_000010.json",
+          "bytes": 582,
+          "sha256": "a1a22e45a41a37df1ac70cddaf54b0158409dc6bcf7b8c12a4fafeb3171db4aa"
+        },
+        {
+          "name": "frame_000010.png",
+          "bytes": 293708,
+          "sha256": "c6e8cc0daa6112de0528bf2be7ebdea6eb0f6610c5888f570a24f9daa8ff5ff4"
+        },
+        {
+          "name": "frame_000011.json",
+          "bytes": 526,
+          "sha256": "0bc679ceb0f095c8f49979f5b3e0a9d69c92139b585629df27069174fef34bd1"
+        },
+        {
+          "name": "frame_000011.png",
+          "bytes": 293750,
+          "sha256": "4de4a165e2cf692041d3a4b162ec99a780346408865633745b972496c3db47e6"
+        },
+        {
+          "name": "frame_000012.json",
+          "bytes": 586,
+          "sha256": "7e1ae6422c9f00712dd1c5a989e4ff7c6dbdf4f085bf5ece4476cd622d04396b"
+        },
+        {
+          "name": "frame_000012.png",
+          "bytes": 286935,
+          "sha256": "e1e4e2019dc5fd29a02290537407dd25631b739fc80af33969862db82b58dd7f"
+        },
+        {
+          "name": "frame_000013.json",
+          "bytes": 532,
+          "sha256": "403655cfbbf3ce4526f331941e7a7cd9eb3c6358001acf5c04f932b75c06dd28"
+        },
+        {
+          "name": "frame_000013.png",
+          "bytes": 284821,
+          "sha256": "c0d0007ffefe80de1911fb6a72289b2937ba080014ef149143e26338c1eac2d2"
+        },
+        {
+          "name": "frame_000014.json",
+          "bytes": 580,
+          "sha256": "aab03b25decff598c02e87b4889f54d58d5943d240ee309be578b6225084bcbd"
+        },
+        {
+          "name": "frame_000014.png",
+          "bytes": 292684,
+          "sha256": "d751ad403da9692717b5eae6e2d6a3c42baa0ac0f8fa185d2ac8ad3803fb0b63"
+        },
+        {
+          "name": "frame_000015.json",
+          "bytes": 526,
+          "sha256": "7eab22cd5872d073001d9df1167b378b72b53615ace0a4974ac566efc9ad2e0f"
+        },
+        {
+          "name": "frame_000015.png",
+          "bytes": 293024,
+          "sha256": "41d4f5a28f603d530db778cb3d2be681fbe0a243eafd3a2ed83a73d07a96f710"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v5-prechange",
+      "purpose": "Raw model/render witness: prechange; rejected alignments retained",
+      "relative_path": "v5/mouth-v5-prechange.tar",
+      "bytes": 4116480,
+      "sha256": "af67641b09828bb13b8a64f8493b83d7d5704974fe714738824649903ee564f0",
+      "members": [
+        {
+          "name": "Worm_A_rigged.blend",
+          "bytes": 1687652,
+          "sha256": "722a6d3bbe6e78e458fd79160ce28396da77ff118f684f21b21e091a2a5ef48a"
+        },
+        {
+          "name": "Worm_A_rigged.glb",
+          "bytes": 2410704,
+          "sha256": "e5c644ab515db0f7751902cf9a6235975b2176ed8569e03df110542bfee09181"
+        },
+        {
+          "name": "rig.json",
+          "bytes": 2498,
+          "sha256": "a51fdec416d2bb4f5e88c4604d224ebeb47dc3cd2ae3e47cfa51c45db6c82499"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v5-source",
+      "purpose": "Exact source snapshot and fingerprint, tracked patch, authoritative report snapshot",
+      "relative_path": "v5/mouth-v5-source.tar",
+      "bytes": 7424000,
+      "sha256": "dbb1f547ea3eef4ca48566ac777130ee7603630128a2cb9742cf55df418914f7",
+      "members": [
+        {
+          "name": "LIP_TEETH_REFINEMENT.md",
+          "bytes": 2953,
+          "sha256": "79c9138acd2f6349d5cbd16ab2a5aa98b7d67df0975c5ba9f005dc8be1f099c3"
+        },
+        {
+          "name": "SOURCE_IDENTITY.json",
+          "bytes": 16960,
+          "sha256": "738e7242c19c9a6c042b0dda8d74780858685f02d0c8220a83273d4eb0a3f8da"
+        },
+        {
+          "name": "tracked_diff.patch",
+          "bytes": 63738,
+          "sha256": "61d263fadb03b42ec4df4d5156f618623412259221f181f89b537e0d1fe036af"
+        },
+        {
+          "name": "working_tree_source.tar",
+          "bytes": 7331840,
+          "sha256": "e32e9e7c3a54dbc469ecc56526af20ce99777f664503838b1fe79e91a9c1b724"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v5-studio-v1",
+      "purpose": "Raw model/render witness: studio-v1; rejected alignments retained",
+      "relative_path": "v5/mouth-v5-studio-v1.tar",
+      "bytes": 10137600,
+      "sha256": "e4a9f53fce01b12e993dbdd6fa4c7ad3f2a0c89758daddb6296c79f62f8339b6",
+      "members": [
+        {
+          "name": "bend.png",
+          "bytes": 809222,
+          "sha256": "41e1ccf45f0f1a57111fdb81f3ae4cd5b48065a6cec8e0dbc5b912e2e765d99d"
+        },
+        {
+          "name": "closed.png",
+          "bytes": 798542,
+          "sha256": "4ffb27ed394a3050876cd7f71c5a919905ca5fe682ebb5f6b574cb76d344e23c"
+        },
+        {
+          "name": "model.glb",
+          "bytes": 2990912,
+          "sha256": "dfd60577dd702296dc3563d7ce8a509be1f1d40aa5b5a3fa8d20e0906e93baf4"
+        },
+        {
+          "name": "mouth_bend.png",
+          "bytes": 964966,
+          "sha256": "a51cd56cf3ca6ec854c8ffdb18af2785f7b0e266eee82877bcd34ee48ac4d7f1"
+        },
+        {
+          "name": "mouth_closed.png",
+          "bytes": 973171,
+          "sha256": "8004cf49924b4604ac4d8bee54a1c5ae79343f8e5b409865d1ab9dbb5b93f739"
+        },
+        {
+          "name": "mouth_neutral.png",
+          "bytes": 984717,
+          "sha256": "db32e2a27fbe93b7c2dce96122637fea49e8310a8859568b0a948df87567348b"
+        },
+        {
+          "name": "mouth_open.png",
+          "bytes": 984717,
+          "sha256": "b3555a9052590295b574fd17ea14c0908d408643bcebc2982d1d696968a25174"
+        },
+        {
+          "name": "neutral.png",
+          "bytes": 801836,
+          "sha256": "4ae45a4eac682d76e198cb4762b7acee02e575d88796302515024ddd5f39ec52"
+        },
+        {
+          "name": "open.png",
+          "bytes": 801836,
+          "sha256": "56eb5176c874e80e42fbee518d951770b2e5837c494f1bea1f60aec16f6042ef"
+        },
+        {
+          "name": "selection.py",
+          "bytes": 2041,
+          "sha256": "1bb2b2a80e1bdc20fac6385d42344f60e12a3b6ef22207867faa5d5b2c67fbf2"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v5-studio-v2",
+      "purpose": "Raw model/render witness: studio-v2; rejected alignments retained",
+      "relative_path": "v5/mouth-v5-studio-v2.tar",
+      "bytes": 7147520,
+      "sha256": "e99867a0cc1602121a07cb447e08a5894e504e192ea2febb451e9e6192dad6dc",
+      "members": [
+        {
+          "name": "bend.png",
+          "bytes": 809104,
+          "sha256": "7afc071310b6007e226189a819f74f4c6403f627e974e9269c1bc48d1f1f5e01"
+        },
+        {
+          "name": "closed.png",
+          "bytes": 799270,
+          "sha256": "df653e1a597d69ed005d6db7768c58f91405161319a8da08ba55e1a1df97ff71"
+        },
+        {
+          "name": "mouth_bend.png",
+          "bytes": 966249,
+          "sha256": "534ee650d86d687fa1c85f5e67fb4db0fa3d8c022f1e2266d824a6c46829a85c"
+        },
+        {
+          "name": "mouth_closed.png",
+          "bytes": 975778,
+          "sha256": "0afc87fb780e5a3b103b6e5c090c274ee866e2ebdfd279597b6c2f733eb37d61"
+        },
+        {
+          "name": "mouth_neutral.png",
+          "bytes": 986402,
+          "sha256": "462082d2940918b92bea183db11715d9628208898c38cb27b483a338b9b6686c"
+        },
+        {
+          "name": "mouth_open.png",
+          "bytes": 986402,
+          "sha256": "e52f594cfe7e3ee5a8aece5744918a67fa51243fd3a272d684e5db11efcf26d7"
+        },
+        {
+          "name": "neutral.png",
+          "bytes": 801700,
+          "sha256": "932bda08c8c59fcd90fb64266a566b0a817c69b49f9cffd1aa9606506afeaed1"
+        },
+        {
+          "name": "open.png",
+          "bytes": 801700,
+          "sha256": "a7fe32fb686b6408318288d7a550231e823577369c9332afeb966a9974030af8"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v5-validation",
+      "purpose": "All model/build/test logs, native and imposed-control telemetry, geometry and replay audits",
+      "relative_path": "v5/mouth-v5-validation.tar",
+      "bytes": 184320,
+      "sha256": "ab7660e7b206bc0df164c795315c1ea5bc63fa093589f8a214a2562ab7b2fa04",
+      "members": [
+        {
+          "name": "moebius-jaw-native-final.jsonl",
+          "bytes": 101756,
+          "sha256": "b561c1797789cad2f4d49c005fe4cb00ab35142390855a9f026c9d7d81d5b57c"
+        },
+        {
+          "name": "moebius-mouth-v3-exercise.jsonl",
+          "bytes": 75064,
+          "sha256": "85e0cdcd48163cfa3ea8db754e1defd0aea2b9e01c4896e327d15ee374c259fe"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v6-iterations",
+      "purpose": "Iteration chronology, authoring backup and live diagnostic GIF",
+      "relative_path": "v6/mouth-v6-iterations.tar",
+      "bytes": 3819520,
+      "sha256": "08e60301a83700a5ed999dd4e4640ead9bf8e2b04ffe2ea3e51525cdad1df9bd",
+      "members": [
+        {
+          "name": "ITERATION_LOG.json",
+          "bytes": 736,
+          "sha256": "4406cd83241083a08ac1b120b5a167b34238317dacd210c178c202119e86c16d"
+        },
+        {
+          "name": "authoring-backup.blend1",
+          "bytes": 1697917,
+          "sha256": "1e54a5edff5cd7b64daec8830ca963b43daf036cf6445e788a77c43e003ff2a8"
+        },
+        {
+          "name": "inspect_front.py",
+          "bytes": 1109,
+          "sha256": "38c21c8fa67a0d9f3b9e23fb6de8c76cab26ffdacde5186da703e0bf94b7bb91"
+        },
+        {
+          "name": "metal-crowns.gif",
+          "bytes": 486053,
+          "sha256": "defe65ef8c52be38e38cc3873dca1226838a42545aa8c7d12a9b204d62f0843f"
+        },
+        {
+          "name": "unpainted_front.png",
+          "bytes": 1614719,
+          "sha256": "f181fe90ce08fc2321c8b16b36833cb0f7a2b26646354f33aaf4caef33219f7a"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v6-live-render",
+      "purpose": "Raw model/render witness: live-render; rejected alignments retained",
+      "relative_path": "v6/mouth-v6-live-render.tar",
+      "bytes": 4689920,
+      "sha256": "d6c6480bcba796b924a81e355f9d9668fe27f0b0c6344a8e6bbfb7b129089533",
+      "members": [
+        {
+          "name": "frame_000000.json",
+          "bytes": 531,
+          "sha256": "7bfe77bfa4d16fbb2e19b556cc4761803d6b6c9f8f2d5054e29fb227160df3bb"
+        },
+        {
+          "name": "frame_000000.png",
+          "bytes": 282316,
+          "sha256": "cb7c1ec67283e9413d480bceb9bcb93a1d476426071dafaa27aa01968987d520"
+        },
+        {
+          "name": "frame_000001.json",
+          "bytes": 531,
+          "sha256": "045a7e7aeda419b1ccd1c12c985a5ecaaf6d5dbb4f4c3fd9669fdf6b6a41ec5a"
+        },
+        {
+          "name": "frame_000001.png",
+          "bytes": 283778,
+          "sha256": "58e69d70fdbfd9054d5caa1693126798602da8ef75fa3092801ad3a970f5b7bc"
+        },
+        {
+          "name": "frame_000002.json",
+          "bytes": 579,
+          "sha256": "a687f3c71ec1777467aa6203080dd7c6762209400825dcc07541e8f6cd31fb23"
+        },
+        {
+          "name": "frame_000002.png",
+          "bytes": 291634,
+          "sha256": "3000b250fe6a85fa40a7c6a8deeabb4c292719655e7c7268c33be76d2d469b64"
+        },
+        {
+          "name": "frame_000003.json",
+          "bytes": 525,
+          "sha256": "596ab958a12a03dd2f42e3132f33bf9f1d9d20895cdd95bae60ed6a058717675"
+        },
+        {
+          "name": "frame_000003.png",
+          "bytes": 291917,
+          "sha256": "0e6c2a4669ab74322eb5bcbdbd9a7480a21f5a3f87be3d8bab8ce7fa502ea264"
+        },
+        {
+          "name": "frame_000004.json",
+          "bytes": 587,
+          "sha256": "6491ccb7f32668d022913dd5ba4df4beff74d9894830ceb0d1dca064c7ba8831"
+        },
+        {
+          "name": "frame_000004.png",
+          "bytes": 285103,
+          "sha256": "9900ac3d09adccceafee046d84bdee9ed87e2fef224189a9eca80c5f69504153"
+        },
+        {
+          "name": "frame_000005.json",
+          "bytes": 531,
+          "sha256": "faa7c5a48bf460b1d6de9770ee041010262df1e06543cb9061802f6b3b03a35d"
+        },
+        {
+          "name": "frame_000005.png",
+          "bytes": 284657,
+          "sha256": "fbea01f98bdd09645b1f1ed65cb02577eece0505251a818c133f457edd0be22f"
+        },
+        {
+          "name": "frame_000006.json",
+          "bytes": 582,
+          "sha256": "466faea9091e6dfd150b32f4ace1ec961c7edffd159e0109358e8be558728619"
+        },
+        {
+          "name": "frame_000006.png",
+          "bytes": 291910,
+          "sha256": "56d3b7318812af7ed6e85d195fb5de7afb4344e34cd7c6d14ac909679660861d"
+        },
+        {
+          "name": "frame_000007.json",
+          "bytes": 526,
+          "sha256": "2dbf83cc8235a042e267605e66678f50ad6eab1739133f61d28826dc2965ac32"
+        },
+        {
+          "name": "frame_000007.png",
+          "bytes": 292591,
+          "sha256": "c76897291cc32e3c82cc1bb09da1ee877bee563cb2e1209d736d45c720d0576e"
+        },
+        {
+          "name": "frame_000008.json",
+          "bytes": 586,
+          "sha256": "1afc514312fe52048a4fb1602f8618ddcc4fa9cb8bdb6c45dcbfd45a59b14cd0"
+        },
+        {
+          "name": "frame_000008.png",
+          "bytes": 285268,
+          "sha256": "1b20f66304a750ffc35f879281d4aae4646a25f9ce227d3369461c5aff6de22b"
+        },
+        {
+          "name": "frame_000009.json",
+          "bytes": 532,
+          "sha256": "d2b36c1a5a5f78d6d8f59b2385e1be0111c270237c45ba2dca001bff4b50caaf"
+        },
+        {
+          "name": "frame_000009.png",
+          "bytes": 284422,
+          "sha256": "2a4f8073e2878235d3b2bf43d6ae346d695674e7d8da9d852e0cdee308f90f9d"
+        },
+        {
+          "name": "frame_000010.json",
+          "bytes": 582,
+          "sha256": "a091701e96c71b99cfaa37cdbe3720fcfda50c1c8706fe83fe7fb8bc62e62b5a"
+        },
+        {
+          "name": "frame_000010.png",
+          "bytes": 292438,
+          "sha256": "4407c4a063eaaeb9316147cf5acd99898624bd824ca97aafaaa27959a050d72a"
+        },
+        {
+          "name": "frame_000011.json",
+          "bytes": 526,
+          "sha256": "0bc679ceb0f095c8f49979f5b3e0a9d69c92139b585629df27069174fef34bd1"
+        },
+        {
+          "name": "frame_000011.png",
+          "bytes": 292332,
+          "sha256": "1d53bf764e5c40b2e928486e412348d4d91e21c964f4780ec7bbcffcb444a533"
+        },
+        {
+          "name": "frame_000012.json",
+          "bytes": 588,
+          "sha256": "2977836dc987e05331b83c39922366cb2115fad56f9be1d3abe363dbf2d64bcd"
+        },
+        {
+          "name": "frame_000012.png",
+          "bytes": 285250,
+          "sha256": "1231926e0fd7fdc0b102aaa4483770217f16d6285fa50eb9c777dbee75548a07"
+        },
+        {
+          "name": "frame_000013.json",
+          "bytes": 532,
+          "sha256": "403655cfbbf3ce4526f331941e7a7cd9eb3c6358001acf5c04f932b75c06dd28"
+        },
+        {
+          "name": "frame_000013.png",
+          "bytes": 283776,
+          "sha256": "6e291e3fe465d5ced3a55ccb84d234a6060c5e40b0e37ee07b12f7b42ce0ff51"
+        },
+        {
+          "name": "frame_000014.json",
+          "bytes": 580,
+          "sha256": "38916b33d94f5ce898ea3c5e5e7d9abc5899ea9718e403bfc589f10f74ef9c2d"
+        },
+        {
+          "name": "frame_000014.png",
+          "bytes": 291213,
+          "sha256": "277ef565561e75d87ea3f0f12f1d067ca825b3917ca7c65f39ef92a6bfadd62d"
+        },
+        {
+          "name": "frame_000015.json",
+          "bytes": 526,
+          "sha256": "7eab22cd5872d073001d9df1167b378b72b53615ace0a4974ac566efc9ad2e0f"
+        },
+        {
+          "name": "frame_000015.png",
+          "bytes": 291589,
+          "sha256": "8532f787fe1bec6464333dc873f53cc2cdf2b2b6295477b3f943b2b21b3a40d4"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v6-prechange",
+      "purpose": "Raw model/render witness: prechange; rejected alignments retained",
+      "relative_path": "v6/mouth-v6-prechange.tar",
+      "bytes": 4700160,
+      "sha256": "1a7797516eca06137271d74ed85d7e3b11788656645d68c511f54c84b575d291",
+      "members": [
+        {
+          "name": "Worm_A_rigged.blend",
+          "bytes": 1693580,
+          "sha256": "e64dae8c5675fe36d6226656ed9e5855dcf6bb6c1d6e75d8f7539b5aefc625bf"
+        },
+        {
+          "name": "Worm_A_rigged.glb",
+          "bytes": 2990944,
+          "sha256": "2a00efb636459fa6c81098eec3d4461e30a8bb52d5d7ff1afe74086e85805849"
+        },
+        {
+          "name": "rig.json",
+          "bytes": 6274,
+          "sha256": "7d53070186e0fdfebf0d6e8ad6764d3b20f703b3958e2ab8f3995e9de137aa16"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v6-source",
+      "purpose": "Exact source snapshot and fingerprint, tracked patch, authoritative report snapshot",
+      "relative_path": "v6/mouth-v6-source.tar",
+      "bytes": 7280640,
+      "sha256": "3a71877583d344d2f4ff694f3f53cb4890f2e267b59431cd4b1305f42216ee8e",
+      "members": [
+        {
+          "name": "METAL_CROWNS.md",
+          "bytes": 3201,
+          "sha256": "e4f8325eb9ff2ea4f0e8305157a9f756888f2d6a9541b35461edbd85f0d097ef"
+        },
+        {
+          "name": "SOURCE_IDENTITY.json",
+          "bytes": 17122,
+          "sha256": "50af8c3eb65eec718b5ee1b82c67289e22b1f1e74ea1d4bf4acc013055e75727"
+        },
+        {
+          "name": "tracked_diff.patch",
+          "bytes": 64690,
+          "sha256": "e4ce211e55c04939b071ccd24ad9b90c5689614b61fffcc7b463424a4985d78f"
+        },
+        {
+          "name": "working_tree_source.tar",
+          "bytes": 7178240,
+          "sha256": "98ef4e6926400dabfd8f233508cde346c80733fea828bd1df090ba27e85e24ce"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v6-studio-v1",
+      "purpose": "Raw model/render witness: studio-v1; rejected alignments retained",
+      "relative_path": "v6/mouth-v6-studio-v1.tar",
+      "bytes": 9943040,
+      "sha256": "65a055f4814b05bbb4db2ef87b94d69a645bd0bd0b1d0c643b7a542872c1cbd5",
+      "members": [
+        {
+          "name": "bend.png",
+          "bytes": 811061,
+          "sha256": "b5d8dec768ee9ec732a9adbcdbae1c6603024c5586fe20a49dfecd6dccda94e7"
+        },
+        {
+          "name": "closed.png",
+          "bytes": 798757,
+          "sha256": "d165d7138b08e533882f7a869d4055a1b91367e199521aa29d3f4171016aa168"
+        },
+        {
+          "name": "model.glb",
+          "bytes": 2737728,
+          "sha256": "1a2a94509daa4547479a4ad8000f4a0a85d0e263abe27a1eb0299872c429d5b9"
+        },
+        {
+          "name": "mouth_bend.png",
+          "bytes": 979405,
+          "sha256": "1676b663815845612dbdfb5538e1033acb7b2d11c94210100ac332291a9f7c4a"
+        },
+        {
+          "name": "mouth_closed.png",
+          "bytes": 975634,
+          "sha256": "91a0fe62d2272d2c4a4fba41d14bf8518f8d7c4b207c45e723c80294168b94d1"
+        },
+        {
+          "name": "mouth_neutral.png",
+          "bytes": 999712,
+          "sha256": "94156c03eb4cc45f2d66ad2fb28baab3c3e7342909f57ce8065437c3ecea1f87"
+        },
+        {
+          "name": "mouth_open.png",
+          "bytes": 999712,
+          "sha256": "2751789c6a53aaa94643d86b2cfaaa8fc753a239b2d145509478232305df568d"
+        },
+        {
+          "name": "neutral.png",
+          "bytes": 804419,
+          "sha256": "f5746942cb8d7067de8d96e3db96a67008d9013c6c3eeb9b6f1e41b814de7a7a"
+        },
+        {
+          "name": "open.png",
+          "bytes": 804419,
+          "sha256": "f3bfce7a286445fc80045d4561903bcf4642dc5f3acb31035343ee9ac5c0fc09"
+        },
+        {
+          "name": "selection.py",
+          "bytes": 4323,
+          "sha256": "42e94f7d58b3d0a273c01221a16bdf81d7933fc9a29862173024a932af09f098"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v6-studio-v2",
+      "purpose": "Raw model/render witness: studio-v2; rejected alignments retained",
+      "relative_path": "v6/mouth-v6-studio-v2.tar",
+      "bytes": 9891840,
+      "sha256": "cf44ae5b37a8d693c5f8257642f4bd66207e923b5cff7069193a1305138fbc5c",
+      "members": [
+        {
+          "name": "bend.png",
+          "bytes": 808626,
+          "sha256": "fa89d813d1f63d9de9a3e5914399827cbc7282dcb22ab1d846bf43cca9c43d52"
+        },
+        {
+          "name": "closed.png",
+          "bytes": 797522,
+          "sha256": "6e0d5f874866a66d59f049f00bec4e388af17f0119d595be91171b82bc3e6cd4"
+        },
+        {
+          "name": "model.glb",
+          "bytes": 2737656,
+          "sha256": "5afdc49f2dabba99a70a1e7659b3f1e094fe67514b7673eb06d87d052e3478f6"
+        },
+        {
+          "name": "mouth_bend.png",
+          "bytes": 967695,
+          "sha256": "c08adbf34bcfefac0f8d1f3c4735ff2ced357e3972e3a8a1392f032d0a38d23b"
+        },
+        {
+          "name": "mouth_closed.png",
+          "bytes": 972125,
+          "sha256": "7c5da31469c2c8cfb17623b7dfe813a8da2c9def17681c79bd64e09572a71ce8"
+        },
+        {
+          "name": "mouth_neutral.png",
+          "bytes": 987713,
+          "sha256": "deb188a4cf5d6de286bede9e867dbd03c7722c57a0f80f559587c52887682a6f"
+        },
+        {
+          "name": "mouth_open.png",
+          "bytes": 987713,
+          "sha256": "e759546d0247fe8a0ca4e5c0ba966f3fb8bac376cc5b75b4091b75cc0760b68c"
+        },
+        {
+          "name": "neutral.png",
+          "bytes": 802299,
+          "sha256": "493e0879e07c9b7c47366b0f05df86b96ac84c195b2391a59b4a024160a36036"
+        },
+        {
+          "name": "open.png",
+          "bytes": 802299,
+          "sha256": "1d268deded0e6f2b4df0cce11b19953eda1692435f1e03496d30ee9ab2dd13a8"
+        },
+        {
+          "name": "selection.py",
+          "bytes": 5552,
+          "sha256": "e4d1d86810e80148af68c40659a38f50d814e95a5832f23c6e43873aae478991"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v6-studio-v3",
+      "purpose": "Raw model/render witness: studio-v3; rejected alignments retained",
+      "relative_path": "v6/mouth-v6-studio-v3.tar",
+      "bytes": 7157760,
+      "sha256": "06abade9a880678013ddf7908ee87555a73aa5650b8826640ab116aeb8c58758",
+      "members": [
+        {
+          "name": "bend.png",
+          "bytes": 809463,
+          "sha256": "2c962d59f669cf98957beecc8f595c9e40f9e5efef6c92c1bfa490236f3f19eb"
+        },
+        {
+          "name": "closed.png",
+          "bytes": 797923,
+          "sha256": "076e5a034af579cf50787c8a9ffb6dd4fe2ef089f63834c0f2f643dbc52a0063"
+        },
+        {
+          "name": "mouth_bend.png",
+          "bytes": 970123,
+          "sha256": "91363ff866b3e0370d93664edbdb949a1c611e1a80889abb3c7d516f13d3cd59"
+        },
+        {
+          "name": "mouth_closed.png",
+          "bytes": 971419,
+          "sha256": "90410d50e44101e18ee8cc6b7d7e0d832fc2bd0e9152be619f495fde40a9b54f"
+        },
+        {
+          "name": "mouth_neutral.png",
+          "bytes": 990962,
+          "sha256": "4813310fc94c0d2e01c073c51741eeb380fcdfa4f2755523a6d06d4b32d6b21d"
+        },
+        {
+          "name": "mouth_open.png",
+          "bytes": 990962,
+          "sha256": "c33d307d1fa544552518063e0697b1e5ed0df7b0843168fbbb52e95fdf854a0f"
+        },
+        {
+          "name": "neutral.png",
+          "bytes": 803405,
+          "sha256": "046f55c1fd02898f74005d6e9b0d953e8ba6aa452dd85343fc48a3f2293bcb82"
+        },
+        {
+          "name": "open.png",
+          "bytes": 803405,
+          "sha256": "ea352757dd83cedf5d6976832391ee73569ea4243554bee07bd4a5eeea54a502"
+        }
+      ]
+    },
+    {
+      "phase": "mouth-v6-validation",
+      "purpose": "All model/build/test logs, native and imposed-control telemetry, geometry and replay audits",
+      "relative_path": "v6/mouth-v6-validation.tar",
+      "bytes": 184320,
+      "sha256": "ab7660e7b206bc0df164c795315c1ea5bc63fa093589f8a214a2562ab7b2fa04",
+      "members": [
+        {
+          "name": "moebius-jaw-native-final.jsonl",
+          "bytes": 101756,
+          "sha256": "b561c1797789cad2f4d49c005fe4cb00ab35142390855a9f026c9d7d81d5b57c"
+        },
+        {
+          "name": "moebius-mouth-v3-exercise.jsonl",
+          "bytes": 75064,
+          "sha256": "85e0cdcd48163cfa3ea8db754e1defd0aea2b9e01c4896e327d15ee374c259fe"
+        }
+      ]
+    }
+  ],
+  "working_copies_retained": true,
+  "restore": "python3 python/worm_a_artifacts.py unpack NEW_DIRECTORY",
+  "backup_reference": "iterations/authoring_backup_before_final.blend preserves the final .blend1 production backup; remove original only after destination/restored hashes verify.",
+  "external_index_path": "v6/ARCHIVE_INDEX.json"
+}

@@ -1,0 +1,347 @@
+{
+  "date_local": "2026-11-22",
+  "before_archive": true,
+  "git_production_assets": [
+    {
+      "path": "Worm_A.glb",
+      "bytes": 1480612,
+      "sha256": "b0e3fcd1655c88f78831111078879d1aa75fac3de098ee7674781ab28430043f",
+      "purpose": "source/runtime/editable production asset; collision source kept inactive"
+    },
+    {
+      "path": "Worm_A_collision.glb",
+      "bytes": 3024,
+      "sha256": "b81d26a7c9784e472dc5056d7bc096d91fb1e6b1f37fc4ba7ba6e984fcd685b5",
+      "purpose": "source/runtime/editable production asset; collision source kept inactive"
+    },
+    {
+      "path": "assets/creatures/worm_a/Worm_A_rigged.glb",
+      "bytes": 1559500,
+      "sha256": "41646185ded1ab476f76ee302cf7c4fcc333f467a976d923c3074cead7b678fd",
+      "purpose": "source/runtime/editable production asset; collision source kept inactive"
+    },
+    {
+      "path": "assets/creatures/worm_a/Worm_A_rigged.blend",
+      "bytes": 1536205,
+      "sha256": "9b4c35f3ff5148997ae333b00ffc764176083bf3de367782de79447274e0fafe",
+      "purpose": "source/runtime/editable production asset; collision source kept inactive"
+    },
+    {
+      "path": "assets/creatures/worm_a/rig.json",
+      "bytes": 2014,
+      "sha256": "323e1a2e4748532c598a67c1136d2730766712e52d02c15b19723fd816348fdc",
+      "purpose": "source/runtime/editable production asset; collision source kept inactive"
+    }
+  ],
+  "git_metadata": "Source/scripts/report, hashes, validation and reproducibility; not raw previews or editor backups",
+  "raw": [
+    {
+      "phase": "final-flexible-studio",
+      "purpose": "raw studio, source provenance or validation evidence",
+      "files": 4,
+      "bytes": 3207480,
+      "working_copy": "/home/cognis/.cache/moebius-automata/worm-a-rig-v1/final-flexible-studio"
+    },
+    {
+      "phase": "final-studio",
+      "purpose": "raw studio, source provenance or validation evidence",
+      "files": 4,
+      "bytes": 3380284,
+      "working_copy": "/home/cognis/.cache/moebius-automata/worm-a-rig-v1/final-studio"
+    },
+    {
+      "phase": "flesh-studio-v5",
+      "purpose": "raw studio, source provenance or validation evidence",
+      "files": 4,
+      "bytes": 3222672,
+      "working_copy": "/home/cognis/.cache/moebius-automata/worm-a-rig-v1/flesh-studio-v5"
+    },
+    {
+      "phase": "iterations",
+      "purpose": "all source/failed binding and camera iterations preserved",
+      "files": 41,
+      "bytes": 24771430,
+      "working_copy": "/home/cognis/.cache/moebius-automata/worm-a-rig-v1/iterations"
+    },
+    {
+      "phase": "source",
+      "purpose": "raw studio, source provenance or validation evidence",
+      "files": 3,
+      "bytes": 5252657,
+      "working_copy": "/home/cognis/.cache/moebius-automata/worm-a-rig-v1/source"
+    },
+    {
+      "phase": "validation",
+      "purpose": "raw studio, source provenance or validation evidence",
+      "files": 50,
+      "bytes": 82295,
+      "working_copy": "/home/cognis/.cache/moebius-automata/worm-a-rig-v1/validation"
+    }
+  ],
+  "jaw_v2": {
+    "before_archive": true,
+    "git": "Source, authoritative report, metadata and unchanged production assets",
+    "raw": [
+      {
+        "phase": "jaw-iterations-v2",
+        "purpose": "All attempted window recordings, failed witnesses, contact sheets and native-sequence GIF",
+        "files": 10,
+        "bytes": 1662914
+      },
+      {
+        "phase": "jaw-rendered-v2",
+        "purpose": "16 internal renderer frames with native provenance",
+        "files": 32,
+        "bytes": 5735055
+      },
+      {
+        "phase": "jaw-source-v2",
+        "purpose": "Exact source snapshot, fingerprint and tracked patch",
+        "files": 3,
+        "bytes": 5777565
+      },
+      {
+        "phase": "jaw-validation-v2",
+        "purpose": "Native every-tick probes, lip audit, replay comparison and all test/build/capture logs",
+        "files": 33,
+        "bytes": 236946
+      }
+    ]
+  },
+  "mouth_v3": {
+    "date_local": "2026-11-23",
+    "before_archive": true,
+    "git": "Authoritative reports/reproducibility/source and production assets. No raw preview/trace evidence.",
+    "production_asset_bytes": 5159269,
+    "raw": [
+      {
+        "phase": "mouth-v3-iterations",
+        "purpose": "Iteration chronology, authoring backup and live diagnostic GIF",
+        "files": 3,
+        "bytes": 2236395
+      },
+      {
+        "phase": "mouth-v3-prechange",
+        "purpose": "Raw model/render witness: prechange; rejected alignments retained",
+        "files": 3,
+        "bytes": 3097719
+      },
+      {
+        "phase": "mouth-v3-rendered-exercise",
+        "purpose": "Raw model/render witness: rendered-exercise; rejected alignments retained",
+        "files": 32,
+        "bytes": 5605258
+      },
+      {
+        "phase": "mouth-v3-source",
+        "purpose": "Exact source snapshot and fingerprint, tracked patch, authoritative report snapshot",
+        "files": 4,
+        "bytes": 6400356
+      },
+      {
+        "phase": "mouth-v3-studio-v1",
+        "purpose": "Raw model/render witness: studio-v1; rejected alignments retained",
+        "files": 10,
+        "bytes": 9075966
+      },
+      {
+        "phase": "mouth-v3-studio-v2",
+        "purpose": "Raw model/render witness: studio-v2; rejected alignments retained",
+        "files": 10,
+        "bytes": 9339555
+      },
+      {
+        "phase": "mouth-v3-studio-v3",
+        "purpose": "Raw model/render witness: studio-v3; rejected alignments retained",
+        "files": 8,
+        "bytes": 7256338
+      },
+      {
+        "phase": "mouth-v3-validation",
+        "purpose": "All model/build/test logs, native and imposed-control telemetry, geometry and replay audits",
+        "files": 26,
+        "bytes": 225543
+      }
+    ]
+  },
+  "sculpt_v4": {
+    "date_local": "2026-11-23",
+    "before_archive": true,
+    "git": "Authoritative reports/reproducibility/source and production assets. No raw preview/trace evidence.",
+    "production_asset_bytes": 5581992,
+    "raw": [
+      {
+        "phase": "mouth-v4-baseline-pre-v3",
+        "purpose": "Raw model/render witness: baseline-pre-v3; rejected alignments retained",
+        "files": 1,
+        "bytes": 1559500
+      },
+      {
+        "phase": "mouth-v4-iterations",
+        "purpose": "Iteration chronology, authoring backup and live diagnostic GIF",
+        "files": 5,
+        "bytes": 2193541
+      },
+      {
+        "phase": "mouth-v4-native-render",
+        "purpose": "Raw model/render witness: native-render; rejected alignments retained",
+        "files": 32,
+        "bytes": 5372707
+      },
+      {
+        "phase": "mouth-v4-rejected-v3",
+        "purpose": "Raw model/render witness: rejected-v3; rejected alignments retained",
+        "files": 4,
+        "bytes": 3686450
+      },
+      {
+        "phase": "mouth-v4-source",
+        "purpose": "Exact source snapshot and fingerprint, tracked patch, authoritative report snapshot",
+        "files": 4,
+        "bytes": 6820532
+      },
+      {
+        "phase": "mouth-v4-studio-hinge",
+        "purpose": "Raw model/render witness: studio-hinge; rejected alignments retained",
+        "files": 10,
+        "bytes": 9489694
+      },
+      {
+        "phase": "mouth-v4-studio-rim",
+        "purpose": "Raw model/render witness: studio-rim; rejected alignments retained",
+        "files": 8,
+        "bytes": 7090471
+      },
+      {
+        "phase": "mouth-v4-studio-v1",
+        "purpose": "Raw model/render witness: studio-v1; rejected alignments retained",
+        "files": 9,
+        "bytes": 10242660
+      },
+      {
+        "phase": "mouth-v4-studio-vertical",
+        "purpose": "Raw model/render witness: studio-vertical; rejected alignments retained",
+        "files": 10,
+        "bytes": 9523418
+      },
+      {
+        "phase": "mouth-v4-validation",
+        "purpose": "All model/build/test logs, native and imposed-control telemetry, geometry and replay audits",
+        "files": 2,
+        "bytes": 176820
+      },
+      {
+        "phase": "mouth-v4-vertical-render",
+        "purpose": "Raw model/render witness: vertical-render; rejected alignments retained",
+        "files": 32,
+        "bytes": 4582806
+      }
+    ]
+  },
+  "refinement_v5": {
+    "date_local": "2026-11-23",
+    "before_archive": true,
+    "git": "Authoritative reports/reproducibility/source and production assets. No raw preview/trace evidence.",
+    "production_asset_bytes": 6168160,
+    "raw": [
+      {
+        "phase": "mouth-v5-iterations",
+        "purpose": "Iteration chronology, authoring backup and live diagnostic GIF",
+        "files": 4,
+        "bytes": 2181942
+      },
+      {
+        "phase": "mouth-v5-live-render",
+        "purpose": "Raw model/render witness: live-render; rejected alignments retained",
+        "files": 32,
+        "bytes": 4640574
+      },
+      {
+        "phase": "mouth-v5-prechange",
+        "purpose": "Raw model/render witness: prechange; rejected alignments retained",
+        "files": 3,
+        "bytes": 4100854
+      },
+      {
+        "phase": "mouth-v5-source",
+        "purpose": "Exact source snapshot and fingerprint, tracked patch, authoritative report snapshot",
+        "files": 4,
+        "bytes": 7415491
+      },
+      {
+        "phase": "mouth-v5-studio-v1",
+        "purpose": "Raw model/render witness: studio-v1; rejected alignments retained",
+        "files": 10,
+        "bytes": 10111960
+      },
+      {
+        "phase": "mouth-v5-studio-v2",
+        "purpose": "Raw model/render witness: studio-v2; rejected alignments retained",
+        "files": 8,
+        "bytes": 7126605
+      },
+      {
+        "phase": "mouth-v5-validation",
+        "purpose": "All model/build/test logs, native and imposed-control telemetry, geometry and replay audits",
+        "files": 2,
+        "bytes": 176820
+      }
+    ]
+  },
+  "metal_crowns_v6": {
+    "date_local": "2026-11-23",
+    "before_archive": true,
+    "git": "Authoritative reports/reproducibility/source and production assets. No raw preview/trace evidence.",
+    "production_asset_bytes": 5985472,
+    "raw": [
+      {
+        "phase": "mouth-v6-iterations",
+        "purpose": "Iteration chronology, authoring backup and live diagnostic GIF",
+        "files": 5,
+        "bytes": 3800534
+      },
+      {
+        "phase": "mouth-v6-live-render",
+        "purpose": "Raw model/render witness: live-render; rejected alignments retained",
+        "files": 32,
+        "bytes": 4619038
+      },
+      {
+        "phase": "mouth-v6-prechange",
+        "purpose": "Raw model/render witness: prechange; rejected alignments retained",
+        "files": 3,
+        "bytes": 4690798
+      },
+      {
+        "phase": "mouth-v6-source",
+        "purpose": "Exact source snapshot and fingerprint, tracked patch, authoritative report snapshot",
+        "files": 4,
+        "bytes": 7263253
+      },
+      {
+        "phase": "mouth-v6-studio-v1",
+        "purpose": "Raw model/render witness: studio-v1; rejected alignments retained",
+        "files": 10,
+        "bytes": 9915170
+      },
+      {
+        "phase": "mouth-v6-studio-v2",
+        "purpose": "Raw model/render witness: studio-v2; rejected alignments retained",
+        "files": 10,
+        "bytes": 9869200
+      },
+      {
+        "phase": "mouth-v6-studio-v3",
+        "purpose": "Raw model/render witness: studio-v3; rejected alignments retained",
+        "files": 8,
+        "bytes": 7137662
+      },
+      {
+        "phase": "mouth-v6-validation",
+        "purpose": "All model/build/test logs, native and imposed-control telemetry, geometry and replay audits",
+        "files": 2,
+        "bytes": 176820
+      }
+    ]
+  }
+}

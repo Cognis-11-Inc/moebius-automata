@@ -3747,6 +3747,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "moebius-morph"
+version = "0.1.0"
+dependencies = [
+ "blake3",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "moebius-morph-lab"
+version = "0.1.0"
+dependencies = [
+ "bevy",
+ "clap",
+ "moebius-morph",
+ "serde_json",
+]
+
+[[package]]
 name = "moebius-viewer"
 version = "0.1.0"
 dependencies = [

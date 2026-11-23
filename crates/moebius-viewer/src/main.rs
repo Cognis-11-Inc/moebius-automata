@@ -12,10 +12,13 @@
 
 mod audio;
 mod body;
+mod jaw_exercise;
 mod layout;
 mod live;
+mod motor_demo;
 mod rules;
 mod show;
+mod worm_a;
 
 use std::collections::BTreeMap;
 use std::fs;
@@ -43,6 +46,18 @@ const BODY_SCALE: f32 = 0.48;
     about = "Choose founding rules, then watch. An open run keeps ticking off the render thread."
 )]
 struct Cli {
+    /// Default first creature is the user sculpt. Procedural preserves the old visual.
+    #[arg(long, default_value="worm-a", value_parser=["worm-a","procedural"])]
+    creature_skin: String,
+    /// Follow the moving mouth; Space pauses/resumes.
+    #[arg(long)]
+    mouth_view: bool,
+    /// Diagnostic jaw close/open motor exercise. All other actuators rest; not autonomous.
+    #[arg(long, requires = "motor_nursery")]
+    jaw_exercise: bool,
+    /// Record16 mouth frames and motor-control provenance without pausing.
+    #[arg(long)]
+    record_mouth: Option<PathBuf>,
     /// Run directory that contains manifest.json and snapshots/.
     /// Omit it to open the 256³ farm.
     #[arg(long)]
@@ -56,6 +71,20 @@ struct Cli {
     /// Open the read-only neural inspector (N toggles it; Tab changes page).
     #[arg(long)]
     inspect: bool,
+    /// Explicit M6 checkpoint bundle; never changes the ordinary nursery default.
+    #[arg(long)]
+    motor_nursery: Option<PathBuf>,
+    /// Native recurrent demo controller: selected, untrained, or compare (IDs1/2).
+    #[arg(long,default_value="compare",value_parser=["selected","untrained","compare"])]
+    motor_control: String,
+    /// Save an actual rendered frame and exit after capture completes.
+    #[arg(long)]
+    capture_frame: Option<PathBuf>,
+    /// Leave the captured viewer open for inspection.
+    #[arg(long)]
+    capture_keep_open: bool,
+    #[arg(long, default_value_t = 128)]
+    capture_tick: u64,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Default, States)]
@@ -152,6 +181,7 @@ struct AudioKey {
 
 #[derive(Resource)]
 struct Gallery {
+    worm: Option<worm_a::WormAssets>,
     creatures: [Handle<Mesh>; 3],
     creature_mats: [Handle<StandardMaterial>; 3],
     threads: Handle<Mesh>,
@@ -165,6 +195,11 @@ struct Gallery {
     orb_mat: Handle<StandardMaterial>,
     mark: Handle<Mesh>,
     mark_mat: Handle<StandardMaterial>,
+}
+
+#[derive(Resource)]
+struct CreatureSkin {
+    worm_a: bool,
 }
 
 #[derive(Resource)]
@@ -217,9 +252,30 @@ fn main() {
         );
         std::process::exit(1);
     }
-    let draft = match &cli.snapshots {
-        Some(path) => Draft::from_run_dir(path),
-        None => Ok(Draft::hall()),
+    if cli.motor_nursery.is_some() && (cli.start || cli.live || cli.snapshots.is_some()) {
+        eprintln!("motor demo is separate from --live/--start/--snapshots");
+        std::process::exit(1);
+    }
+    let motor_world = cli
+        .motor_nursery
+        .as_ref()
+        .map(|path| motor_demo::load(path, &cli.motor_control));
+    let motor_world = match motor_world {
+        Some(Ok(w)) => Some(w),
+        Some(Err(e)) => {
+            eprintln!("motor demo: {e}");
+            std::process::exit(1);
+        }
+        None => None,
+    };
+    let motor_enabled = motor_world.is_some();
+    let draft = if let Some(world) = &motor_world {
+        Draft::from_parts(world.config().clone(), world.seed(), 1000, 50, true)
+    } else {
+        match &cli.snapshots {
+            Some(path) => Draft::from_run_dir(path),
+            None => Ok(Draft::hall()),
+        }
     };
     let draft = match draft {
         Ok(draft) => draft,
@@ -228,7 +284,19 @@ fn main() {
             std::process::exit(1);
         }
     };
-    let prepared_hall = if cli.live {
+    let prepared_hall = if let Some(world) = motor_world {
+        match if cli.jaw_exercise {
+            live::open_jaw_exercise(world)
+        } else {
+            live::open_initial(world)
+        } {
+            Ok(hall) => Some(hall),
+            Err(e) => {
+                eprintln!("motor demo: {e}");
+                std::process::exit(1);
+            }
+        }
+    } else if cli.live {
         match live::open(&draft.config, draft.seed) {
             Ok(hall) => Some(hall),
             Err(err) => {
@@ -240,9 +308,16 @@ fn main() {
         None
     };
     let mut app = App::new();
-    app.add_plugins(DefaultPlugins.set(WindowPlugin {
+    app.add_plugins(DefaultPlugins.set(AssetPlugin { file_path: concat!(env!("CARGO_MANIFEST_DIR"), "/../../assets").into(), ..default() }).set(WindowPlugin {
         primary_window: Some(Window {
-            title: "Möbius Automata — Vivarium".into(),
+            title: if motor_enabled {
+                format!(
+                    "M6 native recurrent demo — {} — evolved candidate, not lifetime learning",
+                    cli.motor_control
+                )
+            } else {
+                "Möbius Automata — Vivarium".into()
+            },
             ..default()
         }),
         ..default()
@@ -253,10 +328,12 @@ fn main() {
         brightness: 450.0,
         ..default()
     })
+    .insert_resource(CreatureSkin { worm_a: cli.creature_skin=="worm-a" })
+    .insert_resource(worm_a::MouthView { enabled: cli.mouth_view, ..default() })
     .insert_resource(show::FlyCamera::with_inspector(cli.inspect))
     .insert_resource(draft)
     .insert_resource(Boot {
-        auto_start: cli.start || cli.live,
+        auto_start: cli.start || cli.live || motor_enabled,
     })
     .init_state::<Stage>()
     .add_systems(Startup, show::boot)
@@ -288,6 +365,8 @@ fn main() {
             show::hall_bodies.run_if(resource_exists::<Hall>),
             (
                 show::rig_joints,
+                worm_a::ready,
+                worm_a::sculpt_mouth.after(show::rig_joints),
                 show::feeding,
                 show::flesh_surfaces,
                 show::neural_inspector,
@@ -296,7 +375,6 @@ fn main() {
                 .chain()
                 .run_if(resource_exists::<Hall>),
             show::hall_fluid.run_if(resource_exists::<Hall>),
-            show::hall_threads.run_if(resource_exists::<Hall>),
             show::drift_lamp,
             show::marks.run_if(resource_exists::<Reel>),
             show::soundtrack.run_if(resource_exists::<Reel>),
@@ -336,6 +414,42 @@ fn main() {
                 seconds: 0.0,
                 reported: false,
             });
+    }
+    app.add_systems(
+        Update,
+        worm_a::mouth_view
+            .after(show::orbit)
+            .after(show::hall_clock)
+            .run_if(in_state(Stage::Playing)),
+    );
+    if let Some(directory) = cli.record_mouth {
+        std::fs::create_dir(&directory).expect("mouth recording needs a new directory");
+        app.insert_resource(worm_a::MouthRecording {
+            directory,
+            next_tick: 16,
+            frames: 0,
+        })
+        .add_systems(
+            Update,
+            worm_a::record_mouth
+                .after(worm_a::mouth_view)
+                .after(show::rig_joints)
+                .after(worm_a::sculpt_mouth)
+                .run_if(in_state(Stage::Playing)),
+        );
+    }
+    if let Some(path) = cli.capture_frame {
+        if path.exists() {
+            eprintln!("capture path exists; refusing overwrite");
+            std::process::exit(1);
+        }
+        app.insert_resource(FrameCapture {
+            path,
+            tick: cli.capture_tick,
+            requested: false,
+            exit_after: !cli.capture_keep_open,
+        })
+        .add_systems(Update, capture_frame.run_if(in_state(Stage::Playing)));
     }
     app.run();
 }
@@ -691,5 +805,84 @@ mod tests {
         assert_eq!(reel.hypothesis.marks.len(), 1);
         assert!(reel.hypothesis.note.contains("annotation"));
         let _ = fs::remove_dir_all(&dir);
+    }
+    #[test]
+    fn keep_open_capture_does_not_pause_live_motion() {
+        let config = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("../../experiments/motor_land_demo.json");
+        let mut world = motor_demo::load(&config, "selected").unwrap();
+        for _ in 0..20 {
+            world.tick().unwrap();
+        }
+        let mut hall = live::open_initial(world).unwrap();
+        for _ in 0..100 {
+            hall.drain();
+            if hall.latest.is_some() {
+                break;
+            }
+            std::thread::sleep(std::time::Duration::from_millis(2));
+        }
+        assert!(hall.committed_tick() >= 20);
+        let dir = std::env::temp_dir().join(format!("moebius-keep-open-{}", std::process::id()));
+        std::fs::create_dir_all(&dir).unwrap();
+        let path = dir.join("capture.png");
+        let mut app = App::new();
+        app.insert_resource(hall)
+            .insert_resource(FrameCapture {
+                path: path.clone(),
+                tick: 16,
+                requested: false,
+                exit_after: false,
+            })
+            .add_systems(Update, capture_frame);
+        app.update();
+        assert!(app.world().resource::<FrameCapture>().requested);
+        assert!(
+            !app.world().resource::<Hall>().is_paused(),
+            "keeping a capture open must leave live jaw movement running"
+        );
+        assert!(path.with_extension("capture.json").exists());
+        std::fs::remove_dir_all(dir).unwrap();
+    }
+}
+
+#[derive(Resource)]
+struct FrameCapture {
+    exit_after: bool,
+    path: PathBuf,
+    tick: u64,
+    requested: bool,
+}
+fn capture_frame(
+    mut request: ResMut<FrameCapture>,
+    hall: Option<Res<Hall>>,
+    mut commands: Commands,
+) {
+    use bevy::render::view::screenshot::{Screenshot, ScreenshotCaptured, save_to_disk};
+    let Some(hall) = hall else {
+        return;
+    };
+    if request.requested || hall.committed_tick() < request.tick {
+        return;
+    }
+    request.requested = true;
+    if request.exit_after {
+        hall.set_paused(true);
+    }
+    if let Some(picture) = &hall.latest {
+        let record = serde_json::json!({"committed_tick_at_request":picture.tick,"mode":"native recurrent motor demo","state_hash":picture.state_hash,"land_units":picture.material_flesh,"reservoir":picture.reservoir,"config_hash":hall.config_hash,"states":picture.cells.iter().map(|cell|serde_json::json!({"id":cell.id,"site":cell.site,"genome_id":cell.rig.as_ref().and_then(|b|b.neural.as_ref()).map(|n|n.genome.id())})).collect::<Vec<_>>()});
+        let _ = std::fs::write(
+            request.path.with_extension("capture.json"),
+            serde_json::to_vec_pretty(&record).unwrap(),
+        );
+    }
+    let mut shot = commands.spawn(Screenshot::primary_window());
+    shot.observe(save_to_disk(request.path.clone()));
+    if request.exit_after {
+        shot.observe(
+            |_: On<ScreenshotCaptured>, mut exit: MessageWriter<bevy::app::AppExit>| {
+                exit.write(bevy::app::AppExit::Success);
+            },
+        );
     }
 }

@@ -1,0 +1,191 @@
+{
+  "date_local": "2026-11-22",
+  "scope": "post-M6 cathedral foundation, not new optimization/learning evidence",
+  "workspace_tests": 100,
+  "terrain_tests": 6,
+  "clippy": "PASS",
+  "format": "PASS",
+  "new_native_run": {
+    "config_hash": "5b53c7ded099f722d37d1cb3c649566166e9a393f11bdc6e639237147d918741",
+    "energy_residual": 0,
+    "field": 0,
+    "land_units": 14,
+    "live": 2,
+    "material_residual": 0,
+    "reservoir": 1010,
+    "state_hash": "a757d3f69be6be4711d1c623e49c63517a9c82944a8f2c1642e5ae3ab9033491",
+    "status": "PASS",
+    "ticks": 1024
+  },
+  "exact_native_replay": {
+    "state_hash": "a757d3f69be6be4711d1c623e49c63517a9c82944a8f2c1642e5ae3ab9033491",
+    "status": "PASS",
+    "ticks": 1024
+  },
+  "historical_replays": [
+    {
+      "cue_events": 0,
+      "episodes": 120,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 15360,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-mermogon-restored-v2/babble-v1/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 0,
+      "episodes": 30,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 7680,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-mermogon-restored-v2/capability-v1/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 48,
+      "episodes": 48,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 12288,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-mermogon-restored-v2/direction-heldout-v1/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 48,
+      "episodes": 48,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 12288,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-mermogon-restored-v2/direction-heldout-v2/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 216,
+      "episodes": 216,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 27648,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-mermogon-restored-v2/direction-v1/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 216,
+      "episodes": 216,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 27648,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-mermogon-restored-v2/direction-v2/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 0,
+      "episodes": 24,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 6144,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-mermogon-restored-v2/falsify-v1/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 0,
+      "episodes": 88,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 22528,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-mermogon-restored-v2/heldout-v1/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 0,
+      "episodes": 358,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 48128,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-mermogon-restored-v2/lifetime-v1/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 0,
+      "episodes": 576,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 73728,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-mermogon-restored-v2/optimize-v1/episodes.jsonl.gz"
+    },
+    {
+      "dataset": "docs/m4/artifacts/baseline_v1",
+      "snapshots_audited": 400,
+      "status": "PASS",
+      "ticks_replayed": 45168,
+      "trials_replayed": 200
+    },
+    {
+      "dataset": "docs/m4/artifacts/corrected_v2",
+      "snapshots_audited": 400,
+      "status": "PASS",
+      "ticks_replayed": 44986,
+      "trials_replayed": 200
+    }
+  ],
+  "visual_witness": {
+    "inspected": [
+      "land_t1024.png",
+      "sculpt_land_t1024.png",
+      "fixed_camera_land_t1024.png"
+    ],
+    "fixed_camera_state_matches_native": true,
+    "strict_variant_reproduction": {
+      "config_hash": "e13f18ab33fd46048edda493c6f834ddf2045d42b1ba76a9a7f12f4a3681f4a3",
+      "energy_residual": 0,
+      "field": 0,
+      "land_units": 17,
+      "live": 2,
+      "material_residual": 0,
+      "reservoir": 1007,
+      "state_hash": "da86c11bdd600ec1f3f4e03bc32c3088ed8a56787ce11fff54785db5313f4cca",
+      "status": "PASS",
+      "ticks": 1024
+    },
+    "earlier_free_camera": "Earlier non-capture-locked frame has different framing; retained. Final capture suppresses manual camera input."
+  },
+  "material_audit": {
+    "total_initial": 1024,
+    "every_tick_land_plus_reservoir": 1024,
+    "land_stock_monotone_in_native_run": true,
+    "total_sculpted": 5,
+    "total_trail_laid": 14
+  },
+  "failures_preserved": [
+    "Terrain fixture initially inherited nutrient wave; fixed after invalid config/material residual failures; no production law coefficients altered",
+    "First neural diagnostic fixture was law1/waveon and correctly refused controls; corrected tolaw2/waveoff",
+    "Initial probe used nonexistent SnapshotFile.config; fixed before any recorded trial",
+    "Earlier free-camera captures preserved; final fixed-camera capture inspected"
+  ],
+  "unsupported": [
+    "Purposeful cathedral architecture",
+    "Learning or logical reasons for sculpting",
+    "Ecological survival",
+    "Full mechanics of transporting material chunks"
+  ],
+  "publication": "uncommitted; no push",
+  "archive_verify": {
+    "status": "PASS",
+    "command": "verify",
+    "archives": 5,
+    "files": 48,
+    "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/Cathedral/8e351e2/v1"
+  },
+  "archive_unpacked_and_all_restored_hashes": {
+    "status": "PASS",
+    "command": "unpack",
+    "archives": 5,
+    "files": 48,
+    "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/Cathedral/8e351e2/v1"
+  },
+  "restored_native_replay": {
+    "state_hash": "a757d3f69be6be4711d1c623e49c63517a9c82944a8f2c1642e5ae3ab9033491",
+    "status": "PASS",
+    "ticks": 1024
+  }
+}

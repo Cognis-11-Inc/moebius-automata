@@ -8,3 +8,6 @@ __pycache__/
 runs/
 .directory
 *.wav
+
+# Blender authoring backups are raw evidence, not production assets.
+*.blend[0-9]*

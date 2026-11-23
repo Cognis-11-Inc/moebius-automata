@@ -1,0 +1,24 @@
+# M6 integration audit — 2026-11-22
+
+Baseline: `main`, clean at `8e351e212d1f979a32b1bb3a862719a06ea1b70d` before this slice. M4 evidence is committed at `fd837e7e19c670311ee17ad600259f1c086c6d63`; M5 reports, protocol, validation and archive references were read before changing code. This slice remains an uncommitted working tree. Live Git state is authoritative for publication.
+
+| Contract | Active implementation and integration | M6 treatment |
+|---|---|---|
+| Eight neurons | `neural/controller.rs::NeuralState::integrate_with_commands`: four integer substeps, recurrent and sensor weighted sums, squashing, leaky integration with residuals/tau, output weights and motor biases | Native recurrent path for every selected candidate; change NN genes only |
+| Anatomy and motor ABI | `neural/schema.rs`: reference12 spine plus2 jaw joints, 26 bend/twist/jaw axes and4 valve/nozzle channels, 30 outputs | Same anatomy, strengths, rest, stiffness, gains, muscle rate, plastic rates and valve/nozzle output parameters |
+| Proprioception | `neural/sensing.rs::encode`: angle/rate/effort triples78, local velocity/acceleration9, physiology6, chemistry6, contact6, jaw load2 =107 scalars | No coordinates, direction vectors, evaluator fitness or IDs enter these scalars |
+| Actual motor path | `World::advance` → observe → `integrate_with_commands` → `slew_muscle` → fee/debt → `Body::step_with_law` → periodic COM offsets → feeding → `feedback` | Full commands, smoothed drives, actual efforts/rates/angles/COM and post-transition neural state logged |
+| Authored wave | `NeuralState::spinal_wave`, conditional on `rules.spinal_wave` | Off in all M6; not copied into evolved NN. Normal nursery already off since M4 |
+| Law2 body | `neural/body.rs::step_with_law`, `shape_impulse`, `lunge_impulse`: spring-loaded kinematic joints; anisotropic resistive coupling plus authored signed-bend threshold280 lunge; integer momentum/drag and inertia16 | Unchanged; this is an authored simulation, not validated hydrodynamics or soft-body mechanics |
+| Energy | `integrate_with_commands` bills smoothed strengths-weighted drive with denominator4096 debt; neural fee1/8 ticks; `World::advance` maintenance1, secretions/digging separately paid | Explicit4096 genesis energy, no hidden replenishment within episodes. Matched probes reset/reprovision energy and body |
+| Momentum/material | `World::advance`, `advance_jets`, `Accounts`, `audit`; absorbed body momentum transferred to environment; droplet momentum carried until deposition | Zero total linear residual in native replay, resource/energy residual0; secretion flagged and excluded from joint locomotion credit |
+| Diagnostic commands | `World::tick_controlled` validates raw commands before ordinary smoothing/fees/body transitions; `tick_observed` runs native policy | Only external capability/babble/mechanical/coast controls use imposed commands. Selected NN has null submitted-command records |
+| Existing plasticity | `feedback`: clipped energy delta×128 minus running mean modulates recurrent and motor eligibility, bounded plastic arrays; physiology signal is also an ordinary input | Separate lifetime assay; no locomotion reward implemented. New optional `physiological_feedback:false` sets raw physiology signal0; also changes its sensor, so it is not a pure synaptic-update ablation |
+| Inheritance | `offspring` assimilates half of lifetime plastic weights into recurrent/output genotype, optionally mutates | Fresh inherited-parameter probes disable mutation; not evidence of reproduction in the nursery |
+| Chemical sensing | `World::observe_neural`, `local_chemical_lobes`: existing optional M5 radius8 authoritative nutrient lobes | Direction pilot uses these existing local signals with uptake0, not a new sensor. Explicit environmental field rearrangement is diagnostic intervention, not autonomous chemistry |
+| Replay/config | `NeuralRules` serde true default omitted; old law1 rejects feedback-off; snapshot version unchanged | Both M4 primary datasets replayed with old hashes. Full M6 recorded field arrays allow invalid v1 cue replay after v2 cue constructor correction |
+| Viewer | `motor_demo::load` → `live::open_initial` → tick thread `World::tick` → existing `Picture`/body renderer | Optional native demo only; ordinary default startup unchanged. IDs1/2 selected/original in compare. Recorded `Reel` path was unsuitable because it omits neural rig data |
+
+Evidence of integration includes the native-path M6 test, actual viewer frames with matching genotype IDs and neural traces, full tick-by-tick replay, and historical M4 replay. Function existence alone was not treated as runtime evidence. No head/eye mesh or procedural body animation was added.
+
+The complete committed M4 archive remains historical evidence; no M4/M5 raw files were changed. The new experiment lives under examples/support and does not install the selected genotype into the ordinary production nursery.

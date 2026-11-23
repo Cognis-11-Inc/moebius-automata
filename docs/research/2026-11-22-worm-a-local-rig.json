@@ -1,0 +1,13 @@
+{
+  "date_local": "2026-11-22",
+  "intent": "User-supplied Worm_A becomes the live first creature, with a proper mouth, creepiness, reduced stretching, flexible flesh and subtle exoskeleton. Work locally.",
+  "external_queries": [],
+  "external_scientific_sources": [],
+  "CONSULTED": ["Preserved root Worm_A.glb and collision proxy", "Local Blender5.2.3 import/rig API", "Local Bevy0.20 glTF material/skin loader source", "Existing reference body kinematics, head_site and actual food uptake", "Source front/side/three-quarter and live/studio rendered pixels"],
+  "IMPLEMENTED": ["14 named skin joints driven by existing neural motor angles", "Local vertex paint and flexible tissue underlayer, rear contour refinement; original sculpt preserved", "Mouth landmark at actual joint9, jaw-rim influences and intake-only indicator", "Head-following mouth close-up, pause/resume/body toggle and keep-open captures", "Explicit legacy procedural visual fallback"],
+  "VALIDATED": ["103 workspace tests and strict Clippy", "Mouth anchor sampled bent/twisted poses below0.004 viewer-unit error", "Jaw closure/opening direction and positive/negative actual ingestion fixtures", "Six-pose skin audit, including rejected variants; extreme stretching remains", "Studio and live frame inspection", "Verified versioned Mermogon archive and restored source producing exact GLB SHA256"],
+  "not_validated": ["Full soft-tissue or triangle-contact biomechanics", "New propulsion, steering, learned movement or useful lifetime learning", "Physical collision conformance of the visual contour"],
+  "knowledge_transfer": "No publication-derived claims. Geometry fitting, colour palette, mouth landmark, weighting and camera are authored render choices. Existing simulation physics, genes and scalar sensor ABI unchanged.",
+  "chronology": "Initial binding overstretched; retained. Rigid shell revision reduced distortion but user rejected that art direction. Flexible painted flesh with fine cuticle replaced it. Several transition variants and failed camera witnesses retained. Current source and shader assets remain local; no hosted services or generated-image tools used.",
+  "reports": ["docs/worm_a/README.md", "docs/worm_a/VALIDATION.json", "docs/worm_a/ARTIFACT_STORAGE.json"]
+}

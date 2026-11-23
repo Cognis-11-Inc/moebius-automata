@@ -1,0 +1,148 @@
+{
+  "date_local": "2026-11-22",
+  "base_commit": "8e351e212d1f979a32b1bb3a862719a06ea1b70d",
+  "mission": "Test existing eight-neuron recurrent controller acquisition of useful COM coordination through bounded evolutionary optimization, separately from lifetime plasticity.",
+  "production_changes": "None planned to physics, body, energetic coefficients, anatomy, ordinary nursery default or head aesthetics. Default-valued feedback ablation option may be added with exact old encoding/replay compatibility. No scripted waveform in the selected neural policy.",
+  "research": "No external scientific literature consulted/planned. This is a source-derived authored experiment. Any later scientific search must be announced first and recorded.",
+  "nursery": "One existing founder, reference12 spine+2 jaw joints,26 rotational axes+4 other motor outputs.16-cubed periodic empty world, no food/nutrients/reservoir/inflow, populationcap1, law2/waveoff/drag8 normally.4096 initial energy, existing maintenance1 and neural/motor fees; reset episodes are provisioned assays, not survival. No target or global coordinates in107-scalar neural ABI.",
+  "capability_budget": {
+    "episodes": 30,
+    "ticks": 256,
+    "conditions": "three initial orientations including unfamiliar mild pose; drag8/32; original, random, rest, M5singlepulse and M5periodic mechanical controls",
+    "gate": "At least one paid repeated diagnostic control shows net>=0.5 site, last two quarter projections>=0.10 site each, and last-half directional travel advantage>=0.05 site over matched zero-command continuation. No jets. If absent, do not launch optimization until blocker investigated or gate explicitly revised with evidence."
+  },
+  "babbling_budget": {
+    "seeds": [
+      401,
+      402,
+      403,
+      404,
+      405,
+      406,
+      407,
+      408
+    ],
+    "episodes_max": 120,
+    "ticks": 128,
+    "families": "random individual holds, reversals, simultaneous random contractions, seeded sequential permutation, independent random phase/amplitude/duration. No chosen successful coordination copied into neural weights.",
+    "plasticity": "Existing plasticity enabled during external babbling; no locomotion-specific feedback or immediate competence claim. Externally submitted commands and resulting neural changes retained."
+  },
+  "evolution_budget": {
+    "population": 16,
+    "generations": 12,
+    "maximum_candidate_episodes": 576,
+    "episode_ticks": 128,
+    "training_conditions": [
+      101,
+      102,
+      103
+    ],
+    "optimizer_seed": 60620261122,
+    "wall_limit_seconds": 900,
+    "raw_compressed_limit_bytes": 536870912,
+    "selection": "ranked elites4 plus4 fresh random immigrants per generation; other offspring mutate selected parent NN parameters. Preserve genome IDs/parents/mutations/full candidates and diversity statistics.",
+    "mutated_parameters": "bounded recurrent/sensory/joint-output weights, biases, joint motor biases and tau. Body genes, gains, strengths, plastic rates, anatomy and last4 motor-output parameters remain fixed.",
+    "plasticity_during_evolution": false,
+    "gate": "Capability and babble precede optimization. This bounded pilot is not authority for a larger undisclosed campaign."
+  },
+  "fitness": {
+    "components": [
+      "COM net distance",
+      "path length",
+      "net/path ratio",
+      "per-quarter displacement/projection",
+      "positive last-two-quarter projection minimum",
+      "actual advantage over matched zero-command last-half coast",
+      "paid actuator energy and pending fractional debt",
+      "efficiency net/(1+effective actuator cost)",
+      "total absolute rotation",
+      "jets",
+      "stops and active joint changes"
+    ],
+    "scalar": "net +4*positive_min_last2_quarter_projection +2*positive_active_gain +0.25*net/(1+effective_actuator_energy) -0.001*effective_actuator_energy -0.002*rotation_radians. Mean across three training conditions. All components retained separately.",
+    "near_zero": "net<0.05: energy/distance reported null and efficiency credit0. Mouth displacement earns no score; zero jets required."
+  },
+  "held_out": {
+    "seeds": [
+      601,
+      602,
+      603,
+      604,
+      605,
+      606,
+      607,
+      608
+    ],
+    "use": "Do not evaluate before final genome locked. New orientations and bounded initial joint poses; drag8 and32. No final food scenarios used in optimization.",
+    "comparators": [
+      "selected native recurrent",
+      "original factory recurrent",
+      "native deterministic random",
+      "rest",
+      "M5singlepulse",
+      "M5periodic best prior mechanical reference",
+      "selected with afferent weightszero",
+      "selected plasticityoff"
+    ],
+    "ticks": 256,
+    "gates": {
+      "G3": "record paired held-out selected-minus-original net distances, mean/median/range and bootstrap95% interval; PASS only meaningful positive >=0.25-site median and at least6/8wins, with selection score improvement",
+      "G4": "net>=0.5, last2 quarter projections>=0.10 each, active_gain>=0.05, active commands in final half, no jets",
+      "G6": "G4 in at least6/8held-out conditions; otherwise partial/fail as measured"
+    },
+    "clarification": "Primary genetic comparison uses selected_frozen and original_frozen (plasticityoff). Also test selected_live/original_live with existing physiological plasticity enabled. Additional recurrenceoff and feedbackoff selected probes separate source of coordination. All conditions fixed before optimizer starts; held-out seeds remain unopened until final selection."
+  },
+  "lifetime": {
+    "genomes": [
+      "original",
+      "selected"
+    ],
+    "experience_ticks": 512,
+    "conditions": [
+      "plasticityon",
+      "plasticityoff",
+      "physiologicalfeedbackoff",
+      "untrainedmatched"
+    ],
+    "assessment": "Reset only assay body/energy to matched physical starts and reset fast neural activation/muscle state for parameter-retention readout. Preserve learned plastic weights for frozen post probes, disable further updates. Also compare carry-state probes and fresh inherited/offspring-without-mutation parameter probes. Explicitly report resets, distinguish evolved genes, retained lifetime weights, fast-state carryover and inheritance.",
+    "learning_law": "Existing feedback is energy-delta modulation, not a locomotion-reward channel. No new motor learning law silently introduced. Feedback-off is an explicit ablation, not new positive feedback.",
+    "G7": "Requires pre/post competence improvement, persistence with feedback removed, generalization and improvement relative to plasticityoff/feedbackoff controls. Synaptic changes alone insufficient."
+  },
+  "curriculum": "A/B measured first. C changing-direction cue and D integrated recovery/braking only after sustained competence. E spatial exploration and F normal-budget food transfer only after prerequisites. Blocked stages labelled NOT RUN, not failures or successes. If A/B succeed, register any cue and later campaign before running; no target vectors secretly injected.",
+  "visual": "Selectable selected/original/compare demo in existing viewer, using native recurrent ticks. Default nursery unchanged. Record screenshots/short capture and inspect actual pixels before claiming visual witness. A selected checkpoint with failed gates must be labelled candidate, not competent learner.",
+  "integrity": "Raw traces, checkpoints, every failed episode and selected lineage in external working cache, then verified versioned Mermogon archive with restore test. Git keeps protocol, code, small selected/original genotype metadata, metrics/analysis, hash/restore index and report. Per-tick full dynamic neural state/motor/physical response, initial/final hashes and deterministic replay. No commits/pushes without explicit user instruction.",
+  "acceptance": [
+    "M6-G1 physical capability",
+    "M6-G2 exploratory joint activity",
+    "M6-G3 evolutionary optimization",
+    "M6-G4 sustained COM locomotion",
+    "M6-G5 directional control",
+    "M6-G6 held-out robustness",
+    "M6-G7 individual lifetime learning",
+    "M6-G8 ecological transfer",
+    "M6-G9 replay and lawful accounting"
+  ],
+  "direction_campaign_after_AB": "After locked movement candidate passed sustained gate8/8 held-out starts, register a second bounded pilot: population12,generations6,training episodes301/302/303 x128ticks,seed60620261123,max300seconds. Warm-start selected recurrent genome; mutate NN genes only, no body/coefficient changes. Directions delivered as an explicitly authored authoritative nutrient-gradient cue with uptake0, no food objective. Initial direction then opposite after64ticks, material-conserving environmental field rearrangement; no body position/velocity edit. Ordinary existing LocalLobesV1 signals only. Evaluator sees world-axis direction outside NN. Score=2*signedCOMprogress +2*min(phaseprogress) -0.001*effectiveactuatorenergy -0.002*rotation; any secretion jets receive score -1000 and no joint-locomotion credit. Fresh direction-test seeds701..708 opened only after directional selection; success both phases>=0.1site and no jets in>=6/8. If fails, integrated stopping/exploration/ecological transfer NOT RUN.",
+  "cue_interface_failure_and_v2": "The v1 direction campaign ran before interface validation. Its field weights64+8*coordinate (total507904) saturated all6LocalLobesV1 channels at1024. Preserve direction-v1 and direction-heldout-v1 as INVALID CUE, not evidence of failed steering acquisition. Correct only explicit training cue concentration to4+coordinate (total47104), keeping the existing sensor/physics/energy laws unchanged. Run sensor/material/no-impulse regression FIRST; then rerun same bounded direction optimizer budget/seed as direction-v2, and fresh held-out701..708 as direction-heldout-v2. No v1 trials erased; raw initial/changed field arrays permit exact historical replay despite changed cue-construction helper.",
+  "post_selection_falsification": {
+    "purpose": "Mechanistic probes only; no candidate retuning or new selection. Registered after primary and steering results.",
+    "episodes": 24,
+    "ticks": 256,
+    "seeds": [
+      601,
+      602,
+      603,
+      604,
+      605,
+      606,
+      607,
+      608
+    ],
+    "arms": [
+      "selected_vacuum drag0",
+      "selected_bias_only zero all26x8 joint output weights; retain motor biases",
+      "selected_shuffled deterministically permute26 joint output rows and biases seed60620261124"
+    ],
+    "interpretation": "Compare existing locked heldout selected_frozen; no jets credited. Vacuum tests environment dependence; bias-only distinguishes initial static drive from dynamic neural output; shuffle tests mapping specificity without asserting any particular joint is necessary."
+  }
+}

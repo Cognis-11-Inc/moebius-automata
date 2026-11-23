@@ -1,0 +1,28 @@
+{
+  "date_local": "2026-11-23",
+  "intent": "User accepts closing; replace rejected translucent smear with anatomically bounded metal crown finish and modest exposure",
+  "external_queries": [],
+  "external_scientific_sources": [],
+  "CONSULTED": [
+    "Straight-on unpainted source render",
+    "Existing crown face adjacency and source IDs",
+    "Actual studio/live rendered pixels"
+  ],
+  "IMPLEMENTED": [
+    "Connected crown patch selection with mirrored seed deduplication",
+    "Local exposure with root collars and distinct wall normals",
+    "Opaque brushed gunmetal; no transmission"
+  ],
+  "VALIDATED": [
+    "Exact v5 skin attributes and closing-target preservation",
+    "Original-face accounting and bounded crown offsets",
+    "29 viewer tests, strict Clippy, format",
+    "16 actual live frames match controlled replay"
+  ],
+  "NOT_DEMONSTRATED": [
+    "Validated anatomical segmentation",
+    "Final artistic/user approval",
+    "Physical tooth collision or improved feeding"
+  ],
+  "report": "docs/worm_a/METAL_CROWNS.md"
+}

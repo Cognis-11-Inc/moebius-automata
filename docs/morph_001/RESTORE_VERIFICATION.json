@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "archive_and_member_restoration": "9 archives /326 files verified before rebuilding",
+  "working_source_identity_files_verified": 18,
+  "archived_engine_lab_original_manifests_and_input_files_verified": 18,
+  "restore_manifest": "Explicit minimal two-crate Cargo workspace; original workspace manifest/lock also preserved",
+  "verifier_scripts": "Python verification tools are also included in source revision2; the anatomical engine/lab reproduction has no Python dependency.",
+  "standalone_dependency_pins": {
+    "status": "PASS",
+    "all_required_original_pins_retained": true,
+    "third_party_version_changes": 0
+  },
+  "commands": [
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "/home/cognis/.cache/moebius-automata/morph-001-restored-final-workspace/Cargo.toml"
+      ],
+      "exit_code": 0,
+      "output": "   Compiling moebius-morph-lab v0.1.0 (/home/cognis/.cache/moebius-automata/morph-001-restored-final-workspace/crates/moebius-morph-lab)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.08s\n     Running unittests src/lib.rs (target/debug/deps/moebius_morph-651d25d1ffdcf0eb)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n     Running tests/forge.rs (target/debug/deps/forge-9ceade44130e6304)\n\nrunning 6 tests\ntest malformed_specs_and_poses_are_rejected_before_generation ... ok\ntest central_mouth_ray_reaches_recessed_floor_instead_of_a_face_patch ... ok\ntest optional_components_have_predictable_topology_and_no_physics_binding ... ok\ntest real_opening_has_an_interior_and_never_collapses_at_closed_limit ... ok\ntest save_reload_preserves_definition_geometry_and_invalid_save_leaves_file_intact ... ok\ntest repeatability_topology_and_attached_motion ... ok\n\ntest result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.63s\n\n     Running unittests src/lib.rs (target/debug/deps/moebius_morph_lab-f6fba52a36963d42)\n\nrunning 3 tests\ntest continuity_tests::preview_wrap_is_continuous_for_body_mouth_and_flagella ... ok\ntest tests::flag_count_add_remove_and_open_close_are_real_topology_and_geometry_edits ... ok\ntest tests::editing_and_persistence_reproduce_the_same_live_structure ... ok\n\ntest result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s\n\n     Running unittests src/main.rs (target/debug/deps/moebius_morph_lab-6442fd2e4aa99e5b)\n\nrunning 1 test\ntest tests::actual_mouse_orbit_and_wheel_handlers_move_a_finite_camera ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s\n\n   Doc-tests moebius_morph\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n   Doc-tests moebius_morph_lab\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n"
+    },
+    {
+      "argv": [
+        "cargo",
+        "run",
+        "--release",
+        "-p",
+        "moebius-morph",
+        "--example",
+        "replay_lab",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "/home/cognis/.cache/moebius-automata/morph-001-restored-final-workspace/Cargo.toml",
+        "--",
+        "/home/cognis/.cache/moebius-automata/morph-001-restored-v2/walkthrough-v3"
+      ],
+      "exit_code": 0,
+      "output": "    Finished `release` profile [optimized] target(s) in 0.05s\n     Running `target/release/examples/replay_lab /home/cognis/.cache/moebius-automata/morph-001-restored-v2/walkthrough-v3`\n{\"body_positions_changed\":true,\"captures_replayed\":31,\"consumer\":\"headless moebius-morph; no Bevy\",\"flagellar_positions_changed\":true,\"motion_phase_samples\":23,\"seed_variants\":3,\"status\":\"PASS\"}\n"
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "date_local": "2026-11-22",
+  "status": "PASS_WITH_STEERING_AND_LIFETIME_NULLS",
+  "base_commit": "8e351e212d1f979a32b1bb3a862719a06ea1b70d",
+  "publication": "No M6 commit or push",
+  "workspace_tests": 94,
+  "m6_core_tests": 4,
+  "m6_viewer_test": 1,
+  "workspace_command": "cargo test --workspace",
+  "clippy": "cargo clippy --workspace --all-targets -- -D warnings: PASS",
+  "format": "cargo fmt --all -- --check: PASS",
+  "whitespace": "git diff --check: PASS",
+  "m4_compatibility": [
+    {
+      "dataset": "docs/m4/artifacts/baseline_v1",
+      "snapshots_audited": 400,
+      "status": "PASS",
+      "ticks_replayed": 45168,
+      "trials_replayed": 200
+    },
+    {
+      "dataset": "docs/m4/artifacts/corrected_v2",
+      "snapshots_audited": 400,
+      "status": "PASS",
+      "ticks_replayed": 44986,
+      "trials_replayed": 200
+    }
+  ],
+  "m6_native_replay": [
+    {
+      "cue_events": 0,
+      "episodes": 30,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 7680,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-8e351e2-capability-v1/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 0,
+      "episodes": 120,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 15360,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-8e351e2-babble-v1/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 0,
+      "episodes": 576,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 73728,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-8e351e2-optimize-v1/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 0,
+      "episodes": 88,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 22528,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-8e351e2-heldout-v1/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 0,
+      "episodes": 358,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 48128,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-8e351e2-lifetime-v1/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 216,
+      "episodes": 216,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 27648,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-8e351e2-direction-v1/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 48,
+      "episodes": 48,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 12288,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-8e351e2-direction-heldout-v1/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 216,
+      "episodes": 216,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 27648,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-8e351e2-direction-v2/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 48,
+      "episodes": 48,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 12288,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-8e351e2-direction-heldout-v2/episodes.jsonl.gz"
+    },
+    {
+      "cue_events": 0,
+      "episodes": 24,
+      "full_neural_motor_state_and_hashes": "exact",
+      "linear_momentum_residual": 0,
+      "status": "PASS",
+      "ticks": 6144,
+      "trace": "/home/cognis/.cache/moebius-automata/m6-8e351e2-falsify-v1/episodes.jsonl.gz"
+    }
+  ],
+  "primary_episodes": 1724,
+  "primary_ticks": 253440,
+  "coast_ticks_also_replayed": 126720,
+  "independent_accounting": "python/m6_analysis.py; all10 phase traces passed. COM/path, energy, fees/debt, velocities, no-jet momentum, cue field/material flow. Native replay additionally audits full material/energy, all jet momentum, neural states, receipts and hashes.",
+  "archive_verify": {
+    "status": "PASS",
+    "command": "verify",
+    "archives": 13,
+    "files": 106,
+    "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M6/8e351e2/v1"
+  },
+  "archive_restore": {
+    "status": "PASS",
+    "command": "unpack",
+    "archives": 13,
+    "files": 106,
+    "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M6/8e351e2/v1"
+  },
+  "restored_native_replay": {
+    "cue_events": 0,
+    "episodes": 88,
+    "full_neural_motor_state_and_hashes": "exact",
+    "linear_momentum_residual": 0,
+    "status": "PASS",
+    "ticks": 22528,
+    "trace": "/home/cognis/.cache/moebius-automata/m6-mermogon-restored-v1/heldout-v1/episodes.jsonl.gz"
+  },
+  "failures_preserved": [
+    "First cue campaign and heldout invalid due six-channel saturation; v2 cue validated before repeat",
+    "Early compile errors (snapshot serialization API and numeric literal inference), before executed trial data",
+    "First workspace suite missing motor_demo in preexisting Hall test fixture, fixed; strict Clippy style errors fixed",
+    "Independent audit initially incorrectly assumed post-jet velocity was the preceding translation velocity, no waste export, and cue sum always equal to episode initial sum. Corrected arithmetic scopes/field ledger; original failed audit logs retained. No raw data altered.",
+    "Blank tick1 visual witness preserved; later captures inspected"
+  ],
+  "binaries": [
+    {
+      "path": "target/release/examples/m6_nursery",
+      "sha256": "88ad3be4479557391c13c01754a8f4813ca3bc6a70a0706709c198d3b3e0a1b5"
+    },
+    {
+      "path": "target/release/examples/m6_replay",
+      "sha256": "e3dca7bb5f214d8f24605a5ee2231d9a16a1c16119ee5423ed298da3c18eb300"
+    },
+    {
+      "path": "target/release/moebius-view",
+      "sha256": "b94601831f5d91355e641ba5383507f657ee07ca400c8d78ba79abe4b3181a71"
+    },
+    {
+      "path": "target/release/examples/m6_mechanism",
+      "sha256": "2467cb3d474cb67c2c2958c0fd414a1ddec3e6a0a069d4fba79ac4d08beb01c6"
+    }
+  ],
+  "limitations": [
+    "One movement optimizer seed, one bounded direction pilot per cue version",
+    "Rounding/resolution dependence not ruled out",
+    "Cue coast branch does not receive reversal, not used for steering verdict",
+    "No ecological transfer, integrated stopping/recovery or exploration campaign",
+    "No hosted CI or deployment claim"
+  ],
+  "analysis_correction": {
+    "error": "Initial Python axis comparison used bend rather than serialized Bend, reporting false zero late lunge thresholds; initial shape-only explanation superseded.",
+    "status": "CORRECTED_AND_CROSSCHECKED",
+    "scope": "Only16 threshold-count values differ; COM/fitness/fees/native replay and all gate verdicts unchanged.",
+    "corrected_independent_audit": "All10 datasets recomputed from full v1 external restore; PASS. Uppercase schema assertion added.",
+    "rust_crosscheck": "Compiled m6_mechanism counts exactly match corrected Python8/8 selected starts; nonzero rounded late lunge ticks1\u201324, inferred shape ticks111\u2013128.",
+    "evidence": "Mermogon v2/audit-correction-v2.tar preserves old report/analysis, corrected analysis, difference check and logs. v1/source-v1.tar and v2/source-v2.tar retain both source versions.",
+    "corrected_analysis_sha256": "f37bffc5d70b3e3c1c34da96cc38f8452fbada3b444410f59c96f6d286c8f3ec"
+  },
+  "archive_verify_v2": {
+    "status": "PASS",
+    "command": "verify",
+    "archives": 15,
+    "files": 121,
+    "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M6/8e351e2"
+  },
+  "archive_restore_v2": {
+    "status": "PASS",
+    "command": "unpack",
+    "archives": 15,
+    "files": 121,
+    "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M6/8e351e2"
+  },
+  "restored_native_replay_v2": {
+    "cue_events": 0,
+    "episodes": 88,
+    "full_neural_motor_state_and_hashes": "exact",
+    "linear_momentum_residual": 0,
+    "status": "PASS",
+    "ticks": 22528,
+    "trace": "/home/cognis/.cache/moebius-automata/m6-mermogon-restored-v2/heldout-v1/episodes.jsonl.gz"
+  },
+  "final_source_identity_sha256": "639cd0041700d9523af81d183c7c872d11636eb525cd67b42788262bced08109",
+  "final_workspace_run": "v4:94 PASS; strict Clippy including new mechanism example PASS"
+}

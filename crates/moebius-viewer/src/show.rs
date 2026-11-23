@@ -20,7 +20,7 @@ use super::{
 };
 use crate::body::{
     BIND_START, BIND_STEP, bone_cage, creature_mesh, food_clot_mesh, fused_flesh_mesh,
-    mandible_mesh, nutrient_mesh, rig_bind_positions, write_slime, write_threads,
+    mandible_mesh, nutrient_mesh, rig_bind_positions, write_threads,
 };
 use crate::layout::{self, CAMERA_FOV, FILAMENT_WINDOW, path_segments, position_at, site_to_view};
 use crate::live::{self, Hall};
@@ -53,6 +53,7 @@ pub struct MotorJoint {
 #[derive(Component)]
 pub struct FeedingMaw {
     id: u64,
+    sculpt: bool,
 }
 
 #[derive(Component)]
@@ -63,12 +64,21 @@ pub fn flesh_surfaces(
     hall: Res<Hall>,
     gallery: Res<Gallery>,
     mut meshes: ResMut<Assets<Mesh>>,
-    surface: Query<Entity, With<FleshSurface>>,
+    mut surface: Query<&mut Visibility, With<FleshSurface>>,
+    view: Res<ViewState>,
     mut previous: Local<Vec<moebius_core::farm::FleshDeposit>>,
 ) {
     let Some(picture) = &hall.latest else {
         return;
     };
+    let visibility = if view.filaments {
+        Visibility::Visible
+    } else {
+        Visibility::Hidden
+    };
+    for mut current in &mut surface {
+        *current = visibility;
+    }
     if *previous == picture.flesh {
         return;
     }
@@ -82,6 +92,7 @@ pub fn flesh_surfaces(
             MeshMaterial3d(gallery.flesh_mat.clone()),
             Transform::default(),
             FleshSurface,
+            visibility,
         ));
     }
 }
@@ -184,7 +195,7 @@ pub fn neural_inspector(
         }
     }
     let mut lines = format!(
-        "NEURAL INSPECTOR  id {id}  parent {}  gen {}\ncommitted {}  rendered {:.2}  page {}/6  Tab: next  N: close\ngenotype {}\n",
+        "NEURAL INSPECTOR  id {id}  parent {}  gen {}\ncommitted {}  rendered {:0.2}  page {}/6  Tab: next  N: close\ngenotype {}\n",
         rig.parent,
         rig.generation,
         picture.tick,
@@ -486,6 +497,7 @@ pub fn assemble(
         ..default()
     });
     let gallery = Gallery {
+        worm: None,
         creatures,
         creature_mats,
         threads: threads.clone(),
@@ -562,6 +574,8 @@ pub fn orbit(
     scroll: Res<AccumulatedMouseScroll>,
     mut fly: ResMut<FlyCamera>,
     hall: Option<Res<Hall>>,
+    capture: Option<Res<super::FrameCapture>>,
+    mouth_view: Option<Res<super::worm_a::MouthView>>,
     mut cursors: Query<(&Window, &mut CursorOptions), With<PrimaryWindow>>,
     mut view: ResMut<ViewState>,
     mut camera: Query<(&mut Transform, &mut Projection), With<Camera3d>>,
@@ -569,7 +583,11 @@ pub fn orbit(
     let Ok((window, mut cursor)) = cursors.single_mut() else {
         return;
     };
-    if keyboard.just_pressed(KeyCode::Escape) || !window.focused {
+    if capture.is_some()
+        || mouth_view.as_ref().is_some_and(|m| m.enabled)
+        || keyboard.just_pressed(KeyCode::Escape)
+        || !window.focused
+    {
         fly.captured = false;
     } else if mouse.just_pressed(MouseButton::Left) {
         fly.captured = true;
@@ -588,7 +606,7 @@ pub fn orbit(
     let forward = rotation * Vec3::NEG_Z;
     let right = rotation * Vec3::X;
     let mut eye = view.eye.unwrap_or(Vec3::new(0.0, 0.4, view.distance));
-    if window.focused {
+    if window.focused && capture.is_none() && mouth_view.as_ref().is_none_or(|m| !m.enabled) {
         if keyboard.just_pressed(KeyCode::KeyF)
             && let Some(hall) = &hall
             && let Some(picture) = &hall.latest
@@ -912,7 +930,7 @@ pub fn pace(time: Res<Time>, mut clock: ResMut<FrameClock>, mut view: ResMut<Vie
         view.fps = clock.frames as f32 / clock.seconds;
     }
     if !clock.reported && clock.seconds >= 2.0 {
-        eprintln!("VIEW_FPS {:.1}", view.fps);
+        eprintln!("VIEW_FPS {:0.1}", view.fps);
         clock.reported = true;
     }
     if clock.seconds >= 2.0 {
@@ -951,12 +969,12 @@ pub fn hud(reel: Res<Reel>, view: Res<ViewState>, mut text: Query<&mut Text, Wit
     let config: String = reel.config_hash.chars().take(12).collect();
     let code: String = reel.code_version.chars().take(12).collect();
     let fps = if view.fps > 0.0 {
-        format!("{:.0} fps", view.fps)
+        format!("{:0.0} fps", view.fps)
     } else {
         "fps …".into()
     };
     text.0 = format!(
-        "Möbius Automata M0   tick {:.1} / {:.0}   {fps}   {play}\n\
+        "Möbius Automata M0   tick {:0.1} / {:0.0}   {fps}   {play}\n\
          seed {}   config {config}   code {code}   energy cap {}\n\
          live {}   dead {}   field {}   reservoir {}   waste {}\n\
          material residual {}   action-energy residual {}   state {hash}\n\
@@ -1042,8 +1060,11 @@ pub fn view_for_hall(hall: &Hall) -> ViewState {
     }
 }
 
+#[allow(clippy::too_many_arguments)] // Bevy systems expose asset stores independently.
 pub fn assemble_hall(
     mut commands: Commands,
+    server: Res<AssetServer>,
+    skin: Res<super::CreatureSkin>,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
     mut bindpose_assets: ResMut<Assets<SkinnedMeshInverseBindposes>>,
@@ -1131,6 +1152,9 @@ pub fn assemble_hall(
         ..default()
     });
     commands.insert_resource(Gallery {
+        worm: skin
+            .worm_a
+            .then(|| super::worm_a::WormAssets::load(&server)),
         creatures,
         creature_mats,
         threads: threads.clone(),
@@ -1210,10 +1234,20 @@ pub fn embody(
             continue;
         }
         let costume = costume(cell.id, cell.genome);
+        let worm = gallery
+            .worm
+            .as_ref()
+            .filter(|_| cell.rig.as_ref().and_then(|r| r.neural.as_ref()).is_some());
         let root = commands
             .spawn((
-                Mesh3d(gallery.creatures[costume.variant as usize].clone()),
-                MeshMaterial3d(gallery.creature_mats[costume.variant as usize].clone()),
+                Mesh3d(worm.map_or_else(
+                    || gallery.creatures[costume.variant as usize].clone(),
+                    |w| w.mesh.clone(),
+                )),
+                MeshMaterial3d(worm.map_or_else(
+                    || gallery.creature_mats[costume.variant as usize].clone(),
+                    |w| w.material.clone(),
+                )),
                 Transform::default(),
                 Visibility::Hidden,
                 costume.body,
@@ -1225,11 +1259,17 @@ pub fn embody(
             for index in 0..SPINE_JOINTS {
                 let joint = commands
                     .spawn((
-                        Transform::from_xyz(
-                            0.0,
-                            if index == 0 { BIND_START } else { BIND_STEP },
-                            0.0,
-                        ),
+                        Transform::from_translation(worm.map_or_else(
+                            || Vec3::new(0.0, if index == 0 { BIND_START } else { BIND_STEP }, 0.0),
+                            |w| {
+                                w.positions[index]
+                                    - if index == 0 {
+                                        Vec3::ZERO
+                                    } else {
+                                        w.positions[index - 1]
+                                    }
+                            },
+                        )),
                         MotorJoint { id: cell.id, index },
                     ))
                     .id();
@@ -1242,37 +1282,87 @@ pub fn embody(
                 let sign = if jaw == 0 { -1.0 } else { 1.0 };
                 let joint = commands
                     .spawn((
-                        Transform::from_xyz(sign * 0.10, 0.15, 0.08),
+                        Transform::from_translation(
+                            worm.map_or(Vec3::new(sign * 0.10, 0.15, 0.08), |w| {
+                                w.positions[SPINE_JOINTS + jaw] - w.positions[SPINE_JOINTS - 3]
+                            }),
+                        ),
                         MotorJoint {
                             id: cell.id,
                             index: SPINE_JOINTS + jaw,
                         },
-                        Mesh3d(gallery.mandibles[jaw].clone()),
-                        MeshMaterial3d(gallery.creature_mats[costume.variant as usize].clone()),
                         Visibility::Inherited,
                     ))
                     .id();
+                if worm.is_none() {
+                    commands.entity(joint).insert((
+                        Mesh3d(gallery.mandibles[jaw].clone()),
+                        MeshMaterial3d(gallery.creature_mats[costume.variant as usize].clone()),
+                    ));
+                }
                 commands.entity(head_bone).add_child(joint);
                 joints.push(joint);
             }
             debug_assert_eq!(joints.len(), JOINTS);
             commands.entity(root).insert(SkinnedMesh {
-                inverse_bindposes: gallery.bindposes.clone(),
-                joints,
+                inverse_bindposes: worm
+                    .map_or_else(|| gallery.bindposes.clone(), |w| w.bindposes.clone()),
+                joints: joints.clone(),
             });
+            if let Some(w) = worm {
+                use bevy::mesh::morph::{MeshMorphWeights, MorphWeights};
+                commands.entity(root).insert((
+                    MorphWeights::new(vec![0.; 2], Some(w.mesh.clone())).expect("two sculpt keys"),
+                    MeshMorphWeights::Reference(root),
+                ));
+                let tissue = commands
+                    .spawn((
+                        Mesh3d(w.flesh.clone()),
+                        MeshMaterial3d(w.flesh_material.clone()),
+                        Transform::default(),
+                        Visibility::Inherited,
+                        SkinnedMesh {
+                            inverse_bindposes: w.bindposes.clone(),
+                            joints: joints.clone(),
+                        },
+                    ))
+                    .id();
+                commands.entity(root).add_child(tissue);
+                let teeth = commands
+                    .spawn((
+                        Mesh3d(w.teeth.clone()),
+                        MeshMaterial3d(w.teeth_material.clone()),
+                        MeshMorphWeights::Reference(root),
+                        Transform::default(),
+                        Visibility::Inherited,
+                        SkinnedMesh {
+                            inverse_bindposes: w.bindposes.clone(),
+                            joints: joints.clone(),
+                        },
+                    ))
+                    .id();
+                commands.entity(root).add_child(teeth);
+            }
             let mouth = commands
                 .spawn((
                     Mesh3d(gallery.mouth.clone()),
                     MeshMaterial3d(gallery.mouth_mat.clone()),
                     Transform::from_xyz(0.0, 0.85, 0.1),
-                    FeedingMaw { id: cell.id },
+                    FeedingMaw {
+                        id: cell.id,
+                        sculpt: worm.is_some(),
+                    },
                 ))
                 .id();
             commands.entity(head_bone).add_child(mouth);
             // Feeding organ follows the articulated head.
             commands
                 .entity(mouth)
-                .insert(Transform::from_xyz(0.0, 0.15, 0.1));
+                .insert(Transform::from_translation(if worm.is_some() {
+                    Vec3::ZERO
+                } else {
+                    Vec3::new(0.0, 0.15, 0.1)
+                }));
         }
     }
     if !hall.spawned {
@@ -1281,7 +1371,11 @@ pub fn embody(
                 .poses
                 .get(&cell.id)
                 .map_or(Vec3::ZERO, |(_, p)| Vec3::from_array(*p));
-            view.eye = Some(position + Vec3::new(0.0, 0.20, 2.2));
+            view.eye = Some(if hall.motor_demo && picture.cells.len() == 2 {
+                Vec3::new(0.15, 0.45, 4.6)
+            } else {
+                position + Vec3::new(0.0, 0.20, 2.2)
+            });
         }
         for index in 0..hall.fluid_origins.len() {
             commands.spawn((
@@ -1463,13 +1557,13 @@ pub fn feeding(
     time: Res<Time>,
     hall: Res<Hall>,
     mut hold: Local<BTreeMap<u64, f32>>,
-    mut mouths: Query<(&FeedingMaw, &mut Transform), Without<Creature>>,
+    mut mouths: Query<(&FeedingMaw, &mut Transform, &mut Visibility), Without<Creature>>,
 ) {
     let Some(picture) = &hall.latest else {
         return;
     };
     let now = time.elapsed_secs();
-    for (maw, mut transform) in &mut mouths {
+    for (maw, mut transform, mut visibility) in &mut mouths {
         let Ok(index) = picture.cells.binary_search_by_key(&maw.id, |c| c.id) else {
             continue;
         };
@@ -1479,6 +1573,15 @@ pub fn feeding(
         if rig.last_meal > 0 {
             // One committed bite is a single tick. Hold the gulp so it reads.
             hold.insert(maw.id, now + 0.32);
+        }
+        if maw.sculpt {
+            *visibility = if hold.get(&maw.id).is_some_and(|until| now < *until) {
+                Visibility::Inherited
+            } else {
+                Visibility::Hidden
+            };
+            transform.scale = Vec3::splat(0.65);
+            continue;
         }
         let target = if hold.get(&maw.id).is_some_and(|until| now < *until) {
             let chew = (now * 22.0).sin();
@@ -1545,30 +1648,6 @@ pub fn hall_fluid(
     }
 }
 
-pub fn hall_threads(
-    hall: Res<Hall>,
-    gallery: Res<Gallery>,
-    mut meshes: ResMut<Assets<Mesh>>,
-    mut view: ResMut<ViewState>,
-    mut threads: Query<&mut Visibility, With<Threads>>,
-) {
-    let Ok(mut visibility) = threads.single_mut() else {
-        return;
-    };
-    if view.filaments && hall.latest.is_some() {
-        let shown = view.tick.floor() as u64;
-        if view.threads_for != Some(shown) {
-            if let Some(mut mesh) = meshes.get_mut(&gallery.threads) {
-                write_slime(&mut mesh, &hall.motion_paths, shown);
-            }
-            view.threads_for = Some(shown);
-        }
-        *visibility = Visibility::Visible;
-    } else {
-        *visibility = Visibility::Hidden;
-    }
-}
-
 pub fn hall_sound(
     time: Res<Time>,
     mut commands: Commands,
@@ -1611,7 +1690,12 @@ pub fn hall_sound(
     view.audio_for = Some(key);
 }
 
-pub fn hall_hud(hall: Res<Hall>, view: Res<ViewState>, mut text: Query<&mut Text, With<Hud>>) {
+pub fn hall_hud(
+    hall: Res<Hall>,
+    view: Res<ViewState>,
+    mouth_view: Option<Res<super::worm_a::MouthView>>,
+    mut text: Query<&mut Text, With<Hud>>,
+) {
     let Ok(mut text) = text.single_mut() else {
         return;
     };
@@ -1629,6 +1713,27 @@ pub fn hall_hud(hall: Res<Hall>, view: Res<ViewState>, mut text: Query<&mut Text
     } else {
         "paused"
     };
+    if mouth_view.as_ref().is_some_and(|m| m.enabled) {
+        let Some(cell) = picture.cells.first() else {
+            text.0 = format!(
+                "No living creature | tick {}\nThis food-free demo has exhausted its energy.\nRestart the demo for a fresh creature.",
+                picture.tick
+            );
+            return;
+        };
+        let intake = cell.rig.as_ref().map_or(0, |r| r.last_meal);
+        let energy = cell.energy;
+        text.0 = format!(
+            "Worm_A | mouth view | tick {} | {play}\n{}\nenergy {energy} | actual intake {intake}\nSpace: resume / pause    V: whole creature",
+            picture.tick,
+            if hall.jaw_exercise {
+                "JAW EXERCISE: imposed motor commands; not autonomous"
+            } else {
+                "Native controller"
+            }
+        );
+        return;
+    }
     let sound = if view.muted {
         "muted".into()
     } else {
@@ -1645,7 +1750,7 @@ pub fn hall_hud(hall: Res<Hall>, view: Res<ViewState>, mut text: Query<&mut Text
     let config: String = hall.config_hash.chars().take(12).collect();
     let code: String = hall.code_version.chars().take(12).collect();
     let fps = if view.fps > 0.0 {
-        format!("{:.0} fps", view.fps)
+        format!("{:0.0} fps", view.fps)
     } else {
         "fps …".into()
     };
@@ -1656,15 +1761,35 @@ pub fn hall_hud(hall: Res<Hall>, view: Res<ViewState>, mut text: Query<&mut Text
     } else {
         String::new()
     };
+    let terrain = match hall.terrain_law {
+        moebius_core::TerrainLaw::RecyclableV1 => "historical recyclable deposits",
+        moebius_core::TerrainLaw::PermanentV1 => "permanent, immovable deposits",
+        moebius_core::TerrainLaw::ConservedSculptV1 => {
+            "permanent matter; paid local sculpting conserves stock"
+        }
+    };
+    let extra = if hall.motor_demo {
+        format!(
+            "M6 genetic optimization only; lifetime learning unproven. {}\n{extra}",
+            if hall.founding == 2 {
+                "ID1 selected; ID2 untrained. Food-free, 4096 energy per organism."
+            } else {
+                "Solo controller identified by genotype in neural inspector (N)."
+            }
+        )
+    } else {
+        extra
+    };
     text.0 = format!(
-        "Möbius Automata — Farm M1   tick {}   shown {:.1}   {fps}   {play}\n\
+        "Möbius Automata — Farm M1   tick {}   shown {:0.1}   {fps}   {play}\n\
          farm. founding cells {}. mode is identified in the neural inspector (N).\n\
          seed {}   config {config}   code {code}   energy cap {}\n\
          live {}   dead {}   field {}   reservoir {}   waste {}\n\
          material residual {}   action-energy residual {}   state {hash} at tick {}\n\
          generation {generation}   deposited flesh {flesh}   N: neural inspector / Tab: pages\n\
+         land: {terrain}\n\
          food colonies: block samples, stride {}. mouths respond to actual nutrient uptake.\n\
-         1 bodies {}   2 fluid {}   3 slime {}   4 hypothesis {} (empty scaffold, not membership)\n\
+         1 bodies {}   2 fluid {}   3 slime / land {}   4 hypothesis {} (empty scaffold, not membership)\n\
          {extra}\
          space pauses the scientific clock. closing the window stops it.\n\
          audio {sound}: viewer pcm, not in the state hash. WASD move  Q/E rise/fall  click: mouse look  Esc: release  wheel: zoom  F inspect nearest  M mute  [/] volume",

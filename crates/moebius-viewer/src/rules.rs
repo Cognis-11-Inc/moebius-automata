@@ -143,11 +143,12 @@ impl Draft {
 
     /// Game default. Keeps ticking. Does not pre-commit a length.
     pub fn hall() -> Self {
-        let mut draft =
-            Self::from_parts(SimConfig::nursery_farm_256(), 20_261_026, 1_000, 50, true)
-                .expect("the 256³ farm is valid for one tick");
+        let mut config = SimConfig::nursery_farm_256();
+        config.farm.as_mut().unwrap().terrain_law = moebius_core::TerrainLaw::ConservedSculptV1;
+        let mut draft = Self::from_parts(config, 20_261_026, 1_000, 50, true)
+            .expect("the 256³ farm is valid for one tick");
         draft.status =
-            "Nursery. 256 on a side. The spine works, a bite gulps, trails compost, weights assimilate.".into();
+            "Nursery. 256 on a side. The spine works, a bite gulps, slime becomes permanent land, weights assimilate.".into();
         draft
     }
 

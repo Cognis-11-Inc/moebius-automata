@@ -1,0 +1,62 @@
+{
+  "episodes": {
+    "held_601_selected_frozen": {
+      "late_bend_threshold_ticks": 22,
+      "late_inferred_shape_impulse_L1": 2619,
+      "late_lunge_impulse_L1": 98,
+      "late_nonzero_inferred_shape_ticks": 128,
+      "late_nonzero_lunge_ticks": 16
+    },
+    "held_602_selected_frozen": {
+      "late_bend_threshold_ticks": 24,
+      "late_inferred_shape_impulse_L1": 544,
+      "late_lunge_impulse_L1": 2,
+      "late_nonzero_inferred_shape_ticks": 119,
+      "late_nonzero_lunge_ticks": 1
+    },
+    "held_603_selected_frozen": {
+      "late_bend_threshold_ticks": 19,
+      "late_inferred_shape_impulse_L1": 2574,
+      "late_lunge_impulse_L1": 47,
+      "late_nonzero_inferred_shape_ticks": 127,
+      "late_nonzero_lunge_ticks": 13
+    },
+    "held_604_selected_frozen": {
+      "late_bend_threshold_ticks": 19,
+      "late_inferred_shape_impulse_L1": 534,
+      "late_lunge_impulse_L1": 2,
+      "late_nonzero_inferred_shape_ticks": 116,
+      "late_nonzero_lunge_ticks": 1
+    },
+    "held_605_selected_frozen": {
+      "late_bend_threshold_ticks": 30,
+      "late_inferred_shape_impulse_L1": 1877,
+      "late_lunge_impulse_L1": 94,
+      "late_nonzero_inferred_shape_ticks": 122,
+      "late_nonzero_lunge_ticks": 24
+    },
+    "held_606_selected_frozen": {
+      "late_bend_threshold_ticks": 29,
+      "late_inferred_shape_impulse_L1": 531,
+      "late_lunge_impulse_L1": 2,
+      "late_nonzero_inferred_shape_ticks": 111,
+      "late_nonzero_lunge_ticks": 2
+    },
+    "held_607_selected_frozen": {
+      "late_bend_threshold_ticks": 29,
+      "late_inferred_shape_impulse_L1": 2843,
+      "late_lunge_impulse_L1": 105,
+      "late_nonzero_inferred_shape_ticks": 127,
+      "late_nonzero_lunge_ticks": 23
+    },
+    "held_608_selected_frozen": {
+      "late_bend_threshold_ticks": 28,
+      "late_inferred_shape_impulse_L1": 550,
+      "late_lunge_impulse_L1": 1,
+      "late_nonzero_inferred_shape_ticks": 114,
+      "late_nonzero_lunge_ticks": 1
+    }
+  },
+  "scope": "selected_frozen empty-world no-jet no-momentum-clamp episodes; integer lunge formula reproduced using public rotation; remainder is shape coupling, not independent continuum validation",
+  "status": "PASS"
+}

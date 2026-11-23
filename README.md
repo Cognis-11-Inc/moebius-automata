@@ -202,3 +202,23 @@ and checksum/restore metadata remain in Git. See
 verifies its SHA256. Readable protocols/results remain under docs/m5/artifacts/.
 Use `--archive-root VERSIONED_DIRECTORY` to restore a verified archive copy on
 another machine.
+
+## Anatomical Forge — MORPH-001
+
+A separate local Bevy laboratory generates an actual configurable worm from a
+versioned JSON definition. Its headless Rust engine produces the body, recessed
+mouth, two attached flagella, optional ridges and live deformation without Blender.
+Motion is an authored preview; simulation binding remains absent.
+
+```sh
+cargo run --release -p moebius-morph-lab --offline
+```
+
+Use1-7 to select a parameter, Left/Right to edit, R for the next seed, F for
+flagella count, G for ridges, Space for animation, M for mouth cycling, S to save
+and L to reload. Right-drag or Alt+arrows orbit; the wheel zooms. Default save path:
+`runs/morph_001/organism.json`. The lab reopens an existing saved definition.
+A portable example is `experiments/morph_001_worm.json`.
+
+Read [results](MORPH_001_RESULTS.md), [existing-system audit](MORPH_001_EXISTING_SYSTEM_AUDIT.md),
+[donor assessment](MORPH_001_DONOR_ASSESSMENT.md) and [architecture](MORPH_001_ARCHITECTURE.md).

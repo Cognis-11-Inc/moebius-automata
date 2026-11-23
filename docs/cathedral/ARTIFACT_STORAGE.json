@@ -1,0 +1,299 @@
+{
+  "date_local": "2026-11-22",
+  "version": 1,
+  "mount_path": "/run/media/cognis/Mermogon",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/Cathedral/8e351e2/v1",
+  "external_index_sha256": "053d975ef5e0b91bb59078a38d7da7c61e39388c72cb56a1b3f1746df59d86e4",
+  "raw_files": 48,
+  "raw_bytes": 4026088,
+  "records": [
+    {
+      "phase": "native-run",
+      "purpose": "Current conserved-sculpt native trial, snapshots and exact per-tick replay evidence",
+      "relative_path": "native-run.tar",
+      "bytes": 962560,
+      "sha256": "26dfcbbb0044ec4d784facde50660b57d04d0bd86d468e5049b7697e3ce8c7a9",
+      "members": [
+        {
+          "name": "demo.json",
+          "bytes": 40300,
+          "sha256": "9077cc492e31e51be5492c07a395b26e391a4e99ba5a5a3b57016e16a0dfbae3"
+        },
+        {
+          "name": "final.bin",
+          "bytes": 59766,
+          "sha256": "96dcbe016a38d426acb56616a5b0a66b27f8d9d2b9ab07d09d4ee52dfe6e76e4"
+        },
+        {
+          "name": "initial.bin",
+          "bytes": 56894,
+          "sha256": "01635139ca4100a5819509d5c32dfa6b7138d2a9c96be4332590a52e8641e3a4"
+        },
+        {
+          "name": "summary.json",
+          "bytes": 326,
+          "sha256": "8a1e76d34c54f726856fa467d766cb03ca18426892c3c70423f2a9b2536d613a"
+        },
+        {
+          "name": "ticks.jsonl",
+          "bytes": 793283,
+          "sha256": "9be55495cd1ed434fe19bba8d397264927339e73b0c04168112f02aff3eb638c"
+        }
+      ]
+    },
+    {
+      "phase": "strict-native-run",
+      "purpose": "Reproduction of earlier immovable-material witness; reconstructed config chronology explicit",
+      "relative_path": "strict-native-run.tar",
+      "bytes": 1034240,
+      "sha256": "0a915ef5faf8a7e0ecd244324770a8fc2134e6bb3a63d3cfa42c27cc79ebae7a",
+      "members": [
+        {
+          "name": "demo.json",
+          "bytes": 40132,
+          "sha256": "eb8eb5c90446e54341782e4d18fbe52a35b172eb75d9313901976a0a0363edec"
+        },
+        {
+          "name": "final.bin",
+          "bytes": 59984,
+          "sha256": "17fd6f43afd716a1bec28739af96f141f1565260883566f9cbcfd721d18de7ed"
+        },
+        {
+          "name": "initial.bin",
+          "bytes": 56894,
+          "sha256": "ea494fd88a05af19ed3a2aeda615765e556fdc5881f57289ea3375f698675cbc"
+        },
+        {
+          "name": "summary.json",
+          "bytes": 326,
+          "sha256": "5b625d49a3d911c541dd72d0d1f4f3b8ab0ecc06dd84bf634ce887035c603558"
+        },
+        {
+          "name": "ticks.jsonl",
+          "bytes": 866057,
+          "sha256": "3dd60fd3564b982bbab2827133fe1051d5f7e3768da3edbd0b1b08418048b0ff"
+        }
+      ]
+    },
+    {
+      "phase": "renders",
+      "purpose": "All inspected image witnesses, camera variants and reconstructed strict configuration",
+      "relative_path": "renders.tar",
+      "bytes": 1402880,
+      "sha256": "6461815c06e7390e0a63a500a87b21e888ffad343da5f5dc4e14666a674498d4",
+      "members": [
+        {
+          "name": "fixed_camera_land_t1024.capture.json",
+          "bytes": 683,
+          "sha256": "ac317540248e8c3f72662f4f8fc0ae95e2898139ab33a6107963fd46afc861fb"
+        },
+        {
+          "name": "fixed_camera_land_t1024.png",
+          "bytes": 365738,
+          "sha256": "cedd8e3443c78150698124965d6c202977bf28f70a23f87dc3ec6601bbb0dbc0"
+        },
+        {
+          "name": "land_t1024.capture.json",
+          "bytes": 558,
+          "sha256": "1c6a77706e8e24058d6ae0d12db457992a2b7c1791723ee5ba52bad5f3476727"
+        },
+        {
+          "name": "land_t1024.png",
+          "bytes": 442559,
+          "sha256": "22aa2ba164ec1ae9bff01c555e849fdf5dd9405730600b539f94366eab1c9819"
+        },
+        {
+          "name": "sculpt_land_t1024.capture.json",
+          "bytes": 558,
+          "sha256": "6f21e9628619322e21a9747566ef74f8182ded261e22965dfeab9837356fcb8f"
+        },
+        {
+          "name": "sculpt_land_t1024.png",
+          "bytes": 533703,
+          "sha256": "1ecd372542017f6e2892950181a4b5d2986d14ceaeeb271e33880bd8f0c04569"
+        },
+        {
+          "name": "strict_reconstructed_demo.json",
+          "bytes": 40132,
+          "sha256": "eb8eb5c90446e54341782e4d18fbe52a35b172eb75d9313901976a0a0363edec"
+        }
+      ]
+    },
+    {
+      "phase": "validation",
+      "purpose": "Passing and failed test/build/capture/replay logs",
+      "relative_path": "validation.tar",
+      "bytes": 122880,
+      "sha256": "f92f0d18a3b482b528377595d2ec0711e1362e44c3946ffdcc06455c96fe3a0c",
+      "members": [
+        {
+          "name": "moebius-land-build-final.log",
+          "bytes": 314,
+          "sha256": "336c01441df5a21da6bef2e1235d98d14c9bbba36b4f44f6934d3331fd3f9e5f"
+        },
+        {
+          "name": "moebius-land-capture-final.log",
+          "bytes": 54,
+          "sha256": "0ca9eeeab1e493445c43dbf3844033655477bdbe82ce55eb269a2ce9acc4775a"
+        },
+        {
+          "name": "moebius-land-capture-v2.log",
+          "bytes": 54,
+          "sha256": "cb1225dfa17bb0bd0419548dadf49c1cc929aa632b39ca322770e3d85475025e"
+        },
+        {
+          "name": "moebius-land-capture.log",
+          "bytes": 54,
+          "sha256": "0ca9eeeab1e493445c43dbf3844033655477bdbe82ce55eb269a2ce9acc4775a"
+        },
+        {
+          "name": "moebius-land-clippy-final-v2.log",
+          "bytes": 478,
+          "sha256": "c14765c59ee30e979c560d8cdefb50bac5628f92788c46d622e1404786cca971"
+        },
+        {
+          "name": "moebius-land-clippy-final-v3.log",
+          "bytes": 268,
+          "sha256": "72f7f2ebe276e8ab7ce6cddf932c7737ea06e8b92660897883ed097c74ec37dd"
+        },
+        {
+          "name": "moebius-land-clippy-final.log",
+          "bytes": 362,
+          "sha256": "3573407c8092132099f35b323f3be45cb3716f0fed1c93e48f040787ebfcf1b2"
+        },
+        {
+          "name": "moebius-land-clippy.log",
+          "bytes": 362,
+          "sha256": "79e113fc4b3ae76d0cd15550b97687833ed0b1c101ead9d6c39e1cefefd18920"
+        },
+        {
+          "name": "moebius-land-compatibility.jsonl",
+          "bytes": 2646,
+          "sha256": "2742628ae416d68e374fbc9086d5458ce561384c6d093b553d260ac256b0e2a0"
+        },
+        {
+          "name": "moebius-land-fmt-final.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "moebius-land-probe-replay.json",
+          "bytes": 111,
+          "sha256": "305751e0ad897caf39d77b1994016ffe4bbb3863892304d00842494a774d2132"
+        },
+        {
+          "name": "moebius-land-probe-v2.log",
+          "bytes": 604,
+          "sha256": "9112531e3ca7acbf89f2c24d98c9ab79ddc7ecf6104d9065ca4c75cfe331e017"
+        },
+        {
+          "name": "moebius-land-probe.log",
+          "bytes": 587,
+          "sha256": "9327eea563b78a3f5155a5edab11fa4665db3296fbe4e9062d32b805574a7052"
+        },
+        {
+          "name": "moebius-land-strict-reproduction.log",
+          "bytes": 286,
+          "sha256": "6ebf8a4bf62a9df5d45427e5074bbe5b2e50ec527ec5134a89aa7a68c5b72742"
+        },
+        {
+          "name": "moebius-land-terrain-tests-v2.log",
+          "bytes": 1557,
+          "sha256": "4e6b07581ab8a3e22640c96c1d6b90dc56e36a9722278fe3635153a829bb5824"
+        },
+        {
+          "name": "moebius-land-terrain-tests-v3.log",
+          "bytes": 564,
+          "sha256": "02ae0e9b504948952601e4d59bafcade31ea235002616f67538f08008d7f132c"
+        },
+        {
+          "name": "moebius-land-terrain-tests-v4.log",
+          "bytes": 632,
+          "sha256": "cbfcdadf85654035d3aeaccd5809ccc3eba1ed1d68221a0965faca40716ee06a"
+        },
+        {
+          "name": "moebius-land-terrain-tests-v5.log",
+          "bytes": 1316,
+          "sha256": "186e0bc1f8e6e6910e92ef47c107897727010021e7c3058725d74957ce3bf94d"
+        },
+        {
+          "name": "moebius-land-terrain-tests-v6.log",
+          "bytes": 717,
+          "sha256": "4740e12e2033c2e280bd3a29d8db139b488f50a704288f886530eb9040a3dab9"
+        },
+        {
+          "name": "moebius-land-terrain-tests.log",
+          "bytes": 573,
+          "sha256": "f21a28da146f0537498b76112ced1501e763d011cc73263f3d9c2ffa9a4a5dee"
+        },
+        {
+          "name": "moebius-land-tests-final-v2.log",
+          "bytes": 10164,
+          "sha256": "8efbbe0428643409b4760671de6e7b5f3ecc62567e385aee7af63bf06d900f3a"
+        },
+        {
+          "name": "moebius-land-tests-final.log",
+          "bytes": 10093,
+          "sha256": "6f3ebd2a0482a30614f4cc247610351ae022623f6211f635dc6b75c5b8ff8a49"
+        },
+        {
+          "name": "moebius-land-tests-v2.log",
+          "bytes": 9639,
+          "sha256": "a328da69351887e76a0ae5d39e774750622fffa38dd7cf786fbf472409cc48cc"
+        },
+        {
+          "name": "moebius-land-tests-v3.log",
+          "bytes": 10034,
+          "sha256": "a46d28b45f77477ad0d8e60167954e3ec6859f754d14f31c7f7df1f1cc5a324a"
+        },
+        {
+          "name": "moebius-land-tests.log",
+          "bytes": 9449,
+          "sha256": "32c3916bf56aaa1974ffb2809a9b48cd78f65d2023d406712b0dba9786afd3e3"
+        },
+        {
+          "name": "moebius-land-viewer-build-final.log",
+          "bytes": 162,
+          "sha256": "985fac9f0d1574f442f6805cc0cf002336877139a1617c4dae7df5f2307e4a40"
+        },
+        {
+          "name": "moebius-land-viewer-build-v2.log",
+          "bytes": 352,
+          "sha256": "512586e2fe3e5ccff2c154506d8d65f739dd1ad7281361f92b9e26d5fd0f6f92"
+        },
+        {
+          "name": "moebius-land-viewer-build.log",
+          "bytes": 352,
+          "sha256": "5b0ce6eab7805bfea105c274b81024b7426c7716af246a7d95e893d2e0c50778"
+        }
+      ]
+    },
+    {
+      "phase": "source",
+      "purpose": "Exact uncommitted source/configuration provenance",
+      "relative_path": "source.tar",
+      "bytes": 614400,
+      "sha256": "f4d3bed6969056998ff8bfbfea5fda2c93e96c7658c50c7ba37c6d757e604190",
+      "members": [
+        {
+          "name": "SOURCE_IDENTITY.json",
+          "bytes": 5094,
+          "sha256": "91d5af0c767e4ff45e25a6baeb3d308cd76290b749f70a3a96c2bdb0790e257f"
+        },
+        {
+          "name": "tracked_diff.patch",
+          "bytes": 38117,
+          "sha256": "80670a9113df89a275665b417c0b8152275ad12c876a33fc4a86c3fcd8feaec8"
+        },
+        {
+          "name": "working_tree_source.tar",
+          "bytes": 563200,
+          "sha256": "92121c23b1ea1162b499709a8291f99d17cf47bfb82ee06b83fb46afb02bac75"
+        }
+      ]
+    }
+  ],
+  "working_copies_retained": true,
+  "restore": "python3 python/cathedral_artifacts.py unpack NEW_DIRECTORY"
+}

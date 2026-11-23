@@ -1,0 +1,33 @@
+{
+  "date_local": "2026-11-22",
+  "question": "Can the existing eight-neuron controller acquire useful joint locomotion through bounded genotype optimization or existing lifetime plasticity?",
+  "search_intent": "Source-derived implementation audit and authored simulation experiments. No external scientific publications were searched or consulted in M6.",
+  "queries": [],
+  "external_sources": [],
+  "CONSULTED": [
+    "Committed M4/M5 evidence",
+    "existing Rust controller, sensing, body, world/accounting and viewer",
+    "local Bevy0.20 screenshot API source for technical integration"
+  ],
+  "IMPLEMENTED": [
+    "examples/support/m6.rs: food-free provisioned nursery, full neural/motor trace, matched coast",
+    "m6_search.rs: bounded NN-genotype selection/mutation",
+    "m6_assess.rs: held-out, lifetime, directional and mechanistic controls",
+    "NeuralRules.physiological_feedback: optional explicit energy-feedback ablation",
+    "viewer motor_demo: native selected/untrained comparison",
+    "examples/m6_mechanism.rs: no-world-edit post-hoc integer lunge/shape decomposition of recorded native states"
+  ],
+  "VALIDATED": {
+    "mechanism": "Native recurrent joint locomotion under existing authored law2; held-out selected improvement, no jets, zero vacuum travel, controlled fees/accounting and replay. See docs/m6/ANALYSIS.json and VALIDATION.json.",
+    "nulls": "No useful lifetime motor acquisition; 0/8 corrected-cue directional successes. First steering campaign invalid because all scent channels saturated; preserved and rerun after sensor regression.",
+    "not_validated": "Biological learning, continuum hydrodynamics, soft-body physics, ecological survival/transfer, autonomous food search, active braking or exploration intelligence."
+  },
+  "knowledge_transfer": "No published claims transferred. Fitness/gates, high-energy nursery, environmental direction cue and genotype search are explicit authored experimental choices. Existing body lunge and resistive coupling remain simulation assumptions.",
+  "chronology": "Protocol preceded movement search; held-out opened after locked selection. Direction v1 ran before sensor validation, error disclosed and retained. V2 reduced cue concentration only and passed local sensor/material/no-impulse test before rerun. Post-selection falsification was registered after primary results and never used for retuning. Final audit caught lowercase bend versus serialized Bend filter, invalidating the initial shape-only attribution. Corrected schema check and compiled Rust component audit confirm both shape and authored lunge; superseded analysis/report/source preserved in v2 addenda. No native motion/fitness/replay results changed.",
+  "reports": [
+    "docs/m6/AUDIT.md",
+    "docs/m6/REPORT.md",
+    "docs/m6/PROTOCOL.json",
+    "docs/m6/ARTIFACT_STORAGE.json"
+  ]
+}

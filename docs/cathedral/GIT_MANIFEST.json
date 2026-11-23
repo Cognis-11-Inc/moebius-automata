@@ -1,0 +1,253 @@
+{
+  "scope": "Current uncommitted M6 plus cathedral slice; original M6 GIT_MANIFEST is historical",
+  "files": [
+    {
+      "path": "HANDOFF.md",
+      "bytes": 21697,
+      "sha256": "e547be73d0e53e89b9d8b3b7a714ec81fe939eb65dc7ccc8fe39e78ed1b81106"
+    },
+    {
+      "path": "crates/moebius-core/examples/m6_mechanism.rs",
+      "bytes": 4000,
+      "sha256": "e83364cd708c82a60af8e0ac69311e6bcad5a7dc1ffc09d16796e732a90e94de"
+    },
+    {
+      "path": "crates/moebius-core/examples/m6_nursery.rs",
+      "bytes": 4278,
+      "sha256": "af489ca9383b552877233d3c4e7efbd41e384e4996e9f96ab0638df29b4da58d"
+    },
+    {
+      "path": "crates/moebius-core/examples/m6_replay.rs",
+      "bytes": 6026,
+      "sha256": "71a3516ad69c14d707f915765b18b304c7297b62956eb80bb72c38f2e267491c"
+    },
+    {
+      "path": "crates/moebius-core/examples/support/m6.rs",
+      "bytes": 17701,
+      "sha256": "298e04de4be74f274c1a72187808c056b0bc7358361af51ff667151e7b6fd4db"
+    },
+    {
+      "path": "crates/moebius-core/examples/support/m6_assess.rs",
+      "bytes": 9541,
+      "sha256": "d1ed9773037b6c44eb7e58f3e27c6df90a46af666e59431a542f3f3864897074"
+    },
+    {
+      "path": "crates/moebius-core/examples/support/m6_search.rs",
+      "bytes": 8857,
+      "sha256": "a973ecc14162166587c1b38606f5491e60a2368dc458cad54d25e564ea1e95d5"
+    },
+    {
+      "path": "crates/moebius-core/src/config.rs",
+      "bytes": 14099,
+      "sha256": "17d5fc09e40ff9e3904f5e6c1a7afe32485ec7ecd8eb1dd406d32e39fdc03fdc"
+    },
+    {
+      "path": "crates/moebius-core/src/lib.rs",
+      "bytes": 2726,
+      "sha256": "592c1b78b5556358f068d72a4e77165c95ed0d3641b6be839a4a2f675f36bfc6"
+    },
+    {
+      "path": "crates/moebius-core/src/neural/controller.rs",
+      "bytes": 27627,
+      "sha256": "87a15c2eba6efbf61e773cdd63783d5db1ff0618ee545ae414c9801c0f549b9d"
+    },
+    {
+      "path": "crates/moebius-core/src/world.rs",
+      "bytes": 78485,
+      "sha256": "db7ddb404ad14df7022474e6614396a1cbdb8b265a3b7e8729814e23349ecc08"
+    },
+    {
+      "path": "crates/moebius-core/tests/farm.rs",
+      "bytes": 11524,
+      "sha256": "a10fb2296241741390e78978f318bd0c7a4015c0bf37581a6a1fce7ab76e5af6"
+    },
+    {
+      "path": "crates/moebius-core/tests/m6.rs",
+      "bytes": 4811,
+      "sha256": "0501ba40dae0b3acecdfac6b43fefd5674fb3b9102b8349ade1bbc7cb7bc5e26"
+    },
+    {
+      "path": "crates/moebius-core/tests/terrain.rs",
+      "bytes": 8636,
+      "sha256": "6fc184e518d36a0838482a657834ad847baeb5596b7e6600a8b41c6ee1de8302"
+    },
+    {
+      "path": "crates/moebius-viewer/examples/land_probe.rs",
+      "bytes": 3362,
+      "sha256": "2c95fddab34cbf5d00fb7b6355d470c7de38a47cd3450c9306cda6ff9d5a69de"
+    },
+    {
+      "path": "crates/moebius-viewer/src/body.rs",
+      "bytes": 24963,
+      "sha256": "042dd573f7de0471f65745dfea472a228552eec8d4b0cec1118a8878c5d99caf"
+    },
+    {
+      "path": "crates/moebius-viewer/src/live.rs",
+      "bytes": 23356,
+      "sha256": "4aeaba88b4cdd46c1b646996fd3a63f3473b6afe984a09cb1c76f27cfeaacf02"
+    },
+    {
+      "path": "crates/moebius-viewer/src/main.rs",
+      "bytes": 25553,
+      "sha256": "ca1dfd464e9c4003a96498defdfbda23bdcc4c6fcc2ad93cbaf41effb6228de0"
+    },
+    {
+      "path": "crates/moebius-viewer/src/motor_demo.rs",
+      "bytes": 4568,
+      "sha256": "7b05298985e033684d93db25f7af14a52290ea6f9b1fb2262946018325fd58fa"
+    },
+    {
+      "path": "crates/moebius-viewer/src/rules.rs",
+      "bytes": 20704,
+      "sha256": "3515ab09ec8a31c563481f7d54b363abe8e26f8ec4f5ba47e8cecd1fc38b00da"
+    },
+    {
+      "path": "crates/moebius-viewer/src/show.rs",
+      "bytes": 67940,
+      "sha256": "781c5b4440268edfdb1cde137fd2f34a8684322eafc26a693b5d7e5ff4f51a1b"
+    },
+    {
+      "path": "docs/cathedral/ARTIFACT_CLASSIFICATION.json",
+      "bytes": 1845,
+      "sha256": "ee8ff5abbbefc5981a88d800f47fec91d1c29b606c4afbe667023e22e73ffa35"
+    },
+    {
+      "path": "docs/cathedral/ARTIFACT_STORAGE.json",
+      "bytes": 10639,
+      "sha256": "21f62e3eafcfc5a924d01e33bd90dbb4c39c3b8888352a40b2bee17a01e88f82"
+    },
+    {
+      "path": "docs/cathedral/README.md",
+      "bytes": 4823,
+      "sha256": "522f99fc4bcbe3184fd3f01a0a042f392a3060ac68fe28d2136d5d1428b25b84"
+    },
+    {
+      "path": "docs/cathedral/SOURCE_IDENTITY.json",
+      "bytes": 5094,
+      "sha256": "91d5af0c767e4ff45e25a6baeb3d308cd76290b749f70a3a96c2bdb0790e257f"
+    },
+    {
+      "path": "docs/cathedral/VALIDATION.json",
+      "bytes": 6413,
+      "sha256": "ae55b7cf30f5031d6224a9447fedf633e7bbaf933bb1d6079d26cedf4cb059ac"
+    },
+    {
+      "path": "docs/m6/ANALYSIS.json",
+      "bytes": 133658,
+      "sha256": "f37bffc5d70b3e3c1c34da96cc38f8452fbada3b444410f59c96f6d286c8f3ec"
+    },
+    {
+      "path": "docs/m6/ARTIFACT_CLASSIFICATION.json",
+      "bytes": 5021,
+      "sha256": "9275e42e81de65c9148f68333593742b4ea6c472154165dcd452b4b07f98df88"
+    },
+    {
+      "path": "docs/m6/ARTIFACT_STORAGE.json",
+      "bytes": 26872,
+      "sha256": "58b59a0e75f12f99fdc34710a2933e767e4a229227f7d973d05983161e6165bd"
+    },
+    {
+      "path": "docs/m6/AUDIT.md",
+      "bytes": 4982,
+      "sha256": "0aebcbf8f881cfa736cf8f541d98eb98362746c1dc3393aaa2e33c13ea68b1a8"
+    },
+    {
+      "path": "docs/m6/CONFIGURATIONS.json",
+      "bytes": 20433,
+      "sha256": "578b4600cd91275cbf7dd7b1a18cd3284a0e170e701c0dfb660b6054e82b2867"
+    },
+    {
+      "path": "docs/m6/DEMO.json",
+      "bytes": 40206,
+      "sha256": "ea4cbe26ae828b70b916a8b819e391eeecce7a67f4e9e184484cd25e83e611cb"
+    },
+    {
+      "path": "docs/m6/DIRECTIVE.md",
+      "bytes": 13662,
+      "sha256": "a4c0bf6a2419a99c8dffe621d8528f3b55ce6132eabc47b938cf53a09fd98ff0"
+    },
+    {
+      "path": "docs/m6/GIT_MANIFEST.json",
+      "bytes": 7995,
+      "sha256": "820e6b1770a24ade4df01629f6ef299ae434461bc120ef0b038f816cf5e3899e"
+    },
+    {
+      "path": "docs/m6/MECHANISM.json",
+      "bytes": 2199,
+      "sha256": "bf2dc3ec253152650958635c10a5eec07c8575d28140fff51738b905c2a73b68"
+    },
+    {
+      "path": "docs/m6/PROTOCOL.json",
+      "bytes": 10791,
+      "sha256": "02b3c5f85f6d11a3dcb8577846bb88fceadcd6f100c3117a3f7a9647f48ac9cc"
+    },
+    {
+      "path": "docs/m6/README.md",
+      "bytes": 3456,
+      "sha256": "a8a1bd9e4de6c446f9d994798e2d4362e5bc37b67eaadcd3d4f9e5a8702fa2ba"
+    },
+    {
+      "path": "docs/m6/REPORT.md",
+      "bytes": 17523,
+      "sha256": "6dbe86eab7b96f32160ea36ed34c3737bb1d750cb3b110840dba77511752a70f"
+    },
+    {
+      "path": "docs/m6/SOURCE_IDENTITY.json",
+      "bytes": 3417,
+      "sha256": "639cd0041700d9523af81d183c7c872d11636eb525cd67b42788262bced08109"
+    },
+    {
+      "path": "docs/m6/VALIDATION.json",
+      "bytes": 8476,
+      "sha256": "bc4ce03c81a1d963063a3ce603ebc4b88f67e40f97697a7e5c5dbdeaf6f903b7"
+    },
+    {
+      "path": "docs/m6/VISUAL_WITNESS.json",
+      "bytes": 6578,
+      "sha256": "00768dfce0c247c105e297c5c267254f7a1607fcfec9e5f67319aa42ee461a70"
+    },
+    {
+      "path": "docs/m6/checkpoints/selected_genome.json",
+      "bytes": 16352,
+      "sha256": "d595ea800224f0a5a037c2288eca2300fbf1bd94056b4232d7ba01a2ccf9d354"
+    },
+    {
+      "path": "docs/m6/checkpoints/untrained_genome.json",
+      "bytes": 16126,
+      "sha256": "b37e68d34aa9260e34132f9495fa5ba0dfbfdb1b3e106790939f96cd6d39ccf1"
+    },
+    {
+      "path": "docs/research/2026-11-22-cathedral-foundation.json",
+      "bytes": 2448,
+      "sha256": "3b2bfcc8163206c0820ff94349ede7fdfc0c831c447f342b3eb17fe2e80f44da"
+    },
+    {
+      "path": "docs/research/2026-11-22-m6-motor-nursery.json",
+      "bytes": 2849,
+      "sha256": "0ee85aff40d50c6dd435def63fa20adb7177f9a991b47ef070f5bebb0237e573"
+    },
+    {
+      "path": "experiments/motor_land_demo.json",
+      "bytes": 40300,
+      "sha256": "9077cc492e31e51be5492c07a395b26e391a4e99ba5a5a3b57016e16a0dfbae3"
+    },
+    {
+      "path": "python/cathedral_artifacts.py",
+      "bytes": 313,
+      "sha256": "ab2f5533fd35371c9952aa2721506f68c63ef7fc4df5e84779d011904da7ca2c"
+    },
+    {
+      "path": "python/m6_analysis.py",
+      "bytes": 11484,
+      "sha256": "9b5d1dfbfc4a4302d044447ef672a8751da76af14e33484d0a8441b98d444ccc"
+    },
+    {
+      "path": "python/m6_artifacts.py",
+      "bytes": 3255,
+      "sha256": "3857b83ce4655c9924a68c7d3212fb6abb8aeefc188cfb5c0fdb93884ddbd73d"
+    }
+  ],
+  "files_excluding_self": 49,
+  "bytes_excluding_self": 817664,
+  "bulk_git_artifacts": 0
+}

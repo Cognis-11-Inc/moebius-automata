@@ -1,0 +1,46 @@
+{
+  "date_local": "2026-11-22",
+  "raw": [
+    {
+      "phase": "native-run",
+      "purpose": "Current conserved-sculpt native trial, snapshots and exact per-tick replay evidence",
+      "files": 5,
+      "bytes": 950569,
+      "working_copy": "/home/cognis/.cache/moebius-automata/cathedral-land-v1/native-run",
+      "destination": "Mermogon external immutable archive"
+    },
+    {
+      "phase": "strict-native-run",
+      "purpose": "Reproduction of earlier immovable-material witness; reconstructed config chronology explicit",
+      "files": 5,
+      "bytes": 1023393,
+      "working_copy": "/home/cognis/.cache/moebius-automata/cathedral-land-v1/strict-native-run",
+      "destination": "Mermogon external immutable archive"
+    },
+    {
+      "phase": "renders",
+      "purpose": "All inspected image witnesses, camera variants and reconstructed strict configuration",
+      "files": 7,
+      "bytes": 1383931,
+      "working_copy": "/home/cognis/.cache/moebius-automata/cathedral-land-v1/renders",
+      "destination": "Mermogon external immutable archive"
+    },
+    {
+      "phase": "validation",
+      "purpose": "Passing and failed test/build/capture/replay logs",
+      "files": 28,
+      "bytes": 61784,
+      "working_copy": "/home/cognis/.cache/moebius-automata/cathedral-land-v1/validation",
+      "destination": "Mermogon external immutable archive"
+    },
+    {
+      "phase": "source",
+      "purpose": "Exact uncommitted source/configuration provenance",
+      "files": 3,
+      "bytes": 606411,
+      "working_copy": "/home/cognis/.cache/moebius-automata/cathedral-land-v1/source",
+      "destination": "Mermogon external immutable archive"
+    }
+  ],
+  "git": "Source, configuration, authoritative report, validation metrics, source identity and member/archive hash manifests. No bulky traces/screenshots/snapshots."
+}

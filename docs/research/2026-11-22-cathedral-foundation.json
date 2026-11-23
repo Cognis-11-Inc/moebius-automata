@@ -1,0 +1,13 @@
+{
+  "date_local": "2026-11-22",
+  "intent": "User requested non-fading first land, permanent deposits, and conserved sculpting for the cathedral. Separate persistent matter and editable shape from claims of purposeful architecture.",
+  "external_queries": [],
+  "external_publications": [],
+  "CONSULTED": ["Current source and user decisions", "M6 frozen evidence and optional demo", "World flesh/deposition/compost/excavation/resource ledgers", "Live path ring and actual material surface rendering"],
+  "IMPLEMENTED": ["TerrainLaw::PermanentV1 and ConservedSculptV1, with old omitted RecyclableV1 encoding preserved", "World::sculpt_transfer: paid local conserved relocation; loaded active neural jaws or explicit directional action", "No permanent-material compost/export/destructive excavation", "Live land derives from authoritative flesh, not age-faded path history", "Optional provisioned native land demo and exact snapshot/receipt replay"],
+  "VALIDATED": ["Six causal terrain tests and100 passing workspace tests", "1024 native ticks, both organisms alive,14 land+1010 reservoir with zero ledger residuals", "Five units sculpted during native run; no claim of architectural intention", "Fixed-camera render inspected; native and rendered HUD hashes match", "Historical1724 M6 episodes and400 M4 trials replay unchanged", "Versioned external archive member/archive/restored hashes verified; see cathedral validation/storage metadata"],
+  "authored_assumptions": ["Deposit shape/fusion uses existing coarse tissue geometry", "Up to2 units moved from reachable target to creature site per sculpt action, cost1 energy plus motor fees; not full transport mechanics", "Active neural closing drive threshold-256 separates intent signal from passive spring return", "Finite deposit capacity rejects additions/transfers rather than discarding material"],
+  "not_validated": ["Reasoned or learned construction", "Architecture/logic goals", "Sculpting reward or improvement", "Ecological survival and food transfer"],
+  "chronology": "Fading visual ribbon and zero-material M6 fixture identified first. User chose permanent material, then clarified that conserved reshaping/relocation is allowed. Earlier strict immovable capture retained; its reconstructed configuration reproduces exact state/config hashes. Test fixture and compile errors retained in external logs. No original M6 evidence overwritten.",
+  "report": "docs/cathedral/README.md"
+}

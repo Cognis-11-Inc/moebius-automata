@@ -1,0 +1,229 @@
+{
+  "date_local": "2026-11-23",
+  "files": [
+    {
+      "repository": "el-zach/SPORE-Creature-Creator",
+      "commit": "e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a",
+      "path": "LICENSE",
+      "blob": "c2b519fd46c0d022f539e5132f699800c37b2027",
+      "sha256": "5a21caaf87a771b847434ea36434832d50bfa61915e148ae851cc1814a6cfd1f",
+      "url": "https://github.com/el-zach/SPORE-Creature-Creator/blob/e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a/LICENSE"
+    },
+    {
+      "repository": "el-zach/SPORE-Creature-Creator",
+      "commit": "e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a",
+      "path": "README.md",
+      "blob": "862cb7b68655fab3c17f9fef4358e20536f7e0c9",
+      "sha256": "5af8b5e5e826a2b210923593c4131e3ca7c91554737835c8cdb09b135e101d30",
+      "url": "https://github.com/el-zach/SPORE-Creature-Creator/blob/e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a/README.md"
+    },
+    {
+      "repository": "el-zach/SPORE-Creature-Creator",
+      "commit": "e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a",
+      "path": "Assets/Creature Creator/Scripts/Runtime/Core/Controllers/CreatureController.cs",
+      "blob": "fb0443e4dee6138eb1d69d3e89d083dc4ca883c1",
+      "sha256": "f010bc792acb8080a6fcec8c7182a3b634f2f9f7e282c0bab16a104cbfc3d394",
+      "url": "https://github.com/el-zach/SPORE-Creature-Creator/blob/e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a/Assets/Creature%20Creator/Scripts/Runtime/Core/Controllers/CreatureController.cs"
+    },
+    {
+      "repository": "el-zach/SPORE-Creature-Creator",
+      "commit": "e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a",
+      "path": "Assets/Creature Creator/Scripts/Runtime/Core/Controllers/BodyPartController.cs",
+      "blob": "23312dac1116f46e5d2bf95beb3d394721da53c7",
+      "sha256": "8e670bbdafaaaecff38ea49e372f054d9889358d16368ff4ba36bcf02e2fec1d",
+      "url": "https://github.com/el-zach/SPORE-Creature-Creator/blob/e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a/Assets/Creature%20Creator/Scripts/Runtime/Core/Controllers/BodyPartController.cs"
+    },
+    {
+      "repository": "el-zach/SPORE-Creature-Creator",
+      "commit": "e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a",
+      "path": "Assets/Creature Creator/Scripts/Runtime/Core/Controllers/BodyPartControllers/LimbController.cs",
+      "blob": "ce5a90d4e74de2ac356fb30d33d6ad33b35a6c43",
+      "sha256": "3393549ed2bf5a794f8914239461122e263ebe38887e73ca864ebb0cf255510c",
+      "url": "https://github.com/el-zach/SPORE-Creature-Creator/blob/e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a/Assets/Creature%20Creator/Scripts/Runtime/Core/Controllers/BodyPartControllers/LimbController.cs"
+    },
+    {
+      "repository": "el-zach/SPORE-Creature-Creator",
+      "commit": "e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a",
+      "path": "Assets/Creature Creator/Scripts/Runtime/Core/Controllers/CameraOrbit.cs",
+      "blob": "078626d962c5dfb47e898369602a0feac9074f6c",
+      "sha256": "f6370e5de18c137111a8fd291720372a4fe46c603bff9761f6c3a65e0b31df0c",
+      "url": "https://github.com/el-zach/SPORE-Creature-Creator/blob/e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a/Assets/Creature%20Creator/Scripts/Runtime/Core/Controllers/CameraOrbit.cs"
+    },
+    {
+      "repository": "el-zach/SPORE-Creature-Creator",
+      "commit": "e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a",
+      "path": "Assets/Creature Creator/Scripts/Runtime/Core/Managers/CreatureCreator.cs",
+      "blob": "5c8c54237bf8a9ceedaa22baa688d25e7af450fb",
+      "sha256": "a0f1cbee89e2d30fd6c8e9aa37fe65d5461cc1bf5aa32ff0c17136b26ac110fb",
+      "url": "https://github.com/el-zach/SPORE-Creature-Creator/blob/e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a/Assets/Creature%20Creator/Scripts/Runtime/Core/Managers/CreatureCreator.cs"
+    },
+    {
+      "repository": "el-zach/SPORE-Creature-Creator",
+      "commit": "e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a",
+      "path": "Assets/Creature Creator/Scripts/Runtime/Core/Data/Creature/CreatureData.cs",
+      "blob": "6c65b285d41c75af572ead1dcecb9ac0f557c9fe",
+      "sha256": "c7295ce0351290d71a4d08c2332f54403948f0fdd6eb282458221b82b5039940",
+      "url": "https://github.com/el-zach/SPORE-Creature-Creator/blob/e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a/Assets/Creature%20Creator/Scripts/Runtime/Core/Data/Creature/CreatureData.cs"
+    },
+    {
+      "repository": "el-zach/SPORE-Creature-Creator",
+      "commit": "e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a",
+      "path": "Assets/Creature Creator/Scripts/Runtime/Core/Data/AttachedBodyPart.cs",
+      "blob": "34763316dffc28c1af86d8f3e7b25a93058bd6f6",
+      "sha256": "09c8aa99335810a7e3c50db909313411be5e6f1f9a8665b9797a742e81c6cc91",
+      "url": "https://github.com/el-zach/SPORE-Creature-Creator/blob/e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a/Assets/Creature%20Creator/Scripts/Runtime/Core/Data/AttachedBodyPart.cs"
+    },
+    {
+      "repository": "el-zach/SPORE-Creature-Creator",
+      "commit": "e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a",
+      "path": "Assets/Creature Creator/Scripts/Runtime/Demo/Utilities/SaveUtility.cs",
+      "blob": "6477b87dd398176a631ba89f58fc83b1a444ca11",
+      "sha256": "5ce9e480cf65ca81342dfbc3180982bc9374f1cbe990ddb4dc78747759416cd1",
+      "url": "https://github.com/el-zach/SPORE-Creature-Creator/blob/e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a/Assets/Creature%20Creator/Scripts/Runtime/Demo/Utilities/SaveUtility.cs"
+    },
+    {
+      "repository": "bevy-procedural/meshes",
+      "commit": "38032008e7790d99b462bb355c7a1fc20f77746c",
+      "path": "Cargo.toml",
+      "blob": "dd966b865179a07c053ac5dac7ca42fb9e825e10",
+      "sha256": "50b60b3b1710fa2bbdb66a4d9c35040254761828c43a22cc9de4e32056606dfa",
+      "url": "https://github.com/bevy-procedural/meshes/blob/38032008e7790d99b462bb355c7a1fc20f77746c/Cargo.toml"
+    },
+    {
+      "repository": "bevy-procedural/meshes",
+      "commit": "38032008e7790d99b462bb355c7a1fc20f77746c",
+      "path": "README.md",
+      "blob": "67818864fcd93b8ce33f4882b8b77bcf348e9094",
+      "sha256": "b443d7200dc429ad872bfcebe4d5361fc987e492d90faa615438d5e834748fe9",
+      "url": "https://github.com/bevy-procedural/meshes/blob/38032008e7790d99b462bb355c7a1fc20f77746c/README.md"
+    },
+    {
+      "repository": "bevy-procedural/meshes",
+      "commit": "38032008e7790d99b462bb355c7a1fc20f77746c",
+      "path": "LICENSE-MIT",
+      "blob": "6802bc4b80c0f8df1413d55b16267c0969e352c9",
+      "sha256": "1847e0e0698142ed4347c1441a9fa81c8fbddd44b1d8bbcd5e3647f991759d7f",
+      "url": "https://github.com/bevy-procedural/meshes/blob/38032008e7790d99b462bb355c7a1fc20f77746c/LICENSE-MIT"
+    },
+    {
+      "repository": "bevy-procedural/meshes",
+      "commit": "38032008e7790d99b462bb355c7a1fc20f77746c",
+      "path": "LICENSE-APACHE",
+      "blob": "2bb9ad240fa04c8cf706a4901c4807878e90c2dc",
+      "sha256": "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b",
+      "url": "https://github.com/bevy-procedural/meshes/blob/38032008e7790d99b462bb355c7a1fc20f77746c/LICENSE-APACHE"
+    },
+    {
+      "repository": "bevy-procedural/meshes",
+      "commit": "38032008e7790d99b462bb355c7a1fc20f77746c",
+      "path": "src/lib.rs",
+      "blob": "32e839f0993b383adebfbd72700126683421bee7",
+      "sha256": "386d33b89efe214353e3989098c3f0a35537314d9ad2ea531ba27ab301184231",
+      "url": "https://github.com/bevy-procedural/meshes/blob/38032008e7790d99b462bb355c7a1fc20f77746c/src/lib.rs"
+    },
+    {
+      "repository": "bevy-procedural/meshes",
+      "commit": "38032008e7790d99b462bb355c7a1fc20f77746c",
+      "path": "src/mesh/mod.rs",
+      "blob": "6a41a7d9df2d8932badd100510d1fbdc7cd80861",
+      "sha256": "920a5624e6d701e724d463aa5c91301cf38cb7008029ebf924d52d2d8008da5a",
+      "url": "https://github.com/bevy-procedural/meshes/blob/38032008e7790d99b462bb355c7a1fc20f77746c/src/mesh/mod.rs"
+    },
+    {
+      "repository": "bevy-procedural/meshes",
+      "commit": "38032008e7790d99b462bb355c7a1fc20f77746c",
+      "path": "src/mesh/vertices.rs",
+      "blob": "1d71ca3fd1112722e8e51d51cd1abe4cd1318118",
+      "sha256": "048553781b90a551d9a877a69660430ac61a32a11e8ec66eb41bb349c6cd8ce3",
+      "url": "https://github.com/bevy-procedural/meshes/blob/38032008e7790d99b462bb355c7a1fc20f77746c/src/mesh/vertices.rs"
+    },
+    {
+      "repository": "bevy-procedural/meshes",
+      "commit": "38032008e7790d99b462bb355c7a1fc20f77746c",
+      "path": "src/mesh/indices.rs",
+      "blob": "3d181e6d52e8d4d0c9cc0fa809718320bce69d09",
+      "sha256": "6b34588a0c8db1723d40aa3e9182a9e16b22709d3cb17a426a860db62919113d",
+      "url": "https://github.com/bevy-procedural/meshes/blob/38032008e7790d99b462bb355c7a1fc20f77746c/src/mesh/indices.rs"
+    },
+    {
+      "repository": "bevy-procedural/meshes",
+      "commit": "38032008e7790d99b462bb355c7a1fc20f77746c",
+      "path": "src/mesh/normals.rs",
+      "blob": "e559d6738b023e09c243c101be473aa95f1f723f",
+      "sha256": "7dd6ce7a09f2d2f35ce735f1971a24abdffd6438eb500d63b3b7dcb5ea948456",
+      "url": "https://github.com/bevy-procedural/meshes/blob/38032008e7790d99b462bb355c7a1fc20f77746c/src/mesh/normals.rs"
+    },
+    {
+      "repository": "bevy-procedural/meshes",
+      "commit": "38032008e7790d99b462bb355c7a1fc20f77746c",
+      "path": "src/mesh/backend_bevy/mod.rs",
+      "blob": "a0db1fca84c603c5499c383552bb089cda194b07",
+      "sha256": "cda498374a8231ac3089d417669e3f97f2c55492e137658691ff9f41ca2709e6",
+      "url": "https://github.com/bevy-procedural/meshes/blob/38032008e7790d99b462bb355c7a1fc20f77746c/src/mesh/backend_bevy/mod.rs"
+    },
+    {
+      "repository": "bevy-procedural/meshes",
+      "commit": "38032008e7790d99b462bb355c7a1fc20f77746c",
+      "path": "src/mesh/shapes.rs",
+      "blob": "a73846e4e61542a34087541c63fce8ce4da1f47d",
+      "sha256": "543cf200ea38c39c7b4c2c5a3b2a34938f591fd4bca21585ea38830e3e2299bd",
+      "url": "https://github.com/bevy-procedural/meshes/blob/38032008e7790d99b462bb355c7a1fc20f77746c/src/mesh/shapes.rs"
+    },
+    {
+      "repository": "bevy-procedural/meshes",
+      "commit": "38032008e7790d99b462bb355c7a1fc20f77746c",
+      "path": "src/mesh/geometry/triangle.rs",
+      "blob": "bf9ab4c28d136fd22ef9d9087717603e11741695",
+      "sha256": "f00ff60e1195d030bab00b6c83fffddc81a5975b093db9cc124caf603505c212",
+      "url": "https://github.com/bevy-procedural/meshes/blob/38032008e7790d99b462bb355c7a1fc20f77746c/src/mesh/geometry/triangle.rs"
+    },
+    {
+      "repository": "bevy-procedural/meshes",
+      "commit": "38032008e7790d99b462bb355c7a1fc20f77746c",
+      "path": "examples/3d.rs",
+      "blob": "1ce2850781c12ec5282368d8c0cc992203c98ccc",
+      "sha256": "ccc87b5ae9f79c154f770cb90c0adb78ff6361b637e56d120fe824aff063c2c3",
+      "url": "https://github.com/bevy-procedural/meshes/blob/38032008e7790d99b462bb355c7a1fc20f77746c/examples/3d.rs"
+    },
+    {
+      "repository": "bevy-procedural/meshes",
+      "commit": "38032008e7790d99b462bb355c7a1fc20f77746c",
+      "path": "examples/2d.rs",
+      "blob": "3c5f06ad7047ba3629b4f95eecd7a5c9cf053035",
+      "sha256": "6fd3b4243fd4857d02f83ef453c82ba92b6f44b7cd45077a533a932c8958f08b",
+      "url": "https://github.com/bevy-procedural/meshes/blob/38032008e7790d99b462bb355c7a1fc20f77746c/examples/2d.rs"
+    },
+    {
+      "repository": "daniellochner/creature",
+      "commit": "1e7745c50b701c5444eab3863892824c89c8b432",
+      "path": "LICENSE.md",
+      "blob": "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "url": "https://github.com/daniellochner/creature/blob/1e7745c50b701c5444eab3863892824c89c8b432/LICENSE.md"
+    },
+    {
+      "repository": "el-zach/SPORE-Creature-Creator",
+      "commit": "e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a",
+      "path": "Assets/Creature Creator/Scripts/Runtime/Core/Objects/Body Parts/Features/Mouth.cs",
+      "blob": "921ae8d357fab210bd70387dead1e3aad4e0d39d",
+      "sha256": "2f3834d1434c0980eed715364b6635ba28c0ae0aadae6a57ed247ebcbcfaf7d0",
+      "url": "https://github.com/el-zach/SPORE-Creature-Creator/blob/e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a/Assets/Creature%20Creator/Scripts/Runtime/Core/Objects/Body%20Parts/Features/Mouth.cs"
+    },
+    {
+      "repository": "el-zach/SPORE-Creature-Creator",
+      "commit": "e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a",
+      "path": "Assets/Creature Creator/Scripts/Runtime/Core/Data/Creature/CreatureSettings.cs",
+      "blob": "45b1efc26d363c946c3a508b75e6e8efca0e2a67",
+      "sha256": "f56b06349d4783eb626a997899ad408008a36c7a220018bfd2e021c10f564b67",
+      "url": "https://github.com/el-zach/SPORE-Creature-Creator/blob/e7044c2c503ac5b0cb0bc7fa0c49f7f29d68310a/Assets/Creature%20Creator/Scripts/Runtime/Core/Data/Creature/CreatureSettings.cs"
+    }
+  ],
+  "fork_common_ancestor": "713f940c49c8c0b250f693914d32ef1cc8f2115d",
+  "historical_mit_license_blob": "c2b519fd46c0d022f539e5132f699800c37b2027",
+  "mit_introduction": "63fbf1189a1aff648e0f31b2f34884cb9045fcc5",
+  "upstream_mit_deletion": "56e4e20dc4e7efe22873855cb6ef0966ec5e2637",
+  "upstream_gpl_introduction": "25aac626c5c6789b51c828ba63994fa88601404e",
+  "donor_a_runtime": "NOT RUN: Unity source/history audit only",
+  "donor_b_tests": "NOT RUN: offline package-resolution failure; log preserved",
+  "reuse_decision": "Independent implementation; no donor code/assets copied into production source."
+}

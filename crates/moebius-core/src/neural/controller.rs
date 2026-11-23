@@ -37,6 +37,9 @@ pub struct NeuralRules {
     /// Explicit authored sensor variant; omitted preserves historical config hashes.
     #[serde(default, skip_serializing_if = "is_rays")]
     pub chemical_sensing: ChemicalSensing,
+    /// Explicit M6 physiological-feedback ablation; default preserves old laws.
+    #[serde(default = "enabled", skip_serializing_if = "is_enabled")]
+    pub physiological_feedback: bool,
 }
 fn enabled() -> bool {
     true
@@ -57,6 +60,7 @@ impl Default for NeuralRules {
             drag: 8,
             spinal_wave: true,
             chemical_sensing: ChemicalSensing::RaysV1,
+            physiological_feedback: true,
         }
     }
 }
@@ -64,7 +68,9 @@ impl NeuralRules {
     pub fn validate(&self) -> Result<(), Error> {
         if !(1..=2).contains(&self.version)
             || self.drag > 128
-            || (self.version == 1 && self.chemical_sensing != ChemicalSensing::RaysV1)
+            || (self.version == 1
+                && (self.chemical_sensing != ChemicalSensing::RaysV1
+                    || !self.physiological_feedback))
         {
             return Err(Error::Config("unsupported neural laws or drag".into()));
         }
@@ -562,8 +568,11 @@ impl NeuralState {
         }
     }
     pub fn feedback(&mut self, energy: u64, intake: u64, rules: &NeuralRules) {
-        let raw =
-            ((i128::from(energy) - i128::from(self.last_energy)) * 128).clamp(-1024, 1024) as i32;
+        let raw = if rules.physiological_feedback {
+            ((i128::from(energy) - i128::from(self.last_energy)) * 128).clamp(-1024, 1024) as i32
+        } else {
+            0
+        };
         self.reward = raw;
         let modulation = (raw - self.reward_mean).clamp(-1024, 1024);
         self.reward_mean += (raw - self.reward_mean) / 16;

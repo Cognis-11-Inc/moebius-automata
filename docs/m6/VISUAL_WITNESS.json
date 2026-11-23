@@ -1,0 +1,187 @@
+{
+  "mode": "native recurrent optional demo",
+  "records": [
+    {
+      "file": "compare_labeled_t1.png",
+      "sha256": "988a7a36331b86f285f33cbe1eb066b694d28d0b323ea72cdcdc0b1249c7fe64",
+      "bytes": 235221,
+      "inspected_pixels": true,
+      "archive_phase": "visual-v1",
+      "metadata": {
+        "committed_tick_at_request": 1,
+        "config_hash": "b880f0925de1342960a42bd5b80c244035e34afc5bd69678551d0941c0eb7f36",
+        "mode": "native recurrent motor demo",
+        "states": [
+          {
+            "genome_id": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c",
+            "id": 1,
+            "site": {
+              "x": 4,
+              "y": 8,
+              "z": 8
+            }
+          },
+          {
+            "genome_id": "dcc63a2efe8458e55be40460ce4ba9b70f4454bea48a878869ef95a3189ee362",
+            "id": 2,
+            "site": {
+              "x": 12,
+              "y": 8,
+              "z": 8
+            }
+          }
+        ]
+      },
+      "assessment": "UNSUCCESSFUL: blank render before assets ready"
+    },
+    {
+      "file": "compare_labeled_t256.png",
+      "sha256": "b4a7d1c5a6013f63cd62183d4dcee1d4f14c6195bb5c3b711abec4ba18876bdc",
+      "bytes": 315536,
+      "inspected_pixels": true,
+      "archive_phase": "visual-v1",
+      "metadata": {
+        "committed_tick_at_request": 256,
+        "config_hash": "b880f0925de1342960a42bd5b80c244035e34afc5bd69678551d0941c0eb7f36",
+        "mode": "native recurrent motor demo",
+        "states": [
+          {
+            "genome_id": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c",
+            "id": 1,
+            "site": {
+              "x": 5,
+              "y": 8,
+              "z": 8
+            }
+          },
+          {
+            "genome_id": "dcc63a2efe8458e55be40460ce4ba9b70f4454bea48a878869ef95a3189ee362",
+            "id": 2,
+            "site": {
+              "x": 12,
+              "y": 8,
+              "z": 8
+            }
+          }
+        ]
+      },
+      "assessment": "Bodies visible. Comparison common camera; solo inspector exposes genotype/NN/velocity. Supports visual witness only, not a quantitative locomotion verdict."
+    },
+    {
+      "file": "compare_labeled_t32.png",
+      "sha256": "a6477f862c363d351cb2b5e1d976221b7b0bc562182d3c6ab8f35aafdefd7691",
+      "bytes": 312435,
+      "inspected_pixels": true,
+      "archive_phase": "visual-v1",
+      "metadata": {
+        "committed_tick_at_request": 32,
+        "config_hash": "b880f0925de1342960a42bd5b80c244035e34afc5bd69678551d0941c0eb7f36",
+        "mode": "native recurrent motor demo",
+        "states": [
+          {
+            "genome_id": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c",
+            "id": 1,
+            "site": {
+              "x": 4,
+              "y": 8,
+              "z": 8
+            }
+          },
+          {
+            "genome_id": "dcc63a2efe8458e55be40460ce4ba9b70f4454bea48a878869ef95a3189ee362",
+            "id": 2,
+            "site": {
+              "x": 12,
+              "y": 8,
+              "z": 8
+            }
+          }
+        ]
+      },
+      "assessment": "Bodies visible. Comparison common camera; solo inspector exposes genotype/NN/velocity. Supports visual witness only, not a quantitative locomotion verdict."
+    },
+    {
+      "file": "compare_t256.png",
+      "sha256": "d02fc354b837a662c32b6664346dcf67cad90b6832809d88d4314e7d5763461d",
+      "bytes": 286610,
+      "inspected_pixels": true,
+      "archive_phase": "visual-v1",
+      "metadata": {
+        "committed_tick_at_request": 256,
+        "config_hash": "b880f0925de1342960a42bd5b80c244035e34afc5bd69678551d0941c0eb7f36",
+        "mode": "native recurrent motor demo",
+        "states": [
+          {
+            "genome_id": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c",
+            "id": 1,
+            "site": {
+              "x": 5,
+              "y": 8,
+              "z": 8
+            }
+          },
+          {
+            "genome_id": "dcc63a2efe8458e55be40460ce4ba9b70f4454bea48a878869ef95a3189ee362",
+            "id": 2,
+            "site": {
+              "x": 12,
+              "y": 8,
+              "z": 8
+            }
+          }
+        ]
+      },
+      "assessment": "Bodies visible. Comparison common camera; solo inspector exposes genotype/NN/velocity. Supports visual witness only, not a quantitative locomotion verdict."
+    },
+    {
+      "file": "selected_t128.png",
+      "sha256": "21fc9e847b44ece3c886110124848baca5f3538de15bcc39f7a22c6a54f18d9f",
+      "bytes": 483992,
+      "inspected_pixels": true,
+      "archive_phase": "visual-v1",
+      "metadata": {
+        "committed_tick_at_request": 128,
+        "config_hash": "f1b64bdac63c315ae7ed95118bb94a86701a47aa20915301f8b964aefe22670c",
+        "mode": "native recurrent motor demo",
+        "states": [
+          {
+            "genome_id": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c",
+            "id": 1,
+            "site": {
+              "x": 8,
+              "y": 8,
+              "z": 8
+            }
+          }
+        ]
+      },
+      "assessment": "Bodies visible. Comparison common camera; solo inspector exposes genotype/NN/velocity. Supports visual witness only, not a quantitative locomotion verdict."
+    },
+    {
+      "file": "untrained_t128.png",
+      "sha256": "a65f0286de4140fe6414f59a257edac5c22c137800449e50f0050fb04f407bec",
+      "bytes": 464649,
+      "inspected_pixels": true,
+      "archive_phase": "visual-v1",
+      "metadata": {
+        "committed_tick_at_request": 128,
+        "config_hash": "f1b64bdac63c315ae7ed95118bb94a86701a47aa20915301f8b964aefe22670c",
+        "mode": "native recurrent motor demo",
+        "states": [
+          {
+            "genome_id": "dcc63a2efe8458e55be40460ce4ba9b70f4454bea48a878869ef95a3189ee362",
+            "id": 1,
+            "site": {
+              "x": 8,
+              "y": 8,
+              "z": 8
+            }
+          }
+        ]
+      },
+      "assessment": "Bodies visible. Comparison common camera; solo inspector exposes genotype/NN/velocity. Supports visual witness only, not a quantitative locomotion verdict."
+    }
+  ],
+  "comparison": "Labeled comparison at32 and256 committed ticks shows articulation and motion against common fixed box/camera; initial founding sites4 and12. Solo selected and untrained at128ticks separately inspected. No cosmetic/body changes.",
+  "caveat": "Screenshot request tick lower bound; CPU tick and render interpolation may differ. No movie was captured."
+}

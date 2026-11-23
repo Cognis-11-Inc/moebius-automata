@@ -1,0 +1,28 @@
+{
+  "date_local": "2026-11-23",
+  "intent": "Bounded visual refinement after user accepts sculpt direction: reduce upper-lip stretch, tint existing human-like teeth",
+  "external_queries": [],
+  "external_scientific_sources": [],
+  "CONSULTED": [
+    "Existing v4 sculpt and morph data",
+    "Actual rendered tooth pixels and local Blender ray picks",
+    "Local glTF material loader support for alpha/transmission"
+  ],
+  "IMPLEMENTED": [
+    "Upper vertical deltas scaled0.45; higher lower-lip closure seam",
+    "Feathered smoky translucent material on221 existing tooth-region triangles"
+  ],
+  "VALIDATED": [
+    "29 viewer tests and strict Clippy",
+    "Rest positions/UVs/full connectivity preserved",
+    "55% measured upper reduction",
+    "16 actual live frames match controlled replay",
+    "Studio and live pixels inspected"
+  ],
+  "NOT_VALIDATED": [
+    "Physical tissue optics",
+    "Anatomical tooth/gum segmentation",
+    "New feeding or learning"
+  ],
+  "report": "docs/worm_a/LIP_TEETH_REFINEMENT.md"
+}

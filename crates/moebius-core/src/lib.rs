@@ -29,7 +29,7 @@ pub mod world;
 
 pub use config::{
     FarmRules, GenomeFill, MAX_AMOUNT, MAX_AXIS, MAX_SNAPSHOTS, MAX_TICKS, MAX_TRAIL_ROWS,
-    MAX_VOLUME, SimConfig, config_hash, load_config_str,
+    MAX_VOLUME, SimConfig, TerrainLaw, config_hash, load_config_str,
 };
 pub use geom::{
     Dims, Dir, MoveOutcome, MoveProposal, NEIGHBORHOOD, Site, resolve_moves, step_site,

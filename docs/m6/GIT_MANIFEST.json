@@ -1,0 +1,202 @@
+{
+  "date_local": "2026-11-22",
+  "publication": "uncommitted; inventory excludes this self-referential manifest",
+  "files": [
+    {
+      "path": "HANDOFF.md",
+      "bytes": 18930,
+      "sha256": "b9a73ba30ae4bb95314b5dff636451c75f4478cfc9509b6f77b76b850ad2676f",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "crates/moebius-core/examples/m6_mechanism.rs",
+      "bytes": 4000,
+      "sha256": "e83364cd708c82a60af8e0ac69311e6bcad5a7dc1ffc09d16796e732a90e94de",
+      "purpose": "source/test/reproducibility tool"
+    },
+    {
+      "path": "crates/moebius-core/examples/m6_nursery.rs",
+      "bytes": 4278,
+      "sha256": "af489ca9383b552877233d3c4e7efbd41e384e4996e9f96ab0638df29b4da58d",
+      "purpose": "source/test/reproducibility tool"
+    },
+    {
+      "path": "crates/moebius-core/examples/m6_replay.rs",
+      "bytes": 6026,
+      "sha256": "71a3516ad69c14d707f915765b18b304c7297b62956eb80bb72c38f2e267491c",
+      "purpose": "source/test/reproducibility tool"
+    },
+    {
+      "path": "crates/moebius-core/examples/support/m6.rs",
+      "bytes": 17701,
+      "sha256": "298e04de4be74f274c1a72187808c056b0bc7358361af51ff667151e7b6fd4db",
+      "purpose": "source/test/reproducibility tool"
+    },
+    {
+      "path": "crates/moebius-core/examples/support/m6_assess.rs",
+      "bytes": 9541,
+      "sha256": "d1ed9773037b6c44eb7e58f3e27c6df90a46af666e59431a542f3f3864897074",
+      "purpose": "source/test/reproducibility tool"
+    },
+    {
+      "path": "crates/moebius-core/examples/support/m6_search.rs",
+      "bytes": 8857,
+      "sha256": "a973ecc14162166587c1b38606f5491e60a2368dc458cad54d25e564ea1e95d5",
+      "purpose": "source/test/reproducibility tool"
+    },
+    {
+      "path": "crates/moebius-core/src/neural/controller.rs",
+      "bytes": 27627,
+      "sha256": "87a15c2eba6efbf61e773cdd63783d5db1ff0618ee545ae414c9801c0f549b9d",
+      "purpose": "source/test/reproducibility tool"
+    },
+    {
+      "path": "crates/moebius-core/tests/m6.rs",
+      "bytes": 4811,
+      "sha256": "0501ba40dae0b3acecdfac6b43fefd5674fb3b9102b8349ade1bbc7cb7bc5e26",
+      "purpose": "source/test/reproducibility tool"
+    },
+    {
+      "path": "crates/moebius-viewer/src/live.rs",
+      "bytes": 23096,
+      "sha256": "5fbf3a49150176e8fe2cb04b67c6c01d72576c2be8c5b69151c179265be3aeb6",
+      "purpose": "source/test/reproducibility tool"
+    },
+    {
+      "path": "crates/moebius-viewer/src/main.rs",
+      "bytes": 25519,
+      "sha256": "3cea7df045b5d35b54d98046bf19c3b20387e48e7aed9ee76bfc014618909331",
+      "purpose": "source/test/reproducibility tool"
+    },
+    {
+      "path": "crates/moebius-viewer/src/motor_demo.rs",
+      "bytes": 4568,
+      "sha256": "7b05298985e033684d93db25f7af14a52290ea6f9b1fb2262946018325fd58fa",
+      "purpose": "source/test/reproducibility tool"
+    },
+    {
+      "path": "crates/moebius-viewer/src/show.rs",
+      "bytes": 67956,
+      "sha256": "01b410540bf1f5ff1f01584778d7a57ee349b0302b5fdfa6e8ed1ad158dcb4ff",
+      "purpose": "source/test/reproducibility tool"
+    },
+    {
+      "path": "docs/m6/ANALYSIS.json",
+      "bytes": 133658,
+      "sha256": "f37bffc5d70b3e3c1c34da96cc38f8452fbada3b444410f59c96f6d286c8f3ec",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/m6/ARTIFACT_CLASSIFICATION.json",
+      "bytes": 5021,
+      "sha256": "9275e42e81de65c9148f68333593742b4ea6c472154165dcd452b4b07f98df88",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/m6/ARTIFACT_STORAGE.json",
+      "bytes": 26872,
+      "sha256": "58b59a0e75f12f99fdc34710a2933e767e4a229227f7d973d05983161e6165bd",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/m6/AUDIT.md",
+      "bytes": 4982,
+      "sha256": "0aebcbf8f881cfa736cf8f541d98eb98362746c1dc3393aaa2e33c13ea68b1a8",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/m6/CONFIGURATIONS.json",
+      "bytes": 20433,
+      "sha256": "578b4600cd91275cbf7dd7b1a18cd3284a0e170e701c0dfb660b6054e82b2867",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/m6/DEMO.json",
+      "bytes": 40206,
+      "sha256": "ea4cbe26ae828b70b916a8b819e391eeecce7a67f4e9e184484cd25e83e611cb",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/m6/DIRECTIVE.md",
+      "bytes": 13662,
+      "sha256": "a4c0bf6a2419a99c8dffe621d8528f3b55ce6132eabc47b938cf53a09fd98ff0",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/m6/MECHANISM.json",
+      "bytes": 2199,
+      "sha256": "bf2dc3ec253152650958635c10a5eec07c8575d28140fff51738b905c2a73b68",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/m6/PROTOCOL.json",
+      "bytes": 10791,
+      "sha256": "02b3c5f85f6d11a3dcb8577846bb88fceadcd6f100c3117a3f7a9647f48ac9cc",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/m6/README.md",
+      "bytes": 3456,
+      "sha256": "a8a1bd9e4de6c446f9d994798e2d4362e5bc37b67eaadcd3d4f9e5a8702fa2ba",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/m6/REPORT.md",
+      "bytes": 17523,
+      "sha256": "6dbe86eab7b96f32160ea36ed34c3737bb1d750cb3b110840dba77511752a70f",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/m6/SOURCE_IDENTITY.json",
+      "bytes": 3417,
+      "sha256": "639cd0041700d9523af81d183c7c872d11636eb525cd67b42788262bced08109",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/m6/VALIDATION.json",
+      "bytes": 8476,
+      "sha256": "bc4ce03c81a1d963063a3ce603ebc4b88f67e40f97697a7e5c5dbdeaf6f903b7",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/m6/VISUAL_WITNESS.json",
+      "bytes": 6578,
+      "sha256": "00768dfce0c247c105e297c5c267254f7a1607fcfec9e5f67319aa42ee461a70",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/m6/checkpoints/selected_genome.json",
+      "bytes": 16352,
+      "sha256": "d595ea800224f0a5a037c2288eca2300fbf1bd94056b4232d7ba01a2ccf9d354",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/m6/checkpoints/untrained_genome.json",
+      "bytes": 16126,
+      "sha256": "b37e68d34aa9260e34132f9495fa5ba0dfbfdb1b3e106790939f96cd6d39ccf1",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "docs/research/2026-11-22-m6-motor-nursery.json",
+      "bytes": 2849,
+      "sha256": "0ee85aff40d50c6dd435def63fa20adb7177f9a991b47ef070f5bebb0237e573",
+      "purpose": "authoritative handoff/report/reproducibility metadata or small checkpoint"
+    },
+    {
+      "path": "python/m6_analysis.py",
+      "bytes": 11484,
+      "sha256": "9b5d1dfbfc4a4302d044447ef672a8751da76af14e33484d0a8441b98d444ccc",
+      "purpose": "source/test/reproducibility tool"
+    },
+    {
+      "path": "python/m6_artifacts.py",
+      "bytes": 3255,
+      "sha256": "3857b83ce4655c9924a68c7d3212fb6abb8aeefc188cfb5c0fdb93884ddbd73d",
+      "purpose": "source/test/reproducibility tool"
+    }
+  ],
+  "total_files": 32,
+  "total_bytes": 570250,
+  "maximum_file_bytes": 133658,
+  "raw_archives_in_git": false
+}

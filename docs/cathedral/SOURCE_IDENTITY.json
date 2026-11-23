@@ -1,0 +1,151 @@
+{
+  "base_commit": "8e351e212d1f979a32b1bb3a862719a06ea1b70d",
+  "publication": "uncommitted M6 plus post-M6 cathedral foundation",
+  "material_laws": [
+    "recyclable_v1 historical default/omitted",
+    "permanent_v1 fixed permanent material",
+    "conserved_sculpt_v1 editable permanent matter"
+  ],
+  "files": [
+    {
+      "path": "crates/moebius-core/examples/m6_mechanism.rs",
+      "bytes": 4000,
+      "sha256": "e83364cd708c82a60af8e0ac69311e6bcad5a7dc1ffc09d16796e732a90e94de"
+    },
+    {
+      "path": "crates/moebius-core/examples/m6_nursery.rs",
+      "bytes": 4278,
+      "sha256": "af489ca9383b552877233d3c4e7efbd41e384e4996e9f96ab0638df29b4da58d"
+    },
+    {
+      "path": "crates/moebius-core/examples/m6_replay.rs",
+      "bytes": 6026,
+      "sha256": "71a3516ad69c14d707f915765b18b304c7297b62956eb80bb72c38f2e267491c"
+    },
+    {
+      "path": "crates/moebius-core/examples/support/m6.rs",
+      "bytes": 17701,
+      "sha256": "298e04de4be74f274c1a72187808c056b0bc7358361af51ff667151e7b6fd4db"
+    },
+    {
+      "path": "crates/moebius-core/examples/support/m6_assess.rs",
+      "bytes": 9541,
+      "sha256": "d1ed9773037b6c44eb7e58f3e27c6df90a46af666e59431a542f3f3864897074"
+    },
+    {
+      "path": "crates/moebius-core/examples/support/m6_search.rs",
+      "bytes": 8857,
+      "sha256": "a973ecc14162166587c1b38606f5491e60a2368dc458cad54d25e564ea1e95d5"
+    },
+    {
+      "path": "crates/moebius-core/src/config.rs",
+      "bytes": 14099,
+      "sha256": "17d5fc09e40ff9e3904f5e6c1a7afe32485ec7ecd8eb1dd406d32e39fdc03fdc"
+    },
+    {
+      "path": "crates/moebius-core/src/lib.rs",
+      "bytes": 2726,
+      "sha256": "592c1b78b5556358f068d72a4e77165c95ed0d3641b6be839a4a2f675f36bfc6"
+    },
+    {
+      "path": "crates/moebius-core/src/neural/controller.rs",
+      "bytes": 27627,
+      "sha256": "87a15c2eba6efbf61e773cdd63783d5db1ff0618ee545ae414c9801c0f549b9d"
+    },
+    {
+      "path": "crates/moebius-core/src/world.rs",
+      "bytes": 78485,
+      "sha256": "db7ddb404ad14df7022474e6614396a1cbdb8b265a3b7e8729814e23349ecc08"
+    },
+    {
+      "path": "crates/moebius-core/tests/farm.rs",
+      "bytes": 11524,
+      "sha256": "a10fb2296241741390e78978f318bd0c7a4015c0bf37581a6a1fce7ab76e5af6"
+    },
+    {
+      "path": "crates/moebius-core/tests/m6.rs",
+      "bytes": 4811,
+      "sha256": "0501ba40dae0b3acecdfac6b43fefd5674fb3b9102b8349ade1bbc7cb7bc5e26"
+    },
+    {
+      "path": "crates/moebius-core/tests/terrain.rs",
+      "bytes": 8636,
+      "sha256": "6fc184e518d36a0838482a657834ad847baeb5596b7e6600a8b41c6ee1de8302"
+    },
+    {
+      "path": "crates/moebius-viewer/examples/land_probe.rs",
+      "bytes": 3362,
+      "sha256": "2c95fddab34cbf5d00fb7b6355d470c7de38a47cd3450c9306cda6ff9d5a69de"
+    },
+    {
+      "path": "crates/moebius-viewer/src/body.rs",
+      "bytes": 24963,
+      "sha256": "042dd573f7de0471f65745dfea472a228552eec8d4b0cec1118a8878c5d99caf"
+    },
+    {
+      "path": "crates/moebius-viewer/src/live.rs",
+      "bytes": 23356,
+      "sha256": "4aeaba88b4cdd46c1b646996fd3a63f3473b6afe984a09cb1c76f27cfeaacf02"
+    },
+    {
+      "path": "crates/moebius-viewer/src/main.rs",
+      "bytes": 25553,
+      "sha256": "ca1dfd464e9c4003a96498defdfbda23bdcc4c6fcc2ad93cbaf41effb6228de0"
+    },
+    {
+      "path": "crates/moebius-viewer/src/motor_demo.rs",
+      "bytes": 4568,
+      "sha256": "7b05298985e033684d93db25f7af14a52290ea6f9b1fb2262946018325fd58fa"
+    },
+    {
+      "path": "crates/moebius-viewer/src/rules.rs",
+      "bytes": 20704,
+      "sha256": "3515ab09ec8a31c563481f7d54b363abe8e26f8ec4f5ba47e8cecd1fc38b00da"
+    },
+    {
+      "path": "crates/moebius-viewer/src/show.rs",
+      "bytes": 67940,
+      "sha256": "781c5b4440268edfdb1cde137fd2f34a8684322eafc26a693b5d7e5ff4f51a1b"
+    },
+    {
+      "path": "docs/m6/DEMO.json",
+      "bytes": 40206,
+      "sha256": "ea4cbe26ae828b70b916a8b819e391eeecce7a67f4e9e184484cd25e83e611cb"
+    },
+    {
+      "path": "docs/m6/PROTOCOL.json",
+      "bytes": 10791,
+      "sha256": "02b3c5f85f6d11a3dcb8577846bb88fceadcd6f100c3117a3f7a9647f48ac9cc"
+    },
+    {
+      "path": "docs/m6/checkpoints/selected_genome.json",
+      "bytes": 16352,
+      "sha256": "d595ea800224f0a5a037c2288eca2300fbf1bd94056b4232d7ba01a2ccf9d354"
+    },
+    {
+      "path": "docs/m6/checkpoints/untrained_genome.json",
+      "bytes": 16126,
+      "sha256": "b37e68d34aa9260e34132f9495fa5ba0dfbfdb1b3e106790939f96cd6d39ccf1"
+    },
+    {
+      "path": "experiments/motor_land_demo.json",
+      "bytes": 40300,
+      "sha256": "9077cc492e31e51be5492c07a395b26e391a4e99ba5a5a3b57016e16a0dfbae3"
+    },
+    {
+      "path": "python/cathedral_artifacts.py",
+      "bytes": 313,
+      "sha256": "ab2f5533fd35371c9952aa2721506f68c63ef7fc4df5e84779d011904da7ca2c"
+    },
+    {
+      "path": "python/m6_analysis.py",
+      "bytes": 11484,
+      "sha256": "9b5d1dfbfc4a4302d044447ef672a8751da76af14e33484d0a8441b98d444ccc"
+    },
+    {
+      "path": "python/m6_artifacts.py",
+      "bytes": 3255,
+      "sha256": "3857b83ce4655c9924a68c7d3212fb6abb8aeefc188cfb5c0fdb93884ddbd73d"
+    }
+  ]
+}

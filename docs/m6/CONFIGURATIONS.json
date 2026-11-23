@@ -1,0 +1,745 @@
+{
+  "configurations": {
+    "931894f1739b6a77b354699abd9817ef520c83f39085bb93e75b7fb095df9086": {
+      "config": {
+        "depth": 16,
+        "energy_cap": 10000,
+        "energy_per_nutrient": 4,
+        "export_per_tick": 128,
+        "farm": {
+          "birth_cooldown": 128,
+          "birth_cost": 8,
+          "birth_energy": 256,
+          "maturity_ticks": 32,
+          "max_population": 1
+        },
+        "feeding": {
+          "initial_stock": 0,
+          "spacing": 8,
+          "version": 1
+        },
+        "genome_fill": "derived",
+        "height": 16,
+        "inflow_per_tick": 0,
+        "initial_energy": 4096,
+        "initial_nutrient_per_site": 0,
+        "initial_population": 1,
+        "initial_reservoir": 0,
+        "initial_waste": 0,
+        "inject_per_tick": 0,
+        "maintenance_cost": 1,
+        "neural": {
+          "chemistry": true,
+          "drag": 8,
+          "mutation": true,
+          "plasticity": true,
+          "policy": "recurrent",
+          "proprioception": true,
+          "recurrence": true,
+          "spinal_wave": false,
+          "version": 2
+        },
+        "nutrient_wave_amplitude": 0,
+        "reservoir_cap": 50000000,
+        "site_cap": 4096,
+        "uptake_per_tick": 1,
+        "width": 16
+      },
+      "phases": [
+        "m6-8e351e2-babble-v1",
+        "m6-8e351e2-heldout-v1",
+        "m6-8e351e2-lifetime-v1"
+      ],
+      "episodes": 90
+    },
+    "4ef57cf66cfdfe3a698ed6e50833d83e64af817fb9bb51079a08495a54e40fd5": {
+      "config": {
+        "depth": 16,
+        "energy_cap": 10000,
+        "energy_per_nutrient": 4,
+        "export_per_tick": 128,
+        "farm": {
+          "birth_cooldown": 128,
+          "birth_cost": 8,
+          "birth_energy": 256,
+          "maturity_ticks": 32,
+          "max_population": 1
+        },
+        "feeding": {
+          "initial_stock": 0,
+          "spacing": 8,
+          "version": 1
+        },
+        "genome_fill": "derived",
+        "height": 16,
+        "inflow_per_tick": 0,
+        "initial_energy": 4096,
+        "initial_nutrient_per_site": 0,
+        "initial_population": 1,
+        "initial_reservoir": 0,
+        "initial_waste": 0,
+        "inject_per_tick": 0,
+        "maintenance_cost": 1,
+        "neural": {
+          "chemistry": true,
+          "drag": 32,
+          "mutation": true,
+          "plasticity": true,
+          "policy": "recurrent",
+          "proprioception": true,
+          "recurrence": true,
+          "spinal_wave": false,
+          "version": 2
+        },
+        "nutrient_wave_amplitude": 0,
+        "reservoir_cap": 50000000,
+        "site_cap": 4096,
+        "uptake_per_tick": 1,
+        "width": 16
+      },
+      "phases": [
+        "m6-8e351e2-babble-v1",
+        "m6-8e351e2-heldout-v1"
+      ],
+      "episodes": 48
+    },
+    "f1b64bdac63c315ae7ed95118bb94a86701a47aa20915301f8b964aefe22670c": {
+      "config": {
+        "depth": 16,
+        "energy_cap": 10000,
+        "energy_per_nutrient": 4,
+        "export_per_tick": 128,
+        "farm": {
+          "birth_cooldown": 128,
+          "birth_cost": 8,
+          "birth_energy": 256,
+          "maturity_ticks": 32,
+          "max_population": 1
+        },
+        "feeding": {
+          "initial_stock": 0,
+          "spacing": 8,
+          "version": 1
+        },
+        "genome_fill": "derived",
+        "height": 16,
+        "inflow_per_tick": 0,
+        "initial_energy": 4096,
+        "initial_nutrient_per_site": 0,
+        "initial_population": 1,
+        "initial_reservoir": 0,
+        "initial_waste": 0,
+        "inject_per_tick": 0,
+        "maintenance_cost": 1,
+        "neural": {
+          "chemistry": true,
+          "drag": 8,
+          "mutation": true,
+          "plasticity": false,
+          "policy": "recurrent",
+          "proprioception": true,
+          "recurrence": true,
+          "spinal_wave": false,
+          "version": 2
+        },
+        "nutrient_wave_amplitude": 0,
+        "reservoir_cap": 50000000,
+        "site_cap": 4096,
+        "uptake_per_tick": 1,
+        "width": 16
+      },
+      "phases": [
+        "m6-8e351e2-capability-v1",
+        "m6-8e351e2-falsify-v1",
+        "m6-8e351e2-heldout-v1",
+        "m6-8e351e2-lifetime-v1",
+        "m6-8e351e2-optimize-v1"
+      ],
+      "episodes": 434
+    },
+    "ba4342e178b4008de3e8bad731235a33373f4763aed4f1dfa2916967af362386": {
+      "config": {
+        "depth": 16,
+        "energy_cap": 10000,
+        "energy_per_nutrient": 4,
+        "export_per_tick": 128,
+        "farm": {
+          "birth_cooldown": 128,
+          "birth_cost": 8,
+          "birth_energy": 256,
+          "maturity_ticks": 32,
+          "max_population": 1
+        },
+        "feeding": {
+          "initial_stock": 0,
+          "spacing": 8,
+          "version": 1
+        },
+        "genome_fill": "derived",
+        "height": 16,
+        "inflow_per_tick": 0,
+        "initial_energy": 4096,
+        "initial_nutrient_per_site": 0,
+        "initial_population": 1,
+        "initial_reservoir": 0,
+        "initial_waste": 0,
+        "inject_per_tick": 0,
+        "maintenance_cost": 1,
+        "neural": {
+          "chemistry": true,
+          "drag": 8,
+          "mutation": true,
+          "plasticity": false,
+          "policy": "random",
+          "proprioception": true,
+          "recurrence": true,
+          "spinal_wave": false,
+          "version": 2
+        },
+        "nutrient_wave_amplitude": 0,
+        "reservoir_cap": 50000000,
+        "site_cap": 4096,
+        "uptake_per_tick": 1,
+        "width": 16
+      },
+      "phases": [
+        "m6-8e351e2-capability-v1",
+        "m6-8e351e2-heldout-v1"
+      ],
+      "episodes": 7
+    },
+    "fa4cbc71fcd36799b0ca7061325660659e47fc6165f32670410987b3a9df5d6c": {
+      "config": {
+        "depth": 16,
+        "energy_cap": 10000,
+        "energy_per_nutrient": 4,
+        "export_per_tick": 128,
+        "farm": {
+          "birth_cooldown": 128,
+          "birth_cost": 8,
+          "birth_energy": 256,
+          "maturity_ticks": 32,
+          "max_population": 1
+        },
+        "feeding": {
+          "initial_stock": 0,
+          "spacing": 8,
+          "version": 1
+        },
+        "genome_fill": "derived",
+        "height": 16,
+        "inflow_per_tick": 0,
+        "initial_energy": 4096,
+        "initial_nutrient_per_site": 0,
+        "initial_population": 1,
+        "initial_reservoir": 0,
+        "initial_waste": 0,
+        "inject_per_tick": 0,
+        "maintenance_cost": 1,
+        "neural": {
+          "chemistry": true,
+          "drag": 32,
+          "mutation": true,
+          "plasticity": false,
+          "policy": "recurrent",
+          "proprioception": true,
+          "recurrence": true,
+          "spinal_wave": false,
+          "version": 2
+        },
+        "nutrient_wave_amplitude": 0,
+        "reservoir_cap": 50000000,
+        "site_cap": 4096,
+        "uptake_per_tick": 1,
+        "width": 16
+      },
+      "phases": [
+        "m6-8e351e2-capability-v1",
+        "m6-8e351e2-falsify-v1",
+        "m6-8e351e2-heldout-v1",
+        "m6-8e351e2-optimize-v1"
+      ],
+      "episodes": 240
+    },
+    "4173b7a9bd377464e11cdddc35a8b101b121494ff77985d4dd86cb8c2f99d91b": {
+      "config": {
+        "depth": 16,
+        "energy_cap": 10000,
+        "energy_per_nutrient": 4,
+        "export_per_tick": 128,
+        "farm": {
+          "birth_cooldown": 128,
+          "birth_cost": 8,
+          "birth_energy": 256,
+          "maturity_ticks": 32,
+          "max_population": 1
+        },
+        "feeding": {
+          "initial_stock": 0,
+          "spacing": 8,
+          "version": 1
+        },
+        "genome_fill": "derived",
+        "height": 16,
+        "inflow_per_tick": 0,
+        "initial_energy": 4096,
+        "initial_nutrient_per_site": 0,
+        "initial_population": 1,
+        "initial_reservoir": 0,
+        "initial_waste": 0,
+        "inject_per_tick": 0,
+        "maintenance_cost": 1,
+        "neural": {
+          "chemistry": true,
+          "drag": 32,
+          "mutation": true,
+          "plasticity": false,
+          "policy": "random",
+          "proprioception": true,
+          "recurrence": true,
+          "spinal_wave": false,
+          "version": 2
+        },
+        "nutrient_wave_amplitude": 0,
+        "reservoir_cap": 50000000,
+        "site_cap": 4096,
+        "uptake_per_tick": 1,
+        "width": 16
+      },
+      "phases": [
+        "m6-8e351e2-capability-v1",
+        "m6-8e351e2-heldout-v1"
+      ],
+      "episodes": 7
+    },
+    "47034721732d7683ef379e31d244d384d0729e840d63964659061a55da2e72c4": {
+      "config": {
+        "depth": 16,
+        "energy_cap": 10000,
+        "energy_per_nutrient": 4,
+        "export_per_tick": 128,
+        "farm": {
+          "birth_cooldown": 128,
+          "birth_cost": 8,
+          "birth_energy": 256,
+          "maturity_ticks": 32,
+          "max_population": 1
+        },
+        "feeding": {
+          "initial_stock": 0,
+          "spacing": 8,
+          "version": 1
+        },
+        "genome_fill": "derived",
+        "height": 16,
+        "inflow_per_tick": 0,
+        "initial_energy": 4096,
+        "initial_nutrient_per_site": 0,
+        "initial_population": 1,
+        "initial_reservoir": 0,
+        "initial_waste": 0,
+        "inject_per_tick": 0,
+        "maintenance_cost": 1,
+        "neural": {
+          "chemical_sensing": "local_lobes_v1",
+          "chemistry": true,
+          "drag": 32,
+          "mutation": true,
+          "plasticity": false,
+          "policy": "recurrent",
+          "proprioception": true,
+          "recurrence": true,
+          "spinal_wave": false,
+          "version": 2
+        },
+        "nutrient_wave_amplitude": 0,
+        "reservoir_cap": 50000000,
+        "site_cap": 4096,
+        "uptake_per_tick": 0,
+        "width": 16
+      },
+      "phases": [
+        "m6-8e351e2-direction-heldout-v1",
+        "m6-8e351e2-direction-heldout-v2",
+        "m6-8e351e2-direction-v1",
+        "m6-8e351e2-direction-v2"
+      ],
+      "episodes": 184
+    },
+    "cd980fe5d530ed4b98f5bafa0f40862df1062be83e38a73fe47c988e227933dd": {
+      "config": {
+        "depth": 16,
+        "energy_cap": 10000,
+        "energy_per_nutrient": 4,
+        "export_per_tick": 128,
+        "farm": {
+          "birth_cooldown": 128,
+          "birth_cost": 8,
+          "birth_energy": 256,
+          "maturity_ticks": 32,
+          "max_population": 1
+        },
+        "feeding": {
+          "initial_stock": 0,
+          "spacing": 8,
+          "version": 1
+        },
+        "genome_fill": "derived",
+        "height": 16,
+        "inflow_per_tick": 0,
+        "initial_energy": 4096,
+        "initial_nutrient_per_site": 0,
+        "initial_population": 1,
+        "initial_reservoir": 0,
+        "initial_waste": 0,
+        "inject_per_tick": 0,
+        "maintenance_cost": 1,
+        "neural": {
+          "chemical_sensing": "local_lobes_v1",
+          "chemistry": true,
+          "drag": 32,
+          "mutation": true,
+          "plasticity": false,
+          "policy": "random",
+          "proprioception": true,
+          "recurrence": true,
+          "spinal_wave": false,
+          "version": 2
+        },
+        "nutrient_wave_amplitude": 0,
+        "reservoir_cap": 50000000,
+        "site_cap": 4096,
+        "uptake_per_tick": 0,
+        "width": 16
+      },
+      "phases": [
+        "m6-8e351e2-direction-heldout-v1",
+        "m6-8e351e2-direction-heldout-v2"
+      ],
+      "episodes": 8
+    },
+    "23482a76a08ffb2f3ee4a6ba67c0d3a5013020e8bc33d512e5720e9024ca6615": {
+      "config": {
+        "depth": 16,
+        "energy_cap": 10000,
+        "energy_per_nutrient": 4,
+        "export_per_tick": 128,
+        "farm": {
+          "birth_cooldown": 128,
+          "birth_cost": 8,
+          "birth_energy": 256,
+          "maturity_ticks": 32,
+          "max_population": 1
+        },
+        "feeding": {
+          "initial_stock": 0,
+          "spacing": 8,
+          "version": 1
+        },
+        "genome_fill": "derived",
+        "height": 16,
+        "inflow_per_tick": 0,
+        "initial_energy": 4096,
+        "initial_nutrient_per_site": 0,
+        "initial_population": 1,
+        "initial_reservoir": 0,
+        "initial_waste": 0,
+        "inject_per_tick": 0,
+        "maintenance_cost": 1,
+        "neural": {
+          "chemical_sensing": "local_lobes_v1",
+          "chemistry": true,
+          "drag": 8,
+          "mutation": true,
+          "plasticity": false,
+          "policy": "recurrent",
+          "proprioception": true,
+          "recurrence": true,
+          "spinal_wave": false,
+          "version": 2
+        },
+        "nutrient_wave_amplitude": 0,
+        "reservoir_cap": 50000000,
+        "site_cap": 4096,
+        "uptake_per_tick": 0,
+        "width": 16
+      },
+      "phases": [
+        "m6-8e351e2-direction-heldout-v1",
+        "m6-8e351e2-direction-heldout-v2",
+        "m6-8e351e2-direction-v1",
+        "m6-8e351e2-direction-v2"
+      ],
+      "episodes": 328
+    },
+    "9f08175c6e9249fcff2863c424ae805001ca8f5b0e632a0581cb1d4409b21f3e": {
+      "config": {
+        "depth": 16,
+        "energy_cap": 10000,
+        "energy_per_nutrient": 4,
+        "export_per_tick": 128,
+        "farm": {
+          "birth_cooldown": 128,
+          "birth_cost": 8,
+          "birth_energy": 256,
+          "maturity_ticks": 32,
+          "max_population": 1
+        },
+        "feeding": {
+          "initial_stock": 0,
+          "spacing": 8,
+          "version": 1
+        },
+        "genome_fill": "derived",
+        "height": 16,
+        "inflow_per_tick": 0,
+        "initial_energy": 4096,
+        "initial_nutrient_per_site": 0,
+        "initial_population": 1,
+        "initial_reservoir": 0,
+        "initial_waste": 0,
+        "inject_per_tick": 0,
+        "maintenance_cost": 1,
+        "neural": {
+          "chemical_sensing": "local_lobes_v1",
+          "chemistry": true,
+          "drag": 8,
+          "mutation": true,
+          "plasticity": false,
+          "policy": "random",
+          "proprioception": true,
+          "recurrence": true,
+          "spinal_wave": false,
+          "version": 2
+        },
+        "nutrient_wave_amplitude": 0,
+        "reservoir_cap": 50000000,
+        "site_cap": 4096,
+        "uptake_per_tick": 0,
+        "width": 16
+      },
+      "phases": [
+        "m6-8e351e2-direction-heldout-v1",
+        "m6-8e351e2-direction-heldout-v2"
+      ],
+      "episodes": 8
+    },
+    "e4cbf18cdceaf5b27c2cc6a34572b1c4329fe26252c7eb47a7fad29c13e02018": {
+      "config": {
+        "depth": 16,
+        "energy_cap": 10000,
+        "energy_per_nutrient": 4,
+        "export_per_tick": 128,
+        "farm": {
+          "birth_cooldown": 128,
+          "birth_cost": 8,
+          "birth_energy": 256,
+          "maturity_ticks": 32,
+          "max_population": 1
+        },
+        "feeding": {
+          "initial_stock": 0,
+          "spacing": 8,
+          "version": 1
+        },
+        "genome_fill": "derived",
+        "height": 16,
+        "inflow_per_tick": 0,
+        "initial_energy": 4096,
+        "initial_nutrient_per_site": 0,
+        "initial_population": 1,
+        "initial_reservoir": 0,
+        "initial_waste": 0,
+        "inject_per_tick": 0,
+        "maintenance_cost": 1,
+        "neural": {
+          "chemistry": true,
+          "drag": 0,
+          "mutation": true,
+          "plasticity": false,
+          "policy": "recurrent",
+          "proprioception": true,
+          "recurrence": true,
+          "spinal_wave": false,
+          "version": 2
+        },
+        "nutrient_wave_amplitude": 0,
+        "reservoir_cap": 50000000,
+        "site_cap": 4096,
+        "uptake_per_tick": 1,
+        "width": 16
+      },
+      "phases": [
+        "m6-8e351e2-falsify-v1"
+      ],
+      "episodes": 8
+    },
+    "760f9f53b47aa7490c6617fa55eb176fe96a71833ea5d5653ab612505890a6d2": {
+      "config": {
+        "depth": 16,
+        "energy_cap": 10000,
+        "energy_per_nutrient": 4,
+        "export_per_tick": 128,
+        "farm": {
+          "birth_cooldown": 128,
+          "birth_cost": 8,
+          "birth_energy": 256,
+          "maturity_ticks": 32,
+          "max_population": 1
+        },
+        "feeding": {
+          "initial_stock": 0,
+          "spacing": 8,
+          "version": 1
+        },
+        "genome_fill": "derived",
+        "height": 16,
+        "inflow_per_tick": 0,
+        "initial_energy": 4096,
+        "initial_nutrient_per_site": 0,
+        "initial_population": 1,
+        "initial_reservoir": 0,
+        "initial_waste": 0,
+        "inject_per_tick": 0,
+        "maintenance_cost": 1,
+        "neural": {
+          "chemistry": true,
+          "drag": 32,
+          "mutation": true,
+          "physiological_feedback": false,
+          "plasticity": false,
+          "policy": "recurrent",
+          "proprioception": true,
+          "recurrence": true,
+          "spinal_wave": false,
+          "version": 2
+        },
+        "nutrient_wave_amplitude": 0,
+        "reservoir_cap": 50000000,
+        "site_cap": 4096,
+        "uptake_per_tick": 1,
+        "width": 16
+      },
+      "phases": [
+        "m6-8e351e2-heldout-v1",
+        "m6-8e351e2-lifetime-v1"
+      ],
+      "episodes": 164
+    },
+    "205182d2b5cab9b8e02d0d023e862a39fb7d84b02d6f5d430cfff55b240fcf01": {
+      "config": {
+        "depth": 16,
+        "energy_cap": 10000,
+        "energy_per_nutrient": 4,
+        "export_per_tick": 128,
+        "farm": {
+          "birth_cooldown": 128,
+          "birth_cost": 8,
+          "birth_energy": 256,
+          "maturity_ticks": 32,
+          "max_population": 1
+        },
+        "feeding": {
+          "initial_stock": 0,
+          "spacing": 8,
+          "version": 1
+        },
+        "genome_fill": "derived",
+        "height": 16,
+        "inflow_per_tick": 0,
+        "initial_energy": 4096,
+        "initial_nutrient_per_site": 0,
+        "initial_population": 1,
+        "initial_reservoir": 0,
+        "initial_waste": 0,
+        "inject_per_tick": 0,
+        "maintenance_cost": 1,
+        "neural": {
+          "chemistry": true,
+          "drag": 8,
+          "mutation": true,
+          "physiological_feedback": false,
+          "plasticity": false,
+          "policy": "recurrent",
+          "proprioception": true,
+          "recurrence": true,
+          "spinal_wave": false,
+          "version": 2
+        },
+        "nutrient_wave_amplitude": 0,
+        "reservoir_cap": 50000000,
+        "site_cap": 4096,
+        "uptake_per_tick": 1,
+        "width": 16
+      },
+      "phases": [
+        "m6-8e351e2-heldout-v1",
+        "m6-8e351e2-lifetime-v1"
+      ],
+      "episodes": 196
+    },
+    "462da17bf46687015fc7737dc8618797367b272ff532f605e20ac8f5ed59e2e0": {
+      "config": {
+        "depth": 16,
+        "energy_cap": 10000,
+        "energy_per_nutrient": 4,
+        "export_per_tick": 128,
+        "farm": {
+          "birth_cooldown": 128,
+          "birth_cost": 8,
+          "birth_energy": 256,
+          "maturity_ticks": 32,
+          "max_population": 1
+        },
+        "feeding": {
+          "initial_stock": 0,
+          "spacing": 8,
+          "version": 1
+        },
+        "genome_fill": "derived",
+        "height": 16,
+        "inflow_per_tick": 0,
+        "initial_energy": 4096,
+        "initial_nutrient_per_site": 0,
+        "initial_population": 1,
+        "initial_reservoir": 0,
+        "initial_waste": 0,
+        "inject_per_tick": 0,
+        "maintenance_cost": 1,
+        "neural": {
+          "chemistry": true,
+          "drag": 8,
+          "mutation": true,
+          "physiological_feedback": false,
+          "plasticity": true,
+          "policy": "recurrent",
+          "proprioception": true,
+          "recurrence": true,
+          "spinal_wave": false,
+          "version": 2
+        },
+        "nutrient_wave_amplitude": 0,
+        "reservoir_cap": 50000000,
+        "site_cap": 4096,
+        "uptake_per_tick": 1,
+        "width": 16
+      },
+      "phases": [
+        "m6-8e351e2-lifetime-v1"
+      ],
+      "episodes": 2
+    }
+  },
+  "episode_counts": {
+    "m6-8e351e2-babble-v1": 120,
+    "m6-8e351e2-capability-v1": 30,
+    "m6-8e351e2-direction-heldout-v1": 48,
+    "m6-8e351e2-direction-heldout-v2": 48,
+    "m6-8e351e2-direction-v1": 216,
+    "m6-8e351e2-direction-v2": 216,
+    "m6-8e351e2-falsify-v1": 24,
+    "m6-8e351e2-heldout-v1": 88,
+    "m6-8e351e2-lifetime-v1": 358,
+    "m6-8e351e2-optimize-v1": 576
+  }
+}

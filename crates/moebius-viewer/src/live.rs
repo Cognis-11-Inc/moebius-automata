@@ -166,6 +166,9 @@ impl Picture {
 
 #[derive(Resource)]
 pub struct Hall {
+    pub motor_demo: bool,
+    pub jaw_exercise: bool,
+    pub terrain_law: moebius_core::TerrainLaw,
     pub seed: u64,
     pub config_hash: String,
     pub code_version: String,
@@ -356,6 +359,35 @@ impl Drop for Hall {
 }
 
 pub fn open(config: &SimConfig, seed: u64) -> Result<Hall, String> {
+    open_impl(config, seed, None)
+}
+pub fn open_initial(world: World) -> Result<Hall, String> {
+    open_impl(
+        &world.config().clone(),
+        world.seed(),
+        Some(InitialWorld {
+            world,
+            jaw_exercise: false,
+        }),
+    )
+}
+pub fn open_jaw_exercise(world: World) -> Result<Hall, String> {
+    open_impl(
+        &world.config().clone(),
+        world.seed(),
+        Some(InitialWorld {
+            world,
+            jaw_exercise: true,
+        }),
+    )
+}
+struct InitialWorld {
+    world: World,
+    jaw_exercise: bool,
+}
+fn open_impl(config: &SimConfig, seed: u64, initial: Option<InitialWorld>) -> Result<Hall, String> {
+    let motor_demo = initial.is_some();
+    let jaw_exercise = initial.as_ref().is_some_and(|i| i.jaw_exercise);
     config.validate().map_err(|err| err.to_string())?;
     check_horizon(config, 1).map_err(|err| err.to_string())?;
     let hash = config_hash(config).map_err(|err| err.to_string())?;
@@ -380,9 +412,15 @@ pub fn open(config: &SimConfig, seed: u64) -> Result<Hall, String> {
     let owned = config.clone();
     thread::Builder::new()
         .name("moebius-tick".into())
-        .spawn(move || pump(owned, seed, stride, tx, pause_worker, stop_worker))
+        .spawn(move || pump(owned, seed, stride, tx, pause_worker, stop_worker, initial))
         .map_err(|err| format!("cannot start the tick thread: {err}"))?;
     Ok(Hall {
+        terrain_law: config
+            .farm
+            .as_ref()
+            .map_or(moebius_core::TerrainLaw::RecyclableV1, |f| f.terrain_law),
+        motor_demo,
+        jaw_exercise,
         seed,
         config_hash: hash,
         code_version: moebius_cli::code_version(),
@@ -421,8 +459,13 @@ fn pump(
     tx: SyncSender<Picture>,
     pause: Arc<AtomicBool>,
     stop: Arc<AtomicBool>,
+    initial: Option<InitialWorld>,
 ) {
-    let mut world = match World::genesis(&config, seed) {
+    let jaw_exercise = initial.as_ref().is_some_and(|i| i.jaw_exercise);
+    let mut world = match initial
+        .map(|i| Ok(i.world))
+        .unwrap_or_else(|| World::genesis(&config, seed))
+    {
         Ok(world) => world,
         Err(err) => {
             let _ = tx.send(Picture::failed(err.to_string()));
@@ -439,7 +482,13 @@ fn pump(
         if pause.load(Ordering::Relaxed) {
             continue;
         }
-        match world.tick() {
+        let receipt = if jaw_exercise {
+            let commands = crate::jaw_exercise::controls(&world);
+            world.tick_controlled(&commands).map(|(receipt, _)| receipt)
+        } else {
+            world.tick()
+        };
+        match receipt {
             Ok(_) => {
                 if tx.send(shoot(&world, stride, None)).is_err() {
                     return;
@@ -641,6 +690,9 @@ mod tests {
             },
             stride: 1,
             nursery: false,
+            motor_demo: false,
+            jaw_exercise: false,
+            terrain_law: moebius_core::TerrainLaw::RecyclableV1,
             pause: Arc::new(AtomicBool::new(false)),
             stop: Arc::new(AtomicBool::new(false)),
             inbox: Mutex::new(rx),

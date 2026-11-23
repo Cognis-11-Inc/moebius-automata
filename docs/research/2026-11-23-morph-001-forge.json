@@ -1,0 +1,55 @@
+{
+  "date_local": "2026-11-23",
+  "search_intent": "Audit the two user-named code donors and licensing provenance before a local Rust anatomical vertical slice; no scientific publication research conducted.",
+  "queries": [
+    "Open https://github.com/el-zach/SPORE-Creature-Creator",
+    "Open https://github.com/bevy-procedural/meshes",
+    "Open https://github.com/daniellochner/creature",
+    "git log/merge-base/license blob comparison on pinned local clones",
+    "Local source symbol and caller inspection; no paper queries"
+  ],
+  "source_provenance": "docs/morph_001/DONOR_PROVENANCE.json",
+  "CONSULTED": [
+    "Pinned donor sources/license history and local existing Bevy/core/viewer paths",
+    "Local Bevy0.20 input/text/render APIs"
+  ],
+  "IMPLEMENTED": [
+    "Independent seeded versioned specification, validated indexed worm compiler and dynamic attachment frames",
+    "Separate native Bevy keyboard/orbit/persistence lab using the headless engine"
+  ],
+  "VALIDATED": [
+    "100 seeded definitions,800 explicit poses; all pass local geometry/attachment and persistence gates",
+    "31 actual lab captures rebuilt exactly by a second headless consumer",
+    "Existing tests and baseline file hashes preserved; final results report contains exact commands"
+  ],
+  "knowledge_transfer": [
+    {
+      "source": "Donor A",
+      "concept": "Axial ring construction and serializable local attachments",
+      "implementation": "compiler.rs::generate; normalized SurfaceCoordinate + live barycentric AttachmentFrame; not copied Unity code, bone-index attachments or assets"
+    },
+    {
+      "source": "Donor B",
+      "concept": "Separate indexed buffers, normal/UV attributes and renderer conversion",
+      "implementation": "Surface, independent area-weighted normals/validation, lab mesh adapter; not its0.19 dependency or its warned normal algorithm"
+    }
+  ],
+  "limits": [
+    "No validated biological adaptation, locomotion, feeding or generalized automatic rigging",
+    "No Unity runtime test; donor-B build tests could not resolve an uncached optional package offline",
+    "Cross-platform f32 bit identity/global self-intersection not demonstrated"
+  ],
+  "chronology": "Existing-system and donor audits written before implementation; compiler tests preceded lab, population-v1 then walkthrough-v1/v2/v3; initial API/test/lint errors and clipped UI witnesses retained.",
+  "reports": [
+    "MORPH_001_EXISTING_SYSTEM_AUDIT.md",
+    "MORPH_001_DONOR_ASSESSMENT.md",
+    "MORPH_001_ARCHITECTURE.md",
+    "MORPH_001_RESULTS.md"
+  ],
+  "source_revision_v2": {
+    "intent": "Fix preview-clock discontinuity at the one-turn wrap for fractional-frequency body/mouth/flagella channels",
+    "implemented": "Ten-turn common period, same anatomical compiler and recorded poses",
+    "validated": "Continuous-wrap regression;117 workspace tests;10 restored standalone tests;31 captured poses still replay exactly",
+    "storage": "Original v1 archives retained; immutable source-only v2 added"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "date_local": "2026-11-23",
+  "before_archive": true,
+  "git": {
+    "purpose": "Authored Rust source, fixture, authoritative reports, licenses/provenance, version/restore metadata; no raw geometry or rendered captures",
+    "source_and_input_files": 18,
+    "source_and_input_bytes": 235893
+  },
+  "excluded_build_cache": "Cargo target outputs and local donor Git caches are retained locally but are not evidence inputs; consulted donor sources/history are archived separately.",
+  "raw": [
+    {
+      "phase": "donor-audit",
+      "purpose": "Exact consulted donor source/license snapshots and history; no code copied into engine",
+      "files": 2,
+      "bytes": 299973
+    },
+    {
+      "phase": "media",
+      "purpose": "Actual capture sequence GIF; authored preview timing, not simulation learning",
+      "files": 1,
+      "bytes": 469657
+    },
+    {
+      "phase": "population-v1",
+      "purpose": "100 definitions,800 trial poses,full geometry witnesses and raw audit rows",
+      "files": 108,
+      "bytes": 3354378
+    },
+    {
+      "phase": "source",
+      "purpose": "Exact new source/inputs plus standalone reproduction workspace and original manifest/lock",
+      "files": 12,
+      "bytes": 903164
+    },
+    {
+      "phase": "validation",
+      "purpose": "Every build/test/replay attempt, null/failed setup, environment and preservation logs",
+      "files": 41,
+      "bytes": 465558
+    },
+    {
+      "phase": "walkthrough-v1",
+      "purpose": "First live UI, controls/save/restore evidence; clipped text/glyph failures retained",
+      "files": 22,
+      "bytes": 11615564
+    },
+    {
+      "phase": "walkthrough-v2",
+      "purpose": "Intermediate UI and motion evidence; superseded by final v3",
+      "files": 64,
+      "bytes": 35831184
+    },
+    {
+      "phase": "walkthrough-v3",
+      "purpose": "Final actual rendered generated geometry, ordinary-input walkthrough and capture provenance",
+      "files": 64,
+      "bytes": 35647235
+    }
+  ],
+  "git_restore_verification": {
+    "purpose": "Small authoritative post-archive restore/rebuild outcomes including exact command output",
+    "path": "docs/morph_001/RESTORE_VERIFICATION.json",
+    "bytes": 3953
+  },
+  "source_revision_v2": {
+    "before_archive": true,
+    "date_local": "2026-11-23",
+    "purpose": "Source-only correction: common period for fractional-frequency authored preview channels; regression checks wrap continuity. No engine anatomy/output change.",
+    "files": 12,
+    "bytes": 477981,
+    "previous_index_sha256": "3bbe1c06132f6f0f0385e75fca79d88551b13f0fd4a4ca76e1aa5b4cfcd1487d"
+  }
+}

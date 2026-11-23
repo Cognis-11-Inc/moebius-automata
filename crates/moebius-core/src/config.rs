@@ -64,10 +64,27 @@ pub struct FeedingRules {
     pub initial_stock: u64,
 }
 
+/// Material rule variant. Omitted preserves every historical config encoding.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum TerrainLaw {
+    #[default]
+    RecyclableV1,
+    /// Deposited flesh can accumulate/fuse, but never compost or be excavated.
+    PermanentV1,
+    /// Permanent matter with paid local carving/redeposition, never waste export.
+    ConservedSculptV1,
+}
+fn is_recyclable(value: &TerrainLaw) -> bool {
+    *value == TerrainLaw::RecyclableV1
+}
+
 /// Optional M1 laws; absence preserves M0 and its historical config hashes.
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct FarmRules {
+    #[serde(default, skip_serializing_if = "is_recyclable")]
+    pub terrain_law: TerrainLaw,
     pub max_population: u32,
     pub birth_energy: u64,
     pub birth_cost: u64,
@@ -78,6 +95,7 @@ pub struct FarmRules {
 impl Default for FarmRules {
     fn default() -> Self {
         Self {
+            terrain_law: TerrainLaw::RecyclableV1,
             max_population: 768,
             birth_energy: 80,
             birth_cost: 8,

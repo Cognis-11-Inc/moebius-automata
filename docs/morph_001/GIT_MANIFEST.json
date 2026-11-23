@@ -1,0 +1,188 @@
+{
+  "scope": "MORPH-001 authorized changes only, source revision2; older work preserved",
+  "files_excluding_self": 30,
+  "bytes_excluding_self": 394058,
+  "raw_evidence_in_git": false,
+  "files": [
+    {
+      "path": "Cargo.lock",
+      "bytes": 159247,
+      "sha256": "38714661e4204d48d4db5cf659abeecdf0b71117f26b53d0a551e430338ffe81",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "Cargo.toml",
+      "bytes": 463,
+      "sha256": "3e3525280a72beb2df0ef9f923afd5974f236e29b829b41f552ef97a8665f4e6",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "HANDOFF.md",
+      "bytes": 30918,
+      "sha256": "dc69f3539be7b7b597a56903d42e968ab08654dd9c18c6d5276fb6c26a1efd69",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "MORPH_001_ARCHITECTURE.md",
+      "bytes": 2963,
+      "sha256": "5f8a03107d4c12ca0130ca9504f7878d0f7a071dd30ad14ecca5452b36491c8c",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "MORPH_001_DONOR_ASSESSMENT.md",
+      "bytes": 6319,
+      "sha256": "81f655b0df809ec84d3b5706d6b02c927384681ff49fcd3ccb6d3d4a40eefdaa",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "MORPH_001_EXISTING_SYSTEM_AUDIT.md",
+      "bytes": 3426,
+      "sha256": "0402cf8d42dbf2b7a83791989301f428e8015878eae25deaa511dc68216dcfb8",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "MORPH_001_RESULTS.md",
+      "bytes": 11079,
+      "sha256": "f9815625ee8195c14e3e4fc67220708e6b339dec4b20a7d5ecd8e9f25533decb",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "README.md",
+      "bytes": 11190,
+      "sha256": "ade574fb3982b9fec283a3e4eb55bf94d746144c0b0e9d6ecf4aefe58d694de6",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "crates/moebius-morph-lab/Cargo.toml",
+      "bytes": 423,
+      "sha256": "40fe2d636d9d9736963c41ead5604aa9762295c113d96a305fbbb5ef2d20e787",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "crates/moebius-morph-lab/src/lib.rs",
+      "bytes": 9411,
+      "sha256": "3b82a8ffe67c49e1f7e488c33676722b91219c3b84c36b0738a41182e2532427",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "crates/moebius-morph-lab/src/main.rs",
+      "bytes": 20411,
+      "sha256": "5019f261c1ae8ba315f953600261bcbd319c4763a3a998674e3db3ccccbc3e2a",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "crates/moebius-morph/Cargo.toml",
+      "bytes": 349,
+      "sha256": "9d1fead02947f4511467cf02c6543fa623968de02fe3753d95d1fc873029d9c8",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "crates/moebius-morph/examples/replay_lab.rs",
+      "bytes": 2439,
+      "sha256": "db3e5ed999c16d27452c65f4af0f520cc2afaa1a491ce77b2b8607164cd201a9",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "crates/moebius-morph/examples/validate.rs",
+      "bytes": 5387,
+      "sha256": "827acdd0314c4a9f53bc6d697a06dc65415b34593ad53666799183ae6ab5959a",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "crates/moebius-morph/src/compiler.rs",
+      "bytes": 12032,
+      "sha256": "eecda1290360bbc9fa152c11453055276f68e5ea584faf5809ff12e962db30bd",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "crates/moebius-morph/src/lib.rs",
+      "bytes": 2263,
+      "sha256": "91bf3aa415a82b3bc1b8d0cad4433cc3cf969a1166c9a15738a54de53b17c892",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "crates/moebius-morph/src/math.rs",
+      "bytes": 1113,
+      "sha256": "c022020ece5d8f7f436e172ecd2ed95d266b3cc6cec4dc1da14d845a9ee5202d",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "crates/moebius-morph/src/spec.rs",
+      "bytes": 5881,
+      "sha256": "b91a19804c12097fcaadb4bc88efc58aa685d8d482734470fbaeb0085ec7bdff",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "crates/moebius-morph/src/surface.rs",
+      "bytes": 6469,
+      "sha256": "7a76f04cfd5623569efb477b2c06e00e262b36b3c85a084b818e152d20e9ccd4",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "crates/moebius-morph/tests/forge.rs",
+      "bytes": 5480,
+      "sha256": "c0d59d2170dddcdaf589d97bc9ecdfd1d23a371f89b58b95fd64c2f119b54a52",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "docs/morph_001/ARTIFACT_CLASSIFICATION.json",
+      "bytes": 2609,
+      "sha256": "7ecd65067598a16006c2dba3fcc50f7aa4f2bd5c581d0306927c8fe2abe935a2",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "docs/morph_001/ARTIFACT_STORAGE.json",
+      "bytes": 59812,
+      "sha256": "375c6a8ce9e0f4009118baa0c8d1639401a2ac93557249d397cc91c2bc1a7126",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "docs/morph_001/DONOR_PROVENANCE.json",
+      "bytes": 13253,
+      "sha256": "3abd1fd64b884f6ccf10def0adf57b5d31ed86d95915dbb9d848750a32b30fda",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "docs/morph_001/GIT_STATE.json",
+      "bytes": 5476,
+      "sha256": "f718d930865b67ed9b4c2ff3d49422166be31c2dbf8b1e70e47ffec05ec0db62",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "docs/morph_001/RESTORE_VERIFICATION.json",
+      "bytes": 3953,
+      "sha256": "09d2821168a7379a209d5f9d2ed69efd796b9b54eeb6e2962cfcea9f061b8d35",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "docs/morph_001/SOURCE_IDENTITY.json",
+      "bytes": 3150,
+      "sha256": "1c65fc5d27e13475af5d6f21ba8f1280fd530c427af34f1d4268c0d01e5aa9a4",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "docs/morph_001/VALIDATION.json",
+      "bytes": 3933,
+      "sha256": "6202f547feefdf39bf8b3ba4ebb2d4fd572ca9048bcfe26692f933aa06b7c115",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "docs/research/2026-11-23-morph-001-forge.json",
+      "bytes": 3020,
+      "sha256": "eebd3d890c4987eb8d13e03de6eff08a17ed6fa218b9a9cf740d499122151ec9",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "experiments/morph_001_worm.json",
+      "bytes": 1341,
+      "sha256": "ffb7044fa64d668123e71eb4d7e1da80526ac624a68b7532fdecc296ee81ac2d",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    },
+    {
+      "path": "python/morph_artifacts.py",
+      "bytes": 248,
+      "sha256": "85390b010efd5da36d476c79d3f333de708026c3b44aa82754ce723d69b61257",
+      "purpose": "MORPH-001 source/reports/reproduction metadata"
+    }
+  ]
+}

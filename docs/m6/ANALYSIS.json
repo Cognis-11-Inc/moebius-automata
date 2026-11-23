@@ -1,0 +1,5432 @@
+{
+  "date_local": "2026-11-22",
+  "statistics": "10,000 deterministic paired bootstrap resamples over 8 fixed starts; descriptive uncertainty conditional on one optimizer seed, not a population estimate across independent searches.",
+  "capability": {
+    "neural": {
+      "episodes": 6,
+      "sustained": 0,
+      "jets": 0,
+      "net": {
+        "n": 6,
+        "mean": 0.15725405166288758,
+        "median": 0.12154672868501365,
+        "minimum": 0.0,
+        "maximum": 0.38229023086874164
+      },
+      "path": {
+        "n": 6,
+        "mean": 0.1833792050312894,
+        "median": 0.14501953125,
+        "minimum": 0.0,
+        "maximum": 0.43717683334752183
+      },
+      "active_gain": {
+        "n": 6,
+        "mean": 0.017953961230596786,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.10772376738358072
+      },
+      "paid_motor": {
+        "n": 6,
+        "mean": 33,
+        "median": 33.0,
+        "minimum": 33,
+        "maximum": 33
+      },
+      "rotation": {
+        "n": 6,
+        "mean": 0.3819986979166667,
+        "median": 0.3505859375,
+        "minimum": 0.34765625,
+        "maximum": 0.4482421875
+      },
+      "active_axes": {
+        "n": 6,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        null,
+        104.5150666379686,
+        null,
+        136.75055027046065,
+        null,
+        87.16355965473505
+      ]
+    },
+    "random": {
+      "episodes": 6,
+      "sustained": 0,
+      "jets": 0,
+      "net": {
+        "n": 6,
+        "mean": 0.3188520238194113,
+        "median": 0.29144097177934647,
+        "minimum": 0.014874556847390447,
+        "maximum": 0.6484147033360991
+      },
+      "path": {
+        "n": 6,
+        "mean": 0.49533513753520736,
+        "median": 0.48400287551242543,
+        "minimum": 0.01609890759202986,
+        "maximum": 0.8957038523936184
+      },
+      "active_gain": {
+        "n": 6,
+        "mean": 0.08450485440229913,
+        "median": 0.056303290684909114,
+        "minimum": 0.0,
+        "maximum": 0.225584609824584
+      },
+      "paid_motor": {
+        "n": 6,
+        "mean": 57.666666666666664,
+        "median": 58.0,
+        "minimum": 57,
+        "maximum": 58
+      },
+      "rotation": {
+        "n": 6,
+        "mean": 3.5530598958333335,
+        "median": 3.67578125,
+        "minimum": 3.259765625,
+        "maximum": 3.7236328125
+      },
+      "active_axes": {
+        "n": 6,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        366.5176875902962,
+        136.22958442964585,
+        null,
+        375.77280506640193,
+        113.5942267062108,
+        89.69705401903556
+      ]
+    },
+    "rest": {
+      "episodes": 6,
+      "sustained": 0,
+      "jets": 0,
+      "net": {
+        "n": 6,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "path": {
+        "n": 6,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "active_gain": {
+        "n": 6,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "paid_motor": {
+        "n": 6,
+        "mean": 0,
+        "median": 0.0,
+        "minimum": 0,
+        "maximum": 0
+      },
+      "rotation": {
+        "n": 6,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "active_axes": {
+        "n": 6,
+        "mean": 10.666666666666666,
+        "median": 9.0,
+        "minimum": 9,
+        "maximum": 14
+      },
+      "energy_per_net": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "pulse": {
+      "episodes": 6,
+      "sustained": 0,
+      "jets": 0,
+      "net": {
+        "n": 6,
+        "mean": 1.9509383435134198,
+        "median": 1.9149314156158121,
+        "minimum": 1.644191969715327,
+        "maximum": 2.396697864179097
+      },
+      "path": {
+        "n": 6,
+        "mean": 2.062060060438427,
+        "median": 2.0276308437230375,
+        "minimum": 1.8533010407275887,
+        "maximum": 2.403444058649665
+      },
+      "active_gain": {
+        "n": 6,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "paid_motor": {
+        "n": 6,
+        "mean": 12,
+        "median": 12.0,
+        "minimum": 12,
+        "maximum": 12
+      },
+      "rotation": {
+        "n": 6,
+        "mean": 1.7340494791666667,
+        "median": 1.740234375,
+        "minimum": 1.7216796875,
+        "maximum": 1.740234375
+      },
+      "active_axes": {
+        "n": 6,
+        "mean": 24,
+        "median": 24.0,
+        "minimum": 24,
+        "maximum": 24
+      },
+      "energy_per_net": [
+        5.934761374750167,
+        7.043537834350972,
+        5.913249951577313,
+        7.033323371762617,
+        5.143490450911428,
+        7.497538490143183
+      ]
+    },
+    "periodic": {
+      "episodes": 6,
+      "sustained": 6,
+      "jets": 0,
+      "net": {
+        "n": 6,
+        "mean": 5.035772799892098,
+        "median": 5.038210999747121,
+        "minimum": 4.399620100440291,
+        "maximum": 5.67176310110973
+      },
+      "path": {
+        "n": 6,
+        "mean": 5.089892318792245,
+        "median": 5.099546349933211,
+        "minimum": 4.4137370575159345,
+        "maximum": 5.742275141287107
+      },
+      "active_gain": {
+        "n": 6,
+        "mean": 1.7337052349986453,
+        "median": 1.7424227968203123,
+        "minimum": 1.0193577820175592,
+        "maximum": 2.3726665934877658
+      },
+      "paid_motor": {
+        "n": 6,
+        "mean": 36,
+        "median": 36.0,
+        "minimum": 36,
+        "maximum": 36
+      },
+      "rotation": {
+        "n": 6,
+        "mean": 6.821614583333333,
+        "median": 6.833984375,
+        "minimum": 6.796875,
+        "maximum": 6.833984375
+      },
+      "active_axes": {
+        "n": 6,
+        "mean": 24,
+        "median": 24.0,
+        "minimum": 24,
+        "maximum": 24
+      },
+      "energy_per_net": [
+        8.170640512575307,
+        6.3954310999599295,
+        8.142153096152462,
+        6.38879160615606,
+        8.203666851715901,
+        6.363632777797628
+      ]
+    }
+  },
+  "babble": {
+    "babble_individual": {
+      "episodes": 24,
+      "sustained": 0,
+      "jets": 0,
+      "net": {
+        "n": 24,
+        "mean": 0.0315097109400143,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.22562820897237568
+      },
+      "path": {
+        "n": 24,
+        "mean": 0.032947482822403576,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.22951524764223785
+      },
+      "active_gain": {
+        "n": 24,
+        "mean": 0.0034644334607642365,
+        "median": 0.0,
+        "minimum": -0.041015625,
+        "maximum": 0.05033798425335888
+      },
+      "paid_motor": {
+        "n": 24,
+        "mean": 1.75,
+        "median": 2.0,
+        "minimum": 1,
+        "maximum": 2
+      },
+      "rotation": {
+        "n": 24,
+        "mean": 0.3758951822916667,
+        "median": 0.38720703125,
+        "minimum": 0.3125,
+        "maximum": 0.4345703125
+      },
+      "active_axes": {
+        "n": 24,
+        "mean": 18.166666666666668,
+        "median": 17.0,
+        "minimum": 15,
+        "maximum": 24
+      },
+      "energy_per_net": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        17.188123340024784,
+        null,
+        null,
+        11.464301975608437,
+        null,
+        null,
+        18.150423406677923,
+        null,
+        null,
+        48.89313064737537,
+        null,
+        null,
+        null,
+        null,
+        null,
+        22.807926829268293,
+        null,
+        null,
+        19.61981671978728
+      ]
+    },
+    "babble_reverse": {
+      "episodes": 24,
+      "sustained": 0,
+      "jets": 0,
+      "net": {
+        "n": 24,
+        "mean": 0.00016276041666666666,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.00390625
+      },
+      "path": {
+        "n": 24,
+        "mean": 0.00016276041666666666,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.00390625
+      },
+      "active_gain": {
+        "n": 24,
+        "mean": 0.00016276041666666666,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.00390625
+      },
+      "paid_motor": {
+        "n": 24,
+        "mean": 3,
+        "median": 3.0,
+        "minimum": 3,
+        "maximum": 3
+      },
+      "rotation": {
+        "n": 24,
+        "mean": 0.407470703125,
+        "median": 0.416015625,
+        "minimum": 0.3310546875,
+        "maximum": 0.45703125
+      },
+      "active_axes": {
+        "n": 24,
+        "mean": 15.333333333333334,
+        "median": 13.5,
+        "minimum": 10,
+        "maximum": 22
+      },
+      "energy_per_net": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "babble_simultaneous": {
+      "episodes": 24,
+      "sustained": 2,
+      "jets": 0,
+      "net": {
+        "n": 24,
+        "mean": 0.27553422598832156,
+        "median": 0.270023156499332,
+        "minimum": 0.0721070896170888,
+        "maximum": 0.8342341957870165
+      },
+      "path": {
+        "n": 24,
+        "mean": 0.3321105767595741,
+        "median": 0.31296343039374785,
+        "minimum": 0.08663152160024869,
+        "maximum": 0.9336051971273486
+      },
+      "active_gain": {
+        "n": 24,
+        "mean": 0.106866430860122,
+        "median": 0.08598140663297671,
+        "minimum": -0.010433925361932328,
+        "maximum": 0.38175789575513325
+      },
+      "paid_motor": {
+        "n": 24,
+        "mean": 53.5,
+        "median": 53.5,
+        "minimum": 51,
+        "maximum": 57
+      },
+      "rotation": {
+        "n": 24,
+        "mean": 1.9449869791666667,
+        "median": 1.93017578125,
+        "minimum": 1.5107421875,
+        "maximum": 2.39453125
+      },
+      "active_axes": {
+        "n": 24,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        443.94784042192447,
+        440.959702873575,
+        120.11173399950268,
+        175.81211832985827,
+        174.3136373115936,
+        72.04276881096246,
+        445.7917178444252,
+        445.7917178444252,
+        181.4442463797491,
+        744.2645145139295,
+        688.604112487068,
+        191.4950772392315,
+        203.76055491355754,
+        199.9313434855353,
+        117.8506806298582,
+        516.906656835984,
+        532.5939735455111,
+        139.4547776152944,
+        161.4239789500821,
+        161.56752310143648,
+        63.4104549885658,
+        579.4735333142115,
+        564.8589381273392,
+        173.2766056832875
+      ]
+    },
+    "babble_sequential": {
+      "episodes": 24,
+      "sustained": 0,
+      "jets": 0,
+      "net": {
+        "n": 24,
+        "mean": 0.04741608627574845,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.2280268209643365
+      },
+      "path": {
+        "n": 24,
+        "mean": 0.0533283997761283,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.23826506619603538
+      },
+      "active_gain": {
+        "n": 24,
+        "mean": 0.009653064890558125,
+        "median": 0.0,
+        "minimum": -0.00390625,
+        "maximum": 0.0624382117553192
+      },
+      "paid_motor": {
+        "n": 24,
+        "mean": 3,
+        "median": 3.0,
+        "minimum": 3,
+        "maximum": 3
+      },
+      "rotation": {
+        "n": 24,
+        "mean": 0.564208984375,
+        "median": 0.5595703125,
+        "minimum": 0.5205078125,
+        "maximum": 0.6083984375
+      },
+      "active_axes": {
+        "n": 24,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        null,
+        null,
+        20.448768418748394,
+        null,
+        null,
+        32.25457095171568,
+        56.84375,
+        null,
+        13.6327935677847,
+        null,
+        null,
+        38.77689400794497,
+        null,
+        null,
+        18.319668649144116,
+        null,
+        null,
+        15.949379369647879,
+        null,
+        null,
+        null,
+        null,
+        null,
+        25.466
+      ]
+    },
+    "babble_phase": {
+      "episodes": 24,
+      "sustained": 0,
+      "jets": 0,
+      "net": {
+        "n": 24,
+        "mean": 0.12127803855191965,
+        "median": 0.10396936897524134,
+        "minimum": 0.0,
+        "maximum": 0.4547196314624042
+      },
+      "path": {
+        "n": 24,
+        "mean": 0.12572407192546392,
+        "median": 0.111328125,
+        "minimum": 0.0,
+        "maximum": 0.46719053140779637
+      },
+      "active_gain": {
+        "n": 24,
+        "mean": 0.033218056769099814,
+        "median": 0.001953125,
+        "minimum": -0.014658910823691307,
+        "maximum": 0.2143881587176128
+      },
+      "paid_motor": {
+        "n": 24,
+        "mean": 15.375,
+        "median": 15.0,
+        "minimum": 14,
+        "maximum": 17
+      },
+      "rotation": {
+        "n": 24,
+        "mean": 0.90576171875,
+        "median": 0.91015625,
+        "minimum": 0.7998046875,
+        "maximum": 1.06640625
+      },
+      "active_axes": {
+        "n": 24,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        null,
+        null,
+        162.72232050797126,
+        null,
+        null,
+        231.36853497882234,
+        89.96153846153847,
+        91.8455497382199,
+        55.45512713377779,
+        75.9915458937198,
+        76.36043689320388,
+        41.62578124270144,
+        149.53947368421052,
+        149.53947368421052,
+        36.6114591648688,
+        null,
+        null,
+        75.82681749273996,
+        null,
+        null,
+        80.31239077636567,
+        null,
+        null,
+        85.86595166385739
+      ]
+    }
+  },
+  "heldout": {
+    "selected_frozen": {
+      "episodes": 8,
+      "sustained": 8,
+      "jets": 0,
+      "net": {
+        "n": 8,
+        "mean": 1.7181413117594337,
+        "median": 1.576979258892734,
+        "minimum": 1.3217004106085584,
+        "maximum": 2.263649756888815
+      },
+      "path": {
+        "n": 8,
+        "mean": 1.9021916548599411,
+        "median": 1.7479069876045297,
+        "minimum": 1.3558283855886888,
+        "maximum": 2.631998140860055
+      },
+      "active_gain": {
+        "n": 8,
+        "mean": 0.5381831284524982,
+        "median": 0.5396548206217775,
+        "minimum": 0.18667803529545113,
+        "maximum": 0.889834833761262
+      },
+      "paid_motor": {
+        "n": 8,
+        "mean": 95.5,
+        "median": 95.5,
+        "minimum": 95,
+        "maximum": 96
+      },
+      "rotation": {
+        "n": 8,
+        "mean": 3.5927734375,
+        "median": 3.603515625,
+        "minimum": 3.453125,
+        "maximum": 3.751953125
+      },
+      "active_axes": {
+        "n": 8,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        46.38842616601115,
+        63.70606519217414,
+        42.52834910365663,
+        66.10514754381349,
+        58.393528254508425,
+        71.43275979898553,
+        44.60591327943422,
+        73.16199753844114
+      ]
+    },
+    "selected_live": {
+      "episodes": 8,
+      "sustained": 8,
+      "jets": 0,
+      "net": {
+        "n": 8,
+        "mean": 1.636724398564129,
+        "median": 1.4613498388215953,
+        "minimum": 1.290445960975601,
+        "maximum": 2.256506730370318
+      },
+      "path": {
+        "n": 8,
+        "mean": 1.8404873662636574,
+        "median": 1.6503598794398757,
+        "minimum": 1.324836178901877,
+        "maximum": 2.6150132465344074
+      },
+      "active_gain": {
+        "n": 8,
+        "mean": 0.44545956285206406,
+        "median": 0.42838996740606655,
+        "minimum": 0.13329851191894282,
+        "maximum": 0.73866705215148
+      },
+      "paid_motor": {
+        "n": 8,
+        "mean": 96,
+        "median": 96.0,
+        "minimum": 96,
+        "maximum": 96
+      },
+      "rotation": {
+        "n": 8,
+        "mean": 3.533447265625,
+        "median": 3.57373046875,
+        "minimum": 3.2490234375,
+        "maximum": 3.671875
+      },
+      "active_axes": {
+        "n": 8,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        49.66550982805228,
+        63.745345315279025,
+        42.69456628479209,
+        68.17078701723592,
+        69.77078787757404,
+        68.38968620706062,
+        50.75993230452752,
+        75.05581146286472
+      ]
+    },
+    "original_frozen": {
+      "episodes": 8,
+      "sustained": 0,
+      "jets": 0,
+      "net": {
+        "n": 8,
+        "mean": 0.15943133286755787,
+        "median": 0.1448887707515409,
+        "minimum": 0.0,
+        "maximum": 0.3612938117153255
+      },
+      "path": {
+        "n": 8,
+        "mean": 0.19273741672143868,
+        "median": 0.17917716600183256,
+        "minimum": 0.0,
+        "maximum": 0.39723509112258293
+      },
+      "active_gain": {
+        "n": 8,
+        "mean": 0.03674698041071013,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.12431765456081276
+      },
+      "paid_motor": {
+        "n": 8,
+        "mean": 32.625,
+        "median": 33.0,
+        "minimum": 31,
+        "maximum": 33
+      },
+      "rotation": {
+        "n": 8,
+        "mean": 0.35595703125,
+        "median": 0.35107421875,
+        "minimum": 0.3310546875,
+        "maximum": 0.4091796875
+      },
+      "active_axes": {
+        "n": 8,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        111.09565063607637,
+        null,
+        92.51419095391657,
+        null,
+        105.0585105559967,
+        null,
+        115.30683124996298,
+        null
+      ]
+    },
+    "original_live": {
+      "episodes": 8,
+      "sustained": 0,
+      "jets": 0,
+      "net": {
+        "n": 8,
+        "mean": 0.1841277641037227,
+        "median": 0.2430692671197959,
+        "minimum": 0.0,
+        "maximum": 0.3612938117153255
+      },
+      "path": {
+        "n": 8,
+        "mean": 0.21780708657287923,
+        "median": 0.27891352353019727,
+        "minimum": 0.0,
+        "maximum": 0.39723509112258293
+      },
+      "active_gain": {
+        "n": 8,
+        "mean": 0.04040224158521029,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.12485877436005616
+      },
+      "paid_motor": {
+        "n": 8,
+        "mean": 32.625,
+        "median": 33.0,
+        "minimum": 31,
+        "maximum": 33
+      },
+      "rotation": {
+        "n": 8,
+        "mean": 0.356201171875,
+        "median": 0.35205078125,
+        "minimum": 0.33203125,
+        "maximum": 0.4091796875
+      },
+      "active_axes": {
+        "n": 8,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        111.60381982663247,
+        null,
+        92.50540633590738,
+        null,
+        104.22929763542753,
+        173.66237113402062,
+        112.61385842164434,
+        null
+      ]
+    },
+    "random": {
+      "episodes": 8,
+      "sustained": 2,
+      "jets": 0,
+      "net": {
+        "n": 8,
+        "mean": 0.3056115502329847,
+        "median": 0.2655329706681061,
+        "minimum": 0.09103008368256016,
+        "maximum": 0.5681890383174953
+      },
+      "path": {
+        "n": 8,
+        "mean": 0.42030782631053376,
+        "median": 0.3939086083186507,
+        "minimum": 0.1044921875,
+        "maximum": 0.7584496809012836
+      },
+      "active_gain": {
+        "n": 8,
+        "mean": 0.06300029116766236,
+        "median": 0.07145621227092842,
+        "minimum": -0.07968542791501745,
+        "maximum": 0.17993764799374326
+      },
+      "paid_motor": {
+        "n": 8,
+        "mean": 57.125,
+        "median": 57.0,
+        "minimum": 56,
+        "maximum": 58
+      },
+      "rotation": {
+        "n": 8,
+        "mean": 3.456298828125,
+        "median": 3.48095703125,
+        "minimum": 3.140625,
+        "maximum": 3.8681640625
+      },
+      "active_axes": {
+        "n": 8,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        99.67162405393806,
+        146.8654772957649,
+        113.31389040330293,
+        639.9761235118592,
+        200.39611644942747,
+        278.58644859813086,
+        234.8508612083077,
+        387.0069101921266
+      ]
+    },
+    "rest": {
+      "episodes": 8,
+      "sustained": 0,
+      "jets": 0,
+      "net": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "path": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "active_gain": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "paid_motor": {
+        "n": 8,
+        "mean": 0,
+        "median": 0.0,
+        "minimum": 0,
+        "maximum": 0
+      },
+      "rotation": {
+        "n": 8,
+        "mean": 0.001708984375,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.013671875
+      },
+      "active_axes": {
+        "n": 8,
+        "mean": 17.5,
+        "median": 17.0,
+        "minimum": 14,
+        "maximum": 22
+      },
+      "energy_per_net": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "pulse": {
+      "episodes": 8,
+      "sustained": 0,
+      "jets": 0,
+      "net": {
+        "n": 8,
+        "mean": 1.9113422535856401,
+        "median": 1.9089299418284253,
+        "minimum": 1.5144230117145752,
+        "maximum": 2.3211586176931576
+      },
+      "path": {
+        "n": 8,
+        "mean": 2.0434812244279623,
+        "median": 2.0292905708533517,
+        "minimum": 1.7884177730141282,
+        "maximum": 2.325584117478685
+      },
+      "active_gain": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "paid_motor": {
+        "n": 8,
+        "mean": 12,
+        "median": 12.0,
+        "minimum": 12,
+        "maximum": 12
+      },
+      "rotation": {
+        "n": 8,
+        "mean": 1.7227783203125,
+        "median": 1.716796875,
+        "minimum": 1.6962890625,
+        "maximum": 1.755859375
+      },
+      "active_axes": {
+        "n": 8,
+        "mean": 25.625,
+        "median": 26.0,
+        "minimum": 25,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        8.004479857940922,
+        5.5294335819194425,
+        8.139992910018167,
+        5.310879008508415,
+        7.703704301162307,
+        5.771401887440522,
+        7.329376222712761,
+        5.436241965118592
+      ]
+    },
+    "periodic": {
+      "episodes": 8,
+      "sustained": 8,
+      "jets": 0,
+      "net": {
+        "n": 8,
+        "mean": 5.037922588997491,
+        "median": 5.052402305262595,
+        "minimum": 4.377323187759855,
+        "maximum": 5.660194412639852
+      },
+      "path": {
+        "n": 8,
+        "mean": 5.082240208871333,
+        "median": 5.094522475088559,
+        "minimum": 4.398163372992835,
+        "maximum": 5.743656758392167
+      },
+      "active_gain": {
+        "n": 8,
+        "mean": 1.760544907481642,
+        "median": 1.81126733818722,
+        "minimum": 1.0059889831697406,
+        "maximum": 2.4067115171831515
+      },
+      "paid_motor": {
+        "n": 8,
+        "mean": 36,
+        "median": 36.0,
+        "minimum": 36,
+        "maximum": 36
+      },
+      "rotation": {
+        "n": 8,
+        "mean": 6.7921142578125,
+        "median": 6.78564453125,
+        "minimum": 6.771484375,
+        "maximum": 6.826171875
+      },
+      "active_axes": {
+        "n": 8,
+        "mean": 25.625,
+        "median": 26.0,
+        "minimum": 25,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        6.477493056138746,
+        8.101419252450377,
+        6.378476924532427,
+        8.17634739048048,
+        6.407393053571611,
+        8.24545413485816,
+        6.376639201212811,
+        7.962739338988741
+      ]
+    },
+    "selected_no_afferent": {
+      "episodes": 8,
+      "sustained": 3,
+      "jets": 0,
+      "net": {
+        "n": 8,
+        "mean": 0.35956249210669977,
+        "median": 0.37559385373802234,
+        "minimum": 0.0,
+        "maximum": 0.6153738681148183
+      },
+      "path": {
+        "n": 8,
+        "mean": 0.3642372537297843,
+        "median": 0.3784801589763633,
+        "minimum": 0.0,
+        "maximum": 0.6323483791295224
+      },
+      "active_gain": {
+        "n": 8,
+        "mean": 0.14972218303467683,
+        "median": 0.15420574851171617,
+        "minimum": 0.0,
+        "maximum": 0.3118562821878697
+      },
+      "paid_motor": {
+        "n": 8,
+        "mean": 92,
+        "median": 92.0,
+        "minimum": 92,
+        "maximum": 92
+      },
+      "rotation": {
+        "n": 8,
+        "mean": 0.3397216796875,
+        "median": 0.33642578125,
+        "minimum": 0.318359375,
+        "maximum": 0.3662109375
+      },
+      "active_axes": {
+        "n": 8,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        149.6728104660756,
+        null,
+        221.25774468955993,
+        389.73243801652893,
+        180.87415609316116,
+        389.73243801652893,
+        174.4202679520806,
+        275.01365395810205
+      ]
+    },
+    "selected_feedback_off": {
+      "episodes": 8,
+      "sustained": 8,
+      "jets": 0,
+      "net": {
+        "n": 8,
+        "mean": 1.5644476217395145,
+        "median": 1.5480408507755496,
+        "minimum": 1.1289691841508371,
+        "maximum": 2.1690220379129737
+      },
+      "path": {
+        "n": 8,
+        "mean": 1.7704399835521882,
+        "median": 1.7185726039995224,
+        "minimum": 1.2229305108545243,
+        "maximum": 2.5401953081249014
+      },
+      "active_gain": {
+        "n": 8,
+        "mean": 0.3987658602629831,
+        "median": 0.3921282306945584,
+        "minimum": 0.07803525681714563,
+        "maximum": 0.7137125567280597
+      },
+      "paid_motor": {
+        "n": 8,
+        "mean": 96,
+        "median": 96.0,
+        "minimum": 96,
+        "maximum": 96
+      },
+      "rotation": {
+        "n": 8,
+        "mean": 3.46923828125,
+        "median": 3.466796875,
+        "minimum": 3.341796875,
+        "maximum": 3.5576171875
+      },
+      "active_axes": {
+        "n": 8,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        53.37143963279111,
+        66.26508595509117,
+        44.56303413957205,
+        73.18889641318378,
+        58.94584428627064,
+        85.39489339340486,
+        57.25030945959096,
+        74.13543484446618
+      ]
+    },
+    "selected_recurrence_off": {
+      "episodes": 8,
+      "sustained": 0,
+      "jets": 0,
+      "net": {
+        "n": 8,
+        "mean": 0.2985500740777076,
+        "median": 0.32237735190555283,
+        "minimum": 0.0,
+        "maximum": 0.46798847647279535
+      },
+      "path": {
+        "n": 8,
+        "mean": 0.3351756197086397,
+        "median": 0.37255229077416463,
+        "minimum": 0.0,
+        "maximum": 0.5168143379944802
+      },
+      "active_gain": {
+        "n": 8,
+        "mean": 0.03152138703977144,
+        "median": 0.0,
+        "minimum": -0.048777054025769456,
+        "maximum": 0.2172311653806628
+      },
+      "paid_motor": {
+        "n": 8,
+        "mean": 104.75,
+        "median": 105.0,
+        "minimum": 103,
+        "maximum": 106
+      },
+      "rotation": {
+        "n": 8,
+        "mean": 0.6864013671875,
+        "median": 0.7373046875,
+        "minimum": 0.3828125,
+        "maximum": 0.890625
+      },
+      "active_axes": {
+        "n": 8,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        295.2139078616969,
+        460.3053191489362,
+        238.00459086153427,
+        null,
+        226.013532027158,
+        430.1503984063745,
+        311.87596030559604,
+        338.62442735086216
+      ]
+    }
+  },
+  "selected_minus_original": {
+    "n": 8,
+    "mean": 1.558709978891876,
+    "median": 1.4836732039680205,
+    "minimum": 1.3187762875630398,
+    "maximum": 1.9023559451734897,
+    "mean_bootstrap_95": [
+      1.4065647896462137,
+      1.7197197076648305
+    ],
+    "positive": 8,
+    "values": [
+      1.7583272186545686,
+      1.5157313358718771,
+      1.9023559451734897,
+      1.4516150720641638,
+      1.3187762875630398,
+      1.3509481279536186,
+      1.8502254332456904,
+      1.3217004106085584
+    ]
+  },
+  "falsification": {
+    "selected_vacuum": {
+      "episodes": 8,
+      "sustained": 0,
+      "jets": 0,
+      "net": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "path": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "active_gain": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "paid_motor": {
+        "n": 8,
+        "mean": 96,
+        "median": 96.0,
+        "minimum": 96,
+        "maximum": 96
+      },
+      "rotation": {
+        "n": 8,
+        "mean": 3.6331787109375,
+        "median": 3.6474609375,
+        "minimum": 3.548828125,
+        "maximum": 3.744140625
+      },
+      "active_axes": {
+        "n": 8,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "selected_bias_only": {
+      "episodes": 8,
+      "sustained": 0,
+      "jets": 0,
+      "net": {
+        "n": 8,
+        "mean": 0.12747043372958755,
+        "median": 0.115234375,
+        "minimum": 0.0,
+        "maximum": 0.3224978448367003
+      },
+      "path": {
+        "n": 8,
+        "mean": 0.12764689122414385,
+        "median": 0.115234375,
+        "minimum": 0.0,
+        "maximum": 0.3239095047931508
+      },
+      "active_gain": {
+        "n": 8,
+        "mean": 0.06595729373821461,
+        "median": 0.05908203125,
+        "minimum": 0.0,
+        "maximum": 0.17121303740571692
+      },
+      "paid_motor": {
+        "n": 8,
+        "mean": 54,
+        "median": 54.0,
+        "minimum": 54,
+        "maximum": 54
+      },
+      "rotation": {
+        "n": 8,
+        "mean": 0.10205078125,
+        "median": 0.10595703125,
+        "minimum": 0.0810546875,
+        "maximum": 0.1142578125
+      },
+      "active_axes": {
+        "n": 8,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        233.29936974789916,
+        null,
+        231.35520833333334,
+        null,
+        235.27648305084745,
+        null,
+        168.13717617425243,
+        null
+      ]
+    },
+    "selected_shuffled": {
+      "episodes": 8,
+      "sustained": 8,
+      "jets": 0,
+      "net": {
+        "n": 8,
+        "mean": 1.0852177640689198,
+        "median": 1.0783543500338064,
+        "minimum": 0.7644738086831998,
+        "maximum": 1.404392286940396
+      },
+      "path": {
+        "n": 8,
+        "mean": 1.1806845856039667,
+        "median": 1.195261279608511,
+        "minimum": 0.8105722611201194,
+        "maximum": 1.5538176561679637
+      },
+      "active_gain": {
+        "n": 8,
+        "mean": 0.45935983912278294,
+        "median": 0.47576996630466206,
+        "minimum": 0.2517561904775494,
+        "maximum": 0.6484782705122096
+      },
+      "paid_motor": {
+        "n": 8,
+        "mean": 95.75,
+        "median": 96.0,
+        "minimum": 94,
+        "maximum": 97
+      },
+      "rotation": {
+        "n": 8,
+        "mean": 4.0230712890625,
+        "median": 4.02978515625,
+        "minimum": 3.8896484375,
+        "maximum": 4.1494140625
+      },
+      "active_axes": {
+        "n": 8,
+        "mean": 26,
+        "median": 26.0,
+        "minimum": 26,
+        "maximum": 26
+      },
+      "energy_per_net": [
+        73.62377227451552,
+        94.00757142640691,
+        68.97653745916028,
+        107.54894918385263,
+        72.26512932848075,
+        125.3198080160799,
+        83.93818461465061,
+        119.25869498071842
+      ]
+    }
+  },
+  "evolution": {
+    "optimize-v1": {
+      "selection": {
+        "budget_stop": false,
+        "elapsed_seconds": 8,
+        "evaluated_candidates": 192,
+        "generation": 11,
+        "held_out_opened": false,
+        "optimizer_seed": 60620261122,
+        "score": 1.6515937412478383,
+        "selected": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c"
+      },
+      "generations": [
+        {
+          "generation": 0,
+          "unique": 16,
+          "mean_pairwise_NN_parameter_L1": 629.5829049198452,
+          "scores": {
+            "n": 16,
+            "mean": 0.3843581543294715,
+            "median": 0.3766704221429795,
+            "minimum": 0.0263684174283272,
+            "maximum": 0.8320580301553675
+          }
+        },
+        {
+          "generation": 1,
+          "unique": 16,
+          "mean_pairwise_NN_parameter_L1": 576.3863045881702,
+          "scores": {
+            "n": 16,
+            "mean": 0.4844162231145173,
+            "median": 0.5937520195946465,
+            "minimum": 0.020982109963673962,
+            "maximum": 0.8320580301553675
+          }
+        },
+        {
+          "generation": 2,
+          "unique": 16,
+          "mean_pairwise_NN_parameter_L1": 482.35878247650635,
+          "scores": {
+            "n": 16,
+            "mean": 0.5192414971170357,
+            "median": 0.5783460748487728,
+            "minimum": -0.0075246613975512786,
+            "maximum": 0.8320580301553675
+          }
+        },
+        {
+          "generation": 3,
+          "unique": 16,
+          "mean_pairwise_NN_parameter_L1": 478.2717938087341,
+          "scores": {
+            "n": 16,
+            "mean": 0.5676245761506783,
+            "median": 0.5888681931332185,
+            "minimum": -0.0014522859144464235,
+            "maximum": 1.0379450685882448
+          }
+        },
+        {
+          "generation": 4,
+          "unique": 16,
+          "mean_pairwise_NN_parameter_L1": 497.57518656716417,
+          "scores": {
+            "n": 16,
+            "mean": 0.559562862194874,
+            "median": 0.5391986263532558,
+            "minimum": 0.19783748710016905,
+            "maximum": 1.0379450685882448
+          }
+        },
+        {
+          "generation": 5,
+          "unique": 16,
+          "mean_pairwise_NN_parameter_L1": 478.95346185737975,
+          "scores": {
+            "n": 16,
+            "mean": 0.6481203697351002,
+            "median": 0.7650332061385772,
+            "minimum": 0.12389318552678592,
+            "maximum": 1.0379450685882448
+          }
+        },
+        {
+          "generation": 6,
+          "unique": 16,
+          "mean_pairwise_NN_parameter_L1": 525.4299613045881,
+          "scores": {
+            "n": 16,
+            "mean": 0.6726394441993675,
+            "median": 0.7611203993587897,
+            "minimum": 0.11861395046626479,
+            "maximum": 1.0379450685882448
+          }
+        },
+        {
+          "generation": 7,
+          "unique": 16,
+          "mean_pairwise_NN_parameter_L1": 550.1208056937535,
+          "scores": {
+            "n": 16,
+            "mean": 0.7751514766490801,
+            "median": 0.939382692015011,
+            "minimum": 0.04809841174105347,
+            "maximum": 1.6092599324820658
+          }
+        },
+        {
+          "generation": 8,
+          "unique": 16,
+          "mean_pairwise_NN_parameter_L1": 484.0420605306799,
+          "scores": {
+            "n": 16,
+            "mean": 0.7426596240004917,
+            "median": 0.9444946639977763,
+            "minimum": 0.14120474020630017,
+            "maximum": 1.6092599324820658
+          }
+        },
+        {
+          "generation": 9,
+          "unique": 16,
+          "mean_pairwise_NN_parameter_L1": 415.443635986733,
+          "scores": {
+            "n": 16,
+            "mean": 0.8455884472705751,
+            "median": 0.9608112643453148,
+            "minimum": 0.04416465176938513,
+            "maximum": 1.6092599324820658
+          }
+        },
+        {
+          "generation": 10,
+          "unique": 16,
+          "mean_pairwise_NN_parameter_L1": 461.4985212824765,
+          "scores": {
+            "n": 16,
+            "mean": 0.7818701945338711,
+            "median": 0.7752913004855737,
+            "minimum": 0.09251620314537812,
+            "maximum": 1.6092599324820658
+          }
+        },
+        {
+          "generation": 11,
+          "unique": 16,
+          "mean_pairwise_NN_parameter_L1": 488.76900912106134,
+          "scores": {
+            "n": 16,
+            "mean": 0.8811203198100043,
+            "median": 0.981109221766822,
+            "minimum": -0.013905855622230035,
+            "maximum": 1.6515937412478383
+          }
+        }
+      ],
+      "selected_training": {
+        "episodes": [
+          {
+            "active_axes": 26,
+            "active_gain": 0.1209529273464374,
+            "changed_connections": 0,
+            "energy_per_net": 127.13360979126905,
+            "episode": {
+              "drag": 8,
+              "energy": 4096,
+              "feedback": true,
+              "orientation": [
+                0,
+                0,
+                0
+              ],
+              "plasticity": false,
+              "pose": 0,
+              "seed": 101,
+              "ticks": 128
+            },
+            "final_hash": "29150e011dfaadc0035ce82bbabeb1a4deeaee63d68ce1dce62ad1c44ee8fd18",
+            "final_momentum": [
+              111,
+              -9,
+              39
+            ],
+            "final_velocity": [
+              6,
+              0,
+              2
+            ],
+            "genome": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c",
+            "initial_hash": "b39c0d538b9ffbd6017440734d38e2833a5ff5888afa0532fbe1054120174361",
+            "jets": 0,
+            "joint_changes": [
+              60,
+              106,
+              70,
+              114,
+              124,
+              19,
+              121,
+              77,
+              128,
+              126,
+              117,
+              9,
+              100,
+              127,
+              120,
+              113,
+              116,
+              28,
+              115,
+              119,
+              35,
+              96,
+              80,
+              56,
+              39,
+              101
+            ],
+            "last_two_min": 0.12463703513625772,
+            "mode": "neural",
+            "name": "g11_s12_e101",
+            "net": 0.3691367497316427,
+            "paid_motor": 46,
+            "path": 0.3891923019488493,
+            "pending_motor": 0.9296875,
+            "quarters": [
+              0.0077944973365273625,
+              0.05929191709423366,
+              0.12463703513625772,
+              0.17741330016462398
+            ],
+            "rotation": 1.8671875,
+            "score": 1.06085209012911,
+            "sustained": false,
+            "visits": 1
+          },
+          {
+            "active_axes": 26,
+            "active_gain": 0.14030079491012706,
+            "changed_connections": 0,
+            "energy_per_net": 121.80747357035699,
+            "episode": {
+              "drag": 8,
+              "energy": 4096,
+              "feedback": true,
+              "orientation": [
+                0,
+                0,
+                1608
+              ],
+              "plasticity": false,
+              "pose": 0,
+              "seed": 102,
+              "ticks": 128
+            },
+            "final_hash": "667222e96c734ef33e32837023fec94d2603d093e8edc82959258248e0ed0a55",
+            "final_momentum": [
+              4,
+              113,
+              41
+            ],
+            "final_velocity": [
+              0,
+              7,
+              2
+            ],
+            "genome": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c",
+            "initial_hash": "a5e7ccc379409d7b89a16aeb4bb7b55e3f54be7335920a754ce1f488085b0d5c",
+            "jets": 0,
+            "joint_changes": [
+              60,
+              106,
+              69,
+              114,
+              124,
+              19,
+              121,
+              77,
+              128,
+              125,
+              117,
+              9,
+              100,
+              127,
+              121,
+              113,
+              116,
+              28,
+              115,
+              119,
+              35,
+              96,
+              80,
+              56,
+              39,
+              101
+            ],
+            "last_two_min": 0.13037353666071327,
+            "mode": "neural",
+            "name": "g11_s12_e102",
+            "net": 0.3853216655597074,
+            "paid_motor": 46,
+            "path": 0.4072892852779909,
+            "pending_motor": 0.93505859375,
+            "quarters": [
+              0.008063577007377247,
+              0.05923189838568211,
+              0.13037353666071327,
+              0.18765265350593482
+            ],
+            "rotation": 1.861328125,
+            "score": 1.1387692897375246,
+            "sustained": false,
+            "visits": 1
+          },
+          {
+            "active_axes": 26,
+            "active_gain": 0.34584501315271077,
+            "changed_connections": 0,
+            "energy_per_net": 51.7217257548114,
+            "episode": {
+              "drag": 32,
+              "energy": 4096,
+              "feedback": true,
+              "orientation": [
+                0,
+                512,
+                -700
+              ],
+              "plasticity": false,
+              "pose": 0,
+              "seed": 103,
+              "ticks": 128
+            },
+            "final_hash": "211a889a95f94d29d3ca5c01cb83141122c515fdda114674f1ed02c10f3b24df",
+            "final_momentum": [
+              100,
+              -140,
+              -49
+            ],
+            "final_velocity": [
+              6,
+              -8,
+              -3
+            ],
+            "genome": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c",
+            "initial_hash": "fda073147b412e99e2bccbb8b6b4c1ea0e777f195622e6726f25e11eb50dedf8",
+            "jets": 0,
+            "joint_changes": [
+              59,
+              106,
+              71,
+              112,
+              125,
+              19,
+              121,
+              77,
+              128,
+              126,
+              117,
+              9,
+              100,
+              126,
+              119,
+              115,
+              117,
+              28,
+              116,
+              120,
+              33,
+              95,
+              81,
+              52,
+              39,
+              102
+            ],
+            "last_two_min": 0.30041872110302864,
+            "mode": "neural",
+            "name": "g11_s12_e103",
+            "net": 0.9076705847954586,
+            "paid_motor": 46,
+            "path": 1.0424722052544282,
+            "pending_motor": 0.9462890625,
+            "quarters": [
+              0.08666771255469237,
+              0.2089441324958951,
+              0.31164001864184226,
+              0.30041872110302864
+            ],
+            "rotation": 1.8310546875,
+            "score": 2.7551598438768807,
+            "sustained": true,
+            "visits": 2
+          }
+        ],
+        "generation": 11,
+        "genome_id": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c",
+        "parent": "7352d359bfe8cbea33fb45df5d99a7a57435325af48545d2d65106be1a855f70",
+        "score": 1.6515937412478383,
+        "slot": 12
+      }
+    },
+    "direction-v1": {
+      "selection": {
+        "budget_stop": false,
+        "elapsed_seconds": 4,
+        "evaluated_candidates": 72,
+        "generation": 4,
+        "held_out_opened": false,
+        "optimizer_seed": 60620261123,
+        "score": 0.12979451497395836,
+        "selected": "9964d686d5ccd7e90a54c93b0dcbaa4e2347ed9f5821436a3b3cb4b2f434426f"
+      },
+      "generations": [
+        {
+          "generation": 0,
+          "unique": 12,
+          "mean_pairwise_NN_parameter_L1": 639.6663274536409,
+          "scores": {
+            "n": 12,
+            "mean": -0.20769289822048612,
+            "median": -0.1266144205729167,
+            "minimum": -1.0946682128906249,
+            "maximum": 0.116487548828125
+          }
+        },
+        {
+          "generation": 1,
+          "unique": 12,
+          "mean_pairwise_NN_parameter_L1": 591.2458038092367,
+          "scores": {
+            "n": 12,
+            "mean": -0.13750444200303819,
+            "median": -0.09940205891927083,
+            "minimum": -0.9059129231770834,
+            "maximum": 0.116487548828125
+          }
+        },
+        {
+          "generation": 2,
+          "unique": 12,
+          "mean_pairwise_NN_parameter_L1": 574.013530830695,
+          "scores": {
+            "n": 12,
+            "mean": -0.08246278211805556,
+            "median": -0.11050024414062501,
+            "minimum": -0.19876717122395834,
+            "maximum": 0.116487548828125
+          }
+        },
+        {
+          "generation": 3,
+          "unique": 12,
+          "mean_pairwise_NN_parameter_L1": 537.9405372129253,
+          "scores": {
+            "n": 12,
+            "mean": -0.04411744520399306,
+            "median": -0.058960978190104166,
+            "minimum": -0.17097273763020834,
+            "maximum": 0.116487548828125
+          }
+        },
+        {
+          "generation": 4,
+          "unique": 12,
+          "mean_pairwise_NN_parameter_L1": 389.3276295291221,
+          "scores": {
+            "n": 12,
+            "mean": -0.045441752115885414,
+            "median": 0.017038940429687486,
+            "minimum": -0.5333962402343749,
+            "maximum": 0.12979451497395836
+          }
+        },
+        {
+          "generation": 5,
+          "unique": 12,
+          "mean_pairwise_NN_parameter_L1": 311.82989094929394,
+          "scores": {
+            "n": 12,
+            "mean": 0.000494791666666666,
+            "median": -0.010114746093750002,
+            "minimum": -0.2127841796875,
+            "maximum": 0.12979451497395836
+          }
+        }
+      ],
+      "selected_training": {
+        "episodes": [
+          {
+            "active_axes": 26,
+            "active_gain": 0.06080621123460194,
+            "changed_connections": 0,
+            "directional_phases": [
+              0.0,
+              0.0
+            ],
+            "energy_per_net": 864.9042863642132,
+            "episode": {
+              "cue": {
+                "axis": 1,
+                "first_sign": 1,
+                "switch_tick": 64
+              },
+              "drag": 8,
+              "energy": 4096,
+              "feedback": true,
+              "orientation": [
+                0,
+                0,
+                0
+              ],
+              "plasticity": false,
+              "pose": 0,
+              "seed": 301,
+              "ticks": 128
+            },
+            "final_hash": "a2cf45e887fcd4bc1fb6f6c86b963c4a097650ef2c49260669eec4cd2a7be427",
+            "final_momentum": [
+              -26,
+              -2,
+              -19
+            ],
+            "final_velocity": [
+              -1,
+              0,
+              -1
+            ],
+            "genome": "9964d686d5ccd7e90a54c93b0dcbaa4e2347ed9f5821436a3b3cb4b2f434426f",
+            "initial_hash": "2d141b28468c1d13d44e3e539577f4c0ac220cc1c71e00fd995372f093fb0664",
+            "jets": 0,
+            "joint_changes": [
+              13,
+              10,
+              84,
+              20,
+              16,
+              30,
+              89,
+              68,
+              21,
+              34,
+              105,
+              73,
+              38,
+              10,
+              39,
+              11,
+              91,
+              28,
+              46,
+              34,
+              13,
+              38,
+              15,
+              48,
+              53,
+              27
+            ],
+            "last_two_min": 0.018632390752310317,
+            "mode": "neural",
+            "name": "g5_s0_e301",
+            "net": 0.06080621123460194,
+            "paid_motor": 52,
+            "path": 0.06527404339215419,
+            "pending_motor": 0.591552734375,
+            "quarters": [
+              0.0,
+              0.0,
+              0.018632390752310317,
+              0.042173820482291624
+            ],
+            "rotation": 1.244140625,
+            "score": -0.055079833984375,
+            "sustained": false,
+            "visits": 1
+          },
+          {
+            "active_axes": 26,
+            "active_gain": 0.05862629304610795,
+            "changed_connections": 0,
+            "directional_phases": [
+              0.0,
+              0.0
+            ],
+            "energy_per_net": 897.9762627980957,
+            "episode": {
+              "cue": {
+                "axis": 0,
+                "first_sign": -1,
+                "switch_tick": 64
+              },
+              "drag": 8,
+              "energy": 4096,
+              "feedback": true,
+              "orientation": [
+                0,
+                0,
+                1608
+              ],
+              "plasticity": false,
+              "pose": 0,
+              "seed": 302,
+              "ticks": 128
+            },
+            "final_hash": "cb013973e8c3321cc736a38f5579ea90ae3362165e8e6566e191e4e52c4d89b7",
+            "final_momentum": [
+              0,
+              -23,
+              -18
+            ],
+            "final_velocity": [
+              0,
+              -1,
+              -1
+            ],
+            "genome": "9964d686d5ccd7e90a54c93b0dcbaa4e2347ed9f5821436a3b3cb4b2f434426f",
+            "initial_hash": "88524f2c060a38c13456e8a4565fc5a1f4acd433a5680953e131ef4e8d7d9e9a",
+            "jets": 0,
+            "joint_changes": [
+              13,
+              10,
+              85,
+              20,
+              16,
+              31,
+              88,
+              68,
+              21,
+              34,
+              106,
+              73,
+              38,
+              10,
+              39,
+              11,
+              92,
+              28,
+              46,
+              34,
+              13,
+              38,
+              15,
+              49,
+              52,
+              27
+            ],
+            "last_two_min": 0.016917687227511725,
+            "mode": "neural",
+            "name": "g5_s0_e302",
+            "net": 0.05862629304610795,
+            "paid_motor": 52,
+            "path": 0.06291641296014922,
+            "pending_motor": 0.64501953125,
+            "quarters": [
+              0.0,
+              0.0,
+              0.016917687227511725,
+              0.04170860581859622
+            ],
+            "rotation": 1.2421875,
+            "score": -0.05512939453125,
+            "sustained": false,
+            "visits": 1
+          },
+          {
+            "active_axes": 26,
+            "active_gain": 0.10401194165686659,
+            "changed_connections": 0,
+            "directional_phases": [
+              0.07421875,
+              0.12890625
+            ],
+            "energy_per_net": 208.1758758093977,
+            "episode": {
+              "cue": {
+                "axis": 1,
+                "first_sign": -1,
+                "switch_tick": 64
+              },
+              "drag": 32,
+              "energy": 4096,
+              "feedback": true,
+              "orientation": [
+                0,
+                300,
+                -600
+              ],
+              "plasticity": false,
+              "pose": 0,
+              "seed": 303,
+              "ticks": 128
+            },
+            "final_hash": "76672d0fe3c7365a0a3b5153bdcdbd7524a1cbd3f0940e8b01b331f6152acce6",
+            "final_momentum": [
+              -38,
+              33,
+              -15
+            ],
+            "final_velocity": [
+              -2,
+              2,
+              0
+            ],
+            "genome": "9964d686d5ccd7e90a54c93b0dcbaa4e2347ed9f5821436a3b3cb4b2f434426f",
+            "initial_hash": "4f1e9e738d06680231db7019b651008b84eb4fa445f8690735a7e10b07bb68c8",
+            "jets": 0,
+            "joint_changes": [
+              13,
+              10,
+              85,
+              20,
+              16,
+              31,
+              89,
+              68,
+              21,
+              34,
+              106,
+              74,
+              37,
+              10,
+              39,
+              11,
+              91,
+              28,
+              46,
+              34,
+              13,
+              38,
+              15,
+              49,
+              52,
+              26
+            ],
+            "last_two_min": 0.08158731411938326,
+            "mode": "neural",
+            "name": "g5_s0_e303",
+            "net": 0.25278636745441946,
+            "paid_motor": 52,
+            "path": 0.4211521379114676,
+            "pending_motor": 0.6240234375,
+            "quarters": [
+              -0.025382384601646654,
+              0.09491608415470099,
+              0.08158731411938326,
+              0.10166535378198188
+            ],
+            "rotation": 1.2353515625,
+            "score": 0.4995927734375001,
+            "sustained": false,
+            "visits": 1
+          }
+        ],
+        "generation": 5,
+        "genome_id": "9964d686d5ccd7e90a54c93b0dcbaa4e2347ed9f5821436a3b3cb4b2f434426f",
+        "parent": "9964d686d5ccd7e90a54c93b0dcbaa4e2347ed9f5821436a3b3cb4b2f434426f",
+        "score": 0.12979451497395836,
+        "slot": 0
+      }
+    },
+    "direction-v2": {
+      "selection": {
+        "budget_stop": false,
+        "elapsed_seconds": 4,
+        "evaluated_candidates": 72,
+        "generation": 5,
+        "held_out_opened": false,
+        "optimizer_seed": 60620261123,
+        "score": 0.10713997395833334,
+        "selected": "f8d921b9e7e21f93a6cb9fb7fe157c40de2688a3a4c4511d0573cff9b96686c4"
+      },
+      "generations": [
+        {
+          "generation": 0,
+          "unique": 12,
+          "mean_pairwise_NN_parameter_L1": 639.6663274536409,
+          "scores": {
+            "n": 12,
+            "mean": -0.27705665418836806,
+            "median": -0.1628462727864583,
+            "minimum": -1.4044295247395835,
+            "maximum": -0.021613362630208337
+          }
+        },
+        {
+          "generation": 1,
+          "unique": 12,
+          "mean_pairwise_NN_parameter_L1": 593.2138800944771,
+          "scores": {
+            "n": 12,
+            "mean": -0.12755007595486112,
+            "median": -0.08335359700520834,
+            "minimum": -0.7009649251302084,
+            "maximum": 0.04889501953125
+          }
+        },
+        {
+          "generation": 2,
+          "unique": 12,
+          "mean_pairwise_NN_parameter_L1": 559.4253480074376,
+          "scores": {
+            "n": 12,
+            "mean": -0.09618526882595486,
+            "median": -0.1130264892578125,
+            "minimum": -0.24432096354166669,
+            "maximum": 0.04889501953125
+          }
+        },
+        {
+          "generation": 3,
+          "unique": 12,
+          "mean_pairwise_NN_parameter_L1": 490.6011482989095,
+          "scores": {
+            "n": 12,
+            "mean": -0.057681274414062504,
+            "median": -0.07582816569010417,
+            "minimum": -0.16289119466145832,
+            "maximum": 0.04889501953125
+          }
+        },
+        {
+          "generation": 4,
+          "unique": 12,
+          "mean_pairwise_NN_parameter_L1": 392.6112116186743,
+          "scores": {
+            "n": 12,
+            "mean": -0.07209200710720486,
+            "median": -0.040137491861979166,
+            "minimum": -0.4668518880208334,
+            "maximum": 0.04889501953125
+          }
+        },
+        {
+          "generation": 5,
+          "unique": 12,
+          "mean_pairwise_NN_parameter_L1": 388.86877481280465,
+          "scores": {
+            "n": 12,
+            "mean": -0.05022940402560763,
+            "median": -0.010949055989583335,
+            "minimum": -0.284254638671875,
+            "maximum": 0.10713997395833334
+          }
+        }
+      ],
+      "selected_training": {
+        "episodes": [
+          {
+            "active_axes": 26,
+            "active_gain": 0.0,
+            "changed_connections": 0,
+            "directional_phases": [
+              0.0,
+              0.0
+            ],
+            "energy_per_net": null,
+            "episode": {
+              "cue": {
+                "axis": 1,
+                "first_sign": 1,
+                "switch_tick": 64
+              },
+              "drag": 8,
+              "energy": 4096,
+              "feedback": true,
+              "orientation": [
+                0,
+                0,
+                0
+              ],
+              "plasticity": false,
+              "pose": 0,
+              "seed": 301,
+              "ticks": 128
+            },
+            "final_hash": "d14edbddb0e5cf71df192fd2289fdeb1f33f11376ce12ac835824d65a581429c",
+            "final_momentum": [
+              -2,
+              5,
+              -7
+            ],
+            "final_velocity": [
+              0,
+              0,
+              0
+            ],
+            "genome": "f8d921b9e7e21f93a6cb9fb7fe157c40de2688a3a4c4511d0573cff9b96686c4",
+            "initial_hash": "12c81ed5a48935beae0f1e5d4db022e1904bd3933b59577de4ce1ab0dfbfa2cc",
+            "jets": 0,
+            "joint_changes": [
+              13,
+              9,
+              76,
+              14,
+              13,
+              32,
+              44,
+              63,
+              15,
+              96,
+              94,
+              51,
+              13,
+              9,
+              39,
+              11,
+              92,
+              16,
+              55,
+              51,
+              37,
+              31,
+              13,
+              28,
+              36,
+              21
+            ],
+            "last_two_min": 0.0,
+            "mode": "neural",
+            "name": "g5_s10_e301",
+            "net": 0.0,
+            "paid_motor": 52,
+            "path": 0.0,
+            "pending_motor": 0.99658203125,
+            "quarters": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rotation": 1.0166015625,
+            "score": -0.055029785156250004,
+            "sustained": false,
+            "visits": 1
+          },
+          {
+            "active_axes": 26,
+            "active_gain": 0.0,
+            "changed_connections": 0,
+            "directional_phases": [
+              0.0,
+              0.0
+            ],
+            "energy_per_net": null,
+            "episode": {
+              "cue": {
+                "axis": 0,
+                "first_sign": -1,
+                "switch_tick": 64
+              },
+              "drag": 8,
+              "energy": 4096,
+              "feedback": true,
+              "orientation": [
+                0,
+                0,
+                1608
+              ],
+              "plasticity": false,
+              "pose": 0,
+              "seed": 302,
+              "ticks": 128
+            },
+            "final_hash": "715ac1f596e375df47ef31258d71202c5e40e7b06f36b10216171381be964030",
+            "final_momentum": [
+              -7,
+              -4,
+              -4
+            ],
+            "final_velocity": [
+              0,
+              0,
+              0
+            ],
+            "genome": "f8d921b9e7e21f93a6cb9fb7fe157c40de2688a3a4c4511d0573cff9b96686c4",
+            "initial_hash": "4b93c7dab1fbc5f99c41131c4d553e78d6f60e1e5411aa13d0c557371a70e58b",
+            "jets": 0,
+            "joint_changes": [
+              13,
+              9,
+              76,
+              14,
+              13,
+              31,
+              45,
+              62,
+              15,
+              96,
+              94,
+              51,
+              13,
+              9,
+              39,
+              11,
+              92,
+              16,
+              57,
+              51,
+              37,
+              32,
+              13,
+              28,
+              37,
+              21
+            ],
+            "last_two_min": 0.0,
+            "mode": "neural",
+            "name": "g5_s10_e302",
+            "net": 0.0,
+            "paid_motor": 52,
+            "path": 0.0,
+            "pending_motor": 0.974853515625,
+            "quarters": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rotation": 1.015625,
+            "score": -0.055006103515625,
+            "sustained": false,
+            "visits": 1
+          },
+          {
+            "active_axes": 26,
+            "active_gain": -0.07164390110978529,
+            "changed_connections": 0,
+            "directional_phases": [
+              0.1337890625,
+              0.0546875
+            ],
+            "energy_per_net": 283.4458767425649,
+            "episode": {
+              "cue": {
+                "axis": 1,
+                "first_sign": -1,
+                "switch_tick": 64
+              },
+              "drag": 32,
+              "energy": 4096,
+              "feedback": true,
+              "orientation": [
+                0,
+                300,
+                -600
+              ],
+              "plasticity": false,
+              "pose": 0,
+              "seed": 303,
+              "ticks": 128
+            },
+            "final_hash": "9426c33a2124175b705e564952deeb0819659cbc46a1bbe3e344b092adbafcb8",
+            "final_momentum": [
+              -29,
+              17,
+              13
+            ],
+            "final_velocity": [
+              -1,
+              1,
+              0
+            ],
+            "genome": "f8d921b9e7e21f93a6cb9fb7fe157c40de2688a3a4c4511d0573cff9b96686c4",
+            "initial_hash": "3e74790b29a4943a4b16787f291d651fbcf924b6d25f8a60cecf4aa3b2a5a4d6",
+            "jets": 0,
+            "joint_changes": [
+              13,
+              9,
+              76,
+              14,
+              13,
+              32,
+              43,
+              60,
+              16,
+              97,
+              95,
+              50,
+              13,
+              9,
+              39,
+              12,
+              94,
+              16,
+              56,
+              50,
+              36,
+              32,
+              13,
+              28,
+              39,
+              21
+            ],
+            "last_two_min": 0.013841344181030404,
+            "mode": "neural",
+            "name": "g5_s10_e303",
+            "net": 0.18665121604917745,
+            "paid_motor": 52,
+            "path": 0.3170926796437675,
+            "pending_motor": 0.905517578125,
+            "quarters": [
+              0.05035306271836643,
+              0.10493670239571888,
+              0.013841344181030404,
+              0.01752010675406174
+            ],
+            "rotation": 0.9833984375,
+            "score": 0.431455810546875,
+            "sustained": false,
+            "visits": 1
+          }
+        ],
+        "generation": 5,
+        "genome_id": "f8d921b9e7e21f93a6cb9fb7fe157c40de2688a3a4c4511d0573cff9b96686c4",
+        "parent": "c204a9f10f5e3e65def1e206d844ab56e87f165ff34da0c052637a6bdf89b86f",
+        "score": 0.10713997395833334,
+        "slot": 10
+      }
+    }
+  },
+  "lifetime": {
+    "original_plasticity_on": {
+      "changed_nonzero_synapses": 38,
+      "pre_net": {
+        "n": 8,
+        "mean": 0.07483734704324006,
+        "median": 0.06787811901590744,
+        "minimum": 0.0,
+        "maximum": 0.16560438495672308
+      },
+      "frozen_minus_pre": {
+        "n": 8,
+        "mean": 0.011510023669162824,
+        "median": 0.00024151529358644452,
+        "minimum": -0.012319837964304109,
+        "maximum": 0.064453125,
+        "mean_bootstrap_95": [
+          -0.0015399797455380136,
+          0.028471901642465124
+        ],
+        "positive": 4,
+        "values": [
+          0.00048303058717288905,
+          0.0,
+          0.022738983247746203,
+          0.0,
+          -0.012319837964304109,
+          0.064453125,
+          0.016724888482687605,
+          0.0
+        ]
+      },
+      "inherited_minus_pre": {
+        "n": 8,
+        "mean": 0.007368654292800845,
+        "median": 0.0,
+        "minimum": -0.03024745165786713,
+        "maximum": 0.064453125,
+        "mean_bootstrap_95": [
+          -0.008776970669931959,
+          0.026946619818650822
+        ],
+        "positive": 3,
+        "values": [
+          -0.006125419747394362,
+          0.0,
+          0.002529977451067311,
+          0.0,
+          -0.03024745165786713,
+          0.064453125,
+          0.02833900329660094,
+          0.0
+        ]
+      },
+      "carry_minus_pre": {
+        "n": 8,
+        "mean": -0.0325222958748425,
+        "median": 0.0,
+        "minimum": -0.16560438495672308,
+        "maximum": 0.03870167131536564,
+        "mean_bootstrap_95": [
+          -0.07876110102844397,
+          0.004837708914420705
+        ],
+        "positive": 1,
+        "values": [
+          -0.16560438495672308,
+          0.0,
+          0.03870167131536564,
+          0.0,
+          -0.07982629619701867,
+          0.0,
+          -0.053449357160363864,
+          0.0
+        ]
+      },
+      "frozen_sustained": 0,
+      "parent": "dcc63a2efe8458e55be40460ce4ba9b70f4454bea48a878869ef95a3189ee362",
+      "inherited": "902d87eb281ccef56140053c3b02bf89ecb43513318dfcb96cb98d8e79c44614"
+    },
+    "original_plasticity_off": {
+      "changed_nonzero_synapses": 0,
+      "pre_net": {
+        "n": 8,
+        "mean": 0.07483734704324006,
+        "median": 0.06787811901590744,
+        "minimum": 0.0,
+        "maximum": 0.16560438495672308
+      },
+      "frozen_minus_pre": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "inherited_minus_pre": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "carry_minus_pre": {
+        "n": 8,
+        "mean": -0.023445745480740063,
+        "median": -0.0019601502659074427,
+        "minimum": -0.07006067119701867,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          -0.0453197717289815,
+          -0.006803239957545483
+        ],
+        "positive": 0,
+        "values": [
+          -0.05915907245672308,
+          0.0,
+          -0.003920300531814885,
+          0.0,
+          -0.07006067119701867,
+          0.0,
+          -0.054425919660363864,
+          0.0
+        ]
+      },
+      "frozen_sustained": 0,
+      "parent": "dcc63a2efe8458e55be40460ce4ba9b70f4454bea48a878869ef95a3189ee362",
+      "inherited": "dcc63a2efe8458e55be40460ce4ba9b70f4454bea48a878869ef95a3189ee362"
+    },
+    "original_feedback_off": {
+      "changed_nonzero_synapses": 0,
+      "pre_net": {
+        "n": 8,
+        "mean": 0.07483734704324006,
+        "median": 0.06787811901590744,
+        "minimum": 0.0,
+        "maximum": 0.16560438495672308
+      },
+      "frozen_minus_pre": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "inherited_minus_pre": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "carry_minus_pre": {
+        "n": 8,
+        "mean": -0.03723969079324006,
+        "median": -0.003913275265907443,
+        "minimum": -0.16560438495672308,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          -0.08059337465802582,
+          -0.006314958707545483
+        ],
+        "positive": 0,
+        "values": [
+          -0.16560438495672308,
+          0.0,
+          -0.007826550531814885,
+          0.0,
+          -0.07396692119701867,
+          0.0,
+          -0.050519669660363864,
+          0.0
+        ]
+      },
+      "frozen_sustained": 0,
+      "parent": "dcc63a2efe8458e55be40460ce4ba9b70f4454bea48a878869ef95a3189ee362",
+      "inherited": "dcc63a2efe8458e55be40460ce4ba9b70f4454bea48a878869ef95a3189ee362"
+    },
+    "original_untrained": {
+      "changed_nonzero_synapses": 0,
+      "pre_net": {
+        "n": 8,
+        "mean": 0.07483734704324006,
+        "median": 0.06787811901590744,
+        "minimum": 0.0,
+        "maximum": 0.16560438495672308
+      },
+      "frozen_minus_pre": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "inherited_minus_pre": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "carry_minus_pre": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "frozen_sustained": 0,
+      "parent": "dcc63a2efe8458e55be40460ce4ba9b70f4454bea48a878869ef95a3189ee362",
+      "inherited": "dcc63a2efe8458e55be40460ce4ba9b70f4454bea48a878869ef95a3189ee362"
+    },
+    "selected_plasticity_on": {
+      "changed_nonzero_synapses": 113,
+      "pre_net": {
+        "n": 8,
+        "mean": 0.6188267459300818,
+        "median": 0.4816689905706725,
+        "minimum": 0.3183129399609479,
+        "maximum": 1.1987375294153058
+      },
+      "frozen_minus_pre": {
+        "n": 8,
+        "mean": -0.003607544412583548,
+        "median": 0.0025360872341348706,
+        "minimum": -0.037727217401058,
+        "maximum": 0.023086170005441664,
+        "mean_bootstrap_95": [
+          -0.01856282208443292,
+          0.010589968659038003
+        ],
+        "positive": 4,
+        "values": [
+          -0.0037373254600996386,
+          0.00880949992836938,
+          0.009836588173300465,
+          0.023086170005441664,
+          -0.037727217401058,
+          -0.025752051544942756,
+          -0.02091540290832916,
+          0.017539383906649664
+        ]
+      },
+      "inherited_minus_pre": {
+        "n": 8,
+        "mean": -0.003796694875527716,
+        "median": 0.002503368826526242,
+        "minimum": -0.03852826094557915,
+        "maximum": 0.019738845484179812,
+        "mean_bootstrap_95": [
+          -0.019097239301085964,
+          0.010192149842225662
+        ],
+        "positive": 4,
+        "values": [
+          0.019738845484179812,
+          0.00988011882798634,
+          0.007770956819232566,
+          -0.007585138185040585,
+          -0.03852826094557915,
+          -0.002764219166180082,
+          -0.035926531910934756,
+          0.017040670072114128
+        ]
+      },
+      "carry_minus_pre": {
+        "n": 8,
+        "mean": -0.2111182149847559,
+        "median": -0.1585166664545027,
+        "minimum": -0.5721663232141033,
+        "maximum": -0.002928132738106992,
+        "mean_bootstrap_95": [
+          -0.3381946894300814,
+          -0.10814106685371974
+        ],
+        "positive": 0,
+        "values": [
+          -0.35524008278885544,
+          -0.13733640511891604,
+          -0.5721663232141033,
+          -0.14153577238942047,
+          -0.002928132738106992,
+          -0.084895471199329,
+          -0.21934597190973082,
+          -0.17549756051958496
+        ]
+      },
+      "frozen_sustained": 4,
+      "parent": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c",
+      "inherited": "ed85ea75c0cdcdf7a0f3acc55c5f521f1fb53558a9f2cd00c010f980019f6407"
+    },
+    "selected_plasticity_off": {
+      "changed_nonzero_synapses": 0,
+      "pre_net": {
+        "n": 8,
+        "mean": 0.6188267459300818,
+        "median": 0.4816689905706725,
+        "minimum": 0.3183129399609479,
+        "maximum": 1.1987375294153058
+      },
+      "frozen_minus_pre": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "inherited_minus_pre": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "carry_minus_pre": {
+        "n": 8,
+        "mean": -0.4041148964709786,
+        "median": -0.29425249374718476,
+        "minimum": -0.8568597488121826,
+        "maximum": -0.21414440176759894,
+        "mean_bootstrap_95": [
+          -0.5710398235582431,
+          -0.26509047491034454
+        ],
+        "positive": 0,
+        "values": [
+          -0.6236879596038458,
+          -0.22885328033950836,
+          -0.8568597488121826,
+          -0.28113924677977103,
+          -0.30736574071459843,
+          -0.21414440176759894,
+          -0.4867500412006671,
+          -0.23411875254965653
+        ]
+      },
+      "frozen_sustained": 4,
+      "parent": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c",
+      "inherited": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c"
+    },
+    "selected_feedback_off": {
+      "changed_nonzero_synapses": 0,
+      "pre_net": {
+        "n": 8,
+        "mean": 0.6188267459300818,
+        "median": 0.4816689905706725,
+        "minimum": 0.3183129399609479,
+        "maximum": 1.1987375294153058
+      },
+      "frozen_minus_pre": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "inherited_minus_pre": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "carry_minus_pre": {
+        "n": 8,
+        "mean": -0.15905183578093202,
+        "median": -0.09167631496098591,
+        "minimum": -0.5462103342598238,
+        "maximum": -0.054239502460714795,
+        "mean_bootstrap_95": [
+          -0.282556425880386,
+          -0.07609134570435137
+        ],
+        "positive": 0,
+        "values": [
+          -0.22436087447737807,
+          -0.07983963380176878,
+          -0.5462103342598238,
+          -0.1378000927978788,
+          -0.055831219257587716,
+          -0.054239502460714795,
+          -0.10351299612020304,
+          -0.07062003307210121
+        ]
+      },
+      "frozen_sustained": 4,
+      "parent": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c",
+      "inherited": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c"
+    },
+    "selected_untrained": {
+      "changed_nonzero_synapses": 0,
+      "pre_net": {
+        "n": 8,
+        "mean": 0.6188267459300818,
+        "median": 0.4816689905706725,
+        "minimum": 0.3183129399609479,
+        "maximum": 1.1987375294153058
+      },
+      "frozen_minus_pre": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "inherited_minus_pre": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "carry_minus_pre": {
+        "n": 8,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "mean_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "positive": 0,
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "frozen_sustained": 4,
+      "parent": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c",
+      "inherited": "204546b9001fcfb7a0b1397abe47c91ee1aadf61603c8ae1dd97a9178be3a05c"
+    }
+  },
+  "direction": {
+    "direction-heldout-v1": {
+      "status": "INVALID_CUE",
+      "controls": {
+        "direction_selected": {
+          "episodes": 8,
+          "sustained": 0,
+          "jets": 0,
+          "net": {
+            "n": 8,
+            "mean": 0.29108559472197554,
+            "median": 0.36776961624215176,
+            "minimum": 0.0,
+            "maximum": 0.4834862215116389
+          },
+          "path": {
+            "n": 8,
+            "mean": 0.4156789274351216,
+            "median": 0.5049332841929697,
+            "minimum": 0.0,
+            "maximum": 0.7362171339493772
+          },
+          "active_gain": {
+            "n": 8,
+            "mean": 0.0007336553070463273,
+            "median": 0.0,
+            "minimum": -0.013006634238141218,
+            "maximum": 0.00970005853182393
+          },
+          "paid_motor": {
+            "n": 8,
+            "mean": 109.875,
+            "median": 110.0,
+            "minimum": 109,
+            "maximum": 111
+          },
+          "rotation": {
+            "n": 8,
+            "mean": 1.0909423828125,
+            "median": 1.0400390625,
+            "minimum": 0.4833984375,
+            "maximum": 1.5771484375
+          },
+          "active_axes": {
+            "n": 8,
+            "mean": 26,
+            "median": 26.0,
+            "minimum": 26,
+            "maximum": 26
+          },
+          "energy_per_net": [
+            283.1156462799839,
+            852.5494881607586,
+            319.5170227664944,
+            646.89,
+            285.58287584448635,
+            260.35152730848023,
+            229.2058515075642,
+            null
+          ]
+        },
+        "movement_selected": {
+          "episodes": 8,
+          "sustained": 8,
+          "jets": 0,
+          "net": {
+            "n": 8,
+            "mean": 1.1416229801154694,
+            "median": 1.1242695366699726,
+            "minimum": 0.8275472677047786,
+            "maximum": 1.4457706859255857
+          },
+          "path": {
+            "n": 8,
+            "mean": 1.2743756035740081,
+            "median": 1.2556517428094676,
+            "minimum": 0.868800760924642,
+            "maximum": 1.6803250160281396
+          },
+          "active_gain": {
+            "n": 8,
+            "mean": 0.4533128105177232,
+            "median": 0.47881691703416607,
+            "minimum": 0.22560974527691774,
+            "maximum": 0.6167095824159075
+          },
+          "paid_motor": {
+            "n": 8,
+            "mean": 99,
+            "median": 99.0,
+            "minimum": 99,
+            "maximum": 99
+          },
+          "rotation": {
+            "n": 8,
+            "mean": 3.041259765625,
+            "median": 3.04248046875,
+            "minimum": 2.916015625,
+            "maximum": 3.1484375
+          },
+          "active_axes": {
+            "n": 8,
+            "mean": 26,
+            "median": 26.0,
+            "minimum": 26,
+            "maximum": 26
+          },
+          "energy_per_net": [
+            80.92122991086696,
+            119.7778423543004,
+            79.44018302808672,
+            97.120131999146,
+            74.03884113415828,
+            97.0787564969118,
+            68.7643493097266,
+            100.62990548330238
+          ]
+        },
+        "original": {
+          "episodes": 8,
+          "sustained": 0,
+          "jets": 0,
+          "net": {
+            "n": 8,
+            "mean": 0.07288345523806157,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.2041015625
+          },
+          "path": {
+            "n": 8,
+            "mean": 0.07312879245750312,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.2041015625
+          },
+          "active_gain": {
+            "n": 8,
+            "mean": 0.001601392729118618,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.012811141832948944
+          },
+          "paid_motor": {
+            "n": 8,
+            "mean": 34.25,
+            "median": 35.0,
+            "minimum": 29,
+            "maximum": 35
+          },
+          "rotation": {
+            "n": 8,
+            "mean": 0.2655029296875,
+            "median": 0.1845703125,
+            "minimum": 0.1572265625,
+            "maximum": 0.837890625
+          },
+          "active_axes": {
+            "n": 8,
+            "mean": 26,
+            "median": 26.0,
+            "minimum": 26,
+            "maximum": 26
+          },
+          "energy_per_net": [
+            null,
+            null,
+            198.88722826086956,
+            null,
+            174.83612440191388,
+            null,
+            148.1822135819545,
+            null
+          ]
+        },
+        "random": {
+          "episodes": 8,
+          "sustained": 0,
+          "jets": 91,
+          "net": {
+            "n": 8,
+            "mean": 1.7399406916133324,
+            "median": 1.4999764430248264,
+            "minimum": 0.6155210765511697,
+            "maximum": 3.2821675788734654
+          },
+          "path": {
+            "n": 8,
+            "mean": 2.6408109072028076,
+            "median": 2.746338926039036,
+            "minimum": 1.2337284587515271,
+            "maximum": 4.0181099642047835
+          },
+          "active_gain": {
+            "n": 8,
+            "mean": 0.5419369172036557,
+            "median": 0.39491444831174405,
+            "minimum": -0.4329430356750483,
+            "maximum": 1.5365171250636351
+          },
+          "paid_motor": {
+            "n": 8,
+            "mean": 57,
+            "median": 57.0,
+            "minimum": 56,
+            "maximum": 58
+          },
+          "rotation": {
+            "n": 8,
+            "mean": 3.5321044921875,
+            "median": 3.55712890625,
+            "minimum": 3.169921875,
+            "maximum": 3.7890625
+          },
+          "active_axes": {
+            "n": 8,
+            "mean": 26,
+            "median": 26.0,
+            "minimum": 26,
+            "maximum": 26
+          },
+          "energy_per_net": [
+            43.74050705373905,
+            34.75710868515032,
+            90.12212635944196,
+            17.591732379396877,
+            92.14713844922231,
+            22.93280952188489,
+            79.60556764540681,
+            18.28676666745198
+          ]
+        },
+        "rest": {
+          "episodes": 8,
+          "sustained": 0,
+          "jets": 0,
+          "net": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.0
+          },
+          "path": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.0
+          },
+          "active_gain": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.0
+          },
+          "paid_motor": {
+            "n": 8,
+            "mean": 0,
+            "median": 0.0,
+            "minimum": 0,
+            "maximum": 0
+          },
+          "rotation": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.0
+          },
+          "active_axes": {
+            "n": 8,
+            "mean": 16.75,
+            "median": 16.5,
+            "minimum": 14,
+            "maximum": 21
+          },
+          "energy_per_net": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "periodic": {
+          "episodes": 8,
+          "sustained": 8,
+          "jets": 0,
+          "net": {
+            "n": 8,
+            "mean": 5.0455532800581375,
+            "median": 5.102499959965927,
+            "minimum": 4.222595157940066,
+            "maximum": 5.768720421348448
+          },
+          "path": {
+            "n": 8,
+            "mean": 5.097728706375979,
+            "median": 5.167727144424749,
+            "minimum": 4.2524922760409805,
+            "maximum": 5.824003573937156
+          },
+          "active_gain": {
+            "n": 8,
+            "mean": 1.7119830404264706,
+            "median": 1.7019043071529532,
+            "minimum": 1.0268283884711944,
+            "maximum": 2.4205803703015665
+          },
+          "paid_motor": {
+            "n": 8,
+            "mean": 36,
+            "median": 36.0,
+            "minimum": 36,
+            "maximum": 36
+          },
+          "rotation": {
+            "n": 8,
+            "mean": 6.81103515625,
+            "median": 6.8115234375,
+            "minimum": 6.7783203125,
+            "maximum": 6.8486328125
+          },
+          "active_axes": {
+            "n": 8,
+            "mean": 25.75,
+            "median": 26.0,
+            "minimum": 25,
+            "maximum": 26
+          },
+          "energy_per_net": [
+            6.512506272726991,
+            8.09446556607838,
+            6.256676514353975,
+            7.740480264951385,
+            6.3923067151008786,
+            8.547591286428812,
+            6.421448836511663,
+            8.125182471792513
+          ]
+        }
+      },
+      "phase_progress": {
+        "direction_selected": {
+          "passes": 0,
+          "first": {
+            "n": 8,
+            "mean": -0.0679931640625,
+            "median": -0.0703125,
+            "minimum": -0.1796875,
+            "maximum": 0.0
+          },
+          "second": {
+            "n": 8,
+            "mean": 0.06689453125,
+            "median": 0.125,
+            "minimum": -0.125,
+            "maximum": 0.25
+          }
+        },
+        "rest": {
+          "passes": 0,
+          "first": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.0
+          },
+          "second": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.0
+          }
+        },
+        "periodic": {
+          "passes": 0,
+          "first": {
+            "n": 8,
+            "mean": -0.11669921875,
+            "median": -0.13623046875,
+            "minimum": -2.6962890625,
+            "maximum": 3.0927734375
+          },
+          "second": {
+            "n": 8,
+            "mean": -0.09814453125,
+            "median": -0.060546875,
+            "minimum": -2.29296875,
+            "maximum": 2.177734375
+          }
+        },
+        "random": {
+          "passes": 0,
+          "first": {
+            "n": 8,
+            "mean": -0.203125,
+            "median": -0.20458984375,
+            "minimum": -1.0205078125,
+            "maximum": 0.8349609375
+          },
+          "second": {
+            "n": 8,
+            "mean": -0.1414794921875,
+            "median": -0.22802734375,
+            "minimum": -0.744140625,
+            "maximum": 0.5283203125
+          }
+        },
+        "movement_selected": {
+          "passes": 0,
+          "first": {
+            "n": 8,
+            "mean": 0.028564453125,
+            "median": 0.12255859375,
+            "minimum": -0.4521484375,
+            "maximum": 0.232421875
+          },
+          "second": {
+            "n": 8,
+            "mean": -0.14990234375,
+            "median": -0.27880859375,
+            "minimum": -0.8203125,
+            "maximum": 0.7802734375
+          }
+        },
+        "original": {
+          "passes": 0,
+          "first": {
+            "n": 8,
+            "mean": -0.0008544921875,
+            "median": 0.0,
+            "minimum": -0.0615234375,
+            "maximum": 0.0546875
+          },
+          "second": {
+            "n": 8,
+            "mean": 0.0015869140625,
+            "median": 0.0,
+            "minimum": -0.125,
+            "maximum": 0.1376953125
+          }
+        }
+      }
+    },
+    "direction-heldout-v2": {
+      "status": "VALID_CUE_BOUNDED_NULL",
+      "controls": {
+        "direction_selected": {
+          "episodes": 8,
+          "sustained": 0,
+          "jets": 0,
+          "net": {
+            "n": 8,
+            "mean": 0.1956441810758744,
+            "median": 0.18395622872469555,
+            "minimum": 0.052734375,
+            "maximum": 0.33812198545906663
+          },
+          "path": {
+            "n": 8,
+            "mean": 0.35789344769567477,
+            "median": 0.3499913309301438,
+            "minimum": 0.052734375,
+            "maximum": 0.6410025383965439
+          },
+          "active_gain": {
+            "n": 8,
+            "mean": 0.08632291293305838,
+            "median": 0.08411795075155616,
+            "minimum": 0.052734375,
+            "maximum": 0.14060332088083452
+          },
+          "paid_motor": {
+            "n": 8,
+            "mean": 107,
+            "median": 107.0,
+            "minimum": 107,
+            "maximum": 107
+          },
+          "rotation": {
+            "n": 8,
+            "mean": 2.078857421875,
+            "median": 2.0771484375,
+            "minimum": 2.0478515625,
+            "maximum": 2.1171875
+          },
+          "active_axes": {
+            "n": 8,
+            "mean": 26,
+            "median": 26.0,
+            "minimum": 26,
+            "maximum": 26
+          },
+          "energy_per_net": [
+            413.84539325300904,
+            1011.4426605504588,
+            377.5763833588146,
+            992.5653153153153,
+            336.7740381660679,
+            2042.0046296296296,
+            318.7983309131032,
+            1128.4731798766222
+          ]
+        },
+        "movement_selected": {
+          "episodes": 8,
+          "sustained": 8,
+          "jets": 0,
+          "net": {
+            "n": 8,
+            "mean": 1.435005904092972,
+            "median": 1.4572594660883489,
+            "minimum": 0.8869225356069607,
+            "maximum": 1.9623191798789266
+          },
+          "path": {
+            "n": 8,
+            "mean": 1.589510824599087,
+            "median": 1.61977066914321,
+            "minimum": 0.9317440998492046,
+            "maximum": 2.266553405009441
+          },
+          "active_gain": {
+            "n": 8,
+            "mean": 0.5690820792839899,
+            "median": 0.591948235450664,
+            "minimum": 0.382802838888361,
+            "maximum": 0.7441240486230987
+          },
+          "paid_motor": {
+            "n": 8,
+            "mean": 97.125,
+            "median": 97.0,
+            "minimum": 96,
+            "maximum": 98
+          },
+          "rotation": {
+            "n": 8,
+            "mean": 2.841064453125,
+            "median": 2.84130859375,
+            "minimum": 2.560546875,
+            "maximum": 3.0595703125
+          },
+          "active_axes": {
+            "n": 8,
+            "mean": 26,
+            "median": 26.0,
+            "minimum": 26,
+            "maximum": 26
+          },
+          "energy_per_net": [
+            58.5375788053626,
+            78.81477300352132,
+            56.6905255862071,
+            82.87590518516215,
+            54.13314149937655,
+            109.17700146437689,
+            49.824953014795724,
+            97.3186512895151
+          ]
+        },
+        "original": {
+          "episodes": 8,
+          "sustained": 0,
+          "jets": 0,
+          "net": {
+            "n": 8,
+            "mean": 0.0973823233087349,
+            "median": 0.09596683215327656,
+            "minimum": 0.0,
+            "maximum": 0.1982421875
+          },
+          "path": {
+            "n": 8,
+            "mean": 0.10986985154652859,
+            "median": 0.09912109375,
+            "minimum": 0.0,
+            "maximum": 0.2452272445041094
+          },
+          "active_gain": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.0
+          },
+          "paid_motor": {
+            "n": 8,
+            "mean": 31,
+            "median": 31.0,
+            "minimum": 31,
+            "maximum": 31
+          },
+          "rotation": {
+            "n": 8,
+            "mean": 0.414794921875,
+            "median": 0.41845703125,
+            "minimum": 0.3623046875,
+            "maximum": 0.4677734375
+          },
+          "active_axes": {
+            "n": 8,
+            "mean": 26,
+            "median": 26.0,
+            "minimum": 26,
+            "maximum": 26
+          },
+          "energy_per_net": [
+            163.5277586672094,
+            null,
+            164.7170453811348,
+            null,
+            159.39316630033048,
+            null,
+            157.9630541871921,
+            null
+          ]
+        },
+        "random": {
+          "episodes": 8,
+          "sustained": 0,
+          "jets": 91,
+          "net": {
+            "n": 8,
+            "mean": 1.7399406916133324,
+            "median": 1.4999764430248264,
+            "minimum": 0.6155210765511697,
+            "maximum": 3.2821675788734654
+          },
+          "path": {
+            "n": 8,
+            "mean": 2.6408109072028076,
+            "median": 2.746338926039036,
+            "minimum": 1.2337284587515271,
+            "maximum": 4.0181099642047835
+          },
+          "active_gain": {
+            "n": 8,
+            "mean": 0.5419369172036557,
+            "median": 0.39491444831174405,
+            "minimum": -0.4329430356750483,
+            "maximum": 1.5365171250636351
+          },
+          "paid_motor": {
+            "n": 8,
+            "mean": 57,
+            "median": 57.0,
+            "minimum": 56,
+            "maximum": 58
+          },
+          "rotation": {
+            "n": 8,
+            "mean": 3.5321044921875,
+            "median": 3.55712890625,
+            "minimum": 3.169921875,
+            "maximum": 3.7890625
+          },
+          "active_axes": {
+            "n": 8,
+            "mean": 26,
+            "median": 26.0,
+            "minimum": 26,
+            "maximum": 26
+          },
+          "energy_per_net": [
+            43.74050705373905,
+            34.75710868515032,
+            90.12212635944196,
+            17.591732379396877,
+            92.14713844922231,
+            22.93280952188489,
+            79.60556764540681,
+            18.28676666745198
+          ]
+        },
+        "rest": {
+          "episodes": 8,
+          "sustained": 0,
+          "jets": 0,
+          "net": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.0
+          },
+          "path": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.0
+          },
+          "active_gain": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.0
+          },
+          "paid_motor": {
+            "n": 8,
+            "mean": 0,
+            "median": 0.0,
+            "minimum": 0,
+            "maximum": 0
+          },
+          "rotation": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.0
+          },
+          "active_axes": {
+            "n": 8,
+            "mean": 16.75,
+            "median": 16.5,
+            "minimum": 14,
+            "maximum": 21
+          },
+          "energy_per_net": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "periodic": {
+          "episodes": 8,
+          "sustained": 8,
+          "jets": 0,
+          "net": {
+            "n": 8,
+            "mean": 5.0455532800581375,
+            "median": 5.102499959965927,
+            "minimum": 4.222595157940066,
+            "maximum": 5.768720421348448
+          },
+          "path": {
+            "n": 8,
+            "mean": 5.097728706375979,
+            "median": 5.167727144424749,
+            "minimum": 4.2524922760409805,
+            "maximum": 5.824003573937156
+          },
+          "active_gain": {
+            "n": 8,
+            "mean": 1.7119830404264706,
+            "median": 1.7019043071529532,
+            "minimum": 1.0268283884711944,
+            "maximum": 2.4205803703015665
+          },
+          "paid_motor": {
+            "n": 8,
+            "mean": 36,
+            "median": 36.0,
+            "minimum": 36,
+            "maximum": 36
+          },
+          "rotation": {
+            "n": 8,
+            "mean": 6.81103515625,
+            "median": 6.8115234375,
+            "minimum": 6.7783203125,
+            "maximum": 6.8486328125
+          },
+          "active_axes": {
+            "n": 8,
+            "mean": 25.75,
+            "median": 26.0,
+            "minimum": 25,
+            "maximum": 26
+          },
+          "energy_per_net": [
+            6.512506272726991,
+            8.09446556607838,
+            6.256676514353975,
+            7.740480264951385,
+            6.3923067151008786,
+            8.547591286428812,
+            6.421448836511663,
+            8.125182471792513
+          ]
+        }
+      },
+      "phase_progress": {
+        "direction_selected": {
+          "passes": 0,
+          "first": {
+            "n": 8,
+            "mean": -0.022705078125,
+            "median": 0.0,
+            "minimum": -0.1201171875,
+            "maximum": 0.0732421875
+          },
+          "second": {
+            "n": 8,
+            "mean": 0.01416015625,
+            "median": 0.0,
+            "minimum": -0.2197265625,
+            "maximum": 0.2216796875
+          }
+        },
+        "rest": {
+          "passes": 0,
+          "first": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.0
+          },
+          "second": {
+            "n": 8,
+            "mean": 0.0,
+            "median": 0.0,
+            "minimum": 0.0,
+            "maximum": 0.0
+          }
+        },
+        "periodic": {
+          "passes": 0,
+          "first": {
+            "n": 8,
+            "mean": -0.11669921875,
+            "median": -0.13623046875,
+            "minimum": -2.6962890625,
+            "maximum": 3.0927734375
+          },
+          "second": {
+            "n": 8,
+            "mean": -0.09814453125,
+            "median": -0.060546875,
+            "minimum": -2.29296875,
+            "maximum": 2.177734375
+          }
+        },
+        "random": {
+          "passes": 0,
+          "first": {
+            "n": 8,
+            "mean": -0.203125,
+            "median": -0.20458984375,
+            "minimum": -1.0205078125,
+            "maximum": 0.8349609375
+          },
+          "second": {
+            "n": 8,
+            "mean": -0.1414794921875,
+            "median": -0.22802734375,
+            "minimum": -0.744140625,
+            "maximum": 0.5283203125
+          }
+        },
+        "movement_selected": {
+          "passes": 0,
+          "first": {
+            "n": 8,
+            "mean": 0.066162109375,
+            "median": 0.12255859375,
+            "minimum": -0.6181640625,
+            "maximum": 0.3955078125
+          },
+          "second": {
+            "n": 8,
+            "mean": -0.1993408203125,
+            "median": -0.4365234375,
+            "minimum": -0.921875,
+            "maximum": 0.92578125
+          }
+        },
+        "original": {
+          "passes": 0,
+          "first": {
+            "n": 8,
+            "mean": 0.0003662109375,
+            "median": 0.0,
+            "minimum": -0.0732421875,
+            "maximum": 0.083984375
+          },
+          "second": {
+            "n": 8,
+            "mean": 0.015625,
+            "median": 0.0,
+            "minimum": -0.125,
+            "maximum": 0.125
+          }
+        }
+      }
+    }
+  },
+  "independent_audit": {
+    "babble-v1": {
+      "status": "PASS",
+      "episodes": 120,
+      "ticks": 15360,
+      "cue_events": 0,
+      "jet_release_ticks": 0,
+      "material_exported": 0,
+      "no_jet_linear_residual": 0,
+      "scope": "COM/path/velocity, energy balance, actual smoothed motor fees and debt, sensor ABI, no births/intake/input, recorded waste export, cue material conservation; independent no-jet ledger. Native replay separately includes all jets and full fields.",
+      "selected_mechanism": {}
+    },
+    "capability-v1": {
+      "status": "PASS",
+      "episodes": 30,
+      "ticks": 7680,
+      "cue_events": 0,
+      "jet_release_ticks": 0,
+      "material_exported": 0,
+      "no_jet_linear_residual": 0,
+      "scope": "COM/path/velocity, energy balance, actual smoothed motor fees and debt, sensor ABI, no births/intake/input, recorded waste export, cue material conservation; independent no-jet ledger. Native replay separately includes all jets and full fields.",
+      "selected_mechanism": {}
+    },
+    "direction-heldout-v1": {
+      "status": "PASS",
+      "episodes": 48,
+      "ticks": 12288,
+      "cue_events": 48,
+      "jet_release_ticks": 91,
+      "material_exported": 28,
+      "no_jet_linear_residual": 0,
+      "scope": "COM/path/velocity, energy balance, actual smoothed motor fees and debt, sensor ABI, no births/intake/input, recorded waste export, cue material conservation; independent no-jet ledger. Native replay separately includes all jets and full fields.",
+      "selected_mechanism": {}
+    },
+    "direction-heldout-v2": {
+      "status": "PASS",
+      "episodes": 48,
+      "ticks": 12288,
+      "cue_events": 48,
+      "jet_release_ticks": 91,
+      "material_exported": 28,
+      "no_jet_linear_residual": 0,
+      "scope": "COM/path/velocity, energy balance, actual smoothed motor fees and debt, sensor ABI, no births/intake/input, recorded waste export, cue material conservation; independent no-jet ledger. Native replay separately includes all jets and full fields.",
+      "selected_mechanism": {}
+    },
+    "direction-v1": {
+      "status": "PASS",
+      "episodes": 216,
+      "ticks": 27648,
+      "cue_events": 216,
+      "jet_release_ticks": 0,
+      "material_exported": 0,
+      "no_jet_linear_residual": 0,
+      "scope": "COM/path/velocity, energy balance, actual smoothed motor fees and debt, sensor ABI, no births/intake/input, recorded waste export, cue material conservation; independent no-jet ledger. Native replay separately includes all jets and full fields.",
+      "selected_mechanism": {}
+    },
+    "direction-v2": {
+      "status": "PASS",
+      "episodes": 216,
+      "ticks": 27648,
+      "cue_events": 216,
+      "jet_release_ticks": 0,
+      "material_exported": 0,
+      "no_jet_linear_residual": 0,
+      "scope": "COM/path/velocity, energy balance, actual smoothed motor fees and debt, sensor ABI, no births/intake/input, recorded waste export, cue material conservation; independent no-jet ledger. Native replay separately includes all jets and full fields.",
+      "selected_mechanism": {}
+    },
+    "falsify-v1": {
+      "status": "PASS",
+      "episodes": 24,
+      "ticks": 6144,
+      "cue_events": 0,
+      "jet_release_ticks": 0,
+      "material_exported": 0,
+      "no_jet_linear_residual": 0,
+      "scope": "COM/path/velocity, energy balance, actual smoothed motor fees and debt, sensor ABI, no births/intake/input, recorded waste export, cue material conservation; independent no-jet ledger. Native replay separately includes all jets and full fields.",
+      "selected_mechanism": {
+        "falsify_601_selected_vacuum": {
+          "command_ranges": [
+            1382,
+            1512,
+            1210,
+            1552,
+            1147,
+            1184,
+            1515,
+            1255,
+            1506,
+            1519,
+            1561,
+            438,
+            1507,
+            1469,
+            1309,
+            1386,
+            1252,
+            1002,
+            1353,
+            1415,
+            1044,
+            953,
+            1204,
+            1115,
+            1188,
+            1325
+          ],
+          "late_bend_rate_threshold_ticks": 16,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 384,
+          "cues": 0
+        },
+        "falsify_601_selected_bias_only": {
+          "command_ranges": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 342,
+          "cues": 0
+        },
+        "falsify_601_selected_shuffled": {
+          "command_ranges": [
+            1037,
+            1136,
+            1312,
+            1484,
+            1550,
+            1189,
+            1321,
+            1352,
+            1374,
+            1215,
+            1376,
+            1572,
+            1498,
+            1421,
+            1357,
+            1130,
+            1490,
+            1517,
+            1460,
+            1452,
+            655,
+            1157,
+            1411,
+            1170,
+            1360,
+            1510
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 128,
+          "late_inferred_medium_impulse_L1": 1155,
+          "late_drag_L1": 646,
+          "initial_actuator_debt": 0,
+          "energy_used": 385,
+          "cues": 0
+        },
+        "falsify_602_selected_vacuum": {
+          "command_ranges": [
+            1380,
+            1503,
+            1242,
+            1556,
+            1154,
+            1178,
+            1516,
+            1265,
+            1518,
+            1512,
+            1565,
+            421,
+            1512,
+            1470,
+            1338,
+            1384,
+            1264,
+            967,
+            1349,
+            1391,
+            1041,
+            957,
+            1192,
+            1102,
+            1190,
+            1349
+          ],
+          "late_bend_rate_threshold_ticks": 27,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 384,
+          "cues": 0
+        },
+        "falsify_602_selected_bias_only": {
+          "command_ranges": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 342,
+          "cues": 0
+        },
+        "falsify_602_selected_shuffled": {
+          "command_ranges": [
+            1012,
+            1133,
+            1307,
+            1484,
+            1557,
+            1211,
+            1353,
+            1358,
+            1377,
+            1230,
+            1399,
+            1571,
+            1496,
+            1420,
+            1360,
+            1112,
+            1491,
+            1518,
+            1462,
+            1458,
+            699,
+            1143,
+            1411,
+            1196,
+            1345,
+            1507
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 84,
+          "late_inferred_medium_impulse_L1": 169,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 385,
+          "cues": 0
+        },
+        "falsify_603_selected_vacuum": {
+          "command_ranges": [
+            1454,
+            1573,
+            1373,
+            1586,
+            1165,
+            1325,
+            1559,
+            1345,
+            1525,
+            1545,
+            1586,
+            923,
+            1517,
+            1497,
+            1318,
+            1474,
+            1299,
+            1160,
+            1378,
+            1474,
+            1301,
+            1092,
+            1304,
+            1276,
+            1270,
+            1373
+          ],
+          "late_bend_rate_threshold_ticks": 19,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 384,
+          "cues": 0
+        },
+        "falsify_603_selected_bias_only": {
+          "command_ranges": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 342,
+          "cues": 0
+        },
+        "falsify_603_selected_shuffled": {
+          "command_ranges": [
+            1069,
+            1144,
+            1323,
+            1486,
+            1552,
+            1299,
+            1400,
+            1362,
+            1365,
+            1216,
+            1379,
+            1557,
+            1486,
+            1412,
+            1410,
+            1041,
+            1489,
+            1548,
+            1432,
+            1461,
+            733,
+            1174,
+            1439,
+            1126,
+            1355,
+            1501
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 128,
+          "late_inferred_medium_impulse_L1": 1151,
+          "late_drag_L1": 622,
+          "initial_actuator_debt": 0,
+          "energy_used": 384,
+          "cues": 0
+        },
+        "falsify_604_selected_vacuum": {
+          "command_ranges": [
+            1282,
+            1482,
+            1107,
+            1520,
+            1110,
+            1109,
+            1486,
+            1140,
+            1466,
+            1491,
+            1531,
+            353,
+            1486,
+            1425,
+            1297,
+            1340,
+            1255,
+            959,
+            1319,
+            1343,
+            793,
+            933,
+            1122,
+            1042,
+            1189,
+            1298
+          ],
+          "late_bend_rate_threshold_ticks": 21,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 384,
+          "cues": 0
+        },
+        "falsify_604_selected_bias_only": {
+          "command_ranges": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 342,
+          "cues": 0
+        },
+        "falsify_604_selected_shuffled": {
+          "command_ranges": [
+            1021,
+            1113,
+            1311,
+            1470,
+            1545,
+            1169,
+            1214,
+            1360,
+            1366,
+            1203,
+            1381,
+            1525,
+            1495,
+            1399,
+            1370,
+            988,
+            1479,
+            1484,
+            1447,
+            1461,
+            633,
+            1159,
+            1391,
+            1096,
+            1378,
+            1481
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 94,
+          "late_inferred_medium_impulse_L1": 172,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 384,
+          "cues": 0
+        },
+        "falsify_605_selected_vacuum": {
+          "command_ranges": [
+            1280,
+            1493,
+            1204,
+            1539,
+            1143,
+            766,
+            1478,
+            1234,
+            1487,
+            1478,
+            1529,
+            464,
+            1485,
+            1432,
+            1324,
+            1351,
+            1273,
+            735,
+            1323,
+            1339,
+            886,
+            952,
+            1151,
+            845,
+            1110,
+            1319
+          ],
+          "late_bend_rate_threshold_ticks": 26,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 384,
+          "cues": 0
+        },
+        "falsify_605_selected_bias_only": {
+          "command_ranges": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 342,
+          "cues": 0
+        },
+        "falsify_605_selected_shuffled": {
+          "command_ranges": [
+            977,
+            1203,
+            1355,
+            1495,
+            1531,
+            1352,
+            1397,
+            1419,
+            1317,
+            1195,
+            1393,
+            1584,
+            1427,
+            1423,
+            1465,
+            858,
+            1477,
+            1549,
+            1238,
+            1444,
+            980,
+            1176,
+            1438,
+            1103,
+            1269,
+            1496
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 127,
+          "late_inferred_medium_impulse_L1": 1137,
+          "late_drag_L1": 627,
+          "initial_actuator_debt": 0,
+          "energy_used": 383,
+          "cues": 0
+        },
+        "falsify_606_selected_vacuum": {
+          "command_ranges": [
+            1297,
+            1488,
+            1175,
+            1527,
+            1132,
+            1048,
+            1479,
+            1174,
+            1485,
+            1482,
+            1541,
+            394,
+            1491,
+            1439,
+            1325,
+            1346,
+            1242,
+            834,
+            1332,
+            1358,
+            852,
+            906,
+            1141,
+            988,
+            1123,
+            1308
+          ],
+          "late_bend_rate_threshold_ticks": 27,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 384,
+          "cues": 0
+        },
+        "falsify_606_selected_bias_only": {
+          "command_ranges": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 342,
+          "cues": 0
+        },
+        "falsify_606_selected_shuffled": {
+          "command_ranges": [
+            943,
+            1118,
+            1327,
+            1449,
+            1522,
+            1094,
+            1133,
+            1334,
+            1318,
+            1222,
+            1399,
+            1448,
+            1459,
+            1334,
+            1324,
+            915,
+            1470,
+            1438,
+            1356,
+            1440,
+            569,
+            1151,
+            1385,
+            992,
+            1310,
+            1475
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 87,
+          "late_inferred_medium_impulse_L1": 168,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 383,
+          "cues": 0
+        },
+        "falsify_607_selected_vacuum": {
+          "command_ranges": [
+            1314,
+            1501,
+            1208,
+            1531,
+            1132,
+            968,
+            1510,
+            1204,
+            1497,
+            1496,
+            1536,
+            401,
+            1493,
+            1441,
+            1326,
+            1363,
+            1278,
+            891,
+            1333,
+            1348,
+            869,
+            996,
+            1132,
+            958,
+            1110,
+            1322
+          ],
+          "late_bend_rate_threshold_ticks": 25,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 384,
+          "cues": 0
+        },
+        "falsify_607_selected_bias_only": {
+          "command_ranges": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 342,
+          "cues": 0
+        },
+        "falsify_607_selected_shuffled": {
+          "command_ranges": [
+            896,
+            1094,
+            1294,
+            1426,
+            1496,
+            1214,
+            1213,
+            1304,
+            1316,
+            1188,
+            1383,
+            1461,
+            1394,
+            1315,
+            1357,
+            934,
+            1475,
+            1418,
+            1300,
+            1402,
+            519,
+            1120,
+            1371,
+            1007,
+            1325,
+            1424
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 127,
+          "late_inferred_medium_impulse_L1": 1251,
+          "late_drag_L1": 615,
+          "initial_actuator_debt": 0,
+          "energy_used": 382,
+          "cues": 0
+        },
+        "falsify_608_selected_vacuum": {
+          "command_ranges": [
+            1265,
+            1483,
+            1207,
+            1533,
+            1131,
+            803,
+            1474,
+            1199,
+            1486,
+            1467,
+            1532,
+            451,
+            1462,
+            1438,
+            1337,
+            1330,
+            1259,
+            707,
+            1318,
+            1335,
+            836,
+            922,
+            1145,
+            879,
+            1026,
+            1322
+          ],
+          "late_bend_rate_threshold_ticks": 25,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 384,
+          "cues": 0
+        },
+        "falsify_608_selected_bias_only": {
+          "command_ranges": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 0,
+          "late_inferred_medium_impulse_L1": 0,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 342,
+          "cues": 0
+        },
+        "falsify_608_selected_shuffled": {
+          "command_ranges": [
+            879,
+            1196,
+            1306,
+            1476,
+            1526,
+            1319,
+            1348,
+            1400,
+            1322,
+            1219,
+            1400,
+            1552,
+            1417,
+            1394,
+            1433,
+            904,
+            1480,
+            1533,
+            1169,
+            1465,
+            833,
+            1151,
+            1430,
+            1037,
+            1292,
+            1489
+          ],
+          "late_bend_rate_threshold_ticks": 0,
+          "late_inferred_medium_impulse_ticks": 86,
+          "late_inferred_medium_impulse_L1": 162,
+          "late_drag_L1": 0,
+          "initial_actuator_debt": 0,
+          "energy_used": 384,
+          "cues": 0
+        }
+      }
+    },
+    "heldout-v1": {
+      "status": "PASS",
+      "episodes": 88,
+      "ticks": 22528,
+      "cue_events": 0,
+      "jet_release_ticks": 0,
+      "material_exported": 0,
+      "no_jet_linear_residual": 0,
+      "scope": "COM/path/velocity, energy balance, actual smoothed motor fees and debt, sensor ABI, no births/intake/input, recorded waste export, cue material conservation; independent no-jet ledger. Native replay separately includes all jets and full fields.",
+      "selected_mechanism": {
+        "held_601_selected_frozen": {
+          "command_ranges": [
+            1381,
+            1510,
+            1207,
+            1550,
+            1152,
+            1184,
+            1513,
+            1259,
+            1506,
+            1518,
+            1559,
+            469,
+            1509,
+            1468,
+            1332,
+            1386,
+            1237,
+            999,
+            1354,
+            1413,
+            1042,
+            924,
+            1200,
+            1116,
+            1190,
+            1326
+          ],
+          "late_bend_rate_threshold_ticks": 22,
+          "late_inferred_medium_impulse_ticks": 128,
+          "late_inferred_medium_impulse_L1": 2697,
+          "late_drag_L1": 946,
+          "initial_actuator_debt": 0,
+          "energy_used": 383,
+          "cues": 0
+        },
+        "held_602_selected_frozen": {
+          "command_ranges": [
+            1379,
+            1503,
+            1243,
+            1556,
+            1155,
+            1178,
+            1516,
+            1266,
+            1518,
+            1512,
+            1565,
+            421,
+            1510,
+            1470,
+            1326,
+            1384,
+            1248,
+            967,
+            1348,
+            1391,
+            1041,
+            967,
+            1191,
+            1103,
+            1190,
+            1349
+          ],
+          "late_bend_rate_threshold_ticks": 24,
+          "late_inferred_medium_impulse_ticks": 119,
+          "late_inferred_medium_impulse_L1": 546,
+          "late_drag_L1": 55,
+          "initial_actuator_debt": 0,
+          "energy_used": 384,
+          "cues": 0
+        },
+        "held_603_selected_frozen": {
+          "command_ranges": [
+            1454,
+            1573,
+            1373,
+            1586,
+            1157,
+            1325,
+            1557,
+            1345,
+            1523,
+            1543,
+            1583,
+            918,
+            1515,
+            1497,
+            1325,
+            1474,
+            1287,
+            1155,
+            1382,
+            1474,
+            1301,
+            1091,
+            1302,
+            1275,
+            1266,
+            1374
+          ],
+          "late_bend_rate_threshold_ticks": 19,
+          "late_inferred_medium_impulse_ticks": 127,
+          "late_inferred_medium_impulse_L1": 2599,
+          "late_drag_L1": 920,
+          "initial_actuator_debt": 0,
+          "energy_used": 384,
+          "cues": 0
+        },
+        "held_604_selected_frozen": {
+          "command_ranges": [
+            1282,
+            1482,
+            1107,
+            1518,
+            1117,
+            1109,
+            1486,
+            1149,
+            1467,
+            1490,
+            1531,
+            358,
+            1481,
+            1425,
+            1315,
+            1340,
+            1269,
+            958,
+            1320,
+            1343,
+            793,
+            931,
+            1122,
+            1040,
+            1191,
+            1300
+          ],
+          "late_bend_rate_threshold_ticks": 19,
+          "late_inferred_medium_impulse_ticks": 116,
+          "late_inferred_medium_impulse_L1": 536,
+          "late_drag_L1": 58,
+          "initial_actuator_debt": 0,
+          "energy_used": 383,
+          "cues": 0
+        },
+        "held_605_selected_frozen": {
+          "command_ranges": [
+            1295,
+            1487,
+            1197,
+            1539,
+            1173,
+            830,
+            1534,
+            1292,
+            1508,
+            1483,
+            1540,
+            468,
+            1484,
+            1469,
+            1329,
+            1359,
+            1378,
+            787,
+            1343,
+            1334,
+            810,
+            1084,
+            1125,
+            866,
+            1170,
+            1342
+          ],
+          "late_bend_rate_threshold_ticks": 30,
+          "late_inferred_medium_impulse_ticks": 122,
+          "late_inferred_medium_impulse_L1": 1957,
+          "late_drag_L1": 687,
+          "initial_actuator_debt": 0,
+          "energy_used": 383,
+          "cues": 0
+        },
+        "held_606_selected_frozen": {
+          "command_ranges": [
+            1298,
+            1488,
+            1165,
+            1531,
+            1128,
+            1048,
+            1479,
+            1174,
+            1485,
+            1482,
+            1540,
+            386,
+            1490,
+            1439,
+            1324,
+            1346,
+            1248,
+            835,
+            1332,
+            1358,
+            852,
+            908,
+            1139,
+            988,
+            1123,
+            1307
+          ],
+          "late_bend_rate_threshold_ticks": 29,
+          "late_inferred_medium_impulse_ticks": 111,
+          "late_inferred_medium_impulse_L1": 533,
+          "late_drag_L1": 20,
+          "initial_actuator_debt": 0,
+          "energy_used": 384,
+          "cues": 0
+        },
+        "held_607_selected_frozen": {
+          "command_ranges": [
+            1316,
+            1499,
+            1213,
+            1535,
+            1142,
+            973,
+            1510,
+            1225,
+            1493,
+            1498,
+            1536,
+            465,
+            1492,
+            1446,
+            1336,
+            1361,
+            1273,
+            894,
+            1328,
+            1347,
+            888,
+            996,
+            1159,
+            971,
+            1114,
+            1320
+          ],
+          "late_bend_rate_threshold_ticks": 29,
+          "late_inferred_medium_impulse_ticks": 127,
+          "late_inferred_medium_impulse_L1": 2944,
+          "late_drag_L1": 979,
+          "initial_actuator_debt": 0,
+          "energy_used": 383,
+          "cues": 0
+        },
+        "held_608_selected_frozen": {
+          "command_ranges": [
+            1296,
+            1493,
+            1241,
+            1535,
+            1127,
+            804,
+            1473,
+            1225,
+            1489,
+            1472,
+            1536,
+            545,
+            1472,
+            1445,
+            1329,
+            1343,
+            1285,
+            705,
+            1325,
+            1340,
+            889,
+            911,
+            1155,
+            878,
+            1025,
+            1318
+          ],
+          "late_bend_rate_threshold_ticks": 28,
+          "late_inferred_medium_impulse_ticks": 114,
+          "late_inferred_medium_impulse_L1": 551,
+          "late_drag_L1": 30,
+          "initial_actuator_debt": 0,
+          "energy_used": 384,
+          "cues": 0
+        }
+      }
+    },
+    "lifetime-v1": {
+      "status": "PASS",
+      "episodes": 358,
+      "ticks": 48128,
+      "cue_events": 0,
+      "jet_release_ticks": 0,
+      "material_exported": 0,
+      "no_jet_linear_residual": 0,
+      "scope": "COM/path/velocity, energy balance, actual smoothed motor fees and debt, sensor ABI, no births/intake/input, recorded waste export, cue material conservation; independent no-jet ledger. Native replay separately includes all jets and full fields.",
+      "selected_mechanism": {}
+    },
+    "optimize-v1": {
+      "status": "PASS",
+      "episodes": 576,
+      "ticks": 73728,
+      "cue_events": 0,
+      "jet_release_ticks": 0,
+      "material_exported": 0,
+      "no_jet_linear_residual": 0,
+      "scope": "COM/path/velocity, energy balance, actual smoothed motor fees and debt, sensor ABI, no births/intake/input, recorded waste export, cue material conservation; independent no-jet ledger. Native replay separately includes all jets and full fields.",
+      "selected_mechanism": {}
+    }
+  }
+}

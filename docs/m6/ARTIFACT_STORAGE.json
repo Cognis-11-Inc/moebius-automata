@@ -1,0 +1,761 @@
+{
+  "date_local": "2026-11-22",
+  "version": 2,
+  "mount_path": "/run/media/cognis/Mermogon",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/M6/8e351e2",
+  "external_index_sha256": "90a418676ab71a5652f2df4298a7057d679aa7b274191a4ce0a2eddbf4dfce12",
+  "raw_files": 121,
+  "raw_bytes": 302404365,
+  "archive_bytes": 302694400,
+  "records": [
+    {
+      "phase": "babble-v1",
+      "purpose": "Raw full-state trials and lineage",
+      "relative_path": "v1/babble-v1.tar",
+      "bytes": 22999040,
+      "sha256": "29ded584708dda0f7ce3c4a6f313993444bad73cb40a1c684cac06e81fbf67e5",
+      "members": [
+        {
+          "name": "episodes.jsonl.gz",
+          "bytes": 22792836,
+          "sha256": "6090dfb93e433ccb697b6fa017f3e29f26cc5603ffb1f63ae9f49980ca85de2c"
+        },
+        {
+          "name": "measurements.json",
+          "bytes": 173622,
+          "sha256": "396a53a4b5e8b9b3f6bca8fc84321520a2d4880fe7ea7f030964ffbbf35cbfaf"
+        },
+        {
+          "name": "original_genome.json",
+          "bytes": 16126,
+          "sha256": "b37e68d34aa9260e34132f9495fa5ba0dfbfdb1b3e106790939f96cd6d39ccf1"
+        },
+        {
+          "name": "protocol.json",
+          "bytes": 8185,
+          "sha256": "8bd5245f29ecfc02f03c3f76095565dc0c4d81c6acbeda99be56a64d8b4b114f"
+        }
+      ]
+    },
+    {
+      "phase": "capability-v1",
+      "purpose": "Raw full-state trials and lineage",
+      "relative_path": "v1/capability-v1.tar",
+      "bytes": 5376000,
+      "sha256": "9f57cb3ca18f3a29f44e8ccea98eaae2d249a7d550e9da4144332a0f1d788c80",
+      "members": [
+        {
+          "name": "episodes.jsonl.gz",
+          "bytes": 5301208,
+          "sha256": "1d5bfa3fc0eac4822d112d74ce326218f17f23828689a8961e7bc307c2e59534"
+        },
+        {
+          "name": "measurements.json",
+          "bytes": 43688,
+          "sha256": "c6ee58896ffda79bdb716e913168a873262e76e9d1990a7041e834d17e3983e7"
+        },
+        {
+          "name": "original_genome.json",
+          "bytes": 16126,
+          "sha256": "b37e68d34aa9260e34132f9495fa5ba0dfbfdb1b3e106790939f96cd6d39ccf1"
+        },
+        {
+          "name": "protocol.json",
+          "bytes": 6957,
+          "sha256": "c1f96971d58602cbd24e9119cb2a4c5761813bbc1a1a77d01c05eb48157fb428"
+        }
+      ]
+    },
+    {
+      "phase": "direction-heldout-v1",
+      "purpose": "INVALID CUE: preserve failed sensor-interface campaign",
+      "relative_path": "v1/direction-heldout-v1.tar",
+      "bytes": 11673600,
+      "sha256": "78c30dfa80d8ebbc3d24785110b365120f9ec795670ecb90d9fc810663b16171",
+      "members": [
+        {
+          "name": "episodes.jsonl.gz",
+          "bytes": 11565209,
+          "sha256": "c89c49e1fa6e0a5c3febd7f585e0c16543b2a8f5218463c0b4822199da25f1fd"
+        },
+        {
+          "name": "measurements.json",
+          "bytes": 91022,
+          "sha256": "822a918446cd2b474b7991b30b7b1d0efcf6123d0115773ab1a5eb8a0902766a"
+        },
+        {
+          "name": "protocol.json",
+          "bytes": 9219,
+          "sha256": "1f4a3c2b7a15f6b72866a0e7f54c11f9aef997b55d02daca169bd8243b4c7895"
+        }
+      ]
+    },
+    {
+      "phase": "direction-heldout-v2",
+      "purpose": "Raw full-state trials and lineage",
+      "relative_path": "v1/direction-heldout-v2.tar",
+      "bytes": 12328960,
+      "sha256": "a206d8a1b0a193a000aa05a33f52fc1f015d3fe1b9a41461875dd758495c15c7",
+      "members": [
+        {
+          "name": "episodes.jsonl.gz",
+          "bytes": 12211227,
+          "sha256": "5d63fb17303314c7857b8e7575af4470850f1b5f6dfbfb4f01d7e44a59dca886"
+        },
+        {
+          "name": "measurements.json",
+          "bytes": 91275,
+          "sha256": "90b8d6ad79e094835e5097d4390f630662e1b314a596749aa603ff0b1a2e810b"
+        },
+        {
+          "name": "protocol.json",
+          "bytes": 9951,
+          "sha256": "3bb88cb510eba043aa2c176d1aa166fa2d79bc0e394f170c001756a0b58c8fc9"
+        }
+      ]
+    },
+    {
+      "phase": "direction-v1",
+      "purpose": "INVALID CUE: preserve failed sensor-interface campaign",
+      "relative_path": "v1/direction-v1.tar",
+      "bytes": 35041280,
+      "sha256": "fc853289bfaade17a64e7bc9e4c943ca951fd6e27afca0c557d7581aac7305db",
+      "members": [
+        {
+          "name": "candidate_genomes.jsonl.gz",
+          "bytes": 186499,
+          "sha256": "234034d34a6c7f403f409af72806d15c6185e2f0c74707185999429e4ffdc0ae"
+        },
+        {
+          "name": "episodes.jsonl.gz",
+          "bytes": 34206001,
+          "sha256": "2a01bf25b42f72dfba47530feba4352891004e5b29a2d45109522c9f9a23ccfd"
+        },
+        {
+          "name": "history.json",
+          "bytes": 439147,
+          "sha256": "fde7476b80a66f26ab41722a2cd4c10bd983245981e36ff0ae7b821278c40801"
+        },
+        {
+          "name": "movement_gate.json",
+          "bytes": 149827,
+          "sha256": "f6aed368aba7b37d9241e3d6aebba80434f1a1cebe1793ed57e08262aa09f8c1"
+        },
+        {
+          "name": "original_genome.json",
+          "bytes": 16352,
+          "sha256": "d595ea800224f0a5a037c2288eca2300fbf1bd94056b4232d7ba01a2ccf9d354"
+        },
+        {
+          "name": "protocol.json",
+          "bytes": 9219,
+          "sha256": "1f4a3c2b7a15f6b72866a0e7f54c11f9aef997b55d02daca169bd8243b4c7895"
+        },
+        {
+          "name": "selected_genome.json",
+          "bytes": 16325,
+          "sha256": "48246dc8fc1bb55caafa0ebb3762b4341071dc05352b2dc9bb63a0f3ca70a8f1"
+        },
+        {
+          "name": "selection.json",
+          "bytes": 274,
+          "sha256": "858db318e8e336602ace760d90ad506209fea415c79d42c12a1f6bc0777c71df"
+        }
+      ]
+    },
+    {
+      "phase": "direction-v2",
+      "purpose": "Raw full-state trials and lineage",
+      "relative_path": "v1/direction-v2.tar",
+      "bytes": 35614720,
+      "sha256": "b1ef8abc574dfc0257fbc4d32549580609a3628d1fb5fc62f1529c1d6b557118",
+      "members": [
+        {
+          "name": "candidate_genomes.jsonl.gz",
+          "bytes": 188410,
+          "sha256": "acb441bd373b53f267a278e980c267e592edfd540eb8be5a6e8712b3f0c3d517"
+        },
+        {
+          "name": "episodes.jsonl.gz",
+          "bytes": 34775051,
+          "sha256": "04ada30d3d5bcb37170ea9851709fbb7c8fdc0793d523de01ecf1b34107cdc2f"
+        },
+        {
+          "name": "history.json",
+          "bytes": 435110,
+          "sha256": "e8437e1ab31458d564521a1e8d2da91b2c534175b679732547dbcbae324ef9b3"
+        },
+        {
+          "name": "movement_gate.json",
+          "bytes": 149827,
+          "sha256": "f6aed368aba7b37d9241e3d6aebba80434f1a1cebe1793ed57e08262aa09f8c1"
+        },
+        {
+          "name": "original_genome.json",
+          "bytes": 16352,
+          "sha256": "d595ea800224f0a5a037c2288eca2300fbf1bd94056b4232d7ba01a2ccf9d354"
+        },
+        {
+          "name": "protocol.json",
+          "bytes": 9951,
+          "sha256": "3bb88cb510eba043aa2c176d1aa166fa2d79bc0e394f170c001756a0b58c8fc9"
+        },
+        {
+          "name": "selected_genome.json",
+          "bytes": 16326,
+          "sha256": "3d50253a230c2a73e585465a18957e7aca07f2ac46a38e52cbbd15e881215818"
+        },
+        {
+          "name": "selection.json",
+          "bytes": 274,
+          "sha256": "a8efb9b1819fa6432fc2fb8467218c53a69b16d72a129abbd6096add494d2525"
+        }
+      ]
+    },
+    {
+      "phase": "falsify-v1",
+      "purpose": "Raw full-state trials and lineage",
+      "relative_path": "v1/falsify-v1.tar",
+      "bytes": 7311360,
+      "sha256": "d85ffde5f0030b9696f4bc1254f497a20dd870f32d016d34ea2af7f3a7afefc4",
+      "members": [
+        {
+          "name": "episodes.jsonl.gz",
+          "bytes": 7246350,
+          "sha256": "902148ada26a6e003bdc349a3f7d6a4da8c247f6f29005588bcab587f8391316"
+        },
+        {
+          "name": "measurements.json",
+          "bytes": 42118,
+          "sha256": "9cf6862e6524ae6ab96a230af75cb2586870601943bdd3af19720147bbc79500"
+        },
+        {
+          "name": "protocol.json",
+          "bytes": 10791,
+          "sha256": "02b3c5f85f6d11a3dcb8577846bb88fceadcd6f100c3117a3f7a9647f48ac9cc"
+        }
+      ]
+    },
+    {
+      "phase": "heldout-v1",
+      "purpose": "Raw full-state trials and lineage",
+      "relative_path": "v1/heldout-v1.tar",
+      "bytes": 25364480,
+      "sha256": "fba8f3b6bb90f25ad2e642aacf50db1a86c332ff67553d1b2c6d44b12627d94f",
+      "members": [
+        {
+          "name": "episodes.jsonl.gz",
+          "bytes": 25176754,
+          "sha256": "5b3ca51c4308a8540a3760115d139a585aba01fe1ab42632788f7bd93426c68f"
+        },
+        {
+          "name": "locked_selected.json",
+          "bytes": 16352,
+          "sha256": "d595ea800224f0a5a037c2288eca2300fbf1bd94056b4232d7ba01a2ccf9d354"
+        },
+        {
+          "name": "measurements.json",
+          "bytes": 149827,
+          "sha256": "f6aed368aba7b37d9241e3d6aebba80434f1a1cebe1793ed57e08262aa09f8c1"
+        },
+        {
+          "name": "protocol.json",
+          "bytes": 8185,
+          "sha256": "8bd5245f29ecfc02f03c3f76095565dc0c4d81c6acbeda99be56a64d8b4b114f"
+        }
+      ]
+    },
+    {
+      "phase": "lifetime-v1",
+      "purpose": "Raw full-state trials and lineage",
+      "relative_path": "v1/lifetime-v1.tar",
+      "bytes": 59607040,
+      "sha256": "b74357ae5072706df98edf5e5efc9829210fba5926f8e32611eed3e5e68f0142",
+      "members": [
+        {
+          "name": "episodes.jsonl.gz",
+          "bytes": 58258098,
+          "sha256": "c1b35c93d130e0bc562b854652428a6badb8139f1557d9ff52d1523e4dd1c43c"
+        },
+        {
+          "name": "experience_original_feedback_off.json",
+          "bytes": 30351,
+          "sha256": "8705c57dffbab62f75df259faa1eac2c98aa89ea88ec65a804f832e6ff41aae5"
+        },
+        {
+          "name": "experience_original_plasticity_off.json",
+          "bytes": 30356,
+          "sha256": "c31b3c29ae1771429b86f0197f8c825ae39ca523730369abda8418f15100c0ad"
+        },
+        {
+          "name": "experience_original_plasticity_on.json",
+          "bytes": 32225,
+          "sha256": "01109249f23bb5452f4417b759650530ce20236c4c6013e3e6bfa6731cd00ed1"
+        },
+        {
+          "name": "experience_selected_feedback_off.json",
+          "bytes": 30803,
+          "sha256": "23660897602cbb5c4abaaedbbe5c1031027e4a40b16508e258feff2b9a708694"
+        },
+        {
+          "name": "experience_selected_plasticity_off.json",
+          "bytes": 30858,
+          "sha256": "49578687bfc52bef561b7f93fef69c7bed7edd20b70f155792d870544c162a73"
+        },
+        {
+          "name": "experience_selected_plasticity_on.json",
+          "bytes": 32771,
+          "sha256": "4da5f93424ca49c19a7e5ebf0e9b1397345f7a76277e765a5efd5fbc562b11d3"
+        },
+        {
+          "name": "measurements.json",
+          "bytes": 1131519,
+          "sha256": "667082360ec46d401fbfd285968c356f5e9c1c27cee92376a81a370efb46b909"
+        },
+        {
+          "name": "protocol.json",
+          "bytes": 8185,
+          "sha256": "8bd5245f29ecfc02f03c3f76095565dc0c4d81c6acbeda99be56a64d8b4b114f"
+        }
+      ]
+    },
+    {
+      "phase": "optimize-v1",
+      "purpose": "Raw full-state trials and lineage",
+      "relative_path": "v1/optimize-v1.tar",
+      "bytes": 84019200,
+      "sha256": "396132a427b32817a9e17342678ea98f0735d2f322b304a32e25c890eb1c979d",
+      "members": [
+        {
+          "name": "candidate_genomes.jsonl.gz",
+          "bytes": 513784,
+          "sha256": "4747c25f91660d24fe9c30be6ad4b46fa3a00b9109dbb7aae325e4927e5de2bd"
+        },
+        {
+          "name": "capability_gate.json",
+          "bytes": 43688,
+          "sha256": "c6ee58896ffda79bdb716e913168a873262e76e9d1990a7041e834d17e3983e7"
+        },
+        {
+          "name": "episodes.jsonl.gz",
+          "bytes": 82319676,
+          "sha256": "d98d97780f571ad684d89207bdd0745d9217d83b897f6d198cbb694868db805e"
+        },
+        {
+          "name": "history.json",
+          "bytes": 1079944,
+          "sha256": "3f91f40f61227a596e220007b3749ab0d7c859bd0fd4a6407ded169054e05ca9"
+        },
+        {
+          "name": "original_genome.json",
+          "bytes": 16126,
+          "sha256": "b37e68d34aa9260e34132f9495fa5ba0dfbfdb1b3e106790939f96cd6d39ccf1"
+        },
+        {
+          "name": "protocol.json",
+          "bytes": 8185,
+          "sha256": "8bd5245f29ecfc02f03c3f76095565dc0c4d81c6acbeda99be56a64d8b4b114f"
+        },
+        {
+          "name": "selected_genome.json",
+          "bytes": 16352,
+          "sha256": "d595ea800224f0a5a037c2288eca2300fbf1bd94056b4232d7ba01a2ccf9d354"
+        },
+        {
+          "name": "selection.json",
+          "bytes": 275,
+          "sha256": "a073033c54ffe5d0a61f18208f45ed97f186fd69a07bc4b357c433e588a5e0fe"
+        }
+      ]
+    },
+    {
+      "phase": "source-v1",
+      "purpose": "Runnable working-tree source provenance",
+      "relative_path": "v1/source-v1.tar",
+      "bytes": 317440,
+      "sha256": "0cbefd5afafbc27d8ccfbe02024d936af45f62f8e02d0589aa57e62255ea73dc",
+      "members": [
+        {
+          "name": "SOURCE_IDENTITY.json",
+          "bytes": 2979,
+          "sha256": "37c7b3a20dd5d85fed694efbb960f4a12175374248df1e3870b4e3c1f8396b6e"
+        },
+        {
+          "name": "tracked_diff.patch",
+          "bytes": 11563,
+          "sha256": "564e56c08660a5f867fdbcc019ee3b1dc31965c3594c2c2fb12a0af151447176"
+        },
+        {
+          "name": "working_tree_source.tar",
+          "bytes": 296960,
+          "sha256": "3057090419d7a572bb77fe084f500379c4cac5ffe297d3d175ca3917e7f453c1"
+        }
+      ]
+    },
+    {
+      "phase": "validation-v1",
+      "purpose": "Validation chronology/logs",
+      "relative_path": "v1/validation-v1.tar",
+      "bytes": 112640,
+      "sha256": "6c4507d2569578cbeea417c0431f36a32220fb8b6a7f2ddd77f8e1f384347367",
+      "members": [
+        {
+          "name": "moebius-m6-babble.log",
+          "bytes": 966,
+          "sha256": "5a0cc610d16362da1da572fc828b088864c984e505a43430f4bbd9526ad806b9"
+        },
+        {
+          "name": "moebius-m6-capability.log",
+          "bytes": 1197,
+          "sha256": "a235d04b2015512273099212348983927b1a7abbe6144fb3be8e1e870ec2c616"
+        },
+        {
+          "name": "moebius-m6-clippy-final.log",
+          "bytes": 268,
+          "sha256": "1d20e1d2a1e3b2e955f2ccb07059d13427b85885c84ba3af1ebf099e5418a35c"
+        },
+        {
+          "name": "moebius-m6-clippy-v2.log",
+          "bytes": 424,
+          "sha256": "57a5dcb57f25b87b4c4b4ba56c4e2a094fd4b9f6d678379bd922974573174db2"
+        },
+        {
+          "name": "moebius-m6-clippy.log",
+          "bytes": 5202,
+          "sha256": "300c3155ed8df55a65b0a936f87a590cff89c8b27e396f7e72caa7a81a391027"
+        },
+        {
+          "name": "moebius-m6-diff-final.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "moebius-m6-direction-heldout-v2.log",
+          "bytes": 36,
+          "sha256": "15910afccfcb7595382344f6fbc4f691f60d283691785b0239ce2cb26a892a3f"
+        },
+        {
+          "name": "moebius-m6-direction-heldout.log",
+          "bytes": 735,
+          "sha256": "1f69ab76f5d1f70c15662058d1010cb5a752c9c2494f8dbc84472b2c4e011a91"
+        },
+        {
+          "name": "moebius-m6-direction-v2.log",
+          "bytes": 1148,
+          "sha256": "0876d622db20fee613bb83aca06292454e58440b8abcbd827a1601613d7dcfd7"
+        },
+        {
+          "name": "moebius-m6-direction.log",
+          "bytes": 1147,
+          "sha256": "27133b1c1fa301f4e1c60a6955892c61c5823a6488e7b365bae054bf0a2edcc1"
+        },
+        {
+          "name": "moebius-m6-falsify.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "moebius-m6-fmt-final.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "moebius-m6-heldout.log",
+          "bytes": 732,
+          "sha256": "39e8618d918282bd3af1f33491cfb1ba340c573175b0db593273e0ef7ef90a7b"
+        },
+        {
+          "name": "moebius-m6-independent-analysis-v2.log",
+          "bytes": 842,
+          "sha256": "03755facb912f2779ae1210ad7116097bf8a047336b5e38b8ba953170168673e"
+        },
+        {
+          "name": "moebius-m6-independent-analysis-v3.log",
+          "bytes": 788,
+          "sha256": "d0021088d2f04c2b85ed9443421a1aa11827ff8cec004ac7197cd5d3e97c08d8"
+        },
+        {
+          "name": "moebius-m6-independent-analysis-v4.log",
+          "bytes": 198,
+          "sha256": "fc5ffca574e9424ac21d14a9adfac133e7a0dbb26b84377e526b5605005d102b"
+        },
+        {
+          "name": "moebius-m6-independent-analysis.log",
+          "bytes": 798,
+          "sha256": "bf6e405af0d2f27ec018067ddde1b575b893055575fa067b536897bcb5d968a7"
+        },
+        {
+          "name": "moebius-m6-lifetime.log",
+          "bytes": 1011,
+          "sha256": "25a3c55997cf5a3191f846549fe777f0cfa670762ec09d84c94197bf680132d0"
+        },
+        {
+          "name": "moebius-m6-m4-baseline-replay.json",
+          "bytes": 129,
+          "sha256": "1b1f45464589b5b002ee3168a5742a9ed004f9c9fdc9c13766f3c9d79f5984c8"
+        },
+        {
+          "name": "moebius-m6-m4-corrected-replay.json",
+          "bytes": 130,
+          "sha256": "4151eaa4244d3c4881210bf20e3b8bc98c99976f076e6c431df83d871256f61b"
+        },
+        {
+          "name": "moebius-m6-optimize.log",
+          "bytes": 1603,
+          "sha256": "15abebc23024e57a63da7cc888f3302f52a59a9435cbb59d62ead06d6b9c6e88"
+        },
+        {
+          "name": "moebius-m6-replay-additional.jsonl",
+          "bytes": 681,
+          "sha256": "4359a90fbd05779e408463f4c95386e5bb4ec5d919c220b5b441a24d80117c48"
+        },
+        {
+          "name": "moebius-m6-replay.jsonl",
+          "bytes": 1576,
+          "sha256": "1e1956e42e317db79e12ac0d0f38c069c119ae7436776e08f20f40391da1abbd"
+        },
+        {
+          "name": "moebius-m6-tests-v2.log",
+          "bytes": 699,
+          "sha256": "9c3dac1537f38814262b5aa31217f2a55a96082aea53f14f30771a1d5ad65f34"
+        },
+        {
+          "name": "moebius-m6-tests.log",
+          "bytes": 1232,
+          "sha256": "9900b759aeedfb11c29b65aa5f750cba5860fc2c6afc2c19928666f1c968b047"
+        },
+        {
+          "name": "moebius-m6-viewer-build-v2.log",
+          "bytes": 162,
+          "sha256": "85c74a878004968e86794fb67f267ff6fbf0c75546d63c632b7be2cec31366f3"
+        },
+        {
+          "name": "moebius-m6-viewer-build.log",
+          "bytes": 352,
+          "sha256": "88f6bde26b03ec3ad27f12f1a1e125399a9d140ab9ea890095288c98ebb82636"
+        },
+        {
+          "name": "moebius-m6-viewer-check.log",
+          "bytes": 172,
+          "sha256": "37571af256ea7086e52fcb096268a3b56536643eb7b36e58d107d24f3e8bfb44"
+        },
+        {
+          "name": "moebius-m6-visual-compare-early.log",
+          "bytes": 39,
+          "sha256": "4cc4cd6b46e763492205b27f84f123ed2c7e83701fca37b629e391bcc22e8d82"
+        },
+        {
+          "name": "moebius-m6-visual-compare-labeled.log",
+          "bytes": 53,
+          "sha256": "89aacacdb4422eaf13448c88458220b3847618451be37b9614f3b3756a95646c"
+        },
+        {
+          "name": "moebius-m6-visual-compare-start.log",
+          "bytes": 39,
+          "sha256": "4cc4cd6b46e763492205b27f84f123ed2c7e83701fca37b629e391bcc22e8d82"
+        },
+        {
+          "name": "moebius-m6-visual-compare.log",
+          "bytes": 53,
+          "sha256": "89aacacdb4422eaf13448c88458220b3847618451be37b9614f3b3756a95646c"
+        },
+        {
+          "name": "moebius-m6-visual-selected.log",
+          "bytes": 53,
+          "sha256": "796baefe0a75f4fe649ff1ad7a360b4102b27c7e0d808998d17b654809f3617b"
+        },
+        {
+          "name": "moebius-m6-visual-untrained.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "moebius-m6-workspace-tests-v2.log",
+          "bytes": 9654,
+          "sha256": "a470374f92f00b59018745934e43a8aaff64d401a6fe1a43e8a4cd87ef837093"
+        },
+        {
+          "name": "moebius-m6-workspace-tests-v3.log",
+          "bytes": 9545,
+          "sha256": "0a1b45e6ace34e643a9eaec820169e56a32b34f8b10f6a4188e4f609b562cc20"
+        },
+        {
+          "name": "moebius-m6-workspace-tests.log",
+          "bytes": 772,
+          "sha256": "c42edb7f8dc74e9b0cae334ae5759428c60aa0b91c867f0fc2ffb4ebe6551e2f"
+        }
+      ]
+    },
+    {
+      "phase": "visual-v1",
+      "purpose": "Rendered witnesses",
+      "relative_path": "v1/visual-v1.tar",
+      "bytes": 2129920,
+      "sha256": "4757dd44018e55193b4da7f0af518afdc4d5a6faf4e6a6c70dbec743f64e2225",
+      "members": [
+        {
+          "name": "compare_labeled_t1.capture.json",
+          "bytes": 553,
+          "sha256": "63721d785deaeb5b1051426604dc24f13436737f1547d84f973ee49e777e1589"
+        },
+        {
+          "name": "compare_labeled_t1.png",
+          "bytes": 235221,
+          "sha256": "988a7a36331b86f285f33cbe1eb066b694d28d0b323ea72cdcdc0b1249c7fe64"
+        },
+        {
+          "name": "compare_labeled_t256.capture.json",
+          "bytes": 555,
+          "sha256": "48b4887be4c09bd0c756eb095c2a091b88f1e936f3050ed560547540a9ad3a3c"
+        },
+        {
+          "name": "compare_labeled_t256.png",
+          "bytes": 315536,
+          "sha256": "b4a7d1c5a6013f63cd62183d4dcee1d4f14c6195bb5c3b711abec4ba18876bdc"
+        },
+        {
+          "name": "compare_labeled_t32.capture.json",
+          "bytes": 554,
+          "sha256": "376d859cd31a3c14d9933cbbc7fdd60fb437f74ab8aa027f39b5f1f99c70a09d"
+        },
+        {
+          "name": "compare_labeled_t32.png",
+          "bytes": 312435,
+          "sha256": "a6477f862c363d351cb2b5e1d976221b7b0bc562182d3c6ab8f35aafdefd7691"
+        },
+        {
+          "name": "compare_t256.capture.json",
+          "bytes": 555,
+          "sha256": "48b4887be4c09bd0c756eb095c2a091b88f1e936f3050ed560547540a9ad3a3c"
+        },
+        {
+          "name": "compare_t256.png",
+          "bytes": 286610,
+          "sha256": "d02fc354b837a662c32b6664346dcf67cad90b6832809d88d4314e7d5763461d"
+        },
+        {
+          "name": "selected_t128.capture.json",
+          "bytes": 368,
+          "sha256": "8b1c32b7768d95889e062561599a944da3fe7ff2d48b72a4acedd83fb3c16ee9"
+        },
+        {
+          "name": "selected_t128.png",
+          "bytes": 483992,
+          "sha256": "21fc9e847b44ece3c886110124848baca5f3538de15bcc39f7a22c6a54f18d9f"
+        },
+        {
+          "name": "untrained_t128.capture.json",
+          "bytes": 368,
+          "sha256": "a2af4a840baa4dedcafa5eb0b689e0bb584194785db7676d01a9da9d23e99a25"
+        },
+        {
+          "name": "untrained_t128.png",
+          "bytes": 464649,
+          "sha256": "a65f0286de4140fe6414f59a257edac5c22c137800449e50f0050fb04f407bec"
+        }
+      ]
+    },
+    {
+      "phase": "source-v2",
+      "purpose": "Corrected source provenance",
+      "relative_path": "v2/source-v2.tar",
+      "bytes": 337920,
+      "sha256": "6aaebb68de32992791312d6a585480e9403cb69be18e8ad7bc12258f1edc2f22",
+      "members": [
+        {
+          "name": "SOURCE_IDENTITY.json",
+          "bytes": 3417,
+          "sha256": "639cd0041700d9523af81d183c7c872d11636eb525cd67b42788262bced08109"
+        },
+        {
+          "name": "tracked_diff.patch",
+          "bytes": 16724,
+          "sha256": "6c3806da53883908fa010fc6539bfdc811b12fc13946a81c63452b1b312f35fb"
+        },
+        {
+          "name": "working_tree_source.tar",
+          "bytes": 307200,
+          "sha256": "8cf7d756067cb54c1f49fd77cb30b1b3e97f6fd7e16436595810a606b240f1e4"
+        }
+      ]
+    },
+    {
+      "phase": "audit-correction-v2",
+      "purpose": "Preserved superseded analysis/report and correction/Rust-crosscheck evidence",
+      "relative_path": "v2/audit-correction-v2.tar",
+      "bytes": 460800,
+      "sha256": "fa507f7d6262fe1f92eb4561c339c485d86c386145c3aac2706af6f97cfe2fd4",
+      "members": [
+        {
+          "name": "CORRECTION.json",
+          "bytes": 577,
+          "sha256": "4009c54b7c256cee165fd7dd49dd9e605f23de32daef58bfdc06157a9c5b1d77"
+        },
+        {
+          "name": "DIFFERENCE_CHECK.json",
+          "bytes": 2534,
+          "sha256": "c8358d18a41d48733fe36162fcecd5890e2e078bba27093e71dfbba39e2a3d81"
+        },
+        {
+          "name": "m6-analysis-corrected-v2.json",
+          "bytes": 133658,
+          "sha256": "f37bffc5d70b3e3c1c34da96cc38f8452fbada3b444410f59c96f6d286c8f3ec"
+        },
+        {
+          "name": "moebius-m6-clippy-v4.log",
+          "bytes": 378,
+          "sha256": "4122390330248983c70983aa754293f249c6b8428ca2a1f98e4eb30d45ffe987"
+        },
+        {
+          "name": "moebius-m6-mechanism-build.log",
+          "bytes": 300,
+          "sha256": "a7f8369dccf3566510061c824b3159db1e4f7bf2d42850f1a36e1222d53d5c52"
+        },
+        {
+          "name": "moebius-m6-mechanism-corrected.json",
+          "bytes": 2199,
+          "sha256": "bf2dc3ec253152650958635c10a5eec07c8575d28140fff51738b905c2a73b68"
+        },
+        {
+          "name": "moebius-m6-restored-analysis-v2.log",
+          "bytes": 198,
+          "sha256": "fc5ffca574e9424ac21d14a9adfac133e7a0dbb26b84377e526b5605005d102b"
+        },
+        {
+          "name": "moebius-m6-workspace-tests-v4.log",
+          "bytes": 9601,
+          "sha256": "ee28778eb1064e989a5a6727b90dcd5b4653bd1be4b13356e7b8ed878886ab91"
+        },
+        {
+          "name": "superseded_analysis_v1.json",
+          "bytes": 133642,
+          "sha256": "123c708424c3b89b49774b4ca00f21175e2b5db86413a4249438a9d8b4e7c35c"
+        },
+        {
+          "name": "superseded_report_v1.md",
+          "bytes": 16813,
+          "sha256": "276580ea47e77bc8c4975720118d8cfcb035adcb45b9c4c06e18ad1f82f2a011"
+        },
+        {
+          "name": "superseded_restored_reanalysis_v1.json",
+          "bytes": 133642,
+          "sha256": "dbff0390aa33491ee273abbd8f27ee8f46c82a7962c5d61cbacdaf2cf07aad47"
+        },
+        {
+          "name": "superseded_source_identity_v1.json",
+          "bytes": 2979,
+          "sha256": "37c7b3a20dd5d85fed694efbb960f4a12175374248df1e3870b4e3c1f8396b6e"
+        }
+      ]
+    }
+  ],
+  "working_copies_retained": true,
+  "restore": "python3 python/m6_artifacts.py unpack NEW_DIRECTORY",
+  "git_purpose": {
+    "purpose": "Authoritative reports, analysis/statistics, protocol/config/source identity, archive/member hashes, replay summaries, selected/untrained small genotype metadata and demo configuration",
+    "large_traces_in_git": false
+  },
+  "external_index_path": "v2/ARCHIVE_INDEX.json",
+  "version_policy": "v1 untouched, v2 source/correction addenda only. Keep both directories; no duplicated raw traces."
+}

@@ -381,57 +381,6 @@ pub fn food_clot_mesh() -> Mesh {
     s.mesh()
 }
 
-pub fn write_slime(
-    mesh: &mut Mesh,
-    paths: &std::collections::BTreeMap<u64, Vec<(u64, [f32; 3])>>,
-    tick: u64,
-) {
-    let mut sculpt = Sculpt::new();
-    // Fair per-animal budget: late IDs are not starved by the first long path.
-    let per_cell = (16_384 / paths.len().max(1)).clamp(2, 96);
-    for path in paths.values() {
-        let step = path.len().div_ceil(per_cell + 1).max(1);
-        let visible: Vec<_> = path.iter().filter(|(t, _)| *t <= tick).collect();
-        for index in (0..visible.len().saturating_sub(1)).step_by(step) {
-            let end = (index + step).min(visible.len() - 1);
-            if visible[index..=end].windows(2).any(|pair| {
-                Vec3::from_array(pair[0].1).distance(Vec3::from_array(pair[1].1))
-                    > crate::layout::SPACING * 2.0
-            }) {
-                continue;
-            }
-            let (time, a) = *visible[index];
-            let (_, b) = *visible[end];
-            let age = tick.saturating_sub(time) as f32 / 192.0;
-            let distance = Vec3::from_array(a).distance(Vec3::from_array(b));
-            if distance < 0.003 || distance > crate::layout::SPACING * 2.0 {
-                continue;
-            }
-            // The ribbon is only the wet gloss. The lasting thread is flesh.
-            let wet = (1.0 - age * 0.35).clamp(0.62, 1.0);
-            sculpt.tint = [0.45, 0.58, 0.32, 0.42 * wet];
-            sculpt.tube(
-                Vec3::from_array(a),
-                Vec3::from_array(b),
-                0.03 * wet,
-                0.026 * wet,
-                6,
-            );
-        }
-    }
-    if sculpt.positions.is_empty() {
-        sculpt.tint = [0.0; 4];
-        sculpt.tube(Vec3::ZERO, Vec3::Y * 0.001, 0.001, 0.001, 3);
-    }
-    mesh.remove_attribute(Mesh::ATTRIBUTE_JOINT_INDEX);
-    mesh.remove_attribute(Mesh::ATTRIBUTE_JOINT_WEIGHT);
-    mesh.insert_attribute(Mesh::ATTRIBUTE_POSITION, sculpt.positions);
-    mesh.insert_attribute(Mesh::ATTRIBUTE_NORMAL, sculpt.normals);
-    mesh.insert_attribute(Mesh::ATTRIBUTE_UV_0, sculpt.uvs);
-    mesh.insert_attribute(Mesh::ATTRIBUTE_COLOR, sculpt.colors);
-    mesh.insert_indices(Indices::U32(sculpt.indices));
-}
-
 pub fn bone_cage(extent: Vec3, thickness: f32) -> Mesh {
     let mut sculpt = Sculpt::new();
     let half = extent * 0.5;

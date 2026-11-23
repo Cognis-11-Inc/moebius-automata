@@ -34,6 +34,9 @@ pub struct DeathRecord {
 
 #[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
 pub struct TickReceipt {
+    /// Material relocated locally by sculpting; no net change in flesh stock.
+    #[serde(skip_serializing_if = "zero_units")]
+    pub sculpted: u64,
     pub tick_after: u64,
     pub external_input: u64,
     pub reservoir_to_field: u64,
@@ -56,6 +59,10 @@ pub struct TickReceipt {
     pub excavated: u64,
     /// Reservoir material condensed into lasting flesh on a vacated site.
     pub trail_laid: u64,
+}
+
+fn zero_units(value: &u64) -> bool {
+    *value == 0
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -695,6 +702,12 @@ impl World {
         &mut self,
         controls: Option<&BTreeMap<u64, Vec<i32>>>,
     ) -> Result<TickReceipt, Error> {
+        let permanent_terrain = self.permanent_terrain();
+        let can_sculpt = self
+            .config
+            .farm
+            .as_ref()
+            .is_some_and(|f| f.terrain_law == crate::config::TerrainLaw::ConservedSculptV1);
         let tick = self.tick;
         let inflow = self.config.inflow_per_tick;
         if inflow > 0 {
@@ -1069,19 +1082,35 @@ impl World {
             }
         }
         let mut excavated = 0u64;
+        let mut sculpted = 0u64;
         let mut digging_paid = std::collections::BTreeSet::new();
         let mut digging_cost = 0u64;
         for (id, (action, _, _, _)) in &decisions {
+            if permanent_terrain && !can_sculpt {
+                break;
+            }
             if self.brains[id].neural.is_some() {
                 continue;
             }
             if *action < DIG_START || self.brains[id].joints[SPINE_JOINTS] > 0 {
                 continue;
             }
-            let cell = self.cells.get_mut(id).expect("digging cell");
+            let cell = &self.cells[id];
             let target = crate::step_site(cell.site, action_dir(*action)?, dims)?;
             let amount = self.flesh.get(&target).copied().unwrap_or(0);
             if amount == 0 || cell.energy < 1 {
+                continue;
+            }
+            if can_sculpt {
+                let destination = cell.site;
+                let moved = self.sculpt_transfer(target, destination)?;
+                if moved > 0 {
+                    self.cells.get_mut(id).unwrap().energy -= 1;
+                    digging_paid.insert(*id);
+                    digging_cost += 1;
+                    sculpted += moved;
+                    self.brains.get_mut(id).unwrap().last_dig = moved;
+                }
                 continue;
             }
             // Chewed tissue becomes waste rather than disappearing or creating food.
@@ -1092,13 +1121,16 @@ impl World {
                 self.flesh.insert(target, amount - removed);
             }
             self.waste = add(self.waste, removed, "excavated tissue")?;
-            cell.energy -= 1;
+            self.cells.get_mut(id).unwrap().energy -= 1;
             digging_paid.insert(*id);
             digging_cost += 1;
             excavated += removed;
             self.brains.get_mut(id).expect("digging brain").last_dig = removed;
         }
         for id in decisions.keys() {
+            if permanent_terrain && !can_sculpt {
+                break;
+            }
             let Some(state) = self.brains[id].neural.as_ref() else {
                 continue;
             };
@@ -1110,7 +1142,10 @@ impl World {
                 .enumerate()
                 .filter(|(_, b)| b.axis == crate::neural::schema::Axis::Jaw)
                 .any(|(i, _)| {
-                    state.body.rates[i] < 0 && state.body.loads[i] > 0 && state.body.efforts[i] < 0
+                    state.body.rates[i] < 0
+                        && state.body.loads[i] > 0
+                        && state.body.efforts[i] < 0
+                        && (!can_sculpt || state.actuator_drive()[i] < -256)
                 });
             if !jaw_closed || self.cells[id].energy < 1 {
                 continue;
@@ -1118,6 +1153,18 @@ impl World {
             let target = self.neural_jaw_target(&self.cells[id], state);
             let amount = self.flesh.get(&target).copied().unwrap_or(0);
             if amount == 0 {
+                continue;
+            }
+            if can_sculpt {
+                let destination = self.cells[id].site;
+                let moved = self.sculpt_transfer(target, destination)?;
+                if moved > 0 {
+                    self.cells.get_mut(id).unwrap().energy -= 1;
+                    self.brains.get_mut(id).unwrap().last_dig = moved;
+                    digging_paid.insert(*id);
+                    digging_cost += 1;
+                    sculpted += moved;
+                }
                 continue;
             }
             let removed = amount.min(2);
@@ -1238,6 +1285,7 @@ impl World {
         self.tick = add(self.tick, 1, "tick")?;
 
         Ok(TickReceipt {
+            sculpted,
             tick_after: self.tick,
             external_input: inflow,
             reservoir_to_field: injected,
@@ -1574,9 +1622,38 @@ impl World {
         Ok((births, disposed))
     }
 
-    /// One neighbor flesh unit per clot becomes nutrient. No new matter.
-    /// A clot with no adjacent thread does not recover by this rule.
+    /// Paid cut material moves from reachable jaw/action site to the body's site.
+    /// Placement is local, capacity bounded, and never converted into exportable waste.
+    fn sculpt_transfer(&mut self, source: Site, destination: Site) -> Result<u64, Error> {
+        if source == destination {
+            return Ok(0);
+        }
+        let stock = self.flesh.get(&source).copied().unwrap_or(0);
+        let receiving = self.flesh.get(&destination).copied().unwrap_or(0);
+        let moved = stock.min(2).min(64 - receiving);
+        if moved == 0 || (receiving == 0 && self.flesh.len() >= 8192 && stock > moved) {
+            return Ok(0);
+        }
+        if stock == moved {
+            self.flesh.remove(&source);
+        } else {
+            self.flesh.insert(source, stock - moved);
+        }
+        self.flesh.insert(destination, receiving + moved);
+        Ok(moved)
+    }
+
+    fn permanent_terrain(&self) -> bool {
+        self.config
+            .farm
+            .as_ref()
+            .is_some_and(|f| f.terrain_law != crate::config::TerrainLaw::RecyclableV1)
+    }
+    /// Historical recycling only: one neighbor flesh unit becomes clot nutrient.
     fn compost(&mut self) -> Result<(), Error> {
+        if self.permanent_terrain() {
+            return Ok(());
+        }
         let dims = self.dims();
         let origins = {
             let Some(food) = self.config.feeding.as_ref() else {

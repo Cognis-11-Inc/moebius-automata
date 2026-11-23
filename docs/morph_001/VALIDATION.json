@@ -1,0 +1,110 @@
+{
+  "date_local": "2026-11-23",
+  "mission": "MORPH-001",
+  "verdict": "SUCCESS for the bounded first slice",
+  "gates": {
+    "G1": "PASS within report scope",
+    "G2": "PASS within report scope",
+    "G3": "PASS within report scope",
+    "G4": "PASS within report scope",
+    "G5": "PASS within report scope",
+    "G6": "PASS within report scope"
+  },
+  "population": {
+    "attachment_topology": "individually closed tubes; barycentric roots overlap-mounted, not welded union",
+    "configurations": 100,
+    "cross_platform_bit_identity": "NOT DEMONSTRATED",
+    "distinct_body_position_digests": 100,
+    "distinct_rest_geometry_digests": 100,
+    "environment": "x86_64",
+    "failed": [],
+    "maximum_attachment_error": 0.0,
+    "mechanical_capability": "unbound preview; no new locomotion, feeding or learning",
+    "minimum_double_triangle_area": 2.1619300241582096e-05,
+    "passed": 100,
+    "poses_checked": 800,
+    "repeatable_definition_and_geometry_count": 100,
+    "save_reload_count": 100,
+    "self_intersection": "Not globally certified; manifold/degeneracy/root checks only. Inspect live witnesses separately.",
+    "status": "PASS"
+  },
+  "live_walkthrough": {
+    "failure": null,
+    "note": "Real Bevy generated meshes; keyboard injection uses ordinary editor handlers. Mouse gestures are implemented; automated orbit uses Alt+arrow.",
+    "saved_digest": "81eb5a003ed7b17ff48cb78cbf56e398d490a58f1414192f9b692007d937a0cf",
+    "saved_reloaded_geometry_matches": true,
+    "screenshots": 31,
+    "status": "PASS"
+  },
+  "headless_capture_replay": {
+    "body_positions_changed": true,
+    "captures_replayed": 31,
+    "consumer": "headless moebius-morph; no Bevy",
+    "flagellar_positions_changed": true,
+    "motion_phase_samples": 23,
+    "seed_variants": 3,
+    "status": "PASS"
+  },
+  "workspace_tests": {
+    "passed": 117,
+    "failures": 0,
+    "log": "source-v2/workspace-tests-smooth.log"
+  },
+  "clippy": "PASS all workspace targets, warnings denied",
+  "format": "PASS",
+  "preservation": {
+    "status": "PASS",
+    "baseline_head": "8e351e212d1f979a32b1bb3a862719a06ea1b70d",
+    "baseline_files": 1998,
+    "allowed_changes": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "HANDOFF.md",
+      "README.md"
+    ],
+    "actual_changed_baseline_files": [
+      "Cargo.lock",
+      "Cargo.toml",
+      "HANDOFF.md",
+      "README.md"
+    ],
+    "protected_existing_files_unchanged": 1994
+  },
+  "donor_reuse": "Independent code; no donor source/assets imported",
+  "limitations": [
+    "Cross-platform float identity not demonstrated",
+    "Global self-intersection not certified",
+    "Overlap-mounted flagellar roots, not welded unions",
+    "No simulation/motor/controller binding",
+    "Near-closed mouth retains a positive seam",
+    "No generalized skeletal rig or full component editor"
+  ],
+  "failures_retained": [
+    "First Bevy API build failures",
+    "MouseWheel test API compile failure",
+    "Clippy failures corrected",
+    "Earlier clipped UI and unsupported glyph witnesses",
+    "Donor-B offline resolution failure; tests NOT RUN"
+  ],
+  "publication": "uncommitted; no push",
+  "archive_verification": {
+    "status": "PASS",
+    "archives": 9,
+    "files": 326,
+    "raw_bytes": 89064694,
+    "volume_uuid": "D0A02EEBA02ED82C"
+  },
+  "restored_standalone_reproduction": {
+    "status": "PASS",
+    "tests_passed": 10,
+    "captures_replayed": 31,
+    "required_dependency_pins_unchanged": true,
+    "details": "RESTORE_VERIFICATION.json"
+  },
+  "source_revision_v2": {
+    "purpose": "Source-only correction: common period for fractional-frequency authored preview channels; regression checks wrap continuity. No engine anatomy/output change.",
+    "continuous_wrap_regression": "PASS",
+    "engine_population_and_existing_pose_digests": "unchanged",
+    "earlier_v1_archives": "Preserved unchanged; source-only v2 revision adds the preview wrap fix and regression."
+  }
+}
