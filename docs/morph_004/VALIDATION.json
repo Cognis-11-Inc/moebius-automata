@@ -17,7 +17,16 @@
     }
   ],
   "static": "workspace/all-target strict Clippy and fmt passed offline",
-  "full_workspace_suite": "PENDING authorized clean local commit",
+  "full_workspace_suite": {
+    "status": "PASS",
+    "revision": "76c4234583869324a8a5c7838b1a50d1875081bf",
+    "clean_before": true,
+    "clean_after": true,
+    "command": "cargo test --workspace --offline -- --test-threads=8",
+    "exit_code": 0,
+    "passed": 146,
+    "log_sha256": "533966406c4acf3319d65a86c36260620d2e83f15ff8c9a35620295a22d4850b"
+  },
   "honest_red": "HONEST_RED.json; nine red/green cases",
   "observation_comparison": "Exact per-tick A/B/C and repeat digests at100/1000/10000, plus exact rendered/headless final state120ticks",
   "preservation": "All baseline nursery/core, MaterialBook source, morphology compiler and original anatomy tests unchanged; exact hashes checked from baseline identity",
@@ -28,5 +37,6 @@
     "All deliberate red cases"
   ],
   "gpu_performance": "NOT_MEASURED separately; CPU witness/frame intervals measured, no volumetric prototype",
-  "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)"
+  "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+  "implementation_commit": "76c4234583869324a8a5c7838b1a50d1875081bf"
 }

@@ -44,8 +44,8 @@
     },
     {
       "path": "01_CANON/SHIP_DIMENSIONS.md",
-      "bytes": 1175,
-      "sha256": "174e148f44375c170f393a2ca577b7fea3daf77fb4bd3e860d62a45281ad195f"
+      "bytes": 1257,
+      "sha256": "03166dcac6f5107f6fc84fa58e33ebd0e0f6fac3fabc933c9c2c50fbe871d7d5"
     },
     {
       "path": "02_ANATOMY/COMPONENT_LIBRARY.md",
@@ -109,8 +109,8 @@
     },
     {
       "path": "07_EXPERIMENTS/MORPH_004.md",
-      "bytes": 1247,
-      "sha256": "e89d3b9c8490b932e2a5d8b5febfd75092a0b75ffb9ae299bdaf5eb1178079c7"
+      "bytes": 1348,
+      "sha256": "596b3b25e2559237b69428f05fe2062b682e9649118bb71d5b2343d94d5a6708"
     },
     {
       "path": "08_ARCHITECTURE/ANATOMY_SPEC_V2.md",
@@ -119,8 +119,8 @@
     },
     {
       "path": "08_ARCHITECTURE/HYBRID_STACK.md",
-      "bytes": 1113,
-      "sha256": "e58b9e87d5f7da29e56d9b66ecebb0d4c5ddb97e783b9682588537eb51902741"
+      "bytes": 1195,
+      "sha256": "0188be8b983a9ad4a046ed95b527c234e7e48e0bfd956849e4d82337c11963a0"
     },
     {
       "path": "08_ARCHITECTURE/INDEX.md",
@@ -129,23 +129,23 @@
     },
     {
       "path": "08_ARCHITECTURE/INTERVENTION_BOUNDARY.md",
-      "bytes": 1221,
-      "sha256": "bf5f7c37269ab5be72df375bdb034db6703f5f2034bf9cf36266225a9ce598b0"
+      "bytes": 1303,
+      "sha256": "c82d0ba96efcc4eb94a6b63bd3fb5938b3971e8ab795f9728971fc4a31d48bec"
     },
     {
       "path": "08_ARCHITECTURE/LIGHT_PORT_BOUNDARY.md",
-      "bytes": 1171,
-      "sha256": "9c020e9d4bc776630f174b44d8e692f2ddb59e26aff770b3c19ee08d085465d1"
+      "bytes": 1253,
+      "sha256": "2ccf7732bbcb224869d70773ea1c693b5b016e98ffa917bc7d8eef5312ff591b"
     },
     {
       "path": "08_ARCHITECTURE/WITNESS_SPHERE.md",
-      "bytes": 1156,
-      "sha256": "d67c6d8330759fade766a5393b88366447d9103b9ffc5b3a9989bdcf10ea8160"
+      "bytes": 1238,
+      "sha256": "fe5877166c75429bad1bc42856785a72eef372a6f397df24bda01d12cc5fddd2"
     },
     {
       "path": "08_ARCHITECTURE/WORLD_AUTHORITY.md",
-      "bytes": 1220,
-      "sha256": "14bc6a1cc02198201333725e9cb6259cb324c2e09417c6a8bec834e76f3fce96"
+      "bytes": 1302,
+      "sha256": "812bc269e68edc75574557fc1b31ec0f97076ae922c75e5c04d5c44d5bbafd85"
     },
     {
       "path": "09_EVIDENCE/EVIDENCE_POLICY.md",
@@ -159,13 +159,13 @@
     },
     {
       "path": "09_EVIDENCE/MORPH_004_DONORS.md",
-      "bytes": 1352,
-      "sha256": "a20fdf31e7687f7ee9cb694b511879ebe551cffdaaf3a87f6b69615c4dfeb203"
+      "bytes": 1434,
+      "sha256": "29a7aff24105eebd0f7ed3dc82cd81d646706af30ea0618fd27f8cf359f540aa"
     },
     {
       "path": "09_EVIDENCE/MORPH_004_LIMITS.md",
-      "bytes": 1280,
-      "sha256": "ebb6e928afcbe0920fe72026ab1f8f39efcb73b4a026cd2cc53adf3011277214"
+      "bytes": 1362,
+      "sha256": "c7f7ca11d0fd582c4beef256cdf9d3d11332e24dbf2752803abc25ed1d54df5a"
     },
     {
       "path": "90_INBOX/INDEX.md",
@@ -209,5 +209,5 @@
     }
   ],
   "snapshot_note": "Rehashed after the clean MORPH-003 suite on a8cb705. Six edited notes cite that implementation commit. Ship design canon is unchanged.",
-  "latest_update": "MORPH-004 option2 runtime/neutrality implementation; focused gates pass; clean-commit full suite pending. Independent immutable Mermogon archive preserves all versions."
+  "latest_update": "MORPH-004 option2 canonical ship runtime:146-test clean implementation suite passed on76c4234; Atlas independently archived and interpretive."
 }

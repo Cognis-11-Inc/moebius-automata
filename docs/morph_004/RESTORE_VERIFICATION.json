@@ -1,12 +1,12 @@
 {
   "status": "PASS",
-  "version": 4,
-  "archives": 19,
-  "files": 477,
-  "raw_bytes": 9936608,
+  "version": 5,
+  "archives": 21,
+  "files": 524,
+  "raw_bytes": 10003069,
   "volume_uuid": "D0A02EEBA02ED82C",
-  "index_sha256": "209dd98811dc9a96602eb5005070d3a0f636246345ab70db44fbc15439bed255",
-  "restored_working_copy": "/home/cognis/.cache/moebius-automata/morph-004/restore-runtime-v3",
+  "index_sha256": "97bbd606c0e0c15e2fe82a3be6006365128c69275b0e4958c710078f6fedbd5d",
+  "restored_working_copy": "/home/cognis/.cache/moebius-automata/morph-004/restore-runtime-v4",
   "restoration": "Every archive/member/restored file hash checked; previous versions/cache retained",
-  "source_overlay": "runtime-source-v3/SOURCE_MAP.json over NEW recorded base checkout; restored10 runtime/lifetime tests passed using existing offline dependencies"
+  "source_overlay": "runtime-source-v3/SOURCE_MAP.json over NEW recorded base checkout; use available offline dependencies, not a fresh-machine portability claim"
 }

@@ -1,5 +1,9 @@
 # MORPH-004 — Authorized free-space world convergence
 
+Implementation76c4234583869324a8a5c7838b1a50d1875081bf;146 workspace tests
+pass on that clean source state. Final documentation revision is retested;
+local attestation: git notes --ref=morph-004-validation show HEAD.
+
 Operator ruling received: **option2**. Promote and extend the MORPH-003
 free-space substrate as the canonical MŒBIUS ship runtime. Preserve core World
 as the separate nursery experiment with its existing laws, tests and formats.

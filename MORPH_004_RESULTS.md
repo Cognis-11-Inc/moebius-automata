@@ -1,13 +1,13 @@
 # MORPH-004 — The unobserved world
 
-2026-11-23. **PARTIAL pending clean-commit broad-suite certification.** The
+2026-11-23. **DONE for the bounded runtime foundation.** The
 operator selected option2: promote MORPH-003's free-space substrate into the
 canonical ship runtime, preserving the lattice World as a separate nursery
 experiment. The focused runtime, neutrality, persistence, intervention,
 coordinate and rendered comparisons pass. No push is authorized.
 
-Base main20f0febb0cdc8e613ae36dfc6ed1abe529994d52. This implementation is
-currently uncommitted. The earlier blocked investigation remains in
+Base main20f0febb0cdc8e613ae36dfc6ed1abe529994d52. Implementation commit76c4234583869324a8a5c7838b1a50d1875081bf
+passed the full workspace suite on a clean tree:146 tests,0 failures. The earlier blocked investigation remains in
 [INVESTIGATION_RESULTS.md](docs/morph_004/INVESTIGATION_RESULTS.md); its original
 Mermogon archive is unchanged. The explicit ruling and authored metric mapping
 are in [CONVERGENCE_DECISION.json](docs/morph_004/CONVERGENCE_DECISION.json).
@@ -57,7 +57,7 @@ the same rest pose. MORPH-001/002/003 editors and their animation remain intact.
 | G6 snapshots/replay | PASS in this build | Full state/config/future interventions/events persisted; continuation equality; invalid clocks, stocks, identity, local coordinates and duplicated emission events rejected |
 | G7 ship coordinates | PASS in sampled envelope | Normalized1000m regions and integer micro-units; exact1µm differences, region crossings, instance/parcel translations at30,000km/1,500km; checked bounds; camera-relative f32 after subtraction |
 | G8 performance | PASS for stated measurements |100/1000/10000 actual fixture instances,16 ticks/mode; snapshot/restore/replay/selection/crossing timings; peak benchmark RSS; rendered CPU/frame timings. Isolated GPU and volumetric cost NOT_MEASURED |
-| G9 regression | FOCUSED PASS; broad gate PENDING | Existing morph/lab regressions plus10 new tests; strict workspace/all-target Clippy/format; baseline source hashes prove nursery/MaterialBook/compiler unchanged |
+| G9 regression | PASS on clean76c4234 |146 workspace tests,0 failures; strict workspace/all-target Clippy/format; nursery/MaterialBook/compiler hashes unchanged |
 | G10 provenance | PASS for implemented boundary | Operator option2 recorded; one canonical ship owner reuses existing numerical substrate; nursery explicitly separate; no imported donor code, competing ship runtime or speculative IPC |
 
 Nine honest-red/green cases are in [HONEST_RED.json](docs/morph_004/HONEST_RED.json):
@@ -163,5 +163,8 @@ python3 python/morph_002_atlas.py
 
 Raw logs, screenshots, full states/frame reports, measured trials, selected
 source and Atlas snapshots stay external; reports/configuration/source identity,
-checksums and reproducibility metadata stay in Git. Clean local commit/full
-workspace certification is the final remaining gate. No push or MORPH-005.
+checksums and reproducibility metadata stay in Git. Clean implementation commit/full workspace certification passed on76c4234.
+This documentation commit is retested afterward; its final clean-tree attestation
+is recorded locally with `git notes --ref=morph-004-validation show HEAD`,
+including exact final revision, transcript hash and external archive receipt.
+No push or MORPH-005.

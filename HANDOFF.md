@@ -1,3 +1,55 @@
+# Current checkpoint — MORPH-004 completed and locally certified (2026-11-23T20:13:50-05:00)
+
+Agent: Codex. Status: DONE for the bounded reference-world runtime foundation.
+Operator ruling option2 promotes the M3 substrate to the canonical ship runtime;
+core World remains the preserved nursery experiment. Implementation commit:
+76c4234583869324a8a5c7838b1a50d1875081bf, main. Clean before and after
+cargo test --workspace --offline -- --test-threads=8:146 tests,0 failures.
+Current changes record that result and Atlas/archive receipts only. They are
+committed locally, then final HEAD is retested. The final clean-tree certificate
+is stored in local Git: git notes --ref=morph-004-validation show HEAD.
+Local commits authorized; no push or MORPH-005. Earlier PARTIAL/BLOCKED records
+below are preserved chronological snapshots, superseded by option2 and this run.
+
+Read MORPH_004_RESULTS.md, MORPH_004_ARCHITECTURE.md and docs/morph_004/.
+ShipRuntime privately owns one state/tick and delegates unchanged MaterialBook
+laws. Witness/worker are independent of Bevy timing or listeners; no world tick
+loss on observation stalls. Typed accepted/applied interventions replay. Actual
+ship-scale instance/material tests retain1µm detail. No nursery/MaterialBook/
+anatomy compiler source changes; old lab default launch preserved. General
+headless ship_run and native moebius-world-witness are documented in README.
+
+100/1000/10000 fixtures x16ticks x3 observation modes/repeat: exact per-tick
+digests. Native120ticks/240frames/six captures equal general headless final
+state4f34d8daad96fd1fc84860a53168ed0e6580a68fae095bbdf3ed7bf4b3154552.
+Restored final29-source-member overlay passes10 tests in existing offline cache.
+Nine source/consumer red mutations fail and restored guards pass; all failures,
+superseded protocol and initial native panic remain archived with provenance gaps
+explicit. Strict Clippy/format pass.10000 fixture world ticks~91/s, final state
+49,482,155bytes; whole-benchmark peakRSS311432KiB. Linear scans, full-state copies
+and retained history remain limits. No isolated GPU/fog measurements.
+
+Mermogon UUIDD0A02EEBA02ED82C reverified. Combined immutable evidence root:
+/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-004
+Index 2026-11-23-runtime/v4/COMBINED_INDEX.json SHA25697bbd606c0e0c15e2fe82a3be6006365128c69275b0e4958c710078f6fedbd5d.
+21 archives/524 files/10003069 raw bytes,
+all archive/member/restored hashes PASS. Earlier versions and cache retained.
+Final post-documentation test transcript/certificate is independently archived
+and its verified receipt attached to the final HEAD's Git note, leaving the
+tested source tree unchanged. Main manifest identifies the pre-documentation
+suite and experiment evidence; note identifies the final retest addendum.
+Atlas on Stable Diffusion Drive UUID8CA451CDA451BA82:39notes/164links verified;
+final notes name76c4234 and prior snapshots remain external.
+
+Non-claims: prescribed drift/exposure/emission/transport fixtures are not neural
+organisms, metabolism, locomotion, learning, reproduction, interactions or ecology.
+No atmosphere/hull/thermal solver, fog prototype, live Lisp/Python transport,
+million-organism or decades-long support. Fixed-rest nozzle binding only.
+Next slice requires a new operator directive; do not begin005 automatically.
+Safe first commands: git status --short; git log -1; git notes --ref=morph-004-validation show HEAD.
+
+---
+
 # Current checkpoint — MORPH-004 option2 implemented (2026-11-23T20:10:45-05:00)
 
 Agent: Codex. Status: PARTIAL pending authorized clean-commit full suite.

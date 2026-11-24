@@ -122,6 +122,25 @@
           "destination": "Mermogon immutable archive"
         }
       ]
+    },
+    {
+      "archive_version": "v4",
+      "groups": [
+        {
+          "phase": "clean-suite-implementation",
+          "purpose": "Exact clean implementation76c4234 suite and restoration/static/compatibility certificates",
+          "files": 8,
+          "bytes": 25399,
+          "destination": "Mermogon immutable archive"
+        },
+        {
+          "phase": "atlas-final",
+          "purpose": "Final independently versioned Atlas records referencing clean146-test implementation",
+          "files": 39,
+          "bytes": 41062,
+          "destination": "Mermogon immutable archive"
+        }
+      ]
     }
   ]
 }
