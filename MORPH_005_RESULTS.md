@@ -1,5 +1,9 @@
 # MORPH-005 — The first filament
 
+Preview follow-up: the default construction demo now moves head-first with a
+warm chitin filament. Original measurements below retain their original fixture;
+see [follow-up evidence](docs/morph_005/HEAD_FIRST_FOLLOWUP.json).
+
 2026-11-23. **Engineering/scientific gates PASS; visual acceptance PARTIAL (Operator review pending).** The
 finite-material construction and mandatory navigation addendum are implemented.
 Focused tests, seven red/green demonstrations, A–H experiments and rendered

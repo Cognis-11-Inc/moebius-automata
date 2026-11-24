@@ -1,0 +1,69 @@
+{
+  "status": "Focused and native replay PASS; uncommitted follow-up, human usability acceptance unclaimed",
+  "base_revision": "17989572fecf9874747c77a28286cae05ac9af3b",
+  "reason": "Anatomical mouth is+Z, original demonstration travels mainly+X with identity yaw: sideways drift.",
+  "implementation": "New head-first scenario aligns yaw to forward path differences; vertical amplitude0.12m (old curved0.8m) so yaw-only forward alignment>0.99. Same recorded rigid pose rotates authoritative nozzle and rendered anatomy; existing curved/straight/vertical/gap fixtures unchanged.",
+  "color": "warm muted chitin/flesh [0.48,0.30,0.22] linear vertex RGB; UI label Ochre",
+  "tests": {
+    "focused": 50,
+    "command": "cargo test -p moebius-morph -p moebius-morph-lab --offline -- --test-threads=8",
+    "new_test": "head_first_demo_keeps_the_actual_mouth_ahead_and_conserves_material",
+    "clippy": "morph and morph-lab all targets -D warnings PASS",
+    "fmt": "PASS",
+    "full_suite": "NOT RUN for this dirty follow-up;156test certificate applies to base1798957 only"
+  },
+  "native": {
+    "frames": 320,
+    "captures": 6,
+    "ticks": 360,
+    "final_digest": "d0a45a4611f0b3324716c22b4be945c1d2aad84ca6fbbd3762c71c238593ad81",
+    "replay": {
+      "consumer": "headless moebius-morph; no renderer",
+      "final_digest": "d0a45a4611f0b3324716c22b4be945c1d2aad84ca6fbbd3762c71c238593ad81",
+      "final_tick": 360,
+      "frames_verified": 320,
+      "per_frame_state_and_mesh_budget_match": true,
+      "reset_histories_verified": 1,
+      "status": "PASS"
+    },
+    "final_quantities": {
+      "bound": 359,
+      "free": 1
+    },
+    "visual_check": "Inspected frame055: head leads, warm tube trails from actual nozzle; authored motion only"
+  },
+  "source_overlay": {
+    "base_revision": "17989572fecf9874747c77a28286cae05ac9af3b",
+    "members": [
+      {
+        "repository_path": "crates/moebius-morph/src/filament.rs",
+        "member": "crates__moebius-morph__src__filament.rs",
+        "bytes": 18252,
+        "sha256": "085e4cb01daa36e3b9930d5a82007c3ac6c198e98e0469701cebe90047d699f7"
+      },
+      {
+        "repository_path": "crates/moebius-morph/tests/filament.rs",
+        "member": "crates__moebius-morph__tests__filament.rs",
+        "bytes": 13210,
+        "sha256": "6493db8a9205155fa477c97932ed35599e539a49ef42eae5c5079c5eec0968f3"
+      },
+      {
+        "repository_path": "crates/moebius-morph-lab/src/bin/moebius-world-witness.rs",
+        "member": "crates__moebius-morph-lab__src__bin__moebius-world-witness.rs",
+        "bytes": 33163,
+        "sha256": "51f43ac9978e0b99d0207b97b33f174b64ef0b165b05e1590b8e7b9fc5c71def"
+      }
+    ]
+  },
+  "atlas_update": {
+    "member": "atlas__07_EXPERIMENTS__MORPH_005.md",
+    "atlas_relative_path": "07_EXPERIMENTS/MORPH_005.md",
+    "bytes": 2219,
+    "sha256": "865f06f920bf9a31c693a48807b28824869263117a57e24bda254e62d75945c9",
+    "prior_version": "Mermogon v3 addendum, ATLAS_SNAPSHOTS.certified"
+  },
+  "failures_preserved": [
+    "Initial native build and Clippy failed on a format-string typo in label edit; fixed before native run. Both logs retained. Exact failed source image not captured; diagnostic identifies one-character correction."
+  ],
+  "archive": "ARTIFACT_STORAGE.json immutable v5 addendum; final base certification v4 remains separately referenced by its Git note."
+}

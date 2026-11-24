@@ -185,3 +185,116 @@ fn mouth_seam_interior_and_nozzle_are_real_geometry() {
     let d = nozzle.ray_distance(origin, direction).unwrap();
     assert!(d > 0.3, "nozzle aperture blocked by exterior cap: {d}");
 }
+fn dot(a: [f32; 3], b: [f32; 3]) -> f32 {
+    a.iter().zip(b).map(|(x, y)| x * y).sum()
+}
+fn sub(a: [f32; 3], b: [f32; 3]) -> [f32; 3] {
+    std::array::from_fn(|i| a[i] - b[i])
+}
+fn length(a: [f32; 3]) -> f32 {
+    dot(a, a).sqrt()
+}
+/// Spine and nozzle roots spread into the trunk colour and sit under the skin.
+/// Flagella stay narrow tubes seated on the attachment point. Separate surfaces.
+#[test]
+fn spine_and_nozzle_roots_fuse_into_body_flesh() {
+    let spec = AnatomySpec::showcase(8);
+    let skin = spec.body.appearance.skin;
+    assert_ne!(skin, [0.30, 0.24, 0.19]);
+    assert_ne!(skin, [0.31, 0.075, 0.10]);
+    let compiled = CompiledAnatomy::new(spec.clone()).unwrap();
+    for pose in [
+        Pose::rest(&spec.body),
+        Pose {
+            phase: 1.4,
+            bend: 1.,
+            mouth: 0.2,
+            flagella: 1.,
+        },
+    ] {
+        let posed = compiled.pose(pose).unwrap();
+        posed.geometry.audit().unwrap();
+        assert_eq!(posed.outputs.len(), 1);
+        let mut flesh = 0;
+        let mut flagella = 0;
+        for (i, component) in spec.components.iter().enumerate() {
+            let (kind, radius, distal) = match component.shape {
+                Shape::Spine { radius, .. } => ("spine", radius, [0.30, 0.24, 0.19]),
+                Shape::SecretionNozzle { radius, .. } => ("nozzle", radius, [0.31, 0.075, 0.10]),
+                Shape::Flagellum { radius, .. } => {
+                    ("flagellum", radius, spec.body.appearance.flagella)
+                }
+            };
+            let part = &posed.geometry.surfaces[i + 1];
+            let frame = &posed.geometry.attachments[i];
+            assert_eq!(part.positions[0], frame.origin);
+            let mut centroid = [0f32; 3];
+            let mut max_extent = 0f32;
+            let mut min_extent = f32::MAX;
+            let mut short = [0f32; 3];
+            let mut long = [0f32; 3];
+            for vertex in &part.positions[1..11] {
+                for (sum, value) in centroid.iter_mut().zip(vertex) {
+                    *sum += value;
+                }
+            }
+            for sum in &mut centroid {
+                *sum /= 10.;
+            }
+            for vertex in &part.positions[1..11] {
+                let extent = length(sub(*vertex, centroid));
+                if extent > max_extent {
+                    max_extent = extent;
+                    long = *vertex;
+                }
+                if extent < min_extent {
+                    min_extent = extent;
+                    short = *vertex;
+                }
+            }
+            let inset = dot(sub(centroid, frame.origin), frame.normal);
+            assert!(
+                inset.abs() < 1e-3,
+                "{kind} root left the attachment plane by {inset}"
+            );
+            let ratio = max_extent / min_extent;
+            let root_color = [part.colors[1][0], part.colors[1][1], part.colors[1][2]];
+            let shaft_color = [part.colors[81][0], part.colors[81][1], part.colors[81][2]];
+            assert_eq!(shaft_color, distal, "{kind} shaft left the flesh blend");
+            if kind == "flagellum" {
+                flagella += 1;
+                assert!(
+                    max_extent < radius * 1.15 && ratio < 1.2,
+                    "flagellum root extent {min_extent}..{max_extent} from {radius}"
+                );
+                assert_eq!(root_color, spec.body.appearance.flagella);
+            } else {
+                flesh += 1;
+                assert!(
+                    max_extent > radius * 1.7,
+                    "{kind} root spread {max_extent} radius {radius}"
+                );
+                assert_eq!(root_color, skin, "{kind} root is not trunk colour");
+                if kind == "spine" {
+                    assert!(
+                        ratio > 2.,
+                        "spine root is not pressed into the trunk: {ratio}"
+                    );
+                    let short_n = dot(sub(short, centroid), frame.normal).abs();
+                    let long_n = dot(sub(long, centroid), frame.normal).abs();
+                    assert!(short_n > long_n, "spine short axis is not the trunk normal");
+                } else {
+                    assert!(ratio < 1.25, "nozzle foot became a ribbon: {ratio}");
+                }
+            }
+        }
+        assert_eq!(flesh, 2);
+        assert_eq!(flagella, 8);
+        let output = &posed.outputs[0];
+        let nozzle = posed.geometry.surfaces.last().unwrap();
+        let from = std::array::from_fn(|i| output.position[i] + output.direction[i] * 0.2);
+        let toward = output.direction.map(|v| -v);
+        let gap = nozzle.ray_distance(from, toward).unwrap();
+        assert!(gap > 0.3, "fused root closed the nozzle: {gap}");
+    }
+}

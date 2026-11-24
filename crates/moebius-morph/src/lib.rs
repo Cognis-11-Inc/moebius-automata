@@ -4,6 +4,7 @@ mod anatomy;
 mod compiler;
 pub mod emission;
 pub mod filament;
+pub mod food;
 pub mod runtime;
 pub mod witness;
 pub use anatomy::*;

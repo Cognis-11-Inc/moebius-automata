@@ -1,4 +1,6 @@
 //! Editor command model, usable without a window. The morphology engine owns geometry.
+mod ambient;
+pub use ambient::{AmbientMix, adjust as ambient_keys, register as register_ambient};
 use moebius_morph::{CompiledWorm, MorphError, Organism, Pose, WormSpec};
 use std::path::PathBuf;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -257,6 +259,7 @@ mod continuity_tests {
 
 mod composition;
 pub mod emission_preview;
+pub mod gore;
 pub use composition::{ComponentField, CompositionSession, Edit};
 pub use emission_preview::{PreviewCommand, PreviewControls, world_point};
 

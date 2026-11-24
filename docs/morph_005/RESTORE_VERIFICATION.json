@@ -1,13 +1,14 @@
 {
   "status": "PASS",
-  "archives": 18,
-  "files": 404,
-  "raw_bytes": 31346640,
-  "index_sha256": "00df86748ffc73ca60c61946a0cf98d4da5f5eaa33d7dbcfb830a18158cc52a8",
+  "archives": 20,
+  "files": 437,
+  "raw_bytes": 35840982,
+  "index_sha256": "0df6f0cf78330399ea39b18af877de3eca4c9ed5b5410205525b2e4bdc57d2c0",
   "restored_to": "/home/cognis/.cache/moebius-automata/morph-005/restore-v1",
-  "scope": "Every archive/member/restored byte verified, including all failed/superseded trials. Original cache retained. Source rebuild recorded separately.",
+  "scope": "All referenced archives/member hashes reverified at publication; new v6 diagnostics restored and compared to originals; earlier restoration receipts retained.",
   "source_map": "source-final/SOURCE_MAP.json",
   "atlas_map": "docs/morph_005/ATLAS_SNAPSHOTS.json",
-  "version": 3,
-  "additional_restoration": "/home/cognis/.cache/moebius-automata/morph-005/restore-addendum-v3"
+  "version": 6,
+  "additional_restoration": "/home/cognis/.cache/moebius-automata/morph-005/restore-addendum-v5",
+  "additional_restoration_v6": "/home/cognis/.cache/moebius-automata/first-simulation-publication-20261124T152717Z/restored"
 }

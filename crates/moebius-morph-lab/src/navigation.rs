@@ -105,7 +105,7 @@ impl Navigation {
     }
     pub fn focus(&mut self, target: Position, size: f64) {
         self.pivot = target;
-        self.distance = (size * 2.5).clamp(0.3, 10000.);
+        self.distance = (size * 2.5).clamp(0.04, 10000.);
         self.orbit_position();
         self.velocity = DVec3::ZERO;
     }
@@ -138,16 +138,23 @@ impl Navigation {
     }
     pub fn wheel(&mut self, delta: f32) {
         if self.mode == NavigationMode::Flight {
-            self.speed = (self.speed * (delta as f64 * 0.15).exp()).clamp(0.02, 100.);
+            self.speed = (self.speed * (delta as f64 * 0.15).exp()).clamp(0.005, 400.);
         } else {
             let before = self.distance;
-            self.distance = (self.distance * (-delta as f64 * 0.1).exp()).clamp(0.1, 10000.);
+            self.distance = (self.distance * (-delta as f64 * 0.1).exp()).clamp(0.02, 10000.);
             let offset = self
                 .position
                 .relative(self.pivot)
                 .unwrap()
                 .map(|v| (v as f64 * self.distance / before).round() as i64);
             self.position = self.pivot.offset(offset).unwrap();
+        }
+    }
+    /// Frame a local radius while staying in orbit. Flight is left to the pilot.
+    pub fn fit(&mut self, radius: f64) {
+        self.distance = radius.clamp(0.05, 80.);
+        if self.mode == NavigationMode::Orbit {
+            self.orbit_position();
         }
     }
 }

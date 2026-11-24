@@ -1,6 +1,42 @@
 use moebius_morph::{emission::*, filament::*, runtime::*, witness::*};
 use std::collections::BTreeSet;
 #[test]
+fn head_first_demo_keeps_the_actual_mouth_ahead_and_conserves_material() {
+    let mut w = construction_fixture(20261123, 360, 512, "head-first").unwrap();
+    let rules = w.state().config.construction.as_ref().unwrap();
+    let anatomy =
+        moebius_morph::CompiledAnatomy::new(w.state().config.definitions[&1].clone()).unwrap();
+    for (k, pair) in rules.route.windows(2).enumerate() {
+        let rigid = pair[0];
+        let delta = std::array::from_fn::<_, 3, _>(|a| {
+            (pair[1].translation[a] - rigid.translation[a]) as f64
+        });
+        let length = delta.iter().map(|v| v * v).sum::<f64>().sqrt();
+        let forward = [
+            rigid.yaw_sin as f64 / SCALE as f64,
+            0.,
+            rigid.yaw_cos as f64 / SCALE as f64,
+        ];
+        let alignment = (0..3).map(|a| forward[a] * delta[a]).sum::<f64>() / length;
+        assert!(alignment > 0.99, "head must lead, tick {k}: {alignment}");
+        if k % 24 == 0 {
+            let g = anatomy.pose(construction_pose(k as u64)).unwrap().geometry;
+            let tail = g.surfaces[0].positions[0];
+            let local = std::array::from_fn::<_, 3, _>(|a| (g.mouth_center[a] - tail[a]) as f64);
+            let world = [
+                local[0] * forward[2] + local[2] * forward[0],
+                local[1],
+                -local[0] * forward[0] + local[2] * forward[2],
+            ];
+            assert!((0..3).map(|a| world[a] * delta[a]).sum::<f64>() > 0.);
+        }
+    }
+    w.advance(360).unwrap();
+    w.validate().unwrap();
+    assert!(w.state().assembly.as_ref().unwrap().nodes() > 300);
+    assert_eq!(w.state().instances[&1].book.residual().unwrap(), 0);
+}
+#[test]
 fn transfer_is_exact_once_and_free_bound_ledger_detects_duplication_and_loss() {
     let mut w = construction_fixture(5, 64, 32, "straight").unwrap();
     w.advance(20).unwrap();

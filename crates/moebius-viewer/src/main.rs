@@ -167,16 +167,8 @@ struct ViewState {
     body_scale: f32,
     lamp_reach: f32,
     fps: f32,
-    audio_for: Option<AudioKey>,
     threads_for: Option<u64>,
     note: String,
-}
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-struct AudioKey {
-    bucket: u64,
-    muted: bool,
-    level: u8,
 }
 
 #[derive(Resource)]
@@ -377,8 +369,7 @@ fn main() {
             show::hall_fluid.run_if(resource_exists::<Hall>),
             show::drift_lamp,
             show::marks.run_if(resource_exists::<Reel>),
-            show::soundtrack.run_if(resource_exists::<Reel>),
-            show::hall_sound.run_if(resource_exists::<Hall>),
+            show::ambient_bed,
             show::pace,
             show::hud.run_if(resource_exists::<Reel>),
             show::hall_hud.run_if(resource_exists::<Hall>),
@@ -451,6 +442,7 @@ fn main() {
         })
         .add_systems(Update, capture_frame.run_if(in_state(Stage::Playing)));
     }
+    crate::audio::register(&mut app);
     app.run();
 }
 

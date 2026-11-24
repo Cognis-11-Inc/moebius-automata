@@ -31,5 +31,17 @@ was verified before replacing the broad Git copy with a scoped reference.
 The final clean-HEAD certification is a local Git note, preserving the tested
 main tree: `git notes --ref=morph-005-validation show HEAD`. The note includes
 its own immutable final transcript/certificate archive and restoration receipt.
-Notes and main have not been pushed. If the note is absent, final certification
-is pending; do not infer it from this instruction.
+The original MORPH-005 certificate applies to its recorded historical commit.
+The subsequent authorized publication includes that notes ref. For the new
+feeding/constructor release, read `git notes --ref=first-simulation-validation
+show HEAD`: its note identifies the exact clean tested commit, command, result
+and independently hashed/restored certification archive. If the corresponding
+note is absent, that certification is pending. Fetch notes refs explicitly in
+other clones; main alone does not transfer them.
+
+
+The 2026-11-24 camera/first-simulation diagnostic addendum is immutable v6:
+`first-simulation-camera-v6`. Its six raw PNGs are external; classification,
+hashes, member list and verified restoration are recorded in
+`ADDENDUM_V6_CLASSIFICATION.json`, `ARTIFACT_STORAGE.json` and
+`RESTORE_VERIFICATION.json`. Existing v1-v5 archives remain unchanged.

@@ -1,3 +1,505 @@
+# Authorized publication preparation — 2026-11-24 (America/Toronto)
+
+Agent Codex. Operator explicitly requested commit and push of the current
+worktree. Scope includes the food/constructor loop plus earlier audio,
+anatomical collars, head-first, camera, creator, food and evidence follow-ups.
+The earlier no-commit/no-push statements remain historical, superseded for this
+publication. Branch main, entry HEAD17989572fecf9874747c77a28286cae05ac9af3b;
+fetch verified HEAD is2 commits ahead/0 behind origin/main. Worktree dirty.
+No unrelated work dropped or history rewritten.
+
+VERIFIED before staging: workspace fmt and strict all-target Clippy PASS;
+previous67 focused tests pass as recorded below. MORPH-002(4 archives/255 files),
+MORPH-003(1/1), MORPH-004(21/524), MORPH-005(19/431 before addendum) external
+archive/member verification PASS. Mermogon reverified mounted at
+/run/media/cognis/Mermogon, UUID D0A02EEBA02ED82C, label Mermogon, writable.
+Six retained raw camera/simulation PNGs,1629599 bytes, classified and copied to
+immutable MORPH-005 v6; archive/member/restored-vs-original hashes PASS.
+Existing versions and local copies retained. Current combined MORPH-005 manifest:
+20 archives/437 files, verified with python3 python/morph_005_artifacts.py verify.
+See ADDENDUM_V6_CLASSIFICATION.json and the updated first-simulation report and
+restore records. Git candidates are source/tests/reports/reproducibility
+metadata only; no raw PNG/trace/archive proposed for addition.
+
+The authorized implementation commit follows this entry. Its broad clean-tree
+suite is pending until that commit exists. Exact resulting SHA and suite
+receipt will be recorded after running
+cargo test --workspace --release --offline -- --test-threads=8
+on the clean commit. No hosted CI result claimed; .github workflows absent.
+Existing refs/notes/morph-005-validation certificate is local and will be pushed
+with main; MORPH-004 validation notes already match the remote. New final
+certification will use refs/notes/first-simulation-validation so its final
+receipt does not dirty the tested source tree.
+
+Next: stage/review all authorized paths and artifact sizes, commit, verify clean
+HEAD/status, full suite, then record results and publish main plus notes refs.
+Safe first command: git diff --cached --stat. Preserve prior chronology below.
+
+---
+
+# First functional food/constructor loop — 2026-11-24T00:19:09-05:00
+
+Agent Codex. DONE for the bounded feeding -> stock -> secretion -> persistent
+scaffold loop; broader simulation, learned locomotion and living structural
+tissue remain PARTIAL/unimplemented. Operator's latest instruction explicitly
+authorizes making food and Arachnitech functional in the first simulation.
+This supersedes the earlier inspection-only next-action scope, not the existing
+canonical ShipRuntime/MaterialBook/Assembly authority or archive/commit rules.
+
+Repo `/home/cognis/Cognis_Lab/Möbius Automata`, branch main,
+HEAD `17989572fecf9874747c77a28286cae05ac9af3b`; dirty on entry and exit.
+Earlier unrelated work preserved. All new edits remain uncommitted; no push,
+commit, save overwrite, evidence deletion or Mermogon operation.
+
+Read `docs/morph_005/FIRST_SIMULATION.md` for the containment cage, functional
+archaeology/reuse matrix, source hashes, complete commands, failures, numerical
+receipt, native diagnostics and limitations. Updated README describes startup.
+No external scientific papers consulted. Older external Atlas species/filament
+notes were read as design/history; Atlas was not edited or promoted to current
+implementation evidence.
+
+Implemented paths/symbols:
+- `crates/moebius-morph/src/runtime.rs`: first_simulation shared startup; one
+  active constructor plus finite paid Blood-Sacs; explicit saved ConstructorState;
+  bounded food steering and refill/build cycle; generated open-mouth intake,
+  Fed events, integer stock and intake-provenance guards; body_pose,
+  anatomical_pose and mouth_position shared with renderer. Builder spends food
+  through existing nozzle/Assembly path and no longer loses its reserve to
+  unrelated offspring in this opt-in mode. Existing fixtures retain route behavior.
+- `crates/moebius-morph/src/filament.rs`: optional explicit ForagingRules;
+  default None preserves old fixture serialization. Limits: sense12m, mouth
+  capture0.25m, move0.025m/tick, bite<=4, seek at<=12 and build at>=48 stock.
+- `crates/moebius-morph/src/emission.rs`: common place_point; paid input promotes
+  book version3, binding preserves version, legacy zero-input guard retained,
+  intake additions checked before mutation. This fixes the real save/load seam
+  that rejected every previously fed book.
+- `crates/moebius-morph-lab/src/bin/moebius-world-witness.rs`: player New Game
+  uses shared factory; --first-simulation directly starts the same basic loop;
+  actual numerical pose/landmarks drive rendering; real uptake events and stock
+  counters; food display shrinks to stock-dependent size; no perpetual drip
+  overlay in this mode; empty meshes removed; stale design meshes cleaned on
+  simulation entry. Previous camera repair and mouth-overlay deletion preserved.
+- `crates/moebius-morph/tests/first_simulation.rs`: eight integration tests.
+  Witness binary adds one player-anatomy startup regression.
+- Minor behavior-preserving Clippy fixes in food.rs, the generic-food branch of
+  runtime.rs, and morph-lab/src/gore.rs. No nursery source changes here.
+
+VALIDATED on rustc1.99.1, existing offline Cargo cache:
+- `cargo test --release --offline -p moebius-morph --lib --tests -- --test-threads=8`:51 passed,0 failed.
+- `cargo test --release --offline -p moebius-morph-lab --lib --bin moebius-world-witness -- --test-threads=8`:16 passed,0 failed.
+- `cargo clippy --offline -p moebius-morph -p moebius-morph-lab --all-targets -- -D warnings`: PASS.
+- `cargo fmt --all -- --check`, `git diff --check`, release binary build: PASS.
+- Four final honest-red faults independently failed their focused tests (101):
+  closed-mouth guard bypass, finite-stock guard bypass, builder feeding exclusion,
+  and disabled transition to construction. Restored source passes all67 tests.
+- Final300tick fixture: founding24, intake242, reservoir13, bound252, free1,
+  stock3566, global/book residuals0. Food-free control: intake0, reserve0,
+  bound24. Secretion-off control still feeds but produces no graph/food fixation.
+  Opposite-side food changes approach; distant/closed mouth cannot feed;
+  a stocked builder leaves its meal, spends stock, and returns to food seeking.
+  Serialization continuation and deliberate state/input corruption checks pass.
+
+Initial3/6 integration failures exposed the old external-credit loader guard;
+version3 repaired it. Initial viewer typecheck and Clippy/iterator-edit failures
+are preserved in the report. Native inspection exposed oversized food, empty-
+mesh warnings, then a parked-at-meal policy; all prompted narrow fixes. Earlier
+parked-policy1198 intake/299 bound at300ticks is an interim result, superseded
+by the final cycle numbers above, not an alternative scientific success claim.
+
+Native `--first-simulation --ticks600` inspected at final tick291:226 intake,
+250 bound,4 filaments, balance0, visible scaffold, seeking phase. Diagnostic
+PNGs and hashes/counts are in the report; `/tmp/moebius-first-simulation-cycle.png`
+is the final view. These local working diagnostics are not an authoritative
+external archive. No bulk traces or experimental raw outputs added to Git.
+Previous evidence retained. The normal title/creator binary was relaunched
+for the operator after the inspection run had closed.
+
+Known limits: authored kinematic food rule, no movement metabolism/physical
+propulsion/collision solver, one structural constructor, static graph/capped
+rod rendering, no hollow living-pipe physiology or learned motor controller.
+Other nozzles emit free parcels; the configured structural nozzle owns assembly.
+Food shape scale is presentation. Native inspection is a frame check, not a
+physical-mouse playtest or broad morphology validation. Full clean-commit
+workspace certification NOT RUN: dirty tree and no new commit authorization.
+No hosted CI or whole SIMULATION-0001 success claimed.
+
+Next authorized dependency: Operator uses N -> design -> Enter in the normal
+window and inspects the functional loop. Space pause, R restart initial run,
+F5 explicit save. Old saves keep their original configuration; N creates the
+new functional mode. Safe first command: `git status --short`; then inspect
+`docs/morph_005/FIRST_SIMULATION.md` or launch:
+`cargo run --release --offline -p moebius-morph-lab --bin moebius-world-witness`.
+No SIMULATION-0002 or new physiology/learning architecture started.
+
+---
+
+# Functional intent correction — 2026-11-23 (America/Toronto)
+
+Agent Codex. PARTIAL overall: Operator clarified that Arachnitech must feed,
+produce the snailtube and living structure through secretion. Decorative
+anatomy and the authored construction witness do not satisfy that objective.
+This turn inspected existing paths; runtime changes NOT IMPLEMENTED here.
+No new learning/autonomy requirement is inferred from this clarification.
+
+Verified source findings (paths relative to crates/moebius-morph/src/):
+- runtime.rs ShipRuntime::sow_brood creates stationary copies with emission
+  disabled. blood_tick explicitly excludes the configured builder from eating
+  Blood-Sacs. Its proximity queries use instance positions, not posed mouths.
+- morph-lab/src/bin/moebius-world-witness.rs begin_ship (under crates/)
+  sows brood and Blood-Sacs, but does not call sow_generic_food. Generic-food
+  setup in main is conditional on recording. Therefore generic FoodField
+  functionality does not prove its presence in this interactive new-game path.
+- runtime.rs ShipRuntime::tick debits admitted secretion and deposits bound
+  material, but the configured builder position comes from ConstructionRules
+  recorded route; emitting comes from its sample schedule.
+- filament.rs construction_from creates that route and schedule for organism 1.
+  Assembly is persistent material-backed static graph state; filament_chunk
+  presents capped solid rods, with no hollow lumen or living tissue physiology.
+- food.rs FoodField::step and emission.rs MaterialBook::ingest provide existing
+  food-to-reservoir primitives; tests/food.rs and tests/blood.rs assert partial
+  mechanisms, not the requested full Arachnitech feeding/building loop.
+
+Reuse ruling: canonical ShipRuntime/MaterialBook/Assembly remain the appropriate
+existing owners. No nursery bridge, third runtime, new biological model, or
+controller was created. Functional gaps must not be concealed by a mesh.
+Next slice should specify and prove same-organism mouth intake -> body stock ->
+nozzle expenditure -> persistent structure, separately defining the intended
+snailtube geometry and what makes that structure living. Existing authored
+route is still an authored route; locomotion is not established by it.
+
+Repo `/home/cognis/Cognis_Lab/Möbius Automata`, main,
+HEAD 17989572fecf9874747c77a28286cae05ac9af3b, dirty before/after; previous
+changes preserved. Only this handoff changed this turn. Inspected current
+handoff, runtime/filament/food/emission source and food/blood tests; no new test
+execution or runtime observation. `git diff --check` passed before this entry.
+No external scientific research, artifacts, archive operation, commit or push.
+Safe next inspection: ShipRuntime::tick and blood_tick in runtime.rs, and
+begin_ship in the witness binary. No claim the full functional goal is complete.
+
+---
+
+# Decorative mouth overlay removed — 2026-11-23T23:54:03-05:00
+
+Agent Codex. DONE: Operator explicitly requested deletion of the red mouth
+protrusion. Presentation-only removal in
+`crates/moebius-morph-lab/src/bin/moebius-world-witness.rs` and
+`crates/moebius-morph-lab/src/gore.rs`. Deleted gutter_maw and its private basis
+helper, creator spawn/update code, running-witness spawn/update/cleanup code,
+and Display.maws. Creator mesh count now matches anatomy surfaces exactly.
+The previous handoff's Gutter Maw description is historical and superseded.
+Camera repair remains present. Generated anatomical mouth and numerical state
+were not edited. Other existing uncommitted work remains preserved.
+
+Scope/containment: remove the identified optional rendering layer and its
+exclusive helper/state; no anatomy compiler or simulation capability changes.
+Archaeology: rg found all gutter_maw/maws references in the two files above;
+draw_front and draw were its only consumers, both presentation-only. Verified
+post-edit search across crates returns no gutter_maw, maws or crown definition.
+No new module/path, architecture decision, external research or experiments.
+
+Repo `/home/cognis/Cognis_Lab/Möbius Automata`, branch main,
+HEAD `17989572fecf9874747c77a28286cae05ac9af3b`, dirty before/after.
+All edits uncommitted. No commit/push, saves changed, evidence removed, or
+Mermogon operation. Historical diagnostic screenshots remain as earlier evidence.
+
+Validation on existing offline Rust environment:
+- `cargo test --offline -p moebius-morph-lab --bin moebius-world-witness -- --test-threads=8`: 2 passed, 0 failed (existing camera and authority-lifetime tests).
+- `cargo build --release --offline -p moebius-morph-lab --bin moebius-world-witness`: PASS.
+- `cargo fmt --all -- --check` and `git diff --check`: PASS.
+Native visual inspection after this removal NOT RUN. No new tests added for
+this direct decorative deletion. Broad clean-commit certification pending;
+existing strict-Clippy blockers remain recorded in the camera entry below.
+
+Next: launch rebuilt normal binary and inspect the original mouth while
+creating. Safe first: `git status --short`; launch:
+`cargo run --release -p moebius-morph-lab --bin moebius-world-witness --offline`.
+No next scientific slice authorized here.
+
+---
+
+# Preview camera repair — 2026-11-23T23:49:57-05:00
+
+Agent Codex. DONE for the bounded camera repair; Operator usability acceptance
+pending. Rehydrated the latest seven working-tree entries and the HEAD,
+4c44c63 and d6fa1ac handoff versions. Repo
+`/home/cognis/Cognis_Lab/Möbius Automata`, main,
+HEAD `17989572fecf9874747c77a28286cae05ac9af3b`, dirty on entry and exit.
+Earlier audio/anatomy/food/runtime changes remain uncommitted and preserved.
+Only this session's camera additions in
+`crates/moebius-morph-lab/src/bin/moebius-world-witness.rs` and this handoff
+were authored here. No commit, push, save mutation or external archive operation.
+
+VERIFIED cause: preview anatomy meshes use absolute anatomy coordinates, while
+`draw_front` applied only `nav.rotation`, placing the camera at the anatomy origin.
+The running ship renderer intentionally uses camera-relative meshes; its
+rotation-only camera remains appropriate. Fix applies `preview_transform`
+(position plus rotation) only in the title/design path. `open_design` now calls
+`frame_design` / `frame_preview` to fit current surface bounds in orbit mode.
+Left/right drag orbit, wheel zoom and middle pan use existing Navigation methods;
+Home refits the current anatomy. Instructions are visible in the creator.
+No numerical runtime, anatomy, ship dimensions or material laws changed here.
+
+Containment: reuse existing camera state and edit session; no third navigation
+path or renderer mutation rights. Focused archaeology:
+
+| Concern | Path/symbol | Status | Input -> output | Consumer | Authority | Tests | Reuse ruling | Missing seam |
+|---|---|---|---|---|---|---|---|---|
+| Preview | morph-lab/src/bin/moebius-world-witness.rs draw_front/open_design/preview_camera | active uncommitted UI | session geometry + nav -> meshes/camera | title/design | presentation only | new framing regression + native inspection | narrow adaptation | camera translation omitted; repaired |
+| Navigation | morph-lab/src/navigation.rs Navigation | existing shared presentation | input -> pose | preview/running | no numerical mutation | existing navigation tests inspected; new orbit/zoom/pan assertions run | reuse unchanged | design previously stayed in flight mode |
+| Running witness | same binary draw | active | camera-relative geometry -> image | Running | read-only snapshot | existing authority-lifetime test passes | preserve camera convention | none in this repair |
+| Separate editor | morph-lab/src/main.rs orbit | existing anatomical lab | orbit -> absolute Transform | standalone lab | presentation | source inspected | retain distinct UI | not the reported new-game bench |
+
+Paths above are relative to crates/. Also inspected viewer main/show, README,
+MORPH_005_ARCHITECTURE, Cargo configuration, current Git status/history.
+No branch/stash archaeology, ecology audit or external scientific research.
+
+VALIDATED on rustc 1.99.1, existing offline Cargo cache:
+- `cargo test --offline -p moebius-morph-lab --bin moebius-world-witness -- --test-threads=8`: 2 passed, 0 failed.
+- New test checks all surface vertices of bare/showcase anatomy against the
+  default field of view and near plane, and orbit/zoom/pan camera translations.
+- Honest-red: temporarily restore rotation-only preview transform; focused test
+  fails with body-clipped assertion (exit 101). Restore fix; both tests pass.
+- Initial test compile failed because Pose has no Default; explicit pose fixed it.
+- Release build, `cargo fmt --all -- --check`, `git diff --check`: PASS.
+- Strict Clippy for this binary BLOCKED by pre-existing food.rs
+  manual_is_multiple_of/unnecessary_cast and runtime.rs unnecessary_unwrap
+  warnings. Those unrelated edits were not changed or silenced.
+- Full workspace certification NOT RUN: dirty tree and no commit authorization.
+
+Native before capture reproduced the blank creator. After capture visually
+shows the complete exterior body with space around it. Automated desktop key
+input encountered KDE's input permission dialog; no permission bypass attempted.
+For native inspection only, a temporary Startup call to existing open_design
+opened the production creator. That hook was removed, final source restored
+and release rebuilt. The final normal title-start binary was relaunched.
+Physical mouse playtest and human acceptance remain unclaimed.
+
+Local disposable visual diagnostics: `/tmp/moebius-camera-before.png`,
+`/tmp/moebius-camera-after.png` (permission dialog),
+`/tmp/moebius-camera-fixed-creator.png`; 3 files, 379485 bytes total.
+These are not scientific experimental results or authoritative archive receipts.
+No existing evidence moved/deleted; no Mermogon access, save, or result claimed.
+
+Next: in the open rebuilt window press N, create/edit a body, drag to orbit,
+wheel to zoom, middle-drag to pan, Home to recover framing. Inspect title-to-
+creator and creator-to-ship transitions manually. Safe first command:
+`git status --short`. Launch if needed:
+`cargo run --release -p moebius-morph-lab --bin moebius-world-witness --offline`.
+SIMULATION-0001 learning remains unimplemented; no next scientific slice begun.
+
+---
+
+# New-game bench and Blood-Sacs — 2026-11-23T23:40:00-05:00
+
+Agent Grok. The interactive witness now opens on a title unless `--record`.
+N designs one Arachnitech from the generator's basic parts, starting at
+`AnatomySpec::bare` (trunk, mouth, one nozzle). A adds a flagellum, P a spine,
+N another nozzle. Enter starts the head-first ship with that body, twelve
+copies, and Blood-Sacs. Enter or L on the title loads `saves/latest.json` when
+that file exists. F5 saves the ship. `saves/` is gitignored. `--record` still
+auto-starts and does not open the menu.
+
+Blood-Sacs are `AnatomySpec::blood_sac`, definition 2, the same generator.
+The geometry envelope still requires length/radius at least 5, so a sac is a
+swollen short trunk with a deep pore, not a sphere. A condensate stock of
+4000 pays their starting mass and later fixation. Fixation takes 2 quanta
+only when exposure is at least 30 and bound secretion is within 2 m. A brood
+mouth within 2 m gulps up to 8 and the sac sprays up to 18 one-quantum spores.
+A mature sac also weeps up to 6 spores a tick. Population stops at 36. The
+pipe-laying body does not eat. Spore positions are a fixed spray offset and
+then they stay; that is the transport approximation. The witness sphere is
+not consulted. The Gutter Maw is a presentation mesh on the generator's mouth.
+
+`cargo test --offline -p moebius-morph -- --test-threads=8` passed: lib 2,
+blood 2, composition 6, emission 4, filament 9, food 5, forge 6, runtime 9.
+`cargo check --offline -p moebius-morph-lab --bin moebius-world-witness` passed
+after `cargo fmt --all`. The window was not opened. The drone was not played
+in this pass.
+
+The neuron grid is not in this body. The nursery controller stays separate.
+Contact feeding is not learned approach, and it is not locomotor learning.
+SIMULATION-0001's motor-learning claim is still unpaid. No commit. No push.
+HEAD remains 17989572fecf9874747c77a28286cae05ac9af3b. The tree is dirty,
+including the earlier audio, flesh-collar, and head-first follow-ups.
+
+Next: launch `cargo run --release -p moebius-morph-lab --bin moebius-world-witness --offline`
+and design one body. Do not call that run learning.
+
+---
+
+# Generic food, close camera, louder drone — 2026-11-23T22:49:34-05:00
+
+The ship witness now sows generic food and the drone plays louder.
+Food is a separate ledger from the secretion book. It is patchy:
+a cloud near the origin, then clumps at about 8 km, 400 km, and
+12,000 km on the axis. The rest of the 30,000 km cylinder stays empty.
+Patches regrow up to a finite capacity, faster within 2 m of bound
+secretion. One bite bursts up to 12 seeds. Seeds grow faster and become
+patches when full. A dried pipe node can be chewed back into the
+reservoir only while that reservoir is at or below 4, so a full gut does
+not eat the pipe it is laying. The red drips are presentation.
+
+Camera near plane is 1.2 cm. Orbit dolly reaches 2 cm. G adapts an orbit
+to the local shape; the wheel releases that and keeps the close distance.
+Drone gain is 0.32 per level, default level 8, in the ship windows and
+the nursery viewer.
+
+`cargo test --offline -p moebius-morph -- --test-threads=8` passed,
+including the new food tests. Both viewers typecheck. The window was not
+launched and the drone was not played. No commit, no push.
+
+---
+
+# Ship size confirmed — 2026-11-23T22:28:06-05:00
+
+The operator restated the vessel: length 30,000 km, internal diameter
+3,000 km, hollow cylinder. Development stays in that volume. The 4 km
+witness radius and the 36 m fog are a view, not a smaller ship. Recorded
+in the atlas notes `01_CANON/MOEBIUS_SHIP.md` and
+`01_CANON/SHIP_DIMENSIONS.md`. No hull was built. No commit, no push.
+
+---
+
+# Ship witness scale — 2026-11-23T22:24:00-05:00
+
+Agent Grok. The bound snailpipe was leaving the 16 m witness sphere, and
+Focus tightened that sphere to the camera, so the picture deleted meshes
+the book still held. The operator asked whether the range should be vast
+or smaller, to keep the oppression of the ship's vastness.
+
+Choice, now in the witness: the cull is 4 km and is not drawn. Focus no
+longer changes it. Diagnostics [B] still draws the sphere and prints the
+range. The camera far plane is 8 km. Exponential fog matches the clear
+color and goes dark by about 36 m, with no sun glow. Directional light is
+900 lux. The pipe stays in the assembly. Distance hides it until the
+camera returns. This is presentation. It is not food, not a dozen bodies,
+and not locomotor learning.
+
+`cargo check --offline -p moebius-morph-lab --bin moebius-world-witness`
+exited 0. The window was not launched. No commit, no push, no Mermogon.
+
+Working food premise, not implemented: one finite condensate from the
+cloud the ship absorbed (elements, gases, and water as one stock). Water
+is why it beads. The nursery nutrient ledger stays separate. Eating would
+credit that stock into a reservoir and the nozzle would lay it as skeleton.
+
+Next: look at the construction witness. Safe first:
+`cargo run --release -p moebius-morph-lab --bin moebius-world-witness --offline -- --construction`.
+
+---
+
+# Endless dark ambient — 2026-11-23T22:06:03-05:00
+
+Agent Grok. The user asked for a procedural dark ambient track that goes
+forever under the creature windows. Presentation only. It is not biology,
+not a state digest, and not SIMULATION-0001.
+
+Branch main, HEAD 17989572fecf9874747c77a28286cae05ac9af3b. Uncommitted.
+No push, no commit, no Mermogon write. The flesh collar and the head-first
+follow-up below remain uncommitted beside this audio work. The witness file
+contains both the earlier head-first edits and this drone wiring.
+
+The nursery viewer and the ship windows each generate one bed from the same
+authored recipe, copied so neither crate depends on the other. The stream
+reports no total duration and is not restarted on a timer. Mute and volume
+change the sink; they do not rebuild the oscillator phase. The old
+one-second population burst stays under test and is not played.
+
+Recipe: sub 32.7 Hz, beating pair 49.0 / 49.63 Hz, quiet tritone
+32.7*sqrt(2), wander 74+16*slow Hz, lowpassed noise, LFOs at 0.021 / 0.013
+/ 0.007 Hz. Each voice has its own phase.
+
+Where it plays:
+- `moebius-view`, once the stage is Playing. M mute, [ ] volume, default level 3.
+- world witness. M mute, [ ] volume, default 4/10. Stays silent when `--record` is set.
+- anatomical lab. F8 mute. Bracket keys still edit body length. Stays silent when a walkthrough capture is set.
+
+The nursery keep-open capture test app does not register the source.
+
+Tested, all exit 0:
+- `cargo test --offline -p moebius-viewer --bin moebius-view drone_keeps_going -- --test-threads=8`
+- `cargo test --offline -p moebius-viewer --bin moebius-view synth_is_deterministic -- --test-threads=8`
+- `cargo test --offline -p moebius-morph-lab --lib drone_keeps_going -- --test-threads=8`
+- `cargo check --offline -p moebius-morph-lab --bins`
+- `cargo check --offline -p moebius-viewer --bin moebius-view` (no warnings)
+`cargo fmt --all` applied. A 12-second excerpt of the same generator was
+sent to the default PipeWire sink with `pw-play` (exit 0). The Bevy windows
+were not opened, so the in-app sink path was not played. No human listening
+note is claimed.
+
+Files: `crates/moebius-viewer/src/audio.rs`, `show.rs`, `main.rs`;
+`crates/moebius-morph-lab/src/ambient.rs` (new), `lib.rs`, `main.rs`,
+`src/bin/moebius-world-witness.rs`.
+
+SIMULATION-0001 is still unimplemented. Do not claim SUCCESS. Do not push.
+Do not start SIMULATION-0002. Do not commit this tree while the unrelated
+MORPH-005 follow-ups are mixed in.
+
+Next scientific slice remains the learnable sensor–actuator loop inside
+ShipRuntime. Safe first for this audio change: launch a window and listen.
+`cargo run --release -p moebius-viewer --offline` or
+`cargo run --release -p moebius-morph-lab --bin moebius-world-witness --offline -- --construction`.
+
+---
+
+# Flesh-root collar — 2026-11-23T21:48:51-05:00
+
+Agent Grok, resumed Codex session 01a20139-97a6-7153-b9c0-7b1b225889bc.
+The reader skipped 101 foreign instruction/reasoning records. That session
+stopped after the user asked for spines and nozzles to fuse with the body
+flesh, before Codex edited the mesh. This slice does that preview collar.
+
+Branch main, HEAD 17989572fecf9874747c77a28286cae05ac9af3b. The head-first
+follow-up below was already uncommitted. This change is also uncommitted.
+No push, no commit, no Mermogon write, no workspace suite.
+
+`compose` in crates/moebius-morph/src/anatomy.rs flares the spine and nozzle
+over their first quarter, flattens a tangential root against the trunk, and
+blends that collar to the trunk colour. The attachment vertex stays on the
+body triangle. Flagella are unchanged. The nozzle lip and cavity are past the
+blend. Surfaces stay separate closed manifolds. This is not a weld, load path,
+or material joint.
+
+Tested: `cargo test --offline -p moebius-morph -- --test-threads=8` — 36 tests,
+0 failed, including `spine_and_nozzle_roots_fuse_into_body_flesh` (that test
+failed on the first collar attempt, then passed). `cargo clippy --offline
+-p moebius-morph --all-targets -- -D warnings` passed. `cargo fmt --all`
+applied. `cargo test --offline -p moebius-morph-lab --lib -- --test-threads=8`
+— 12 tests, 0 failed. The native construction preview was not launched, so
+Operator visual acceptance is unclaimed.
+
+Next: look at the construction witness. No MORPH-006. Safe first:
+`git status --short`; then
+`cargo run --release -p moebius-morph-lab --bin moebius-world-witness --offline -- --construction`.
+Preserve chronology below.
+
+---
+
+# Head-first preview correction — 2026-11-23T21:28:54-05:00
+
+Agent Codex. User requests head-first meaningful direction and a biological
+strand colour. Uncommitted follow-up on clean-entry main1798957; no push.
+The anatomy faces+Z but the original demo drifted+X without yaw. New head-first
+fixture follows the recorded path tangent in yaw, gentle3D rise, and uses the
+same orientation for numerical nozzle and rendered body. Earlier fixtures and
+scientific results are retained unchanged. Strand is warm muted chitin, UI Ochre.
+
+50focused morph/lab tests PASS; strict Clippy/all-target and fmt PASS. New test
+checks forward alignment>0.99 over359steps, actual mouth ahead of tail and
+conservation/growth. Native320frames/6captures replay headlessly exactly;
+frame055 inspected. Source/parameters/digest in docs/morph_005/HEAD_FIRST_FOLLOWUP.json.
+Raw capture, snapshots, source overlay, logs (including initial build typo) and
+updated Atlas note preserved in immutable Mermogon v5, verified/restored.
+Atlas remains external with updated hash; prior certified note archived in v3.
+
+No full workspace certification rerun for this uncommitted correction; the156test
+clean certificate below applies to1798957. No mechanics/propulsion/autonomy claim.
+Next: Operator can inspect the rebuilt native --construction preview. No push,
+no MORPH-006. Safe first: git status --short; read HEAD_FIRST_FOLLOWUP.json.
+Preserve chronology below.
+
+---
+
 # MORPH-005 certified implementation — 2026-11-23T21:22:54-05:00
 
 Agent: Codex. Scientific/engineering slice PASS; Operator visual acceptance

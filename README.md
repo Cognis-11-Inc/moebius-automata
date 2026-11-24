@@ -258,6 +258,35 @@ conserved material transport. They do not compute metabolism, locomotion,
 intelligence or ecological interactions. Geometry is generated only for visible
 instances. No volumetric solver, floor or live Lisp/Python authority is added.
 
+## First simulation — food and Arachnitech
+
+Launch the ship witness, press **N**, design the Arachnitech, then **Enter**.
+The new game uses the player anatomy, one active constructor, and Blood-Sacs
+paid from a finite condensate stock. The same constructor approaches local food,
+eats at its generated mouth, then leaves the meal to build while stocked. It
+spends that intake through its nozzles. Its
+configured structural nozzle binds paid material into the persistent scaffold.
+Nearby scaffold plus light permits the existing food-fixation rule to run.
+
+To inspect this loop directly with the basic anatomy:
+
+```sh
+cargo run --release --offline -p moebius-morph-lab --bin moebius-world-witness -- --first-simulation --ticks 3600
+```
+
+The HUD shows constructor stock, total eaten, free secretion, bound material,
+and balance. Brief uptake lines identify actual committed meals. In the creator,
+drag to orbit, wheel to zoom, middle-drag to pan, and Home to frame the body.
+Space pauses the simulation, R restarts its initial state, and F5 saves it.
+Existing saves retain their configured behavior; use N for a new functional run.
+
+Nearest-food steering is an explicit bounded kinematic rule. It is not learned
+locomotion or physical propulsion. The scaffold is persistent material with an
+ecological effect on food fixation; living structural tissue, hollow pipe
+physiology, and a functioning population of constructors are not established.
+The run remains explicitly tick-bounded. See
+[implementation and evidence](docs/morph_005/FIRST_SIMULATION.md).
+
 ## MORPH-005 — the first filament
 
 ```sh

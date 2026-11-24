@@ -181,6 +181,70 @@ impl AnatomySpec {
         s.components.push(nozzle);
         s
     }
+    /// New-game trunk: the generator's mouth, plus one secretion nozzle.
+    /// Flagella, spines, and extra nozzles are added by the player.
+    pub fn bare(seed: u64) -> Self {
+        let mut s = Self::from_seed(seed);
+        s.body.length = 2.2;
+        s.body.radius = 0.36;
+        s.body.ridges = None;
+        s.components.clear();
+        let mut nozzle = Component::flagellum(2, 0.65, PI * 1.5);
+        nozzle.orientation = [0., 0.8];
+        nozzle.shape = Shape::SecretionNozzle {
+            length: 0.38,
+            radius: 0.095,
+            aperture: 0.60,
+            output: EmissionMetadata {
+                material_channel: "future_conserved_substrate".into(),
+                operational: false,
+            },
+        };
+        s.components.push(nozzle);
+        s.validate().expect("bare trunk");
+        s
+    }
+    /// Blood-producing body from the same generator. The envelope still
+    /// requires a long trunk, so this is a swollen short body with a deep
+    /// pore and root hairs, not a separate mesh language.
+    pub fn blood_sac(seed: u64) -> Self {
+        let mut s = Self::from_seed(seed);
+        s.body.length = 2.05;
+        s.body.radius = 0.40;
+        s.body.aspect = 1.15;
+        s.body.curvature = 0.18;
+        s.body.radius_profile = [0.5, 1.15, 1.28, 1.02];
+        s.body.mouth.aperture = 1.;
+        s.body.mouth.width = 0.9;
+        s.body.mouth.depth = 1.1;
+        s.body.ridges = Some(crate::Ridges {
+            count: 7,
+            height: 0.025,
+        });
+        s.body.appearance.skin = [0.46, 0.02, 0.035];
+        s.body.appearance.oral = [0.78, 0.01, 0.03];
+        s.body.appearance.flagella = [0.32, 0.02, 0.04];
+        s.body.appearance.roughness = 0.18;
+        s.components.clear();
+        for i in 0..5 {
+            let mut c =
+                Component::flagellum(i as u64 + 2, 0.28 + i as f32 * 0.08, TAU * i as f32 / 5.);
+            if let Shape::Flagellum {
+                length,
+                radius,
+                amplitude,
+                ..
+            } = &mut c.shape
+            {
+                *length = 0.24;
+                *radius = 0.012;
+                *amplitude = 0.05;
+            }
+            s.components.push(c);
+        }
+        s.validate().expect("blood sac");
+        s
+    }
     pub fn next_id(&self) -> u64 {
         self.components
             .iter()
@@ -359,7 +423,23 @@ fn compose(s: &AnatomySpec, p: Pose) -> AnatomicalPose {
             Shape::SecretionNozzle { .. } => [0.31, 0.075, 0.10],
             _ => s.body.appearance.flagella,
         };
-        let cap = part.vertex(origin, [0.5, 0.], color);
+        // Decorative collar for spine and nozzle only. The root stays on the
+        // body triangle. Over the first quarter of the tube the section spreads
+        // across the skin, flattens against the trunk, and takes the trunk colour.
+        // It remains its own closed surface: not a weld, load path, or material
+        // joint. Flagella keep the previous round tube. The nozzle lip and cavity
+        // sit past this blend.
+        let flesh = matches!(c.shape, Shape::Spine { .. } | Shape::SecretionNozzle { .. });
+        let skin = s.body.appearance.skin;
+        let flesh_normal = mount.normal;
+        let flesh_weight = |u: f32| {
+            if !flesh {
+                return 0.;
+            }
+            let t = (u / 0.24).clamp(0., 1.);
+            1. - t * t * (3. - 2. * t)
+        };
+        let cap = part.vertex(origin, [0.5, 0.], if flesh { skin } else { color });
         let mut prev = 0;
         let center = |u: f32| {
             let wave = p.flagella * length * amp * (PI * u).sin();
@@ -379,7 +459,35 @@ fn compose(s: &AnatomySpec, p: Pose) -> AnatomicalPose {
                 r as f32 / 29.
             };
             let rad = radius * (1. - u * taper);
-            let start = ring(&mut part, center(u), (sx, sy), [rad, rad], u, 10, color);
+            let w = flesh_weight(u);
+            let tone = if w == 0. {
+                color
+            } else {
+                mix(skin, color, 1. - w)
+            };
+            let here = center(u);
+            let start = ring(&mut part, here, (sx, sy), [rad, rad], u, 10, tone);
+            if w > 0. {
+                // Reshape inside the ring plane. The cap stays at the attachment,
+                // so this collar does not become an inward cone.
+                let projected = sub(flesh_normal, mul(direction, dot(flesh_normal, direction)));
+                let spread = 1. + 0.95 * w;
+                let count = start as usize;
+                if dot(projected, projected) > 0.0625 {
+                    let axis = unit(projected);
+                    let keep = 1. - 0.66 * w;
+                    for vertex in &mut part.positions[count..count + 10] {
+                        let offset = sub(*vertex, here);
+                        let along = dot(offset, axis);
+                        let lateral = sub(offset, mul(axis, along));
+                        *vertex = add(here, add(mul(lateral, spread), mul(axis, along * keep)));
+                    }
+                } else {
+                    for vertex in &mut part.positions[count..count + 10] {
+                        *vertex = add(here, mul(sub(*vertex, here), spread));
+                    }
+                }
+            }
             if r == 0 {
                 for j in 0..10 {
                     part.triangle(cap, start + (j + 1) % 10, start + j);

@@ -1,0 +1,58 @@
+{
+  "version": 6,
+  "date_local": "2026-11-24",
+  "run_identity": "first-simulation-and-camera-followups",
+  "purpose": "Raw visual diagnostics, including blank camera, blocked input attempt, oversized food, and final cycle; not a statistical scientific sample",
+  "raw_files": 6,
+  "raw_bytes": 1629599,
+  "base_revision": "17989572fecf9874747c77a28286cae05ac9af3b",
+  "authority": "Mermogon immutable archive for raw images; Git for source/tests/reports; older images are intermediate observations, not exact failed-source overlays",
+  "git_retains": [
+    "source",
+    "tests",
+    "reports",
+    "classification",
+    "manifest",
+    "checksums",
+    "restore instructions"
+  ],
+  "previous_copies": "All originals retained in /tmp; older archive versions unchanged",
+  "members": [
+    {
+      "name": "moebius-camera-before.png",
+      "bytes": 123982,
+      "sha256": "1aaff2cbbdbbd0572064773f032aa1e5387bfb0bfc29e52946b17bbde815a87a"
+    },
+    {
+      "name": "moebius-camera-after.png",
+      "bytes": 53548,
+      "sha256": "1e0a2d93b1956ba6f36c247a518a62745b6497b883355ad793af13f92f6fe8de"
+    },
+    {
+      "name": "moebius-camera-fixed-creator.png",
+      "bytes": 201955,
+      "sha256": "7bda76234a3fd029d40e7295a5231a7319d1f9268efe2d002432fcdf6a7d935a"
+    },
+    {
+      "name": "moebius-first-simulation.png",
+      "bytes": 489182,
+      "sha256": "d9de9a94672e55e4295a38ab37e46cf72478c24b0b9d2e29008452750ada8ef5"
+    },
+    {
+      "name": "moebius-first-simulation-clear.png",
+      "bytes": 382320,
+      "sha256": "9f44edc381d2b8fa6d16ef5afed3d23a20a5ef0e8575d7c7b3ef6a3b25e3dbca"
+    },
+    {
+      "name": "moebius-first-simulation-cycle.png",
+      "bytes": 378612,
+      "sha256": "08cfb0ece4c9b2e6d34ff0a0d5be08dbe54f09e22b54c2bb3add3d65407b205a"
+    }
+  ],
+  "relative_archive": "v6/first-simulation-camera-v6.tar",
+  "archive_sha256": "c7d1c9b36ba859bfc9dbc491aa62c0157a548d19d633eb39d9695d54dee401c4",
+  "verified_uuid": "D0A02EEBA02ED82C",
+  "restored_to": "/home/cognis/.cache/moebius-automata/first-simulation-publication-20261124T152717Z/restored",
+  "archive_and_member_hashes": "PASS",
+  "restored_vs_original_hashes": "PASS"
+}

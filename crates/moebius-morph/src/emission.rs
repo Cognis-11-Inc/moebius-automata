@@ -29,6 +29,8 @@ use std::{
 pub const SCALE: i64 = 1_000_000;
 pub const MAX_PARCELS: usize = 4096;
 pub const BOOK_VERSION: u32 = 1;
+/// Explicit opt-in serialization for books with provenance-tracked food intake.
+pub const FED_BOOK_VERSION: u32 = 3;
 pub const SECRETION_CHANNEL: &str = "future_conserved_substrate";
 pub const MAX_LAUNCH: i64 = 1_000_000_000;
 const BENCHMARK_SEED: u64 = 20261123;
@@ -129,7 +131,7 @@ pub struct MaterialBook {
     pub seed: u64,
     pub tick: u64,
     pub initial: u64,
-    /// Always 0 in this slice. There is no harvest credit.
+    /// Harvest credited when a feeding apparatus takes generic food.
     pub external_input: u64,
     pub reservoir: u64,
     pub sinks: u64,
@@ -350,7 +352,7 @@ impl MaterialBook {
             parcel,
         };
         next.bound.push(binding);
-        next.version = 2;
+        next.version = next.version.max(2);
         require_book(
             next.conservation_holds(),
             "structural transfer violates conservation",
@@ -358,9 +360,68 @@ impl MaterialBook {
         *self = next;
         Ok(binding)
     }
+
+    /// Bound secretion returns to the reservoir. The parcel leaves the book.
+    pub fn reclaim_bound(
+        &mut self,
+        filament: u64,
+        node: u64,
+        dried_age: u64,
+    ) -> Result<u64, MorphError> {
+        let index = self
+            .bound
+            .iter()
+            .position(|b| b.filament == filament && b.node == node)
+            .ok_or_else(|| MorphError("dried secretion is not bound".into()))?;
+        require_book(
+            self.tick.saturating_sub(self.bound[index].bound_tick) >= dried_age,
+            "secretion is still wet",
+        )?;
+        let binding = self.bound.remove(index);
+        self.reservoir = self
+            .reservoir
+            .checked_add(binding.parcel.quantity)
+            .ok_or_else(|| MorphError("reservoir overflow".into()))?;
+        require_book(
+            self.conservation_holds(),
+            "chewing secretion violates conservation",
+        )?;
+        Ok(binding.parcel.quantity)
+    }
+
+    /// A bite becomes gut stock. The food ledger paid for it.
+    pub fn ingest(&mut self, quantity: u64) -> Result<(), MorphError> {
+        require_book(quantity > 0, "empty meal")?;
+        require_book(self.conservation_holds(), "cannot feed an unbalanced book")?;
+        let input = self
+            .external_input
+            .checked_add(quantity)
+            .ok_or_else(|| MorphError("harvest overflow".into()))?;
+        let reservoir = self
+            .reservoir
+            .checked_add(quantity)
+            .ok_or_else(|| MorphError("reservoir overflow".into()))?;
+        self.external_input = input;
+        self.reservoir = reservoir;
+        self.version = FED_BOOK_VERSION;
+        require_book(self.conservation_holds(), "a meal violates conservation")?;
+        Ok(())
+    }
+
+    /// Parent pays for a child. The cost leaves this book as an accounted endowment.
+    pub fn endow(&mut self, cost: u64) -> Result<(), MorphError> {
+        require_book(cost > 0 && self.reservoir >= cost, "cannot endow a child")?;
+        self.reservoir -= cost;
+        self.sinks = self
+            .sinks
+            .checked_add(cost)
+            .ok_or_else(|| MorphError("endowment overflow".into()))?;
+        require_book(self.conservation_holds(), "a birth violates conservation")?;
+        Ok(())
+    }
     /// `reservoir + free + bound + sinks - (initial + authorized input)`.
     ///
-    /// Zero is the conservation invariant. External input is zero in this slice.
+    /// Zero is the conservation invariant. Version3 records paid food input.
     pub fn residual(&self) -> Result<i128, MorphError> {
         let world = i128::from(self.in_world()?);
         let have = i128::from(self.reservoir)
@@ -550,13 +611,15 @@ impl MaterialBook {
 
     fn validate_loaded(&self) -> Result<(), MorphError> {
         require_book(
-            (self.version == BOOK_VERSION && self.bound.is_empty()) || self.version == 2,
+            (self.version == BOOK_VERSION && self.bound.is_empty())
+                || self.version == 2
+                || self.version == FED_BOOK_VERSION,
             "unsupported material book/structural version",
         )?;
         self.environment.validate()?;
         require_book(
-            self.external_input == 0,
-            "this slice has no external credit",
+            self.external_input == 0 || self.version == FED_BOOK_VERSION,
+            "external credit requires a fed material book",
         )?;
         require_book(
             (1..=MAX_PARCELS as u64).contains(&self.capacity),
@@ -660,15 +723,24 @@ pub fn direction_from_f32(direction: [f32; 3]) -> Result<[i64; 3], MorphError> {
     Ok(out)
 }
 
+/// The same rigid placement for actual anatomical landmarks and nozzle origins.
+pub fn place_point(point: [f32; 3], rigid: RigidPose) -> Result<[i64; 3], MorphError> {
+    require_book(
+        yaw_ok(rigid.yaw_sin, rigid.yaw_cos),
+        "rigid yaw is not unit",
+    )?;
+    translate(
+        rotate_y(position_from_f32(point)?, rigid)?,
+        rigid.translation,
+    )
+}
+
 pub fn place_output(frame: &OutputFrame, rigid: RigidPose) -> Result<PlacedNozzle, MorphError> {
     require_book(
         yaw_ok(rigid.yaw_sin, rigid.yaw_cos),
         "rigid yaw is not unit",
     )?;
-    let origin = translate(
-        rotate_y(position_from_f32(frame.position)?, rigid)?,
-        rigid.translation,
-    )?;
+    let origin = place_point(frame.position, rigid)?;
     let direction = rotate_y(direction_from_f32(frame.direction)?, rigid)?;
     require_book(
         direction_ok(direction),

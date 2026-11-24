@@ -8,7 +8,35 @@ use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
+pub struct ForagingRules {
+    pub search_radius: i64,
+    pub mouth_radius: i64,
+    pub step: i64,
+    pub bite: u64,
+    pub refill_below: u64,
+    pub build_above: u64,
+}
+impl ForagingRules {
+    pub fn validate(&self) -> Result<(), MorphError> {
+        require(
+            self.mouth_radius > 0
+                && self.mouth_radius <= SCALE
+                && self.search_radius > self.mouth_radius
+                && self.search_radius <= 80 * SCALE
+                && self.step > 0
+                && self.step <= SCALE / 10
+                && (1..=8).contains(&self.bite)
+                && self.refill_below < self.build_above
+                && self.build_above <= 4096,
+            "invalid first-simulation foraging rules",
+        )
+    }
+}
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct ConstructionRules {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub foraging: Option<ForagingRules>,
     pub experiment: String,
     pub organism: u64,
     pub nozzle: u64,
@@ -24,6 +52,9 @@ pub struct ConstructionRules {
 }
 impl ConstructionRules {
     pub fn validate(&self) -> Result<(), MorphError> {
+        if let Some(rules) = &self.foraging {
+            rules.validate()?;
+        }
         require(
             !self.experiment.is_empty()
                 && self.experiment.len() <= 128
@@ -77,6 +108,13 @@ pub struct Node {
     pub id: u64,
     pub parcel: u64,
     pub position: Position,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct Chew {
+    pub filament: u64,
+    pub node: u64,
+    pub parcel: u64,
+    pub quantity: u64,
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -162,7 +200,7 @@ impl Assembly {
         let node = self
             .filaments
             .get(&id)
-            .map_or(1, |f| f.nodes.len() as u64 + 1);
+            .map_or(1, |f| f.nodes.iter().map(|n| n.id).max().unwrap_or(0) + 1);
         let total = self
             .filaments
             .get(&id)
@@ -229,7 +267,8 @@ impl Assembly {
                     .find(|b| b.filament == id && b.node == node.id)
                     .ok_or_else(|| MorphError("structure without bound material".into()))?;
                 require(
-                    node.id == n as u64 + 1
+                    node.id > 0
+                        && (n == 0 || node.id > f.nodes[n - 1].id)
                         && used.insert(b.parcel.id)
                         && b.parcel.id == node.parcel
                         && b.parcel.position == node.position.absolute()?
@@ -263,6 +302,105 @@ impl Assembly {
         )?;
         Ok(())
     }
+
+    /// Take one dried node near `at` back into the reservoir.
+    /// The fresh tip is left alone. A bite that would break an edge is refused.
+    pub fn chew_dried(
+        &mut self,
+        book: &mut MaterialBook,
+        rules: &ConstructionRules,
+        at: Position,
+        reach: i64,
+        dried_age: u64,
+        fresh_tail: usize,
+    ) -> Result<Option<Chew>, MorphError> {
+        let limit = i128::from(reach) * i128::from(reach);
+        let mut choice: Option<(i128, u64, usize)> = None;
+        for (filament_id, filament) in &self.filaments {
+            if filament.organism != book.organism_id {
+                continue;
+            }
+            let keep = fresh_tail.min(filament.nodes.len());
+            let edible = filament.nodes.len().saturating_sub(keep);
+            for (index, node) in filament.nodes.iter().enumerate().take(edible) {
+                let Some(binding) = book
+                    .bound
+                    .iter()
+                    .find(|b| b.filament == *filament_id && b.node == node.id)
+                else {
+                    continue;
+                };
+                if book.tick.saturating_sub(binding.bound_tick) < dried_age {
+                    continue;
+                }
+                let delta = at.relative(node.position)?;
+                let distance: i128 = delta.iter().map(|v| i128::from(*v) * i128::from(*v)).sum();
+                if distance > limit {
+                    continue;
+                }
+                if !edge_survives(filament, index, rules)? {
+                    continue;
+                }
+                if choice.is_none_or(|(best, _, _)| distance < best) {
+                    choice = Some((distance, *filament_id, index));
+                }
+            }
+        }
+        let Some((_, filament_id, index)) = choice else {
+            return Ok(None);
+        };
+        let (node, quantity, empty) = {
+            let filament = self
+                .filaments
+                .get_mut(&filament_id)
+                .ok_or_else(|| MorphError("chew target missing".into()))?;
+            let node = filament.nodes[index].clone();
+            let quantity = book.reclaim_bound(filament_id, node.id, dried_age)?;
+            filament.nodes.remove(index);
+            filament.quantity = filament.quantity.saturating_sub(quantity);
+            if index == 0 && !filament.nodes.is_empty() {
+                let first = filament.nodes[0].id;
+                let born = book
+                    .bound
+                    .iter()
+                    .find(|b| b.filament == filament_id && b.node == first)
+                    .map(|b| b.bound_tick)
+                    .ok_or_else(|| MorphError("chewed filament lost its root".into()))?;
+                filament.created_tick = born;
+            }
+            (node, quantity, filament.nodes.is_empty())
+        };
+        if empty {
+            self.filaments.remove(&filament_id);
+            if self.active == Some(filament_id) {
+                self.active = None;
+            }
+        }
+        Ok(Some(Chew {
+            filament: filament_id,
+            node: node.id,
+            parcel: node.parcel,
+            quantity,
+        }))
+    }
+}
+
+fn edge_survives(
+    filament: &Filament,
+    index: usize,
+    rules: &ConstructionRules,
+) -> Result<bool, MorphError> {
+    let left = index.checked_sub(1);
+    let right = index + 1;
+    if let (Some(left), true) = (left, right < filament.nodes.len()) {
+        let distance = distance2(
+            filament.nodes[left].position,
+            filament.nodes[right].position,
+        )?;
+        return Ok(distance >= i128::from(rules.min_length).pow(2)
+            && distance <= i128::from(rules.max_length).pow(2));
+    }
+    Ok(true)
 }
 /// Shared authored pose for numerical nozzle and visual body. No neural/physical controller.
 pub fn construction_pose(tick: u64) -> Pose {
@@ -281,12 +419,23 @@ pub fn construction_fixture(
     reserve: u64,
     kind: &str,
 ) -> Result<crate::runtime::ShipRuntime, MorphError> {
+    construction_from(AnatomySpec::showcase(seed), seed, steps, reserve, kind)
+}
+
+/// Same authored route as `construction_fixture`, using a body the player designed.
+pub fn construction_from(
+    spec: AnatomySpec,
+    seed: u64,
+    steps: usize,
+    reserve: u64,
+    kind: &str,
+) -> Result<crate::runtime::ShipRuntime, MorphError> {
     use crate::{
         emission::{Environment, MaterialBook},
         runtime::*,
     };
     require((1..=16384).contains(&steps), "bounded fixture steps")?;
-    let spec = AnatomySpec::showcase(seed);
+    spec.validate()?;
     let nozzle = spec
         .components
         .iter()
@@ -298,9 +447,10 @@ pub fn construction_fixture(
         let t = k as f64 * 0.025;
         let p = match kind {
             "vertical" => [0, (t * SCALE as f64) as i64, 0],
-            "curved" => [
+            "curved" | "head-first" => [
                 (t * SCALE as f64) as i64,
-                (0.8 * (t * 0.7).sin() * SCALE as f64) as i64,
+                ((if kind == "head-first" { 0.12 } else { 0.8 }) * (t * 0.7).sin() * SCALE as f64)
+                    as i64,
                 (0.7 * (t * 0.5).sin() * SCALE as f64) as i64,
             ],
             "gap" => [
@@ -315,7 +465,25 @@ pub fn construction_fixture(
             ..RigidPose::identity()
         });
     }
+    if kind == "head-first" {
+        // Anatomy's tail-to-mouth axis is +Z. Align its yaw with the recorded
+        // path tangent; retain only a gentle rise because RigidPose supports yaw.
+        // This is a new authored demonstration, not a change to earlier trials.
+        for k in 0..route.len() {
+            let (a, b) = if k + 1 < route.len() {
+                (k, k + 1)
+            } else {
+                (k.saturating_sub(1), k)
+            };
+            let dx = (route[b].translation[0] - route[a].translation[0]) as f64;
+            let dz = (route[b].translation[2] - route[a].translation[2]) as f64;
+            let yaw = dx.atan2(dz);
+            route[k].yaw_sin = (yaw.sin() * SCALE as f64).round() as i64;
+            route[k].yaw_cos = (yaw.cos() * SCALE as f64).round() as i64;
+        }
+    }
     let r = ConstructionRules {
+        foraging: None,
         experiment: format!("MORPH-005/{kind}/seed{seed}"),
         organism: 1,
         nozzle,
@@ -454,7 +622,9 @@ pub fn filament_chunk(f: &Filament, chunk: usize) -> Result<(Position, Surface),
         })
         .collect::<Result<Vec<_>, _>>()?;
     let mut mesh = Surface::new("material_backed_filament_chunk");
-    let cap = mesh.vertex(points[0], [0.; 2], [0.12, 0.48, 0.64]);
+    // Muted warm chitin/flesh, distinct from the living body's violet skin.
+    let color = [0.48, 0.30, 0.22];
+    let cap = mesh.vertex(points[0], [0.; 2], color);
     let mut previous = 0;
     let mut side = [1., 0., 0.];
     let sides = 8;
@@ -475,7 +645,7 @@ pub fn filament_chunk(f: &Filament, chunk: usize) -> Result<(Position, Surface),
             [0.025, 0.025],
             i as f32,
             sides,
-            [0.12, 0.48, 0.64],
+            color,
         );
         if i == 0 {
             for j in 0..sides as u32 {
@@ -486,7 +656,7 @@ pub fn filament_chunk(f: &Filament, chunk: usize) -> Result<(Position, Surface),
         }
         previous = ring;
     }
-    let tip = mesh.vertex(*points.last().unwrap(), [0.5, 1.], [0.12, 0.48, 0.64]);
+    let tip = mesh.vertex(*points.last().unwrap(), [0.5, 1.], color);
     for j in 0..sides as u32 {
         mesh.triangle(previous + j, previous + (j + 1) % sides as u32, tip);
     }

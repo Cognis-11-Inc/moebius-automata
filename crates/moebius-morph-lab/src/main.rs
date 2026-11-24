@@ -120,6 +120,7 @@ fn main() {
         )
             .chain(),
     );
+    moebius_morph_lab::register_ambient(&mut app, cli.walkthrough.is_none());
     if let Some(out) = cli.walkthrough {
         app.insert_resource(Walk {
             out,
@@ -167,7 +168,7 @@ fn setup(
         p.spawn((Text::new("MOEBIUS\nANATOMICAL FORGE"),TextFont {font_size: FontSize::Px(25.),..default()},TextColor(Color::srgb(0.89,0.84,0.70))));
         p.spawn((Text::new("MORPH-003 / SECRETION\nFree-space material book"),TextFont {font_size: FontSize::Px(14.),..default()},TextColor(Color::srgb(0.42,0.73,0.70))));
         p.spawn((Text::new("Compiling anatomy…"),TextFont {font_size: FontSize::Px(14.),..default()},TextColor(Color::srgb(0.88,0.87,0.80)),UiText::Controls));
-        p.spawn((Text::new("Tab: next component (Shift: previous)\nA: flagellum  P: spine  N: nozzle\nD: duplicate  Delete: remove\nUp/Down: parameter  Left/Right: edit\n[/]: body length  -/=: thickness\n, / .: mouth aperture  M: cycle\nH: short-body showcase  R: seed\nS: save anatomy  L: reload anatomy\nE: emission  C: material clock\nU/I: rate  J/K: reset reservoir\nF/V: drag  G: weak +X accel\nO: medium flow  Q: trajectory\nX: reset book  F5/F9: book save/load\nSpace: pause the active clock\nRight-drag / wheel or Alt+arrows: orbit"),TextFont {font_size: FontSize::Px(14.),..default()},TextColor(Color::srgb(0.56,0.64,0.66))));
+        p.spawn((Text::new("Tab: next component (Shift: previous)\nA: flagellum  P: spine  N: nozzle\nD: duplicate  Delete: remove\nUp/Down: parameter  Left/Right: edit\n[/]: body length  -/=: thickness\n, / .: mouth aperture  M: cycle\nH: short-body showcase  R: seed  F8: mute drone\nS: save anatomy  L: reload anatomy\nE: emission  C: material clock\nU/I: rate  J/K: reset reservoir\nF/V: drag  G: weak +X accel\nO: medium flow  Q: trajectory\nX: reset book  F5/F9: book save/load\nSpace: pause the active clock\nRight-drag / wheel or Alt+arrows: orbit"),TextFont {font_size: FontSize::Px(14.),..default()},TextColor(Color::srgb(0.56,0.64,0.66))));
         p.spawn((Text::new("Anatomy does not grant emission.\nTrail lines are visual only, not pipes.\nNo floor. No locomotion claim."),TextFont {font_size: FontSize::Px(13.),..default()},TextColor(Color::srgb(0.68,0.49,0.39))));
     });
     commands.spawn((
@@ -202,7 +203,12 @@ fn setup(
         UiText::Status,
     ));
 }
-fn keys(input: Res<ButtonInput<KeyCode>>, mut lab: ResMut<Lab>) {
+fn keys(
+    input: Res<ButtonInput<KeyCode>>,
+    mut lab: ResMut<Lab>,
+    mut mix: ResMut<moebius_morph_lab::AmbientMix>,
+) {
+    moebius_morph_lab::ambient_keys(&input, &mut mix, KeyCode::F8, false);
     if input.pressed(KeyCode::AltLeft) || input.pressed(KeyCode::AltRight) {
         return;
     }

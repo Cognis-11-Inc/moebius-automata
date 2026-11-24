@@ -1,13 +1,13 @@
 {
-  "date_local": "2026-11-23",
-  "version": 3,
+  "date_local": "2026-11-24",
+  "version": 6,
   "mount_path": "/run/media/cognis/Mermogon",
   "volume_uuid": "D0A02EEBA02ED82C",
   "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-005/2026-11-23",
-  "external_index_path": "v3/COMBINED_INDEX.json",
-  "external_index_sha256": "00df86748ffc73ca60c61946a0cf98d4da5f5eaa33d7dbcfb830a18158cc52a8",
-  "raw_files": 404,
-  "raw_bytes": 31346640,
+  "external_index_path": "v6/COMBINED_INDEX.json",
+  "external_index_sha256": "0df6f0cf78330399ea39b18af877de3eca4c9ed5b5410205525b2e4bdc57d2c0",
+  "raw_files": 437,
+  "raw_bytes": 35840982,
   "records": [
     {
       "phase": "logs-and-procedures",
@@ -2188,6 +2188,189 @@
           "name": "_TEMPLATES__Organism_Species.md",
           "bytes": 377,
           "sha256": "d6aa2ec5611cb9712c2f89d7769f00a53b4eca8cb0c2c4f3ecaf2957782b5963"
+        }
+      ]
+    },
+    {
+      "phase": "addendum-v5",
+      "purpose": "Head-first preview correction: exact source overlay, GPU capture/replay, focused checks and retained build failures",
+      "relative_path": "v5/addendum.tar",
+      "bytes": 2887680,
+      "sha256": "1017a92a81e1c6d9e2c9e00e27d99a3a12d4e52aaf7ebd87b59dac5954637543",
+      "members": [
+        {
+          "name": "head-first-archive.py",
+          "bytes": 3068,
+          "sha256": "236c41f88583977dd13fd9fd2e3b1acaeb5c552d041e1041b8f62bca0a91ca9b"
+        },
+        {
+          "name": "head-first-atlas.json",
+          "bytes": 304,
+          "sha256": "f97a522cd143fb548c7780f997e820c26fbf97e972acb7c7fe09a41e6f1a7c3d"
+        },
+        {
+          "name": "head-first-build-v2.log",
+          "bytes": 168,
+          "sha256": "58c3ee31e9c307c96045b9782d40429e931b45929e147f4cbbfaa9a5c8955741"
+        },
+        {
+          "name": "head-first-build.log",
+          "bytes": 1019,
+          "sha256": "0e889329d85765a78ff0bdbc945bce92b44fc612f33250d12f189d948ef27250"
+        },
+        {
+          "name": "head-first-capture-v1.log",
+          "bytes": 91,
+          "sha256": "a7b9821f540f973dec65a1c35e4c0db7a078b84ec437663ea1f727f59ef7ed25"
+        },
+        {
+          "name": "head-first-clippy-v2.log",
+          "bytes": 178,
+          "sha256": "9794e7e800c06f64e828bf6cfe693e72589b2d9d3424928afcd16f0a109e8430"
+        },
+        {
+          "name": "head-first-clippy.log",
+          "bytes": 1182,
+          "sha256": "154ba69ff70dd4e79cdbd192e399bad697530887cf24d717e4ff4fccd6474fc2"
+        },
+        {
+          "name": "head-first-evidence.py",
+          "bytes": 6501,
+          "sha256": "9d58794447ab849db9068a777ec3c72ac1fe17694685b1814452785d02fee625"
+        },
+        {
+          "name": "head-first-fmt.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "head-first-focused.log",
+          "bytes": 6266,
+          "sha256": "d7cd736c4be14662a2f8d298c73fd4fe377f5143987cbb28f0c9037fa4520a03"
+        },
+        {
+          "name": "head-first-render-replay.json",
+          "bytes": 262,
+          "sha256": "44561290ad773219afe4563e0e91cf0f9ebcac208d433763d8a2b1177f4be725"
+        },
+        {
+          "name": "head-first-summary.json",
+          "bytes": 3377,
+          "sha256": "fd05fdc8bf57e9f0bfff4d74ce19aeaf6c40b87b027b8eaec3abc355d741bb73"
+        },
+        {
+          "name": "head-first-tests.log",
+          "bytes": 1113,
+          "sha256": "dd90a20ad8bd320e236e34d8dd4e8f43da3475fadad49c812c1ccc4b9cfe424b"
+        },
+        {
+          "name": "frame_025.png",
+          "bytes": 310923,
+          "sha256": "7f33e711c02a4bcc89c1d669eaa65605b557b05e6f64401a2c4ce1f1c77de643"
+        },
+        {
+          "name": "frame_055.png",
+          "bytes": 317017,
+          "sha256": "869ad331a964358649a21ea53639ba624011613db396a4f68dda8e50941ae0c9"
+        },
+        {
+          "name": "frame_120.png",
+          "bytes": 332064,
+          "sha256": "9020f283fbe4411b2c6046827daa919614d0348fcd1f7cd5b06a9ddb7a9fd292"
+        },
+        {
+          "name": "frame_175.png",
+          "bytes": 233596,
+          "sha256": "4eabc81980bee8abc94bea735a8f04b783ee972a8731b0041a4dfae7a8b649fc"
+        },
+        {
+          "name": "frame_200.png",
+          "bytes": 342363,
+          "sha256": "5b630d7e5a57c4dfdc18a53bebc57bcc3a198b14dc058e1db6b5e1b8535db362"
+        },
+        {
+          "name": "frame_280.png",
+          "bytes": 383648,
+          "sha256": "9f30d1d53254c80d8f83832e00089bfdcbac1d3d2e6bb3c5b487a75452199d63"
+        },
+        {
+          "name": "render-report.json",
+          "bytes": 255002,
+          "sha256": "874b3d393364e02fa8387dc535e17236716af4848f26636fd60770a83a903bff"
+        },
+        {
+          "name": "world-final.json",
+          "bytes": 521136,
+          "sha256": "da20e81e12743c5cca82bf2797074931f485ea7dfa4c4c70139d710ef9bcf405"
+        },
+        {
+          "name": "world-initial.json",
+          "bytes": 77763,
+          "sha256": "ed9cf47707e416cf7f7183face976f046191bf5cf822de90969b0223342bb263"
+        },
+        {
+          "name": "HEAD_FIRST_SOURCE_MAP.json",
+          "bytes": 858,
+          "sha256": "b1426c155efec49ca2e04fc59c07a8431d81b3b0a56882bdb1253889eda9c47a"
+        },
+        {
+          "name": "atlas__07_EXPERIMENTS__MORPH_005.md",
+          "bytes": 2219,
+          "sha256": "865f06f920bf9a31c693a48807b28824869263117a57e24bda254e62d75945c9"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__bin__moebius-world-witness.rs",
+          "bytes": 33163,
+          "sha256": "51f43ac9978e0b99d0207b97b33f174b64ef0b165b05e1590b8e7b9fc5c71def"
+        },
+        {
+          "name": "crates__moebius-morph__src__filament.rs",
+          "bytes": 18252,
+          "sha256": "085e4cb01daa36e3b9930d5a82007c3ac6c198e98e0469701cebe90047d699f7"
+        },
+        {
+          "name": "crates__moebius-morph__tests__filament.rs",
+          "bytes": 13210,
+          "sha256": "6493db8a9205155fa477c97932ed35599e539a49ef42eae5c5079c5eec0968f3"
+        }
+      ]
+    },
+    {
+      "phase": "first-simulation-camera-v6",
+      "purpose": "Raw visual diagnostics, including blank camera, blocked input attempt, oversized food, and final cycle; not a statistical scientific sample",
+      "relative_path": "v6/first-simulation-camera-v6.tar",
+      "bytes": 1648640,
+      "sha256": "c7d1c9b36ba859bfc9dbc491aa62c0157a548d19d633eb39d9695d54dee401c4",
+      "members": [
+        {
+          "name": "moebius-camera-before.png",
+          "bytes": 123982,
+          "sha256": "1aaff2cbbdbbd0572064773f032aa1e5387bfb0bfc29e52946b17bbde815a87a"
+        },
+        {
+          "name": "moebius-camera-after.png",
+          "bytes": 53548,
+          "sha256": "1e0a2d93b1956ba6f36c247a518a62745b6497b883355ad793af13f92f6fe8de"
+        },
+        {
+          "name": "moebius-camera-fixed-creator.png",
+          "bytes": 201955,
+          "sha256": "7bda76234a3fd029d40e7295a5231a7319d1f9268efe2d002432fcdf6a7d935a"
+        },
+        {
+          "name": "moebius-first-simulation.png",
+          "bytes": 489182,
+          "sha256": "d9de9a94672e55e4295a38ab37e46cf72478c24b0b9d2e29008452750ada8ef5"
+        },
+        {
+          "name": "moebius-first-simulation-clear.png",
+          "bytes": 382320,
+          "sha256": "9f44edc381d2b8fa6d16ef5afed3d23a20a5ef0e8575d7c7b3ef6a3b25e3dbca"
+        },
+        {
+          "name": "moebius-first-simulation-cycle.png",
+          "bytes": 378612,
+          "sha256": "08cfb0ece4c9b2e6d34ff0a0d5be08dbe54f09e22b54c2bb3add3d65407b205a"
         }
       ]
     }

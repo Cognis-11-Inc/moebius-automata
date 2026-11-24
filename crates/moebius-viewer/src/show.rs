@@ -4,7 +4,6 @@
 use std::collections::BTreeMap;
 use std::fs;
 use std::path::PathBuf;
-use std::sync::Arc;
 use std::time::{SystemTime, UNIX_EPOCH};
 
 use bevy::audio::Volume;
@@ -15,8 +14,8 @@ use bevy::text::FontSize;
 use bevy::window::{CursorGrabMode, CursorOptions, PrimaryWindow};
 
 use super::{
-    AudioKey, BODY_SCALE, Boot, Creature, Dims, Drawn, DriftLight, FluidOrb, Frame, FrameClock,
-    Gallery, Hud, PLAY_TICKS_PER_SEC, Reel, Score, Site, Stage, Threads, ViewState, load_reel,
+    BODY_SCALE, Boot, Creature, Dims, Drawn, DriftLight, FluidOrb, Frame, FrameClock, Gallery, Hud,
+    PLAY_TICKS_PER_SEC, Reel, Score, Site, Stage, Threads, ViewState, load_reel,
 };
 use crate::body::{
     BIND_START, BIND_STEP, bone_cage, creature_mesh, food_clot_mesh, fused_flesh_mesh,
@@ -877,42 +876,32 @@ pub fn marks(
     view.hypothesis_drawn = view.hypothesis;
 }
 
-pub fn soundtrack(
-    time: Res<Time>,
+pub fn ambient_bed(
     mut commands: Commands,
-    mut sources: ResMut<Assets<AudioSource>>,
-    reel: Res<Reel>,
-    mut view: ResMut<ViewState>,
+    mut sources: ResMut<Assets<crate::audio::DarkAmbient>>,
+    view: Res<ViewState>,
+    mut sinks: Query<&mut bevy::audio::AudioSink, With<Score>>,
     existing: Query<Entity, With<Score>>,
 ) {
-    let (index, _, _) = bracket(&reel.frames, view.tick);
-    let Some(frame) = reel.frames.get(index) else {
-        return;
-    };
-    let key = AudioKey {
-        bucket: (time.elapsed_secs_f64() / 8.0) as u64,
-        muted: view.muted || !view.playing || view.audio_level == 0,
-        level: view.audio_level,
-    };
-    if view.audio_for == Some(key) {
-        return;
-    }
-    for entity in &existing {
-        commands.entity(entity).despawn();
-    }
-    if !key.muted {
-        let bytes =
-            crate::audio::synth_wav(frame.tick, frame.live, frame.dead, frame.field, frame.waste);
-        let handle = sources.add(AudioSource {
-            bytes: Arc::<[u8]>::from(bytes),
-        });
+    if existing.is_empty() {
+        let handle = sources.add(crate::audio::DarkAmbient);
+        // `AudioPlayer::new` only accepts the stock wav asset. A custom
+        // decoder is the tuple struct itself.
         commands.spawn((
-            AudioPlayer::new(handle),
-            PlaybackSettings::DESPAWN.with_volume(Volume::Linear(0.022 * view.audio_level as f32)),
+            AudioPlayer::<crate::audio::DarkAmbient>(handle),
+            PlaybackSettings::ONCE.with_volume(Volume::Linear(0.0)),
             Score,
         ));
+        return;
     }
-    view.audio_for = Some(key);
+    let gain = if view.muted || view.audio_level == 0 {
+        0.0
+    } else {
+        0.32 * view.audio_level as f32
+    };
+    for mut sink in &mut sinks {
+        sink.set_volume(Volume::Linear(gain));
+    }
 }
 
 pub fn pace(time: Res<Time>, mut clock: ResMut<FrameClock>, mut view: ResMut<ViewState>) {
@@ -958,7 +947,7 @@ pub fn hud(reel: Res<Reel>, view: Res<ViewState>, mut text: Query<&mut Text, Wit
     let sound = if view.muted {
         "muted".into()
     } else {
-        format!("bursts {}/10", view.audio_level)
+        format!("drone {}/10", view.audio_level)
     };
     let hypothesis_source = if reel.hypothesis_from_file {
         "file"
@@ -982,7 +971,7 @@ pub fn hud(reel: Res<Reel>, view: Res<ViewState>, mut text: Query<&mut Text, Wit
          rules locked at the start. space at the end replays this run. it does not retick the world\n\
          1 bodies {}   2 fluid {}   3 slime {}   4 hypothesis {} ({hypothesis_source}, off until pressed)\n\
          {}\n\
-         audio {sound}: viewer pcm, not in the state hash. WASD move  Q/E rise/fall  click: mouse look  Esc: release  wheel: zoom  F inspect nearest  M mute  [/] volume",
+         audio {sound}: endless generated bed, not in the state hash. WASD move  Q/E rise/fall  click: mouse look  Esc: release  wheel: zoom  F inspect nearest  M mute  [/] volume",
         view.tick,
         view.tick_end,
         reel.seed,
@@ -1018,7 +1007,7 @@ pub fn view_for(reel: &Reel) -> ViewState {
         hypothesis: false,
         hypothesis_drawn: false,
         muted: false,
-        audio_level: 3,
+        audio_level: 8,
         yaw: 0.55,
         pitch: 0.28,
         distance,
@@ -1027,7 +1016,6 @@ pub fn view_for(reel: &Reel) -> ViewState {
         body_scale: BODY_SCALE,
         lamp_reach: layout::SPACING * reel.dims.width.max(1) as f32 * 0.28,
         fps: 0.0,
-        audio_for: None,
         threads_for: None,
         note: opening_note(reel),
     }
@@ -1045,7 +1033,7 @@ pub fn view_for_hall(hall: &Hall) -> ViewState {
         hypothesis: false,
         hypothesis_drawn: false,
         muted: false,
-        audio_level: 3,
+        audio_level: 8,
         yaw: 0.0,
         pitch: 0.0,
         distance: 9.0,
@@ -1054,7 +1042,6 @@ pub fn view_for_hall(hall: &Hall) -> ViewState {
         body_scale: BODY_SCALE,
         lamp_reach: 3.2,
         fps: 0.0,
-        audio_for: None,
         threads_for: None,
         note: String::new(),
     }
@@ -1648,48 +1635,6 @@ pub fn hall_fluid(
     }
 }
 
-pub fn hall_sound(
-    time: Res<Time>,
-    mut commands: Commands,
-    mut sources: ResMut<Assets<AudioSource>>,
-    hall: Res<Hall>,
-    mut view: ResMut<ViewState>,
-    existing: Query<Entity, With<Score>>,
-) {
-    let Some(picture) = &hall.latest else {
-        return;
-    };
-    let key = AudioKey {
-        bucket: (time.elapsed_secs_f64() / 8.0) as u64,
-        muted: view.muted || !view.playing || view.audio_level == 0,
-        level: view.audio_level,
-    };
-    if view.audio_for == Some(key) {
-        return;
-    }
-    for entity in &existing {
-        commands.entity(entity).despawn();
-    }
-    if !key.muted {
-        let bytes = crate::audio::synth_wav(
-            picture.tick,
-            picture.live,
-            picture.dead,
-            picture.field,
-            picture.waste,
-        );
-        let handle = sources.add(AudioSource {
-            bytes: Arc::<[u8]>::from(bytes),
-        });
-        commands.spawn((
-            AudioPlayer::new(handle),
-            PlaybackSettings::DESPAWN.with_volume(Volume::Linear(0.022 * view.audio_level as f32)),
-            Score,
-        ));
-    }
-    view.audio_for = Some(key);
-}
-
 pub fn hall_hud(
     hall: Res<Hall>,
     view: Res<ViewState>,
@@ -1737,7 +1682,7 @@ pub fn hall_hud(
     let sound = if view.muted {
         "muted".into()
     } else {
-        format!("bursts {}/10", view.audio_level)
+        format!("drone {}/10", view.audio_level)
     };
     let hash: String = picture.state_hash.chars().take(16).collect();
     let flesh = picture.material_flesh;
@@ -1792,7 +1737,7 @@ pub fn hall_hud(
          1 bodies {}   2 fluid {}   3 slime / land {}   4 hypothesis {} (empty scaffold, not membership)\n\
          {extra}\
          space pauses the scientific clock. closing the window stops it.\n\
-         audio {sound}: viewer pcm, not in the state hash. WASD move  Q/E rise/fall  click: mouse look  Esc: release  wheel: zoom  F inspect nearest  M mute  [/] volume",
+         audio {sound}: endless generated bed, not in the state hash. WASD move  Q/E rise/fall  click: mouse look  Esc: release  wheel: zoom  F inspect nearest  M mute  [/] volume",
         picture.tick,
         view.tick,
         hall.founding,
