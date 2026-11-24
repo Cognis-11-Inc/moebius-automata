@@ -1,3 +1,54 @@
+# Publication validation receipt — 2026-11-24 (America/Toronto)
+
+Agent Codex. Operator-authorized whole-worktree implementation committed as
+`d333fd4ff9746e7e92ca0ab684fb4887996836f5` on main:32 files, including the
+first feeding/constructor loop and earlier audio/anatomy/camera/evidence work.
+Tree clean before and after
+`cargo test --workspace --release --offline -- --test-threads=8`:
+177 passed,0 failed,0 ignored,30 test/doctest groups; exit0.
+Environment rustc1.99.1, local offline Cargo cache. Workspace strict all-target
+Clippy, formatting and whitespace PASS. No hosted CI claim; no workflow files.
+
+Certificate/transcript/sealing procedure:3 files,22660 raw bytes, retained in
+immutable Mermogon archive
+`Moebius-Automata/experiments/MORPH-005/2026-11-23/release-certification/d333fd4ff974-20261124T153010Z/clean-suite.tar`.
+Mounted UUID D0A02EEBA02ED82C and write permission reverified for that transfer;
+archive/member/restored-vs-original hashes PASS. Receipt is attached to that
+commit in refs/notes/first-simulation-validation. Historical MORPH-005 final
+attestation (1798957) external index/archive/member hashes also reverified.
+The combined ordinary diagnostic manifest remains20 archives/437 files (v6),
+with certification receipts independently versioned in Git notes. Original
+copies and all historical versions remain; no raw transcript/image/archive
+is proposed for Git.
+
+This entry plus FIRST_SIMULATION.md and RESTORE.md form a documentation-only
+receipt commit after the tested implementation. These receipt edits are
+uncommitted while this entry is written; source/test/runtime files are unchanged.
+The final documentation HEAD is tested clean before publication as well.
+To avoid a recursive self-hash/receipt commit, the exact final HEAD, clean-tree
+full-suite result and external hash/restoration receipt are attached at that
+HEAD in refs/notes/first-simulation-validation. Verified remote main/ref identities
+and final clean status are attached there in the separate
+refs/notes/first-simulation-publication note after publication. If those notes
+are absent, the corresponding final verification is pending; use actual Git refs.
+
+The user authorized push. Main and refs/notes/morph-005-validation plus
+refs/notes/first-simulation-validation are published together; the publication
+receipt note follows verified remote equality. No force push or history rewrite.
+Fetch notes refs explicitly in other clones. Repo:
+`/home/cognis/Cognis_Lab/Möbius Automata`, branch main. Earlier entries retain
+original preauthorization/no-push chronology and do not override this request.
+
+Completion scope: release of the bounded food/constructor functionality and
+existing presentation follow-ups. Learned locomotion, physical propulsion and
+living structural tissue remain unimplemented; no SIMULATION-0002 started.
+Next operator action: N -> design -> Enter in the native app; F5 explicitly saves.
+For precise publication evidence, safe first commands: git status --short;
+git notes --ref=first-simulation-validation show HEAD;
+git notes --ref=first-simulation-publication show HEAD.
+
+---
+
 # Authorized publication preparation — 2026-11-24 (America/Toronto)
 
 Agent Codex. Operator explicitly requested commit and push of the current

@@ -218,3 +218,20 @@ archive root. Git retains reproducibility source, reports and this verified
 receipt; raw PNGs are excluded from the commit. Clean-commit full-workspace
 validation is recorded separately in `refs/notes/first-simulation-validation`
 for its tested commit; if that note is absent the full-suite gate is pending.
+
+
+## Clean-commit publication validation
+
+Implementation commit `d333fd4ff9746e7e92ca0ab684fb4887996836f5`, clean before
+and after `cargo test --workspace --release --offline -- --test-threads=8`:
+177 passed,0 failed,0 ignored. Workspace strict all-target Clippy and formatting
+also pass. The exact177-test transcript, input/environment identity and sealing
+procedure were classified, externally archived and restored with all hashes
+verified; `git notes --ref=first-simulation-validation show d333fd4` contains
+that receipt. This is local validation, not hosted CI or a new physiology claim.
+
+The following documentation receipt commit retains the same source/tests and
+is also checked clean. Its final clean-suite receipt is attached to its HEAD in
+`refs/notes/first-simulation-validation`. The post-push remote-ref/clean-tree
+receipt is in `refs/notes/first-simulation-publication`. Fetch these notes refs
+explicitly; an absent note means the corresponding verification is pending.

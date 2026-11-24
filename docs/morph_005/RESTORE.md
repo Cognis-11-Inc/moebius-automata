@@ -45,3 +45,9 @@ The 2026-11-24 camera/first-simulation diagnostic addendum is immutable v6:
 hashes, member list and verified restoration are recorded in
 `ADDENDUM_V6_CLASSIFICATION.json`, `ARTIFACT_STORAGE.json` and
 `RESTORE_VERIFICATION.json`. Existing v1-v5 archives remain unchanged.
+
+
+For the final publication's verified remote main identity and clean status,
+read `git notes --ref=first-simulation-publication show HEAD`. This separate
+post-push receipt preserves the already tested source tree. Fetch that notes ref
+explicitly alongside `refs/notes/first-simulation-validation`.
