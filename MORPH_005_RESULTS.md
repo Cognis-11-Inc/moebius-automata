@@ -1,6 +1,6 @@
 # MORPH-005 — The first filament
 
-2026-11-23. **PARTIAL pending clean-commit workspace certification.** The
+2026-11-23. **Engineering/scientific gates PASS; visual acceptance PARTIAL (Operator review pending).** The
 finite-material construction and mandatory navigation addendum are implemented.
 Focused tests, seven red/green demonstrations, A–H experiments and rendered
 replay pass. Human/physical-mouse visual acceptance is not claimed. No push.
@@ -71,7 +71,7 @@ measured, not an optimized million-organism output-only sampler.
 | G6 observation |FOCUSED PASS: A/B/C numerical equality; all320 final native snapshots and pre-reset digest replay headlessly |
 | G7 serialization |FOCUSED PASS: complete graph/binding/events/config and continuation; malformed quantities/topology/cached stocks rejected |
 | G8 resources |FOCUSED PASS for measured bounds/costs below; growth/history/input/capture budgets explicit |
-| G9 regression |FOCUSED PASS:49 morph/lab tests; strict workspace Clippy/format; clean full suite PENDING |
+| G9 regression |FOCUSED PASS:49 morph/lab tests; strict workspace Clippy/format; clean implementation full suite156/156 PASS |
 | G10 provenance |FOCUSED PASS: every node matches an admitted parcel/binding/creation event and source experiment; failures retained with explicit source-capture limits |
 
 Seven source/consumer fault demonstrations in HONEST_RED.json cover transfer
@@ -190,5 +190,9 @@ TRIAL_CHRONOLOGY.json. Full source images were not captured before early test
 fixture repairs; recorded diagnostics/parameter corrections are retained and
 that limitation is explicit. No external scientific papers were consulted;
 static binding, capture and growth laws are authored assumptions. No Lisp or
-Python live service was added. Full clean-commit certification is next; no push
-or MORPH-006 is authorized.
+Python live service was added. Clean implementation4c44c63 passed all156 workspace tests,0failures, with a clean
+tree before/after. The documentation receipt is retested on its final clean HEAD;
+its exact SHA/transcript/archive receipt are in the local Git note:
+`git notes --ref=morph-005-validation show HEAD`. Absent note means that final
+gate is pending. Physical mouse/human visual acceptance remains pending.
+No push or MORPH-006 is authorized.

@@ -502,5 +502,271 @@
       "bytes": 377,
       "sha256": "d6aa2ec5611cb9712c2f89d7769f00a53b4eca8cb0c2c4f3ecaf2957782b5963"
     }
+  ],
+  "certified": [
+    {
+      "member": "00_HOME__INDEX.md",
+      "atlas_relative_path": "00_HOME/INDEX.md",
+      "bytes": 1546,
+      "sha256": "889239eff21232283de19f36af7b04c70ee01b32db0c3db1591be153a744924f"
+    },
+    {
+      "member": "00_HOME__STATUS_GUIDE.md",
+      "atlas_relative_path": "00_HOME/STATUS_GUIDE.md",
+      "bytes": 996,
+      "sha256": "d49c59d682465bbf57165b14a8993091ea071b882b99316dc0beefa8a81104b7"
+    },
+    {
+      "member": "00_HOME__VAULT_ARCHITECTURE.md",
+      "atlas_relative_path": "00_HOME/VAULT_ARCHITECTURE.md",
+      "bytes": 1337,
+      "sha256": "d79566e1a272049c0ed0562188320ef1a869a5e5c1aed4dd6be20c872363f15c"
+    },
+    {
+      "member": "01_CANON__INDEX.md",
+      "atlas_relative_path": "01_CANON/INDEX.md",
+      "bytes": 646,
+      "sha256": "6ee32247e9548ee967c0c6081d54a0503ac8897f9637cd0cfa48cc16271d8bc3"
+    },
+    {
+      "member": "01_CANON__MOEBIUS_SHIP.md",
+      "atlas_relative_path": "01_CANON/MOEBIUS_SHIP.md",
+      "bytes": 5226,
+      "sha256": "3d44386625fe8ac024da7a06bd87a13f600098aca476aaa9f4ef0ea48621e268"
+    },
+    {
+      "member": "01_CANON__MOEBIUS_VESSEL.md",
+      "atlas_relative_path": "01_CANON/MOEBIUS_VESSEL.md",
+      "bytes": 928,
+      "sha256": "06ac8d797197c6e37b01c3343db8076ba0b2f1b6cf2d620f542bdfa0ad633ea2"
+    },
+    {
+      "member": "01_CANON__SHIP_DIMENSIONS.md",
+      "atlas_relative_path": "01_CANON/SHIP_DIMENSIONS.md",
+      "bytes": 1257,
+      "sha256": "03166dcac6f5107f6fc84fa58e33ebd0e0f6fac3fabc933c9c2c50fbe871d7d5"
+    },
+    {
+      "member": "02_ANATOMY__COMPONENT_LIBRARY.md",
+      "atlas_relative_path": "02_ANATOMY/COMPONENT_LIBRARY.md",
+      "bytes": 1148,
+      "sha256": "4e448d9c48376d527a973f14f3b2931d2eaaad3af5c39041d6aba750bf706cb1"
+    },
+    {
+      "member": "02_ANATOMY__FILAMENT_STRUCTURE.md",
+      "atlas_relative_path": "02_ANATOMY/FILAMENT_STRUCTURE.md",
+      "bytes": 1264,
+      "sha256": "d4834050b1e4b3226fe9d2a60766139277aefa26a77ec92538100d0ceb77b6e1"
+    },
+    {
+      "member": "02_ANATOMY__INDEX.md",
+      "atlas_relative_path": "02_ANATOMY/INDEX.md",
+      "bytes": 517,
+      "sha256": "baf2027c676656e0e7ced8e243e82ce6c3472463b57b18e21228defbe9aedf65"
+    },
+    {
+      "member": "03_PHYSIOLOGY__INDEX.md",
+      "atlas_relative_path": "03_PHYSIOLOGY/INDEX.md",
+      "bytes": 469,
+      "sha256": "ebaf03edd10c5241cbaaa194275ce05dea6e55f5c44b6f69d6ebd7297fd37884"
+    },
+    {
+      "member": "04_COGNITION__INDEX.md",
+      "atlas_relative_path": "04_COGNITION/INDEX.md",
+      "bytes": 468,
+      "sha256": "bc7a89ea6353f1b1501bdfd5ac824261703157e5cc579cdaae242b419c90fe0a"
+    },
+    {
+      "member": "05_ECOLOGY__ENVIRONMENTAL_HYPOTHESIS.md",
+      "atlas_relative_path": "05_ECOLOGY/ENVIRONMENTAL_HYPOTHESIS.md",
+      "bytes": 1623,
+      "sha256": "7c852c150d3a85f5630db0cb85d9dc6cf7b2789a544d4ed8d2388d8664c992ef"
+    },
+    {
+      "member": "05_ECOLOGY__INDEX.md",
+      "atlas_relative_path": "05_ECOLOGY/INDEX.md",
+      "bytes": 500,
+      "sha256": "08d1c0d3dc84ebf8bc847ac4a0e3cc6e89ea5b2a08c5286dce9cc8fca209392a"
+    },
+    {
+      "member": "06_SPECIES__ARACHNITECH.md",
+      "atlas_relative_path": "06_SPECIES/ARACHNITECH.md",
+      "bytes": 1551,
+      "sha256": "65516e5a1cc58593b1c215489ca050408b1fbe1151565c7ba1e05db6a6974c81"
+    },
+    {
+      "member": "06_SPECIES__INDEX.md",
+      "atlas_relative_path": "06_SPECIES/INDEX.md",
+      "bytes": 487,
+      "sha256": "a2cd6c9f32cec45154a84f3788eddc48aea37ffd21108c8ebd53ec1bbd9f17ce"
+    },
+    {
+      "member": "07_EXPERIMENTS__INDEX.md",
+      "atlas_relative_path": "07_EXPERIMENTS/INDEX.md",
+      "bytes": 806,
+      "sha256": "193238dce500ee97899daba6480af0165ebe0f0e1f496f14e90980fb90efda40"
+    },
+    {
+      "member": "07_EXPERIMENTS__MORPH_001.md",
+      "atlas_relative_path": "07_EXPERIMENTS/MORPH_001.md",
+      "bytes": 1073,
+      "sha256": "def467c3a8ec18c3336bfb01cf690c578a0f35b4ec358496b569c5710c7c3d36"
+    },
+    {
+      "member": "07_EXPERIMENTS__MORPH_002.md",
+      "atlas_relative_path": "07_EXPERIMENTS/MORPH_002.md",
+      "bytes": 1204,
+      "sha256": "90703163df2ec34ce827fd2456aa9530c177077d133edb28fb77a5e59baee1d4"
+    },
+    {
+      "member": "07_EXPERIMENTS__MORPH_003.md",
+      "atlas_relative_path": "07_EXPERIMENTS/MORPH_003.md",
+      "bytes": 2411,
+      "sha256": "aa272208df1826c18d6551ce4ebe655e4096382a3ac44508066ac7b99b5f3850"
+    },
+    {
+      "member": "07_EXPERIMENTS__MORPH_004.md",
+      "atlas_relative_path": "07_EXPERIMENTS/MORPH_004.md",
+      "bytes": 1348,
+      "sha256": "596b3b25e2559237b69428f05fe2062b682e9649118bb71d5b2343d94d5a6708"
+    },
+    {
+      "member": "07_EXPERIMENTS__MORPH_005.md",
+      "atlas_relative_path": "07_EXPERIMENTS/MORPH_005.md",
+      "bytes": 1602,
+      "sha256": "8adcc2d1ba34f132858b0cf8ebe7ef61922e450e533df5f68c93de0f03eb1843"
+    },
+    {
+      "member": "08_ARCHITECTURE__ANATOMY_SPEC_V2.md",
+      "atlas_relative_path": "08_ARCHITECTURE/ANATOMY_SPEC_V2.md",
+      "bytes": 1351,
+      "sha256": "811e3009c84ac1267c72914f501331de8eb52affb6430f67e9782a01a7129d4d"
+    },
+    {
+      "member": "08_ARCHITECTURE__FILAMENT_ASSEMBLY.md",
+      "atlas_relative_path": "08_ARCHITECTURE/FILAMENT_ASSEMBLY.md",
+      "bytes": 1324,
+      "sha256": "fb5bb63db83ec87908623c95bc17a501e7440c092ca20c266fa8b14a8610c499"
+    },
+    {
+      "member": "08_ARCHITECTURE__HYBRID_STACK.md",
+      "atlas_relative_path": "08_ARCHITECTURE/HYBRID_STACK.md",
+      "bytes": 1195,
+      "sha256": "0188be8b983a9ad4a046ed95b527c234e7e48e0bfd956849e4d82337c11963a0"
+    },
+    {
+      "member": "08_ARCHITECTURE__INDEX.md",
+      "atlas_relative_path": "08_ARCHITECTURE/INDEX.md",
+      "bytes": 793,
+      "sha256": "7d2008d5a6bb9ed1ee97c094ce787d62037124be0b84b5d4666b8f9176f192f6"
+    },
+    {
+      "member": "08_ARCHITECTURE__INTERVENTION_BOUNDARY.md",
+      "atlas_relative_path": "08_ARCHITECTURE/INTERVENTION_BOUNDARY.md",
+      "bytes": 1303,
+      "sha256": "c82d0ba96efcc4eb94a6b63bd3fb5938b3971e8ab795f9728971fc4a31d48bec"
+    },
+    {
+      "member": "08_ARCHITECTURE__LIGHT_PORT_BOUNDARY.md",
+      "atlas_relative_path": "08_ARCHITECTURE/LIGHT_PORT_BOUNDARY.md",
+      "bytes": 1253,
+      "sha256": "2ccf7732bbcb224869d70773ea1c693b5b016e98ffa917bc7d8eef5312ff591b"
+    },
+    {
+      "member": "08_ARCHITECTURE__WITNESS_NAVIGATION.md",
+      "atlas_relative_path": "08_ARCHITECTURE/WITNESS_NAVIGATION.md",
+      "bytes": 1413,
+      "sha256": "07cc4924ae40b3955ed7075551f770d7a722f932d0d2d5c2e27fa076de47592e"
+    },
+    {
+      "member": "08_ARCHITECTURE__WITNESS_SPHERE.md",
+      "atlas_relative_path": "08_ARCHITECTURE/WITNESS_SPHERE.md",
+      "bytes": 1238,
+      "sha256": "fe5877166c75429bad1bc42856785a72eef372a6f397df24bda01d12cc5fddd2"
+    },
+    {
+      "member": "08_ARCHITECTURE__WORLD_AUTHORITY.md",
+      "atlas_relative_path": "08_ARCHITECTURE/WORLD_AUTHORITY.md",
+      "bytes": 1302,
+      "sha256": "812bc269e68edc75574557fc1b31ec0f97076ae922c75e5c04d5c44d5bbafd85"
+    },
+    {
+      "member": "09_EVIDENCE__EVIDENCE_POLICY.md",
+      "atlas_relative_path": "09_EVIDENCE/EVIDENCE_POLICY.md",
+      "bytes": 1171,
+      "sha256": "93788c1e60545aa109f24adca9aae60b9c3893c7c6c09770a37ca592b47530c0"
+    },
+    {
+      "member": "09_EVIDENCE__INDEX.md",
+      "atlas_relative_path": "09_EVIDENCE/INDEX.md",
+      "bytes": 617,
+      "sha256": "516a7c054ac98979a71408c4a50996be142a7762345b0e83fd340292fec1c5ef"
+    },
+    {
+      "member": "09_EVIDENCE__MORPH_004_DONORS.md",
+      "atlas_relative_path": "09_EVIDENCE/MORPH_004_DONORS.md",
+      "bytes": 1434,
+      "sha256": "29a7aff24105eebd0f7ed3dc82cd81d646706af30ea0618fd27f8cf359f540aa"
+    },
+    {
+      "member": "09_EVIDENCE__MORPH_004_LIMITS.md",
+      "atlas_relative_path": "09_EVIDENCE/MORPH_004_LIMITS.md",
+      "bytes": 1362,
+      "sha256": "c7f7ca11d0fd582c4beef256cdf9d3d11332e24dbf2752803abc25ed1d54df5a"
+    },
+    {
+      "member": "09_EVIDENCE__MORPH_005_LIMITS.md",
+      "atlas_relative_path": "09_EVIDENCE/MORPH_005_LIMITS.md",
+      "bytes": 1395,
+      "sha256": "258ff57cce4b806c6c1176a736eed33418a1a338aab77121dac7488a49b0a202"
+    },
+    {
+      "member": "90_INBOX__INDEX.md",
+      "atlas_relative_path": "90_INBOX/INDEX.md",
+      "bytes": 464,
+      "sha256": "f99ef45eaf0369b5cad93a6e94b1ff3e78cc5f01e8367c6e211d4aab33d3b3a4"
+    },
+    {
+      "member": "99_ARCHIVE__INDEX.md",
+      "atlas_relative_path": "99_ARCHIVE/INDEX.md",
+      "bytes": 466,
+      "sha256": "17eb683963eaa69f255d07eb91bb4a17406f2b1af86f6c2b7b66f822bf163cdd"
+    },
+    {
+      "member": "_TEMPLATES__Anatomical_Component.md",
+      "atlas_relative_path": "_TEMPLATES/Anatomical_Component.md",
+      "bytes": 374,
+      "sha256": "285e0660934a13e47a69b61c78a26f8457c07d67e4978ed66823db1c8c5bf186"
+    },
+    {
+      "member": "_TEMPLATES__Architectural_Decision.md",
+      "atlas_relative_path": "_TEMPLATES/Architectural_Decision.md",
+      "bytes": 376,
+      "sha256": "d61960ff7bdf5a5225193054516da4267c58629e099c52cd24acbb143aac2678"
+    },
+    {
+      "member": "_TEMPLATES__Environmental_Mechanism.md",
+      "atlas_relative_path": "_TEMPLATES/Environmental_Mechanism.md",
+      "bytes": 376,
+      "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+    },
+    {
+      "member": "_TEMPLATES__Experimental_Protocol.md",
+      "atlas_relative_path": "_TEMPLATES/Experimental_Protocol.md",
+      "bytes": 376,
+      "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+    },
+    {
+      "member": "_TEMPLATES__Experimental_Result.md",
+      "atlas_relative_path": "_TEMPLATES/Experimental_Result.md",
+      "bytes": 376,
+      "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+    },
+    {
+      "member": "_TEMPLATES__Organism_Species.md",
+      "atlas_relative_path": "_TEMPLATES/Organism_Species.md",
+      "bytes": 377,
+      "sha256": "d6aa2ec5611cb9712c2f89d7769f00a53b4eca8cb0c2c4f3ecaf2957782b5963"
+    }
   ]
 }

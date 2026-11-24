@@ -29,7 +29,7 @@
   "status": {
     "CONSULTED": "local source and prior engineering evidence; no external scientific claims transferred",
     "IMPLEMENTED": true,
-    "VALIDATED": "specific local tests, A\u2013H, red/green, frame replay and bounded performance only; full suite pending clean local commit"
+    "VALIDATED": "Specific local tests, A\u2013H, seven red/green faults, native frame replay, bounded performance and clean implementation commit workspace156/156. No biological/mechanical/autonomy claim; human review pending."
   },
   "directive_inputs": [
     {

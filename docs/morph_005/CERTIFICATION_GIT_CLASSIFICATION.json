@@ -1,0 +1,53 @@
+{
+  "run_identity": "MORPH-005 certification receipt",
+  "files": 9,
+  "bytes": 196815,
+  "rows": [
+    {
+      "path": "HANDOFF.md",
+      "bytes": 61868,
+      "purpose": "Certification report, archive/index/hash reference, Atlas version map or outgoing continuity"
+    },
+    {
+      "path": "MORPH_005_RESULTS.md",
+      "bytes": 12513,
+      "purpose": "Certification report, archive/index/hash reference, Atlas version map or outgoing continuity"
+    },
+    {
+      "path": "docs/morph_002/ATLAS_REFERENCE.json",
+      "bytes": 8328,
+      "purpose": "Certification report, archive/index/hash reference, Atlas version map or outgoing continuity"
+    },
+    {
+      "path": "docs/morph_005/ADDENDUM_V3_CLASSIFICATION.json",
+      "bytes": 2016,
+      "purpose": "Certification report, archive/index/hash reference, Atlas version map or outgoing continuity"
+    },
+    {
+      "path": "docs/morph_005/ARTIFACT_STORAGE.json",
+      "bytes": 78367,
+      "purpose": "Certification report, archive/index/hash reference, Atlas version map or outgoing continuity"
+    },
+    {
+      "path": "docs/morph_005/ATLAS_SNAPSHOTS.json",
+      "bytes": 28935,
+      "purpose": "Certification report, archive/index/hash reference, Atlas version map or outgoing continuity"
+    },
+    {
+      "path": "docs/morph_005/RESTORE_VERIFICATION.json",
+      "bytes": 622,
+      "purpose": "Certification report, archive/index/hash reference, Atlas version map or outgoing continuity"
+    },
+    {
+      "path": "docs/morph_005/VALIDATION.json",
+      "bytes": 1660,
+      "purpose": "Certification report, archive/index/hash reference, Atlas version map or outgoing continuity"
+    },
+    {
+      "path": "docs/research/2026-11-23-morph-005-filament.json",
+      "bytes": 2506,
+      "purpose": "Certification report, archive/index/hash reference, Atlas version map or outgoing continuity"
+    }
+  ],
+  "raw_evidence": "Only metadata staged; final suite and Atlas raw notes are in immutable Mermogon v3. Inventory excludes itself."
+}

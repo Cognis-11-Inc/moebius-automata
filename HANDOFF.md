@@ -1,3 +1,38 @@
+# MORPH-005 certified implementation — 2026-11-23T21:22:54-05:00
+
+Agent: Codex. Scientific/engineering slice PASS; Operator visual acceptance
+PARTIAL/pending. Implementation commit 4c44c631d6770c1c57e0ba6d0078672084291e1b, main,
+clean before/after cargo test --workspace --offline -- --test-threads=8:
+156passed,0failed.49 focused tests,7 red/green faults, strict Clippy/fmt,
+A–H and all320 native frame replay checks pass. Documentation receipts follow
+in a separate local commit, retested clean. Exact final certificate is a local
+Git note: git notes --ref=morph-005-validation show HEAD. If absent, final
+certification is pending; read live Git refs for exact SHA and clean status.
+No push or MORPH-006. Runtime/source unchanged after implementation commit.
+
+Read MORPH_005_RESULTS.md and docs/morph_005/RESTORE.md. Mermogon archive manifest
+ARTIFACT_STORAGE.json extends immutable v1 raw evidence with restoration and
+implementation-suite addenda; final clean-HEAD transcript has its own archive
+receipt in the validation note. All member/restoration hashes checked; no raw
+trial/capture/log/state added to Git, original cache retained. Atlas on Stable
+Diffusion Drive:44notes/191links,0errors; before/after/certified maps archived.
+
+Bound material and graph remain owned by canonical ShipRuntime. The nozzle,
+trajectory and body/flagella use authored poses. Static binding establishes no
+mechanical equilibrium, propulsion, load bearing, anchoring or learning.
+New source-directory restoration passes all10 new tests using existing offline
+Cargo cache/shared target. Physical mouse/Operator visual acceptance remains
+unclaimed; native tests used synthetic resources and production UI activation.
+All failed and null trials/provenance limits remain documented and archived.
+
+Next authorized dependency: Operator review of the native demonstration;
+no next-slice implementation. Launch locally with cargo run --release
+-p moebius-morph-lab --bin moebius-world-witness --offline -- --construction.
+See README for controls. Safe first check: git status --short; git notes
+--ref=morph-005-validation show HEAD. Preserve prior chronology below.
+
+---
+
 # MORPH-005 implementation checkpoint — 2026-11-23T21:21:29-05:00
 
 Agent: Codex. Local MORPH-005 implementation and camera addendum complete;
