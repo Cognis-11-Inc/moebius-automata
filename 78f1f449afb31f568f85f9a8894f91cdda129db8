@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "date_local": "2026-11-23",
+  "status": "PASS",
+  "certificate": {
+    "status": "PASS",
+    "task": "MORPH-004 option2 canonical free-space runtime",
+    "timestamp_local": "2026-11-23T20:15:06-05:00",
+    "revision": "78f1f449afb31f568f85f9a8894f91cdda129db8",
+    "tree": "dc13eb9027d98b52a9ae776c3c6009de859d9702",
+    "branch": "main",
+    "command": "cargo test --workspace --offline -- --test-threads=8",
+    "exit_code": 0,
+    "passed": 146,
+    "failed": 0,
+    "clean_before": true,
+    "clean_after": true,
+    "transcript_sha256": "23b73b17d61d20cace09460eda5e8a12ec5e772b3facfe6109f6f9dd1806401a",
+    "implementation_revision": "76c4234583869324a8a5c7838b1a50d1875081bf",
+    "raw_evidence_main_manifest_sha256": "651b3781c73f9e8e301d9eb2ccaa44d8ad3636543c41b5d62c3308918759a277",
+    "claim_boundary": "Reference drift/exposure/emission/transport, not physiology or ecology. Same-build exact replay; no isolated GPU cost or cross-platform numerical claim.",
+    "git_publication": "Local main commits and local validation-note commit only; no push."
+  },
+  "classification": {
+    "purpose": "Final clean documentation HEAD full-suite transcript and certificate",
+    "run_identity": "78f1f449afb31f568f85f9a8894f91cdda129db8",
+    "files": 2,
+    "raw_bytes": 16378,
+    "destination": "New immutable runtime/v5 final attestation archive; metadata versioned in Git note to preserve tested source tree"
+  },
+  "mount_path": "/run/media/cognis/Mermogon",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-004/2026-11-23-runtime/v5",
+  "external_index_path": "ARCHIVE_INDEX.json",
+  "external_index_sha256": "f276a716678c85b8fdfd19fcc6267df3dfdaa99e27d79c30409b14936195f25a",
+  "raw_files": 2,
+  "raw_bytes": 16378,
+  "records": [
+    {
+      "phase": "final-clean-suite",
+      "purpose": "Final clean documentation HEAD full-suite transcript and certificate",
+      "relative_path": "final-clean-suite.tar",
+      "bytes": 20480,
+      "sha256": "3806a393c1f163171878016705da5aabd6029b9fc16add0180f726e90a584de9",
+      "members": [
+        {
+          "name": "suite.log",
+          "bytes": 15409,
+          "sha256": "23b73b17d61d20cace09460eda5e8a12ec5e772b3facfe6109f6f9dd1806401a"
+        },
+        {
+          "name": "certificate.json",
+          "bytes": 969,
+          "sha256": "06e5cd9b275779bddc9903eccdb46c217d4b6646d36f6fdcd5ad9d043985cbcb"
+        }
+      ]
+    }
+  ],
+  "verification": "Read this JSON Git note, verify external index SHA256, then use existing python/m6_artifacts.py verify_bundle on each record; immutable archive/member/restoration verified at sealing.",
+  "main_experiment_manifest": "docs/morph_004/ARTIFACT_STORAGE.json (21 archives/524 files); this final addendum is separately versioned in this Git note."
+}
