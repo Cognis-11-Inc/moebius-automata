@@ -83,34 +83,169 @@ pub struct Worker {
     latest: Arc<Mutex<Option<Arc<WorldSnapshot>>>>,
     result: mpsc::Receiver<Result<WorldSnapshot, MorphError>>,
     thread: Option<thread::JoinHandle<()>>,
+    controls: mpsc::SyncSender<Playback>,
+    status: Arc<Mutex<PlaybackStatus>>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum Playback {
+    Play,
+    Pause,
+    Step,
+    Reset,
+    Rate(u32),
+    Stop,
+}
+#[derive(Clone, Debug)]
+pub struct PlaybackStatus {
+    pub tick: u64,
+    pub generation: u64,
+    pub playing: bool,
+    pub rate: u32,
+    pub controls: Vec<(u64, u64, Playback)>,
+    pub reset_digests: Vec<(u64, u64, String)>,
+    pub error: Option<String>,
 }
 impl Worker {
-    /// Finite explicit run. Pacing may slow wall-clock progress; it never changes tick count.
-    /// No camera/input/render timing or receiver acknowledgement is passed to the owner.
     pub fn spawn(
-        mut world: ShipRuntime,
+        world: ShipRuntime,
         ticks: u64,
         publish_every: u64,
         pace: Duration,
     ) -> Result<Self, MorphError> {
+        Self::launch(world, ticks, publish_every, pace, false, false)
+    }
+    pub fn interactive(
+        world: ShipRuntime,
+        ticks: u64,
+        pace: Duration,
+        paused: bool,
+    ) -> Result<Self, MorphError> {
+        Self::launch(world, ticks, 1, pace, true, paused)
+    }
+    pub fn control(&self, command: Playback) -> Result<(), MorphError> {
+        require(
+            !matches!(command,Playback::Rate(n)if ![1,4,16].contains(&n)),
+            "unsupported playback rate",
+        )?;
+        self.controls
+            .try_send(command)
+            .map_err(|_| MorphError("control queue full or runtime worker finished".into()))
+    }
+    pub fn playback(&self) -> Result<PlaybackStatus, MorphError> {
+        Ok(self
+            .status
+            .lock()
+            .map_err(|_| MorphError("playback status poisoned".into()))?
+            .clone())
+    }
+    fn launch(
+        mut world: ShipRuntime,
+        ticks: u64,
+        publish_every: u64,
+        pace: Duration,
+        interactive: bool,
+        paused: bool,
+    ) -> Result<Self, MorphError> {
         require(publish_every > 0, "publication interval must be positive")?;
-        let latest = Arc::new(Mutex::new(Some(Arc::new(world.snapshot()))));
+        let initial = world.snapshot();
+        let latest = Arc::new(Mutex::new(Some(Arc::new(initial.clone()))));
         let slot = latest.clone();
+        let status = Arc::new(Mutex::new(PlaybackStatus {
+            tick: initial.tick,
+            generation: 0,
+            playing: !paused,
+            rate: 1,
+            controls: vec![],
+            reset_digests: vec![],
+            error: None,
+        }));
+        let info = status.clone();
         let (tx, result) = mpsc::channel();
+        let (controls, commands) = mpsc::sync_channel(64);
         let handle = thread::Builder::new()
             .name("moebius-ship-authority".into())
             .spawn(move || {
-                let run = (|| {
-                    for _ in 0..ticks {
-                        world.tick()?;
-                        if world.state().tick.is_multiple_of(publish_every) {
-                            *slot
+                let run: Result<WorldSnapshot, MorphError> = (|| {
+                    let mut left = ticks;
+                    let mut playing = !paused;
+                    let mut rate = 1;
+                    let mut single = 0usize;
+                    let mut stop = false;
+                    loop {
+                        for command in commands.try_iter() {
+                            let mut state = info
                                 .lock()
-                                .map_err(|_| MorphError("snapshot slot poisoned".into()))? =
-                                Some(Arc::new(world.snapshot()));
+                                .map_err(|_| MorphError("playback status poisoned".into()))?;
+                            require(
+                                state.controls.len() < 512,
+                                "playback control history budget",
+                            )?;
+                            let ordinal = state.controls.len() as u64;
+                            state.controls.push((ordinal, world.state().tick, command));
+                            match command {
+                                Playback::Play => playing = true,
+                                Playback::Pause => playing = false,
+                                Playback::Step => {
+                                    playing = false;
+                                    single += 1;
+                                }
+                                Playback::Rate(n) => rate = n,
+                                Playback::Reset => {
+                                    let generation = state.generation;
+                                    state.reset_digests.push((
+                                        generation,
+                                        world.state().tick,
+                                        world.digest()?,
+                                    ));
+                                    world = ShipRuntime::restore(initial.clone())?;
+                                    left = ticks;
+                                    single = 0;
+                                    state.generation += 1;
+                                    *slot.lock().map_err(|_| {
+                                        MorphError("snapshot slot poisoned".into())
+                                    })? = Some(Arc::new(world.snapshot()));
+                                }
+                                Playback::Stop => stop = true,
+                            }
+                        }
+                        if stop || (!interactive && left == 0) {
+                            break;
+                        }
+                        if left == 0 {
+                            playing = false;
+                        }
+                        let budget = if playing {
+                            rate as usize
+                        } else {
+                            single.min(1)
+                        };
+                        for _ in 0..budget.min(left as usize) {
+                            world.tick()?;
+                            left -= 1;
+                            single = single.saturating_sub(1);
+                            if world.state().tick.is_multiple_of(publish_every) {
+                                *slot
+                                    .lock()
+                                    .map_err(|_| MorphError("snapshot slot poisoned".into()))? =
+                                    Some(Arc::new(world.snapshot()));
+                            }
+                        }
+                        {
+                            let mut s = info
+                                .lock()
+                                .map_err(|_| MorphError("playback status poisoned".into()))?;
+                            s.tick = world.state().tick;
+                            s.playing = playing;
+                            s.rate = rate;
                         }
                         if !pace.is_zero() {
-                            thread::sleep(pace);
+                            thread::sleep(if budget == 0 {
+                                Duration::from_millis(1)
+                            } else {
+                                pace
+                            });
+                        } else if budget == 0 {
+                            thread::sleep(Duration::from_millis(1));
                         }
                     }
                     let snapshot = world.snapshot();
@@ -120,6 +255,12 @@ impl Worker {
                         Some(Arc::new(snapshot.clone()));
                     Ok(snapshot)
                 })();
+                if let Err(error) = &run
+                    && let Ok(mut state) = info.lock()
+                {
+                    state.error = Some(error.to_string());
+                    state.playing = false;
+                }
                 let _ = tx.send(run);
             })
             .map_err(|e| MorphError(e.to_string()))?;
@@ -127,6 +268,8 @@ impl Worker {
             latest,
             result,
             thread: Some(handle),
+            controls,
+            status,
         })
     }
     pub fn latest(&self) -> Result<Arc<WorldSnapshot>, MorphError> {

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "purpose": "Post-seal source-restoration and/or clean-commit certification transcripts and reproducibility procedures",
+  "files": 5,
+  "bytes": 7582,
+  "members": [
+    "rebuild_restored.py",
+    "restored-test-0.log",
+    "restored-test-1.log",
+    "restored-rebuild.json",
+    "append_evidence.py"
+  ]
+}

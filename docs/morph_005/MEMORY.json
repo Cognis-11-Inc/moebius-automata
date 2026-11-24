@@ -1,0 +1,9 @@
+{
+  "command": [
+    "target/release/examples/morph_005_bench",
+    "/home/cognis/.cache/moebius-automata/morph-005/experiments-v4"
+  ],
+  "exit_code": 0,
+  "peak_rss_kib": 14252,
+  "scope": "Whole benchmark including snapshots, replay, graph meshing/audits, serialization; LinuxKiB"
+}

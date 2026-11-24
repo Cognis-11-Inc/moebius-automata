@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "archives": 17,
+  "files": 355,
+  "raw_bytes": 31274274,
+  "index_sha256": "acbdda4e80e452984df53bde9ed24db76831774fd64507a1189155e0b202472c",
+  "restored_to": "/home/cognis/.cache/moebius-automata/morph-005/restore-v1",
+  "scope": "Every archive/member/restored byte verified, including all failed/superseded trials. Original cache retained. Source rebuild recorded separately.",
+  "source_map": "source-final/SOURCE_MAP.json",
+  "atlas_map": "docs/morph_005/ATLAS_SNAPSHOTS.json",
+  "version": 2,
+  "additional_restoration": "/home/cognis/.cache/moebius-automata/morph-005/restore-addendum-v2"
+}

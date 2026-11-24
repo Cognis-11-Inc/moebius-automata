@@ -1,0 +1,15 @@
+{
+  "status": "Focused pass; clean-commit full suite pending",
+  "base_revision": "d6fa1ac41ec73f7c6ab0372032d32fe6faf0c047",
+  "focused_tests": 49,
+  "new_tests": 10,
+  "focused_command": "cargo test -p moebius-morph -p moebius-morph-lab --offline -- --test-threads=8",
+  "exit_code": 0,
+  "honest_red_cases": 7,
+  "static": "workspace/all-target strict Clippy and formatting passed",
+  "regression": "M3 original cff18b1... repeat-state and M4 original4f34d8... final-state digests preserved exactly",
+  "rendered": "320 snapshots plus pre-reset history replay exactly, six final captures; synthetic production input/widget activation, not human acceptance",
+  "memory_budgets": "4096 material records/nodes;4096filaments;16384path samples;65536events;256pending;64control queue;512clock commands;4096record frames;2default filament mesh builds/frame",
+  "gpu": "RTX5060Ti driver615.78.08; actual GPU presentation, isolated GPU timestamps unmeasured",
+  "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)"
+}

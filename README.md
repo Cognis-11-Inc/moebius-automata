@@ -257,3 +257,24 @@ Benchmark organisms prescribe drift, environmental exposure, emission and
 conserved material transport. They do not compute metabolism, locomotion,
 intelligence or ecological interactions. Geometry is generated only for visible
 instances. No volumetric solver, floor or live Lisp/Python authority is added.
+
+## MORPH-005 — the first filament
+
+```sh
+cargo run --release -p moebius-morph-lab --bin moebius-world-witness --offline -- --construction --ticks 3600
+```
+
+One prototype follows a recorded3D path, bends its body/flagella, emits finite
+material and binds it into persistent filaments. This is authored construction,
+not autonomous locomotion or structural mechanics. Blue geometry is backed by
+the canonical material ledger; amber points are free secretion.
+
+Use right mouse to look, WASD/QE to fly, Z/X to roll, Shift/Ctrl for speed,
+wheel for speed/dolly, Tab for orbit, left drag to orbit and middle drag to pan.
+Click to select; F focuses anatomy or filament; Home resets the view. The panel
+provides pause, single step, reset,1x/4x/16x, follow/free camera, visibility,
+witness radius and a bounded filament mesh budget. Camera controls do not edit
+biology. Reset starts a fresh recorded experiment; a completed finite run pauses.
+
+Read [MORPH_005_RESULTS.md](MORPH_005_RESULTS.md) for exact tests, metrics,
+physical limits, failed trials and external evidence restoration.

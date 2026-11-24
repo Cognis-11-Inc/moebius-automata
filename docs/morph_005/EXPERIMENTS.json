@@ -1,0 +1,206 @@
+{
+  "experiments": [
+    {
+      "digest": "d36f7f9f93693d4ebd62c65c19e0610c246a53d9573f2f749a8ef932383a59d8",
+      "events": 240,
+      "experiment": "A",
+      "filaments": 0,
+      "ledger": {
+        "external_input": 0,
+        "in_world": 0,
+        "initial": 0,
+        "reservoir": 0,
+        "residual": 0,
+        "sinks": 0
+      },
+      "nodes": 0,
+      "simulation_ns": 57277079,
+      "status": "PASS",
+      "ticks": 120
+    },
+    {
+      "digest": "6ac42cb87b622673dbf53c1f1a1efa554d317f53bfbd305f07a64152ccb9d260",
+      "events": 240,
+      "experiment": "B",
+      "filaments": 1,
+      "ledger": {
+        "bound": 64,
+        "external_input": 0,
+        "in_world": 0,
+        "initial": 64,
+        "reservoir": 0,
+        "residual": 0,
+        "sinks": 0
+      },
+      "nodes": 64,
+      "simulation_ns": 59207551,
+      "status": "PASS",
+      "ticks": 120
+    },
+    {
+      "digest": "f1f1f9e79885a6abbc617f97903df5371056d92f4e7b9041dc3c1f2c3e8f35dd",
+      "events": 240,
+      "experiment": "C",
+      "filaments": 1,
+      "ledger": {
+        "bound": 64,
+        "external_input": 0,
+        "in_world": 0,
+        "initial": 64,
+        "reservoir": 0,
+        "residual": 0,
+        "sinks": 0
+      },
+      "nodes": 64,
+      "simulation_ns": 58210590,
+      "status": "PASS",
+      "ticks": 120
+    },
+    {
+      "digest": "cf276d5c0a8ca4237abd28ebd7744e85b42a3347aa8d0ee937442a675373a0a4",
+      "events": 235,
+      "experiment": "D",
+      "filaments": 1,
+      "ledger": {
+        "bound": 64,
+        "external_input": 0,
+        "in_world": 0,
+        "initial": 64,
+        "reservoir": 0,
+        "residual": 0,
+        "sinks": 0
+      },
+      "nodes": 64,
+      "simulation_ns": 58671850,
+      "status": "PASS",
+      "ticks": 120
+    },
+    {
+      "digest": "fe59eb89f0d2a0612ed2eafa4e2c2390e2abaef4022c29c522661ac878b1e115",
+      "events": 240,
+      "experiment": "E",
+      "filaments": 1,
+      "ledger": {
+        "bound": 5,
+        "external_input": 0,
+        "in_world": 0,
+        "initial": 5,
+        "reservoir": 0,
+        "residual": 0,
+        "sinks": 0
+      },
+      "nodes": 5,
+      "simulation_ns": 58672381,
+      "status": "PASS",
+      "ticks": 120
+    },
+    {
+      "digest": "5db18e801a1c6cd9f599d1fd176c9a90ceaf07940c46d018ce9412b50fb13911",
+      "events": 240,
+      "experiment": "vertical",
+      "filaments": 1,
+      "ledger": {
+        "bound": 64,
+        "external_input": 0,
+        "in_world": 0,
+        "initial": 64,
+        "reservoir": 0,
+        "residual": 0,
+        "sinks": 0
+      },
+      "nodes": 64,
+      "simulation_ns": 60368892,
+      "status": "PASS",
+      "ticks": 120
+    },
+    {
+      "digest": "7687aeb99be8caa5f0685c784a819122129b90329db065aaba60cbb920a7ebdc",
+      "events": 249,
+      "experiment": "disconnected",
+      "filaments": 2,
+      "ledger": {
+        "bound": 79,
+        "external_input": 0,
+        "in_world": 1,
+        "initial": 80,
+        "reservoir": 0,
+        "residual": 0,
+        "sinks": 0
+      },
+      "nodes": 79,
+      "simulation_ns": 57391120,
+      "status": "PASS",
+      "ticks": 120
+    },
+    {
+      "exact_per_tick_states": true,
+      "experiment": "F",
+      "status": "PASS",
+      "ticks": 120
+    },
+    {
+      "digest": "326975c4dec85d77adc46b602e7f1805a64be83bc981002d99b59b1a831721ed",
+      "exact_continuation": true,
+      "experiment": "G",
+      "status": "PASS"
+    }
+  ],
+  "failures": [],
+  "numeric_claim": "same-build exact state/digests; no cross-platform f32 certification",
+  "scaling": [
+    {
+      "derived_index_ns": 1240,
+      "filaments": 1,
+      "mesh_and_audit_ns": 58250,
+      "nodes": 32,
+      "query_ns": 1110,
+      "requested_parcels": 32,
+      "residual": 0,
+      "simulation_ns": 17732026,
+      "snapshot_bytes": 24194,
+      "visible_chunks": 2,
+      "visible_mesh_vertices": 268
+    },
+    {
+      "derived_index_ns": 2020,
+      "filaments": 1,
+      "mesh_and_audit_ns": 179790,
+      "nodes": 128,
+      "query_ns": 1780,
+      "requested_parcels": 128,
+      "residual": 0,
+      "simulation_ns": 57810110,
+      "snapshot_bytes": 78383,
+      "visible_chunks": 8,
+      "visible_mesh_vertices": 1096
+    },
+    {
+      "derived_index_ns": 6820,
+      "filaments": 1,
+      "mesh_and_audit_ns": 483560,
+      "nodes": 512,
+      "query_ns": 2770,
+      "requested_parcels": 512,
+      "residual": 0,
+      "simulation_ns": 225109423,
+      "snapshot_bytes": 300995,
+      "visible_chunks": 25,
+      "visible_mesh_vertices": 3442
+    },
+    {
+      "derived_index_ns": 12570,
+      "filaments": 1,
+      "mesh_and_audit_ns": 493220,
+      "nodes": 1024,
+      "query_ns": 4460,
+      "requested_parcels": 1024,
+      "residual": 0,
+      "simulation_ns": 473428547,
+      "snapshot_bytes": 599452,
+      "visible_chunks": 25,
+      "visible_mesh_vertices": 3442
+    }
+  ],
+  "semantics": "recorded3D path, animated numerical nozzle, integer admitted-material transfer, static bound nodes; no mechanics/propulsion/biology",
+  "status": "PASS"
+}

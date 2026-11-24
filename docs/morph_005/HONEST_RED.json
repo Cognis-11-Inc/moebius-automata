@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "guard": "duplicate-free-to-bound",
+      "test": "transfer_is_exact_once_and_free_bound_ledger_detects_duplication_and_loss",
+      "file": "crates/moebius-morph/src/emission.rs",
+      "mutation": "let parcel = next.parcels.remove(index); -> let parcel = next.parcels[index];",
+      "red_exit": 101,
+      "green_exit": 0,
+      "restored_sha256": "381870a7913598f2437a6b28a7f34f769983e404565f50fe8b6fcabb17c1e872"
+    },
+    {
+      "guard": "lost-free-to-bound",
+      "test": "transfer_is_exact_once_and_free_bound_ledger_detects_duplication_and_loss",
+      "file": "crates/moebius-morph/src/emission.rs",
+      "mutation": "next.bound.push(binding); -> let _ = binding;",
+      "red_exit": 101,
+      "green_exit": 0,
+      "restored_sha256": "381870a7913598f2437a6b28a7f34f769983e404565f50fe8b6fcabb17c1e872"
+    },
+    {
+      "guard": "graph-ledger-authority",
+      "test": "assembly_and_animated_emission_are_witness_neutral_and_midway_restore_exact",
+      "file": "crates/moebius-morph/src/filament.rs",
+      "mutation": "require(quantity == f.quantity, \"filament cached quantity mismatch\")?; -> let _ = quantity;",
+      "red_exit": 101,
+      "green_exit": 0,
+      "restored_sha256": "46049aa890420ce772ecdcaebe2da425c6dc40d8e5ae75097faf331086c58afd"
+    },
+    {
+      "guard": "observer-mutation",
+      "test": "assembly_and_animated_emission_are_witness_neutral_and_midway_restore_exact",
+      "file": "crates/moebius-morph/tests/filament.rs",
+      "mutation": "let before = c.digest().unwrap(); -> let before = c.digest().unwrap(); c.submit(Intervention{tick:c.state().tick,sequence:k,origin:\"FAULT_OBSERVER\".into(),action:Operation::SetAmbientLight{value:42}}).unwrap();",
+      "red_exit": 101,
+      "green_exit": 0,
+      "restored_sha256": "fa0649c95913798ef40ed017ad6ebbaddc0798aaec9dab955bbea6dd79ce5805"
+    },
+    {
+      "guard": "history-budget",
+      "test": "no_material_exhaustion_pause_restart_and_hard_budgets_are_explicit",
+      "file": "crates/moebius-morph/src/runtime.rs",
+      "mutation": "next.events.len() <= r.max_events -> true",
+      "red_exit": 101,
+      "green_exit": 0,
+      "restored_sha256": "a98a310ef3048f5277f5a1fd52a7a92d51a3a642e6bf7c88f3a81cea6d95d950"
+    },
+    {
+      "guard": "tick-loss",
+      "test": "controlled_clock_pauses_steps_resets_and_preserves_every_numerical_tick",
+      "file": "crates/moebius-morph/src/runtime.rs",
+      "mutation": "for _ in 0..ticks { -> for _ in 0..ticks.saturating_sub(1) {",
+      "red_exit": 101,
+      "green_exit": 0,
+      "restored_sha256": "a98a310ef3048f5277f5a1fd52a7a92d51a3a642e6bf7c88f3a81cea6d95d950"
+    },
+    {
+      "guard": "unsupported-long-edge",
+      "test": "horizontal_vertical_curved_gapped_and_rotating_growth_have_valid_persistent_topology",
+      "file": "crates/moebius-morph/src/filament.rs",
+      "mutation": "if d > i128::from(r.max_length).pow(2) { -> if false {",
+      "red_exit": 101,
+      "green_exit": 0,
+      "restored_sha256": "46049aa890420ce772ecdcaebe2da425c6dc40d8e5ae75097faf331086c58afd"
+    }
+  ],
+  "conservation_note": "Duplication/loss mutations are rejected by the atomic book balance guard, causing expected successful-growth assertions to fail; direct positive/negative residual fault assertions also pass after restoration."
+}

@@ -1,0 +1,9 @@
+{
+  "consumer": "headless moebius-morph; no renderer",
+  "final_digest": "d8de2311d21ac10492d6cee73755e955eaf61dba912d8d6f65e58027da016fd4",
+  "final_tick": 360,
+  "frames_verified": 320,
+  "per_frame_state_and_mesh_budget_match": true,
+  "reset_histories_verified": 1,
+  "status": "PASS"
+}

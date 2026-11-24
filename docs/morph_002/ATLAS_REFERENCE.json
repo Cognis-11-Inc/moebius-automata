@@ -14,8 +14,8 @@
   "snapshot_members": [
     {
       "path": "00_HOME/INDEX.md",
-      "bytes": 1419,
-      "sha256": "1b8706660848197de3129f836354175fb993d175442341afc47b5d3b978fc797"
+      "bytes": 1546,
+      "sha256": "889239eff21232283de19f36af7b04c70ee01b32db0c3db1591be153a744924f"
     },
     {
       "path": "00_HOME/STATUS_GUIDE.md",
@@ -53,9 +53,14 @@
       "sha256": "4e448d9c48376d527a973f14f3b2931d2eaaad3af5c39041d6aba750bf706cb1"
     },
     {
+      "path": "02_ANATOMY/FILAMENT_STRUCTURE.md",
+      "bytes": 1264,
+      "sha256": "d4834050b1e4b3226fe9d2a60766139277aefa26a77ec92538100d0ceb77b6e1"
+    },
+    {
       "path": "02_ANATOMY/INDEX.md",
-      "bytes": 466,
-      "sha256": "37ca2df6f92de73f58f1fd145c2d512fe15df87463c8b4545786602e34319415"
+      "bytes": 517,
+      "sha256": "baf2027c676656e0e7ced8e243e82ce6c3472463b57b18e21228defbe9aedf65"
     },
     {
       "path": "03_PHYSIOLOGY/INDEX.md",
@@ -79,8 +84,8 @@
     },
     {
       "path": "06_SPECIES/ARACHNITECH.md",
-      "bytes": 1238,
-      "sha256": "4dbe4db3a1c6583086bb1b84a3be7bfd1efd0ffa0a535eb9f757b07976cb583f"
+      "bytes": 1551,
+      "sha256": "65516e5a1cc58593b1c215489ca050408b1fbe1151565c7ba1e05db6a6974c81"
     },
     {
       "path": "06_SPECIES/INDEX.md",
@@ -89,8 +94,8 @@
     },
     {
       "path": "07_EXPERIMENTS/INDEX.md",
-      "bytes": 760,
-      "sha256": "509510fe285289f7fce09659625af4705966818c0730001408e58fb80a8ff613"
+      "bytes": 806,
+      "sha256": "193238dce500ee97899daba6480af0165ebe0f0e1f496f14e90980fb90efda40"
     },
     {
       "path": "07_EXPERIMENTS/MORPH_001.md",
@@ -113,9 +118,19 @@
       "sha256": "596b3b25e2559237b69428f05fe2062b682e9649118bb71d5b2343d94d5a6708"
     },
     {
+      "path": "07_EXPERIMENTS/MORPH_005.md",
+      "bytes": 1302,
+      "sha256": "bd64ffab1b67841618e2a97230091c4a2cf0c1d06648e63020dae2064af7dbbd"
+    },
+    {
       "path": "08_ARCHITECTURE/ANATOMY_SPEC_V2.md",
       "bytes": 1351,
       "sha256": "811e3009c84ac1267c72914f501331de8eb52affb6430f67e9782a01a7129d4d"
+    },
+    {
+      "path": "08_ARCHITECTURE/FILAMENT_ASSEMBLY.md",
+      "bytes": 1324,
+      "sha256": "fb5bb63db83ec87908623c95bc17a501e7440c092ca20c266fa8b14a8610c499"
     },
     {
       "path": "08_ARCHITECTURE/HYBRID_STACK.md",
@@ -124,8 +139,8 @@
     },
     {
       "path": "08_ARCHITECTURE/INDEX.md",
-      "bytes": 697,
-      "sha256": "6e8e22a3c94ed859fa2a5c80ce9485c86f0b5518ecda5c69e236c2522bdc1da8"
+      "bytes": 793,
+      "sha256": "7d2008d5a6bb9ed1ee97c094ce787d62037124be0b84b5d4666b8f9176f192f6"
     },
     {
       "path": "08_ARCHITECTURE/INTERVENTION_BOUNDARY.md",
@@ -136,6 +151,11 @@
       "path": "08_ARCHITECTURE/LIGHT_PORT_BOUNDARY.md",
       "bytes": 1253,
       "sha256": "2ccf7732bbcb224869d70773ea1c693b5b016e98ffa917bc7d8eef5312ff591b"
+    },
+    {
+      "path": "08_ARCHITECTURE/WITNESS_NAVIGATION.md",
+      "bytes": 1413,
+      "sha256": "07cc4924ae40b3955ed7075551f770d7a722f932d0d2d5c2e27fa076de47592e"
     },
     {
       "path": "08_ARCHITECTURE/WITNESS_SPHERE.md",
@@ -154,8 +174,8 @@
     },
     {
       "path": "09_EVIDENCE/INDEX.md",
-      "bytes": 567,
-      "sha256": "1c500fe307f45aa50a9d132e4fef3b92cd4699e7b99ed143912ef8e992475368"
+      "bytes": 617,
+      "sha256": "516a7c054ac98979a71408c4a50996be142a7762345b0e83fd340292fec1c5ef"
     },
     {
       "path": "09_EVIDENCE/MORPH_004_DONORS.md",
@@ -166,6 +186,11 @@
       "path": "09_EVIDENCE/MORPH_004_LIMITS.md",
       "bytes": 1362,
       "sha256": "c7f7ca11d0fd582c4beef256cdf9d3d11332e24dbf2752803abc25ed1d54df5a"
+    },
+    {
+      "path": "09_EVIDENCE/MORPH_005_LIMITS.md",
+      "bytes": 1395,
+      "sha256": "258ff57cce4b806c6c1176a736eed33418a1a338aab77121dac7488a49b0a202"
     },
     {
       "path": "90_INBOX/INDEX.md",
@@ -209,5 +234,5 @@
     }
   ],
   "snapshot_note": "Rehashed after the clean MORPH-003 suite on a8cb705. Six edited notes cite that implementation commit. Ship design canon is unchanged.",
-  "latest_update": "MORPH-004 option2 canonical ship runtime:146-test clean implementation suite passed on76c4234; Atlas independently archived and interpretive."
+  "latest_update": "MORPH-005 material assembly/navigation: bounded local evidence; physical mouse and operator acceptance pending. Before/after independently archived on Mermogon."
 }

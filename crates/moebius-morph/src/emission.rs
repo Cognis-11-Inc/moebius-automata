@@ -120,6 +120,9 @@ pub struct EmitRequest<'a> {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct MaterialBook {
+    /// Conserved structural stock; empty fields preserve old v1 JSON/hash identities.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub bound: Vec<Binding>,
     pub version: u32,
     pub organism_id: u64,
     /// Recorded experiment identity. Motion does not read it.
@@ -145,7 +148,20 @@ pub struct MaterialBook {
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct Binding {
+    pub filament: u64,
+    pub node: u64,
+    pub bound_tick: u64,
+    pub parcel: Parcel,
+}
+
+fn zero(v: &u64) -> bool {
+    *v == 0
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Ledger {
+    #[serde(default, skip_serializing_if = "zero")]
+    pub bound: u64,
     pub initial: u64,
     pub external_input: u64,
     pub reservoir: u64,
@@ -233,6 +249,7 @@ impl MaterialBook {
             "capacity must be 1..=4096",
         )?;
         Ok(Self {
+            bound: vec![],
             version: BOOK_VERSION,
             organism_id,
             seed,
@@ -290,12 +307,65 @@ impl MaterialBook {
         Ok(total)
     }
 
-    /// `initial + external_input - (reservoir + in_world + sinks)`.
+    pub fn bound_quantity(&self) -> Result<u64, MorphError> {
+        self.bound.iter().try_fold(0u64, |n, b| {
+            n.checked_add(b.parcel.quantity)
+                .ok_or_else(|| MorphError("bound stock overflow".into()))
+        })
+    }
+    /// Whole-parcel transactional free -> bound transfer. No graph/renderer owns quantity.
+    pub fn bind(
+        &mut self,
+        parcel_id: u64,
+        quantity: u64,
+        filament: u64,
+        node: u64,
+    ) -> Result<Binding, MorphError> {
+        require_book(
+            quantity > 0 && filament > 0 && node > 0,
+            "invalid structural transfer",
+        )?;
+        require_book(
+            !self
+                .bound
+                .iter()
+                .any(|b| b.parcel.id == parcel_id || (b.filament == filament && b.node == node)),
+            "duplicate structural transfer",
+        )?;
+        let index = self
+            .parcels
+            .iter()
+            .position(|p| p.id == parcel_id)
+            .ok_or_else(|| MorphError("unavailable admitted material".into()))?;
+        require_book(
+            self.parcels[index].quantity == quantity,
+            "whole-parcel transfer requires exact available quantity",
+        )?;
+        let mut next = self.clone();
+        let parcel = next.parcels.remove(index);
+        let binding = Binding {
+            filament,
+            node,
+            bound_tick: self.tick,
+            parcel,
+        };
+        next.bound.push(binding);
+        next.version = 2;
+        require_book(
+            next.conservation_holds(),
+            "structural transfer violates conservation",
+        )?;
+        *self = next;
+        Ok(binding)
+    }
+    /// `reservoir + free + bound + sinks - (initial + authorized input)`.
+    ///
     /// Zero is the conservation invariant. External input is zero in this slice.
     pub fn residual(&self) -> Result<i128, MorphError> {
         let world = i128::from(self.in_world()?);
         let have = i128::from(self.reservoir)
             .checked_add(world)
+            .and_then(|sum| sum.checked_add(i128::from(self.bound_quantity().ok()?)))
             .and_then(|sum| sum.checked_add(i128::from(self.sinks)))
             .ok_or_else(|| MorphError("ledger sum overflow".into()))?;
         let sources = i128::from(self.initial)
@@ -310,6 +380,7 @@ impl MaterialBook {
 
     pub fn ledger(&self) -> Result<Ledger, MorphError> {
         Ok(Ledger {
+            bound: self.bound_quantity()?,
             initial: self.initial,
             external_input: self.external_input,
             reservoir: self.reservoir,
@@ -352,7 +423,7 @@ impl MaterialBook {
         if !(0..=MAX_LAUNCH).contains(&request.launch_speed) {
             return EmissionStatus::BadLaunch;
         }
-        if self.parcels.len() as u64 >= self.capacity {
+        if (self.parcels.len() + self.bound.len()) as u64 >= self.capacity {
             return EmissionStatus::CapacityExhausted {
                 capacity: self.capacity,
             };
@@ -478,7 +549,10 @@ impl MaterialBook {
     }
 
     fn validate_loaded(&self) -> Result<(), MorphError> {
-        require_book(self.version == BOOK_VERSION, "unsupported material book")?;
+        require_book(
+            (self.version == BOOK_VERSION && self.bound.is_empty()) || self.version == 2,
+            "unsupported material book/structural version",
+        )?;
         self.environment.validate()?;
         require_book(
             self.external_input == 0,
@@ -489,7 +563,7 @@ impl MaterialBook {
             "capacity out of bounds",
         )?;
         require_book(
-            self.parcels.len() as u64 <= self.capacity,
+            (self.parcels.len() + self.bound.len()) as u64 <= self.capacity,
             "parcel count over capacity",
         )?;
         require_book(self.rate >= 1, "rate must be at least 1")?;
@@ -499,7 +573,22 @@ impl MaterialBook {
         )?;
         require_book(self.conservation_holds(), "loaded book breaks conservation")?;
         let mut ids = BTreeSet::new();
-        for parcel in &self.parcels {
+        let mut bindings = BTreeSet::new();
+        for b in &self.bound {
+            require_book(
+                b.filament > 0
+                    && b.node > 0
+                    && b.bound_tick <= self.tick
+                    && b.bound_tick >= b.parcel.created_tick
+                    && bindings.insert((b.filament, b.node)),
+                "invalid bound provenance",
+            )?;
+        }
+        for parcel in self
+            .parcels
+            .iter()
+            .chain(self.bound.iter().map(|b| &b.parcel))
+        {
             require_book(ids.insert(parcel.id), "duplicate parcel id")?;
             require_book(parcel.id < self.next_id, "parcel id is past next_id")?;
             require_book(parcel.quantity >= 1, "empty parcel stored")?;

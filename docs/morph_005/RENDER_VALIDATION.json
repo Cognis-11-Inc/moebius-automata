@@ -1,0 +1,76 @@
+{
+  "UI_test": "programmatic Activate on actual production widgets; no physical mouse playtest claimed",
+  "captures": 6,
+  "claims": "authored motion and static material binding; no locomotion or mechanics",
+  "elapsed_ns": 5334096100,
+  "final_digest": "d8de2311d21ac10492d6cee73755e955eaf61dba912d8d6f65e58027da016fd4",
+  "frames": 320,
+  "gpu_timestamps": "unavailable; CPU/end-to-end frame timings only",
+  "headless_equal": true,
+  "mesh_budget": 2,
+  "playback_controls": [
+    {
+      "command": "Pause",
+      "ordinal": 0,
+      "tick": 45
+    },
+    {
+      "command": "Step",
+      "ordinal": 1,
+      "tick": 45
+    },
+    {
+      "command": "Play",
+      "ordinal": 2,
+      "tick": 46
+    },
+    {
+      "command": "Rate(4)",
+      "ordinal": 3,
+      "tick": 66
+    },
+    {
+      "command": "Rate(1)",
+      "ordinal": 4,
+      "tick": 138
+    },
+    {
+      "command": "Reset",
+      "ordinal": 5,
+      "tick": 263
+    },
+    {
+      "command": "Rate(16)",
+      "ordinal": 6,
+      "tick": 9
+    }
+  ],
+  "reset_digests": [
+    [
+      0,
+      263,
+      "bfb4964ebf4eadf415aaf510617fb4cf7fb0d3c52896437866290e0cb81bb89e"
+    ]
+  ],
+  "status": "PASS",
+  "ticks": 360,
+  "rows_summary": {
+    "frames": 320,
+    "median_draw_cpu_ms": 2.438712,
+    "median_camera_cpu_ms": 0.003475,
+    "median_frame_interval_ms": 16.685083,
+    "max_mesh_assets": 38,
+    "max_mesh_generated_per_frame": 2,
+    "final_bound": 359,
+    "final_free": 1,
+    "witness_culls_to_zero": true,
+    "navigation_modes": [
+      "Flight",
+      "Orbit"
+    ],
+    "right_look_rotation_changed": true,
+    "orbit_rotation_changed": true
+  },
+  "hardware": "NVIDIA GeForce RTX 5060 Ti, 615.78.08",
+  "input_test": "Synthetic input resources and actual production UI Activate events plus diagnostic cursorpoint; not an OS/human mouse playtest. Earlier Wayland cursor-warp errors retained."
+}

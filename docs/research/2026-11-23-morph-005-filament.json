@@ -1,0 +1,47 @@
+{
+  "date_local": "2026-11-23",
+  "intent": "Local mechanism/architecture investigation: conserve admitted material during binding, preserve ownership and observer neutrality; derive sparse presentation from authoritative graph.",
+  "external_scientific_searches": [],
+  "external_publications_consulted": [],
+  "local_sources": [
+    "MORPH001\u2013004 results/architecture",
+    "emission.rs MaterialBook/try_emit/step/ledger/AuthoredTrajectory/place_output",
+    "runtime.rs ShipRuntime/WorldSnapshot/interventions",
+    "witness.rs Worker/WitnessSphere",
+    "core/layers.rs observational TrailPoint (rejected as structural owner)",
+    "core/world.rs nursery Jet/SECRETE_ACTION (separate experiment, unchanged)",
+    "locked Bevy0.20 Button/Activate/CursorOptions/Camera APIs"
+  ],
+  "authored_assumptions": [
+    "whole-parcel all-or-none transfer after2ticks within0.75m capture radius",
+    "edge length0.001\u20130.5m, longer gap starts a new filament",
+    "bound positions static; no mechanical equilibrium/stiffness/tension/curing",
+    "recorded3D route and authored body/flagella pose, no autonomous locomotion",
+    "0.025m tube radius is a visual convention, not a validated material-volume law"
+  ],
+  "transfer_trace": [
+    "emission::Binding/MaterialBook::bind",
+    "filament::Assembly/ConstructionRules/StructuralIndex/filament_chunk",
+    "runtime::ShipRuntime::tick/Operation::Assemble",
+    "witness::Playback/Worker",
+    "morph-lab::navigation and native witness"
+  ],
+  "status": {
+    "CONSULTED": "local source and prior engineering evidence; no external scientific claims transferred",
+    "IMPLEMENTED": true,
+    "VALIDATED": "specific local tests, A\u2013H, red/green, frame replay and bounded performance only; full suite pending clean local commit"
+  },
+  "directive_inputs": [
+    {
+      "file": "/home/cognis/.codex/attachments/9fb51e3a-7c3b-4a4f-a631-b792fe87f569/Pasted text.txt",
+      "bytes": 16092,
+      "sha256": "1b1fd2bfeb4e6c8ecc0a3ec603f70038a7dabc9eb60e6bca8ac28f67921728e6"
+    },
+    {
+      "file": "/home/cognis/.codex/attachments/04e2b295-4d85-4c28-aafd-62a6dea1c383/Pasted text.txt",
+      "bytes": 5716,
+      "sha256": "7670adcb76a757cef5aef986895ba066d32ecaf4ed1570657addaec8722f7f72"
+    }
+  ],
+  "chronology": "Preimplementation archaeology/reuse report written before source edits; failures/nulls in TRIAL_CHRONOLOGY. No prior report/outcome rewritten."
+}

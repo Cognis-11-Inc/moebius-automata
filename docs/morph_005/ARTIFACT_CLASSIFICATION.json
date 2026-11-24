@@ -1,0 +1,119 @@
+{
+  "run_identity": "MORPH-005/2026-11-23/v1",
+  "base_revision": "d6fa1ac41ec73f7c6ab0372032d32fe6faf0c047",
+  "groups": [
+    {
+      "phase": "logs-and-procedures",
+      "purpose": "All test/build/fault/tool transcripts, full baseline identity and procedural scripts; includes failures and nulls",
+      "files": 103,
+      "bytes": 747037,
+      "destination": "Mermogon immutable archive"
+    },
+    {
+      "phase": "atlas-after",
+      "purpose": "Independent Atlas note version; map in ATLAS_SNAPSHOTS; restore only into a new vault",
+      "files": 44,
+      "bytes": 48443,
+      "destination": "Mermogon immutable archive"
+    },
+    {
+      "phase": "atlas-before",
+      "purpose": "Independent Atlas note version; map in ATLAS_SNAPSHOTS; restore only into a new vault",
+      "files": 39,
+      "bytes": 41062,
+      "destination": "Mermogon immutable archive"
+    },
+    {
+      "phase": "directive-inputs",
+      "purpose": "Original adopted Operator directives",
+      "files": 2,
+      "bytes": 21808,
+      "destination": "Mermogon immutable archive"
+    },
+    {
+      "phase": "experiments-v2",
+      "purpose": "Raw numerical trial, snapshots and digest histories",
+      "files": 21,
+      "bytes": 3753211,
+      "destination": "Mermogon immutable archive"
+    },
+    {
+      "phase": "experiments-v3",
+      "purpose": "Raw numerical trial, snapshots and digest histories",
+      "files": 21,
+      "bytes": 3753212,
+      "destination": "Mermogon immutable archive"
+    },
+    {
+      "phase": "experiments-v4",
+      "purpose": "Raw numerical trial, snapshots and digest histories",
+      "files": 21,
+      "bytes": 3753213,
+      "destination": "Mermogon immutable archive"
+    },
+    {
+      "phase": "m3-regression-v1",
+      "purpose": "Raw numerical trial, snapshots and digest histories",
+      "files": 1,
+      "bytes": 3694,
+      "destination": "Mermogon immutable archive"
+    },
+    {
+      "phase": "source-final",
+      "purpose": "Exact final relevant source overlay plus SOURCE_MAP; apply to new recorded base checkout only",
+      "files": 35,
+      "bytes": 519824,
+      "destination": "Mermogon immutable archive"
+    },
+    {
+      "phase": "witness-v1",
+      "purpose": "Native rendered frames, full states, per-frame/control/reset evidence; superseded trials retained",
+      "files": 9,
+      "bytes": 2692778,
+      "destination": "Mermogon immutable archive"
+    },
+    {
+      "phase": "witness-v2",
+      "purpose": "Native rendered frames, full states, per-frame/control/reset evidence; superseded trials retained",
+      "files": 9,
+      "bytes": 2635166,
+      "destination": "Mermogon immutable archive"
+    },
+    {
+      "phase": "witness-v3",
+      "purpose": "Native rendered frames, full states, per-frame/control/reset evidence; superseded trials retained",
+      "files": 9,
+      "bytes": 2535941,
+      "destination": "Mermogon immutable archive"
+    },
+    {
+      "phase": "witness-v4",
+      "purpose": "Native rendered frames, full states, per-frame/control/reset evidence; superseded trials retained",
+      "files": 9,
+      "bytes": 2641849,
+      "destination": "Mermogon immutable archive"
+    },
+    {
+      "phase": "witness-v5",
+      "purpose": "Native rendered frames, full states, per-frame/control/reset evidence; superseded trials retained",
+      "files": 9,
+      "bytes": 2706476,
+      "destination": "Mermogon immutable archive"
+    },
+    {
+      "phase": "witness-v6",
+      "purpose": "Native rendered frames, full states, per-frame/control/reset evidence; superseded trials retained",
+      "files": 9,
+      "bytes": 2706493,
+      "destination": "Mermogon immutable archive"
+    },
+    {
+      "phase": "witness-v7",
+      "purpose": "Native rendered frames, full states, per-frame/control/reset evidence; superseded trials retained",
+      "files": 9,
+      "bytes": 2706485,
+      "destination": "Mermogon immutable archive"
+    }
+  ],
+  "git": "Source, protocols, reports, small summaries, classification, hashes and reproducibility/archive references only; no raw PNG/log/state/traces/source snapshots."
+}

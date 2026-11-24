@@ -1,3 +1,51 @@
+# MORPH-005 implementation checkpoint — 2026-11-23T21:21:29-05:00
+
+Agent: Codex. Local MORPH-005 implementation and camera addendum complete;
+scientific focused gates PASS. Clean-commit full workspace certification pending.
+Human physical-mouse usability and Operator visual acceptance remain pending.
+Branch main, published entry HEAD d6fa1ac41ec73f7c6ab0372032d32fe6faf0c047;
+entry fetch verified0/0 against origin/main. Current changes are uncommitted
+until the authorized local implementation commit following this entry. No push.
+
+Read MORPH_005_RESULTS.md, MORPH_005_ARCHITECTURE.md and docs/morph_005/.
+MaterialBook::bind owns whole-parcel free-to-bound transfers; Assembly topology
+is inside canonical ShipRuntime, with typed operations/events and version2 state.
+Old empty fields preserve M3/M4 hashes. Same Worker owns bounded playback;
+moebius-world-witness --construction uses authored3D movement/posed nozzle,
+local-quaternion flight/orbit, selection/follow, controls and sparse chunk meshes.
+No nursery, anatomical compiler, dependency or pre-existing outcome rewritten.
+
+49 focused morph/lab tests PASS;7 red/green faults PASS; strict workspace/all-target
+Clippy and formatting PASS. A–H, vertical/gap, exact witness neutrality and restore
+continuation PASS. Final nativev7:320frames/6captures,360ticks,359bound/1free,
+reserve152, residual0; every frame and pre-reset digest independently replayed.
+M3 original cff18b1... and M4 original4f34d8... hashes retained. Restored source
+overlay passes8filament+2navigation tests in a new source directory, existing
+offline cache/shared target. No fresh-machine claim.
+
+Mermogon UUID D0A02EEBA02ED82C verified mounted; v1+v2 immutable archives:
+17archives/355files, all archive/member/restored hashes PASS. Exact pointers:
+docs/morph_005/ARTIFACT_STORAGE.json and RESTORE_VERIFICATION.json.
+Stable Diffusion UUID8CA451CDA451BA82 Atlas:44notes/191links,0errors;
+pre/post snapshots preserved independently. Original cache retained; broad
+baseline manifest was externally restored before its Git reference was trimmed.
+
+Static bound coordinates and authored path/animation are assumptions, not
+mechanics, propulsion, equilibrium, learning or autonomy. No branching/merges,
+anchoring/hardening/collision/load solver, biology or live Lisp/Python service.
+4096nodes/material records and bounded path/events/controls/mesh resources are
+prototype limits; measured at32–1024nodes only. Physical mouse and human visual
+acceptance unclaimed. All prior failures/nulls retained with provenance limits.
+
+Next: diff/staged artifact review, authorized local commit, clean-tree full
+cargo test --workspace --offline -- --test-threads=8. Record exact SHA, result
+and transcript externally. Then documentation receipt commit and clean final
+suite, sealing refs/notes/morph-005-validation without changing the tested tree.
+No push, no MORPH-006. Safe first commands: git status --short; inspect
+MORPH_005_RESULTS.md and docs/morph_005/VALIDATION.json. Preserve chronology below.
+
+---
+
 # Publication checkpoint — ready for MORPH-0005 (2026-11-23T20:22:05-05:00)
 
 Agent: Codex. User authorized “push and get ready for MORPH-0005”.

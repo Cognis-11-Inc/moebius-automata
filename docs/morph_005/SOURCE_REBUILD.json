@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "base_revision": "d6fa1ac41ec73f7c6ab0372032d32fe6faf0c047",
+  "source_members": 34,
+  "overlay_source": "Mermogon v1/source-final.tar, fully restored and every byte verified",
+  "rebuild_directory": "/home/cognis/.cache/moebius-automata/morph-005/restore-checkout",
+  "environment": "New git-archive source directory, existing offline Cargo dependency cache and shared target; no fresh-machine claim",
+  "runs": [
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "moebius-morph",
+        "--test",
+        "filament",
+        "--offline",
+        "--",
+        "--test-threads=8"
+      ],
+      "exit_code": 0,
+      "log": "restored-test-0.log",
+      "log_sha256": "38dba230d7a531a77bd85967789bc6bab13f2e137945ef949698fc6874331c51"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "moebius-morph-lab",
+        "--lib",
+        "navigation",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "log": "restored-test-1.log",
+      "log_sha256": "983adf18bc2c781297dc818e602742b59fc57abcc530c0096cab1f897d0458f9"
+    }
+  ]
+}

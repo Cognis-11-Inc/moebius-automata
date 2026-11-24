@@ -1,0 +1,160 @@
+{
+  "base_revision": "d6fa1ac41ec73f7c6ab0372032d32fe6faf0c047",
+  "files": [
+    {
+      "path": "crates/moebius-morph/Cargo.toml",
+      "bytes": 349,
+      "sha256": "9d1fead02947f4511467cf02c6543fa623968de02fe3753d95d1fc873029d9c8"
+    },
+    {
+      "path": "crates/moebius-morph/examples/morph_003_bench.rs",
+      "bytes": 1280,
+      "sha256": "f768b482842dc410a55b9fc60dd90196d6480ab6b743775f4985f2efe2ba5936"
+    },
+    {
+      "path": "crates/moebius-morph/examples/morph_004_bench.rs",
+      "bytes": 7331,
+      "sha256": "2dd1bccc96c61da1139f1f0992300679f54b9e9520f4ad2a18ebcc210c4ae49f"
+    },
+    {
+      "path": "crates/moebius-morph/examples/morph_005_bench.rs",
+      "bytes": 7524,
+      "sha256": "87325455cb649d24f16a24d95ec06abdd6c4e4289b706275cdc807e36cd37b33"
+    },
+    {
+      "path": "crates/moebius-morph/examples/morph_005_verify_render.rs",
+      "bytes": 2059,
+      "sha256": "8431603c322c2d2b26fc7e22d334ff674c2451a9e463c7dfab9f079812f7544a"
+    },
+    {
+      "path": "crates/moebius-morph/examples/replay_lab.rs",
+      "bytes": 2631,
+      "sha256": "63dbe8661a5f2e2a05713d69c7ad207e837705e28e60c5fa878f32b6befc21c8"
+    },
+    {
+      "path": "crates/moebius-morph/examples/ship_run.rs",
+      "bytes": 1912,
+      "sha256": "70f7d21112c90b3af479401baf55291f9245d90d864bd696158f685605e6f667"
+    },
+    {
+      "path": "crates/moebius-morph/examples/validate.rs",
+      "bytes": 5387,
+      "sha256": "827acdd0314c4a9f53bc6d697a06dc65415b34593ad53666799183ae6ab5959a"
+    },
+    {
+      "path": "crates/moebius-morph/examples/validate_composition.rs",
+      "bytes": 7436,
+      "sha256": "373354224a1c2f4deec162be764f6be1f02550c5334f7a137b762733acf70ae7"
+    },
+    {
+      "path": "crates/moebius-morph/src/anatomy.rs",
+      "bytes": 15183,
+      "sha256": "f346e40f5c4699d976b0d9fea6bf016a7a9022d1dcebb68a9ea2d7735a76bd30"
+    },
+    {
+      "path": "crates/moebius-morph/src/compiler.rs",
+      "bytes": 12259,
+      "sha256": "137f8391a9c14c9f0ca741f84d61f6903e7a7d3ade9c6094bbd3f1463c19976a"
+    },
+    {
+      "path": "crates/moebius-morph/src/emission.rs",
+      "bytes": 48618,
+      "sha256": "381870a7913598f2437a6b28a7f34f769983e404565f50fe8b6fcabb17c1e872"
+    },
+    {
+      "path": "crates/moebius-morph/src/filament.rs",
+      "bytes": 17276,
+      "sha256": "46049aa890420ce772ecdcaebe2da425c6dc40d8e5ae75097faf331086c58afd"
+    },
+    {
+      "path": "crates/moebius-morph/src/lib.rs",
+      "bytes": 2556,
+      "sha256": "25609bf56f158daba6016d914102b21ec295866d85f1e9749ad820cc1ec0d131"
+    },
+    {
+      "path": "crates/moebius-morph/src/math.rs",
+      "bytes": 1113,
+      "sha256": "c022020ece5d8f7f436e172ecd2ed95d266b3cc6cec4dc1da14d845a9ee5202d"
+    },
+    {
+      "path": "crates/moebius-morph/src/runtime.rs",
+      "bytes": 28554,
+      "sha256": "a98a310ef3048f5277f5a1fd52a7a92d51a3a642e6bf7c88f3a81cea6d95d950"
+    },
+    {
+      "path": "crates/moebius-morph/src/spec.rs",
+      "bytes": 5881,
+      "sha256": "b91a19804c12097fcaadb4bc88efc58aa685d8d482734470fbaeb0085ec7bdff"
+    },
+    {
+      "path": "crates/moebius-morph/src/surface.rs",
+      "bytes": 6469,
+      "sha256": "7a76f04cfd5623569efb477b2c06e00e262b36b3c85a084b818e152d20e9ccd4"
+    },
+    {
+      "path": "crates/moebius-morph/src/witness.rs",
+      "bytes": 10998,
+      "sha256": "7e4eb7ccdb55d99330c59d9b67847b8e65a5c0795ec1e4271200ab9420ddd061"
+    },
+    {
+      "path": "crates/moebius-morph/tests/composition.rs",
+      "bytes": 6380,
+      "sha256": "0e8aafc0375b71c6bde2cd590fc711de3dc5325c344b56af9be5dd35b4329917"
+    },
+    {
+      "path": "crates/moebius-morph/tests/emission.rs",
+      "bytes": 6511,
+      "sha256": "0cb15463035087866f1f593c847b96a9881ce7bfd4199df02c0ceb21c990fb02"
+    },
+    {
+      "path": "crates/moebius-morph/tests/filament.rs",
+      "bytes": 11531,
+      "sha256": "fa0649c95913798ef40ed017ad6ebbaddc0798aaec9dab955bbea6dd79ce5805"
+    },
+    {
+      "path": "crates/moebius-morph/tests/forge.rs",
+      "bytes": 5480,
+      "sha256": "c0d59d2170dddcdaf589d97bc9ecdfd1d23a371f89b58b95fd64c2f119b54a52"
+    },
+    {
+      "path": "crates/moebius-morph/tests/runtime.rs",
+      "bytes": 10145,
+      "sha256": "973b569bf91b8abd72d1f413ca7c126f8838f7b5d6e8fc8483ea3765ab8b3f16"
+    },
+    {
+      "path": "crates/moebius-morph-lab/Cargo.toml",
+      "bytes": 457,
+      "sha256": "2d5ffe5c7c3a381541d0fbd3d2af076912638ebb5af65e0e686e6904496291cc"
+    },
+    {
+      "path": "crates/moebius-morph-lab/src/bin/moebius-world-witness.rs",
+      "bytes": 33158,
+      "sha256": "2871c9020b48245d37b9317701866d3a96d8bfe862ee7b6312bad3e9c22fa348"
+    },
+    {
+      "path": "crates/moebius-morph-lab/src/composition.rs",
+      "bytes": 14897,
+      "sha256": "222e707c2a5b905f831b515cf9905c3909f1789aec0386e8112a8804a126367f"
+    },
+    {
+      "path": "crates/moebius-morph-lab/src/emission_preview.rs",
+      "bytes": 15343,
+      "sha256": "c6deb3e37865333e045715ad7f1d92ad6641ec390b650686bdbba350189dba1a"
+    },
+    {
+      "path": "crates/moebius-morph-lab/src/lib.rs",
+      "bytes": 9615,
+      "sha256": "61379701480642ca7061f723ad183bf9d554eb15239b58e38cee67bf0714d996"
+    },
+    {
+      "path": "crates/moebius-morph-lab/src/main.rs",
+      "bytes": 28882,
+      "sha256": "55623c28659fa9e7016b7e03740931535af1ecfe98eea444c28059b042fc2620"
+    },
+    {
+      "path": "crates/moebius-morph-lab/src/navigation.rs",
+      "bytes": 7128,
+      "sha256": "ecf853e9139fab20068a8bd3c51ef0c9dc99f732d1ca5c84f54869cc41273931"
+    }
+  ]
+}

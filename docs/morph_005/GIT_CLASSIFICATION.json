@@ -1,0 +1,157 @@
+{
+  "run_identity": "MORPH-005 staged implementation",
+  "groups": [
+    {
+      "purpose": "reports, protocols and reproducibility metadata",
+      "files": 23,
+      "bytes": 226708,
+      "paths": [
+        {
+          "path": "HANDOFF.md",
+          "bytes": 59714
+        },
+        {
+          "path": "MORPH_005_ARCHITECTURE.md",
+          "bytes": 7158
+        },
+        {
+          "path": "MORPH_005_RESULTS.md",
+          "bytes": 12117
+        },
+        {
+          "path": "README.md",
+          "bytes": 14257
+        },
+        {
+          "path": "docs/morph_002/ATLAS_REFERENCE.json",
+          "bytes": 8328
+        },
+        {
+          "path": "docs/morph_005/ADDENDUM_V2_CLASSIFICATION.json",
+          "bytes": 327
+        },
+        {
+          "path": "docs/morph_005/ARTIFACT_CLASSIFICATION.json",
+          "bytes": 4110
+        },
+        {
+          "path": "docs/morph_005/ARTIFACT_STORAGE.json",
+          "bytes": 69018
+        },
+        {
+          "path": "docs/morph_005/ATLAS_SNAPSHOTS.json",
+          "bytes": 18935
+        },
+        {
+          "path": "docs/morph_005/BASELINE_SOURCE_IDENTITY.json",
+          "bytes": 7366
+        },
+        {
+          "path": "docs/morph_005/EXPERIMENTS.json",
+          "bytes": 5064
+        },
+        {
+          "path": "docs/morph_005/HONEST_RED.json",
+          "bytes": 3346
+        },
+        {
+          "path": "docs/morph_005/MEMORY.json",
+          "bytes": 286
+        },
+        {
+          "path": "docs/morph_005/RENDER_REPLAY.json",
+          "bytes": 291
+        },
+        {
+          "path": "docs/morph_005/RENDER_VALIDATION.json",
+          "bytes": 1884
+        },
+        {
+          "path": "docs/morph_005/RESTORE.md",
+          "bytes": 2138
+        },
+        {
+          "path": "docs/morph_005/RESTORE_VERIFICATION.json",
+          "bytes": 622
+        },
+        {
+          "path": "docs/morph_005/SOURCE_IDENTITY.json",
+          "bytes": 5515
+        },
+        {
+          "path": "docs/morph_005/SOURCE_REBUILD.json",
+          "bytes": 1123
+        },
+        {
+          "path": "docs/morph_005/TRIAL_CHRONOLOGY.json",
+          "bytes": 1421
+        },
+        {
+          "path": "docs/morph_005/VALIDATION.json",
+          "bytes": 1005
+        },
+        {
+          "path": "docs/research/2026-11-23-morph-005-filament.json",
+          "bytes": 2420
+        },
+        {
+          "path": "python/morph_005_artifacts.py",
+          "bytes": 263
+        }
+      ]
+    },
+    {
+      "purpose": "implementation and tests",
+      "files": 11,
+      "bytes": 179017,
+      "paths": [
+        {
+          "path": "crates/moebius-morph-lab/src/bin/moebius-world-witness.rs",
+          "bytes": 33158
+        },
+        {
+          "path": "crates/moebius-morph-lab/src/lib.rs",
+          "bytes": 9615
+        },
+        {
+          "path": "crates/moebius-morph-lab/src/navigation.rs",
+          "bytes": 7128
+        },
+        {
+          "path": "crates/moebius-morph/examples/morph_005_bench.rs",
+          "bytes": 7524
+        },
+        {
+          "path": "crates/moebius-morph/examples/morph_005_verify_render.rs",
+          "bytes": 2059
+        },
+        {
+          "path": "crates/moebius-morph/src/emission.rs",
+          "bytes": 48618
+        },
+        {
+          "path": "crates/moebius-morph/src/filament.rs",
+          "bytes": 17276
+        },
+        {
+          "path": "crates/moebius-morph/src/lib.rs",
+          "bytes": 2556
+        },
+        {
+          "path": "crates/moebius-morph/src/runtime.rs",
+          "bytes": 28554
+        },
+        {
+          "path": "crates/moebius-morph/src/witness.rs",
+          "bytes": 10998
+        },
+        {
+          "path": "crates/moebius-morph/tests/filament.rs",
+          "bytes": 11531
+        }
+      ]
+    }
+  ],
+  "raw_evidence": "No raw captures, states, traces, logs or source snapshots staged; see Mermogon ARTIFACT_STORAGE.json",
+  "scope": "Entry worktree was clean; all staged paths belong to this task. This inventory excludes itself."
+}

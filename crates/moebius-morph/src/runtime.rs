@@ -73,6 +73,8 @@ pub struct LightPort {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct WorldConfig {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub construction: Option<crate::filament::ConstructionRules>,
     pub version: u32,
     pub seed: u64,
     pub tick_nanos: u64,
@@ -96,6 +98,8 @@ pub struct Instance {
 pub enum Operation {
     SetEnvironment { environment: Environment },
     SetAmbientLight { value: u64 },
+    SetEmission { organism: u64, enabled: bool },
+    Assemble { organism: u64, parcel: u64 },
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -108,6 +112,25 @@ pub struct Intervention {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "event", deny_unknown_fields)]
 pub enum Event {
+    Deposited {
+        at: u64,
+        organism: u64,
+        parcel: u64,
+        filament: u64,
+        node: u64,
+        quantity: u64,
+    },
+    AssemblyRejected {
+        at: u64,
+        organism: u64,
+        parcel: Option<u64>,
+        reason: String,
+    },
+    EmissionRejected {
+        at: u64,
+        organism: u64,
+        reason: String,
+    },
     Accepted {
         at: u64,
         command: Intervention,
@@ -127,6 +150,8 @@ pub enum Event {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct WorldSnapshot {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub assembly: Option<crate::filament::Assembly>,
     pub version: u32,
     pub tick: u64,
     pub config: WorldConfig,
@@ -138,6 +163,7 @@ pub struct WorldSnapshot {
 pub struct ShipRuntime {
     state: WorldSnapshot,
     outputs: BTreeMap<u64, Vec<PlacedNozzle>>,
+    animator: Option<CompiledAnatomy>,
 }
 fn exposure(c: &WorldConfig, p: Position) -> Result<u64, MorphError> {
     let mut total = c.ambient_light;
@@ -157,7 +183,9 @@ fn exposure(c: &WorldConfig, p: Position) -> Result<u64, MorphError> {
 }
 fn outputs(c: &WorldConfig) -> Result<BTreeMap<u64, Vec<PlacedNozzle>>, MorphError> {
     require(
-        c.version == 1 && c.tick_nanos == TICK_NANOS,
+        (c.version == 1 || c.version == 2)
+            && (c.version == 2) == c.construction.is_some()
+            && c.tick_nanos == TICK_NANOS,
         "unsupported ship configuration/timestep",
     )?;
     c.environment.validate()?;
@@ -194,7 +222,11 @@ impl ShipRuntime {
             require(map.insert(i.id, i).is_none(), "duplicate organism identity")?;
         }
         Self::restore(WorldSnapshot {
-            version: 1,
+            assembly: config
+                .construction
+                .as_ref()
+                .map(|_| crate::filament::Assembly::default()),
+            version: if config.construction.is_some() { 2 } else { 1 },
             tick: 0,
             config,
             instances: map,
@@ -204,7 +236,20 @@ impl ShipRuntime {
     }
     pub fn restore(state: WorldSnapshot) -> Result<Self, MorphError> {
         let out = outputs(&state.config)?;
+        let animator = if let Some(r) = &state.config.construction {
+            r.validate()?;
+            let i = state
+                .instances
+                .get(&r.organism)
+                .ok_or_else(|| MorphError("construction source missing".into()))?;
+            Some(CompiledAnatomy::new(
+                state.config.definitions[&i.definition].clone(),
+            )?)
+        } else {
+            None
+        };
         let result = Self {
+            animator,
             state,
             outputs: out,
         };
@@ -238,6 +283,37 @@ impl ShipRuntime {
                 .any(|e| matches!(e,Event::Accepted{command:c,..} if c.sequence==command.sequence)),
             "duplicate intervention sequence",
         )?;
+        if let Some(r) = &self.state.config.construction {
+            require(
+                self.state.events.len() + self.state.pending.len() + 2 < r.max_events
+                    && self.state.pending.len() < 256,
+                "intervention/history budget",
+            )?;
+        }
+        match &command.action {
+            Operation::SetEmission { organism, .. } => require(
+                self.state.instances.contains_key(organism),
+                "unknown emission target",
+            )?,
+            Operation::Assemble { organism, parcel } => {
+                let r = self
+                    .state
+                    .config
+                    .construction
+                    .as_ref()
+                    .ok_or_else(|| MorphError("construction disabled".into()))?;
+                require(
+                    *organism == r.organism
+                        && self.state.instances[organism]
+                            .book
+                            .parcels
+                            .iter()
+                            .any(|p| p.id == *parcel),
+                    "unavailable assembly material/target",
+                )?;
+            }
+            _ => {}
+        }
         self.state.events.push(Event::Accepted {
             at: self.state.tick,
             command: command.clone(),
@@ -250,7 +326,9 @@ impl ShipRuntime {
         let mut next = self.state.clone();
         let tick = next.tick;
         let count = next.pending.partition_point(|c| c.tick == tick);
-        for c in next.pending.drain(..count) {
+        let commands = next.pending.drain(..count).collect::<Vec<_>>();
+        let mut manual_deposits = Vec::new();
+        for c in commands {
             match c.action {
                 Operation::SetEnvironment { environment } => {
                     next.config.environment = environment;
@@ -259,25 +337,63 @@ impl ShipRuntime {
                     }
                 }
                 Operation::SetAmbientLight { value } => next.config.ambient_light = value,
+                Operation::SetEmission { organism, enabled } => {
+                    next.instances
+                        .get_mut(&organism)
+                        .ok_or_else(|| MorphError("emission target missing".into()))?
+                        .book
+                        .emission_enabled = enabled
+                }
+                Operation::Assemble { organism, parcel } => {
+                    manual_deposits.push((organism, parcel))
+                }
             }
             next.events.push(Event::Applied {
                 at: tick,
                 sequence: c.sequence,
             });
         }
+        let construction = next.config.construction.clone();
         for i in next.instances.values_mut() {
             require(i.book.tick == tick, "material substate timeline mismatch")?;
-            let origin = i.position.absolute()?;
-            for nozzle in &self.outputs[&i.definition] {
-                let mut at = origin;
-                for (a, b) in at.iter_mut().zip(nozzle.origin) {
-                    *a = a
-                        .checked_add(b)
-                        .ok_or_else(|| MorphError("nozzle position overflow".into()))?;
+            let active = construction.as_ref().filter(|r| r.organism == i.id);
+            let mut nozzle_position = None;
+            let frame_outputs = if let Some(r) = active {
+                let posed = self
+                    .animator
+                    .as_ref()
+                    .ok_or_else(|| MorphError("missing animator".into()))?
+                    .pose(crate::filament::construction_pose(tick))?;
+                posed
+                    .outputs
+                    .iter()
+                    .map(|f| crate::emission::place_output(f, r.rigid(tick)))
+                    .collect::<Result<Vec<_>, _>>()?
+            } else {
+                self.outputs[&i.definition]
+                    .iter()
+                    .cloned()
+                    .map(|mut f| {
+                        let origin = i.position.absolute()?;
+                        for (a, b) in f.origin.iter_mut().zip(origin) {
+                            *a = a
+                                .checked_add(b)
+                                .ok_or_else(|| MorphError("nozzle position overflow".into()))?;
+                        }
+                        Ok(f)
+                    })
+                    .collect::<Result<Vec<_>, MorphError>>()?
+            };
+            for nozzle in frame_outputs {
+                if active.is_some_and(|r| r.nozzle == nozzle.nozzle_id) {
+                    nozzle_position = Some(Position::from_absolute(nozzle.origin)?);
+                }
+                if active.is_some_and(|r| !r.emitting(tick)) {
+                    continue;
                 }
                 let status = i.book.try_emit(EmitRequest {
                     nozzle_id: nozzle.nozzle_id,
-                    origin: at,
+                    origin: nozzle.origin,
                     direction: nozzle.direction,
                     quantity: i.book.rate,
                     launch_speed: i.book.launch_speed,
@@ -295,19 +411,90 @@ impl ShipRuntime {
                         parcel: parcel_id,
                         quantity,
                     });
+                } else if active.is_some() {
+                    next.events.push(Event::EmissionRejected {
+                        at: tick,
+                        organism: i.id,
+                        reason: format!("{status:?}"),
+                    });
                 }
             }
             i.book.step()?;
-            i.position = i.position.offset(i.velocity)?;
+            if let Some(r) = active {
+                let eligible = if manual_deposits.iter().any(|(id, _)| *id == i.id) {
+                    manual_deposits
+                        .iter()
+                        .filter(|(id, _)| *id == i.id)
+                        .map(|(_, p)| *p)
+                        .collect::<Vec<_>>()
+                } else {
+                    i.book
+                        .parcels
+                        .iter()
+                        .filter(|p| i.book.tick.saturating_sub(p.created_tick) >= r.age)
+                        .take(32)
+                        .map(|p| p.id)
+                        .collect::<Vec<_>>()
+                };
+                if eligible.is_empty() {
+                    next.events.push(Event::AssemblyRejected {
+                        at: tick,
+                        organism: i.id,
+                        parcel: None,
+                        reason: "NoEligibleMaterial".into(),
+                    });
+                }
+                for parcel in eligible {
+                    let result = next
+                        .assembly
+                        .as_mut()
+                        .ok_or_else(|| MorphError("assembly missing".into()))?
+                        .deposit(
+                            &mut i.book,
+                            r,
+                            parcel,
+                            nozzle_position
+                                .ok_or_else(|| MorphError("construction nozzle missing".into()))?,
+                        );
+                    match result {
+                        Ok((filament, node, quantity)) => {
+                            next.events.push(Event::Deposited {
+                                at: tick,
+                                organism: i.id,
+                                parcel,
+                                filament,
+                                node,
+                                quantity,
+                            });
+                            break;
+                        }
+                        Err(e) => next.events.push(Event::AssemblyRejected {
+                            at: tick,
+                            organism: i.id,
+                            parcel: Some(parcel),
+                            reason: e.to_string(),
+                        }),
+                    }
+                }
+                i.position = Position::from_absolute(r.rigid(tick + 1).translation)?;
+            } else {
+                i.position = i.position.offset(i.velocity)?;
+            }
             i.exposure = exposure(&next.config, i.position)?;
             require(i.book.residual()? == 0, "ship material balance failed")?;
-            for parcel in &i.book.parcels {
-                Position::from_absolute(parcel.position)?;
+            for p in &i.book.parcels {
+                Position::from_absolute(p.position)?;
             }
         }
         next.tick = tick
             .checked_add(1)
             .ok_or_else(|| MorphError("world tick overflow".into()))?;
+        if let Some(r) = &next.config.construction {
+            require(
+                next.events.len() <= r.max_events,
+                "HistoryBudget: no authoritative ticks discarded",
+            )?;
+        }
         self.state = next;
         Ok(())
     }
@@ -320,7 +507,9 @@ impl ShipRuntime {
     pub fn validate(&self) -> Result<(), MorphError> {
         let s = &self.state;
         require(
-            s.version == 1 && s.instances.len() <= 100_000,
+            ((s.version == 1 && s.config.construction.is_none())
+                || (s.version == 2 && s.config.construction.is_some()))
+                && s.instances.len() <= 100_000,
             "unsupported state or population budget",
         )?;
         for (&id, i) in &s.instances {
@@ -358,11 +547,70 @@ impl ShipRuntime {
                 "exposure mismatch",
             )?;
         }
+        if let Some(r) = &s.config.construction {
+            r.validate()?;
+            require(
+                s.events.len() <= r.max_events && s.pending.len() <= 256,
+                "construction event/command budget",
+            )?;
+            let i = s
+                .instances
+                .get(&r.organism)
+                .ok_or_else(|| MorphError("construction source missing".into()))?;
+            require(
+                i.book.registered.len() == 1 && i.book.registered.contains(&r.nozzle),
+                "one configured construction nozzle required",
+            )?;
+            require(
+                i.position.absolute()? == r.rigid(s.tick).translation,
+                "trajectory state mismatch",
+            )?;
+            s.assembly
+                .as_ref()
+                .ok_or_else(|| MorphError("missing assembly state".into()))?
+                .validate(&i.book, r)?;
+        } else {
+            require(
+                s.assembly.is_none() && s.instances.values().all(|i| i.book.bound.is_empty()),
+                "unconfigured structural state",
+            )?;
+        }
         let mut accepted = BTreeMap::new();
         let mut applied = BTreeSet::new();
         let mut births = BTreeSet::new();
+        let mut deposits = BTreeSet::new();
         for e in &s.events {
             match e {
+                Event::Deposited {
+                    at,
+                    organism,
+                    parcel,
+                    filament,
+                    node,
+                    quantity,
+                } => {
+                    let i = s
+                        .instances
+                        .get(organism)
+                        .ok_or_else(|| MorphError("deposition source missing".into()))?;
+                    require(
+                        deposits.insert((*organism, *parcel))
+                            && *at < s.tick
+                            && i.book.bound.iter().any(|b| {
+                                b.parcel.id == *parcel
+                                    && b.filament == *filament
+                                    && b.node == *node
+                                    && b.parcel.quantity == *quantity
+                                    && b.bound_tick == at + 1
+                            }),
+                        "invalid deposition event",
+                    )?;
+                }
+                Event::AssemblyRejected { at, organism, .. }
+                | Event::EmissionRejected { at, organism, .. } => require(
+                    *at < s.tick && s.instances.contains_key(organism),
+                    "invalid rejection event",
+                )?,
                 Event::Accepted { at, command } => {
                     validate_command(command, *at)?;
                     require(
@@ -394,12 +642,16 @@ impl ShipRuntime {
                         births.insert((*organism, *parcel))
                             && *at < s.tick
                             && *quantity > 0
-                            && i.book.parcels.iter().any(|p| {
-                                p.id == *parcel
-                                    && p.nozzle_id == *nozzle
-                                    && p.quantity == *quantity
-                                    && p.created_tick == *at
-                            }),
+                            && i.book
+                                .parcels
+                                .iter()
+                                .chain(i.book.bound.iter().map(|b| &b.parcel))
+                                .any(|p| {
+                                    p.id == *parcel
+                                        && p.nozzle_id == *nozzle
+                                        && p.quantity == *quantity
+                                        && p.created_tick == *at
+                                }),
                         "invalid emission event",
                     )?;
                 }
@@ -409,9 +661,17 @@ impl ShipRuntime {
             births.len()
                 == s.instances
                     .values()
-                    .map(|i| i.book.parcels.len())
+                    .map(|i| i.book.parcels.len() + i.book.bound.len())
                     .sum::<usize>(),
             "material birth history mismatch",
+        )?;
+        require(
+            deposits.len()
+                == s.instances
+                    .values()
+                    .map(|i| i.book.bound.len())
+                    .sum::<usize>(),
+            "missing/duplicate deposition history",
         )?;
         let mut pending = BTreeSet::new();
         let mut previous = None;
@@ -441,6 +701,7 @@ fn validate_command(c: &Intervention, tick: u64) -> Result<(), MorphError> {
     )?;
     match c.action {
         Operation::SetEnvironment { environment } => environment.validate(),
+        Operation::SetEmission { .. } | Operation::Assemble { .. } => Ok(()),
         Operation::SetAmbientLight { value } => {
             require(value <= 1_000_000_000, "ambient light budget")
         }
@@ -478,6 +739,7 @@ pub fn fixture(population: usize, seed: u64) -> Result<ShipRuntime, MorphError> 
     let mut definitions = BTreeMap::new();
     definitions.insert(1, spec.clone());
     let config = WorldConfig {
+        construction: None,
         version: 1,
         seed,
         tick_nanos: TICK_NANOS,

@@ -1,0 +1,31 @@
+{
+  "preserved_nulls_failures": [
+    {
+      "stage": "filament-tests-first",
+      "outcome": "2 failed",
+      "reason": "Gap fixture exhausted40quanta before its gap; separate manual transfer selected an under-age parcel. Test setup corrected, not concealed."
+    },
+    {
+      "stage": "filament-tests-v2",
+      "outcome": "1 failed",
+      "reason": "Assertion expected no free material after a spatial gap; an old parcel correctly remains outside capture range. Assertion replaced by conservation/persistence check, not removal of material."
+    },
+    {
+      "stage": "experiments-v1",
+      "outcome": "NOT_RUN",
+      "reason": "Rust ambiguous integer type compilation error before executable."
+    },
+    {
+      "stage": "witness-v5",
+      "outcome": "Numerical replay PASS, cursor-warp subtest unavailable",
+      "reason": "Wayland rejects cursor warp while not locked. Finalv6/v7 use explicit diagnostic cursorpoint in input harness; normal mouse path unchanged."
+    }
+  ],
+  "retention": "All test/compiler/clippy logs, v2\u2013v4 numerical data, v1\u2013v7 rendered trials and prior red/green runs retained. Exact full source snapshots were not captured before early fixture repairs; diagnostics and parameter corrections retained, no claim of complete failed-source-image reproduction.",
+  "final_trials": [
+    "experiments-v4",
+    "witness-v7",
+    "render-replay-v7",
+    "honest-red-v2"
+  ]
+}

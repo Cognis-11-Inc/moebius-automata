@@ -1,0 +1,1941 @@
+{
+  "date_local": "2026-11-23",
+  "version": 2,
+  "mount_path": "/run/media/cognis/Mermogon",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-005/2026-11-23",
+  "external_index_path": "v2/COMBINED_INDEX.json",
+  "external_index_sha256": "acbdda4e80e452984df53bde9ed24db76831774fd64507a1189155e0b202472c",
+  "raw_files": 355,
+  "raw_bytes": 31274274,
+  "records": [
+    {
+      "phase": "logs-and-procedures",
+      "purpose": "All test/build/fault/tool transcripts, full baseline identity and procedural scripts; includes failures and nulls",
+      "relative_path": "v1/logs-and-procedures.tar",
+      "bytes": 829440,
+      "sha256": "16b51cc42cac47a529e0d7dd402dff3f542d662b35693f20eb13c38b153621ae",
+      "members": [
+        {
+          "name": "archive_evidence.py",
+          "bytes": 4895,
+          "sha256": "4fb8714f6e5e72a59ab1a36eda00a5d5f121899f150ba9a4e9df992c647fd793"
+        },
+        {
+          "name": "atlas-validation.json",
+          "bytes": 304,
+          "sha256": "f97a522cd143fb548c7780f997e820c26fbf97e972acb7c7fe09a41e6f1a7c3d"
+        },
+        {
+          "name": "baseline-focused.log",
+          "bytes": 5045,
+          "sha256": "7dd3f71538592e17e8a6d9aec0c6b709ce81b52d524351af60b5f39d18980990"
+        },
+        {
+          "name": "build-final.log",
+          "bytes": 266,
+          "sha256": "bb3c8c07d02bfd32946223a7985a684f8fe9a3255232326b2aa8fd36b836ea43"
+        },
+        {
+          "name": "build-release.log",
+          "bytes": 266,
+          "sha256": "f2368eb418cd97c52c682cdb795d98c615bf52594acccc584e468db20481ecff"
+        },
+        {
+          "name": "clippy-final-first.log",
+          "bytes": 980,
+          "sha256": "eefdde31cf357425a2548cd27a16c7c560e80fee37bc31a9cf57d9a6960c9c3f"
+        },
+        {
+          "name": "clippy-final-v2.log",
+          "bytes": 1300,
+          "sha256": "e26322c7dec2c6126a22526b493005bc78800a5d2ca893d2725f7443eb204fc1"
+        },
+        {
+          "name": "clippy-final-v3.log",
+          "bytes": 276,
+          "sha256": "3fd232eecddecf7942a18f218696fdd84eec7ae0bded707d69d7583f7d99985b"
+        },
+        {
+          "name": "clippy-final-v4.log",
+          "bytes": 276,
+          "sha256": "ca7d23b9404dcaaaeeda2ce31cfe67ec4a3d7fcf8286d7b1ecdd4df33556329f"
+        },
+        {
+          "name": "clippy-final-v5.log",
+          "bytes": 178,
+          "sha256": "fdb734c84c53339f44cfae5a76382a01b84de90b982a1bc7660cc529e08312b9"
+        },
+        {
+          "name": "clippy-first.log",
+          "bytes": 3136,
+          "sha256": "56266b06c9d8ba5a7ea39d10ab6991f782b37e3803f2961e2406081d629dea55"
+        },
+        {
+          "name": "clippy-fix.log",
+          "bytes": 357,
+          "sha256": "0c73f2773eed12a0d40e8950a03fed5bb21c9a3a60141b19ba1ad40c0849ddbd"
+        },
+        {
+          "name": "clippy-ready.log",
+          "bytes": 276,
+          "sha256": "c2b9e0283c7db578c3df7cbe3e9d05a2418e8c5f13c2b1d762027fe9e847243e"
+        },
+        {
+          "name": "clippy-release.log",
+          "bytes": 1346,
+          "sha256": "814b1716db86bbce9e73dd36976bb9748f78a6712551f378edaeef57618c4bae"
+        },
+        {
+          "name": "clippy-v2.log",
+          "bytes": 861,
+          "sha256": "a945c6df9167b9a660a989d674cffab7439fc50d970abc80026747dedff8292e"
+        },
+        {
+          "name": "clippy-v3.log",
+          "bytes": 861,
+          "sha256": "a945c6df9167b9a660a989d674cffab7439fc50d970abc80026747dedff8292e"
+        },
+        {
+          "name": "clippy-v4.log",
+          "bytes": 706,
+          "sha256": "3e0438336452a4caa7c0abb6119d071189f89d78cf7fd9f5ca4a592f03538d78"
+        },
+        {
+          "name": "clippy-v5.log",
+          "bytes": 1691,
+          "sha256": "ba90009487b475190b9408b2f6001d57e29c82a565adffaa2d83db3c48b2c758"
+        },
+        {
+          "name": "clippy-v6.log",
+          "bytes": 2757,
+          "sha256": "d0ffb7167c354056f475dedd708afc49cd954cc04c435d4d85efd7ca73200fbb"
+        },
+        {
+          "name": "cursor-check.log",
+          "bytes": 276,
+          "sha256": "f8b578447082193c703f5de9692505e19eb792fdda77a0eb7adade9c6970410f"
+        },
+        {
+          "name": "engine-first.log",
+          "bytes": 170,
+          "sha256": "4ca112a6e715eb9cd1f6ef1a2bebebcee879b6ae4aa63b5768f6858e6c78d03b"
+        },
+        {
+          "name": "engine-tests-first.log",
+          "bytes": 3182,
+          "sha256": "b6dfaaec4c53ca755091ccc74c714f0eb22d5350794c2374ad25cef7b5221e85"
+        },
+        {
+          "name": "examples-final-build.log",
+          "bytes": 160,
+          "sha256": "2b379480300f6e72622040729f492ff8baebfd2b8851ab291b23a90a54363f75"
+        },
+        {
+          "name": "experiments-v1.log",
+          "bytes": 665,
+          "sha256": "d1a6912c85e93656c5ec2e9d46fc4f7d7d0807325cb47b874add8d2bb88bb912"
+        },
+        {
+          "name": "experiments-v2.log",
+          "bytes": 309,
+          "sha256": "0f1f4bc697b7b921c7ea047f9c9e451ed6bca90d3fbac75ef7f04dcf79a8da5c"
+        },
+        {
+          "name": "experiments-v3.log",
+          "bytes": 32,
+          "sha256": "fbb76d6f98c5455e9d4bee411bfbb9fedd5c136e650655e2c58b89426c3ec28b"
+        },
+        {
+          "name": "experiments-v4.log",
+          "bytes": 32,
+          "sha256": "fbb76d6f98c5455e9d4bee411bfbb9fedd5c136e650655e2c58b89426c3ec28b"
+        },
+        {
+          "name": "extend_runtime.py",
+          "bytes": 9494,
+          "sha256": "4aa57aa3954dde6587e8deb68e7b2f82026586be4814ddc28ac5f74066621b69"
+        },
+        {
+          "name": "filament-focused-final.log",
+          "bytes": 1033,
+          "sha256": "562dda821005be530f0a28b5d9c50e8f65f863f939fcfaf72fc16425250dc26a"
+        },
+        {
+          "name": "filament-tests-first.log",
+          "bytes": 2235,
+          "sha256": "1473247f7b93b21ef9519100d98247d3e409cf50d2c0954258946f8d6a3a416a"
+        },
+        {
+          "name": "filament-tests-v2.log",
+          "bytes": 1923,
+          "sha256": "b6a522a4df787dda50259a30df7eb7270558fbb46387641a67500eb6c3f8d092"
+        },
+        {
+          "name": "filament-tests-v3.log",
+          "bytes": 1326,
+          "sha256": "eea0e61527d2d47dea1645a5f783f970ec19beca0c20a09d1f1bd175f93e375a"
+        },
+        {
+          "name": "filament-tests-v4.log",
+          "bytes": 1489,
+          "sha256": "c18671612d1583e2efc1b2306dc9a6456fb89c998f876fd61581f7ea5f025463"
+        },
+        {
+          "name": "final-build-v2.log",
+          "bytes": 266,
+          "sha256": "c36e6e0a2a19dc3f95bb069c9e41c5158d5943b77c9b04c621b4358af3ef2d29"
+        },
+        {
+          "name": "final-build-v3.log",
+          "bytes": 266,
+          "sha256": "fffc0fa50999edb260459bdec0a5774b293105224338eff8faa3b51d77db52ef"
+        },
+        {
+          "name": "final-build.log",
+          "bytes": 806,
+          "sha256": "2eb10ff509c5bdd109b1eb3da63bbd3291e937a4dabd4d53d34996be2bc2c108"
+        },
+        {
+          "name": "final_metadata.py",
+          "bytes": 6905,
+          "sha256": "80f7d8691f2c48001d939b43cb638522f550d18146d437cf7ea4842760920314"
+        },
+        {
+          "name": "fmt-final.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "focused-certification.log",
+          "bytes": 6186,
+          "sha256": "ae7f3bd092c47271e6c21ca98127977c78cbcf2e4c184786931432ca50f0e2ec"
+        },
+        {
+          "name": "focused-final-v2.log",
+          "bytes": 6186,
+          "sha256": "844da3e3a6dee54754bee6a204f1895e616c48e042678cfcadb1eff2b929868b"
+        },
+        {
+          "name": "focused-final.log",
+          "bytes": 6186,
+          "sha256": "9929ff509cc27ab5e6ba155a191f48ea0f14f2bac4337f366e2b338b6c4dc9a0"
+        },
+        {
+          "name": "focused-v1.log",
+          "bytes": 6186,
+          "sha256": "37c7fd3b33f597885c2de5c2895ef6bb7a647335960315ecf98d91e0ae87e897"
+        },
+        {
+          "name": "full-baseline.json",
+          "bytes": 395728,
+          "sha256": "9d97d09a04e59b526af966d372fc0a5ce456879ce4f978e160f152f0646e7854"
+        },
+        {
+          "name": "green-duplicate-free-to-bound.log",
+          "bytes": 446,
+          "sha256": "d7edc867723a5162a5c48bfe4571a4fef04685ee2263fdbc991e9dd04fbcbf30"
+        },
+        {
+          "name": "green-graph-ledger-authority.log",
+          "bytes": 448,
+          "sha256": "bf87c712cae0dbfd05cf881c981a420770227fcd496ae80cf9f24b8433c0bfa8"
+        },
+        {
+          "name": "green-history-budget.log",
+          "bytes": 439,
+          "sha256": "dabbcd662998f2a6938b851da8378f0d25abeb1e471d65cad4a1fd517127a695"
+        },
+        {
+          "name": "green-lost-free-to-bound.log",
+          "bytes": 446,
+          "sha256": "c11df045dca0400d8b479aa55543d1bece5b05d7a71380504d02a11a3cb52dc8"
+        },
+        {
+          "name": "green-observer-mutation.log",
+          "bytes": 448,
+          "sha256": "29bfed54e21c44aa0feae9ed1e030b47cb9a2c2b0d65ecdb6fc9d8482ffedcd9"
+        },
+        {
+          "name": "green-tick-loss.log",
+          "bytes": 444,
+          "sha256": "d3e0281fa0d44c4afbbab8aa3fd242865a0a9721a1cf6ab0fe46d31fd9510977"
+        },
+        {
+          "name": "green-unsupported-long-edge.log",
+          "bytes": 457,
+          "sha256": "6f3dc4f7d75907d21f604e2acf520630ea885eb1eb2eba1a6cf46769db9581ee"
+        },
+        {
+          "name": "green2-duplicate-free-to-bound.log",
+          "bytes": 446,
+          "sha256": "8c9785a520332c25e044a94e426060bb7050cca1754f1fb4406d10f37b27f7b0"
+        },
+        {
+          "name": "green2-graph-ledger-authority.log",
+          "bytes": 448,
+          "sha256": "acae7a2740bf28a0d2122abf76206f62cfcd8f5f9fafdd44ef55804947c6b69e"
+        },
+        {
+          "name": "green2-history-budget.log",
+          "bytes": 439,
+          "sha256": "dfdef38ea0c68be1dbc95cea45db1d771cf4768a264bb35ebda15eeed109cc15"
+        },
+        {
+          "name": "green2-lost-free-to-bound.log",
+          "bytes": 446,
+          "sha256": "85ad31c398f7115582a637ece9df21fa61d71369540a09bea8b846f8145fbea2"
+        },
+        {
+          "name": "green2-observer-mutation.log",
+          "bytes": 448,
+          "sha256": "bde2a18ae9fee12eda8d607d56a2541b0e2ae851531228d8c415b8d1c06d39c2"
+        },
+        {
+          "name": "green2-tick-loss.log",
+          "bytes": 444,
+          "sha256": "ca8280735a5985b5b46a8668e66702b1818cc95d73349e9e1d9f6d6990058eba"
+        },
+        {
+          "name": "green2-unsupported-long-edge.log",
+          "bytes": 457,
+          "sha256": "7732f0a3e046a62167aeade16434909e0489313e3ede8c9c66b29fedf063a7cb"
+        },
+        {
+          "name": "honest-red-run.log",
+          "bytes": 31,
+          "sha256": "e0afd7f80c97c9655dcc48b3e557de1e7ecc592368b766b2c1203ef4bfa4a63e"
+        },
+        {
+          "name": "honest-red-v2-run.log",
+          "bytes": 31,
+          "sha256": "e0afd7f80c97c9655dcc48b3e557de1e7ecc592368b766b2c1203ef4bfa4a63e"
+        },
+        {
+          "name": "honest-red-v2.json",
+          "bytes": 3346,
+          "sha256": "d6f918602471863d1272371f013247aa5bf0a4c5874e0ca65d32b614508efe57"
+        },
+        {
+          "name": "honest-red.json",
+          "bytes": 3346,
+          "sha256": "651a9c3b33ce4883f59ddc04741772bb3035ec67f80544ce4e7ceff3f16ffc64"
+        },
+        {
+          "name": "honest_red.py",
+          "bytes": 2925,
+          "sha256": "04509fd7dc9bb36a651d43e3c0aceb40470ff0f62e689c4f262b6c7fa44b3c69"
+        },
+        {
+          "name": "index-first.log",
+          "bytes": 3997,
+          "sha256": "298396ee0b73b3a2c92b1b28643494f28574780c1ebd4b6a7c7f75800fdd2b44"
+        },
+        {
+          "name": "m3-regression-v1.log",
+          "bytes": 304,
+          "sha256": "dccea3475207db32b70a74f8bf07eeea148db77a85e42e1591b6bbfd84351933"
+        },
+        {
+          "name": "memory-v3.json",
+          "bytes": 286,
+          "sha256": "0fe17ba00ec28a90c0db99960297310fdc9bc6fe613173a3ea130d39ddb981bb"
+        },
+        {
+          "name": "memory-v4.json",
+          "bytes": 286,
+          "sha256": "bfc6b66a721d997ff38293c1dd0ec15515c06198e6a616a73d93d72a704bbfea"
+        },
+        {
+          "name": "native-build-final.log",
+          "bytes": 168,
+          "sha256": "7c14bb405eddd9a269457b8dd104ed763bab84e350bf2d41412c1e835f55ef25"
+        },
+        {
+          "name": "native-build-first.log",
+          "bytes": 654,
+          "sha256": "660890a21bbacaeca75caf25be744c34e68b11b73e2d372cef0a8f57cc8429ec"
+        },
+        {
+          "name": "native-build-v2.log",
+          "bytes": 266,
+          "sha256": "05a112fa3229932944cc80ba7264bd7bef370a14bb0f7c324264bd0802109314"
+        },
+        {
+          "name": "native-build-v5.log",
+          "bytes": 168,
+          "sha256": "0cdc01eebfc16df2fbe380fbcd5f31c0aad5b2103f833f076068505f2b7b234c"
+        },
+        {
+          "name": "native-first.log",
+          "bytes": 5905,
+          "sha256": "f89311bb0c590a198a1f161dfed81c95d71179d06f723c33fad0e4133412947c"
+        },
+        {
+          "name": "native-v2.log",
+          "bytes": 664,
+          "sha256": "50c31ea8a213d7d1543a19179e377fbd94a9a72a6bdbf37a877af1ac922b7663"
+        },
+        {
+          "name": "navigation-tests-first.log",
+          "bytes": 661,
+          "sha256": "5b9b0191562b9762ab3875a7616315960c146c221258591c24cd400d2c3cf7e1"
+        },
+        {
+          "name": "red-duplicate-free-to-bound.log",
+          "bytes": 1002,
+          "sha256": "27a65a32265fd71cf6513283f503b8de44b556fe27d6913f86a748d03c626985"
+        },
+        {
+          "name": "red-graph-ledger-authority.log",
+          "bytes": 1006,
+          "sha256": "7f70ef246159256b26c58ae05491d1f6cf29a06d2713a63be40bdb65b987dc54"
+        },
+        {
+          "name": "red-history-budget.log",
+          "bytes": 1399,
+          "sha256": "c73359ec0cb8a51f4350d0eddad0c54d2db2b7807e7db7af3f5833a4269139e1"
+        },
+        {
+          "name": "red-lost-free-to-bound.log",
+          "bytes": 1002,
+          "sha256": "d90af224daf982ac0b5e2d0476cff2f39c9dbb89d98c3cff5c4b0f8ef1e54891"
+        },
+        {
+          "name": "red-observer-mutation.log",
+          "bytes": 1136,
+          "sha256": "542021cf642f3ba1a93ef3f5b72a2af0c31a0b80ec8c0e86e52221d037d7e991"
+        },
+        {
+          "name": "red-tick-loss.log",
+          "bytes": 102901,
+          "sha256": "d80d7c43a5d19fd2b63223227e26662f8300708e289c9460a06662891a104605"
+        },
+        {
+          "name": "red-unsupported-long-edge.log",
+          "bytes": 1072,
+          "sha256": "ab36f230ebd35a0e2b3ef75c43e167c65f2d1bb46216c01241326af7dc742260"
+        },
+        {
+          "name": "red2-duplicate-free-to-bound.log",
+          "bytes": 1002,
+          "sha256": "77314e35723283491eeafee97a4f1aafa978ddd5f2ef1dfb278a3c6ca27500ad"
+        },
+        {
+          "name": "red2-graph-ledger-authority.log",
+          "bytes": 1006,
+          "sha256": "89ceba66e9c575451c3e165743f110afcb213149c0dd63d1a05d7a178eb39725"
+        },
+        {
+          "name": "red2-history-budget.log",
+          "bytes": 1399,
+          "sha256": "95e65e78f984e43a307748f60a5943e4dd29b13d3e0af30fe6fbd53a49d9255d"
+        },
+        {
+          "name": "red2-lost-free-to-bound.log",
+          "bytes": 1002,
+          "sha256": "d8364f28b0c4dd45305158bc07b8c17b8522932ba08a02c96781af9442c55fb2"
+        },
+        {
+          "name": "red2-observer-mutation.log",
+          "bytes": 1136,
+          "sha256": "1871fd4f3ee8cfe8f4be14c763573c3e2d2309543458b9c166090134f7e972af"
+        },
+        {
+          "name": "red2-tick-loss.log",
+          "bytes": 102901,
+          "sha256": "862b8f22c863b492525ccfc6a41c018397d9e455a15b2fdd6e55cd4f03632bd4"
+        },
+        {
+          "name": "red2-unsupported-long-edge.log",
+          "bytes": 1126,
+          "sha256": "059bfaa9493591686c755dc0d9681c7fbadbff0f1c3e1ba111f89ddd852d7dfb"
+        },
+        {
+          "name": "render-replay-v3.json",
+          "bytes": 262,
+          "sha256": "c6611ce8d23d255dfa48ab88bad86b4fbffe3f524143c2f976c74f922e320ef4"
+        },
+        {
+          "name": "render-replay-v4.json",
+          "bytes": 262,
+          "sha256": "c6611ce8d23d255dfa48ab88bad86b4fbffe3f524143c2f976c74f922e320ef4"
+        },
+        {
+          "name": "render-replay-v5.json",
+          "bytes": 262,
+          "sha256": "c6611ce8d23d255dfa48ab88bad86b4fbffe3f524143c2f976c74f922e320ef4"
+        },
+        {
+          "name": "render-replay-v6.json",
+          "bytes": 262,
+          "sha256": "c6611ce8d23d255dfa48ab88bad86b4fbffe3f524143c2f976c74f922e320ef4"
+        },
+        {
+          "name": "render-replay-v7.json",
+          "bytes": 262,
+          "sha256": "c6611ce8d23d255dfa48ab88bad86b4fbffe3f524143c2f976c74f922e320ef4"
+        },
+        {
+          "name": "update_atlas.py",
+          "bytes": 6212,
+          "sha256": "92921c51852d5e328439a584a38e4f1255f27a9af88e54748be77a9ce6cda3fd"
+        },
+        {
+          "name": "widget-harness-check.log",
+          "bytes": 276,
+          "sha256": "d5c48ac19b02473b7afa2783a0ed6543fc9669c69df2d030bcc94020dfc9d89d"
+        },
+        {
+          "name": "witness-m4-source.rs",
+          "bytes": 12843,
+          "sha256": "4cc05bcdae294d8626cc2a93b3f2790288bf939e3ff5431957094ffd7c235d19"
+        },
+        {
+          "name": "witness-v1.log",
+          "bytes": 91,
+          "sha256": "22ed908e57c644e8b6d560a765eba0b4ea5b0db47e99ac73c728435c3cc01eb3"
+        },
+        {
+          "name": "witness-v2.log",
+          "bytes": 91,
+          "sha256": "22ed908e57c644e8b6d560a765eba0b4ea5b0db47e99ac73c728435c3cc01eb3"
+        },
+        {
+          "name": "witness-v3.log",
+          "bytes": 91,
+          "sha256": "22ed908e57c644e8b6d560a765eba0b4ea5b0db47e99ac73c728435c3cc01eb3"
+        },
+        {
+          "name": "witness-v4.log",
+          "bytes": 91,
+          "sha256": "22ed908e57c644e8b6d560a765eba0b4ea5b0db47e99ac73c728435c3cc01eb3"
+        },
+        {
+          "name": "witness-v5.log",
+          "bytes": 372,
+          "sha256": "6c7cbab85a68b7e3758a9053e1f2b72e6427b11cee49a74159a08b65820c866f"
+        },
+        {
+          "name": "witness-v6.log",
+          "bytes": 91,
+          "sha256": "22ed908e57c644e8b6d560a765eba0b4ea5b0db47e99ac73c728435c3cc01eb3"
+        },
+        {
+          "name": "witness-v7.log",
+          "bytes": 91,
+          "sha256": "22ed908e57c644e8b6d560a765eba0b4ea5b0db47e99ac73c728435c3cc01eb3"
+        },
+        {
+          "name": "worker-camera-first.log",
+          "bytes": 276,
+          "sha256": "fe8aec990be300467f57a536c64a0ffb8b739e2a34996a40a97a989c1a979b97"
+        }
+      ]
+    },
+    {
+      "phase": "atlas-after",
+      "purpose": "Independent Atlas note version; map in ATLAS_SNAPSHOTS; restore only into a new vault",
+      "relative_path": "v1/atlas-after.tar",
+      "bytes": 81920,
+      "sha256": "da756a3b5aa3e31b5caf0ceb3a85229d4eed610a15a340c19327ba01178d71da",
+      "members": [
+        {
+          "name": "00_HOME__INDEX.md",
+          "bytes": 1546,
+          "sha256": "889239eff21232283de19f36af7b04c70ee01b32db0c3db1591be153a744924f"
+        },
+        {
+          "name": "00_HOME__STATUS_GUIDE.md",
+          "bytes": 996,
+          "sha256": "d49c59d682465bbf57165b14a8993091ea071b882b99316dc0beefa8a81104b7"
+        },
+        {
+          "name": "00_HOME__VAULT_ARCHITECTURE.md",
+          "bytes": 1337,
+          "sha256": "d79566e1a272049c0ed0562188320ef1a869a5e5c1aed4dd6be20c872363f15c"
+        },
+        {
+          "name": "01_CANON__INDEX.md",
+          "bytes": 646,
+          "sha256": "6ee32247e9548ee967c0c6081d54a0503ac8897f9637cd0cfa48cc16271d8bc3"
+        },
+        {
+          "name": "01_CANON__MOEBIUS_SHIP.md",
+          "bytes": 5226,
+          "sha256": "3d44386625fe8ac024da7a06bd87a13f600098aca476aaa9f4ef0ea48621e268"
+        },
+        {
+          "name": "01_CANON__MOEBIUS_VESSEL.md",
+          "bytes": 928,
+          "sha256": "06ac8d797197c6e37b01c3343db8076ba0b2f1b6cf2d620f542bdfa0ad633ea2"
+        },
+        {
+          "name": "01_CANON__SHIP_DIMENSIONS.md",
+          "bytes": 1257,
+          "sha256": "03166dcac6f5107f6fc84fa58e33ebd0e0f6fac3fabc933c9c2c50fbe871d7d5"
+        },
+        {
+          "name": "02_ANATOMY__COMPONENT_LIBRARY.md",
+          "bytes": 1148,
+          "sha256": "4e448d9c48376d527a973f14f3b2931d2eaaad3af5c39041d6aba750bf706cb1"
+        },
+        {
+          "name": "02_ANATOMY__FILAMENT_STRUCTURE.md",
+          "bytes": 1264,
+          "sha256": "d4834050b1e4b3226fe9d2a60766139277aefa26a77ec92538100d0ceb77b6e1"
+        },
+        {
+          "name": "02_ANATOMY__INDEX.md",
+          "bytes": 517,
+          "sha256": "baf2027c676656e0e7ced8e243e82ce6c3472463b57b18e21228defbe9aedf65"
+        },
+        {
+          "name": "03_PHYSIOLOGY__INDEX.md",
+          "bytes": 469,
+          "sha256": "ebaf03edd10c5241cbaaa194275ce05dea6e55f5c44b6f69d6ebd7297fd37884"
+        },
+        {
+          "name": "04_COGNITION__INDEX.md",
+          "bytes": 468,
+          "sha256": "bc7a89ea6353f1b1501bdfd5ac824261703157e5cc579cdaae242b419c90fe0a"
+        },
+        {
+          "name": "05_ECOLOGY__ENVIRONMENTAL_HYPOTHESIS.md",
+          "bytes": 1623,
+          "sha256": "7c852c150d3a85f5630db0cb85d9dc6cf7b2789a544d4ed8d2388d8664c992ef"
+        },
+        {
+          "name": "05_ECOLOGY__INDEX.md",
+          "bytes": 500,
+          "sha256": "08d1c0d3dc84ebf8bc847ac4a0e3cc6e89ea5b2a08c5286dce9cc8fca209392a"
+        },
+        {
+          "name": "06_SPECIES__ARACHNITECH.md",
+          "bytes": 1551,
+          "sha256": "65516e5a1cc58593b1c215489ca050408b1fbe1151565c7ba1e05db6a6974c81"
+        },
+        {
+          "name": "06_SPECIES__INDEX.md",
+          "bytes": 487,
+          "sha256": "a2cd6c9f32cec45154a84f3788eddc48aea37ffd21108c8ebd53ec1bbd9f17ce"
+        },
+        {
+          "name": "07_EXPERIMENTS__INDEX.md",
+          "bytes": 806,
+          "sha256": "193238dce500ee97899daba6480af0165ebe0f0e1f496f14e90980fb90efda40"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_001.md",
+          "bytes": 1073,
+          "sha256": "def467c3a8ec18c3336bfb01cf690c578a0f35b4ec358496b569c5710c7c3d36"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_002.md",
+          "bytes": 1204,
+          "sha256": "90703163df2ec34ce827fd2456aa9530c177077d133edb28fb77a5e59baee1d4"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_003.md",
+          "bytes": 2411,
+          "sha256": "aa272208df1826c18d6551ce4ebe655e4096382a3ac44508066ac7b99b5f3850"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_004.md",
+          "bytes": 1348,
+          "sha256": "596b3b25e2559237b69428f05fe2062b682e9649118bb71d5b2343d94d5a6708"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_005.md",
+          "bytes": 1302,
+          "sha256": "bd64ffab1b67841618e2a97230091c4a2cf0c1d06648e63020dae2064af7dbbd"
+        },
+        {
+          "name": "08_ARCHITECTURE__ANATOMY_SPEC_V2.md",
+          "bytes": 1351,
+          "sha256": "811e3009c84ac1267c72914f501331de8eb52affb6430f67e9782a01a7129d4d"
+        },
+        {
+          "name": "08_ARCHITECTURE__FILAMENT_ASSEMBLY.md",
+          "bytes": 1324,
+          "sha256": "fb5bb63db83ec87908623c95bc17a501e7440c092ca20c266fa8b14a8610c499"
+        },
+        {
+          "name": "08_ARCHITECTURE__HYBRID_STACK.md",
+          "bytes": 1195,
+          "sha256": "0188be8b983a9ad4a046ed95b527c234e7e48e0bfd956849e4d82337c11963a0"
+        },
+        {
+          "name": "08_ARCHITECTURE__INDEX.md",
+          "bytes": 793,
+          "sha256": "7d2008d5a6bb9ed1ee97c094ce787d62037124be0b84b5d4666b8f9176f192f6"
+        },
+        {
+          "name": "08_ARCHITECTURE__INTERVENTION_BOUNDARY.md",
+          "bytes": 1303,
+          "sha256": "c82d0ba96efcc4eb94a6b63bd3fb5938b3971e8ab795f9728971fc4a31d48bec"
+        },
+        {
+          "name": "08_ARCHITECTURE__LIGHT_PORT_BOUNDARY.md",
+          "bytes": 1253,
+          "sha256": "2ccf7732bbcb224869d70773ea1c693b5b016e98ffa917bc7d8eef5312ff591b"
+        },
+        {
+          "name": "08_ARCHITECTURE__WITNESS_NAVIGATION.md",
+          "bytes": 1413,
+          "sha256": "07cc4924ae40b3955ed7075551f770d7a722f932d0d2d5c2e27fa076de47592e"
+        },
+        {
+          "name": "08_ARCHITECTURE__WITNESS_SPHERE.md",
+          "bytes": 1238,
+          "sha256": "fe5877166c75429bad1bc42856785a72eef372a6f397df24bda01d12cc5fddd2"
+        },
+        {
+          "name": "08_ARCHITECTURE__WORLD_AUTHORITY.md",
+          "bytes": 1302,
+          "sha256": "812bc269e68edc75574557fc1b31ec0f97076ae922c75e5c04d5c44d5bbafd85"
+        },
+        {
+          "name": "09_EVIDENCE__EVIDENCE_POLICY.md",
+          "bytes": 1171,
+          "sha256": "93788c1e60545aa109f24adca9aae60b9c3893c7c6c09770a37ca592b47530c0"
+        },
+        {
+          "name": "09_EVIDENCE__INDEX.md",
+          "bytes": 617,
+          "sha256": "516a7c054ac98979a71408c4a50996be142a7762345b0e83fd340292fec1c5ef"
+        },
+        {
+          "name": "09_EVIDENCE__MORPH_004_DONORS.md",
+          "bytes": 1434,
+          "sha256": "29a7aff24105eebd0f7ed3dc82cd81d646706af30ea0618fd27f8cf359f540aa"
+        },
+        {
+          "name": "09_EVIDENCE__MORPH_004_LIMITS.md",
+          "bytes": 1362,
+          "sha256": "c7f7ca11d0fd582c4beef256cdf9d3d11332e24dbf2752803abc25ed1d54df5a"
+        },
+        {
+          "name": "09_EVIDENCE__MORPH_005_LIMITS.md",
+          "bytes": 1395,
+          "sha256": "258ff57cce4b806c6c1176a736eed33418a1a338aab77121dac7488a49b0a202"
+        },
+        {
+          "name": "90_INBOX__INDEX.md",
+          "bytes": 464,
+          "sha256": "f99ef45eaf0369b5cad93a6e94b1ff3e78cc5f01e8367c6e211d4aab33d3b3a4"
+        },
+        {
+          "name": "99_ARCHIVE__INDEX.md",
+          "bytes": 466,
+          "sha256": "17eb683963eaa69f255d07eb91bb4a17406f2b1af86f6c2b7b66f822bf163cdd"
+        },
+        {
+          "name": "_TEMPLATES__Anatomical_Component.md",
+          "bytes": 374,
+          "sha256": "285e0660934a13e47a69b61c78a26f8457c07d67e4978ed66823db1c8c5bf186"
+        },
+        {
+          "name": "_TEMPLATES__Architectural_Decision.md",
+          "bytes": 376,
+          "sha256": "d61960ff7bdf5a5225193054516da4267c58629e099c52cd24acbb143aac2678"
+        },
+        {
+          "name": "_TEMPLATES__Environmental_Mechanism.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Experimental_Protocol.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Experimental_Result.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Organism_Species.md",
+          "bytes": 377,
+          "sha256": "d6aa2ec5611cb9712c2f89d7769f00a53b4eca8cb0c2c4f3ecaf2957782b5963"
+        }
+      ]
+    },
+    {
+      "phase": "atlas-before",
+      "purpose": "Independent Atlas note version; map in ATLAS_SNAPSHOTS; restore only into a new vault",
+      "relative_path": "v1/atlas-before.tar",
+      "bytes": 71680,
+      "sha256": "436453dd1296e47a5d90600b680f7d33754f76f89307b0b3de4d341fb4182ff5",
+      "members": [
+        {
+          "name": "00_HOME__INDEX.md",
+          "bytes": 1419,
+          "sha256": "1b8706660848197de3129f836354175fb993d175442341afc47b5d3b978fc797"
+        },
+        {
+          "name": "00_HOME__STATUS_GUIDE.md",
+          "bytes": 996,
+          "sha256": "d49c59d682465bbf57165b14a8993091ea071b882b99316dc0beefa8a81104b7"
+        },
+        {
+          "name": "00_HOME__VAULT_ARCHITECTURE.md",
+          "bytes": 1337,
+          "sha256": "d79566e1a272049c0ed0562188320ef1a869a5e5c1aed4dd6be20c872363f15c"
+        },
+        {
+          "name": "01_CANON__INDEX.md",
+          "bytes": 646,
+          "sha256": "6ee32247e9548ee967c0c6081d54a0503ac8897f9637cd0cfa48cc16271d8bc3"
+        },
+        {
+          "name": "01_CANON__MOEBIUS_SHIP.md",
+          "bytes": 5226,
+          "sha256": "3d44386625fe8ac024da7a06bd87a13f600098aca476aaa9f4ef0ea48621e268"
+        },
+        {
+          "name": "01_CANON__MOEBIUS_VESSEL.md",
+          "bytes": 928,
+          "sha256": "06ac8d797197c6e37b01c3343db8076ba0b2f1b6cf2d620f542bdfa0ad633ea2"
+        },
+        {
+          "name": "01_CANON__SHIP_DIMENSIONS.md",
+          "bytes": 1257,
+          "sha256": "03166dcac6f5107f6fc84fa58e33ebd0e0f6fac3fabc933c9c2c50fbe871d7d5"
+        },
+        {
+          "name": "02_ANATOMY__COMPONENT_LIBRARY.md",
+          "bytes": 1148,
+          "sha256": "4e448d9c48376d527a973f14f3b2931d2eaaad3af5c39041d6aba750bf706cb1"
+        },
+        {
+          "name": "02_ANATOMY__INDEX.md",
+          "bytes": 466,
+          "sha256": "37ca2df6f92de73f58f1fd145c2d512fe15df87463c8b4545786602e34319415"
+        },
+        {
+          "name": "03_PHYSIOLOGY__INDEX.md",
+          "bytes": 469,
+          "sha256": "ebaf03edd10c5241cbaaa194275ce05dea6e55f5c44b6f69d6ebd7297fd37884"
+        },
+        {
+          "name": "04_COGNITION__INDEX.md",
+          "bytes": 468,
+          "sha256": "bc7a89ea6353f1b1501bdfd5ac824261703157e5cc579cdaae242b419c90fe0a"
+        },
+        {
+          "name": "05_ECOLOGY__ENVIRONMENTAL_HYPOTHESIS.md",
+          "bytes": 1623,
+          "sha256": "7c852c150d3a85f5630db0cb85d9dc6cf7b2789a544d4ed8d2388d8664c992ef"
+        },
+        {
+          "name": "05_ECOLOGY__INDEX.md",
+          "bytes": 500,
+          "sha256": "08d1c0d3dc84ebf8bc847ac4a0e3cc6e89ea5b2a08c5286dce9cc8fca209392a"
+        },
+        {
+          "name": "06_SPECIES__ARACHNITECH.md",
+          "bytes": 1238,
+          "sha256": "4dbe4db3a1c6583086bb1b84a3be7bfd1efd0ffa0a535eb9f757b07976cb583f"
+        },
+        {
+          "name": "06_SPECIES__INDEX.md",
+          "bytes": 487,
+          "sha256": "a2cd6c9f32cec45154a84f3788eddc48aea37ffd21108c8ebd53ec1bbd9f17ce"
+        },
+        {
+          "name": "07_EXPERIMENTS__INDEX.md",
+          "bytes": 760,
+          "sha256": "509510fe285289f7fce09659625af4705966818c0730001408e58fb80a8ff613"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_001.md",
+          "bytes": 1073,
+          "sha256": "def467c3a8ec18c3336bfb01cf690c578a0f35b4ec358496b569c5710c7c3d36"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_002.md",
+          "bytes": 1204,
+          "sha256": "90703163df2ec34ce827fd2456aa9530c177077d133edb28fb77a5e59baee1d4"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_003.md",
+          "bytes": 2411,
+          "sha256": "aa272208df1826c18d6551ce4ebe655e4096382a3ac44508066ac7b99b5f3850"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_004.md",
+          "bytes": 1348,
+          "sha256": "596b3b25e2559237b69428f05fe2062b682e9649118bb71d5b2343d94d5a6708"
+        },
+        {
+          "name": "08_ARCHITECTURE__ANATOMY_SPEC_V2.md",
+          "bytes": 1351,
+          "sha256": "811e3009c84ac1267c72914f501331de8eb52affb6430f67e9782a01a7129d4d"
+        },
+        {
+          "name": "08_ARCHITECTURE__HYBRID_STACK.md",
+          "bytes": 1195,
+          "sha256": "0188be8b983a9ad4a046ed95b527c234e7e48e0bfd956849e4d82337c11963a0"
+        },
+        {
+          "name": "08_ARCHITECTURE__INDEX.md",
+          "bytes": 697,
+          "sha256": "6e8e22a3c94ed859fa2a5c80ce9485c86f0b5518ecda5c69e236c2522bdc1da8"
+        },
+        {
+          "name": "08_ARCHITECTURE__INTERVENTION_BOUNDARY.md",
+          "bytes": 1303,
+          "sha256": "c82d0ba96efcc4eb94a6b63bd3fb5938b3971e8ab795f9728971fc4a31d48bec"
+        },
+        {
+          "name": "08_ARCHITECTURE__LIGHT_PORT_BOUNDARY.md",
+          "bytes": 1253,
+          "sha256": "2ccf7732bbcb224869d70773ea1c693b5b016e98ffa917bc7d8eef5312ff591b"
+        },
+        {
+          "name": "08_ARCHITECTURE__WITNESS_SPHERE.md",
+          "bytes": 1238,
+          "sha256": "fe5877166c75429bad1bc42856785a72eef372a6f397df24bda01d12cc5fddd2"
+        },
+        {
+          "name": "08_ARCHITECTURE__WORLD_AUTHORITY.md",
+          "bytes": 1302,
+          "sha256": "812bc269e68edc75574557fc1b31ec0f97076ae922c75e5c04d5c44d5bbafd85"
+        },
+        {
+          "name": "09_EVIDENCE__EVIDENCE_POLICY.md",
+          "bytes": 1171,
+          "sha256": "93788c1e60545aa109f24adca9aae60b9c3893c7c6c09770a37ca592b47530c0"
+        },
+        {
+          "name": "09_EVIDENCE__INDEX.md",
+          "bytes": 567,
+          "sha256": "1c500fe307f45aa50a9d132e4fef3b92cd4699e7b99ed143912ef8e992475368"
+        },
+        {
+          "name": "09_EVIDENCE__MORPH_004_DONORS.md",
+          "bytes": 1434,
+          "sha256": "29a7aff24105eebd0f7ed3dc82cd81d646706af30ea0618fd27f8cf359f540aa"
+        },
+        {
+          "name": "09_EVIDENCE__MORPH_004_LIMITS.md",
+          "bytes": 1362,
+          "sha256": "c7f7ca11d0fd582c4beef256cdf9d3d11332e24dbf2752803abc25ed1d54df5a"
+        },
+        {
+          "name": "90_INBOX__INDEX.md",
+          "bytes": 464,
+          "sha256": "f99ef45eaf0369b5cad93a6e94b1ff3e78cc5f01e8367c6e211d4aab33d3b3a4"
+        },
+        {
+          "name": "99_ARCHIVE__INDEX.md",
+          "bytes": 466,
+          "sha256": "17eb683963eaa69f255d07eb91bb4a17406f2b1af86f6c2b7b66f822bf163cdd"
+        },
+        {
+          "name": "_TEMPLATES__Anatomical_Component.md",
+          "bytes": 374,
+          "sha256": "285e0660934a13e47a69b61c78a26f8457c07d67e4978ed66823db1c8c5bf186"
+        },
+        {
+          "name": "_TEMPLATES__Architectural_Decision.md",
+          "bytes": 376,
+          "sha256": "d61960ff7bdf5a5225193054516da4267c58629e099c52cd24acbb143aac2678"
+        },
+        {
+          "name": "_TEMPLATES__Environmental_Mechanism.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Experimental_Protocol.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Experimental_Result.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Organism_Species.md",
+          "bytes": 377,
+          "sha256": "d6aa2ec5611cb9712c2f89d7769f00a53b4eca8cb0c2c4f3ecaf2957782b5963"
+        }
+      ]
+    },
+    {
+      "phase": "directive-inputs",
+      "purpose": "Original adopted Operator directives",
+      "relative_path": "v1/directive-inputs.tar",
+      "bytes": 30720,
+      "sha256": "8115fe7a8a44898cf47a7f334b316d17fb7a8bedee7172c8aac7b9f7c5aabdcd",
+      "members": [
+        {
+          "name": "ADDENDUM.txt",
+          "bytes": 5716,
+          "sha256": "7670adcb76a757cef5aef986895ba066d32ecaf4ed1570657addaec8722f7f72"
+        },
+        {
+          "name": "MORPH_005.txt",
+          "bytes": 16092,
+          "sha256": "1b1fd2bfeb4e6c8ecc0a3ec603f70038a7dabc9eb60e6bca8ac28f67921728e6"
+        }
+      ]
+    },
+    {
+      "phase": "experiments-v2",
+      "purpose": "Raw numerical trial, snapshots and digest histories",
+      "relative_path": "v1/experiments-v2.tar",
+      "bytes": 3778560,
+      "sha256": "4b28fb1bc1e2ce173c247a444ed748e5d0db8b000e3b99b65772fed5a25c75cd",
+      "members": [
+        {
+          "name": "A-final.json",
+          "bytes": 69121,
+          "sha256": "c720abc252b6de1933d86fbf00757fa845521c68d5c7c8da5c6a11e8ba7c5ccc"
+        },
+        {
+          "name": "A-initial.json",
+          "bytes": 33386,
+          "sha256": "0957be947032bea79fa0c904cc1ee03f94c14f4d086bca0383cbc127840b11fb"
+        },
+        {
+          "name": "B-final.json",
+          "bytes": 128537,
+          "sha256": "2027f786f4ac970071ffe65768f02e314ab73c41c47fee6597726d23fc8f19da"
+        },
+        {
+          "name": "B-initial.json",
+          "bytes": 33388,
+          "sha256": "873b74f041964fed1072441aa8688ae1d8e49309c038d841233f5cad3d5c2db7"
+        },
+        {
+          "name": "C-final.json",
+          "bytes": 129838,
+          "sha256": "3783d9025812cf4127eca5e12e95af759b97024b2ead29f2e229079877a9f4a3"
+        },
+        {
+          "name": "C-initial.json",
+          "bytes": 34757,
+          "sha256": "9f47ed56a8bbd71e74bcc04eaf92150f3ff1bf77d0067e2d53f52a15be493556"
+        },
+        {
+          "name": "D-final.json",
+          "bytes": 129045,
+          "sha256": "1425218344c0fbf0b865d1253cf3dddc4f176b92ca47c6ed1c307a7f5df85a0b"
+        },
+        {
+          "name": "D-initial.json",
+          "bytes": 34762,
+          "sha256": "1ae9c03c513358f15014443fc1634b29ba15d2f35fb6ddd6ae7bcdf76bff95b6"
+        },
+        {
+          "name": "E-final.json",
+          "bytes": 74031,
+          "sha256": "4244abc6078e79d67e3e34af8b8cb521115153666b0b10e05181dc068ef21327"
+        },
+        {
+          "name": "E-initial.json",
+          "bytes": 33386,
+          "sha256": "2505c658ebcb7caf593e8eaae7c326296fd8696de19d7f1bd266e5fef040d441"
+        },
+        {
+          "name": "G-midpoint.json",
+          "bytes": 111576,
+          "sha256": "7a5b7bb2bc42b6eb831e6af08012b1212afbc04cb4eba79a523523f52527bf6c"
+        },
+        {
+          "name": "H-1024-final.json",
+          "bytes": 1471237,
+          "sha256": "7603c1da050fcccab6c96f81c72ea1eec9a340b36965ae7a9cd38bfb785f5b6b"
+        },
+        {
+          "name": "H-128-final.json",
+          "bytes": 193048,
+          "sha256": "2c1a6564f16b4f4d191d1bed4e7ee8c41b41dffb805a2b25d20cb06c0fc8cf4f"
+        },
+        {
+          "name": "H-32-final.json",
+          "bytes": 57739,
+          "sha256": "310b2c27291c757f4078de3e85b5b33b10487bba8d03acf2b2c1faf2fdc71ee9"
+        },
+        {
+          "name": "H-512-final.json",
+          "bytes": 740140,
+          "sha256": "62c35a8582554a2bcec9cd84c73af2df964cf77af86046b76acba6f4951c29c4"
+        },
+        {
+          "name": "disconnected-final.json",
+          "bytes": 144302,
+          "sha256": "ba1f537d00d84bf49635f6dab74370e2ccb2f58dfc2564d79e43aeaaf4267a8f"
+        },
+        {
+          "name": "disconnected-initial.json",
+          "bytes": 33383,
+          "sha256": "9e70cc52cae62548af9ebf5f321ec8da79d99eff4f288b535bda463df23eb1bd"
+        },
+        {
+          "name": "report.json",
+          "bytes": 5061,
+          "sha256": "8388e07370011698f19042c135b6207ae0a565927c7f67d3c7671151492b178e"
+        },
+        {
+          "name": "trials.jsonl",
+          "bytes": 134760,
+          "sha256": "970c24a2dd986cb356254da02da11e4a09989474fb39b3675567ef867330e44c"
+        },
+        {
+          "name": "vertical-final.json",
+          "bytes": 128326,
+          "sha256": "6309f8cf428910c5e7674a37182fb746268cf357a9e44a1b9c5f754fcf7f25c1"
+        },
+        {
+          "name": "vertical-initial.json",
+          "bytes": 33388,
+          "sha256": "496455f12f13f5cbd3cacedd257251e52492fbcfd621dae823d5d64eff7b61ce"
+        }
+      ]
+    },
+    {
+      "phase": "experiments-v3",
+      "purpose": "Raw numerical trial, snapshots and digest histories",
+      "relative_path": "v1/experiments-v3.tar",
+      "bytes": 3778560,
+      "sha256": "cc181fac2798191926432b55babc11f85cdbf7ba63da6cd549d942a988910c01",
+      "members": [
+        {
+          "name": "A-final.json",
+          "bytes": 69121,
+          "sha256": "c720abc252b6de1933d86fbf00757fa845521c68d5c7c8da5c6a11e8ba7c5ccc"
+        },
+        {
+          "name": "A-initial.json",
+          "bytes": 33386,
+          "sha256": "0957be947032bea79fa0c904cc1ee03f94c14f4d086bca0383cbc127840b11fb"
+        },
+        {
+          "name": "B-final.json",
+          "bytes": 128537,
+          "sha256": "2027f786f4ac970071ffe65768f02e314ab73c41c47fee6597726d23fc8f19da"
+        },
+        {
+          "name": "B-initial.json",
+          "bytes": 33388,
+          "sha256": "873b74f041964fed1072441aa8688ae1d8e49309c038d841233f5cad3d5c2db7"
+        },
+        {
+          "name": "C-final.json",
+          "bytes": 129838,
+          "sha256": "3783d9025812cf4127eca5e12e95af759b97024b2ead29f2e229079877a9f4a3"
+        },
+        {
+          "name": "C-initial.json",
+          "bytes": 34757,
+          "sha256": "9f47ed56a8bbd71e74bcc04eaf92150f3ff1bf77d0067e2d53f52a15be493556"
+        },
+        {
+          "name": "D-final.json",
+          "bytes": 129045,
+          "sha256": "1425218344c0fbf0b865d1253cf3dddc4f176b92ca47c6ed1c307a7f5df85a0b"
+        },
+        {
+          "name": "D-initial.json",
+          "bytes": 34762,
+          "sha256": "1ae9c03c513358f15014443fc1634b29ba15d2f35fb6ddd6ae7bcdf76bff95b6"
+        },
+        {
+          "name": "E-final.json",
+          "bytes": 74031,
+          "sha256": "4244abc6078e79d67e3e34af8b8cb521115153666b0b10e05181dc068ef21327"
+        },
+        {
+          "name": "E-initial.json",
+          "bytes": 33386,
+          "sha256": "2505c658ebcb7caf593e8eaae7c326296fd8696de19d7f1bd266e5fef040d441"
+        },
+        {
+          "name": "G-midpoint.json",
+          "bytes": 111576,
+          "sha256": "7a5b7bb2bc42b6eb831e6af08012b1212afbc04cb4eba79a523523f52527bf6c"
+        },
+        {
+          "name": "H-1024-final.json",
+          "bytes": 1471237,
+          "sha256": "7603c1da050fcccab6c96f81c72ea1eec9a340b36965ae7a9cd38bfb785f5b6b"
+        },
+        {
+          "name": "H-128-final.json",
+          "bytes": 193048,
+          "sha256": "2c1a6564f16b4f4d191d1bed4e7ee8c41b41dffb805a2b25d20cb06c0fc8cf4f"
+        },
+        {
+          "name": "H-32-final.json",
+          "bytes": 57739,
+          "sha256": "310b2c27291c757f4078de3e85b5b33b10487bba8d03acf2b2c1faf2fdc71ee9"
+        },
+        {
+          "name": "H-512-final.json",
+          "bytes": 740140,
+          "sha256": "62c35a8582554a2bcec9cd84c73af2df964cf77af86046b76acba6f4951c29c4"
+        },
+        {
+          "name": "disconnected-final.json",
+          "bytes": 144302,
+          "sha256": "ba1f537d00d84bf49635f6dab74370e2ccb2f58dfc2564d79e43aeaaf4267a8f"
+        },
+        {
+          "name": "disconnected-initial.json",
+          "bytes": 33383,
+          "sha256": "9e70cc52cae62548af9ebf5f321ec8da79d99eff4f288b535bda463df23eb1bd"
+        },
+        {
+          "name": "report.json",
+          "bytes": 5062,
+          "sha256": "b6e551fb1bcaeafffdd856fe9cd06868ccead615412f3888efb475f5f170c89c"
+        },
+        {
+          "name": "trials.jsonl",
+          "bytes": 134760,
+          "sha256": "970c24a2dd986cb356254da02da11e4a09989474fb39b3675567ef867330e44c"
+        },
+        {
+          "name": "vertical-final.json",
+          "bytes": 128326,
+          "sha256": "6309f8cf428910c5e7674a37182fb746268cf357a9e44a1b9c5f754fcf7f25c1"
+        },
+        {
+          "name": "vertical-initial.json",
+          "bytes": 33388,
+          "sha256": "496455f12f13f5cbd3cacedd257251e52492fbcfd621dae823d5d64eff7b61ce"
+        }
+      ]
+    },
+    {
+      "phase": "experiments-v4",
+      "purpose": "Raw numerical trial, snapshots and digest histories",
+      "relative_path": "v1/experiments-v4.tar",
+      "bytes": 3778560,
+      "sha256": "2dcb665c892df6cb27b68cf0eb42ba5b3e027d242e35865469d8629303fe9d98",
+      "members": [
+        {
+          "name": "A-final.json",
+          "bytes": 69121,
+          "sha256": "c720abc252b6de1933d86fbf00757fa845521c68d5c7c8da5c6a11e8ba7c5ccc"
+        },
+        {
+          "name": "A-initial.json",
+          "bytes": 33386,
+          "sha256": "0957be947032bea79fa0c904cc1ee03f94c14f4d086bca0383cbc127840b11fb"
+        },
+        {
+          "name": "B-final.json",
+          "bytes": 128537,
+          "sha256": "2027f786f4ac970071ffe65768f02e314ab73c41c47fee6597726d23fc8f19da"
+        },
+        {
+          "name": "B-initial.json",
+          "bytes": 33388,
+          "sha256": "873b74f041964fed1072441aa8688ae1d8e49309c038d841233f5cad3d5c2db7"
+        },
+        {
+          "name": "C-final.json",
+          "bytes": 129838,
+          "sha256": "3783d9025812cf4127eca5e12e95af759b97024b2ead29f2e229079877a9f4a3"
+        },
+        {
+          "name": "C-initial.json",
+          "bytes": 34757,
+          "sha256": "9f47ed56a8bbd71e74bcc04eaf92150f3ff1bf77d0067e2d53f52a15be493556"
+        },
+        {
+          "name": "D-final.json",
+          "bytes": 129045,
+          "sha256": "1425218344c0fbf0b865d1253cf3dddc4f176b92ca47c6ed1c307a7f5df85a0b"
+        },
+        {
+          "name": "D-initial.json",
+          "bytes": 34762,
+          "sha256": "1ae9c03c513358f15014443fc1634b29ba15d2f35fb6ddd6ae7bcdf76bff95b6"
+        },
+        {
+          "name": "E-final.json",
+          "bytes": 74031,
+          "sha256": "4244abc6078e79d67e3e34af8b8cb521115153666b0b10e05181dc068ef21327"
+        },
+        {
+          "name": "E-initial.json",
+          "bytes": 33386,
+          "sha256": "2505c658ebcb7caf593e8eaae7c326296fd8696de19d7f1bd266e5fef040d441"
+        },
+        {
+          "name": "G-midpoint.json",
+          "bytes": 111576,
+          "sha256": "7a5b7bb2bc42b6eb831e6af08012b1212afbc04cb4eba79a523523f52527bf6c"
+        },
+        {
+          "name": "H-1024-final.json",
+          "bytes": 1471237,
+          "sha256": "7603c1da050fcccab6c96f81c72ea1eec9a340b36965ae7a9cd38bfb785f5b6b"
+        },
+        {
+          "name": "H-128-final.json",
+          "bytes": 193048,
+          "sha256": "2c1a6564f16b4f4d191d1bed4e7ee8c41b41dffb805a2b25d20cb06c0fc8cf4f"
+        },
+        {
+          "name": "H-32-final.json",
+          "bytes": 57739,
+          "sha256": "310b2c27291c757f4078de3e85b5b33b10487bba8d03acf2b2c1faf2fdc71ee9"
+        },
+        {
+          "name": "H-512-final.json",
+          "bytes": 740140,
+          "sha256": "62c35a8582554a2bcec9cd84c73af2df964cf77af86046b76acba6f4951c29c4"
+        },
+        {
+          "name": "disconnected-final.json",
+          "bytes": 144302,
+          "sha256": "ba1f537d00d84bf49635f6dab74370e2ccb2f58dfc2564d79e43aeaaf4267a8f"
+        },
+        {
+          "name": "disconnected-initial.json",
+          "bytes": 33383,
+          "sha256": "9e70cc52cae62548af9ebf5f321ec8da79d99eff4f288b535bda463df23eb1bd"
+        },
+        {
+          "name": "report.json",
+          "bytes": 5063,
+          "sha256": "09dc9f9644fd8e672a49770847b221cd0d021c6cac2d57aa7a61985699b3207a"
+        },
+        {
+          "name": "trials.jsonl",
+          "bytes": 134760,
+          "sha256": "970c24a2dd986cb356254da02da11e4a09989474fb39b3675567ef867330e44c"
+        },
+        {
+          "name": "vertical-final.json",
+          "bytes": 128326,
+          "sha256": "6309f8cf428910c5e7674a37182fb746268cf357a9e44a1b9c5f754fcf7f25c1"
+        },
+        {
+          "name": "vertical-initial.json",
+          "bytes": 33388,
+          "sha256": "496455f12f13f5cbd3cacedd257251e52492fbcfd621dae823d5d64eff7b61ce"
+        }
+      ]
+    },
+    {
+      "phase": "m3-regression-v1",
+      "purpose": "Raw numerical trial, snapshots and digest histories",
+      "relative_path": "v1/m3-regression-v1.tar",
+      "bytes": 10240,
+      "sha256": "223e56bdf841e409d4535c497d850665460c9023d0e76c871b2701837fbccf44",
+      "members": [
+        {
+          "name": "report.json",
+          "bytes": 3694,
+          "sha256": "e113a52403b5f5d3a023d1bc20ae1038200843afc1a0db8078507ddaf31f339f"
+        }
+      ]
+    },
+    {
+      "phase": "source-final",
+      "purpose": "Exact final relevant source overlay plus SOURCE_MAP; apply to new recorded base checkout only",
+      "relative_path": "v1/source-final.tar",
+      "bytes": 552960,
+      "sha256": "8fa8161da1f227e46400fc762a196141f361b461d388ed9f64bd07b6d69aae6b",
+      "members": [
+        {
+          "name": "AGENTS.md",
+          "bytes": 17406,
+          "sha256": "d6dfeeca5f3d4217a587858978943d6bb64b1ad92e7419cf6a074efa065eac91"
+        },
+        {
+          "name": "Cargo.lock",
+          "bytes": 159247,
+          "sha256": "38714661e4204d48d4db5cf659abeecdf0b71117f26b53d0a551e430338ffe81"
+        },
+        {
+          "name": "Cargo.toml",
+          "bytes": 463,
+          "sha256": "3e3525280a72beb2df0ef9f923afd5974f236e29b829b41f552ef97a8665f4e6"
+        },
+        {
+          "name": "SOURCE_MAP.json",
+          "bytes": 8365,
+          "sha256": "399ce327fea54c88a4f0a19cb8cf8d93cc71e8f5436bf5777d2d3c907df17f0b"
+        },
+        {
+          "name": "crates__moebius-morph-lab__Cargo.toml",
+          "bytes": 457,
+          "sha256": "2d5ffe5c7c3a381541d0fbd3d2af076912638ebb5af65e0e686e6904496291cc"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__bin__moebius-world-witness.rs",
+          "bytes": 33158,
+          "sha256": "2871c9020b48245d37b9317701866d3a96d8bfe862ee7b6312bad3e9c22fa348"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__composition.rs",
+          "bytes": 14897,
+          "sha256": "222e707c2a5b905f831b515cf9905c3909f1789aec0386e8112a8804a126367f"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__emission_preview.rs",
+          "bytes": 15343,
+          "sha256": "c6deb3e37865333e045715ad7f1d92ad6641ec390b650686bdbba350189dba1a"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__lib.rs",
+          "bytes": 9615,
+          "sha256": "61379701480642ca7061f723ad183bf9d554eb15239b58e38cee67bf0714d996"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__main.rs",
+          "bytes": 28882,
+          "sha256": "55623c28659fa9e7016b7e03740931535af1ecfe98eea444c28059b042fc2620"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__navigation.rs",
+          "bytes": 7128,
+          "sha256": "ecf853e9139fab20068a8bd3c51ef0c9dc99f732d1ca5c84f54869cc41273931"
+        },
+        {
+          "name": "crates__moebius-morph__Cargo.toml",
+          "bytes": 349,
+          "sha256": "9d1fead02947f4511467cf02c6543fa623968de02fe3753d95d1fc873029d9c8"
+        },
+        {
+          "name": "crates__moebius-morph__examples__morph_003_bench.rs",
+          "bytes": 1280,
+          "sha256": "f768b482842dc410a55b9fc60dd90196d6480ab6b743775f4985f2efe2ba5936"
+        },
+        {
+          "name": "crates__moebius-morph__examples__morph_004_bench.rs",
+          "bytes": 7331,
+          "sha256": "2dd1bccc96c61da1139f1f0992300679f54b9e9520f4ad2a18ebcc210c4ae49f"
+        },
+        {
+          "name": "crates__moebius-morph__examples__morph_005_bench.rs",
+          "bytes": 7524,
+          "sha256": "87325455cb649d24f16a24d95ec06abdd6c4e4289b706275cdc807e36cd37b33"
+        },
+        {
+          "name": "crates__moebius-morph__examples__morph_005_verify_render.rs",
+          "bytes": 2059,
+          "sha256": "8431603c322c2d2b26fc7e22d334ff674c2451a9e463c7dfab9f079812f7544a"
+        },
+        {
+          "name": "crates__moebius-morph__examples__replay_lab.rs",
+          "bytes": 2631,
+          "sha256": "63dbe8661a5f2e2a05713d69c7ad207e837705e28e60c5fa878f32b6befc21c8"
+        },
+        {
+          "name": "crates__moebius-morph__examples__ship_run.rs",
+          "bytes": 1912,
+          "sha256": "70f7d21112c90b3af479401baf55291f9245d90d864bd696158f685605e6f667"
+        },
+        {
+          "name": "crates__moebius-morph__examples__validate.rs",
+          "bytes": 5387,
+          "sha256": "827acdd0314c4a9f53bc6d697a06dc65415b34593ad53666799183ae6ab5959a"
+        },
+        {
+          "name": "crates__moebius-morph__examples__validate_composition.rs",
+          "bytes": 7436,
+          "sha256": "373354224a1c2f4deec162be764f6be1f02550c5334f7a137b762733acf70ae7"
+        },
+        {
+          "name": "crates__moebius-morph__src__anatomy.rs",
+          "bytes": 15183,
+          "sha256": "f346e40f5c4699d976b0d9fea6bf016a7a9022d1dcebb68a9ea2d7735a76bd30"
+        },
+        {
+          "name": "crates__moebius-morph__src__compiler.rs",
+          "bytes": 12259,
+          "sha256": "137f8391a9c14c9f0ca741f84d61f6903e7a7d3ade9c6094bbd3f1463c19976a"
+        },
+        {
+          "name": "crates__moebius-morph__src__emission.rs",
+          "bytes": 48618,
+          "sha256": "381870a7913598f2437a6b28a7f34f769983e404565f50fe8b6fcabb17c1e872"
+        },
+        {
+          "name": "crates__moebius-morph__src__filament.rs",
+          "bytes": 17276,
+          "sha256": "46049aa890420ce772ecdcaebe2da425c6dc40d8e5ae75097faf331086c58afd"
+        },
+        {
+          "name": "crates__moebius-morph__src__lib.rs",
+          "bytes": 2556,
+          "sha256": "25609bf56f158daba6016d914102b21ec295866d85f1e9749ad820cc1ec0d131"
+        },
+        {
+          "name": "crates__moebius-morph__src__math.rs",
+          "bytes": 1113,
+          "sha256": "c022020ece5d8f7f436e172ecd2ed95d266b3cc6cec4dc1da14d845a9ee5202d"
+        },
+        {
+          "name": "crates__moebius-morph__src__runtime.rs",
+          "bytes": 28554,
+          "sha256": "a98a310ef3048f5277f5a1fd52a7a92d51a3a642e6bf7c88f3a81cea6d95d950"
+        },
+        {
+          "name": "crates__moebius-morph__src__spec.rs",
+          "bytes": 5881,
+          "sha256": "b91a19804c12097fcaadb4bc88efc58aa685d8d482734470fbaeb0085ec7bdff"
+        },
+        {
+          "name": "crates__moebius-morph__src__surface.rs",
+          "bytes": 6469,
+          "sha256": "7a76f04cfd5623569efb477b2c06e00e262b36b3c85a084b818e152d20e9ccd4"
+        },
+        {
+          "name": "crates__moebius-morph__src__witness.rs",
+          "bytes": 10998,
+          "sha256": "7e4eb7ccdb55d99330c59d9b67847b8e65a5c0795ec1e4271200ab9420ddd061"
+        },
+        {
+          "name": "crates__moebius-morph__tests__composition.rs",
+          "bytes": 6380,
+          "sha256": "0e8aafc0375b71c6bde2cd590fc711de3dc5325c344b56af9be5dd35b4329917"
+        },
+        {
+          "name": "crates__moebius-morph__tests__emission.rs",
+          "bytes": 6511,
+          "sha256": "0cb15463035087866f1f593c847b96a9881ce7bfd4199df02c0ceb21c990fb02"
+        },
+        {
+          "name": "crates__moebius-morph__tests__filament.rs",
+          "bytes": 11531,
+          "sha256": "fa0649c95913798ef40ed017ad6ebbaddc0798aaec9dab955bbea6dd79ce5805"
+        },
+        {
+          "name": "crates__moebius-morph__tests__forge.rs",
+          "bytes": 5480,
+          "sha256": "c0d59d2170dddcdaf589d97bc9ecdfd1d23a371f89b58b95fd64c2f119b54a52"
+        },
+        {
+          "name": "crates__moebius-morph__tests__runtime.rs",
+          "bytes": 10145,
+          "sha256": "973b569bf91b8abd72d1f413ca7c126f8838f7b5d6e8fc8483ea3765ab8b3f16"
+        }
+      ]
+    },
+    {
+      "phase": "witness-v1",
+      "purpose": "Native rendered frames, full states, per-frame/control/reset evidence; superseded trials retained",
+      "relative_path": "v1/witness-v1.tar",
+      "bytes": 2703360,
+      "sha256": "8511a858119fbbc07a28dc37606c86d44e71b362747f6cde18116b0438bd367c",
+      "members": [
+        {
+          "name": "frame_025.png",
+          "bytes": 318720,
+          "sha256": "1cb793b4953d2bd25e1060d40fc94d3dbefb134bab1acc38e7d2d5d05ebac7d1"
+        },
+        {
+          "name": "frame_055.png",
+          "bytes": 318378,
+          "sha256": "e812d8e435d0ffcd22b3355b0148a3c792d3d970e1ba4176e570f7b886bac8fa"
+        },
+        {
+          "name": "frame_120.png",
+          "bytes": 328978,
+          "sha256": "14bf31b614907c16a6466d45bcc09bb31fdfa369ea3ce273f562b49b5ef4db8b"
+        },
+        {
+          "name": "frame_175.png",
+          "bytes": 246711,
+          "sha256": "8cbc66d20e04d8280b9a15ab6be1c9a6b1eb53279eb786df2ffdd23dd04e478e"
+        },
+        {
+          "name": "frame_200.png",
+          "bytes": 338854,
+          "sha256": "fabf119d957180f31e7b8d46ccf94767156b301722a7cbdd8ed99aa538c79b71"
+        },
+        {
+          "name": "frame_280.png",
+          "bytes": 376059,
+          "sha256": "2760a40ff4b55a3a76d4f30833145de38f55f52b902e5e938f305f83f6e70646"
+        },
+        {
+          "name": "render-report.json",
+          "bytes": 169533,
+          "sha256": "7bb6ef128ae7b7802698183ebb3fc7dd580e51e426f23bd6d37ed39391a6002e"
+        },
+        {
+          "name": "world-final.json",
+          "bytes": 519189,
+          "sha256": "3e888f7491ce5ef5aadd7d076addce0d865df137297c760d5fc9d23a26f7a715"
+        },
+        {
+          "name": "world-initial.json",
+          "bytes": 76356,
+          "sha256": "1ea1766ed67b935eb88459f21e720ead5db2b131611b47d9e0d37c0e5b78f825"
+        }
+      ]
+    },
+    {
+      "phase": "witness-v2",
+      "purpose": "Native rendered frames, full states, per-frame/control/reset evidence; superseded trials retained",
+      "relative_path": "v1/witness-v2.tar",
+      "bytes": 2652160,
+      "sha256": "22cd44f96014fc1aefd35d5df3621fea0b6e6e1dd65079c369a20fbf2cf27de8",
+      "members": [
+        {
+          "name": "frame_025.png",
+          "bytes": 306590,
+          "sha256": "e2d04af31c47934b2d2e86711e11c86a7fcf6c9a081c630beb747517b755e195"
+        },
+        {
+          "name": "frame_055.png",
+          "bytes": 305818,
+          "sha256": "c4db359bf847a41fdad13fbdcc1638ca67ed356201fbcfe61d0054d92fbfc2f8"
+        },
+        {
+          "name": "frame_120.png",
+          "bytes": 316906,
+          "sha256": "b2dd0b38134a3e57da62067b2b3757b070bc5d476fd22d9c9c34300bd1ca4e3a"
+        },
+        {
+          "name": "frame_175.png",
+          "bytes": 233551,
+          "sha256": "5d3b75b864c1eb9c5b0893dc278eed98121575a2585551ec1f8ae630c392283c"
+        },
+        {
+          "name": "frame_200.png",
+          "bytes": 326671,
+          "sha256": "4384c97409c06b99d397748a9e10ac28f47475449df477d7be3c3d525767c29b"
+        },
+        {
+          "name": "frame_280.png",
+          "bytes": 363080,
+          "sha256": "710803df3f3ed833aa2f8d46563509878545de9189f02f3167affa2798376fdd"
+        },
+        {
+          "name": "render-report.json",
+          "bytes": 187005,
+          "sha256": "f37c281f2de9d2f05d2abe98d157df1e929ea243867af749bab22f642efc9ac2"
+        },
+        {
+          "name": "world-final.json",
+          "bytes": 519189,
+          "sha256": "3e888f7491ce5ef5aadd7d076addce0d865df137297c760d5fc9d23a26f7a715"
+        },
+        {
+          "name": "world-initial.json",
+          "bytes": 76356,
+          "sha256": "1ea1766ed67b935eb88459f21e720ead5db2b131611b47d9e0d37c0e5b78f825"
+        }
+      ]
+    },
+    {
+      "phase": "witness-v3",
+      "purpose": "Native rendered frames, full states, per-frame/control/reset evidence; superseded trials retained",
+      "relative_path": "v1/witness-v3.tar",
+      "bytes": 2549760,
+      "sha256": "cb3dfdaf14f432586b4f7f90bf37c26ca9afec13083628083b7f621eee7d097e",
+      "members": [
+        {
+          "name": "frame_025.png",
+          "bytes": 306503,
+          "sha256": "745aa45af07cf9fbdcc93b69b0eea58e94311feed264a151081f36506fe005b8"
+        },
+        {
+          "name": "frame_055.png",
+          "bytes": 305557,
+          "sha256": "e05b92bc7efff90431303ab9be61ccc6c5d7ddb739f2d1c1c9439dd546a30ce0"
+        },
+        {
+          "name": "frame_120.png",
+          "bytes": 305423,
+          "sha256": "7da919bfbe8df3392fa52b4f40dfcdd3994d361d9c34d6af9ba00b7732184fbe"
+        },
+        {
+          "name": "frame_175.png",
+          "bytes": 232971,
+          "sha256": "550c23200a9ff652c6e1c312b0aebeb1861eeea5cd5d8e1fd326a17346f9bd14"
+        },
+        {
+          "name": "frame_200.png",
+          "bytes": 319734,
+          "sha256": "0bce52f1cab4ed3a8b8def8823aa685ac3b4b7ca7446294aaec297fd7396299c"
+        },
+        {
+          "name": "frame_280.png",
+          "bytes": 283057,
+          "sha256": "2b49f64e2c96198d313e4d6bc60ec3899c3b5aa62a2c3f41f8601da87c9e3dde"
+        },
+        {
+          "name": "render-report.json",
+          "bytes": 187151,
+          "sha256": "7568f422a6d5bd251316eba55ef60c35a04a8bf99ed3e183f3c6db0f0b868933"
+        },
+        {
+          "name": "world-final.json",
+          "bytes": 519189,
+          "sha256": "3e888f7491ce5ef5aadd7d076addce0d865df137297c760d5fc9d23a26f7a715"
+        },
+        {
+          "name": "world-initial.json",
+          "bytes": 76356,
+          "sha256": "1ea1766ed67b935eb88459f21e720ead5db2b131611b47d9e0d37c0e5b78f825"
+        }
+      ]
+    },
+    {
+      "phase": "witness-v4",
+      "purpose": "Native rendered frames, full states, per-frame/control/reset evidence; superseded trials retained",
+      "relative_path": "v1/witness-v4.tar",
+      "bytes": 2652160,
+      "sha256": "23ad0ed747211b3d31632a2670d7a816753865ee005c23be98ad59128283c513",
+      "members": [
+        {
+          "name": "frame_025.png",
+          "bytes": 307620,
+          "sha256": "72655b5f84227bebd2bff9500e435555f0ceff7165a92e48a77118edfac65050"
+        },
+        {
+          "name": "frame_055.png",
+          "bytes": 305675,
+          "sha256": "aec62ef14ffc895067b2a6a2aff5dc9e86a9ff26ebe2660fa0777a576212c19b"
+        },
+        {
+          "name": "frame_120.png",
+          "bytes": 316119,
+          "sha256": "0c1bdac94a776620ae1cd9f4977d8aa0d9fa0b13338d2af78793a93fe4fb1b34"
+        },
+        {
+          "name": "frame_175.png",
+          "bytes": 233802,
+          "sha256": "003ffd5d897da76a3954857be1a2207fa51c1d9172bf94c4ea4a08453267375a"
+        },
+        {
+          "name": "frame_200.png",
+          "bytes": 325730,
+          "sha256": "05644bfd587d06bc1d70cbafd7e7638bd868c408e329309dbec0a230680054f9"
+        },
+        {
+          "name": "frame_280.png",
+          "bytes": 370375,
+          "sha256": "603bfb98152657a4afd17aeddb73e4cad14008c0bf4e0c3f8da8336b2ae394a0"
+        },
+        {
+          "name": "render-report.json",
+          "bytes": 186983,
+          "sha256": "cf0db1ef6086a335dcf96381e13477cd38ad21375e86d6ab06ea21937ff9fde0"
+        },
+        {
+          "name": "world-final.json",
+          "bytes": 519189,
+          "sha256": "3e888f7491ce5ef5aadd7d076addce0d865df137297c760d5fc9d23a26f7a715"
+        },
+        {
+          "name": "world-initial.json",
+          "bytes": 76356,
+          "sha256": "1ea1766ed67b935eb88459f21e720ead5db2b131611b47d9e0d37c0e5b78f825"
+        }
+      ]
+    },
+    {
+      "phase": "witness-v5",
+      "purpose": "Native rendered frames, full states, per-frame/control/reset evidence; superseded trials retained",
+      "relative_path": "v1/witness-v5.tar",
+      "bytes": 2723840,
+      "sha256": "961778b13240fa9f8c77979e13575c08c1e33de0040a1dd4d8f386e5aa90bfae",
+      "members": [
+        {
+          "name": "frame_025.png",
+          "bytes": 306913,
+          "sha256": "aadd7bc64e432e246123d83d37ee33cfd6d9c61cc0514412a77f46988c5e5e64"
+        },
+        {
+          "name": "frame_055.png",
+          "bytes": 304695,
+          "sha256": "9037376067c568922999d1bc71eeba5da01d11d9c49c221a7379a530ab63a8db"
+        },
+        {
+          "name": "frame_120.png",
+          "bytes": 316155,
+          "sha256": "7e4aeb2d74e7e8fce94dce4fddf8a6297074ab173db930aff441b4956a86127d"
+        },
+        {
+          "name": "frame_175.png",
+          "bytes": 234477,
+          "sha256": "372694adbe9eb3be1603187f8c326a0f647df44528415fcffa41d02192282b23"
+        },
+        {
+          "name": "frame_200.png",
+          "bytes": 325868,
+          "sha256": "ddc204066665649d3637ecc4fb89a463e5f42a08b8bda4fbc5325b6a7379b273"
+        },
+        {
+          "name": "frame_280.png",
+          "bytes": 369539,
+          "sha256": "a5c82bbcda68e0624132522e7f34bb7760c455fdde1a22cbe65c9368e45726e4"
+        },
+        {
+          "name": "render-report.json",
+          "bytes": 253284,
+          "sha256": "7f869b6fc159e49a5c0ee590457f76676e0e7cc4546a192b8ca5e40b53a4784a"
+        },
+        {
+          "name": "world-final.json",
+          "bytes": 519189,
+          "sha256": "3e888f7491ce5ef5aadd7d076addce0d865df137297c760d5fc9d23a26f7a715"
+        },
+        {
+          "name": "world-initial.json",
+          "bytes": 76356,
+          "sha256": "1ea1766ed67b935eb88459f21e720ead5db2b131611b47d9e0d37c0e5b78f825"
+        }
+      ]
+    },
+    {
+      "phase": "witness-v6",
+      "purpose": "Native rendered frames, full states, per-frame/control/reset evidence; superseded trials retained",
+      "relative_path": "v1/witness-v6.tar",
+      "bytes": 2723840,
+      "sha256": "33259ed691d6d7698469e9556c4ca6d514d4432f406f76bc105057d831f1addd",
+      "members": [
+        {
+          "name": "frame_025.png",
+          "bytes": 306913,
+          "sha256": "aadd7bc64e432e246123d83d37ee33cfd6d9c61cc0514412a77f46988c5e5e64"
+        },
+        {
+          "name": "frame_055.png",
+          "bytes": 304695,
+          "sha256": "9037376067c568922999d1bc71eeba5da01d11d9c49c221a7379a530ab63a8db"
+        },
+        {
+          "name": "frame_120.png",
+          "bytes": 316155,
+          "sha256": "7e4aeb2d74e7e8fce94dce4fddf8a6297074ab173db930aff441b4956a86127d"
+        },
+        {
+          "name": "frame_175.png",
+          "bytes": 234477,
+          "sha256": "372694adbe9eb3be1603187f8c326a0f647df44528415fcffa41d02192282b23"
+        },
+        {
+          "name": "frame_200.png",
+          "bytes": 325868,
+          "sha256": "ddc204066665649d3637ecc4fb89a463e5f42a08b8bda4fbc5325b6a7379b273"
+        },
+        {
+          "name": "frame_280.png",
+          "bytes": 369539,
+          "sha256": "a5c82bbcda68e0624132522e7f34bb7760c455fdde1a22cbe65c9368e45726e4"
+        },
+        {
+          "name": "render-report.json",
+          "bytes": 253301,
+          "sha256": "9884c649630bea4ea6774e0474c1202a0117cdbd8c42d389327a93d66735be5d"
+        },
+        {
+          "name": "world-final.json",
+          "bytes": 519189,
+          "sha256": "3e888f7491ce5ef5aadd7d076addce0d865df137297c760d5fc9d23a26f7a715"
+        },
+        {
+          "name": "world-initial.json",
+          "bytes": 76356,
+          "sha256": "1ea1766ed67b935eb88459f21e720ead5db2b131611b47d9e0d37c0e5b78f825"
+        }
+      ]
+    },
+    {
+      "phase": "witness-v7",
+      "purpose": "Native rendered frames, full states, per-frame/control/reset evidence; superseded trials retained",
+      "relative_path": "v1/witness-v7.tar",
+      "bytes": 2723840,
+      "sha256": "8336a24f03b741fde513825d0ea55a517a0e957a0aa7c7fcf7247d0814cf7d78",
+      "members": [
+        {
+          "name": "frame_025.png",
+          "bytes": 306913,
+          "sha256": "aadd7bc64e432e246123d83d37ee33cfd6d9c61cc0514412a77f46988c5e5e64"
+        },
+        {
+          "name": "frame_055.png",
+          "bytes": 304695,
+          "sha256": "9037376067c568922999d1bc71eeba5da01d11d9c49c221a7379a530ab63a8db"
+        },
+        {
+          "name": "frame_120.png",
+          "bytes": 316155,
+          "sha256": "7e4aeb2d74e7e8fce94dce4fddf8a6297074ab173db930aff441b4956a86127d"
+        },
+        {
+          "name": "frame_175.png",
+          "bytes": 234477,
+          "sha256": "372694adbe9eb3be1603187f8c326a0f647df44528415fcffa41d02192282b23"
+        },
+        {
+          "name": "frame_200.png",
+          "bytes": 325868,
+          "sha256": "ddc204066665649d3637ecc4fb89a463e5f42a08b8bda4fbc5325b6a7379b273"
+        },
+        {
+          "name": "frame_280.png",
+          "bytes": 369539,
+          "sha256": "a5c82bbcda68e0624132522e7f34bb7760c455fdde1a22cbe65c9368e45726e4"
+        },
+        {
+          "name": "render-report.json",
+          "bytes": 253293,
+          "sha256": "b765fea12eb356d8ea752a3e71824e09fc18a2797a3753fd58567c0c075dd643"
+        },
+        {
+          "name": "world-final.json",
+          "bytes": 519189,
+          "sha256": "3e888f7491ce5ef5aadd7d076addce0d865df137297c760d5fc9d23a26f7a715"
+        },
+        {
+          "name": "world-initial.json",
+          "bytes": 76356,
+          "sha256": "1ea1766ed67b935eb88459f21e720ead5db2b131611b47d9e0d37c0e5b78f825"
+        }
+      ]
+    },
+    {
+      "phase": "addendum-v2",
+      "purpose": "Post-seal source-restoration and/or clean-commit certification transcripts and reproducibility procedures",
+      "relative_path": "v2/addendum.tar",
+      "bytes": 20480,
+      "sha256": "4989a689db0cdaed8449335714b500624ff1678d1446fc5b26900dec78963c74",
+      "members": [
+        {
+          "name": "rebuild_restored.py",
+          "bytes": 1788,
+          "sha256": "a1229669b37fda6d0d64ba665e743d4ff7aaa4c9a5e943b80ab0e63717529298"
+        },
+        {
+          "name": "restored-test-0.log",
+          "bytes": 1097,
+          "sha256": "38dba230d7a531a77bd85967789bc6bab13f2e137945ef949698fc6874331c51"
+        },
+        {
+          "name": "restored-test-1.log",
+          "bytes": 748,
+          "sha256": "983adf18bc2c781297dc818e602742b59fc57abcc530c0096cab1f897d0458f9"
+        },
+        {
+          "name": "restored-rebuild.json",
+          "bytes": 891,
+          "sha256": "3ac9d4bb190173dc6937a00d547aa060833f39c96dd240f01403fa78f9c379f7"
+        },
+        {
+          "name": "append_evidence.py",
+          "bytes": 3058,
+          "sha256": "aa446cf376e6a8e1bb32fccb68c4fd74c6fd297869992c2d06c142f46a285584"
+        }
+      ]
+    }
+  ]
+}
