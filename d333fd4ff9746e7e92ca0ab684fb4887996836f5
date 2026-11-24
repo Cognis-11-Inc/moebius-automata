@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "certificate": {
+    "commit": "d333fd4ff9746e7e92ca0ab684fb4887996836f5",
+    "clean_before": true,
+    "command": [
+      "cargo",
+      "test",
+      "--workspace",
+      "--release",
+      "--offline",
+      "--",
+      "--test-threads=8"
+    ],
+    "started_utc": "20261124T152852Z",
+    "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+    "environment": "existing local offline Cargo cache; no hosted CI or fresh-machine claim",
+    "exit_code": 0,
+    "clean_after": true,
+    "finished_utc": "2026-11-24T15:29:00.735960+00:00",
+    "passed": 177,
+    "failed": 0,
+    "ignored": 0,
+    "test_binaries_and_doctest_groups": 30
+  },
+  "tree": "1802cfe93401e21e32e26be37ff9b50bed9eedcd",
+  "mount_path": "/run/media/cognis/Mermogon",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-005/2026-11-23/release-certification/d333fd4ff974-20261124T153010Z",
+  "external_index_path": "ARCHIVE_INDEX.json",
+  "external_index_sha256": "5195339659f528ef98c64c929cff865c08c4084c2b4706899dce4674e6371b30",
+  "classification": {
+    "purpose": "Exact clean-commit whole workspace transcript, command/environment certificate, sealing procedure; not hosted CI",
+    "run_identity": "d333fd4ff9746e7e92ca0ab684fb4887996836f5",
+    "files": 3,
+    "raw_bytes": 22660,
+    "restored_to": "/home/cognis/.cache/moebius-automata/clean-suite-d333fd4ff974-20261124T152852Z/restored-certificate",
+    "archive_member_and_restore_hashes": "PASS",
+    "original_copies": "retained"
+  },
+  "records": [
+    {
+      "phase": "clean-suite",
+      "purpose": "Exact clean-commit whole workspace transcript, command/environment certificate, sealing procedure; not hosted CI",
+      "relative_path": "clean-suite.tar",
+      "bytes": 30720,
+      "sha256": "218f9e1bc4de98bc79d940a0b3d9f0d26aefb390acb1dbad8c9764e33790d10c",
+      "members": [
+        {
+          "name": "certificate.json",
+          "bytes": 578,
+          "sha256": "ea8dbdbd0c3a2f62cfdb6bfadf18c657cd48601fa1942eaccdd89b12cb97e6aa"
+        },
+        {
+          "name": "workspace.log",
+          "bytes": 19058,
+          "sha256": "9961ce7a31659c11bb3188472dadafb468e03d5210330f245f21eeed93c27d59"
+        },
+        {
+          "name": "moebius_seal_clean_suite.py",
+          "bytes": 3024,
+          "sha256": "79e7b0e06f6f53a3cd7641a65f51fd5ee9e16f1743cc349b9c9d397546bf89b2"
+        }
+      ]
+    }
+  ],
+  "claim_boundary": "Local clean-commit workspace suite; no hosted CI, learned locomotion, physical propulsion or living structural tissue claim"
+}
