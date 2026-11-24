@@ -1,0 +1,71 @@
+{
+  "version": 4,
+  "status": "PASS",
+  "certificate": {
+    "status": "PASS",
+    "task": "MORPH-005 first conserved filament and mandatory navigation addendum",
+    "timestamp_local": "2026-11-23T21:24:02-05:00",
+    "revision": "17989572fecf9874747c77a28286cae05ac9af3b",
+    "tree": "c276254a4595dd0ff83201036df0e6cd81d2f66b",
+    "branch": "main",
+    "command": "cargo test --workspace --offline -- --test-threads=8",
+    "exit_code": 0,
+    "passed": 156,
+    "failed": 0,
+    "clean_before": true,
+    "clean_after": true,
+    "transcript_sha256": "0431a1ddc7c0631ee4994dd1c44fcd562fc958f330c630bcf9a366680f7e13db",
+    "implementation_revision": "4c44c631d6770c1c57e0ba6d0078672084291e1b",
+    "main_evidence_manifest_sha256": "fd9c38a8a9da733ff6fc2e7269e771b9656adcd411d9ac36dc08f34c781aaf60",
+    "source_identity_manifest_sha256": "73a6bb39b9ff5f3d04cb606f3c13fe61535a693a2d08ba907aa34dd72942bcd1",
+    "claim_boundary": "Local conservation/topology/persistence/replay/observation gates. Static bound material, authored motion, no mechanics/propulsion/learning/autonomy. Physical mouse and Operator visual acceptance pending. Existing offline cache restoration, no fresh-machine or cross-platform certification.",
+    "publication": "Local main and validation note only; no push, no MORPH-006."
+  },
+  "classification": {
+    "purpose": "Final clean documentation HEAD full-suite transcript, input identity, certificate and sealing procedure",
+    "run_identity": "17989572fecf9874747c77a28286cae05ac9af3b",
+    "files": 4,
+    "raw_bytes": 23242,
+    "destination": "New immutable MORPH-005/v4 final attestation; reference versioned in local Git note to preserve tested tree"
+  },
+  "mount_path": "/run/media/cognis/Mermogon",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-005/2026-11-23/v4",
+  "external_index_path": "ARCHIVE_INDEX.json",
+  "external_index_sha256": "7c64215ab34a83c6254b86df93552ce6e0b80500bccff7f62a94a649162712ff",
+  "raw_files": 4,
+  "raw_bytes": 23242,
+  "records": [
+    {
+      "phase": "final-clean-suite",
+      "purpose": "Final clean documentation HEAD full-suite transcript, input identity, certificate and sealing procedure",
+      "relative_path": "final-clean-suite.tar",
+      "bytes": 30720,
+      "sha256": "2489ed7a546d6b490264c0bcdb37a88317a836eb9e7a063a8b518920ee354f3c",
+      "members": [
+        {
+          "name": "suite.log",
+          "bytes": 16452,
+          "sha256": "0431a1ddc7c0631ee4994dd1c44fcd562fc958f330c630bcf9a366680f7e13db"
+        },
+        {
+          "name": "input.json",
+          "bytes": 150,
+          "sha256": "f11592e1f6ce77df22f3a04ecadeff5f7231e759dfe93d6664904446a341aee1"
+        },
+        {
+          "name": "certificate.json",
+          "bytes": 1218,
+          "sha256": "faa9d9467dde019695057496ca99cd9b0a040004a6e9ce678b61c56742b96218"
+        },
+        {
+          "name": "seal_final_certificate.py",
+          "bytes": 5422,
+          "sha256": "80ba936222dad882af586bf42f6dceea5f3c7c9af560f91dbfe62ec31e170214"
+        }
+      ]
+    }
+  ],
+  "restoration": "Every archive/member/restored byte verified during sealing; verify this note external_index_sha256, then use existing m6_artifacts.verify_bundle on listed archive.",
+  "main_evidence": "docs/morph_005/ARTIFACT_STORAGE.json,18archives/404files. Final4file addendum is separately versioned by this Git note; neither old archives nor main tested tree modified."
+}
