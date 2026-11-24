@@ -1,0 +1,22 @@
+{
+  "captured": 6,
+  "elapsed_ns": 4014435701,
+  "final_digest": "4f34d8daad96fd1fc84860a53168ed0e6580a68fae095bbdf3ed7bf4b3154552",
+  "frames": 240,
+  "gpu_timestamp_cost": "NOT_MEASURED: frame intervals are CPU/end-to-end, not isolated GPU cost",
+  "headless_final_state_exactly_equal": true,
+  "observation_and_mesh_cpu_ns": 174623857,
+  "semantics": "read-only fixed-rest anatomy and material points; no floor, physiology or camera-dependent simulation",
+  "status": "PASS",
+  "ticks": 120,
+  "volumetrics": "NOT_IMPLEMENTED; optional prototype deferred",
+  "total_entries": 11,
+  "total_exits": 9,
+  "ticks_seen": [
+    19,
+    120
+  ],
+  "median_observation_and_mesh_cpu_ms": 0.561315,
+  "median_frame_interval_ms": 16.681632,
+  "capture_inspection": "frame030 visible organisms/material; frame065 empty witness with continuing world tick; remaining captures preserve repeated entry/exit. No ground plane."
+}

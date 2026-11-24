@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "guard": "event-identity",
+      "test": "malformed_history_and_unrestorable_illumination_are_rejected",
+      "red_exit": 101,
+      "green_exit": 0,
+      "mutation": "births.insert((*organism, *parcel)) -> { births.insert((*organism, *parcel)); true }",
+      "restored_sha256": "c6af87bcfe53182817764e8bae9a0c586f6ddd32f159376a6fc19dc997e30899"
+    },
+    {
+      "guard": "illumination-budget",
+      "test": "malformed_history_and_unrestorable_illumination_are_rejected",
+      "red_exit": 101,
+      "green_exit": 0,
+      "mutation": ".try_fold(value, |a, p| a.checked_add(p.intensity)) -> .try_fold(0u64, |a, p| a.checked_add(p.intensity))",
+      "restored_sha256": "c6af87bcfe53182817764e8bae9a0c586f6ddd32f159376a6fc19dc997e30899"
+    },
+    {
+      "guard": "tick-atomicity",
+      "test": "failed_tick_commits_no_partial_book_updates_or_lost_interventions",
+      "red_exit": 101,
+      "green_exit": 0,
+      "mutation": "let mut next = self.state.clone(); -> self.state.pending.clear(); let mut next = self.state.clone();",
+      "restored_sha256": "c6af87bcfe53182817764e8bae9a0c586f6ddd32f159376a6fc19dc997e30899"
+    },
+    {
+      "guard": "metric-detail",
+      "test": "ship_scale_micro_detail_and_region_crossings_survive_camera_origin_changes",
+      "red_exit": 101,
+      "green_exit": 0,
+      "mutation": "Ok(std::array::from_fn(|i| a[i] - b[i])) -> Ok(std::array::from_fn(|i| (a[i] - b[i])/SCALE*SCALE))",
+      "restored_sha256": "c6af87bcfe53182817764e8bae9a0c586f6ddd32f159376a6fc19dc997e30899"
+    },
+    {
+      "guard": "observation-authority",
+      "test": "observation_modes_are_exactly_neutral_and_boundary_caches_do_not_reset_identity",
+      "red_exit": 101,
+      "green_exit": 0,
+      "mutation": "let view = sphere(tick).inspect(c.state()).unwrap(); -> let view = sphere(tick).inspect(c.state()).unwrap(); c.submit(Intervention{tick:c.state().tick,sequence:tick,origin:\"FAULT_OBSERVATION\".into(),action:Operation::SetAmbientLight{value:99}}).unwrap();",
+      "restored_sha256": "973b569bf91b8abd72d1f413ca7c126f8838f7b5d6e8fc8483ea3765ab8b3f16"
+    },
+    {
+      "guard": "boundary-cache",
+      "test": "observation_modes_are_exactly_neutral_and_boundary_caches_do_not_reset_identity",
+      "red_exit": 101,
+      "green_exit": 0,
+      "mutation": "let next = view.organisms.iter().copied().collect::<BTreeSet<_>>(); -> let next = BTreeSet::new();",
+      "restored_sha256": "f0c9f82cb98cec2815e368c34477875deb2b9c2c6d08a7f42edf35c9512ddc6a"
+    },
+    {
+      "guard": "tick-loss",
+      "test": "authority_worker_keeps_every_tick_with_no_listener_or_a_stalled_observer",
+      "red_exit": 101,
+      "green_exit": 0,
+      "mutation": "for _ in 0..ticks {\n            self.tick()?; -> for _ in 0..ticks.saturating_sub(1) {\n            self.tick()?;",
+      "restored_sha256": "c6af87bcfe53182817764e8bae9a0c586f6ddd32f159376a6fc19dc997e30899"
+    },
+    {
+      "guard": "intervention-admission",
+      "test": "interventions_are_typed_ordered_replayable_and_invalid_admission_is_atomic",
+      "red_exit": 101,
+      "green_exit": 0,
+      "mutation": "validate_command(&command, self.state.tick)?; -> let _ = &command;",
+      "restored_sha256": "c6af87bcfe53182817764e8bae9a0c586f6ddd32f159376a6fc19dc997e30899"
+    },
+    {
+      "guard": "snapshot-integrity",
+      "test": "snapshots_continue_exactly_and_reject_broken_clocks_stocks_and_identity",
+      "red_exit": 101,
+      "green_exit": 0,
+      "mutation": "result.validate()?; -> // fault: accept unvalidated persisted state",
+      "restored_sha256": "c6af87bcfe53182817764e8bae9a0c586f6ddd32f159376a6fc19dc997e30899"
+    }
+  ],
+  "scope": "Deliberate source/test-consumer mutations, each focused test fails exit101 and passes after byte-exact source restoration. Observation authority fault inserts a typed mutation from inspection caller; production inspection accepts immutable snapshots. No unsafe mutation API added.",
+  "prior_attempts": "All v1/v2 and final v3 red/green logs retained externally."
+}

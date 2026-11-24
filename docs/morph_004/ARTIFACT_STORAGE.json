@@ -1,0 +1,2569 @@
+{
+  "date_local": "2026-11-23",
+  "version": 4,
+  "mount_path": "/run/media/cognis/Mermogon",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive_root": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-004",
+  "external_index_path": "2026-11-23-runtime/v3/COMBINED_INDEX.json",
+  "external_index_sha256": "209dd98811dc9a96602eb5005070d3a0f636246345ab70db44fbc15439bed255",
+  "raw_files": 477,
+  "raw_bytes": 9936608,
+  "records": [
+    {
+      "phase": "consulted-source",
+      "purpose": "Pinned selected Zenith source, architecture/protocol and GPL license; no implementation import",
+      "relative_path": "2026-11-23-investigation/v1/consulted-source.tar",
+      "bytes": 419840,
+      "sha256": "84894380bd7fc7bb823ea9f6b82a131f8824268c6afadc14e07d9b0c40ce9e1f",
+      "members": [
+        {
+          "name": "ARCHITECTURE.md",
+          "bytes": 15219,
+          "sha256": "e904d09c7940eff8c0cb8565435abf825024d87aeee865b0400468634eecf59d"
+        },
+        {
+          "name": "CREDITS.md",
+          "bytes": 3723,
+          "sha256": "511badadd2b6c761f89c10e97188b44bfd21369b108edd73760221f673741e4c"
+        },
+        {
+          "name": "LICENSE",
+          "bytes": 35149,
+          "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+        },
+        {
+          "name": "README.md",
+          "bytes": 11171,
+          "sha256": "7107c25c3a9014a36befe07ec021b840be3ed17cebdb5e9c7e1a824813ef1ae8"
+        },
+        {
+          "name": "client__scripts__net__bridge.gd",
+          "bytes": 53154,
+          "sha256": "64c27f371a794b90e444800e205ab0969e73c760a082404d09d04b70648a8fe8"
+        },
+        {
+          "name": "docs__PROTOCOL.md",
+          "bytes": 196479,
+          "sha256": "ea51c36d38b6cb02d21213889748830535b06c7aecabd08c59c7571a556979dd"
+        },
+        {
+          "name": "mod__factorio-3d-bridge__control.lua",
+          "bytes": 10583,
+          "sha256": "7ca5a0aee0c676c3897a65ac762864a9696144e38f588b91a1cba5b41cb05298"
+        },
+        {
+          "name": "mod__factorio-3d-bridge__scripts__transport.lua",
+          "bytes": 22004,
+          "sha256": "a292dfb5985db3ddb96e5d4ccaf20ba860c7c1124af8bdd2247c2cddec654a54"
+        },
+        {
+          "name": "mod__factorio-3d-bridge__scripts__world.lua",
+          "bytes": 60358,
+          "sha256": "59e3064b51db3d70c0fecebbe1cd1350a9b1cdb182915861b95f27d07149465e"
+        }
+      ]
+    },
+    {
+      "phase": "atlas-before",
+      "purpose": "Pre-investigation Atlas snapshot, independent documentation version",
+      "relative_path": "2026-11-23-investigation/v1/atlas-before.tar",
+      "bytes": 51200,
+      "sha256": "a3a582618d2bceb778b40d6131ce6efe189bbb137d6f81a39baa1de99718941d",
+      "members": [
+        {
+          "name": "00_HOME__INDEX.md",
+          "bytes": 1419,
+          "sha256": "1b8706660848197de3129f836354175fb993d175442341afc47b5d3b978fc797"
+        },
+        {
+          "name": "00_HOME__STATUS_GUIDE.md",
+          "bytes": 996,
+          "sha256": "d49c59d682465bbf57165b14a8993091ea071b882b99316dc0beefa8a81104b7"
+        },
+        {
+          "name": "00_HOME__VAULT_ARCHITECTURE.md",
+          "bytes": 1337,
+          "sha256": "d79566e1a272049c0ed0562188320ef1a869a5e5c1aed4dd6be20c872363f15c"
+        },
+        {
+          "name": "01_CANON__INDEX.md",
+          "bytes": 585,
+          "sha256": "0f7f05d4b896a0613e3e7a51535f6312eb17e44a08060d685897a59bb6224dfd"
+        },
+        {
+          "name": "01_CANON__MOEBIUS_SHIP.md",
+          "bytes": 5226,
+          "sha256": "3d44386625fe8ac024da7a06bd87a13f600098aca476aaa9f4ef0ea48621e268"
+        },
+        {
+          "name": "01_CANON__MOEBIUS_VESSEL.md",
+          "bytes": 928,
+          "sha256": "06ac8d797197c6e37b01c3343db8076ba0b2f1b6cf2d620f542bdfa0ad633ea2"
+        },
+        {
+          "name": "02_ANATOMY__COMPONENT_LIBRARY.md",
+          "bytes": 1148,
+          "sha256": "4e448d9c48376d527a973f14f3b2931d2eaaad3af5c39041d6aba750bf706cb1"
+        },
+        {
+          "name": "02_ANATOMY__INDEX.md",
+          "bytes": 466,
+          "sha256": "37ca2df6f92de73f58f1fd145c2d512fe15df87463c8b4545786602e34319415"
+        },
+        {
+          "name": "03_PHYSIOLOGY__INDEX.md",
+          "bytes": 469,
+          "sha256": "ebaf03edd10c5241cbaaa194275ce05dea6e55f5c44b6f69d6ebd7297fd37884"
+        },
+        {
+          "name": "04_COGNITION__INDEX.md",
+          "bytes": 468,
+          "sha256": "bc7a89ea6353f1b1501bdfd5ac824261703157e5cc579cdaae242b419c90fe0a"
+        },
+        {
+          "name": "05_ECOLOGY__ENVIRONMENTAL_HYPOTHESIS.md",
+          "bytes": 1623,
+          "sha256": "7c852c150d3a85f5630db0cb85d9dc6cf7b2789a544d4ed8d2388d8664c992ef"
+        },
+        {
+          "name": "05_ECOLOGY__INDEX.md",
+          "bytes": 500,
+          "sha256": "08d1c0d3dc84ebf8bc847ac4a0e3cc6e89ea5b2a08c5286dce9cc8fca209392a"
+        },
+        {
+          "name": "06_SPECIES__ARACHNITECH.md",
+          "bytes": 1238,
+          "sha256": "4dbe4db3a1c6583086bb1b84a3be7bfd1efd0ffa0a535eb9f757b07976cb583f"
+        },
+        {
+          "name": "06_SPECIES__INDEX.md",
+          "bytes": 487,
+          "sha256": "a2cd6c9f32cec45154a84f3788eddc48aea37ffd21108c8ebd53ec1bbd9f17ce"
+        },
+        {
+          "name": "07_EXPERIMENTS__INDEX.md",
+          "bytes": 699,
+          "sha256": "4aba8f3336b9665d3b632f421e5a5de130740c404a716f89bbcba91458cf5fbe"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_001.md",
+          "bytes": 1073,
+          "sha256": "def467c3a8ec18c3336bfb01cf690c578a0f35b4ec358496b569c5710c7c3d36"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_002.md",
+          "bytes": 1204,
+          "sha256": "90703163df2ec34ce827fd2456aa9530c177077d133edb28fb77a5e59baee1d4"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_003.md",
+          "bytes": 2411,
+          "sha256": "aa272208df1826c18d6551ce4ebe655e4096382a3ac44508066ac7b99b5f3850"
+        },
+        {
+          "name": "08_ARCHITECTURE__ANATOMY_SPEC_V2.md",
+          "bytes": 1351,
+          "sha256": "811e3009c84ac1267c72914f501331de8eb52affb6430f67e9782a01a7129d4d"
+        },
+        {
+          "name": "08_ARCHITECTURE__INDEX.md",
+          "bytes": 471,
+          "sha256": "47cdc3748d85ec0ce534ef5030fbdceaed1851133253da4ba27c9a67db1501a2"
+        },
+        {
+          "name": "09_EVIDENCE__EVIDENCE_POLICY.md",
+          "bytes": 1171,
+          "sha256": "93788c1e60545aa109f24adca9aae60b9c3893c7c6c09770a37ca592b47530c0"
+        },
+        {
+          "name": "09_EVIDENCE__INDEX.md",
+          "bytes": 467,
+          "sha256": "3d80b313bf05797eb1661908404103136721080c49ed0bfdd61b8d98c51abc0c"
+        },
+        {
+          "name": "90_INBOX__INDEX.md",
+          "bytes": 464,
+          "sha256": "f99ef45eaf0369b5cad93a6e94b1ff3e78cc5f01e8367c6e211d4aab33d3b3a4"
+        },
+        {
+          "name": "99_ARCHIVE__INDEX.md",
+          "bytes": 466,
+          "sha256": "17eb683963eaa69f255d07eb91bb4a17406f2b1af86f6c2b7b66f822bf163cdd"
+        },
+        {
+          "name": "_TEMPLATES__Anatomical_Component.md",
+          "bytes": 374,
+          "sha256": "285e0660934a13e47a69b61c78a26f8457c07d67e4978ed66823db1c8c5bf186"
+        },
+        {
+          "name": "_TEMPLATES__Architectural_Decision.md",
+          "bytes": 376,
+          "sha256": "d61960ff7bdf5a5225193054516da4267c58629e099c52cd24acbb143aac2678"
+        },
+        {
+          "name": "_TEMPLATES__Environmental_Mechanism.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Experimental_Protocol.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Experimental_Result.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Organism_Species.md",
+          "bytes": 377,
+          "sha256": "d6aa2ec5611cb9712c2f89d7769f00a53b4eca8cb0c2c4f3ecaf2957782b5963"
+        }
+      ]
+    },
+    {
+      "phase": "atlas-after",
+      "purpose": "Post-investigation Atlas snapshot with BLOCKED statuses, independent documentation version",
+      "relative_path": "2026-11-23-investigation/v1/atlas-after.tar",
+      "bytes": 71680,
+      "sha256": "43ae1d4b1e3e39926278029a238aa3e1f019cd8441a3d78c3558533af1f3f1d6",
+      "members": [
+        {
+          "name": "00_HOME__INDEX.md",
+          "bytes": 1419,
+          "sha256": "1b8706660848197de3129f836354175fb993d175442341afc47b5d3b978fc797"
+        },
+        {
+          "name": "00_HOME__STATUS_GUIDE.md",
+          "bytes": 996,
+          "sha256": "d49c59d682465bbf57165b14a8993091ea071b882b99316dc0beefa8a81104b7"
+        },
+        {
+          "name": "00_HOME__VAULT_ARCHITECTURE.md",
+          "bytes": 1337,
+          "sha256": "d79566e1a272049c0ed0562188320ef1a869a5e5c1aed4dd6be20c872363f15c"
+        },
+        {
+          "name": "01_CANON__INDEX.md",
+          "bytes": 646,
+          "sha256": "6ee32247e9548ee967c0c6081d54a0503ac8897f9637cd0cfa48cc16271d8bc3"
+        },
+        {
+          "name": "01_CANON__MOEBIUS_SHIP.md",
+          "bytes": 5226,
+          "sha256": "3d44386625fe8ac024da7a06bd87a13f600098aca476aaa9f4ef0ea48621e268"
+        },
+        {
+          "name": "01_CANON__MOEBIUS_VESSEL.md",
+          "bytes": 928,
+          "sha256": "06ac8d797197c6e37b01c3343db8076ba0b2f1b6cf2d620f542bdfa0ad633ea2"
+        },
+        {
+          "name": "01_CANON__SHIP_DIMENSIONS.md",
+          "bytes": 1027,
+          "sha256": "77c06251727562a6ab4a2ba2831032c7adfeed51557a3c1e77c2f7af4cee4a54"
+        },
+        {
+          "name": "02_ANATOMY__COMPONENT_LIBRARY.md",
+          "bytes": 1148,
+          "sha256": "4e448d9c48376d527a973f14f3b2931d2eaaad3af5c39041d6aba750bf706cb1"
+        },
+        {
+          "name": "02_ANATOMY__INDEX.md",
+          "bytes": 466,
+          "sha256": "37ca2df6f92de73f58f1fd145c2d512fe15df87463c8b4545786602e34319415"
+        },
+        {
+          "name": "03_PHYSIOLOGY__INDEX.md",
+          "bytes": 469,
+          "sha256": "ebaf03edd10c5241cbaaa194275ce05dea6e55f5c44b6f69d6ebd7297fd37884"
+        },
+        {
+          "name": "04_COGNITION__INDEX.md",
+          "bytes": 468,
+          "sha256": "bc7a89ea6353f1b1501bdfd5ac824261703157e5cc579cdaae242b419c90fe0a"
+        },
+        {
+          "name": "05_ECOLOGY__ENVIRONMENTAL_HYPOTHESIS.md",
+          "bytes": 1623,
+          "sha256": "7c852c150d3a85f5630db0cb85d9dc6cf7b2789a544d4ed8d2388d8664c992ef"
+        },
+        {
+          "name": "05_ECOLOGY__INDEX.md",
+          "bytes": 500,
+          "sha256": "08d1c0d3dc84ebf8bc847ac4a0e3cc6e89ea5b2a08c5286dce9cc8fca209392a"
+        },
+        {
+          "name": "06_SPECIES__ARACHNITECH.md",
+          "bytes": 1238,
+          "sha256": "4dbe4db3a1c6583086bb1b84a3be7bfd1efd0ffa0a535eb9f757b07976cb583f"
+        },
+        {
+          "name": "06_SPECIES__INDEX.md",
+          "bytes": 487,
+          "sha256": "a2cd6c9f32cec45154a84f3788eddc48aea37ffd21108c8ebd53ec1bbd9f17ce"
+        },
+        {
+          "name": "07_EXPERIMENTS__INDEX.md",
+          "bytes": 760,
+          "sha256": "509510fe285289f7fce09659625af4705966818c0730001408e58fb80a8ff613"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_001.md",
+          "bytes": 1073,
+          "sha256": "def467c3a8ec18c3336bfb01cf690c578a0f35b4ec358496b569c5710c7c3d36"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_002.md",
+          "bytes": 1204,
+          "sha256": "90703163df2ec34ce827fd2456aa9530c177077d133edb28fb77a5e59baee1d4"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_003.md",
+          "bytes": 2411,
+          "sha256": "aa272208df1826c18d6551ce4ebe655e4096382a3ac44508066ac7b99b5f3850"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_004.md",
+          "bytes": 1055,
+          "sha256": "8752a201318e5f044c512253cb016dffd94539244766e677cb1ac09c206c0171"
+        },
+        {
+          "name": "08_ARCHITECTURE__ANATOMY_SPEC_V2.md",
+          "bytes": 1351,
+          "sha256": "811e3009c84ac1267c72914f501331de8eb52affb6430f67e9782a01a7129d4d"
+        },
+        {
+          "name": "08_ARCHITECTURE__HYBRID_STACK.md",
+          "bytes": 987,
+          "sha256": "6fa2d759fc4cbe5478fa88ea544790c7a7c1151b7635b77d7519e35465de46c4"
+        },
+        {
+          "name": "08_ARCHITECTURE__INDEX.md",
+          "bytes": 697,
+          "sha256": "6e8e22a3c94ed859fa2a5c80ce9485c86f0b5518ecda5c69e236c2522bdc1da8"
+        },
+        {
+          "name": "08_ARCHITECTURE__INTERVENTION_BOUNDARY.md",
+          "bytes": 933,
+          "sha256": "81ecf962013f2a5caebe331e5b37a75e1f20495e17cae447e5b6d013ec269f98"
+        },
+        {
+          "name": "08_ARCHITECTURE__LIGHT_PORT_BOUNDARY.md",
+          "bytes": 1028,
+          "sha256": "3078180a89c8fa316a9cf28d0b2431992e0d8b719f8cb790752f98872f3f8830"
+        },
+        {
+          "name": "08_ARCHITECTURE__WITNESS_SPHERE.md",
+          "bytes": 984,
+          "sha256": "54c5eb0ed12a8af80b7b2061845903ccd8767d9fada0921f6e9ad58cb4d0ff4d"
+        },
+        {
+          "name": "08_ARCHITECTURE__WORLD_AUTHORITY.md",
+          "bytes": 1046,
+          "sha256": "1eb8876af296464d99fc588d27de7428dfe07a7c13ada2ff3b25058035f5835d"
+        },
+        {
+          "name": "09_EVIDENCE__EVIDENCE_POLICY.md",
+          "bytes": 1171,
+          "sha256": "93788c1e60545aa109f24adca9aae60b9c3893c7c6c09770a37ca592b47530c0"
+        },
+        {
+          "name": "09_EVIDENCE__INDEX.md",
+          "bytes": 567,
+          "sha256": "1c500fe307f45aa50a9d132e4fef3b92cd4699e7b99ed143912ef8e992475368"
+        },
+        {
+          "name": "09_EVIDENCE__MORPH_004_DONORS.md",
+          "bytes": 1102,
+          "sha256": "8f510ef13303c179aaa6cd5cc8bd815835a74244e86dcab48389629dcdc00c57"
+        },
+        {
+          "name": "09_EVIDENCE__MORPH_004_LIMITS.md",
+          "bytes": 938,
+          "sha256": "81c0dc6908d29d671d6f2b294e270ca0cd5135e62b15ff45cc024fd294d59a2a"
+        },
+        {
+          "name": "90_INBOX__INDEX.md",
+          "bytes": 464,
+          "sha256": "f99ef45eaf0369b5cad93a6e94b1ff3e78cc5f01e8367c6e211d4aab33d3b3a4"
+        },
+        {
+          "name": "99_ARCHIVE__INDEX.md",
+          "bytes": 466,
+          "sha256": "17eb683963eaa69f255d07eb91bb4a17406f2b1af86f6c2b7b66f822bf163cdd"
+        },
+        {
+          "name": "_TEMPLATES__Anatomical_Component.md",
+          "bytes": 374,
+          "sha256": "285e0660934a13e47a69b61c78a26f8457c07d67e4978ed66823db1c8c5bf186"
+        },
+        {
+          "name": "_TEMPLATES__Architectural_Decision.md",
+          "bytes": 376,
+          "sha256": "d61960ff7bdf5a5225193054516da4267c58629e099c52cd24acbb143aac2678"
+        },
+        {
+          "name": "_TEMPLATES__Environmental_Mechanism.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Experimental_Protocol.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Experimental_Result.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Organism_Species.md",
+          "bytes": 377,
+          "sha256": "d6aa2ec5611cb9712c2f89d7769f00a53b4eca8cb0c2c4f3ecaf2957782b5963"
+        }
+      ]
+    },
+    {
+      "phase": "checks",
+      "purpose": "Raw existing regression logs, clone receipt and read-only Atlas verification; not runtime004 tests",
+      "relative_path": "2026-11-23-investigation/v1/checks.tar",
+      "bytes": 20480,
+      "sha256": "11cb1c7cdfd0cb0df1b4841f98371a8944cab2e71a8d06ed0d9550f150295ba5",
+      "members": [
+        {
+          "name": "zenith-clone.log",
+          "bytes": 72,
+          "sha256": "8013c03cc871c95c55dc5ee6eb3be104aa6e0e695c744c3db6eae697aba38db3"
+        },
+        {
+          "name": "core-invariants.log",
+          "bytes": 1262,
+          "sha256": "3766d8117c16008189ff7d3bfa229d64eb33023af26e9eead3034c99d5e9a56b"
+        },
+        {
+          "name": "morph-focused.log",
+          "bytes": 3894,
+          "sha256": "a7c40c67080cc04476c5bd667e6e76a98c5ee955f6054c89f46a5c6e94b30db0"
+        },
+        {
+          "name": "observation-existing.log",
+          "bytes": 427,
+          "sha256": "9315f34916b0077e3423fee9ba071b6ae12d156cf25baa93331ec67c17529515"
+        },
+        {
+          "name": "atlas-check.log",
+          "bytes": 304,
+          "sha256": "df989d67a57707726981862764ddc2209beb7cc790450f8c1f2e76f86cde898f"
+        }
+      ]
+    },
+    {
+      "phase": "runtime-source-v1",
+      "purpose": "Exact relevant source overlay plus source map; combine with recorded base Git checkout for reproduction",
+      "relative_path": "2026-11-23-runtime/v1/runtime-source-v1.tar",
+      "bytes": 460800,
+      "sha256": "00f5c58afd41a3b079490c5308443dfc18fa1194b6e402024f1f2ab0227f5341",
+      "members": [
+        {
+          "name": "AGENTS.md",
+          "bytes": 17406,
+          "sha256": "d6dfeeca5f3d4217a587858978943d6bb64b1ad92e7419cf6a074efa065eac91"
+        },
+        {
+          "name": "Cargo.lock",
+          "bytes": 159247,
+          "sha256": "38714661e4204d48d4db5cf659abeecdf0b71117f26b53d0a551e430338ffe81"
+        },
+        {
+          "name": "Cargo.toml",
+          "bytes": 463,
+          "sha256": "3e3525280a72beb2df0ef9f923afd5974f236e29b829b41f552ef97a8665f4e6"
+        },
+        {
+          "name": "SOURCE_MAP.json",
+          "bytes": 7230,
+          "sha256": "77fca5fd2645b98ef5a37dd2cc8e1c072bc7e3a930ed14c0e3203f59b2dcb49a"
+        },
+        {
+          "name": "crates__moebius-morph-lab__Cargo.toml",
+          "bytes": 423,
+          "sha256": "40fe2d636d9d9736963c41ead5604aa9762295c113d96a305fbbb5ef2d20e787"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__bin__moebius-world-witness.rs",
+          "bytes": 12619,
+          "sha256": "b1fc5c893c8a4c4a0e956695331332125ee68de1baf2848cc20208b140bce0db"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__composition.rs",
+          "bytes": 14897,
+          "sha256": "222e707c2a5b905f831b515cf9905c3909f1789aec0386e8112a8804a126367f"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__emission_preview.rs",
+          "bytes": 15343,
+          "sha256": "c6deb3e37865333e045715ad7f1d92ad6641ec390b650686bdbba350189dba1a"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__lib.rs",
+          "bytes": 9594,
+          "sha256": "ba9337375d26216f3c502e9dcc0a8674ce33ac44ee4bfbdbbe5aaac8c31960ed"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__main.rs",
+          "bytes": 28882,
+          "sha256": "55623c28659fa9e7016b7e03740931535af1ecfe98eea444c28059b042fc2620"
+        },
+        {
+          "name": "crates__moebius-morph__Cargo.toml",
+          "bytes": 349,
+          "sha256": "9d1fead02947f4511467cf02c6543fa623968de02fe3753d95d1fc873029d9c8"
+        },
+        {
+          "name": "crates__moebius-morph__examples__morph_003_bench.rs",
+          "bytes": 1280,
+          "sha256": "f768b482842dc410a55b9fc60dd90196d6480ab6b743775f4985f2efe2ba5936"
+        },
+        {
+          "name": "crates__moebius-morph__examples__morph_004_bench.rs",
+          "bytes": 7331,
+          "sha256": "2dd1bccc96c61da1139f1f0992300679f54b9e9520f4ad2a18ebcc210c4ae49f"
+        },
+        {
+          "name": "crates__moebius-morph__examples__replay_lab.rs",
+          "bytes": 2631,
+          "sha256": "63dbe8661a5f2e2a05713d69c7ad207e837705e28e60c5fa878f32b6befc21c8"
+        },
+        {
+          "name": "crates__moebius-morph__examples__ship_run.rs",
+          "bytes": 1912,
+          "sha256": "70f7d21112c90b3af479401baf55291f9245d90d864bd696158f685605e6f667"
+        },
+        {
+          "name": "crates__moebius-morph__examples__validate.rs",
+          "bytes": 5387,
+          "sha256": "827acdd0314c4a9f53bc6d697a06dc65415b34593ad53666799183ae6ab5959a"
+        },
+        {
+          "name": "crates__moebius-morph__examples__validate_composition.rs",
+          "bytes": 7436,
+          "sha256": "373354224a1c2f4deec162be764f6be1f02550c5334f7a137b762733acf70ae7"
+        },
+        {
+          "name": "crates__moebius-morph__src__anatomy.rs",
+          "bytes": 15183,
+          "sha256": "f346e40f5c4699d976b0d9fea6bf016a7a9022d1dcebb68a9ea2d7735a76bd30"
+        },
+        {
+          "name": "crates__moebius-morph__src__compiler.rs",
+          "bytes": 12259,
+          "sha256": "137f8391a9c14c9f0ca741f84d61f6903e7a7d3ade9c6094bbd3f1463c19976a"
+        },
+        {
+          "name": "crates__moebius-morph__src__emission.rs",
+          "bytes": 45635,
+          "sha256": "56efe0b5ae3916b3a46c179314c5263c627e307f9ce852e5fc2a938f30f4bbe7"
+        },
+        {
+          "name": "crates__moebius-morph__src__lib.rs",
+          "bytes": 2538,
+          "sha256": "adec4136885f9caaee479c9613d9b4c37b8faaed04dd39854e3d0537040cb383"
+        },
+        {
+          "name": "crates__moebius-morph__src__math.rs",
+          "bytes": 1113,
+          "sha256": "c022020ece5d8f7f436e172ecd2ed95d266b3cc6cec4dc1da14d845a9ee5202d"
+        },
+        {
+          "name": "crates__moebius-morph__src__runtime.rs",
+          "bytes": 17858,
+          "sha256": "c6af87bcfe53182817764e8bae9a0c586f6ddd32f159376a6fc19dc997e30899"
+        },
+        {
+          "name": "crates__moebius-morph__src__spec.rs",
+          "bytes": 5881,
+          "sha256": "b91a19804c12097fcaadb4bc88efc58aa685d8d482734470fbaeb0085ec7bdff"
+        },
+        {
+          "name": "crates__moebius-morph__src__surface.rs",
+          "bytes": 6469,
+          "sha256": "7a76f04cfd5623569efb477b2c06e00e262b36b3c85a084b818e152d20e9ccd4"
+        },
+        {
+          "name": "crates__moebius-morph__src__witness.rs",
+          "bytes": 5337,
+          "sha256": "f0c9f82cb98cec2815e368c34477875deb2b9c2c6d08a7f42edf35c9512ddc6a"
+        },
+        {
+          "name": "crates__moebius-morph__tests__composition.rs",
+          "bytes": 6380,
+          "sha256": "0e8aafc0375b71c6bde2cd590fc711de3dc5325c344b56af9be5dd35b4329917"
+        },
+        {
+          "name": "crates__moebius-morph__tests__emission.rs",
+          "bytes": 6511,
+          "sha256": "0cb15463035087866f1f593c847b96a9881ce7bfd4199df02c0ceb21c990fb02"
+        },
+        {
+          "name": "crates__moebius-morph__tests__forge.rs",
+          "bytes": 5480,
+          "sha256": "c0d59d2170dddcdaf589d97bc9ecdfd1d23a371f89b58b95fd64c2f119b54a52"
+        },
+        {
+          "name": "crates__moebius-morph__tests__runtime.rs",
+          "bytes": 10145,
+          "sha256": "973b569bf91b8abd72d1f413ca7c126f8838f7b5d6e8fc8483ea3765ab8b3f16"
+        }
+      ]
+    },
+    {
+      "phase": "runtime-logs-v1",
+      "purpose": "All tool/test/build/fault logs and procedural scripts, including failed trials and chronology",
+      "relative_path": "2026-11-23-runtime/v1/runtime-logs-v1.tar",
+      "bytes": 614400,
+      "sha256": "868f6f3f47f97ff1b5b6e49b37e20cee62ff3f9dc56326ad29518d2ed2d9691c",
+      "members": [
+        {
+          "name": "SOURCE_MAP.json",
+          "bytes": 7230,
+          "sha256": "77fca5fd2645b98ef5a37dd2cc8e1c072bc7e3a930ed14c0e3203f59b2dcb49a"
+        },
+        {
+          "name": "archive_investigation.py",
+          "bytes": 4472,
+          "sha256": "f9a6589838ada2f578983a89593dffe5c1f2dd15cf58e0f34b94cc0b396c6900"
+        },
+        {
+          "name": "archive_runtime.py",
+          "bytes": 4776,
+          "sha256": "b019fd9f87b46244b37b9974bf5c4ba9a347a5004355e2e11499680d7af6e562"
+        },
+        {
+          "name": "atlas-check.log",
+          "bytes": 304,
+          "sha256": "df989d67a57707726981862764ddc2209beb7cc790450f8c1f2e76f86cde898f"
+        },
+        {
+          "name": "benchmark-build-v2.log",
+          "bytes": 160,
+          "sha256": "9b1577f43308f620a3964943b6defe06fbc27a452f520f036b88ee0f17dc325b"
+        },
+        {
+          "name": "clippy-final-v2.log",
+          "bytes": 276,
+          "sha256": "4c6824e48f16eb3b3475093a33e99ed01a3ca8be892514435bc4ff5adb566c8f"
+        },
+        {
+          "name": "clippy-final-v3.log",
+          "bytes": 785,
+          "sha256": "9a82931c872889f2d4f6756e990f443f4b7b8eb74769d8d712a2711ba5f9bcfa"
+        },
+        {
+          "name": "clippy-final-v4.log",
+          "bytes": 170,
+          "sha256": "573af6c6b6de413b95e6126b41e61e668d7b9a59aaefd3fc814835f6f908a54e"
+        },
+        {
+          "name": "clippy-final.log",
+          "bytes": 276,
+          "sha256": "b1f84388b7c90211e861c943959b2d2ea914ca67ea6b28160926ba1a40519f5c"
+        },
+        {
+          "name": "clippy-first.log",
+          "bytes": 2972,
+          "sha256": "5429e5c1b503cd50f5e38f0f5a3ceaeee569b166c0915b761f2c9cdbeff7455a"
+        },
+        {
+          "name": "clippy-v2.log",
+          "bytes": 276,
+          "sha256": "9f17a812abd1bd17f5bea0adfb57b0e669832843aedb2d24d70af3cfdddbe4ed"
+        },
+        {
+          "name": "core-invariants.log",
+          "bytes": 1262,
+          "sha256": "3766d8117c16008189ff7d3bfa229d64eb33023af26e9eead3034c99d5e9a56b"
+        },
+        {
+          "name": "finalize_metadata.py",
+          "bytes": 5161,
+          "sha256": "0a58a300d00df0f78bd553c59b0d482e2da2683bf5d83c4b365bffc42767d1b0"
+        },
+        {
+          "name": "fmt-final.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "focused-final-v1.log",
+          "bytes": 4990,
+          "sha256": "4f94d97883f4074dfb81e031d4a74107147a61cf92af35bb0152bc5ddbb91143"
+        },
+        {
+          "name": "focused-final-v2.log",
+          "bytes": 1227,
+          "sha256": "56f275b868ebc12f500ff45740f1c176bfd76647bcea1a13d0d4048947a5b5ab"
+        },
+        {
+          "name": "focused-final-v3.log",
+          "bytes": 4965,
+          "sha256": "a80e4d877a88c2c3ff80b300325fc7a20e287c897e262e08c7c0944db806cacc"
+        },
+        {
+          "name": "focused-final-v4.log",
+          "bytes": 5037,
+          "sha256": "93a4e52b99bffe0077cd497a2845fa8a100f459856df2ffbeeb68d86955c9d10"
+        },
+        {
+          "name": "headless-run-v1.log",
+          "bytes": 415,
+          "sha256": "eb45083df30df346ace90b32a1f406eda425a9b3f180f1c4dcdf4848610f1f8a"
+        },
+        {
+          "name": "honest-green-boundary-cache.log",
+          "bytes": 450,
+          "sha256": "ef2f8eac3536fcbbfbce887786b15688a6ca415076f174dcd399cb9209b302e0"
+        },
+        {
+          "name": "honest-green-intervention-admission.log",
+          "bytes": 445,
+          "sha256": "88dc229882e8cd7239abf429fb3690335f937ef1fba7dc08efb15d2ae02cb9af"
+        },
+        {
+          "name": "honest-green-observation-authority.log",
+          "bytes": 450,
+          "sha256": "1c0f38dbe9cd2519b3e8cdaa6f0ad98725e2cfae8a19260f50633e06e92ab686"
+        },
+        {
+          "name": "honest-green-snapshot-integrity.log",
+          "bytes": 442,
+          "sha256": "bcbcd0c9be100eda77f728fc9237b6dc8d5a4b29b582546a0e208c2b62f6fdf2"
+        },
+        {
+          "name": "honest-green-tick-loss.log",
+          "bytes": 443,
+          "sha256": "7b8f5df6edf5897ecee078d831fb4fcdb4ff00a67056418b3e70228533a66f33"
+        },
+        {
+          "name": "honest-green-v2-boundary-cache.log",
+          "bytes": 450,
+          "sha256": "365b0d9445b8e45b7ad956392e6baec25f74fc50ea65009798f29ab9b6b5868c"
+        },
+        {
+          "name": "honest-green-v2-intervention-admission.log",
+          "bytes": 445,
+          "sha256": "dac2991770b6d84cb20628814be194a3dbce50a347cf28a1c0364e853c3060ae"
+        },
+        {
+          "name": "honest-green-v2-metric-detail.log",
+          "bytes": 445,
+          "sha256": "c701f7ab95044ccb9dc7f8529575d2ba82d6016539f6ab434a4f40e73f35e8fd"
+        },
+        {
+          "name": "honest-green-v2-observation-authority.log",
+          "bytes": 450,
+          "sha256": "3bee16413232e059eaaed2012ff3f8cae80aee1eeeafabeaddc6d0ac8e5f7654"
+        },
+        {
+          "name": "honest-green-v2-snapshot-integrity.log",
+          "bytes": 442,
+          "sha256": "37dcd22ea6b560e4019759fed981be20451b729e8426ebea63c49cda4dc5c188"
+        },
+        {
+          "name": "honest-green-v2-tick-loss.log",
+          "bytes": 443,
+          "sha256": "034b0bea5eb421fccd8873c8e539595a8f170132cbbd2490f42655ff750c671b"
+        },
+        {
+          "name": "honest-green-v3-boundary-cache.log",
+          "bytes": 450,
+          "sha256": "a038918609591102bdc667ce8d8d077ac89307d45c64b8650eb45efdf78f101d"
+        },
+        {
+          "name": "honest-green-v3-event-identity.log",
+          "bytes": 431,
+          "sha256": "a7bf3249bb4cfeb4d315293b2e7d6600e908843e8a7dd9ba0565a2593b0f1de4"
+        },
+        {
+          "name": "honest-green-v3-illumination-budget.log",
+          "bytes": 431,
+          "sha256": "14c8ac3451b101903c6073084d83966934e3baa9418af1a1e53f613b87a5077d"
+        },
+        {
+          "name": "honest-green-v3-intervention-admission.log",
+          "bytes": 445,
+          "sha256": "6674329f34b9776287ff628fd217b4d74d7007e557c12104617d57b0791fdb52"
+        },
+        {
+          "name": "honest-green-v3-metric-detail.log",
+          "bytes": 445,
+          "sha256": "86a52325b4acaaeddffe181088659c3b7f2d7cc07908c7d8e279123bac50eb32"
+        },
+        {
+          "name": "honest-green-v3-observation-authority.log",
+          "bytes": 450,
+          "sha256": "b3a09097abeae97c192279e82d6e715768e5a9ab80c62a1e156fa74dae11d891"
+        },
+        {
+          "name": "honest-green-v3-snapshot-integrity.log",
+          "bytes": 442,
+          "sha256": "59ba4bb8efc31dbc1a330e7413e8806a181276cdbfa0e6e4b1ff89c72d7f7027"
+        },
+        {
+          "name": "honest-green-v3-tick-atomicity.log",
+          "bytes": 436,
+          "sha256": "ad31864d86a80e605552b6fb358629d0e2c2590b1b38877d9249a709b4805a4c"
+        },
+        {
+          "name": "honest-green-v3-tick-loss.log",
+          "bytes": 443,
+          "sha256": "babf983b72291ac1571721f17efd3d2e48133957bb10b5a11d9d234f1bb6ab22"
+        },
+        {
+          "name": "honest-red-boundary-cache.log",
+          "bytes": 1023,
+          "sha256": "1cd9c1b6dbf19378d1d982f4e9bf599ae089e3c85be4144f180c54e78a12f22d"
+        },
+        {
+          "name": "honest-red-intervention-admission.log",
+          "bytes": 989,
+          "sha256": "8526230fc3ec1fd619713ff5e617eb7fe5fda288e90fc1acce98588d2994126c"
+        },
+        {
+          "name": "honest-red-observation-authority.log",
+          "bytes": 1147,
+          "sha256": "bf629989e87e45b329a639d806c42971cbd8bd678a41f2d7d74e851a043b2ed0"
+        },
+        {
+          "name": "honest-red-run.log",
+          "bytes": 2033,
+          "sha256": "d5de58f2db9746b568b44097415056babd727e01976e1d82bc5888f49826c2cd"
+        },
+        {
+          "name": "honest-red-snapshot-integrity.log",
+          "bytes": 984,
+          "sha256": "d5d73f2965497fa1bca9110f73710684cbd80fcb24c3810c16a9228a0fd509cf"
+        },
+        {
+          "name": "honest-red-summary.json",
+          "bytes": 2033,
+          "sha256": "d5de58f2db9746b568b44097415056babd727e01976e1d82bc5888f49826c2cd"
+        },
+        {
+          "name": "honest-red-tick-loss.log",
+          "bytes": 139847,
+          "sha256": "72f889ded2b918daecef7fb7839668da86adb5066ffdd7f91dfec399d13a4140"
+        },
+        {
+          "name": "honest-red-v2-boundary-cache.log",
+          "bytes": 1023,
+          "sha256": "cfccc348c70c47251dc452735668a468da948f2dd5249e9e964363aa66b448e3"
+        },
+        {
+          "name": "honest-red-v2-intervention-admission.log",
+          "bytes": 989,
+          "sha256": "29f146b51d666d992b677f4c9ad38f9fa6d4c364efac5915456cb03db7612591"
+        },
+        {
+          "name": "honest-red-v2-metric-detail.log",
+          "bytes": 1015,
+          "sha256": "838ec365e2bc9d7e9b29526f70f7c9490fb9e58b6d7e33991a773a39465d5212"
+        },
+        {
+          "name": "honest-red-v2-observation-authority.log",
+          "bytes": 1147,
+          "sha256": "cf285f7fd0383f34eac20310c154a781aba1fdf2a0c9a4d7a14b14065f0e3248"
+        },
+        {
+          "name": "honest-red-v2-run.log",
+          "bytes": 2412,
+          "sha256": "50e66b0b473bd598444108eed5148f08deb2eb3dc35d313bf81e4d88b6706915"
+        },
+        {
+          "name": "honest-red-v2-snapshot-integrity.log",
+          "bytes": 984,
+          "sha256": "639cfa93738cff32f6b9596d5f58f0dd6db7d130c7d4ac7c64ab91ce6442e855"
+        },
+        {
+          "name": "honest-red-v2-summary.json",
+          "bytes": 2412,
+          "sha256": "50e66b0b473bd598444108eed5148f08deb2eb3dc35d313bf81e4d88b6706915"
+        },
+        {
+          "name": "honest-red-v2-tick-loss.log",
+          "bytes": 139847,
+          "sha256": "7f07f5d6c5dec8808f285874e8dab6b4ca278fdf8283fac5e4b802315b4b4b6e"
+        },
+        {
+          "name": "honest-red-v3-boundary-cache.log",
+          "bytes": 1023,
+          "sha256": "faced3c5c8a00c37cf616aa1c826d5eebfdbd49ef04551fa20034d05df933ab7"
+        },
+        {
+          "name": "honest-red-v3-event-identity.log",
+          "bytes": 940,
+          "sha256": "9ca7806f9317fa9b5bc02e51198105916ff68c659fd937841de9604a22ac2686"
+        },
+        {
+          "name": "honest-red-v3-illumination-budget.log",
+          "bytes": 1566,
+          "sha256": "20b5dc6a650be4b9e5dad4707b25d261921193d38aeaf337ac333c8c6328154b"
+        },
+        {
+          "name": "honest-red-v3-intervention-admission.log",
+          "bytes": 989,
+          "sha256": "a0b58b1008a32b09dc65b651dd3e88f603ae5500463563b241f37f2b55c7e619"
+        },
+        {
+          "name": "honest-red-v3-metric-detail.log",
+          "bytes": 1015,
+          "sha256": "e95c654af369a7c360234edcceb44ffaf5484d300335ac9c935b96867b7b399e"
+        },
+        {
+          "name": "honest-red-v3-observation-authority.log",
+          "bytes": 1147,
+          "sha256": "5776465f4a685c6c6e937be73a84625bd9b5560a077500fbdb64fb9159cb8acb"
+        },
+        {
+          "name": "honest-red-v3-run.log",
+          "bytes": 3515,
+          "sha256": "c61c79032db49fef219b5e1cda511d280bb775f0491c551c4575bb89e220aa85"
+        },
+        {
+          "name": "honest-red-v3-snapshot-integrity.log",
+          "bytes": 984,
+          "sha256": "ee51363af967d26915eb25eaf09ac60df1cc06707e3ca3e33e24bbc46a1727a5"
+        },
+        {
+          "name": "honest-red-v3-summary.json",
+          "bytes": 3515,
+          "sha256": "c61c79032db49fef219b5e1cda511d280bb775f0491c551c4575bb89e220aa85"
+        },
+        {
+          "name": "honest-red-v3-tick-atomicity.log",
+          "bytes": 10292,
+          "sha256": "1018d124a5a930631047b086f45ad66fd1cf19f190979a914a3a6a0dd0ddab35"
+        },
+        {
+          "name": "honest-red-v3-tick-loss.log",
+          "bytes": 139847,
+          "sha256": "37a297b641cf0ac8322dde0b72fc4aa2a90ce9474e92fcbacff614e32a084eee"
+        },
+        {
+          "name": "honest_red.py",
+          "bytes": 3377,
+          "sha256": "9ce5979b8d2fa7b09fc994ae3bc9360050d4bff6408b8d53d3c5d86aa9945762"
+        },
+        {
+          "name": "memory-benchmark-v2.json",
+          "bytes": 337,
+          "sha256": "34d14c271d6264cad71e276d5d3984834035253ddb4520285c2434f04c0855f9"
+        },
+        {
+          "name": "memory-benchmark-v3.json",
+          "bytes": 302,
+          "sha256": "166867f8678b3556d3fb5e4aeabb1524dc84fdcf8b24e6232d21f9d6ac72cfc7"
+        },
+        {
+          "name": "morph-focused.log",
+          "bytes": 3894,
+          "sha256": "a7c40c67080cc04476c5bd667e6e76a98c5ee955f6054c89f46a5c6e94b30db0"
+        },
+        {
+          "name": "observation-existing.log",
+          "bytes": 427,
+          "sha256": "9315f34916b0077e3423fee9ba071b6ae12d156cf25baa93331ec67c17529515"
+        },
+        {
+          "name": "release-final-v2.log",
+          "bytes": 1222,
+          "sha256": "4418695b1cd17d75aeb6c33fa86c8c089fc2c46b31c422c3d48368135623849a"
+        },
+        {
+          "name": "release-final-v3.log",
+          "bytes": 168,
+          "sha256": "bfc5b9ccb490a60fbbe8f031b9a81d45947722b481d60dce13109979261a7043"
+        },
+        {
+          "name": "release-final.log",
+          "bytes": 266,
+          "sha256": "6ef2518295f3928080d24d7ba400a8fdb641ccfa9567916611bf380a7f13effc"
+        },
+        {
+          "name": "runtime-benchmark-v1.log",
+          "bytes": 740,
+          "sha256": "d7398dfae01332451ce5083c20555c26260162d5b5edba475df0f6ae0bb9a8b4"
+        },
+        {
+          "name": "runtime-benchmark-v2.log",
+          "bytes": 49,
+          "sha256": "cd11a682af0bc69d34c451d6f34a701ca04253690ae234edca91ad4c6b6d1ab6"
+        },
+        {
+          "name": "runtime-benchmark-v3.log",
+          "bytes": 49,
+          "sha256": "cd11a682af0bc69d34c451d6f34a701ca04253690ae234edca91ad4c6b6d1ab6"
+        },
+        {
+          "name": "runtime-final.log",
+          "bytes": 1106,
+          "sha256": "215798d5ca86771b6d5aec1b8b75ce6b9b83165e30b75ec23c78f6452c5e44f3"
+        },
+        {
+          "name": "runtime-first.log",
+          "bytes": 1272,
+          "sha256": "b1628673d8f3df3c613d341500a307e5e270ef98b2d459cf2bd8228ac9fc089d"
+        },
+        {
+          "name": "runtime-v2.log",
+          "bytes": 1026,
+          "sha256": "31f3b59524712b11aaea69d137a4f9c2800dc7306d60e7e4b0a985dea477a6c3"
+        },
+        {
+          "name": "update_atlas.py",
+          "bytes": 7058,
+          "sha256": "f44d4a4f8a3e2fdadb6bcc9732308dc582214cc87f331035455dffcd5dcb6e35"
+        },
+        {
+          "name": "update_runtime_atlas.py",
+          "bytes": 6933,
+          "sha256": "98617e3ee8c839177ecba2692f13fb3e8a3a0a25210c1782fdf629422c617e09"
+        },
+        {
+          "name": "witness-build-v1.log",
+          "bytes": 266,
+          "sha256": "17fbb1ad014cccd5b816781eeb150a81ce060d49387c4e6feaeaabde78a41d8b"
+        },
+        {
+          "name": "witness-build-v2.log",
+          "bytes": 266,
+          "sha256": "81a68db5e4bb145e1d3252f2da592175d555a13e57b589727c55aa00c9071735"
+        },
+        {
+          "name": "witness-check-first.log",
+          "bytes": 276,
+          "sha256": "1cd3dc6fa07f3a7f8fbf22f352dc63dc767ae59c298a48cc936dbec255fe7b1e"
+        },
+        {
+          "name": "witness-lifetime-test.log",
+          "bytes": 597,
+          "sha256": "d7817b232232412e0bf882cca149472c950b1916cd41f98cc239122c84e74b42"
+        },
+        {
+          "name": "witness-v1.log",
+          "bytes": 223,
+          "sha256": "d285926b664f9c354d99c818d2dd9e10428be724a3a673dd9d57e36b54462415"
+        },
+        {
+          "name": "witness-v2.log",
+          "bytes": 91,
+          "sha256": "08cdae7ea43c40cd072bb0f3ec385185bd55f8246f920060ff4c37a8e3e25e46"
+        },
+        {
+          "name": "witness-v3.log",
+          "bytes": 91,
+          "sha256": "08cdae7ea43c40cd072bb0f3ec385185bd55f8246f920060ff4c37a8e3e25e46"
+        },
+        {
+          "name": "zenith-clone.log",
+          "bytes": 72,
+          "sha256": "8013c03cc871c95c55dc5ee6eb3be104aa6e0e695c744c3db6eae697aba38db3"
+        }
+      ]
+    },
+    {
+      "phase": "atlas-runtime-before",
+      "purpose": "Independent Atlas snapshot before option2 implementation notes",
+      "relative_path": "2026-11-23-runtime/v1/atlas-runtime-before.tar",
+      "bytes": 71680,
+      "sha256": "43ae1d4b1e3e39926278029a238aa3e1f019cd8441a3d78c3558533af1f3f1d6",
+      "members": [
+        {
+          "name": "00_HOME__INDEX.md",
+          "bytes": 1419,
+          "sha256": "1b8706660848197de3129f836354175fb993d175442341afc47b5d3b978fc797"
+        },
+        {
+          "name": "00_HOME__STATUS_GUIDE.md",
+          "bytes": 996,
+          "sha256": "d49c59d682465bbf57165b14a8993091ea071b882b99316dc0beefa8a81104b7"
+        },
+        {
+          "name": "00_HOME__VAULT_ARCHITECTURE.md",
+          "bytes": 1337,
+          "sha256": "d79566e1a272049c0ed0562188320ef1a869a5e5c1aed4dd6be20c872363f15c"
+        },
+        {
+          "name": "01_CANON__INDEX.md",
+          "bytes": 646,
+          "sha256": "6ee32247e9548ee967c0c6081d54a0503ac8897f9637cd0cfa48cc16271d8bc3"
+        },
+        {
+          "name": "01_CANON__MOEBIUS_SHIP.md",
+          "bytes": 5226,
+          "sha256": "3d44386625fe8ac024da7a06bd87a13f600098aca476aaa9f4ef0ea48621e268"
+        },
+        {
+          "name": "01_CANON__MOEBIUS_VESSEL.md",
+          "bytes": 928,
+          "sha256": "06ac8d797197c6e37b01c3343db8076ba0b2f1b6cf2d620f542bdfa0ad633ea2"
+        },
+        {
+          "name": "01_CANON__SHIP_DIMENSIONS.md",
+          "bytes": 1027,
+          "sha256": "77c06251727562a6ab4a2ba2831032c7adfeed51557a3c1e77c2f7af4cee4a54"
+        },
+        {
+          "name": "02_ANATOMY__COMPONENT_LIBRARY.md",
+          "bytes": 1148,
+          "sha256": "4e448d9c48376d527a973f14f3b2931d2eaaad3af5c39041d6aba750bf706cb1"
+        },
+        {
+          "name": "02_ANATOMY__INDEX.md",
+          "bytes": 466,
+          "sha256": "37ca2df6f92de73f58f1fd145c2d512fe15df87463c8b4545786602e34319415"
+        },
+        {
+          "name": "03_PHYSIOLOGY__INDEX.md",
+          "bytes": 469,
+          "sha256": "ebaf03edd10c5241cbaaa194275ce05dea6e55f5c44b6f69d6ebd7297fd37884"
+        },
+        {
+          "name": "04_COGNITION__INDEX.md",
+          "bytes": 468,
+          "sha256": "bc7a89ea6353f1b1501bdfd5ac824261703157e5cc579cdaae242b419c90fe0a"
+        },
+        {
+          "name": "05_ECOLOGY__ENVIRONMENTAL_HYPOTHESIS.md",
+          "bytes": 1623,
+          "sha256": "7c852c150d3a85f5630db0cb85d9dc6cf7b2789a544d4ed8d2388d8664c992ef"
+        },
+        {
+          "name": "05_ECOLOGY__INDEX.md",
+          "bytes": 500,
+          "sha256": "08d1c0d3dc84ebf8bc847ac4a0e3cc6e89ea5b2a08c5286dce9cc8fca209392a"
+        },
+        {
+          "name": "06_SPECIES__ARACHNITECH.md",
+          "bytes": 1238,
+          "sha256": "4dbe4db3a1c6583086bb1b84a3be7bfd1efd0ffa0a535eb9f757b07976cb583f"
+        },
+        {
+          "name": "06_SPECIES__INDEX.md",
+          "bytes": 487,
+          "sha256": "a2cd6c9f32cec45154a84f3788eddc48aea37ffd21108c8ebd53ec1bbd9f17ce"
+        },
+        {
+          "name": "07_EXPERIMENTS__INDEX.md",
+          "bytes": 760,
+          "sha256": "509510fe285289f7fce09659625af4705966818c0730001408e58fb80a8ff613"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_001.md",
+          "bytes": 1073,
+          "sha256": "def467c3a8ec18c3336bfb01cf690c578a0f35b4ec358496b569c5710c7c3d36"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_002.md",
+          "bytes": 1204,
+          "sha256": "90703163df2ec34ce827fd2456aa9530c177077d133edb28fb77a5e59baee1d4"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_003.md",
+          "bytes": 2411,
+          "sha256": "aa272208df1826c18d6551ce4ebe655e4096382a3ac44508066ac7b99b5f3850"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_004.md",
+          "bytes": 1055,
+          "sha256": "8752a201318e5f044c512253cb016dffd94539244766e677cb1ac09c206c0171"
+        },
+        {
+          "name": "08_ARCHITECTURE__ANATOMY_SPEC_V2.md",
+          "bytes": 1351,
+          "sha256": "811e3009c84ac1267c72914f501331de8eb52affb6430f67e9782a01a7129d4d"
+        },
+        {
+          "name": "08_ARCHITECTURE__HYBRID_STACK.md",
+          "bytes": 987,
+          "sha256": "6fa2d759fc4cbe5478fa88ea544790c7a7c1151b7635b77d7519e35465de46c4"
+        },
+        {
+          "name": "08_ARCHITECTURE__INDEX.md",
+          "bytes": 697,
+          "sha256": "6e8e22a3c94ed859fa2a5c80ce9485c86f0b5518ecda5c69e236c2522bdc1da8"
+        },
+        {
+          "name": "08_ARCHITECTURE__INTERVENTION_BOUNDARY.md",
+          "bytes": 933,
+          "sha256": "81ecf962013f2a5caebe331e5b37a75e1f20495e17cae447e5b6d013ec269f98"
+        },
+        {
+          "name": "08_ARCHITECTURE__LIGHT_PORT_BOUNDARY.md",
+          "bytes": 1028,
+          "sha256": "3078180a89c8fa316a9cf28d0b2431992e0d8b719f8cb790752f98872f3f8830"
+        },
+        {
+          "name": "08_ARCHITECTURE__WITNESS_SPHERE.md",
+          "bytes": 984,
+          "sha256": "54c5eb0ed12a8af80b7b2061845903ccd8767d9fada0921f6e9ad58cb4d0ff4d"
+        },
+        {
+          "name": "08_ARCHITECTURE__WORLD_AUTHORITY.md",
+          "bytes": 1046,
+          "sha256": "1eb8876af296464d99fc588d27de7428dfe07a7c13ada2ff3b25058035f5835d"
+        },
+        {
+          "name": "09_EVIDENCE__EVIDENCE_POLICY.md",
+          "bytes": 1171,
+          "sha256": "93788c1e60545aa109f24adca9aae60b9c3893c7c6c09770a37ca592b47530c0"
+        },
+        {
+          "name": "09_EVIDENCE__INDEX.md",
+          "bytes": 567,
+          "sha256": "1c500fe307f45aa50a9d132e4fef3b92cd4699e7b99ed143912ef8e992475368"
+        },
+        {
+          "name": "09_EVIDENCE__MORPH_004_DONORS.md",
+          "bytes": 1102,
+          "sha256": "8f510ef13303c179aaa6cd5cc8bd815835a74244e86dcab48389629dcdc00c57"
+        },
+        {
+          "name": "09_EVIDENCE__MORPH_004_LIMITS.md",
+          "bytes": 938,
+          "sha256": "81c0dc6908d29d671d6f2b294e270ca0cd5135e62b15ff45cc024fd294d59a2a"
+        },
+        {
+          "name": "90_INBOX__INDEX.md",
+          "bytes": 464,
+          "sha256": "f99ef45eaf0369b5cad93a6e94b1ff3e78cc5f01e8367c6e211d4aab33d3b3a4"
+        },
+        {
+          "name": "99_ARCHIVE__INDEX.md",
+          "bytes": 466,
+          "sha256": "17eb683963eaa69f255d07eb91bb4a17406f2b1af86f6c2b7b66f822bf163cdd"
+        },
+        {
+          "name": "_TEMPLATES__Anatomical_Component.md",
+          "bytes": 374,
+          "sha256": "285e0660934a13e47a69b61c78a26f8457c07d67e4978ed66823db1c8c5bf186"
+        },
+        {
+          "name": "_TEMPLATES__Architectural_Decision.md",
+          "bytes": 376,
+          "sha256": "d61960ff7bdf5a5225193054516da4267c58629e099c52cd24acbb143aac2678"
+        },
+        {
+          "name": "_TEMPLATES__Environmental_Mechanism.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Experimental_Protocol.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Experimental_Result.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Organism_Species.md",
+          "bytes": 377,
+          "sha256": "d6aa2ec5611cb9712c2f89d7769f00a53b4eca8cb0c2c4f3ecaf2957782b5963"
+        }
+      ]
+    },
+    {
+      "phase": "atlas-runtime-after",
+      "purpose": "Independent post-implementation Atlas notes, clean-suite status pending",
+      "relative_path": "2026-11-23-runtime/v1/atlas-runtime-after.tar",
+      "bytes": 71680,
+      "sha256": "bb2d31b69b501b35658f46c20137522d5013ffa82e884076539f4507a007e69d",
+      "members": [
+        {
+          "name": "00_HOME__INDEX.md",
+          "bytes": 1419,
+          "sha256": "1b8706660848197de3129f836354175fb993d175442341afc47b5d3b978fc797"
+        },
+        {
+          "name": "00_HOME__STATUS_GUIDE.md",
+          "bytes": 996,
+          "sha256": "d49c59d682465bbf57165b14a8993091ea071b882b99316dc0beefa8a81104b7"
+        },
+        {
+          "name": "00_HOME__VAULT_ARCHITECTURE.md",
+          "bytes": 1337,
+          "sha256": "d79566e1a272049c0ed0562188320ef1a869a5e5c1aed4dd6be20c872363f15c"
+        },
+        {
+          "name": "01_CANON__INDEX.md",
+          "bytes": 646,
+          "sha256": "6ee32247e9548ee967c0c6081d54a0503ac8897f9637cd0cfa48cc16271d8bc3"
+        },
+        {
+          "name": "01_CANON__MOEBIUS_SHIP.md",
+          "bytes": 5226,
+          "sha256": "3d44386625fe8ac024da7a06bd87a13f600098aca476aaa9f4ef0ea48621e268"
+        },
+        {
+          "name": "01_CANON__MOEBIUS_VESSEL.md",
+          "bytes": 928,
+          "sha256": "06ac8d797197c6e37b01c3343db8076ba0b2f1b6cf2d620f542bdfa0ad633ea2"
+        },
+        {
+          "name": "01_CANON__SHIP_DIMENSIONS.md",
+          "bytes": 1175,
+          "sha256": "174e148f44375c170f393a2ca577b7fea3daf77fb4bd3e860d62a45281ad195f"
+        },
+        {
+          "name": "02_ANATOMY__COMPONENT_LIBRARY.md",
+          "bytes": 1148,
+          "sha256": "4e448d9c48376d527a973f14f3b2931d2eaaad3af5c39041d6aba750bf706cb1"
+        },
+        {
+          "name": "02_ANATOMY__INDEX.md",
+          "bytes": 466,
+          "sha256": "37ca2df6f92de73f58f1fd145c2d512fe15df87463c8b4545786602e34319415"
+        },
+        {
+          "name": "03_PHYSIOLOGY__INDEX.md",
+          "bytes": 469,
+          "sha256": "ebaf03edd10c5241cbaaa194275ce05dea6e55f5c44b6f69d6ebd7297fd37884"
+        },
+        {
+          "name": "04_COGNITION__INDEX.md",
+          "bytes": 468,
+          "sha256": "bc7a89ea6353f1b1501bdfd5ac824261703157e5cc579cdaae242b419c90fe0a"
+        },
+        {
+          "name": "05_ECOLOGY__ENVIRONMENTAL_HYPOTHESIS.md",
+          "bytes": 1623,
+          "sha256": "7c852c150d3a85f5630db0cb85d9dc6cf7b2789a544d4ed8d2388d8664c992ef"
+        },
+        {
+          "name": "05_ECOLOGY__INDEX.md",
+          "bytes": 500,
+          "sha256": "08d1c0d3dc84ebf8bc847ac4a0e3cc6e89ea5b2a08c5286dce9cc8fca209392a"
+        },
+        {
+          "name": "06_SPECIES__ARACHNITECH.md",
+          "bytes": 1238,
+          "sha256": "4dbe4db3a1c6583086bb1b84a3be7bfd1efd0ffa0a535eb9f757b07976cb583f"
+        },
+        {
+          "name": "06_SPECIES__INDEX.md",
+          "bytes": 487,
+          "sha256": "a2cd6c9f32cec45154a84f3788eddc48aea37ffd21108c8ebd53ec1bbd9f17ce"
+        },
+        {
+          "name": "07_EXPERIMENTS__INDEX.md",
+          "bytes": 760,
+          "sha256": "509510fe285289f7fce09659625af4705966818c0730001408e58fb80a8ff613"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_001.md",
+          "bytes": 1073,
+          "sha256": "def467c3a8ec18c3336bfb01cf690c578a0f35b4ec358496b569c5710c7c3d36"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_002.md",
+          "bytes": 1204,
+          "sha256": "90703163df2ec34ce827fd2456aa9530c177077d133edb28fb77a5e59baee1d4"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_003.md",
+          "bytes": 2411,
+          "sha256": "aa272208df1826c18d6551ce4ebe655e4096382a3ac44508066ac7b99b5f3850"
+        },
+        {
+          "name": "07_EXPERIMENTS__MORPH_004.md",
+          "bytes": 1247,
+          "sha256": "e89d3b9c8490b932e2a5d8b5febfd75092a0b75ffb9ae299bdaf5eb1178079c7"
+        },
+        {
+          "name": "08_ARCHITECTURE__ANATOMY_SPEC_V2.md",
+          "bytes": 1351,
+          "sha256": "811e3009c84ac1267c72914f501331de8eb52affb6430f67e9782a01a7129d4d"
+        },
+        {
+          "name": "08_ARCHITECTURE__HYBRID_STACK.md",
+          "bytes": 1113,
+          "sha256": "e58b9e87d5f7da29e56d9b66ecebb0d4c5ddb97e783b9682588537eb51902741"
+        },
+        {
+          "name": "08_ARCHITECTURE__INDEX.md",
+          "bytes": 697,
+          "sha256": "6e8e22a3c94ed859fa2a5c80ce9485c86f0b5518ecda5c69e236c2522bdc1da8"
+        },
+        {
+          "name": "08_ARCHITECTURE__INTERVENTION_BOUNDARY.md",
+          "bytes": 1221,
+          "sha256": "bf5f7c37269ab5be72df375bdb034db6703f5f2034bf9cf36266225a9ce598b0"
+        },
+        {
+          "name": "08_ARCHITECTURE__LIGHT_PORT_BOUNDARY.md",
+          "bytes": 1171,
+          "sha256": "9c020e9d4bc776630f174b44d8e692f2ddb59e26aff770b3c19ee08d085465d1"
+        },
+        {
+          "name": "08_ARCHITECTURE__WITNESS_SPHERE.md",
+          "bytes": 1156,
+          "sha256": "d67c6d8330759fade766a5393b88366447d9103b9ffc5b3a9989bdcf10ea8160"
+        },
+        {
+          "name": "08_ARCHITECTURE__WORLD_AUTHORITY.md",
+          "bytes": 1220,
+          "sha256": "14bc6a1cc02198201333725e9cb6259cb324c2e09417c6a8bec834e76f3fce96"
+        },
+        {
+          "name": "09_EVIDENCE__EVIDENCE_POLICY.md",
+          "bytes": 1171,
+          "sha256": "93788c1e60545aa109f24adca9aae60b9c3893c7c6c09770a37ca592b47530c0"
+        },
+        {
+          "name": "09_EVIDENCE__INDEX.md",
+          "bytes": 567,
+          "sha256": "1c500fe307f45aa50a9d132e4fef3b92cd4699e7b99ed143912ef8e992475368"
+        },
+        {
+          "name": "09_EVIDENCE__MORPH_004_DONORS.md",
+          "bytes": 1352,
+          "sha256": "a20fdf31e7687f7ee9cb694b511879ebe551cffdaaf3a87f6b69615c4dfeb203"
+        },
+        {
+          "name": "09_EVIDENCE__MORPH_004_LIMITS.md",
+          "bytes": 1280,
+          "sha256": "ebb6e928afcbe0920fe72026ab1f8f39efcb73b4a026cd2cc53adf3011277214"
+        },
+        {
+          "name": "90_INBOX__INDEX.md",
+          "bytes": 464,
+          "sha256": "f99ef45eaf0369b5cad93a6e94b1ff3e78cc5f01e8367c6e211d4aab33d3b3a4"
+        },
+        {
+          "name": "99_ARCHIVE__INDEX.md",
+          "bytes": 466,
+          "sha256": "17eb683963eaa69f255d07eb91bb4a17406f2b1af86f6c2b7b66f822bf163cdd"
+        },
+        {
+          "name": "_TEMPLATES__Anatomical_Component.md",
+          "bytes": 374,
+          "sha256": "285e0660934a13e47a69b61c78a26f8457c07d67e4978ed66823db1c8c5bf186"
+        },
+        {
+          "name": "_TEMPLATES__Architectural_Decision.md",
+          "bytes": 376,
+          "sha256": "d61960ff7bdf5a5225193054516da4267c58629e099c52cd24acbb143aac2678"
+        },
+        {
+          "name": "_TEMPLATES__Environmental_Mechanism.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Experimental_Protocol.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Experimental_Result.md",
+          "bytes": 376,
+          "sha256": "2091266935d49b09f7faeeeaa8e2fff10454ed19c0dddde46e50bb3de4380bb4"
+        },
+        {
+          "name": "_TEMPLATES__Organism_Species.md",
+          "bytes": 377,
+          "sha256": "d6aa2ec5611cb9712c2f89d7769f00a53b4eca8cb0c2c4f3ecaf2957782b5963"
+        }
+      ]
+    },
+    {
+      "phase": "runtime-benchmark-v1",
+      "purpose": "Recorded benchmark/headless/render evidence; failures and superseded protocols retained; see TRIAL_CHRONOLOGY",
+      "relative_path": "2026-11-23-runtime/v1/runtime-benchmark-v1.tar",
+      "bytes": 30720,
+      "sha256": "daafaa4c0c90a419c152a4da619cb2c76b226d3ea3690321824e897810bb82a7",
+      "members": [
+        {
+          "name": "report.json",
+          "bytes": 7356,
+          "sha256": "f4129e54cd2d0161725708e99822c65c436181192a69375917e34ecc43220a66"
+        },
+        {
+          "name": "trials.jsonl",
+          "bytes": 17775,
+          "sha256": "f9a67089f541fae89460fe0a1f0d9e150243d9c48a2c41b2cc3b3cf0142220c1"
+        }
+      ]
+    },
+    {
+      "phase": "runtime-benchmark-v2",
+      "purpose": "Recorded benchmark/headless/render evidence; failures and superseded protocols retained; see TRIAL_CHRONOLOGY",
+      "relative_path": "2026-11-23-runtime/v1/runtime-benchmark-v2.tar",
+      "bytes": 30720,
+      "sha256": "91d6b9dbfc4358d248b90494324f48933af47ccba87f8d661b59d189cec834ef",
+      "members": [
+        {
+          "name": "report.json",
+          "bytes": 7362,
+          "sha256": "d7079679132ef81c56c6960b325ca4e11381214d3ef5d55ce6d04bb7e767f3cf"
+        },
+        {
+          "name": "trials.jsonl",
+          "bytes": 17775,
+          "sha256": "f9a67089f541fae89460fe0a1f0d9e150243d9c48a2c41b2cc3b3cf0142220c1"
+        }
+      ]
+    },
+    {
+      "phase": "runtime-benchmark-v3",
+      "purpose": "Recorded benchmark/headless/render evidence; failures and superseded protocols retained; see TRIAL_CHRONOLOGY",
+      "relative_path": "2026-11-23-runtime/v1/runtime-benchmark-v3.tar",
+      "bytes": 30720,
+      "sha256": "786211f8070c7daaf30ec35194d4cab138a3190826cadb8151caa2b78b986df3",
+      "members": [
+        {
+          "name": "report.json",
+          "bytes": 7362,
+          "sha256": "2922a6f1618c03c3489f14ca2c7375b9b18ad2a44e8303d834058d5cc19c17cf"
+        },
+        {
+          "name": "trials.jsonl",
+          "bytes": 17775,
+          "sha256": "f9a67089f541fae89460fe0a1f0d9e150243d9c48a2c41b2cc3b3cf0142220c1"
+        }
+      ]
+    },
+    {
+      "phase": "headless-run-v1",
+      "purpose": "Recorded benchmark/headless/render evidence; failures and superseded protocols retained; see TRIAL_CHRONOLOGY",
+      "relative_path": "2026-11-23-runtime/v1/headless-run-v1.tar",
+      "bytes": 665600,
+      "sha256": "20f827994c29ee400d44a09c58313e12585e6b0b499b159dd9c6fca9d7300600",
+      "members": [
+        {
+          "name": "final.json",
+          "bytes": 629092,
+          "sha256": "23d9b1dfcacb8085df89bd674b233221280ae9e8ceb82c0b09de75cd1fb22070"
+        },
+        {
+          "name": "initial.json",
+          "bytes": 25217,
+          "sha256": "a6ffe0a62f09c56af1f32b5eae1def020a1c4beeb0608a59d7ef4133ffd6366b"
+        },
+        {
+          "name": "interventions.json",
+          "bytes": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "name": "manifest.json",
+          "bytes": 455,
+          "sha256": "f86ccd5e943e8da3eecaf4ad99bb53730d885c4f73168b836387338ac14b1d35"
+        }
+      ]
+    },
+    {
+      "phase": "witness-v1",
+      "purpose": "Recorded benchmark/headless/render evidence; failures and superseded protocols retained; see TRIAL_CHRONOLOGY",
+      "relative_path": "2026-11-23-runtime/v1/witness-v1.tar",
+      "bytes": 1044480,
+      "sha256": "23ef1cb231487d6decf270206f9110e1d2df47c8883d9470e209e59d99f81ee1",
+      "members": [
+        {
+          "name": "frame_030.png",
+          "bytes": 205738,
+          "sha256": "258990ffad8a7b2865c292bcd6b1919778a1685458f9b23173e952ffbf2e6eed"
+        },
+        {
+          "name": "frame_065.png",
+          "bytes": 130228,
+          "sha256": "f7c92ea5648fcf92eeddd7b83c37abf5619a49012f4bf939c37b15dc3bdc85d8"
+        },
+        {
+          "name": "frame_090.png",
+          "bytes": 205829,
+          "sha256": "83cc79582c88723efff2aa3c113064ffeb44ba8f64d41cc1108a38bb6e75c5f1"
+        },
+        {
+          "name": "frame_130.png",
+          "bytes": 158935,
+          "sha256": "7c877def9c67012e316efab4453faf4997c7bf06156a6cc5278ca391963a5d26"
+        },
+        {
+          "name": "frame_170.png",
+          "bytes": 199174,
+          "sha256": "c925ac1ba57e0df7f29dfefcbee275a8cc958bf6b3f88fd32dc331a111309cfc"
+        },
+        {
+          "name": "frame_210.png",
+          "bytes": 130405,
+          "sha256": "83141822d8a810e0e9a76de1209d3ad44652b107a1b6513ba14f0ec01e3ec137"
+        }
+      ]
+    },
+    {
+      "phase": "witness-v2",
+      "purpose": "Recorded benchmark/headless/render evidence; failures and superseded protocols retained; see TRIAL_CHRONOLOGY",
+      "relative_path": "2026-11-23-runtime/v1/witness-v2.tar",
+      "bytes": 1740800,
+      "sha256": "8843973ac96c0224be8888d7651f4f06bc77d50138b9e3ddd8ebd44fc658556d",
+      "members": [
+        {
+          "name": "frame_030.png",
+          "bytes": 205760,
+          "sha256": "b12a21452dedb2e3556e82df684b1c12f76fc4527a4a43ddcaebadc8dafa44db"
+        },
+        {
+          "name": "frame_065.png",
+          "bytes": 130313,
+          "sha256": "8da1d1939acf686c5ea87f3338539d20fcbdc29daddc88443afde9c582d6192f"
+        },
+        {
+          "name": "frame_090.png",
+          "bytes": 206125,
+          "sha256": "17962fa970b67a37067e870cf7f6581ae40d677cc045765eb876a89f98f73ef8"
+        },
+        {
+          "name": "frame_130.png",
+          "bytes": 158935,
+          "sha256": "7c877def9c67012e316efab4453faf4997c7bf06156a6cc5278ca391963a5d26"
+        },
+        {
+          "name": "frame_170.png",
+          "bytes": 199174,
+          "sha256": "c925ac1ba57e0df7f29dfefcbee275a8cc958bf6b3f88fd32dc331a111309cfc"
+        },
+        {
+          "name": "frame_210.png",
+          "bytes": 130405,
+          "sha256": "83141822d8a810e0e9a76de1209d3ad44652b107a1b6513ba14f0ec01e3ec137"
+        },
+        {
+          "name": "render-report.json",
+          "bytes": 71608,
+          "sha256": "e26222a228c513aeecf013c84350684cb6dd3dff4f4b5c22be866d3005e423ce"
+        },
+        {
+          "name": "world-final.json",
+          "bytes": 629092,
+          "sha256": "23d9b1dfcacb8085df89bd674b233221280ae9e8ceb82c0b09de75cd1fb22070"
+        }
+      ]
+    },
+    {
+      "phase": "witness-v3",
+      "purpose": "Recorded benchmark/headless/render evidence; failures and superseded protocols retained; see TRIAL_CHRONOLOGY",
+      "relative_path": "2026-11-23-runtime/v1/witness-v3.tar",
+      "bytes": 1751040,
+      "sha256": "ceeb01859eddc998a853261cda40c06754d6639db28b569bfb3c08c998b17683",
+      "members": [
+        {
+          "name": "frame_030.png",
+          "bytes": 208221,
+          "sha256": "ebf3cc8ad70c2170b6b77ac035b3cf6044cdbced61b63b539b299dbe4269a889"
+        },
+        {
+          "name": "frame_065.png",
+          "bytes": 131965,
+          "sha256": "781a26e46d495fe54a61df24f7728f4e3fdf8c6d8cb109da7c23d23f4b2a2649"
+        },
+        {
+          "name": "frame_090.png",
+          "bytes": 207581,
+          "sha256": "e988ea45efd352109252df7b0104d0bf5980a8c9e93cbcc39d49d90a0022f45b"
+        },
+        {
+          "name": "frame_130.png",
+          "bytes": 160973,
+          "sha256": "1122ee6edb29515fd5dd22ccf796be3bf8bd617213c4e782669819210154082c"
+        },
+        {
+          "name": "frame_170.png",
+          "bytes": 201022,
+          "sha256": "370944067770d1d4892a9c5c99b8bf7bba174fdccee9ac81faebfb11598119d0"
+        },
+        {
+          "name": "frame_210.png",
+          "bytes": 132228,
+          "sha256": "39bd2a724880d95a9101be061a4a735d14cbf2f2baae25586b3154a3b1c14341"
+        },
+        {
+          "name": "render-report.json",
+          "bytes": 71591,
+          "sha256": "78eb422eb58f64aa0baaa56029ff5d132c6f65c1512de9ab3b94ca2dd33a28b7"
+        },
+        {
+          "name": "world-final.json",
+          "bytes": 629092,
+          "sha256": "23d9b1dfcacb8085df89bd674b233221280ae9e8ceb82c0b09de75cd1fb22070"
+        }
+      ]
+    },
+    {
+      "phase": "runtime-source-v2",
+      "purpose": "Preserve legacy default-run in manifest; otherwise same final runtime source",
+      "relative_path": "2026-11-23-runtime/v2/runtime-source-v2.tar",
+      "bytes": 460800,
+      "sha256": "e5a79d2f6c909da2dbcb88df18dcfc2a1977d467ae61ad5e323a8f6ac61e0655",
+      "members": [
+        {
+          "name": "AGENTS.md",
+          "bytes": 17406,
+          "sha256": "d6dfeeca5f3d4217a587858978943d6bb64b1ad92e7419cf6a074efa065eac91"
+        },
+        {
+          "name": "Cargo.lock",
+          "bytes": 159247,
+          "sha256": "38714661e4204d48d4db5cf659abeecdf0b71117f26b53d0a551e430338ffe81"
+        },
+        {
+          "name": "Cargo.toml",
+          "bytes": 463,
+          "sha256": "3e3525280a72beb2df0ef9f923afd5974f236e29b829b41f552ef97a8665f4e6"
+        },
+        {
+          "name": "SOURCE_MAP.json",
+          "bytes": 7275,
+          "sha256": "3931e03e91cc7d44900c99497e9f6236862ae527bf0d9575c94721dc80c993d7"
+        },
+        {
+          "name": "crates__moebius-morph-lab__Cargo.toml",
+          "bytes": 457,
+          "sha256": "2d5ffe5c7c3a381541d0fbd3d2af076912638ebb5af65e0e686e6904496291cc"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__bin__moebius-world-witness.rs",
+          "bytes": 12619,
+          "sha256": "b1fc5c893c8a4c4a0e956695331332125ee68de1baf2848cc20208b140bce0db"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__composition.rs",
+          "bytes": 14897,
+          "sha256": "222e707c2a5b905f831b515cf9905c3909f1789aec0386e8112a8804a126367f"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__emission_preview.rs",
+          "bytes": 15343,
+          "sha256": "c6deb3e37865333e045715ad7f1d92ad6641ec390b650686bdbba350189dba1a"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__lib.rs",
+          "bytes": 9594,
+          "sha256": "ba9337375d26216f3c502e9dcc0a8674ce33ac44ee4bfbdbbe5aaac8c31960ed"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__main.rs",
+          "bytes": 28882,
+          "sha256": "55623c28659fa9e7016b7e03740931535af1ecfe98eea444c28059b042fc2620"
+        },
+        {
+          "name": "crates__moebius-morph__Cargo.toml",
+          "bytes": 349,
+          "sha256": "9d1fead02947f4511467cf02c6543fa623968de02fe3753d95d1fc873029d9c8"
+        },
+        {
+          "name": "crates__moebius-morph__examples__morph_003_bench.rs",
+          "bytes": 1280,
+          "sha256": "f768b482842dc410a55b9fc60dd90196d6480ab6b743775f4985f2efe2ba5936"
+        },
+        {
+          "name": "crates__moebius-morph__examples__morph_004_bench.rs",
+          "bytes": 7331,
+          "sha256": "2dd1bccc96c61da1139f1f0992300679f54b9e9520f4ad2a18ebcc210c4ae49f"
+        },
+        {
+          "name": "crates__moebius-morph__examples__replay_lab.rs",
+          "bytes": 2631,
+          "sha256": "63dbe8661a5f2e2a05713d69c7ad207e837705e28e60c5fa878f32b6befc21c8"
+        },
+        {
+          "name": "crates__moebius-morph__examples__ship_run.rs",
+          "bytes": 1912,
+          "sha256": "70f7d21112c90b3af479401baf55291f9245d90d864bd696158f685605e6f667"
+        },
+        {
+          "name": "crates__moebius-morph__examples__validate.rs",
+          "bytes": 5387,
+          "sha256": "827acdd0314c4a9f53bc6d697a06dc65415b34593ad53666799183ae6ab5959a"
+        },
+        {
+          "name": "crates__moebius-morph__examples__validate_composition.rs",
+          "bytes": 7436,
+          "sha256": "373354224a1c2f4deec162be764f6be1f02550c5334f7a137b762733acf70ae7"
+        },
+        {
+          "name": "crates__moebius-morph__src__anatomy.rs",
+          "bytes": 15183,
+          "sha256": "f346e40f5c4699d976b0d9fea6bf016a7a9022d1dcebb68a9ea2d7735a76bd30"
+        },
+        {
+          "name": "crates__moebius-morph__src__compiler.rs",
+          "bytes": 12259,
+          "sha256": "137f8391a9c14c9f0ca741f84d61f6903e7a7d3ade9c6094bbd3f1463c19976a"
+        },
+        {
+          "name": "crates__moebius-morph__src__emission.rs",
+          "bytes": 45635,
+          "sha256": "56efe0b5ae3916b3a46c179314c5263c627e307f9ce852e5fc2a938f30f4bbe7"
+        },
+        {
+          "name": "crates__moebius-morph__src__lib.rs",
+          "bytes": 2538,
+          "sha256": "adec4136885f9caaee479c9613d9b4c37b8faaed04dd39854e3d0537040cb383"
+        },
+        {
+          "name": "crates__moebius-morph__src__math.rs",
+          "bytes": 1113,
+          "sha256": "c022020ece5d8f7f436e172ecd2ed95d266b3cc6cec4dc1da14d845a9ee5202d"
+        },
+        {
+          "name": "crates__moebius-morph__src__runtime.rs",
+          "bytes": 17858,
+          "sha256": "c6af87bcfe53182817764e8bae9a0c586f6ddd32f159376a6fc19dc997e30899"
+        },
+        {
+          "name": "crates__moebius-morph__src__spec.rs",
+          "bytes": 5881,
+          "sha256": "b91a19804c12097fcaadb4bc88efc58aa685d8d482734470fbaeb0085ec7bdff"
+        },
+        {
+          "name": "crates__moebius-morph__src__surface.rs",
+          "bytes": 6469,
+          "sha256": "7a76f04cfd5623569efb477b2c06e00e262b36b3c85a084b818e152d20e9ccd4"
+        },
+        {
+          "name": "crates__moebius-morph__src__witness.rs",
+          "bytes": 5337,
+          "sha256": "f0c9f82cb98cec2815e368c34477875deb2b9c2c6d08a7f42edf35c9512ddc6a"
+        },
+        {
+          "name": "crates__moebius-morph__tests__composition.rs",
+          "bytes": 6380,
+          "sha256": "0e8aafc0375b71c6bde2cd590fc711de3dc5325c344b56af9be5dd35b4329917"
+        },
+        {
+          "name": "crates__moebius-morph__tests__emission.rs",
+          "bytes": 6511,
+          "sha256": "0cb15463035087866f1f593c847b96a9881ce7bfd4199df02c0ceb21c990fb02"
+        },
+        {
+          "name": "crates__moebius-morph__tests__forge.rs",
+          "bytes": 5480,
+          "sha256": "c0d59d2170dddcdaf589d97bc9ecdfd1d23a371f89b58b95fd64c2f119b54a52"
+        },
+        {
+          "name": "crates__moebius-morph__tests__runtime.rs",
+          "bytes": 10145,
+          "sha256": "973b569bf91b8abd72d1f413ca7c126f8838f7b5d6e8fc8483ea3765ab8b3f16"
+        }
+      ]
+    },
+    {
+      "phase": "runtime-source-v3",
+      "purpose": "Final reviewed source and legacy launch compatibility; exact source map",
+      "relative_path": "2026-11-23-runtime/v3/runtime-source-v3.tar",
+      "bytes": 460800,
+      "sha256": "be26506a640acaf4c96eff95e00296f8d29b5cd618fd538da26aa248ca992a94",
+      "members": [
+        {
+          "name": "AGENTS.md",
+          "bytes": 17406,
+          "sha256": "d6dfeeca5f3d4217a587858978943d6bb64b1ad92e7419cf6a074efa065eac91"
+        },
+        {
+          "name": "Cargo.lock",
+          "bytes": 159247,
+          "sha256": "38714661e4204d48d4db5cf659abeecdf0b71117f26b53d0a551e430338ffe81"
+        },
+        {
+          "name": "Cargo.toml",
+          "bytes": 463,
+          "sha256": "3e3525280a72beb2df0ef9f923afd5974f236e29b829b41f552ef97a8665f4e6"
+        },
+        {
+          "name": "SOURCE_MAP.json",
+          "bytes": 7288,
+          "sha256": "04c2c8114343fe69b0d10eeac8e5eb320d4ae8a5ab1306e3ed43df55d63c865b"
+        },
+        {
+          "name": "crates__moebius-morph-lab__Cargo.toml",
+          "bytes": 457,
+          "sha256": "2d5ffe5c7c3a381541d0fbd3d2af076912638ebb5af65e0e686e6904496291cc"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__bin__moebius-world-witness.rs",
+          "bytes": 12843,
+          "sha256": "4cc05bcdae294d8626cc2a93b3f2790288bf939e3ff5431957094ffd7c235d19"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__composition.rs",
+          "bytes": 14897,
+          "sha256": "222e707c2a5b905f831b515cf9905c3909f1789aec0386e8112a8804a126367f"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__emission_preview.rs",
+          "bytes": 15343,
+          "sha256": "c6deb3e37865333e045715ad7f1d92ad6641ec390b650686bdbba350189dba1a"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__lib.rs",
+          "bytes": 9594,
+          "sha256": "ba9337375d26216f3c502e9dcc0a8674ce33ac44ee4bfbdbbe5aaac8c31960ed"
+        },
+        {
+          "name": "crates__moebius-morph-lab__src__main.rs",
+          "bytes": 28882,
+          "sha256": "55623c28659fa9e7016b7e03740931535af1ecfe98eea444c28059b042fc2620"
+        },
+        {
+          "name": "crates__moebius-morph__Cargo.toml",
+          "bytes": 349,
+          "sha256": "9d1fead02947f4511467cf02c6543fa623968de02fe3753d95d1fc873029d9c8"
+        },
+        {
+          "name": "crates__moebius-morph__examples__morph_003_bench.rs",
+          "bytes": 1280,
+          "sha256": "f768b482842dc410a55b9fc60dd90196d6480ab6b743775f4985f2efe2ba5936"
+        },
+        {
+          "name": "crates__moebius-morph__examples__morph_004_bench.rs",
+          "bytes": 7331,
+          "sha256": "2dd1bccc96c61da1139f1f0992300679f54b9e9520f4ad2a18ebcc210c4ae49f"
+        },
+        {
+          "name": "crates__moebius-morph__examples__replay_lab.rs",
+          "bytes": 2631,
+          "sha256": "63dbe8661a5f2e2a05713d69c7ad207e837705e28e60c5fa878f32b6befc21c8"
+        },
+        {
+          "name": "crates__moebius-morph__examples__ship_run.rs",
+          "bytes": 1912,
+          "sha256": "70f7d21112c90b3af479401baf55291f9245d90d864bd696158f685605e6f667"
+        },
+        {
+          "name": "crates__moebius-morph__examples__validate.rs",
+          "bytes": 5387,
+          "sha256": "827acdd0314c4a9f53bc6d697a06dc65415b34593ad53666799183ae6ab5959a"
+        },
+        {
+          "name": "crates__moebius-morph__examples__validate_composition.rs",
+          "bytes": 7436,
+          "sha256": "373354224a1c2f4deec162be764f6be1f02550c5334f7a137b762733acf70ae7"
+        },
+        {
+          "name": "crates__moebius-morph__src__anatomy.rs",
+          "bytes": 15183,
+          "sha256": "f346e40f5c4699d976b0d9fea6bf016a7a9022d1dcebb68a9ea2d7735a76bd30"
+        },
+        {
+          "name": "crates__moebius-morph__src__compiler.rs",
+          "bytes": 12259,
+          "sha256": "137f8391a9c14c9f0ca741f84d61f6903e7a7d3ade9c6094bbd3f1463c19976a"
+        },
+        {
+          "name": "crates__moebius-morph__src__emission.rs",
+          "bytes": 45635,
+          "sha256": "56efe0b5ae3916b3a46c179314c5263c627e307f9ce852e5fc2a938f30f4bbe7"
+        },
+        {
+          "name": "crates__moebius-morph__src__lib.rs",
+          "bytes": 2538,
+          "sha256": "adec4136885f9caaee479c9613d9b4c37b8faaed04dd39854e3d0537040cb383"
+        },
+        {
+          "name": "crates__moebius-morph__src__math.rs",
+          "bytes": 1113,
+          "sha256": "c022020ece5d8f7f436e172ecd2ed95d266b3cc6cec4dc1da14d845a9ee5202d"
+        },
+        {
+          "name": "crates__moebius-morph__src__runtime.rs",
+          "bytes": 17858,
+          "sha256": "c6af87bcfe53182817764e8bae9a0c586f6ddd32f159376a6fc19dc997e30899"
+        },
+        {
+          "name": "crates__moebius-morph__src__spec.rs",
+          "bytes": 5881,
+          "sha256": "b91a19804c12097fcaadb4bc88efc58aa685d8d482734470fbaeb0085ec7bdff"
+        },
+        {
+          "name": "crates__moebius-morph__src__surface.rs",
+          "bytes": 6469,
+          "sha256": "7a76f04cfd5623569efb477b2c06e00e262b36b3c85a084b818e152d20e9ccd4"
+        },
+        {
+          "name": "crates__moebius-morph__src__witness.rs",
+          "bytes": 5337,
+          "sha256": "f0c9f82cb98cec2815e368c34477875deb2b9c2c6d08a7f42edf35c9512ddc6a"
+        },
+        {
+          "name": "crates__moebius-morph__tests__composition.rs",
+          "bytes": 6380,
+          "sha256": "0e8aafc0375b71c6bde2cd590fc711de3dc5325c344b56af9be5dd35b4329917"
+        },
+        {
+          "name": "crates__moebius-morph__tests__emission.rs",
+          "bytes": 6511,
+          "sha256": "0cb15463035087866f1f593c847b96a9881ce7bfd4199df02c0ceb21c990fb02"
+        },
+        {
+          "name": "crates__moebius-morph__tests__forge.rs",
+          "bytes": 5480,
+          "sha256": "c0d59d2170dddcdaf589d97bc9ecdfd1d23a371f89b58b95fd64c2f119b54a52"
+        },
+        {
+          "name": "crates__moebius-morph__tests__runtime.rs",
+          "bytes": 10145,
+          "sha256": "973b569bf91b8abd72d1f413ca7c126f8838f7b5d6e8fc8483ea3765ab8b3f16"
+        }
+      ]
+    },
+    {
+      "phase": "release-logs-v3",
+      "purpose": "All final review, fault, build, restoration and compatibility logs/scripts through precommit, retaining prior failures",
+      "relative_path": "2026-11-23-runtime/v3/release-logs-v3.tar",
+      "bytes": 624640,
+      "sha256": "acda43a77344d0d721c44c6d60c95cbddf27de92c975bcfca52d384e246b5055",
+      "members": [
+        {
+          "name": "SOURCE_MAP.json",
+          "bytes": 7230,
+          "sha256": "77fca5fd2645b98ef5a37dd2cc8e1c072bc7e3a930ed14c0e3203f59b2dcb49a"
+        },
+        {
+          "name": "append_evidence.py",
+          "bytes": 3253,
+          "sha256": "96350ace139e521dbcf8537d04328cb77164ae569e84833533e6c46982302627"
+        },
+        {
+          "name": "archive_investigation.py",
+          "bytes": 4472,
+          "sha256": "f9a6589838ada2f578983a89593dffe5c1f2dd15cf58e0f34b94cc0b396c6900"
+        },
+        {
+          "name": "archive_runtime.py",
+          "bytes": 4776,
+          "sha256": "b019fd9f87b46244b37b9974bf5c4ba9a347a5004355e2e11499680d7af6e562"
+        },
+        {
+          "name": "atlas-check.log",
+          "bytes": 304,
+          "sha256": "df989d67a57707726981862764ddc2209beb7cc790450f8c1f2e76f86cde898f"
+        },
+        {
+          "name": "benchmark-build-v2.log",
+          "bytes": 160,
+          "sha256": "9b1577f43308f620a3964943b6defe06fbc27a452f520f036b88ee0f17dc325b"
+        },
+        {
+          "name": "clippy-final-v2.log",
+          "bytes": 276,
+          "sha256": "4c6824e48f16eb3b3475093a33e99ed01a3ca8be892514435bc4ff5adb566c8f"
+        },
+        {
+          "name": "clippy-final-v3.log",
+          "bytes": 785,
+          "sha256": "9a82931c872889f2d4f6756e990f443f4b7b8eb74769d8d712a2711ba5f9bcfa"
+        },
+        {
+          "name": "clippy-final-v4.log",
+          "bytes": 170,
+          "sha256": "573af6c6b6de413b95e6126b41e61e668d7b9a59aaefd3fc814835f6f908a54e"
+        },
+        {
+          "name": "clippy-final.log",
+          "bytes": 276,
+          "sha256": "b1f84388b7c90211e861c943959b2d2ea914ca67ea6b28160926ba1a40519f5c"
+        },
+        {
+          "name": "clippy-first.log",
+          "bytes": 2972,
+          "sha256": "5429e5c1b503cd50f5e38f0f5a3ceaeee569b166c0915b761f2c9cdbeff7455a"
+        },
+        {
+          "name": "clippy-precommit.log",
+          "bytes": 276,
+          "sha256": "9f17a812abd1bd17f5bea0adfb57b0e669832843aedb2d24d70af3cfdddbe4ed"
+        },
+        {
+          "name": "clippy-v2.log",
+          "bytes": 276,
+          "sha256": "9f17a812abd1bd17f5bea0adfb57b0e669832843aedb2d24d70af3cfdddbe4ed"
+        },
+        {
+          "name": "core-invariants.log",
+          "bytes": 1262,
+          "sha256": "3766d8117c16008189ff7d3bfa229d64eb33023af26e9eead3034c99d5e9a56b"
+        },
+        {
+          "name": "finalize_metadata.py",
+          "bytes": 5199,
+          "sha256": "e228cacf14a47c2b1be1eaacc0f8631de9dfc4f0e5f217f3684521d66ba199d4"
+        },
+        {
+          "name": "fmt-final.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "fmt-precommit.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "focused-final-v1.log",
+          "bytes": 4990,
+          "sha256": "4f94d97883f4074dfb81e031d4a74107147a61cf92af35bb0152bc5ddbb91143"
+        },
+        {
+          "name": "focused-final-v2.log",
+          "bytes": 1227,
+          "sha256": "56f275b868ebc12f500ff45740f1c176bfd76647bcea1a13d0d4048947a5b5ab"
+        },
+        {
+          "name": "focused-final-v3.log",
+          "bytes": 4965,
+          "sha256": "a80e4d877a88c2c3ff80b300325fc7a20e287c897e262e08c7c0944db806cacc"
+        },
+        {
+          "name": "focused-final-v4.log",
+          "bytes": 5037,
+          "sha256": "93a4e52b99bffe0077cd497a2845fa8a100f459856df2ffbeeb68d86955c9d10"
+        },
+        {
+          "name": "headless-run-v1.log",
+          "bytes": 415,
+          "sha256": "eb45083df30df346ace90b32a1f406eda425a9b3f180f1c4dcdf4848610f1f8a"
+        },
+        {
+          "name": "honest-green-boundary-cache.log",
+          "bytes": 450,
+          "sha256": "ef2f8eac3536fcbbfbce887786b15688a6ca415076f174dcd399cb9209b302e0"
+        },
+        {
+          "name": "honest-green-intervention-admission.log",
+          "bytes": 445,
+          "sha256": "88dc229882e8cd7239abf429fb3690335f937ef1fba7dc08efb15d2ae02cb9af"
+        },
+        {
+          "name": "honest-green-observation-authority.log",
+          "bytes": 450,
+          "sha256": "1c0f38dbe9cd2519b3e8cdaa6f0ad98725e2cfae8a19260f50633e06e92ab686"
+        },
+        {
+          "name": "honest-green-snapshot-integrity.log",
+          "bytes": 442,
+          "sha256": "bcbcd0c9be100eda77f728fc9237b6dc8d5a4b29b582546a0e208c2b62f6fdf2"
+        },
+        {
+          "name": "honest-green-tick-loss.log",
+          "bytes": 443,
+          "sha256": "7b8f5df6edf5897ecee078d831fb4fcdb4ff00a67056418b3e70228533a66f33"
+        },
+        {
+          "name": "honest-green-v2-boundary-cache.log",
+          "bytes": 450,
+          "sha256": "365b0d9445b8e45b7ad956392e6baec25f74fc50ea65009798f29ab9b6b5868c"
+        },
+        {
+          "name": "honest-green-v2-intervention-admission.log",
+          "bytes": 445,
+          "sha256": "dac2991770b6d84cb20628814be194a3dbce50a347cf28a1c0364e853c3060ae"
+        },
+        {
+          "name": "honest-green-v2-metric-detail.log",
+          "bytes": 445,
+          "sha256": "c701f7ab95044ccb9dc7f8529575d2ba82d6016539f6ab434a4f40e73f35e8fd"
+        },
+        {
+          "name": "honest-green-v2-observation-authority.log",
+          "bytes": 450,
+          "sha256": "3bee16413232e059eaaed2012ff3f8cae80aee1eeeafabeaddc6d0ac8e5f7654"
+        },
+        {
+          "name": "honest-green-v2-snapshot-integrity.log",
+          "bytes": 442,
+          "sha256": "37dcd22ea6b560e4019759fed981be20451b729e8426ebea63c49cda4dc5c188"
+        },
+        {
+          "name": "honest-green-v2-tick-loss.log",
+          "bytes": 443,
+          "sha256": "034b0bea5eb421fccd8873c8e539595a8f170132cbbd2490f42655ff750c671b"
+        },
+        {
+          "name": "honest-green-v3-boundary-cache.log",
+          "bytes": 450,
+          "sha256": "a038918609591102bdc667ce8d8d077ac89307d45c64b8650eb45efdf78f101d"
+        },
+        {
+          "name": "honest-green-v3-event-identity.log",
+          "bytes": 431,
+          "sha256": "a7bf3249bb4cfeb4d315293b2e7d6600e908843e8a7dd9ba0565a2593b0f1de4"
+        },
+        {
+          "name": "honest-green-v3-illumination-budget.log",
+          "bytes": 431,
+          "sha256": "14c8ac3451b101903c6073084d83966934e3baa9418af1a1e53f613b87a5077d"
+        },
+        {
+          "name": "honest-green-v3-intervention-admission.log",
+          "bytes": 445,
+          "sha256": "6674329f34b9776287ff628fd217b4d74d7007e557c12104617d57b0791fdb52"
+        },
+        {
+          "name": "honest-green-v3-metric-detail.log",
+          "bytes": 445,
+          "sha256": "86a52325b4acaaeddffe181088659c3b7f2d7cc07908c7d8e279123bac50eb32"
+        },
+        {
+          "name": "honest-green-v3-observation-authority.log",
+          "bytes": 450,
+          "sha256": "b3a09097abeae97c192279e82d6e715768e5a9ab80c62a1e156fa74dae11d891"
+        },
+        {
+          "name": "honest-green-v3-snapshot-integrity.log",
+          "bytes": 442,
+          "sha256": "59ba4bb8efc31dbc1a330e7413e8806a181276cdbfa0e6e4b1ff89c72d7f7027"
+        },
+        {
+          "name": "honest-green-v3-tick-atomicity.log",
+          "bytes": 436,
+          "sha256": "ad31864d86a80e605552b6fb358629d0e2c2590b1b38877d9249a709b4805a4c"
+        },
+        {
+          "name": "honest-green-v3-tick-loss.log",
+          "bytes": 443,
+          "sha256": "babf983b72291ac1571721f17efd3d2e48133957bb10b5a11d9d234f1bb6ab22"
+        },
+        {
+          "name": "honest-red-boundary-cache.log",
+          "bytes": 1023,
+          "sha256": "1cd9c1b6dbf19378d1d982f4e9bf599ae089e3c85be4144f180c54e78a12f22d"
+        },
+        {
+          "name": "honest-red-intervention-admission.log",
+          "bytes": 989,
+          "sha256": "8526230fc3ec1fd619713ff5e617eb7fe5fda288e90fc1acce98588d2994126c"
+        },
+        {
+          "name": "honest-red-observation-authority.log",
+          "bytes": 1147,
+          "sha256": "bf629989e87e45b329a639d806c42971cbd8bd678a41f2d7d74e851a043b2ed0"
+        },
+        {
+          "name": "honest-red-run.log",
+          "bytes": 2033,
+          "sha256": "d5de58f2db9746b568b44097415056babd727e01976e1d82bc5888f49826c2cd"
+        },
+        {
+          "name": "honest-red-snapshot-integrity.log",
+          "bytes": 984,
+          "sha256": "d5d73f2965497fa1bca9110f73710684cbd80fcb24c3810c16a9228a0fd509cf"
+        },
+        {
+          "name": "honest-red-summary.json",
+          "bytes": 2033,
+          "sha256": "d5de58f2db9746b568b44097415056babd727e01976e1d82bc5888f49826c2cd"
+        },
+        {
+          "name": "honest-red-tick-loss.log",
+          "bytes": 139847,
+          "sha256": "72f889ded2b918daecef7fb7839668da86adb5066ffdd7f91dfec399d13a4140"
+        },
+        {
+          "name": "honest-red-v2-boundary-cache.log",
+          "bytes": 1023,
+          "sha256": "cfccc348c70c47251dc452735668a468da948f2dd5249e9e964363aa66b448e3"
+        },
+        {
+          "name": "honest-red-v2-intervention-admission.log",
+          "bytes": 989,
+          "sha256": "29f146b51d666d992b677f4c9ad38f9fa6d4c364efac5915456cb03db7612591"
+        },
+        {
+          "name": "honest-red-v2-metric-detail.log",
+          "bytes": 1015,
+          "sha256": "838ec365e2bc9d7e9b29526f70f7c9490fb9e58b6d7e33991a773a39465d5212"
+        },
+        {
+          "name": "honest-red-v2-observation-authority.log",
+          "bytes": 1147,
+          "sha256": "cf285f7fd0383f34eac20310c154a781aba1fdf2a0c9a4d7a14b14065f0e3248"
+        },
+        {
+          "name": "honest-red-v2-run.log",
+          "bytes": 2412,
+          "sha256": "50e66b0b473bd598444108eed5148f08deb2eb3dc35d313bf81e4d88b6706915"
+        },
+        {
+          "name": "honest-red-v2-snapshot-integrity.log",
+          "bytes": 984,
+          "sha256": "639cfa93738cff32f6b9596d5f58f0dd6db7d130c7d4ac7c64ab91ce6442e855"
+        },
+        {
+          "name": "honest-red-v2-summary.json",
+          "bytes": 2412,
+          "sha256": "50e66b0b473bd598444108eed5148f08deb2eb3dc35d313bf81e4d88b6706915"
+        },
+        {
+          "name": "honest-red-v2-tick-loss.log",
+          "bytes": 139847,
+          "sha256": "7f07f5d6c5dec8808f285874e8dab6b4ca278fdf8283fac5e4b802315b4b4b6e"
+        },
+        {
+          "name": "honest-red-v3-boundary-cache.log",
+          "bytes": 1023,
+          "sha256": "faced3c5c8a00c37cf616aa1c826d5eebfdbd49ef04551fa20034d05df933ab7"
+        },
+        {
+          "name": "honest-red-v3-event-identity.log",
+          "bytes": 940,
+          "sha256": "9ca7806f9317fa9b5bc02e51198105916ff68c659fd937841de9604a22ac2686"
+        },
+        {
+          "name": "honest-red-v3-illumination-budget.log",
+          "bytes": 1566,
+          "sha256": "20b5dc6a650be4b9e5dad4707b25d261921193d38aeaf337ac333c8c6328154b"
+        },
+        {
+          "name": "honest-red-v3-intervention-admission.log",
+          "bytes": 989,
+          "sha256": "a0b58b1008a32b09dc65b651dd3e88f603ae5500463563b241f37f2b55c7e619"
+        },
+        {
+          "name": "honest-red-v3-metric-detail.log",
+          "bytes": 1015,
+          "sha256": "e95c654af369a7c360234edcceb44ffaf5484d300335ac9c935b96867b7b399e"
+        },
+        {
+          "name": "honest-red-v3-observation-authority.log",
+          "bytes": 1147,
+          "sha256": "5776465f4a685c6c6e937be73a84625bd9b5560a077500fbdb64fb9159cb8acb"
+        },
+        {
+          "name": "honest-red-v3-run.log",
+          "bytes": 3515,
+          "sha256": "c61c79032db49fef219b5e1cda511d280bb775f0491c551c4575bb89e220aa85"
+        },
+        {
+          "name": "honest-red-v3-snapshot-integrity.log",
+          "bytes": 984,
+          "sha256": "ee51363af967d26915eb25eaf09ac60df1cc06707e3ca3e33e24bbc46a1727a5"
+        },
+        {
+          "name": "honest-red-v3-summary.json",
+          "bytes": 3515,
+          "sha256": "c61c79032db49fef219b5e1cda511d280bb775f0491c551c4575bb89e220aa85"
+        },
+        {
+          "name": "honest-red-v3-tick-atomicity.log",
+          "bytes": 10292,
+          "sha256": "1018d124a5a930631047b086f45ad66fd1cf19f190979a914a3a6a0dd0ddab35"
+        },
+        {
+          "name": "honest-red-v3-tick-loss.log",
+          "bytes": 139847,
+          "sha256": "37a297b641cf0ac8322dde0b72fc4aa2a90ce9474e92fcbacff614e32a084eee"
+        },
+        {
+          "name": "honest_red.py",
+          "bytes": 3377,
+          "sha256": "9ce5979b8d2fa7b09fc994ae3bc9360050d4bff6408b8d53d3c5d86aa9945762"
+        },
+        {
+          "name": "legacy-launch-compatibility.log",
+          "bytes": 672,
+          "sha256": "d21be6a3493f10d97315368b8ea0899a562a4b8232103e021f3523c6bd204b05"
+        },
+        {
+          "name": "memory-benchmark-v2.json",
+          "bytes": 337,
+          "sha256": "34d14c271d6264cad71e276d5d3984834035253ddb4520285c2434f04c0855f9"
+        },
+        {
+          "name": "memory-benchmark-v3.json",
+          "bytes": 302,
+          "sha256": "166867f8678b3556d3fb5e4aeabb1524dc84fdcf8b24e6232d21f9d6ac72cfc7"
+        },
+        {
+          "name": "morph-focused.log",
+          "bytes": 3894,
+          "sha256": "a7c40c67080cc04476c5bd667e6e76a98c5ee955f6054c89f46a5c6e94b30db0"
+        },
+        {
+          "name": "observation-existing.log",
+          "bytes": 427,
+          "sha256": "9315f34916b0077e3423fee9ba071b6ae12d156cf25baa93331ec67c17529515"
+        },
+        {
+          "name": "release-final-v2.log",
+          "bytes": 1222,
+          "sha256": "4418695b1cd17d75aeb6c33fa86c8c089fc2c46b31c422c3d48368135623849a"
+        },
+        {
+          "name": "release-final-v3.log",
+          "bytes": 168,
+          "sha256": "bfc5b9ccb490a60fbbe8f031b9a81d45947722b481d60dce13109979261a7043"
+        },
+        {
+          "name": "release-final.log",
+          "bytes": 266,
+          "sha256": "6ef2518295f3928080d24d7ba400a8fdb641ccfa9567916611bf380a7f13effc"
+        },
+        {
+          "name": "restored-source-check-v2.log",
+          "bytes": 1137,
+          "sha256": "20f96220dd4935a36c140692f9b996ae691e8c7d74e2dd312bc922fc58c5e323"
+        },
+        {
+          "name": "runtime-benchmark-v1.log",
+          "bytes": 740,
+          "sha256": "d7398dfae01332451ce5083c20555c26260162d5b5edba475df0f6ae0bb9a8b4"
+        },
+        {
+          "name": "runtime-benchmark-v2.log",
+          "bytes": 49,
+          "sha256": "cd11a682af0bc69d34c451d6f34a701ca04253690ae234edca91ad4c6b6d1ab6"
+        },
+        {
+          "name": "runtime-benchmark-v3.log",
+          "bytes": 49,
+          "sha256": "cd11a682af0bc69d34c451d6f34a701ca04253690ae234edca91ad4c6b6d1ab6"
+        },
+        {
+          "name": "runtime-final.log",
+          "bytes": 1106,
+          "sha256": "215798d5ca86771b6d5aec1b8b75ce6b9b83165e30b75ec23c78f6452c5e44f3"
+        },
+        {
+          "name": "runtime-first.log",
+          "bytes": 1272,
+          "sha256": "b1628673d8f3df3c613d341500a307e5e270ef98b2d459cf2bd8228ac9fc089d"
+        },
+        {
+          "name": "runtime-v2.log",
+          "bytes": 1026,
+          "sha256": "31f3b59524712b11aaea69d137a4f9c2800dc7306d60e7e4b0a985dea477a6c3"
+        },
+        {
+          "name": "update_atlas.py",
+          "bytes": 7058,
+          "sha256": "f44d4a4f8a3e2fdadb6bcc9732308dc582214cc87f331035455dffcd5dcb6e35"
+        },
+        {
+          "name": "update_runtime_atlas.py",
+          "bytes": 6933,
+          "sha256": "98617e3ee8c839177ecba2692f13fb3e8a3a0a25210c1782fdf629422c617e09"
+        },
+        {
+          "name": "v2-groups.json",
+          "bytes": 201,
+          "sha256": "32f3aec7a090e75f780aea534a1b1bfe8522b38ad75b671bc969e8e5875ade23"
+        },
+        {
+          "name": "witness-build-v1.log",
+          "bytes": 266,
+          "sha256": "17fbb1ad014cccd5b816781eeb150a81ce060d49387c4e6feaeaabde78a41d8b"
+        },
+        {
+          "name": "witness-build-v2.log",
+          "bytes": 266,
+          "sha256": "81a68db5e4bb145e1d3252f2da592175d555a13e57b589727c55aa00c9071735"
+        },
+        {
+          "name": "witness-build-v4.log",
+          "bytes": 266,
+          "sha256": "134d10911a170184ad290d258b5ce00493492f33482388a1dec724edd3a78891"
+        },
+        {
+          "name": "witness-check-first.log",
+          "bytes": 276,
+          "sha256": "1cd3dc6fa07f3a7f8fbf22f352dc63dc767ae59c298a48cc936dbec255fe7b1e"
+        },
+        {
+          "name": "witness-lifetime-test.log",
+          "bytes": 597,
+          "sha256": "d7817b232232412e0bf882cca149472c950b1916cd41f98cc239122c84e74b42"
+        },
+        {
+          "name": "witness-v1.log",
+          "bytes": 223,
+          "sha256": "d285926b664f9c354d99c818d2dd9e10428be724a3a673dd9d57e36b54462415"
+        },
+        {
+          "name": "witness-v2.log",
+          "bytes": 91,
+          "sha256": "08cdae7ea43c40cd072bb0f3ec385185bd55f8246f920060ff4c37a8e3e25e46"
+        },
+        {
+          "name": "witness-v3.log",
+          "bytes": 91,
+          "sha256": "08cdae7ea43c40cd072bb0f3ec385185bd55f8246f920060ff4c37a8e3e25e46"
+        },
+        {
+          "name": "witness-v4.log",
+          "bytes": 91,
+          "sha256": "08cdae7ea43c40cd072bb0f3ec385185bd55f8246f920060ff4c37a8e3e25e46"
+        },
+        {
+          "name": "zenith-clone.log",
+          "bytes": 72,
+          "sha256": "8013c03cc871c95c55dc5ee6eb3be104aa6e0e695c744c3db6eae697aba38db3"
+        }
+      ]
+    },
+    {
+      "phase": "witness-v4",
+      "purpose": "Final first-frame placement and exact headless/native120tick witness, all captures/raw reports",
+      "relative_path": "2026-11-23-runtime/v3/witness-v4.tar",
+      "bytes": 1751040,
+      "sha256": "a5c139577c617116f942e43260954b3b18c6fd2d26c93c624420548d1af00ce5",
+      "members": [
+        {
+          "name": "frame_030.png",
+          "bytes": 208339,
+          "sha256": "318943b0e25fe54931a1642a71f75a2e9b7cb8d3a76944b8488a95ef97f3f639"
+        },
+        {
+          "name": "frame_065.png",
+          "bytes": 132156,
+          "sha256": "e26476698148157fa408ccd7bda173191c2d7efcb881f172d8f4dd4943039690"
+        },
+        {
+          "name": "frame_090.png",
+          "bytes": 207771,
+          "sha256": "35a197f99deaae0f333365f8f2328299dc298fdcc32b73d5019cf9169e643b1c"
+        },
+        {
+          "name": "frame_130.png",
+          "bytes": 160973,
+          "sha256": "1122ee6edb29515fd5dd22ccf796be3bf8bd617213c4e782669819210154082c"
+        },
+        {
+          "name": "frame_170.png",
+          "bytes": 201022,
+          "sha256": "370944067770d1d4892a9c5c99b8bf7bba174fdccee9ac81faebfb11598119d0"
+        },
+        {
+          "name": "frame_210.png",
+          "bytes": 132228,
+          "sha256": "39bd2a724880d95a9101be061a4a735d14cbf2f2baae25586b3154a3b1c14341"
+        },
+        {
+          "name": "render-report.json",
+          "bytes": 71594,
+          "sha256": "a6341dc4fb737bbd9340a3f174b51423ccf8a9a82dc52ce8785e654027a4f103"
+        },
+        {
+          "name": "world-final.json",
+          "bytes": 629092,
+          "sha256": "23d9b1dfcacb8085df89bd674b233221280ae9e8ceb82c0b09de75cd1fb22070"
+        }
+      ]
+    }
+  ]
+}

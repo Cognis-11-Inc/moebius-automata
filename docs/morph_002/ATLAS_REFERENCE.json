@@ -29,8 +29,8 @@
     },
     {
       "path": "01_CANON/INDEX.md",
-      "bytes": 585,
-      "sha256": "0f7f05d4b896a0613e3e7a51535f6312eb17e44a08060d685897a59bb6224dfd"
+      "bytes": 646,
+      "sha256": "6ee32247e9548ee967c0c6081d54a0503ac8897f9637cd0cfa48cc16271d8bc3"
     },
     {
       "path": "01_CANON/MOEBIUS_SHIP.md",
@@ -41,6 +41,11 @@
       "path": "01_CANON/MOEBIUS_VESSEL.md",
       "bytes": 928,
       "sha256": "06ac8d797197c6e37b01c3343db8076ba0b2f1b6cf2d620f542bdfa0ad633ea2"
+    },
+    {
+      "path": "01_CANON/SHIP_DIMENSIONS.md",
+      "bytes": 1175,
+      "sha256": "174e148f44375c170f393a2ca577b7fea3daf77fb4bd3e860d62a45281ad195f"
     },
     {
       "path": "02_ANATOMY/COMPONENT_LIBRARY.md",
@@ -84,8 +89,8 @@
     },
     {
       "path": "07_EXPERIMENTS/INDEX.md",
-      "bytes": 699,
-      "sha256": "4aba8f3336b9665d3b632f421e5a5de130740c404a716f89bbcba91458cf5fbe"
+      "bytes": 760,
+      "sha256": "509510fe285289f7fce09659625af4705966818c0730001408e58fb80a8ff613"
     },
     {
       "path": "07_EXPERIMENTS/MORPH_001.md",
@@ -103,14 +108,44 @@
       "sha256": "aa272208df1826c18d6551ce4ebe655e4096382a3ac44508066ac7b99b5f3850"
     },
     {
+      "path": "07_EXPERIMENTS/MORPH_004.md",
+      "bytes": 1247,
+      "sha256": "e89d3b9c8490b932e2a5d8b5febfd75092a0b75ffb9ae299bdaf5eb1178079c7"
+    },
+    {
       "path": "08_ARCHITECTURE/ANATOMY_SPEC_V2.md",
       "bytes": 1351,
       "sha256": "811e3009c84ac1267c72914f501331de8eb52affb6430f67e9782a01a7129d4d"
     },
     {
+      "path": "08_ARCHITECTURE/HYBRID_STACK.md",
+      "bytes": 1113,
+      "sha256": "e58b9e87d5f7da29e56d9b66ecebb0d4c5ddb97e783b9682588537eb51902741"
+    },
+    {
       "path": "08_ARCHITECTURE/INDEX.md",
-      "bytes": 471,
-      "sha256": "47cdc3748d85ec0ce534ef5030fbdceaed1851133253da4ba27c9a67db1501a2"
+      "bytes": 697,
+      "sha256": "6e8e22a3c94ed859fa2a5c80ce9485c86f0b5518ecda5c69e236c2522bdc1da8"
+    },
+    {
+      "path": "08_ARCHITECTURE/INTERVENTION_BOUNDARY.md",
+      "bytes": 1221,
+      "sha256": "bf5f7c37269ab5be72df375bdb034db6703f5f2034bf9cf36266225a9ce598b0"
+    },
+    {
+      "path": "08_ARCHITECTURE/LIGHT_PORT_BOUNDARY.md",
+      "bytes": 1171,
+      "sha256": "9c020e9d4bc776630f174b44d8e692f2ddb59e26aff770b3c19ee08d085465d1"
+    },
+    {
+      "path": "08_ARCHITECTURE/WITNESS_SPHERE.md",
+      "bytes": 1156,
+      "sha256": "d67c6d8330759fade766a5393b88366447d9103b9ffc5b3a9989bdcf10ea8160"
+    },
+    {
+      "path": "08_ARCHITECTURE/WORLD_AUTHORITY.md",
+      "bytes": 1220,
+      "sha256": "14bc6a1cc02198201333725e9cb6259cb324c2e09417c6a8bec834e76f3fce96"
     },
     {
       "path": "09_EVIDENCE/EVIDENCE_POLICY.md",
@@ -119,8 +154,18 @@
     },
     {
       "path": "09_EVIDENCE/INDEX.md",
-      "bytes": 467,
-      "sha256": "3d80b313bf05797eb1661908404103136721080c49ed0bfdd61b8d98c51abc0c"
+      "bytes": 567,
+      "sha256": "1c500fe307f45aa50a9d132e4fef3b92cd4699e7b99ed143912ef8e992475368"
+    },
+    {
+      "path": "09_EVIDENCE/MORPH_004_DONORS.md",
+      "bytes": 1352,
+      "sha256": "a20fdf31e7687f7ee9cb694b511879ebe551cffdaaf3a87f6b69615c4dfeb203"
+    },
+    {
+      "path": "09_EVIDENCE/MORPH_004_LIMITS.md",
+      "bytes": 1280,
+      "sha256": "ebb6e928afcbe0920fe72026ab1f8f39efcb73b4a026cd2cc53adf3011277214"
     },
     {
       "path": "90_INBOX/INDEX.md",
@@ -163,5 +208,6 @@
       "sha256": "d6aa2ec5611cb9712c2f89d7769f00a53b4eca8cb0c2c4f3ecaf2957782b5963"
     }
   ],
-  "snapshot_note": "Rehashed after the clean MORPH-003 suite on a8cb705. Six edited notes cite that implementation commit. Ship design canon is unchanged."
+  "snapshot_note": "Rehashed after the clean MORPH-003 suite on a8cb705. Six edited notes cite that implementation commit. Ship design canon is unchanged.",
+  "latest_update": "MORPH-004 option2 runtime/neutrality implementation; focused gates pass; clean-commit full suite pending. Independent immutable Mermogon archive preserves all versions."
 }

@@ -1,0 +1,236 @@
+{
+  "benchmark": {
+    "base_revision": "20f0feb",
+    "delayed_no_reader_worker": {
+      "elapsed_including_25ms_sleep_ns": 27132156,
+      "exact_final_state_equal": true,
+      "ticks": 120
+    },
+    "failures": [],
+    "fixture_semantics": "shared fixed rest anatomy/nozzle bindings, prescribed drift, exposure sampling, one conserved emission per nozzle per tick, full integer material integration; no physiology, controllers, learning, propulsion or mesh generation per tick",
+    "gpu": "No GPU or renderer in this executable",
+    "memory": "Use /usr/bin/time -v for process peak RSS; JSON size is storage cost, not resident heap size",
+    "numeric_tolerance": "zero for same-build serialized state and digests; initial f32 anatomy compilation not cross-platform certified",
+    "populations": [
+      {
+        "all_per_tick_digests_equal": true,
+        "independent_replay_with_digests_ns": 7116227,
+        "modes": [
+          {
+            "boundary_cache_ns": 0,
+            "entered": 0,
+            "exited": 0,
+            "final_digest": "325be551b852eb8be9d3b62ac623871fb77b2d38dc82fefcdb7061a6c0cf486f",
+            "material_residual": 0,
+            "mode": "headless",
+            "observation_ns": 0,
+            "organism_ticks_per_second": 2012857.1248852042,
+            "parcels": 1600,
+            "restore_validation_ns": 4374358,
+            "serialization_ns": 865949,
+            "simulation_ns": 794890,
+            "simulation_ticks_per_second": 20128.571248852044,
+            "snapshot_construction_ns": 33210,
+            "snapshot_serialized_bytes": 485926
+          },
+          {
+            "boundary_cache_ns": 24910,
+            "entered": 6,
+            "exited": 0,
+            "final_digest": "325be551b852eb8be9d3b62ac623871fb77b2d38dc82fefcdb7061a6c0cf486f",
+            "material_residual": 0,
+            "mode": "stationary",
+            "observation_ns": 305100,
+            "organism_ticks_per_second": 1931783.8816782373,
+            "parcels": 1600,
+            "restore_validation_ns": 3962308,
+            "serialization_ns": 372490,
+            "simulation_ns": 828250,
+            "simulation_ticks_per_second": 19317.838816782372,
+            "snapshot_construction_ns": 18910,
+            "snapshot_serialized_bytes": 485926
+          },
+          {
+            "boundary_cache_ns": 8180,
+            "entered": 28,
+            "exited": 28,
+            "final_digest": "325be551b852eb8be9d3b62ac623871fb77b2d38dc82fefcdb7061a6c0cf486f",
+            "material_residual": 0,
+            "mode": "moving",
+            "observation_ns": 295510,
+            "organism_ticks_per_second": 2043086.1326805672,
+            "parcels": 1600,
+            "restore_validation_ns": 3967758,
+            "serialization_ns": 409030,
+            "simulation_ns": 783129,
+            "simulation_ticks_per_second": 20430.861326805672,
+            "snapshot_construction_ns": 18290,
+            "snapshot_serialized_bytes": 485926
+          }
+        ],
+        "population": 100,
+        "status": "PASS",
+        "ticks_per_mode": 16
+      },
+      {
+        "all_per_tick_digests_equal": true,
+        "independent_replay_with_digests_ns": 62259298,
+        "modes": [
+          {
+            "boundary_cache_ns": 0,
+            "entered": 0,
+            "exited": 0,
+            "final_digest": "ee3610fa71408549ea22e694a63cbcaf25a10ce17529939ca3bb72886dcdc8bc",
+            "material_residual": 0,
+            "mode": "headless",
+            "observation_ns": 0,
+            "organism_ticks_per_second": 1792033.4035026412,
+            "parcels": 16000,
+            "restore_validation_ns": 20830009,
+            "serialization_ns": 3688128,
+            "simulation_ns": 8928405,
+            "simulation_ticks_per_second": 1792.0334035026412,
+            "snapshot_construction_ns": 372470,
+            "snapshot_serialized_bytes": 4896870
+          },
+          {
+            "boundary_cache_ns": 105870,
+            "entered": 33,
+            "exited": 0,
+            "final_digest": "ee3610fa71408549ea22e694a63cbcaf25a10ce17529939ca3bb72886dcdc8bc",
+            "material_residual": 0,
+            "mode": "stationary",
+            "observation_ns": 3040227,
+            "organism_ticks_per_second": 1861688.2021327966,
+            "parcels": 16000,
+            "restore_validation_ns": 20589900,
+            "serialization_ns": 3747438,
+            "simulation_ns": 8594350,
+            "simulation_ticks_per_second": 1861.6882021327965,
+            "snapshot_construction_ns": 632039,
+            "snapshot_serialized_bytes": 4896870
+          },
+          {
+            "boundary_cache_ns": 46680,
+            "entered": 119,
+            "exited": 119,
+            "final_digest": "ee3610fa71408549ea22e694a63cbcaf25a10ce17529939ca3bb72886dcdc8bc",
+            "material_residual": 0,
+            "mode": "moving",
+            "observation_ns": 3007286,
+            "organism_ticks_per_second": 1646133.5512265444,
+            "parcels": 16000,
+            "restore_validation_ns": 20659170,
+            "serialization_ns": 3874777,
+            "simulation_ns": 9719746,
+            "simulation_ticks_per_second": 1646.1335512265443,
+            "snapshot_construction_ns": 493600,
+            "snapshot_serialized_bytes": 4896870
+          }
+        ],
+        "population": 1000,
+        "status": "PASS",
+        "ticks_per_mode": 16
+      },
+      {
+        "all_per_tick_digests_equal": true,
+        "independent_replay_with_digests_ns": 605152131,
+        "modes": [
+          {
+            "boundary_cache_ns": 0,
+            "entered": 0,
+            "exited": 0,
+            "final_digest": "e86b541ebe1ca2d1896a4d6598df7561d062b7f888a5fea2a20aa7897fba20a1",
+            "material_residual": 0,
+            "mode": "headless",
+            "observation_ns": 0,
+            "organism_ticks_per_second": 910057.162282963,
+            "parcels": 160000,
+            "restore_validation_ns": 173171351,
+            "serialization_ns": 40999519,
+            "simulation_ns": 175813132,
+            "simulation_ticks_per_second": 91.00571622829631,
+            "snapshot_construction_ns": 6013437,
+            "snapshot_serialized_bytes": 49482155
+          },
+          {
+            "boundary_cache_ns": 258190,
+            "entered": 33,
+            "exited": 0,
+            "final_digest": "e86b541ebe1ca2d1896a4d6598df7561d062b7f888a5fea2a20aa7897fba20a1",
+            "material_residual": 0,
+            "mode": "stationary",
+            "observation_ns": 33875822,
+            "organism_ticks_per_second": 1017495.5109846876,
+            "parcels": 160000,
+            "restore_validation_ns": 174255910,
+            "serialization_ns": 43454938,
+            "simulation_ns": 157248851,
+            "simulation_ticks_per_second": 101.74955109846876,
+            "snapshot_construction_ns": 5650677,
+            "snapshot_serialized_bytes": 49482155
+          },
+          {
+            "boundary_cache_ns": 68120,
+            "entered": 119,
+            "exited": 119,
+            "final_digest": "e86b541ebe1ca2d1896a4d6598df7561d062b7f888a5fea2a20aa7897fba20a1",
+            "material_residual": 0,
+            "mode": "moving",
+            "observation_ns": 34000206,
+            "organism_ticks_per_second": 999661.9580609944,
+            "parcels": 160000,
+            "restore_validation_ns": 174065321,
+            "serialization_ns": 40189550,
+            "simulation_ns": 160054105,
+            "simulation_ticks_per_second": 99.96619580609945,
+            "snapshot_construction_ns": 5117657,
+            "snapshot_serialized_bytes": 49482155
+          }
+        ],
+        "population": 10000,
+        "status": "PASS",
+        "ticks_per_mode": 16
+      }
+    ],
+    "status": "PASS"
+  },
+  "process_memory": {
+    "command": [
+      "target/release/examples/morph_004_bench",
+      "/home/cognis/.cache/moebius-automata/morph-004/runtime-benchmark-v3"
+    ],
+    "exit_code": 0,
+    "peak_child_rss_kib": 311432,
+    "scope": "Entire benchmark child incl. transient copies/serialization; Linux KiB, not per-organism heap"
+  },
+  "rendered_witness": {
+    "captured": 6,
+    "elapsed_ns": 4014435701,
+    "final_digest": "4f34d8daad96fd1fc84860a53168ed0e6580a68fae095bbdf3ed7bf4b3154552",
+    "frames": 240,
+    "gpu_timestamp_cost": "NOT_MEASURED: frame intervals are CPU/end-to-end, not isolated GPU cost",
+    "headless_final_state_exactly_equal": true,
+    "observation_and_mesh_cpu_ns": 174623857,
+    "semantics": "read-only fixed-rest anatomy and material points; no floor, physiology or camera-dependent simulation",
+    "status": "PASS",
+    "ticks": 120,
+    "volumetrics": "NOT_IMPLEMENTED; optional prototype deferred",
+    "total_entries": 11,
+    "total_exits": 9,
+    "ticks_seen": [
+      19,
+      120
+    ],
+    "median_observation_and_mesh_cpu_ms": 0.561315,
+    "median_frame_interval_ms": 16.681632,
+    "capture_inspection": "frame030 visible organisms/material; frame065 empty witness with continuing world tick; remaining captures preserve repeated entry/exit. No ground plane."
+  },
+  "limitations": [
+    "16 simulation ticks per population/mode, one measured run, no statistical confidence intervals",
+    "Full-state cloning, retained events and linear witness scans are present; no spatial index or bounded long-horizon memory demonstrated",
+    "Only one shared fixed-rest anatomical definition used in performance fixture; no per-tick detailed meshes, metabolism, controllers or propulsion",
+    "Vsync-limited frame intervals are not isolated GPU timings; no volumetric prototype implemented",
+    "100000 prototype instance budget not exercised; maximum demonstrated10000"
+  ]
+}

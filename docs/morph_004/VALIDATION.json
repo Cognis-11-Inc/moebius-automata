@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "decision": "Operator option2; docs/morph_004/CONVERGENCE_DECISION.json",
+  "base_revision": "20f0febb0cdc8e613ae36dfc6ed1abe529994d52",
+  "focused_checks": [
+    {
+      "command": "cargo test -p moebius-morph --test runtime --offline",
+      "exit_code": 0,
+      "passed": 9,
+      "log": "runtime-final.log"
+    },
+    {
+      "command": "cargo test -p moebius-morph -p moebius-morph-lab --offline -- --test-threads=8",
+      "exit_code": 0,
+      "passed": 39,
+      "log": "focused-final-v4.log"
+    }
+  ],
+  "static": "workspace/all-target strict Clippy and fmt passed offline",
+  "full_workspace_suite": "PENDING authorized clean local commit",
+  "honest_red": "HONEST_RED.json; nine red/green cases",
+  "observation_comparison": "Exact per-tick A/B/C and repeat digests at100/1000/10000, plus exact rendered/headless final state120ticks",
+  "preservation": "All baseline nursery/core, MaterialBook source, morphology compiler and original anatomy tests unchanged; exact hashes checked from baseline identity",
+  "failures_preserved": [
+    "Initial native witness finalization panic on App resource lifetime; fixed outside ownership and tested",
+    "Initial unused imports/Clippy style errors",
+    "HUD format-argument compiler failure, corrected",
+    "All deliberate red cases"
+  ],
+  "gpu_performance": "NOT_MEASURED separately; CPU witness/frame intervals measured, no volumetric prototype",
+  "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)"
+}

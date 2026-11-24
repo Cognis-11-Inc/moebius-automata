@@ -228,3 +228,32 @@ Default save path: `runs/morph_002/organism.json`.
 Read [MORPH-002 results](MORPH_002_RESULTS.md) and [MORPH-001 results](MORPH_001_RESULTS.md).
 MORPH-001's audit, donor assessment, and architecture notes remain the baseline
 record. A portable version1 example is `experiments/morph_001_worm.json`.
+
+## MORPH-004 — the unobserved world
+
+The canonical ship runtime now extends the MORPH-003 free-space substrate,
+following the operator's option2 ruling. The lattice `moebius-core::World`
+remains a separate preserved nursery experiment. See
+[MORPH_004_ARCHITECTURE.md](MORPH_004_ARCHITECTURE.md) and
+[MORPH_004_RESULTS.md](MORPH_004_RESULTS.md) for authority, evidence and limits.
+
+```sh
+cargo run --release -p moebius-morph --example ship_run --offline -- NEW_OUTPUT 120
+cargo run --release -p moebius-morph-lab --bin moebius-world-witness --offline -- --ticks 3600
+cargo run --release -p moebius-morph --example morph_004_bench --offline -- NEW_BENCHMARK
+```
+
+The headless runner accepts optional initial-snapshot and intervention JSON
+paths after the tick count. It records initial/final state and replay inputs.
+The witness uses WASD/QE to move its inspection sphere and `-`/`=` for radius.
+Its worker advances the explicitly bounded run independently of the window;
+closing the window finishes the requested tick target. The default3600 ticks
+is about60 simulated seconds. `--record NEW_DIRECTORY` runs repeated boundary
+crossings, saves six rendered captures and compares the exact final state to
+headless execution. Material persists beyond observation. A completed finite
+run stays at its final state; this is not a perpetual background service.
+
+Benchmark organisms prescribe drift, environmental exposure, emission and
+conserved material transport. They do not compute metabolism, locomotion,
+intelligence or ecological interactions. Geometry is generated only for visible
+instances. No volumetric solver, floor or live Lisp/Python authority is added.

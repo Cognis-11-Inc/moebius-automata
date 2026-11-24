@@ -1,0 +1,214 @@
+{
+  "date_local": "2026-11-23",
+  "search_intent": "Identify primary evidence for independent simulation/visualization, persistent offscreen history and approximation hazards; inform an authority decision, not validate local runtime.",
+  "queries_in_order": [
+    "site.factorio.com headless deterministic simulation rendering",
+    "Zenith simulation visualization authoritative simulation engine",
+    "site.egosoft.com high attention low attention simulation combat",
+    "site.minecraft.net simulation distance render distance mobs",
+    "site.factorio.com/blog deterministic simulation headless",
+    "\"Zenith\" \"simulation\" \"visualization\"",
+    "site.bay12games.com \"world\" \"history\" development",
+    "site.factorio.com/blog/post/fff \"deterministic\" \"rendering\"",
+    "site.forum.egosoft.com \"low attention\" \"collision\" \"CBJ\"",
+    "site.minecraft.net \"21w38a\" \"simulation\"",
+    "\"Zenith\" \"simulation engine\" visualization",
+    "site:forum.egosoft.com \"low attention\" \"CBJ\"",
+    "site:forum.egosoft.com \"low attention\" \"damage\"",
+    "\"Zenith\" \"headless\" \"simulation\"",
+    "site:wiki.egosoft.com \"attention\"",
+    "site:forum.egosoft.com \"CBJ\" \"low-attention\"",
+    "site:forum.egosoft.com \"linolafett\" \"attention\""
+  ],
+  "sources": [
+    {
+      "title": "Friday Facts70 - The smooth FPS",
+      "author": "Kovarex",
+      "date": "2015-01-23",
+      "url": "https://www.factorio.com/blog/post/fff-70",
+      "access": "full developer article",
+      "claim": "Rendering can skip while simulation updates continue; deterministic scripting needs stable iteration.",
+      "limitation": "Historical description, no proprietary source/runtime inspected."
+    },
+    {
+      "title": "Friday Facts415 - Fix, Improve, Optimize",
+      "author": "Rseding",
+      "date": "2024-06-14",
+      "url": "https://www.factorio.com/blog/post/fff-415",
+      "access": "full developer article",
+      "claim": "CPU-count-dependent threading determinism defect; explicit server auto-pause policy.",
+      "limitation": "No MŒBIUS transfer validated."
+    },
+    {
+      "title": "Download Factorio",
+      "author": "Wube Software",
+      "date": null,
+      "url": "https://www.factorio.com/download",
+      "access": "full official page",
+      "claim": "Linux headless server available without graphics/audio."
+    },
+    {
+      "title": "Zenith",
+      "author": "Zenith-3D-Team",
+      "date": null,
+      "url": "https://github.com/Zenith-3D-Team/Zenith",
+      "access": "pinned selected source files",
+      "commit": "7779697b7e5f013f4a178b9b40065469f85a26b2",
+      "claim": "Separate visualizer receives chunk snapshots/deltas from authoritative Factorio.",
+      "source_files": [
+        {
+          "path": "README.md",
+          "bytes": 11171,
+          "sha256": "7107c25c3a9014a36befe07ec021b840be3ed17cebdb5e9c7e1a824813ef1ae8"
+        },
+        {
+          "path": "ARCHITECTURE.md",
+          "bytes": 15219,
+          "sha256": "e904d09c7940eff8c0cb8565435abf825024d87aeee865b0400468634eecf59d"
+        },
+        {
+          "path": "LICENSE",
+          "bytes": 35149,
+          "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+        },
+        {
+          "path": "CREDITS.md",
+          "bytes": 3723,
+          "sha256": "511badadd2b6c761f89c10e97188b44bfd21369b108edd73760221f673741e4c"
+        },
+        {
+          "path": "docs/PROTOCOL.md",
+          "bytes": 196479,
+          "sha256": "ea51c36d38b6cb02d21213889748830535b06c7aecabd08c59c7571a556979dd"
+        },
+        {
+          "path": "mod/factorio-3d-bridge/control.lua",
+          "bytes": 10583,
+          "sha256": "7ca5a0aee0c676c3897a65ac762864a9696144e38f588b91a1cba5b41cb05298"
+        },
+        {
+          "path": "mod/factorio-3d-bridge/scripts/world.lua",
+          "bytes": 60358,
+          "sha256": "59e3064b51db3d70c0fecebbe1cd1350a9b1cdb182915861b95f27d07149465e"
+        },
+        {
+          "path": "mod/factorio-3d-bridge/scripts/transport.lua",
+          "bytes": 22004,
+          "sha256": "a292dfb5985db3ddb96e5d4ccaf20ba860c7c1124af8bdd2247c2cddec654a54"
+        },
+        {
+          "path": "client/scripts/net/bridge.gd",
+          "bytes": 53154,
+          "sha256": "64c27f371a794b90e444800e205ab0969e73c760a082404d09d04b70648a8fe8"
+        }
+      ],
+      "license": "GPLv3 root LICENSE; no code or assets copied into implementation",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "title": "Dwarf Fortress Features",
+      "author": "Bay12 Games",
+      "date": null,
+      "url": "https://bay12games.com/dwarves/features.html",
+      "access": "full developer page",
+      "claim": "Persistent world/history across roles/games.",
+      "limitation": "Does not establish continuous equal-detail distant dynamics."
+    },
+    {
+      "title": "Dwarf Fortress Talk13 transcript",
+      "author": "Tarn Adams and hosts; transcript mallocks",
+      "date": null,
+      "url": "https://bay12games.com/media/df_talk_13_transcript.html",
+      "access": "transcript inspected",
+      "claim": "City state/history reconciliation discussion.",
+      "limitation": "Includes future plans; not current implementation certification."
+    },
+    {
+      "title": "Combat - X Rebirth",
+      "author": "Egosoft-hosted community guide; last modified Daniel Turner",
+      "date": "2023-11-02",
+      "url": "https://wiki.egosoft.com/X%20Rebirth%20Wiki/XR%20Manual%20and%20Guides/Player%20guides%20%28spoiler%20warning%29/Combat/?xpage=print",
+      "access": "full hosted manual page",
+      "claim": "Detailed high-attention combat and abstract low-attention combat differ in specific mechanisms.",
+      "limitation": "Community documentation; no proprietary source or outcome statistics; not all X-series versions."
+    },
+    {
+      "title": "Minecraft Snapshot21w38a",
+      "author": "Adrian Östergård",
+      "date": "2021-09-23",
+      "url": "https://www.minecraft.net/en-us/article/minecraft-snapshot-21w38a",
+      "access": "full official release notes",
+      "claim": "Entities outside simulation distance not updated; separate render distance.",
+      "transfer": "Reject distance-based simulation suspension."
+    }
+  ],
+  "disambiguation_only": [
+    {
+      "url": "https://docs.tyflow.com/faq/zenith/",
+      "access": "page opened",
+      "ruling": "Unrelated CUDA fluid engine; rejected as intended Zenith reference."
+    },
+    {
+      "url": "https://libraries.horizon36596.org/zenith/simulation/",
+      "access": "search excerpt",
+      "ruling": "Unrelated robotics planning system; not adopted."
+    },
+    {
+      "url": "https://devpost.com/software/zenith-1c5rfk",
+      "access": "search metadata only",
+      "ruling": "Unrelated launch visualization; not adopted."
+    }
+  ],
+  "knowledge_transfer": {
+    "reuse_proposed": [
+      "single state owner",
+      "read-only snapshots and stable IDs",
+      "bounded observation work",
+      "explicit intervention admission",
+      "persistent causal history"
+    ],
+    "reject": [
+      "observer-triggered world pause",
+      "distance-suspended existence",
+      "unvalidated distant causal approximations",
+      "mandatory speculative IPC"
+    ],
+    "authored_assumptions": [
+      "proposed hierarchical coordinates and immutable observation contract are design proposals only"
+    ]
+  },
+  "implementation_trace": {
+    "affected_reports": [
+      "MORPH_004_DONOR_ASSESSMENT.md",
+      "MORPH_004_ARCHITECTURE.md",
+      "MORPH_004_RESULTS.md"
+    ],
+    "runtime_source_changed": false,
+    "new_experiments": "NOT_RUN; convergence gate",
+    "existing_tests": "Recorded separately in docs/morph_004/VALIDATION.json"
+  },
+  "evidence_status": {
+    "CONSULTED": true,
+    "IMPLEMENTED": false,
+    "VALIDATED": false
+  },
+  "chronology": "Research announced before first search. Initial ambiguous Zenith results preserved as disambiguation, then actual Factorio visualizer pinned and inspected. No papers consulted, code imported, donor binary run or scientific equivalence inferred.",
+  "subsequent_implementation": {
+    "after_operator_ruling": "option2",
+    "IMPLEMENTED": [
+      "single free-space owner delegates unchanged MaterialBook",
+      "pure snapshot witness selection, separate presentation caches",
+      "nonblocking latest snapshot publication on independent worker",
+      "typed admitted/applied intervention events"
+    ],
+    "VALIDATED": "Local tests/benchmark/render comparisons only; donor binaries not run, no scientific or ecological equivalence inferred",
+    "source_symbols": [
+      "runtime::ShipRuntime",
+      "runtime::WorldSnapshot",
+      "witness::WitnessSphere",
+      "witness::Worker",
+      "moebius-world-witness binary"
+    ],
+    "evidence": "docs/morph_004/VALIDATION.json,PERFORMANCE.json,HONEST_RED.json; final results report"
+  }
+}

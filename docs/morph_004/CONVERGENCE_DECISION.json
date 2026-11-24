@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "date_local": "2026-11-23",
+  "origin": "Operator conversation, following MORPH-004 archaeology alternatives",
+  "operator_ruling": "option2: promote the MORPH-003 free-space substrate into the canonical ship runtime; preserve lattice World as separate nursery experiment",
+  "authorization": "MORPH-004 implementation and in-scope local commits; no push or MORPH-005",
+  "implementation_owner": "moebius_morph::runtime::ShipRuntime",
+  "material_transition_owner": "Unmodified moebius_morph::emission::MaterialBook, now delegated substate on the single ship timeline",
+  "preserved_experiment": "moebius-core::World, source/laws/snapshot formats unchanged",
+  "excluded_integration": "No nursery stock/unit/physiology adapter; no Lisp/Python IPC",
+  "authored_metric_mapping": "1 anatomical unit=1metre,1e6 micro-units/metre; region1000metres; explicit supported envelope +/-1e15micro-units"
+}

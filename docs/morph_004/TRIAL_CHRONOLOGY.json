@@ -1,0 +1,43 @@
+{
+  "preserved_trials": [
+    {
+      "trial": "runtime-benchmark-v1",
+      "status": "SUPERSEDED_PROTOCOL_DEFECT",
+      "reason": "Stationary center was fixed but radius varied; not the required fixed stationary-sphere protocol. Corrected before v2/v3; final claims use v3 only."
+    },
+    {
+      "trial": "runtime-benchmark-v2",
+      "status": "PASS_PRIOR_SOURCE",
+      "reason": "Corrected stationary sphere; later restoration/history guards added. Final performance repeated as v3."
+    },
+    {
+      "trial": "runtime-benchmark-v3",
+      "status": "PASS_FINAL_SOURCE",
+      "reason": "Corrected protocol, final runtime source;16ticks x3modes x3populations, exact history replay."
+    },
+    {
+      "trial": "witness-v1",
+      "status": "FAIL",
+      "command": "target/release/moebius-world-witness --ticks120 --population16 --record NEW_DIRECTORY (actual flags supplied with separate values)",
+      "failure": "After240frames App::run consumed resources; finalization unwrap panic. Six actual PNGs retained.",
+      "provenance_limitation": "Exact original failing binary/source digest was not captured before repair; do not claim its full source image is archived. Command/panic/captures are preserved; repair has explicit app-lifetime regression."
+    },
+    {
+      "trial": "witness-v2",
+      "status": "PASS_PRIOR_SOURCE",
+      "reason": "Fixed lifetime; actual6captures/final snapshot, reference comparison. Final runtime guard additions repeated as v3."
+    },
+    {
+      "trial": "witness-v3",
+      "status": "PASS_FINAL_SOURCE",
+      "reason": "240frames,6captures,120authoritative ticks, exact general-headless final digest."
+    },
+    {
+      "trial": "witness-v4",
+      "status": "PASS_FINAL_PRESENTATION",
+      "reason": "Entry meshes receive their existing world position immediately, including the first visible frame. Runtime/digest unchanged;120ticks,6captures and exact headless equality."
+    }
+  ],
+  "static_failures": "Unused import/Clippy diagnostics and one missing HUD format argument compile failure preserved in raw logs; fixed before final checks.",
+  "honest_red": "All deliberate fault runs and all restored passes retained; none is relabelled ordinary PASS."
+}

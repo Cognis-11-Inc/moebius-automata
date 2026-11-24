@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "base_revision": "20f0febb0cdc8e613ae36dfc6ed1abe529994d52",
+  "archived_overlay_members_verified": 29,
+  "restored_checkout": "/home/cognis/.cache/moebius-automata/morph-004/restored-source-check-v3",
+  "commands": [
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "moebius-morph",
+        "--test",
+        "runtime",
+        "--offline",
+        "--manifest-path",
+        "/home/cognis/.cache/moebius-automata/morph-004/restored-source-check-v3/Cargo.toml"
+      ],
+      "exit_code": 0,
+      "log": "restored-final-moebius-morph.log"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "moebius-morph-lab",
+        "--bin",
+        "moebius-world-witness",
+        "--offline",
+        "--manifest-path",
+        "/home/cognis/.cache/moebius-automata/morph-004/restored-source-check-v3/Cargo.toml"
+      ],
+      "exit_code": 0,
+      "log": "restored-final-moebius-morph-lab.log"
+    }
+  ],
+  "tests": 10,
+  "dependency_environment": "Existing offline cache/target reused; not fresh-machine portability"
+}

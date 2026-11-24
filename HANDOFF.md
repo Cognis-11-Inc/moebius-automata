@@ -1,3 +1,119 @@
+# Current checkpoint — MORPH-004 option2 implemented (2026-11-23T20:10:45-05:00)
+
+Agent: Codex. Status: PARTIAL pending authorized clean-commit full suite.
+Operator explicitly chose option2 after the gate below: promote the M3 substrate
+into canonical free-space ship runtime; retain lattice World as separate nursery
+experiment. Ownership conflict is resolved. User's004 directive authorizes local
+in-scope commits, no push. Repo main base20f0febb0cdc8e613ae36dfc6ed1abe529994d52;
+worktree dirty for implementation/reports/Atlas metadata and prior continuity.
+No push performed. Preserve all checkpoints below as historical.
+
+Read MORPH_004_RESULTS.md and MORPH_004_ARCHITECTURE.md, plus
+CONVERGENCE_DECISION.json. New moebius-morph runtime.rs ShipRuntime owns one
+WorldSnapshot/timeline and delegates unchanged MaterialBook transitions.
+WitnessSphere/PresentationCache/Worker in witness.rs observe immutable state;
+new moebius-world-witness binary owns no biology. ship_run general headless
+runner and morph_004_bench preserve inputs, states, causal events and replay.
+Legacy nursery, MaterialBook, anatomy compiler source unchanged; lab Cargo
+sets default-run to preserve old launch after the new binary was added.
+
+Focused runtime9 tests plus native app-lifetime1 test pass; earlier29 morph/lab
+regressions pass. Strict workspace/all-target Clippy and formatting pass offline.
+Nine honest-red/green cases detect observer mutation, tick loss, cache identity,
+admission/snapshot/metric/history/illumination/atomicity violations. All failed
+runs retained, including initial native finalization panic and superseded v1
+stationary-sphere protocol. Full clean-commit workspace gate is NOT RUN yet.
+
+100/1000/10000 fixtures,16ticks each mode, exact per-tick headless/stationary/
+moving and repeat digests. Prescribed drift/exposure/emission/material transport,
+not physiology.10000:91.01ticks/s,49,482,155byte final JSON; peak benchmark RSS
+311432KiB incl transient copies/replay. Native240frames/six PNGs/120ticks match
+headless digest4f34d8daad96fd1fc84860a53168ed0e6580a68fae095bbdf3ed7bf4b3154552.
+Actual ship-scale instance/parcel tests preserve1µm detail. No fog prototype or
+isolated GPU cost; no biological/locomotion/million-organism claims.
+
+Mermogon UUIDD0A02EEBA02ED82C reverified on transfers. Combined archive root:
+/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-004
+Index 2026-11-23-runtime/v3/COMBINED_INDEX.json SHA256209dd98811dc9a96602eb5005070d3a0f636246345ab70db44fbc15439bed255.
+19 immutable archives/477 files/9936608 raw bytes,
+archive/member/restore hashes PASS. Final source overlay29 members restored over
+recorded base;10 tests pass with existing offline cache (not fresh-machine proof).
+Stable Diffusion Atlas UUID8CA451CDA451BA82,39 notes; updated M4 entries and
+pre/post versions independently archived. Git retains only source/reports/
+reproducibility metadata, no raw captures/trace/state archives.
+
+Next: staged diff/size/evidence gates; authorized local implementation commit;
+verify clean HEAD; cargo test --workspace --offline -- --test-threads=8;
+record result and retest final documentation commit. Do not push or start005.
+Safe first inspection: git status --short; MORPH_004_RESULTS.md.
+
+---
+
+# Current checkpoint — MORPH-004 authority investigation (2026-11-23T19:42:35-05:00)
+
+Agent: Codex. Status: BLOCKED for runtime implementation by UAP convergence gate.
+User's attached MORPH-004 directive now authorizes004 and in-scope local commits,
+no push. Historical “do not start004” text below is superseded by that directive.
+Repo main HEAD20f0febb0cdc8e613ae36dfc6ed1abe529994d52. Entry dirty only for
+Codex rehydration note; outgoing dirty for reports/research/archive helpers,
+Atlas metadata and this handoff. No runtime source changed, commit or push.
+
+Read MORPH_004_ARCHITECTURE.md (starts “Architecture convergence is unresolved.”),
+MORPH_004_DONOR_ASSESSMENT.md and MORPH_004_RESULTS.md. Existing canonical
+core World and experiment-local M3 MaterialBook have incompatible organism,
+clock, stock, coordinate and persistence contracts and no tested convergence
+bridge. Do not create a third world or silently promote the book. An async
+operator question requested: extend core World, explicitly promote M3 substrate,
+or narrow004 to lattice observation. No ruling received at writing.
+
+Research announced before primary-source searches. Intended Zenith visualizer
+identified/pinned7779697b7e5f013f4a178b9b40065469f85a26b2; no code/assets
+imported or donor executable run. Exact provenance in docs/research/2026-11-23-morph-004-runtime.json.
+Focused tests executed offline: core invariants13; morph/lab29; M4 observation/
+restore1; all43 pass. No new004/honest-red/Witness/performance/GPU experiment.
+No clean-commit full workspace rerun claimed; old136 pass pertains to a8cb705.
+
+New Mermogon archive (UUIDD0A02EEBA02ED82C, mount/write verified):
+/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-004/2026-11-23-investigation
+Index SHA2563e456e4c00cbfa857c1c58cb933768afc6c79515d82760e13e3cf8761166287f.
+4 archives/83 files/481191 raw bytes, all hashes and83-file restore PASS;
+older archives/cache retained. python3 python/morph_004_artifacts.py verify PASS.
+Stable Diffusion Atlas UUID8CA451CDA451BA82:9 new proposed/blocked notes;
+39 notes/170 links, verifier PASS. Pre/post Atlas snapshots archived.
+
+Next: operator chooses canonical owner/convergence; seal identity/time/units/
+material/persistence seams before runtime implementation. Keep existing M3
+laws; no silent preview backlog fix or new cross-language transport. Safe first
+commands: git status --short; read MORPH_004_ARCHITECTURE.md. No MORPH-005.
+
+---
+
+# Continuity check — Codex rehydration (2026-11-23T18:28:05-05:00)
+
+User requested rehydration from this handoff. Read current AGENTS.md, handoff,
+MORPH_002_RESULTS.md, MORPH_003_RESULTS.md and docs/morph_003/SUBSTRATE.md;
+inspected recent history and emission public interfaces. Current main HEAD:
+`20f0febb0cdc8e613ae36dfc6ed1abe529994d52`. Entry worktree was clean.
+MORPH-002 and MORPH-003 are already committed; earlier Codex MORPH-002 context
+is superseded. No runtime implementation changed during this rehydration.
+
+Executed now: `python3 python/morph_003_artifacts.py verify` PASS (1 archive,
+1 file); `python3 python/morph_002_atlas.py` PASS (30 notes,128 links,0 errors;
+Stable Diffusion Drive UUID8CA451CDA451BA82). Mermogon archive remains
+`/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-003/2026-11-23`.
+No archive or Atlas content changed. Workspace tests were NOT rerun now;
+136 passing tests remain the recorded result on a8cb705, not a fresh
+certificate for20f0feb. No commit or push performed.
+
+Outgoing worktree change: this continuity note only, as required by AGENTS.md.
+Next: if release certification is requested, use an authorized clean recorded
+state and run `cargo test --workspace --offline -- --test-threads=8`.
+Do not start MORPH-004. Physical swimming, metabolism, pipe construction,
+learning and biological validation remain unestablished. Safe first inspection:
+`git status --short` and the MORPH-003 results.
+
+---
+
 # Current checkpoint — MORPH-003 suite recorded (2026-11-23)
 
 Agent: Grok. Documentation of the clean suite. No push.

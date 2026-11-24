@@ -1,8 +1,10 @@
-//! Anatomical generation, plus an experiment-local secretion book.
-//! Preview meshes are not the material authority. The book is not the nursery world.
+//! Versioned anatomy and the canonical free-space ship runtime (MORPH-004).
+//! The unchanged MORPH-003 book supplies material transitions; nursery core is separate.
 mod anatomy;
 mod compiler;
 pub mod emission;
+pub mod runtime;
+pub mod witness;
 pub use anatomy::*;
 mod math;
 mod spec;

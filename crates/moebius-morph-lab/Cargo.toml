@@ -1,5 +1,6 @@
 [package]
 name = "moebius-morph-lab"
+default-run = "moebius-morph-lab"
 description = "Isolated Bevy-native anatomical laboratory for moebius-morph."
 version.workspace = true
 edition.workspace = true

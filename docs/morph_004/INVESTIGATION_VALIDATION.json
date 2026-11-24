@@ -1,0 +1,34 @@
+{
+  "base_revision": "20f0febb0cdc8e613ae36dfc6ed1abe529994d52",
+  "entry_worktree": "HANDOFF.md rehydration note only",
+  "runtime_source_changed": false,
+  "checks": [
+    {
+      "command": "cargo test -p moebius-core --test invariants --offline",
+      "exit_code": 0,
+      "passed": 13,
+      "raw_log": "core-invariants.log",
+      "scope": "existing regression contract only; no new runtime validation"
+    },
+    {
+      "command": "cargo test -p moebius-morph -p moebius-morph-lab --offline -- --test-threads=8",
+      "exit_code": 0,
+      "passed": 29,
+      "raw_log": "morph-focused.log",
+      "scope": "existing regression contract only; no new runtime validation"
+    },
+    {
+      "command": "cargo test -p moebius-core --test m4 observation_preserves_transitions_accounts_deaths_births_and_restore --offline",
+      "exit_code": 0,
+      "passed": 1,
+      "raw_log": "observation-existing.log",
+      "scope": "existing regression contract only; no new runtime validation"
+    }
+  ],
+  "new_morph004_tests": "NOT_RUN: convergence gate before implementation",
+  "honest_red": "NOT_RUN: no new guard implemented",
+  "full_workspace_suite": "NOT_RUN this slice; prior136-test result pertains to a8cb705",
+  "gpu_performance": "NOT_RUN",
+  "population_performance": "NOT_RUN",
+  "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)"
+}

@@ -1,0 +1,127 @@
+{
+  "version": 2,
+  "run_identity": "MORPH-004/2026-11-23-runtime/v1",
+  "purpose": "Operator-authorized option2 runtime and observation-neutrality evidence",
+  "base_revision": "20f0feb",
+  "prior_investigation_preserved": true,
+  "groups": [
+    {
+      "phase": "runtime-source-v1",
+      "purpose": "Exact relevant source overlay plus source map; combine with recorded base Git checkout for reproduction",
+      "files": 30,
+      "bytes": 433219,
+      "destination": "Mermogon immutable raw archive"
+    },
+    {
+      "phase": "runtime-logs-v1",
+      "purpose": "All tool/test/build/fault logs and procedural scripts, including failed trials and chronology",
+      "files": 89,
+      "bytes": 546458,
+      "destination": "Mermogon immutable raw archive"
+    },
+    {
+      "phase": "atlas-runtime-before",
+      "purpose": "Independent Atlas snapshot before option2 implementation notes",
+      "files": 39,
+      "bytes": 38470,
+      "destination": "Mermogon immutable raw archive"
+    },
+    {
+      "phase": "atlas-runtime-after",
+      "purpose": "Independent post-implementation Atlas notes, clean-suite status pending",
+      "files": 39,
+      "bytes": 40305,
+      "destination": "Mermogon immutable raw archive"
+    },
+    {
+      "phase": "runtime-benchmark-v1",
+      "purpose": "Recorded benchmark/headless/render evidence; failures and superseded protocols retained; see TRIAL_CHRONOLOGY",
+      "files": 2,
+      "bytes": 25131,
+      "destination": "Mermogon immutable raw archive"
+    },
+    {
+      "phase": "runtime-benchmark-v2",
+      "purpose": "Recorded benchmark/headless/render evidence; failures and superseded protocols retained; see TRIAL_CHRONOLOGY",
+      "files": 2,
+      "bytes": 25137,
+      "destination": "Mermogon immutable raw archive"
+    },
+    {
+      "phase": "runtime-benchmark-v3",
+      "purpose": "Recorded benchmark/headless/render evidence; failures and superseded protocols retained; see TRIAL_CHRONOLOGY",
+      "files": 2,
+      "bytes": 25137,
+      "destination": "Mermogon immutable raw archive"
+    },
+    {
+      "phase": "headless-run-v1",
+      "purpose": "Recorded benchmark/headless/render evidence; failures and superseded protocols retained; see TRIAL_CHRONOLOGY",
+      "files": 4,
+      "bytes": 654766,
+      "destination": "Mermogon immutable raw archive"
+    },
+    {
+      "phase": "witness-v1",
+      "purpose": "Recorded benchmark/headless/render evidence; failures and superseded protocols retained; see TRIAL_CHRONOLOGY",
+      "files": 6,
+      "bytes": 1030309,
+      "destination": "Mermogon immutable raw archive"
+    },
+    {
+      "phase": "witness-v2",
+      "purpose": "Recorded benchmark/headless/render evidence; failures and superseded protocols retained; see TRIAL_CHRONOLOGY",
+      "files": 8,
+      "bytes": 1731412,
+      "destination": "Mermogon immutable raw archive"
+    },
+    {
+      "phase": "witness-v3",
+      "purpose": "Recorded benchmark/headless/render evidence; failures and superseded protocols retained; see TRIAL_CHRONOLOGY",
+      "files": 8,
+      "bytes": 1742673,
+      "destination": "Mermogon immutable raw archive"
+    }
+  ],
+  "git": "Source, reports, protocols, concise results, identities, classification, indexes/checksums/restoration metadata only. No raw PNG/state/trial/log/source snapshot additions.",
+  "addenda": [
+    {
+      "archive_version": "v2",
+      "groups": [
+        {
+          "phase": "runtime-source-v2",
+          "purpose": "Preserve legacy default-run in manifest; otherwise same final runtime source",
+          "files": 30,
+          "bytes": 433298,
+          "destination": "Mermogon immutable archive"
+        }
+      ]
+    },
+    {
+      "archive_version": "v3",
+      "groups": [
+        {
+          "phase": "runtime-source-v3",
+          "purpose": "Final reviewed source and legacy launch compatibility; exact source map",
+          "files": 30,
+          "bytes": 433535,
+          "destination": "Mermogon immutable archive"
+        },
+        {
+          "phase": "release-logs-v3",
+          "purpose": "All final review, fault, build, restoration and compatibility logs/scripts through precommit, retaining prior failures",
+          "files": 97,
+          "bytes": 552392,
+          "destination": "Mermogon immutable archive"
+        },
+        {
+          "phase": "witness-v4",
+          "purpose": "Final first-frame placement and exact headless/native120tick witness, all captures/raw reports",
+          "files": 8,
+          "bytes": 1743175,
+          "destination": "Mermogon immutable archive"
+        }
+      ]
+    }
+  ]
+}
