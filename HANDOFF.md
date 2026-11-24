@@ -1,3 +1,38 @@
+# Publication checkpoint — ready for MORPH-0005 (2026-11-23T20:22:05-05:00)
+
+Agent: Codex. User authorized “push and get ready for MORPH-0005”.
+MORPH-004 main78f1f449afb31f568f85f9a8894f91cdda129db8 and verification
+notes ref1be48fcae06ae18ed5f22e0762fea6313ca91532 were pushed atomically to
+origin and both remote refs verified. Earlier no-push statements below record
+prior scope and are superseded by this explicit publication request.
+
+This follow-up changes HANDOFF.md only to record publication and readiness.
+Runtime/source/tests/Atlas/evidence remain unchanged.146-test clean-suite PASS
+applies to78f1f44, not a fresh test of this documentation-only receipt.
+No repeat suite or hosted CI claimed. Inspect the exact attestation with:
+git notes --ref=morph-004-validation show 78f1f44.
+Other clones must fetch refs/notes/morph-004-validation explicitly to read it.
+
+Reverified now: M3 external evidence PASS; M4 main21 archives/524 files PASS;
+final clean-suite addendum's index/archive/member hashes PASS. Mermogon UUID
+D0A02EEBA02ED82C. Atlas Stable Diffusion Drive UUID8CA451CDA451BA82:
+39notes/164links,0errors. No evidence moved/deleted or raw files added to Git.
+
+Next authorized dependency: receive the MORPH-0005 directive, then read AGENTS.md,
+this handoff and applicable reports/source before implementation. MORPH-0005
+has not begun. Canonical ship owner is moebius_morph::runtime::ShipRuntime;
+MaterialBook laws preserved; lattice World is a separate nursery experiment.
+Known limits remain fixed-rest nozzle bindings, prescribed fixture drift,
+full-state copies/history growth/linear inspection, and no physiology, ecology,
+propulsion, volumetric solver or live Lisp/Python authority.
+
+Safe first commands: git status --short; git log -3 --oneline;
+git notes --ref=morph-004-validation show 78f1f44.
+Current publication receipt is committed/pushed after this entry is written;
+use live Git refs for its resulting SHA. Preserve earlier chronology below.
+
+---
+
 # Current checkpoint — MORPH-004 completed and locally certified (2026-11-23T20:13:50-05:00)
 
 Agent: Codex. Status: DONE for the bounded reference-world runtime foundation.
