@@ -1,0 +1,21 @@
+{
+  "status": "PUSHED_AND_VERIFIED",
+  "remote": "origin",
+  "url": "https://github.com/Cognis-11-Inc/moebius-automata.git",
+  "verified_utc": "2026-11-24T15:31:48.971571+00:00",
+  "refs": {
+    "refs/heads/main": "5a83c21fac6b6fb3032e40ce608f097a0a86356b",
+    "refs/notes/first-simulation-validation": "b9b3a75e52526fc708cc80daf994ad9d71784e75",
+    "refs/notes/morph-005-validation": "59f1930706c85d1db7d9260c5ab46ce5afa9d101"
+  },
+  "clean_worktree": true,
+  "full_suite": {
+    "passed": 177,
+    "failed": 0,
+    "ignored": 0,
+    "command": "cargo test --workspace --release --offline -- --test-threads=8",
+    "receipt": "refs/notes/first-simulation-validation at this commit"
+  },
+  "publication": "main and both validation refs pushed atomically; no force push",
+  "hosted_ci": "NOT CLAIMED; local full suite only"
+}
