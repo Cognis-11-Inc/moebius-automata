@@ -1,6 +1,6 @@
 # SIMULATION-0001 playable colony results
 
-Status: **PARTIAL**. Date: 2026-11-25. Branch `main`, HEAD `5a83c21fac6b6fb3032e40ce608f097a0a86356b` at measurement time, dirty, no push. Rustc 1.99.1, Cargo offline. Collision behavior is the validated fill-on-miss sample sphere. This pass did not replace the hollow trimesh.
+Status: **PARTIAL**. Date: 2026-11-25. Measurements were taken on dirty `main` at `5a83c21fac6b6fb3032e40ce608f097a0a86356b`. That source is local commit `e863824f13422f5bf83a03c604a79eb85152db62`. The clean suite passed there. Nothing was pushed. Rustc 1.99.1, Cargo offline. Collision behavior is the validated fill-on-miss sample sphere. This pass did not replace the hollow trimesh.
 
 The first colony can be launched, watched, and measured. It was not made to flourish. No natural window in this experiment produced an Arachnitech birth. No Arachnitech died, because the runtime has no removal rule. Food is a finite condensate. Light does not create biomass.
 
