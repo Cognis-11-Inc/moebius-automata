@@ -331,7 +331,7 @@ With the witness open, the same world still spends about 25.5 ms in the
 authority tick. Snapshot publish is about 0.007 ms and draw CPU about 1.2 ms.
 The witness reuses a mesh whose stamp is unchanged. Mesh budgets 1 and 16
 generated the same 80 pipe meshes over 420 ticks. See [collision contracts and limits](docs/morph_005/COLLISION_CONTRACTS.md).
-SIMULATION-0001 remains PARTIAL until an authorized clean-commit certification.
+SIMULATION-0001 remains PARTIAL. The clean workspace suite passed on `e863824f13422f5bf83a03c604a79eb85152db62` (212 tests, 0 failures). The colony is still not a steady 60 Hz population.
 A founding group of 2 to 16 is measured in
 [the playable colony results](SIMULATION_0001_PLAYABLE_COLONY_RESULTS.md).
 Sixteen founders averaged 790 ms/tick. Counts of 30, 100, and 300 are refused.

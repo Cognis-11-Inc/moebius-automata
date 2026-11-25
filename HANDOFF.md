@@ -1,3 +1,24 @@
+# SIMULATION-0001 clean suite recorded — 2026-11-25T03:03:28Z
+
+Agent Grok. Branch main, implementation commit `e863824f13422f5bf83a03c604a79eb85152db62`, ahead of origin/main by 1, not pushed. Status remains PARTIAL. No SIMULATION-0002.
+
+VERIFIED on that commit, rustc 1.99.1 (58cf8f9c3 2026-10-13), offline. `git status --short` was empty before the suite (DIRTY_LINES 0) and empty after it.
+
+- `cargo test --workspace --offline -- --test-threads=8` — 32 result lines, 212 passed, 0 failed. Habitat tests took 455.58 s in the debug profile. Log `/tmp/moebius-clean-suite-e863824.log`.
+- `cargo clippy --workspace --all-targets --offline -- -D warnings` exit 0.
+- `cargo fmt --all -- --check` exit 0.
+- Atlas checker PASS, 45 notes, 197 links, UUID `8CA451CDA451BA82`. Live ship-canon hashes match the 2026-11-23 22:28 vault text. Sealed MORPH-005 `v1/atlas-after.tar` was not rewritten.
+
+The 420-tick digest receipt remains the pre-commit scale run. Resolve was not given a new contact rule after that run. This suite does not repeat that probe.
+
+Not done: a steady 16.7 ms tick, natural births in the measured windows, founders above 16, an Arachnitech death rule, writhe clearance on pipes, an exterior primitive, push.
+
+Safe next inspection: `SIMULATION_0001_PLAYABLE_COLONY_RESULTS.md`. Do not treat PARTIAL as a completed colony.
+
+Earlier measurement follows.
+
+---
+
 # SIMULATION-0001 playable colony measured — 2026-11-25T02:44:31Z
 
 Agent Grok. Branch main, HEAD `5a83c21fac6b6fb3032e40ce608f097a0a86356b`, dirty,

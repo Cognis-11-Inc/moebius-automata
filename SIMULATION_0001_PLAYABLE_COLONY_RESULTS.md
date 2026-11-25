@@ -95,9 +95,9 @@ The recording restored `world-initial.json` and advanced 180 ticks to the same f
 | G7 Reproducibility | Seeds and founder counts are in `summary.json`. The native initial snapshot replayed exactly. |
 | G8 Performance | Measured above. Sixteen founders are the ceiling. They are not interactive. |
 | G9 Playability | Release witness launches. Two founders stay in a usable opening view and run 180 ticks. Four founders produced a 4.574 s tick. |
-| G10 Regression | Habitat 11/11 in 31.53 s, collision 8/8 in 1.17 s, emission 5/5 in 0.28 s, witness bin 8/8 in 0.37 s, sphere-gate lib test passed after the Clippy edit. `cargo clippy --offline -p moebius-morph -p moebius-morph-lab --all-targets -- -D warnings` exited 0. |
+| G10 Regression | Habitat 11/11, collision 8/8, emission 5/5, and witness bin 8/8 passed on the dirty tree before the commit. On clean `e863824f13422f5bf83a03c604a79eb85152db62`, `cargo test --workspace --offline -- --test-threads=8` passed 212 tests and 0 failures. `cargo clippy --workspace --all-targets --offline -- -D warnings` and `cargo fmt --all -- --check` exited 0. rustc 1.99.1. Log `/tmp/moebius-clean-suite-e863824.log`. |
 
-The full workspace suite was not run on a clean commit in this session. That gate stays open.
+The clean-commit suite ran on that commit with a clean tree before and after. A later documentation commit records this paragraph and was not itself the suite subject.
 
 ## Collision change in this pass
 
@@ -113,7 +113,7 @@ The full workspace suite was not run on a clean commit in this session. That gat
 - Habitat mode does not run the spore burst. Condensate is not refilled by light.
 - Writhe clearance covers solids only. Visual anatomy and the tight hull still differ.
 - An exterior collision primitive was not added.
-- The clean-commit workspace suite is still outstanding. Nothing was pushed.
+- Nothing was pushed. The clean suite above does not make the colony a 60 Hz or self-sustaining result.
 - The live atlas inventory for the two ship-canon notes lagged the 2026-11-23 22:28 operator-size text. Those inventory hashes now match the vault. `python3 python/morph_002_atlas.py` passed at 2026-11-25T02:52:07Z (45 notes, 197 links). The sealed MORPH-005 `v1/atlas-after.tar` still stores the earlier wording.
 
 Archive: Mermogon `/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25`, volume UUID `D0A02EEBA02ED82C`, verified mounted on this run. Hashes are in that directory's `MANIFEST.sha256`.
