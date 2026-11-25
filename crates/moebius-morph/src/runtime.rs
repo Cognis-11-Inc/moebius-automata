@@ -300,6 +300,45 @@ fn initial_snapshot(
         events: vec![],
     })
 }
+/// Bound work only after local capture eligibility. Old paid parcels remain in
+/// the world; they must not starve newer, reachable material from the queue.
+fn automatic_deposits(
+    book: &MaterialBook,
+    r: &crate::filament::ConstructionRules,
+    nozzles: &BTreeMap<u64, Position>,
+    local_capture: bool,
+) -> Result<Vec<u64>, MorphError> {
+    let mut per_nozzle = BTreeMap::<u64, usize>::new();
+    let mut eligible = Vec::new();
+    for p in &book.parcels {
+        if book.tick.saturating_sub(p.created_tick) < r.age {
+            continue;
+        }
+        if local_capture {
+            let nozzle = nozzles
+                .get(&p.nozzle_id)
+                .ok_or_else(|| MorphError("construction nozzle missing".into()))?;
+            let delta = Position::from_absolute(p.position)?.relative(*nozzle)?;
+            if delta.iter().map(|x| i128::from(*x).pow(2)).sum::<i128>()
+                > i128::from(r.capture_radius).pow(2)
+            {
+                continue;
+            }
+        }
+        if r.parallel_nozzles() {
+            let count = per_nozzle.entry(p.nozzle_id).or_default();
+            if *count >= 32 {
+                continue;
+            }
+            *count += 1;
+        }
+        eligible.push(p.id);
+        if eligible.len() >= if r.parallel_nozzles() { 4096 } else { 32 } {
+            break;
+        }
+    }
+    Ok(eligible)
+}
 fn unit_heading(yaw: f64) -> [i64; 3] {
     let raw = [
         (yaw.sin() * SCALE as f64).round() as i64,
@@ -455,6 +494,8 @@ impl ShipRuntime {
             agents: BTreeMap::from([(
                 1,
                 crate::habitat::Agent {
+                    travel: None,
+                    refilling: false,
                     rigid: r,
                     heading: [r.yaw_sin, 0, r.yaw_cos],
                     eating: false,
@@ -911,7 +952,6 @@ impl ShipRuntime {
             }
             i.book.step()?;
             if let Some(r) = active {
-                let mut candidates_per_nozzle = BTreeMap::<u64, usize>::new();
                 let eligible = if manual_deposits.iter().any(|(id, _)| *id == i.id) {
                     manual_deposits
                         .iter()
@@ -919,21 +959,7 @@ impl ShipRuntime {
                         .map(|(_, p)| *p)
                         .collect::<Vec<_>>()
                 } else {
-                    i.book
-                        .parcels
-                        .iter()
-                        .filter(|p| i.book.tick.saturating_sub(p.created_tick) >= r.age)
-                        .filter(|p| {
-                            if !r.parallel_nozzles() {
-                                return true;
-                            }
-                            let count = candidates_per_nozzle.entry(p.nozzle_id).or_default();
-                            *count += 1;
-                            *count <= 32
-                        })
-                        .take(if r.parallel_nozzles() { 4096 } else { 32 })
-                        .map(|p| p.id)
-                        .collect::<Vec<_>>()
+                    automatic_deposits(&i.book, r, &nozzle_positions, next.habitat.is_some())?
                 };
                 if eligible.is_empty() {
                     next.events.push(Event::AssemblyRejected {
@@ -1974,11 +2000,11 @@ impl WorldSnapshot {
             return Ok(None);
         }
         let instance = &self.instances[&organism];
-        let geometry = CompiledAnatomy::new(self.config.definitions[&instance.definition].clone())?
-            .pose(pose)?
-            .geometry;
+        let spec = &self.config.definitions[&instance.definition];
+        spec.validate()?;
+        let mouth = crate::compiler::mouth_landmark(&spec.body, pose);
         Ok(Some(Position::from_absolute(
-            crate::emission::place_point(geometry.mouth_center, self.body_pose(organism)?)?,
+            crate::emission::place_point(mouth, self.body_pose(organism)?)?,
         )?))
     }
 
@@ -2059,4 +2085,54 @@ pub fn fixture(population: usize, seed: u64) -> Result<ShipRuntime, MorphError> 
         });
     }
     ShipRuntime::new(config, instances)
+}
+
+#[cfg(test)]
+mod candidate_tests {
+    use super::*;
+    #[test]
+    fn unreachable_old_parcels_cannot_starve_a_reachable_deposit() {
+        let world = ShipRuntime::habitat_simulation(AnatomySpec::bare(77), 77, 64)
+            .unwrap()
+            .snapshot();
+        let spec = &world.config.definitions[&1];
+        let mut book = MaterialBook::new(1, 77, 64, Environment::suspended(), 4096).unwrap();
+        book.sync_nozzles(spec);
+        book.emission_enabled = true;
+        let nozzle = *book.registered.first().unwrap();
+        let mut last = 0;
+        for k in 0..41 {
+            let status = book.try_emit(EmitRequest {
+                nozzle_id: nozzle,
+                origin: if k < 40 { [10 * SCALE, 0, 0] } else { [0; 3] },
+                direction: [0, 0, SCALE],
+                quantity: 1,
+                launch_speed: 0,
+                channel: SECRETION_CHANNEL,
+            });
+            let crate::emission::EmissionStatus::Admitted { parcel_id, .. } = status else {
+                panic!("fixture parcel must be paid")
+            };
+            last = parcel_id;
+            book.step().unwrap();
+        }
+        let points = BTreeMap::from([(nozzle, Position::from_absolute([0; 3]).unwrap())]);
+        let rules = world.config.construction.as_ref().unwrap();
+        assert_eq!(
+            automatic_deposits(&book, rules, &points, true).unwrap(),
+            vec![last]
+        );
+        assert_eq!(
+            automatic_deposits(&book, rules, &points, false)
+                .unwrap()
+                .len(),
+            32
+        );
+        assert_eq!(
+            book.parcels.len(),
+            41,
+            "unreachable material must remain in the physical world"
+        );
+        assert_eq!(book.residual().unwrap(), 0);
+    }
 }

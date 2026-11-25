@@ -43,12 +43,82 @@ impl Default for HabitatRules {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Agent {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub travel: Option<TravelMemory>,
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub refilling: bool,
     pub rigid: RigidPose,
     pub heading: [i64; 3],
     pub eating: bool,
     pub born: u64,
     pub last_birth: u64,
     pub parent: Option<u64>,
+}
+/// Bounded, authored exploration state. This is not a learned controller.
+#[derive(Clone, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TravelMemory {
+    pub target: Option<Position>,
+    pub last_food: Option<Position>,
+    pub visited: Vec<[i64; 3]>,
+}
+fn explore(
+    world: &WorldSnapshot,
+    id: u64,
+    agent: &mut Agent,
+    blocked: bool,
+) -> Result<[i64; 3], MorphError> {
+    let at = world.instances[&id].position;
+    let cell = |p: Position| -> Result<[i64; 3], MorphError> {
+        Ok(p.absolute()?.map(|v| v.div_euclid(2 * SCALE)))
+    };
+    let heading = agent.heading;
+    let memory = agent.travel.get_or_insert_with(TravelMemory::default);
+    let here = cell(at)?;
+    if !memory.visited.contains(&here) {
+        if memory.visited.len() == 256 {
+            memory.visited.remove(0);
+        }
+        memory.visited.push(here);
+    }
+    if memory
+        .target
+        .is_none_or(|p| distance(p, at).is_ok_and(|d| d < SCALE as f64))
+        || blocked && (world.tick + id).is_multiple_of(24)
+    {
+        let mut best = None;
+        for x in -1..=1 {
+            for y in -1..=1 {
+                for z in -1..=1 {
+                    if [x, y, z] == [0; 3] {
+                        continue;
+                    }
+                    let direction = normalized([x, y, z], SCALE);
+                    let mut novelty = 0i128;
+                    let mut target = None;
+                    for step in 1..=3 {
+                        let Ok(p) = at.offset(direction.map(|v| v * 2 * step)) else {
+                            continue;
+                        };
+                        novelty += i128::from(!memory.visited.contains(&cell(p)?));
+                        target = Some(p);
+                    }
+                    let Some(target) = target else {
+                        continue;
+                    };
+                    let alignment: i128 = (0..3)
+                        .map(|k| i128::from(heading[k]) * i128::from(direction[k]))
+                        .sum();
+                    let score = novelty * 4 * i128::from(SCALE).pow(2) + alignment;
+                    if best.as_ref().is_none_or(|(old, _)| score > *old) {
+                        best = Some((score, target));
+                    }
+                }
+            }
+        }
+        memory.target = best.map(|(_, p)| p);
+    }
+    memory.target.map_or(Ok(heading), |p| p.relative(at))
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -74,6 +144,38 @@ fn normalized(v: [i64; 3], scale: i64) -> [i64; 3] {
         return [0, 0, scale];
     }
     v.map(|x| (x as f64 * scale as f64 / length).round() as i64)
+}
+/// Bounded steering on the unit sphere, including an exactly-behind target.
+/// Normalized linear blending cannot turn at all when desired == -heading.
+fn turn_heading(heading: [i64; 3], desired: [i64; 3]) -> [i64; 3] {
+    let h = normalized(heading, SCALE).map(|v| v as f64 / SCALE as f64);
+    let d = normalized(desired, SCALE).map(|v| v as f64 / SCALE as f64);
+    let dot = (0..3).map(|k| h[k] * d[k]).sum::<f64>().clamp(-1., 1.);
+    let mut tangent = std::array::from_fn::<_, 3, _>(|k| d[k] - h[k] * dot);
+    let mut length = tangent.iter().map(|v| v * v).sum::<f64>().sqrt();
+    if length < 0.000001 {
+        if dot > 0. {
+            return normalized(desired, SCALE);
+        }
+        let axis = if h[1].abs() < 0.9 {
+            [0., 1., 0.]
+        } else {
+            [1., 0., 0.]
+        };
+        tangent = [
+            h[1] * axis[2] - h[2] * axis[1],
+            h[2] * axis[0] - h[0] * axis[2],
+            h[0] * axis[1] - h[1] * axis[0],
+        ];
+        length = tangent.iter().map(|v| v * v).sum::<f64>().sqrt();
+    }
+    let angle = dot.acos().min(0.06);
+    normalized(
+        std::array::from_fn(|k| {
+            ((h[k] * angle.cos() + tangent[k] / length * angle.sin()) * SCALE as f64).round() as i64
+        }),
+        SCALE,
+    )
 }
 fn distance(a: Position, b: Position) -> Result<f64, MorphError> {
     Ok(len(a.relative(b)?))
@@ -242,31 +344,59 @@ pub(crate) fn prepare(
         nearby.retain(|(d, _)| *d <= 16. * SCALE as f64);
         nearby.sort_by(|a, b| a.0.total_cmp(&b.0).then(a.1.cmp(&b.1)));
         let contact = nearby.first().is_some_and(|(d, _)| *d <= 420_000.);
-        // Appetite first, a paid child second. Snailpipe is only the trail of
-        // ticks that are not a gulp.
-        let needs_offspring = body.book.reservoir < habitat.rules.child_stock + 96;
-        let appetite = body.book.reservoir < capacity / 3 || needs_offspring;
+        // Refill as a coherent meal, then release the feeding goal and travel.
+        // Reproduction may request another meal when its unchanged interval is due.
+        let reserve = habitat.rules.reserve_food.min(capacity / 4);
+        let birth_need = habitat.rules.child_stock + 96;
+        let birth_due = habitat.rules.reproduction
+            && world.tick.saturating_sub(agent.last_birth) >= habitat.rules.birth_interval;
+        if body.book.reservoir < reserve
+            || birth_due && body.book.reservoir < birth_need
+            || capacity < birth_need
+        {
+            agent.refilling = true;
+        }
+        let refill_target = (capacity / 3).max(birth_need).min(capacity);
+        if body.book.reservoir >= refill_target {
+            agent.refilling = false;
+        }
+        let appetite = agent.refilling;
         agent.eating = contact && appetite && body.book.reservoir < capacity;
         let obstructed = habitat
             .contacts
             .iter()
             .any(|c| c.organism == id && c.response == crate::collision::ContactResponse::Blocked);
-        let mut desired = agent.heading;
-        if let Some((_, target)) = nearby.first().filter(|_| appetite && !obstructed) {
-            let to_food = world.instances[target].position.relative(mouth)?;
-            if len(to_food) > 1_000. {
-                desired = to_food;
-            }
-        } else {
-            // Persistent exploratory curvature, rather than a random turn per tick.
-            let phase = (world.tick as f64 * 0.003 + id as f64 * 1.7).sin();
-            desired[0] = desired[0].saturating_add((phase * 9000.) as i64);
-            desired[1] = desired[1]
-                .saturating_add(((world.tick as f64 * 0.005 + id as f64).sin() * 3500.) as i64);
+        let exploration = explore(world, id, agent, obstructed)?;
+        if let Some((_, food)) = nearby.first() {
+            agent.travel.as_mut().unwrap().last_food = Some(world.instances[food].position);
         }
+        let mut food_target = nearby
+            .first()
+            .map(|(_, food)| world.instances[food].position)
+            .or(agent.travel.as_ref().unwrap().last_food);
+        if nearby.is_empty()
+            && food_target.is_some_and(|p| distance(p, mouth).is_ok_and(|d| d < 500_000.))
+        {
+            agent.travel.as_mut().unwrap().last_food = None;
+            food_target = None;
+        }
+        let mut desired = if obstructed {
+            // Keep the existing small clearance-search curvature while blocked;
+            // steering straight at the same refused normal can deadlock a meal.
+            let phase = (world.tick as f64 * 0.003 + id as f64 * 1.7).sin();
+            let mut heading = agent.heading;
+            heading[0] = heading[0].saturating_add((phase * 9000.) as i64);
+            heading[1] = heading[1]
+                .saturating_add(((world.tick as f64 * 0.005 + id as f64).sin() * 3500.) as i64);
+            heading
+        } else if appetite {
+            food_target.map_or(Ok(exploration), |p| p.relative(mouth))?
+        } else {
+            exploration
+        };
         desired = normalized(desired, SCALE);
         // Local route reinforcement: favour nearby forward-facing paid substrate.
-        if let Some(a) = nearest_anchor(world, body.position, SCALE)? {
+        if appetite && let Some(a) = nearest_anchor(world, body.position, SCALE)? {
             let f = &world.assembly.as_ref().unwrap().filaments[&a.filament];
             let k = f.nodes.iter().position(|n| n.id == a.node).unwrap();
             if k + 1 < f.nodes.len() {
@@ -283,10 +413,7 @@ pub(crate) fn prepare(
                 }
             }
         }
-        agent.heading = normalized(
-            std::array::from_fn(|k| (agent.heading[k] * 15 + desired[k]) / 16),
-            SCALE,
-        );
+        agent.heading = turn_heading(agent.heading, desired);
         let step = if agent.eating {
             (habitat.rules.step / 5).max(1)
         } else {
@@ -296,8 +423,8 @@ pub(crate) fn prepare(
             .position
             .offset(normalized(agent.heading, step))?
             .absolute()?;
-        let aim = if let Some((_, target)) = nearby.first().filter(|_| appetite && !obstructed) {
-            world.instances[target].position.relative(body.position)?
+        let aim = if let Some(target) = food_target.filter(|_| appetite && !obstructed) {
+            target.relative(body.position)?
         } else {
             agent.heading
         };
@@ -387,6 +514,8 @@ pub(crate) fn finish(world: &mut WorldSnapshot) -> Result<(), MorphError> {
         child.born = world.tick + 1;
         child.last_birth = world.tick + 1;
         child.parent = Some(parent);
+        child.travel = None;
+        child.refilling = true;
         child.eating = false;
         child.heading = normalized(
             [child.heading[2], child.heading[1], -child.heading[0]],
@@ -562,6 +691,22 @@ pub(crate) fn validate(world: &WorldSnapshot) -> Result<(), MorphError> {
                 && a.last_birth <= world.tick,
             "habitat anatomy/storage/timeline mismatch",
         )?;
+        if let Some(memory) = &a.travel {
+            require(
+                memory.visited.len() <= 256
+                    && memory.visited.iter().all(|cell| {
+                        cell.iter()
+                            .all(|v| v.unsigned_abs() <= (MAX_POSITION / (2 * SCALE) + 1) as u64)
+                    }),
+                "invalid travel memory",
+            )?;
+            if let Some(p) = memory.target {
+                p.absolute()?;
+            }
+            if let Some(p) = memory.last_food {
+                p.absolute()?;
+            }
+        }
         crate::emission::place_point([0.; 3], a.rigid)?;
         require(
             (len(a.heading) - SCALE as f64).abs() < 4.,
@@ -587,4 +732,25 @@ pub(crate) fn validate(world: &WorldSnapshot) -> Result<(), MorphError> {
         )?;
     }
     Ok(())
+}
+
+#[cfg(test)]
+mod travel_tests {
+    use super::*;
+    #[test]
+    fn an_exactly_behind_goal_turns_without_instant_reversal() {
+        let mut heading = [SCALE, 0, 0];
+        let first = turn_heading(heading, [-SCALE, 0, 0]);
+        assert!(
+            first[0] < SCALE && first[0] > 980_000 && (first[1] != 0 || first[2] != 0),
+            "head-on blend locked or reversed"
+        );
+        for _ in 0..60 {
+            heading = turn_heading(heading, [-SCALE, 0, 0]);
+        }
+        assert!(
+            heading[0] < -900_000,
+            "goal behind the body remained unreachable"
+        );
+    }
 }

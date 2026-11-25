@@ -1,0 +1,957 @@
+{
+  "run_identity": "moebius-sim0001-codex-20261125T031824Z",
+  "archive_version": "codex-stall-diagnosis-v1",
+  "file_count": 158,
+  "bytes": 245529622,
+  "authority": "Git reports/protocol/source; immutable external raw evidence; local /tmp is working copy",
+  "files": [
+    {
+      "path": "SOURCE_MAP.json",
+      "bytes": 3760,
+      "sha256": "2403c1ec695b30404101a58efafc287eb6531d30eed85a4c0bd4d28cf45e8550",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "atlas-after.md",
+      "bytes": 3331,
+      "sha256": "00f716b2640d5be7f99f62ebe64ffad4a52e6c960a3630ddae9da51c054fa2c3",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "atlas-before.md",
+      "bytes": 2060,
+      "sha256": "93821cd58cd31c37731c47ea93105d838cbcb949739ec6d9092ec07f771c1be9",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "baseline-420/final.json",
+      "bytes": 641218,
+      "sha256": "3ae027131a9d9ffd30aab33a1888f0ee48f1a5e98a0cd313b22cd1b6a85f3163",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "baseline-420/initial.json",
+      "bytes": 101752,
+      "sha256": "098edfb5ee1509778163883049ee773b5fe0998ceae144f006b08df110addbc0",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "baseline-420/report.json",
+      "bytes": 4666,
+      "sha256": "8258c3ec9d67846fa2f885f73d19a8108f3ee393f23b58d9e492d03533464045",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "baseline-420/source-blake3.json",
+      "bytes": 425,
+      "sha256": "575a2899e1454909c1addf6467049e41001d365d97c33b987b0f5dc579e240fe",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "baseline-420/tick-times-ns.json",
+      "bytes": 3559,
+      "sha256": "96b6bd35a2117e68b3bafa4405c02ab0ee750c4733148e4543356e3fc8bfebe7",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "baseline-420/ticks.jsonl",
+      "bytes": 282874,
+      "sha256": "cb807b32894cdffe54ec094fa8b7aab9d82d3b91dd6e18c95c3e77a9d5520129",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "baseline-420.log",
+      "bytes": 4941,
+      "sha256": "42493a8a677914bd174ce26efae2e027af99dbea6a3bbae2621418de1729cc15",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "cast-memo-test.log",
+      "bytes": 448,
+      "sha256": "fe93ad1b31d5666398dd0b97e8d5000b71c27ee0857bdc579eb8b5b024f4aabe",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "clippy-final.log",
+      "bytes": 276,
+      "sha256": "fe458101eab1a55db3cd0f312de7473be79498c74fb15f127824cb3db3029322",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "clippy.log",
+      "bytes": 953,
+      "sha256": "913c81874965b9fad6bc8cd691cb17fe9bf44ac8110d2be0ee25416c4aa683eb",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "collision-before-forensics.rs",
+      "bytes": 76700,
+      "sha256": "811a79f55eb7b052bb930e0af156b972baa91e2eb0357b8d8510bbc4d9c21ffb",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "collision-forensic-final.rs",
+      "bytes": 82403,
+      "sha256": "3aed0f285a702610974daf887bc9f80a52fb8ac08d5502201f9522363206f8d2",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "collision-interval-aabb.rs",
+      "bytes": 72822,
+      "sha256": "4df7e7b98316ca2b1a8d27a6a29321d4823ba1427262f4a9b2bd6fb59c7e3d7f",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "collision-with-forensics.rs",
+      "bytes": 80647,
+      "sha256": "d065f6885641f13beff98cb6f27ea88730b95e58d3727d334734d54516ce60d0",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "creator-settings-test.log",
+      "bytes": 569,
+      "sha256": "fc8783116d646ab59c6099400e6340c006bfb12bcc9e0659d16dc1bba87a664e",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "entry.txt",
+      "bytes": 101,
+      "sha256": "ef29b34430927e0461ca4b1dd764350b2f792965ebe4796078543b440f22cd51",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "experiments.log",
+      "bytes": 731,
+      "sha256": "2065ebd22f871bc7a0edf46daddd66bbaf326a715e288ff5312f0509eeca58d3",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "final-clippy.log",
+      "bytes": 276,
+      "sha256": "0c536e5423882690e757c77e1110d23a78fd0bfd554d9cd923b6cbab3b5b4683",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "final-contract-420/final.json",
+      "bytes": 641218,
+      "sha256": "3ae027131a9d9ffd30aab33a1888f0ee48f1a5e98a0cd313b22cd1b6a85f3163",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "final-contract-420/initial.json",
+      "bytes": 101752,
+      "sha256": "098edfb5ee1509778163883049ee773b5fe0998ceae144f006b08df110addbc0",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "final-contract-420/report.json",
+      "bytes": 5075,
+      "sha256": "9a623e9c446bfc711dfb908851bfdb97f1f0222f51239b3d1b53348f4ecc60bd",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "final-contract-420/source-blake3.json",
+      "bytes": 425,
+      "sha256": "4c998166062a2556aaf85510798e01aba70cc3595f1a836691d95d0c3a6d50c0",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "final-contract-420/tick-times-ns.json",
+      "bytes": 3556,
+      "sha256": "4ff1a6dcb855c2f9c77e72850093346dcbd99a6909b1451c94e70c5522ec6f7b",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "final-contract-420/ticks.jsonl",
+      "bytes": 282874,
+      "sha256": "cb807b32894cdffe54ec094fa8b7aab9d82d3b91dd6e18c95c3e77a9d5520129",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "final-contract-420.log",
+      "bytes": 5410,
+      "sha256": "577dce3372a767c445420dc9e7b9c44277e8777024a44f2ae197a0dda1ebb1a1",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "final-focused.log",
+      "bytes": 5531,
+      "sha256": "ac2f0f33c99eff8abcea17fbfc3333b31e022eb00c07e26e7b5eb6a9d76ca92d",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "focused.log",
+      "bytes": 2431,
+      "sha256": "0d899d06b5344d43942110044e6cc99f810daa2aa37c0e35d15ea727d6dbb02b",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "forensic-baseline.log",
+      "bytes": 6537,
+      "sha256": "65458a697be8216d17493d7ff71d555c1a51783ef54089848c07a645236d848f",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "forensic-penetration.log",
+      "bytes": 8508,
+      "sha256": "caad211f5165283c98b83568a125072bb7e688c0fe1852e936a696ac0b9dfb64",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "habitat_probe-measured-binary",
+      "bytes": 4059200,
+      "sha256": "9476b9fdb67cbc991b3fd26a2f51eedf2f05d644f8fc187ed74892115125737d",
+      "purpose": "measured executable for exact run identity"
+    },
+    {
+      "path": "honest-red.json",
+      "bytes": 147,
+      "sha256": "fad9c18834324aa1a66e412a834a7dc8963d82fe19b7029bbd139d561c794724",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "honest-red.log",
+      "bytes": 3247,
+      "sha256": "043437d0272b1aa3474506ca921e2c013dc6014820c0c21f39d9633f0ea3713a",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "interval-aabb-420/final.json",
+      "bytes": 641218,
+      "sha256": "3ae027131a9d9ffd30aab33a1888f0ee48f1a5e98a0cd313b22cd1b6a85f3163",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "interval-aabb-420/initial.json",
+      "bytes": 101752,
+      "sha256": "098edfb5ee1509778163883049ee773b5fe0998ceae144f006b08df110addbc0",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "interval-aabb-420/report.json",
+      "bytes": 4665,
+      "sha256": "0c5703e7824384b4409fc0a097b37510ecee3cf13743bff8afc4f7d98aaac8f2",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "interval-aabb-420/source-blake3.json",
+      "bytes": 425,
+      "sha256": "c129bff5df6481662551fa1bf677973d346d6ed09a8149eaf2d6ea8709e0000d",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "interval-aabb-420/tick-times-ns.json",
+      "bytes": 3560,
+      "sha256": "2cfffc7593394477035429114a4181d9eee245eade971f0cf46baeb52578ca15",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "interval-aabb-420/ticks.jsonl",
+      "bytes": 282874,
+      "sha256": "cb807b32894cdffe54ec094fa8b7aab9d82d3b91dd6e18c95c3e77a9d5520129",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "interval-aabb-420.log",
+      "bytes": 4945,
+      "sha256": "240872f7e0b1996a091fec481d74fae1b3fe8260109d78a5b95e806df8567eee",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "interval-memo-420/final.json",
+      "bytes": 641218,
+      "sha256": "3ae027131a9d9ffd30aab33a1888f0ee48f1a5e98a0cd313b22cd1b6a85f3163",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "interval-memo-420/initial.json",
+      "bytes": 101752,
+      "sha256": "098edfb5ee1509778163883049ee773b5fe0998ceae144f006b08df110addbc0",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "interval-memo-420/report.json",
+      "bytes": 4754,
+      "sha256": "9922d01cdbd2fe86076105906df0624f29dcb2920d1839b63092c3216145265a",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "interval-memo-420/source-blake3.json",
+      "bytes": 425,
+      "sha256": "9000a04b2377d3c9368e791b7d41a216f63d40235f5815cebaae3363f06f6aee",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "interval-memo-420/tick-times-ns.json",
+      "bytes": 3552,
+      "sha256": "38a8d9c122c33be3a303741fe0c83e32b9fc336bf1dcc275ed23bb63fb337929",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "interval-memo-420/ticks.jsonl",
+      "bytes": 282874,
+      "sha256": "cb807b32894cdffe54ec094fa8b7aab9d82d3b91dd6e18c95c3e77a9d5520129",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "interval-memo-420.log",
+      "bytes": 5034,
+      "sha256": "58ffa5ce5547ceca8cbf8c0bb2303763639a3d15d3b35249a48a4bdf7feb39bc",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "last-format.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "last-static.log",
+      "bytes": 170,
+      "sha256": "c159cf6fd82934018f2c1fe64c8b6846f36e652b0fcbb0de3755fbfa56debe21",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "moebius-world-witness-measured-binary",
+      "bytes": 189033912,
+      "sha256": "d4f7ff96937a81764bfc21054453efcf6c7d3fa72ec153eeaa8f6cc4b604318c",
+      "purpose": "measured executable for exact run identity"
+    },
+    {
+      "path": "native-build.log",
+      "bytes": 168,
+      "sha256": "14063ea8f9841d819bc296451db96acd793c004c07262c7ed3cb1f90d4dfffcc",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "native-colony/authority-ticks.json",
+      "bytes": 11327,
+      "sha256": "5f80bb318d4aa5c48c80b62bc016186df8ef402b26238309375439fe58cce176",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "native-colony/final_habitat.png",
+      "bytes": 415941,
+      "sha256": "ad4703242d152eac04f1f1ea397cff7375ff5b2514dac7a5868df599190f013c",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "native-colony/frame_025.png",
+      "bytes": 390776,
+      "sha256": "7b5d59b2e7fd0a812bd90c6426c4dafa692ab282c6bf0c0f39ac59c5215e2d3d",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "native-colony/frame_055.png",
+      "bytes": 375390,
+      "sha256": "df4bb408ff7af22a58f1930f0cc453e2fc1f71455da5d89449da4a2c269aa110",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "native-colony/frame_120.png",
+      "bytes": 338366,
+      "sha256": "a965aeb35c7e597992814e2989c1f0c96f3fe23ec5cba5b836c88a29153354ff",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "native-colony/frame_175.png",
+      "bytes": 347031,
+      "sha256": "bf00edde7ffc40b16dbad798995b229649fe2b254077c51b1f8cec3660c9538f",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "native-colony/frame_200.png",
+      "bytes": 334580,
+      "sha256": "c31a55241c3a0be7dab653a1bcad57df75ab74e318ce4d06992ca68ee228e906",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "native-colony/frame_280.png",
+      "bytes": 327869,
+      "sha256": "f3d6b6ba0b90132ec933704c87ce67f4964fda66173c7f5cc4f78550cf11fa4e",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "native-colony/render-report.json",
+      "bytes": 3881319,
+      "sha256": "c24298e6f1d7594431ba638a45bf4e8b6ebe21037feed071a09831905a97b0b0",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "native-colony/world-final.json",
+      "bytes": 6742211,
+      "sha256": "869b93358794617f640d837a4ffadf8c8fea8ff5fbea1ad08d75b4829cf3cc0d",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "native-colony/world-initial.json",
+      "bytes": 161232,
+      "sha256": "4ffea79958a7fae1fa7ee436a61fbfb029dc92440caa25bd231dbad928914017",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "native-colony.log",
+      "bytes": 172,
+      "sha256": "7944172f762304c04352c6c633cbdb8877608e8cd0bb1d1bd279d7de99e74f73",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "operator-directive.txt",
+      "bytes": 11458,
+      "sha256": "8f62694ef601a09d0c9534d9a6c83a7f78d5ade9128a54e9325e9a45c69531f2",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "probe-build-final.log",
+      "bytes": 160,
+      "sha256": "b56f92ee244212af946b6f85b34be0481f68784286dc8bfa3d936fb9622c04bb",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "probe-build.log",
+      "bytes": 160,
+      "sha256": "2551ce81757ed6c8e479d0c595e1ffd1f0e6e876f06677ad4f2fbfac72ba09f9",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s11/final.json",
+      "bytes": 10061922,
+      "sha256": "e79bb0fc5b5d06a4809f9430534e2ca2ca940e45f5a59ef49eb16ba28df262b2",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s11/initial.json",
+      "bytes": 252584,
+      "sha256": "61379eaaf34984a1db5f863d4561e1d161e649d6c06f20446ae39aa40b251b90",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s11/report.json",
+      "bytes": 10263,
+      "sha256": "fbbf7eab89ae7c1f362690407638ba6d87f847da736b2fe34cedc6cfce7fd1a9",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s11/source-blake3.json",
+      "bytes": 425,
+      "sha256": "0648b932859305a8a34791e7bbc99856a905307fec91d7a532e1712acde0d286",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s11/tick-times-ns.json",
+      "bytes": 10515,
+      "sha256": "671c93d69b168478435a8c91f640d5b80451cc777995881698069e919cd2bc12",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s11/ticks.jsonl",
+      "bytes": 3790913,
+      "sha256": "5c56998d48ad5653031959906bed3e98a99a609890e70243775b07b5f15b6fdf",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s11.log",
+      "bytes": 10264,
+      "sha256": "36b124c1b05c5af205f8333c1492936d50d67d25d63b705472a54f7f05f177b9",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s23/final.json",
+      "bytes": 3699154,
+      "sha256": "382a17021c09a6252b40e0cbbf5032a671579902e91e29b8031d899bf943c4ee",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s23/initial.json",
+      "bytes": 252580,
+      "sha256": "651b68809ce54bf197bcc95093b1a25aaafaabc1fad2b63cda872932940198fe",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s23/report.json",
+      "bytes": 5486,
+      "sha256": "633d5c48a048ee6dcfc31aeadb489171136056f9ed268654a65100f593acb01f",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s23/source-blake3.json",
+      "bytes": 425,
+      "sha256": "0648b932859305a8a34791e7bbc99856a905307fec91d7a532e1712acde0d286",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s23/tick-times-ns.json",
+      "bytes": 4431,
+      "sha256": "92dde84a6ad430b619f0a064bd7fd71c376680c97e2019a23ba1c6607cec18e5",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s23/ticks.jsonl",
+      "bytes": 1377520,
+      "sha256": "7c949604087601cc07ffe2574e89fcfd0c50c342229df31cece806fdf563031a",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s23.log",
+      "bytes": 5487,
+      "sha256": "1d3d9b80bc93171c82549d0be0a611ca084ef08730da4cb39ddfa8a11deb6595",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s77/final.json",
+      "bytes": 3622684,
+      "sha256": "9ba1ebe3f1987589eb36d2e826732845ed3613e1e68639e6a6289b291ff97be3",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s77/initial.json",
+      "bytes": 252585,
+      "sha256": "6d0dad7dc1ea29d6e437b5521da5feb55a03e79eec265b7feac0a8429e76e5b0",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s77/report.json",
+      "bytes": 7620,
+      "sha256": "18b27e8d6e3a91d435655469d9c2621407a5cb2e0118104e967687733ef48886",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s77/source-blake3.json",
+      "bytes": 425,
+      "sha256": "0648b932859305a8a34791e7bbc99856a905307fec91d7a532e1712acde0d286",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s77/tick-times-ns.json",
+      "bytes": 7313,
+      "sha256": "aaa1fad86241181cb61f59c45ae7bae802d41bf6535e6897711a9d467acf0240",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s77/ticks.jsonl",
+      "bytes": 1335040,
+      "sha256": "be1dc58596a19081b3fa9a60b628bdd169a5bee2a70df25316f95a5656b9aac9",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/longitudinal-f1-s77.log",
+      "bytes": 7621,
+      "sha256": "336a4dfc5d207886d6f3734ff1460725d10af300bff063ffe7a088d7ab2d0124",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/refusal-f100-s77/source-blake3.json",
+      "bytes": 425,
+      "sha256": "0648b932859305a8a34791e7bbc99856a905307fec91d7a532e1712acde0d286",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/refusal-f100-s77.log",
+      "bytes": 77,
+      "sha256": "6998744ef48b96a8039ea92ed12951dc23997e9c67bcdbd2589984dd7838ba08",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/refusal-f30-s77/source-blake3.json",
+      "bytes": 425,
+      "sha256": "0648b932859305a8a34791e7bbc99856a905307fec91d7a532e1712acde0d286",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/refusal-f30-s77.log",
+      "bytes": 77,
+      "sha256": "6998744ef48b96a8039ea92ed12951dc23997e9c67bcdbd2589984dd7838ba08",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/refusal-f300-s77/source-blake3.json",
+      "bytes": 425,
+      "sha256": "0648b932859305a8a34791e7bbc99856a905307fec91d7a532e1712acde0d286",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/refusal-f300-s77.log",
+      "bytes": 77,
+      "sha256": "6998744ef48b96a8039ea92ed12951dc23997e9c67bcdbd2589984dd7838ba08",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s11/final.json",
+      "bytes": 1390337,
+      "sha256": "05df1a397111caec7e1c9ab4405b8491bf7799ecbbaf6cd98eebaec5e8eaa8a7",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s11/initial.json",
+      "bytes": 57493,
+      "sha256": "d73022bcfec88a02b3e6d935cb2e212c53ffa40efb3afd7a2985901e6f7da02b",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s11/report.json",
+      "bytes": 2521,
+      "sha256": "9e369acc78bc2f246af4bb7b8a678d1365dca61c383de65d6c48680ecd7c3356",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s11/source-blake3.json",
+      "bytes": 425,
+      "sha256": "0648b932859305a8a34791e7bbc99856a905307fec91d7a532e1712acde0d286",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s11/tick-times-ns.json",
+      "bytes": 718,
+      "sha256": "5b09e56faf44e19f7d4c35b2e8b6021b69a810d34b6a72fb252c28a5709787f4",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s11/ticks.jsonl",
+      "bytes": 495199,
+      "sha256": "b1ba1e639bed3cd1c3a09a643599cfa5ec26135314c792ead2637d74f8a27bfc",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s11.log",
+      "bytes": 2522,
+      "sha256": "b3b0a232aaebbe14dbe35fcf09f8229da0f11897111c8c335140d40d071b4895",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s23/final.json",
+      "bytes": 1544877,
+      "sha256": "0df719d5b10a9c1fa0b1e909df67f06b91e315e2f0d7dad438e7f04a634ad641",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s23/initial.json",
+      "bytes": 57479,
+      "sha256": "4f2d7b69a60fb315b14804b923d2373fc093b93aa94341a77db95c20204737cc",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s23/report.json",
+      "bytes": 2519,
+      "sha256": "bd2d5a8e2f5caee86038eee89e163183b3f5a2e987011691427186c21e756852",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s23/source-blake3.json",
+      "bytes": 425,
+      "sha256": "0648b932859305a8a34791e7bbc99856a905307fec91d7a532e1712acde0d286",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s23/tick-times-ns.json",
+      "bytes": 757,
+      "sha256": "0059025055ea943d2362df0e55df958846c5aeb8301b93a0d9bdaad13d82364b",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s23/ticks.jsonl",
+      "bytes": 555604,
+      "sha256": "26cdb6256efe1a581968f4e423dc6bfb40513fdcbc353b89f5708345bf9d1a18",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s23.log",
+      "bytes": 2520,
+      "sha256": "d9eb7deca0e9e023b2e9e6dab41a4ee51a6bd4e7693ee99825eec943dc253e62",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s77/final.json",
+      "bytes": 1267894,
+      "sha256": "ed0ab447a6a274523851bd720facf735de5276aca979ba8cf20ca99bf77c7a27",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s77/initial.json",
+      "bytes": 57492,
+      "sha256": "f3d4454a0931ac3872ccf44eff4b811f0ef01c15ac9ff29e1ec717b65584f703",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s77/report.json",
+      "bytes": 2520,
+      "sha256": "70fb748d2a84fce5a7825a01c687618b0d4e78343995fd84b45454111c1b80b4",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s77/source-blake3.json",
+      "bytes": 425,
+      "sha256": "0648b932859305a8a34791e7bbc99856a905307fec91d7a532e1712acde0d286",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s77/tick-times-ns.json",
+      "bytes": 626,
+      "sha256": "6857cb8cfe9f03906c19e75c3c3c8bc448ba093fa3adf31a762b0875f1d30f5a",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s77/ticks.jsonl",
+      "bytes": 437923,
+      "sha256": "0aa42cfbfb61becbdb1dd823c291adbda26ce08afa47019f09a664c23e26e8c1",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f10-s77.log",
+      "bytes": 2521,
+      "sha256": "ea920762384a31c70e0863c9b7d9e5a1711b51364332891365152ec7cbadd4e0",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s11/final.json",
+      "bytes": 773901,
+      "sha256": "253e1265c598ab1ed6264abbfdc0ab014ea8cf269927e70bc00660b08e0c149b",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s11/initial.json",
+      "bytes": 49939,
+      "sha256": "a69671f9b9b71e3e4e5cdacbb3876ac3e5259f8e183540f660ad12935a9159c5",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s11/report.json",
+      "bytes": 2921,
+      "sha256": "87fd79171d17f7350b5c897a6fc26bd83eba53ec0db601c565a53cff9b3c2fa6",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s11/source-blake3.json",
+      "bytes": 425,
+      "sha256": "0648b932859305a8a34791e7bbc99856a905307fec91d7a532e1712acde0d286",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s11/tick-times-ns.json",
+      "bytes": 1113,
+      "sha256": "1811a9fea77f23d8e4c88a5f3d61450efbb97d96f367cba3ce7366381c823834",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s11/ticks.jsonl",
+      "bytes": 310200,
+      "sha256": "3a805d738c64d5a11dd64bad6a205d935d86c1d66b3e3fb4ce80752c33a8ec94",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s11.log",
+      "bytes": 2922,
+      "sha256": "a4483751fa4131980cff40be86f936bfc6372382b72a2cc841e5c04b2362113a",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s23/final.json",
+      "bytes": 755914,
+      "sha256": "e5226f21fb6916b4b855a51975d62aecc743a8455576811d9de432b67b78342a",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s23/initial.json",
+      "bytes": 49935,
+      "sha256": "2d89efb780bf1b88e41595440a3a4bfd7d21c2a65e58cb52c33aa42e6b13f9af",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s23/report.json",
+      "bytes": 2928,
+      "sha256": "578a0f5ce3e11ca4528d91bfc6d4802ad7df690b78857fd85aee1d03b0271ef7",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s23/source-blake3.json",
+      "bytes": 425,
+      "sha256": "0648b932859305a8a34791e7bbc99856a905307fec91d7a532e1712acde0d286",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s23/tick-times-ns.json",
+      "bytes": 1104,
+      "sha256": "4c956826a986833ddeb332e61fe5adacc81e20dc93da365454040ce26aca6c0c",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s23/ticks.jsonl",
+      "bytes": 304561,
+      "sha256": "63b1e5a88d306b7894b69a87b0b865548de75fc7de64e0e3c8d5c33e8f7794b7",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s23.log",
+      "bytes": 2929,
+      "sha256": "b60929e594701aa1d6f4a95a9f5692dfa2324bf5ad105ab1aa224e68ed4c39c3",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s77/final.json",
+      "bytes": 754242,
+      "sha256": "59c30723923ea6c0a837a4bdf9b4ea7e9e8548929c34e6414bcfc8061e8df8e5",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s77/initial.json",
+      "bytes": 49940,
+      "sha256": "3c5d2d385e7efb777a47862db181d0e96b90cfbe5a55eba219403a2fe2cb37e0",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s77/report.json",
+      "bytes": 2928,
+      "sha256": "e04e3991192d5f2d1d1e1e7a4986eefda3e651c9b639e985c7ddfefac726561f",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s77/source-blake3.json",
+      "bytes": 425,
+      "sha256": "0648b932859305a8a34791e7bbc99856a905307fec91d7a532e1712acde0d286",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s77/tick-times-ns.json",
+      "bytes": 1121,
+      "sha256": "7b56cbf7ad5ebbbb1620d54409ca8e7b4b2afb6c85ef69fc7c0377c0e7224860",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s77/ticks.jsonl",
+      "bytes": 303286,
+      "sha256": "4c9979c7f964294e6867c63259f773194e73c75114573abe89e29f564eb2e592",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/scaling-f5-s77.log",
+      "bytes": 2929,
+      "sha256": "e0885d6fbb7bdc6aa0279664fb6378db10a3fc72658a7fe4b7668285326f24e2",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "registered-observations/summary.json",
+      "bytes": 55695,
+      "sha256": "fda45c98407feca3b4968c24f85eae3f9f353b9e4d0a3fd7e85d761193bf0ab1",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "restored-focused.log",
+      "bytes": 5531,
+      "sha256": "7c4d603f344efc78d5db6802e9bcada82b62abb31f56da8e1d8e67085a12acfa",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "runtime-before-honest-red.rs",
+      "bytes": 76872,
+      "sha256": "fa52a2179feb0f22def63b8a5839c91c5bde55d8c5fa9bb0053049a88cacc036",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "slide-red.log",
+      "bytes": 844,
+      "sha256": "df9e89a96de171ab8a2ea122244a73d1abb6c0e5bf21f1a98961a42061ab8c20",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "source-final/AGENTS.md",
+      "bytes": 17406,
+      "sha256": "d6dfeeca5f3d4217a587858978943d6bb64b1ad92e7419cf6a074efa065eac91",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "source-final/Cargo.lock",
+      "bytes": 162635,
+      "sha256": "36db9a550b1963a7e8a1d03e19e96ef13af7ead6cff44d13e2032460520c8e8c",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "source-final/Cargo.toml",
+      "bytes": 463,
+      "sha256": "3e3525280a72beb2df0ef9f923afd5974f236e29b829b41f552ef97a8665f4e6",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "source-final/README.md",
+      "bytes": 19515,
+      "sha256": "6e0fa3936d7cc006fcd07849660196b6a4b43f34f96aa15af755ae253443242d",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "source-final/SIMULATION_0001_PLAYABLE_COLONY_RESULTS.md",
+      "bytes": 17684,
+      "sha256": "8e6df77be62c9be3f5f0db4bc6b1aff8dc955c71d8a1be5ab8b529c22abf0db7",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "source-final/crates/moebius-morph/examples/habitat_probe.rs",
+      "bytes": 14124,
+      "sha256": "ba6d1f6df2d9dd973e25d02f70795eef27cc2c0f2275f2725e36afed520c209c",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "source-final/crates/moebius-morph/src/collision.rs",
+      "bytes": 76700,
+      "sha256": "811a79f55eb7b052bb930e0af156b972baa91e2eb0357b8d8510bbc4d9c21ffb",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "source-final/crates/moebius-morph-lab/src/bin/moebius-world-witness.rs",
+      "bytes": 92676,
+      "sha256": "2a5c5bc4cf541778e45dc258df7db99aa57017173af9a4167e072adc9dee8d17",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "source-final/docs/morph_005/COLLISION_CONTRACTS.md",
+      "bytes": 16643,
+      "sha256": "2c9ba7e47019fbcd4637add8eebe03da8d6945950a97f52235cae2f195e27e44",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "source-final/docs/morph_005/HABITAT_REFINEMENT.md",
+      "bytes": 5962,
+      "sha256": "c7212b8636b4599a8697ab0426cde5001ef630cb32891783b4c8c1c6a90a141b",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "source-final/docs/morph_005/SIMULATION_0001_COLLISION_DIAGNOSIS.md",
+      "bytes": 7567,
+      "sha256": "164f04a4ff7a6ee1d4e42f9cbbd74864f8efd0fa9eb827fb341a391fcf47a45f",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "source-final/docs/morph_005/SIMULATION_0001_EXPERIMENT.json",
+      "bytes": 971,
+      "sha256": "221a18472cfadb623e49f494be2a442ac4abd3bc52284668929279be85c8b0c1",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "source-final/docs/morph_005/SIMULATION_0001_STABILIZATION.md",
+      "bytes": 4454,
+      "sha256": "3e1ef3391bb5210c002c89af2826856221000f645213ee4aca47cf1fdc0a05af",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "source-final/python/simulation_0001_experiments.py",
+      "bytes": 2721,
+      "sha256": "c88717ad0c90fd1d4cb1e92c643f961d7752046749c0acd8cf526b9aae9127c7",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "source-final.patch",
+      "bytes": 33737,
+      "sha256": "e13512eca71c66c0e1ea1ab03a0f0e82e38fd964e71570c3997c0677925e933d",
+      "purpose": "source or protocol provenance"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 896,
+      "sha256": "3633721b029967d4b7ac8147f26b1a124c5a8b47b77b88b292eb1382a6aebc21",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    },
+    {
+      "path": "witness-tests.log",
+      "bytes": 1165,
+      "sha256": "9932a3f4e69e5b2a981f793ae9127b4e69f065598bf74608f07f473bd330d9b4",
+      "purpose": "raw traces, snapshots, failures, captures and receipts"
+    }
+  ]
+}

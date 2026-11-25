@@ -1,0 +1,20 @@
+{
+  "status": "VERIFIED_AND_RESTORED",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon"
+  },
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25/repair-exploration-checkpoint-v1/evidence.tar.gz",
+  "sha256": "0a5f2e63d9d646ff921e502128ae4960e382c56a435b54c7a44f3480e83bca5a",
+  "archive_bytes": 36962377,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25/repair-exploration-checkpoint-v1/MANIFEST.json",
+  "manifest_sha256": "a65914d343662979bddfa67069ad2dc0577995a21b69fead5b804f0f1d030ca0",
+  "file_count": 495,
+  "raw_bytes": 432268929,
+  "all_restored_file_hashes_match": true,
+  "restore_directory": "/tmp/moebius-repair-checkpoint-restore-gtm1zxju",
+  "local_working_copy_retained": "/tmp/moebius-domain-audit-20261125T034608Z",
+  "source_identity": "main abdb664738a23c1aaf37c46810d26728f88c7d2f plus checkpoint-source overlay; intermediate versions have per-run identities/provenance gaps",
+  "restore": "Verify Mermogon UUID and archive/manifest SHA256. Extract into a NEW directory with tarfile data filter. Check every manifest member. Apply checkpoint-source overlay to BASE_HEAD; commit identity is recorded separately. Never overwrite archives."
+}

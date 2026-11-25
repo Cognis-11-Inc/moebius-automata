@@ -1,5 +1,12 @@
 # Snailpipe habitat refinement — 2026-11-24
 
+Current 2026-11-25 continuation: **PARTIAL, collision and exploration repairs implemented**.
+See [current repair status](SIMULATION_0001_REPAIR_STATUS.md). Final checks and
+smooth, lightweight operation remain pending. Historical receipts follow.
+See [the causal diagnosis](SIMULATION_0001_COLLISION_DIAGNOSIS.md) and the
+[root results](../../SIMULATION_0001_PLAYABLE_COLONY_RESULTS.md). Historical
+receipts below do not certify absence of trapping or current-source performance.
+
 Status: **PARTIAL**. World rules are implemented and focused-tested. The
 native visual receipt of continuous hunting, feeding, movement, and snailpipe
 deposition for one bare founder is `/tmp/moebius-habitat-native-v7` (digest

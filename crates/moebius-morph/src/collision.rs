@@ -8,8 +8,12 @@ use crate::{
     *,
 };
 use parry3d::{
+    bounding_volume::BoundingVolume,
     math::{Pose as Iso, Rot3, Vector},
-    query::{self, NonlinearRigidMotion},
+    query::{
+        self, DefaultQueryDispatcher, NonlinearRigidMotion, QueryDispatcher, ShapeCastOptions,
+        ShapeCastStatus,
+    },
     shape::{
         Ball, Capsule, Compound, ConvexPolyhedron, Cuboid, Shape, SharedShape, TriMesh,
         TriMeshFlags,
@@ -129,6 +133,15 @@ pub struct CollisionProfile {
     pub resolve_ns: u128,
     pub queries: u64,
     pub query_ns: u128,
+    /// Intervals rejected by a conservative AABB distance lower bound.
+    pub interval_rejects: u64,
+    /// Actual Parry distance evaluations (queries also counts bound-only visits).
+    pub distance_queries: u64,
+    pub distance_ns: u128,
+    pub contact_ns: u128,
+    pub cast_cache_hits: u64,
+    pub linear_casts: u64,
+    pub mesh_interval_rejects: u64,
     pub body_builds: u64,
     pub body_hits: u64,
     pub body_geometry_ns: u128,
@@ -190,17 +203,68 @@ struct Geometry {
     /// Solids are grown by this amount. Pipes and prey keep the tight hull.
     writhe_slack: f32,
 }
-/// Filament, chunk, previous-node id, next-node id, span and capped age.
-type PipeCacheKey = (u64, usize, u64, u64, u64);
+/// Filament, chunk, and digest of the geometry inputs including wet mesh time.
+type PipeCacheKey = (u64, usize, [u8; 32]);
 #[derive(Default)]
 pub struct CollisionCache {
-    definitions: BTreeMap<(u64, u64, String), Geometry>,
+    definitions: BTreeMap<(u64, u64, [u8; 32]), Arc<Geometry>>,
+    specifications: BTreeMap<u64, (AnatomySpec, [u8; 32])>,
     /// Age stays in the key until the newest sample in the chunk is dry.
     /// Nodes past the one-neighbor lookahead do not.
     pipes: BTreeMap<PipeCacheKey, (Position, Geometry)>,
     profile: CollisionProfile,
+    casts: BTreeMap<CastKey, CastReceipt>,
+}
+type Hit = Option<(f32, [i64; 3], Position)>;
+type CastKey = (usize, u32, usize, u32, [i64; 24]);
+struct CastReceipt {
+    // Keep both allocations alive: an address must never alias a new shape.
+    _shapes: [Arc<dyn Shape>; 2],
+    hit: Hit,
 }
 impl CollisionCache {
+    fn cast(
+        &mut self,
+        a: &Geometry,
+        from: RigidPose,
+        to: RigidPose,
+        b: &Geometry,
+        bfrom: RigidPose,
+        bto: RigidPose,
+    ) -> Result<Hit, MorphError> {
+        let mut poses = [0; 24];
+        for (values, p) in poses
+            .as_chunks_mut::<6>()
+            .0
+            .iter_mut()
+            .zip([from, to, bfrom, bto])
+        {
+            values[..3].copy_from_slice(&p.translation);
+            values[3..].copy_from_slice(&[p.yaw_sin, p.yaw_cos, p.axial_roll]);
+        }
+        let key = (
+            Arc::as_ptr(&a.shape) as *const () as usize,
+            a.radius.to_bits(),
+            Arc::as_ptr(&b.shape) as *const () as usize,
+            b.radius.to_bits(),
+            poses,
+        );
+        if let Some(receipt) = self.casts.get(&key) {
+            self.profile.cast_cache_hits += 1;
+            return Ok(receipt.hit);
+        }
+        let hit = cast(a, from, to, b, bfrom, bto, &mut self.profile)?;
+        if self.casts.len() < 8192 {
+            self.casts.insert(
+                key,
+                CastReceipt {
+                    _shapes: [a.shape.clone(), b.shape.clone()],
+                    hit,
+                },
+            );
+        }
+        Ok(hit)
+    }
     pub fn profile(&self) -> CollisionProfile {
         self.profile
     }
@@ -265,7 +329,7 @@ fn geometry(surfaces: &[Surface], scale: f32) -> Result<Geometry, MorphError> {
     })
 }
 impl CollisionCache {
-    fn body(&mut self, world: &WorldSnapshot, id: u64) -> Result<Geometry, MorphError> {
+    fn body(&mut self, world: &WorldSnapshot, id: u64) -> Result<Arc<Geometry>, MorphError> {
         let body = &world.instances[&id];
         let spec = &world.config.definitions[&body.definition];
         let quantity = if body.definition == BLOOD_SAC {
@@ -273,12 +337,23 @@ impl CollisionCache {
         } else {
             0
         };
+        // Definitions are explicit inputs. Reuse their hash only while their
+        // value is unchanged; a restored/edited definition must invalidate it.
+        if self
+            .specifications
+            .get(&body.definition)
+            .is_none_or(|(saved, _)| saved != spec)
+        {
+            let hash =
+                *blake3::hash(&serde_json::to_vec(spec).map_err(|e| MorphError(e.to_string()))?)
+                    .as_bytes();
+            self.specifications
+                .insert(body.definition, (spec.clone(), hash));
+        }
         let key = (
             body.definition,
             quantity,
-            blake3::hash(&serde_json::to_vec(spec).map_err(|e| MorphError(e.to_string()))?)
-                .to_hex()
-                .to_string(),
+            self.specifications[&body.definition].1,
         );
         if let Some(g) = self.definitions.get(&key) {
             self.profile.body_hits += 1;
@@ -368,6 +443,7 @@ impl CollisionCache {
             writhe_slack,
         };
         self.profile.body_geometry_ns += built.elapsed().as_nanos();
+        let g = Arc::new(g);
         self.definitions.insert(key, g.clone());
         Ok(g)
     }
@@ -417,7 +493,7 @@ impl CollisionCache {
         let g = geometry(&[surface], 1.)?;
         self.profile.pipe_geometry_ns += built.elapsed().as_nanos();
         self.pipes
-            .retain(|(filament, c, _, _, _), _| *filament != id || *c != chunk);
+            .retain(|(filament, c, _), _| *filament != id || *c != chunk);
         self.pipes.insert(key, (origin, g.clone()));
         Ok((origin, g))
     }
@@ -436,27 +512,46 @@ fn pipe_key(
     f: &crate::filament::Filament,
     chunk: usize,
     tick: u64,
-) -> Option<(u64, usize, u64, u64, u64)> {
+) -> Option<PipeCacheKey> {
     if f.nodes.len() <= 1 {
         return None;
     }
     let start = chunk * CHUNK_EDGES;
     let end = (start + CHUNK_EDGES).min(f.nodes.len() - 1);
-    // The newest node has the smallest age. Once it is dry, every older
-    // sample on this chunk is dry too, and radii_at has stopped changing.
-    let age = tick
-        .saturating_sub(f.nodes[end].deposited_tick.max(f.created_tick))
-        .min(192);
-    // filament_chunk_at reads one node before the chunk and one after it.
-    // A later node on the same filament does not move this mesh.
-    let before = if start > 0 { f.nodes[start - 1].id } else { 0 };
-    let after = if end + 1 < f.nodes.len() {
-        f.nodes[end + 1].id
+    let mut h = blake3::Hasher::new();
+    h.update(b"pipe-geometry-v2");
+    h.update(&f.created_tick.to_le_bytes());
+    h.update(&f.nozzle.to_le_bytes());
+    h.update(&[u8::from(end + 1 == f.nodes.len())]);
+    if let Some(section) = &f.section {
+        h.update(&[
+            1,
+            u8::from(section.start_sealed),
+            u8::from(section.end_sealed),
+        ]);
+        h.update(&section.outer_radius.to_le_bytes());
+        h.update(&section.inner_radius.to_le_bytes());
+        let newest = f.nodes[start..=end]
+            .iter()
+            .map(|n| n.deposited_tick)
+            .max()
+            .unwrap()
+            .max(f.created_tick);
+        // Fresh nodes may be deposited at tick+1 while roots are admitted at
+        // tick. Both times clamp youngest-age to zero but older rings age!
+        // Absolute mesh time distinguishes them; fully dry geometry stabilizes.
+        h.update(&tick.min(newest.saturating_add(192)).to_le_bytes());
     } else {
-        0
-    };
-    let span = (end - start) as u64;
-    Some((id, chunk, before, after, (span << 16) | age))
+        h.update(&[0]);
+    }
+    for n in &f.nodes[start.saturating_sub(1)..=(end + 1).min(f.nodes.len() - 1)] {
+        h.update(&n.id.to_le_bytes());
+        h.update(&n.deposited_tick.to_le_bytes());
+        for v in n.position.region.iter().chain(&n.position.local) {
+            h.update(&v.to_le_bytes());
+        }
+    }
+    Some((id, chunk, *h.finalize().as_bytes()))
 }
 
 fn length(a: [f32; 3]) -> f32 {
@@ -633,20 +728,141 @@ fn cast(
         + a.radius * m1.angvel.length()
         + b.radius * m2.angvel.length();
     let skin = 0.0001f32;
+    // Already touching/penetrating pairs have a contact at t=0. Resolve that
+    // actual contact once, rather than rediscover it by ~17 identical distance
+    // evaluations while bisecting toward zero. The hollow geometry is unchanged.
+    let contact_started = Instant::now();
+    let initial = query::contact(
+        &m1.start,
+        a.shape.as_ref(),
+        &m2.start,
+        b.shape.as_ref(),
+        skin,
+    )
+    .ok()
+    .flatten();
+    charge.profile.contact_ns += contact_started.elapsed().as_nanos();
+    charge.visits += 1;
+    if let Some(c) = initial {
+        let point = origin.offset(
+            c.point1
+                .to_array()
+                .map(|x| (x * SCALE as f32).round() as i64),
+        )?;
+        return Ok(Some((
+            0.,
+            c.normal1
+                .to_array()
+                .map(|x| (x * SCALE as f32).round() as i64),
+            point,
+        )));
+    }
+    if m1.angvel == Vector::ZERO && m2.angvel == Vector::ZERO {
+        // Exact constant-rotation case: use the library's linear BVH sweep
+        // rather than repeatedly asking for static distance on the same mesh.
+        // Supply relative velocity explicitly in shape-1 coordinates.
+        let local_delta = m1.start.rotation.inverse() * (m2.linvel - m1.linvel);
+        let options = ShapeCastOptions {
+            max_time_of_impact: 1.,
+            target_distance: skin,
+            stop_at_penetration: true,
+            compute_impact_geometry_on_penetration: true,
+        };
+        let result = DefaultQueryDispatcher.cast_shapes(
+            &m1.start.inv_mul(&m2.start),
+            local_delta,
+            a.shape.as_ref(),
+            b.shape.as_ref(),
+            options,
+        );
+        charge.profile.linear_casts += 1;
+        charge.visits += 1;
+        match result {
+            Ok(None) => return Ok(None),
+            Ok(Some(hit))
+                if matches!(
+                    hit.status,
+                    ShapeCastStatus::Converged | ShapeCastStatus::PenetratingOrWithinTargetDist
+                ) =>
+            {
+                let pose = m1.position_at_time(hit.time_of_impact);
+                let normal = pose.rotation * hit.normal1;
+                let point = origin.offset(
+                    (pose * hit.witness1)
+                        .to_array()
+                        .map(|x| (x * SCALE as f32).round() as i64),
+                )?;
+                return Ok(Some((
+                    hit.time_of_impact,
+                    normal.to_array().map(|x| (x * SCALE as f32).round() as i64),
+                    point,
+                )));
+            }
+            _ => {} // Unsupported or nonconverged: preserve the conservative fallback.
+        }
+    }
     let mut pending = vec![(0f32, 1f32)];
     while let Some((lo, hi)) = pending.pop() {
         charge.visits += 1;
         let mid = (lo + hi) * 0.5;
         let pa = m1.position_at_time(mid);
         let pb = m2.position_at_time(mid);
+        // An enclosing AABB distance is a lower bound on shape distance. Apply
+        // the same Lipschitz interval bound before the expensive hollow-mesh
+        // query. Mesh creation, cache fills and interval ordering are unchanged.
+        // Keep a millimetre margin beyond the contact skin for f32 roundoff.
+        let aa = a.shape.compute_aabb(&pa);
+        let bb = b.shape.compute_aabb(&pb);
+        let gap = (aa.mins - bb.maxs).max(bb.mins - aa.maxs).max(Vector::ZERO);
+        let magnitude = aa
+            .mins
+            .abs()
+            .max(aa.maxs.abs())
+            .max(bb.mins.abs())
+            .max(bb.maxs.abs())
+            .max_element();
+        let roundoff = (magnitude * 16. * f32::EPSILON).max(0.001);
+        if gap.length() > speed * (hi - lo) * 0.5 + skin + roundoff {
+            charge.profile.interval_rejects += 1;
+            continue;
+        }
+        // Reuse the hollow mesh's own BVH. Every compound component must be
+        // separated from every triangle's AABB by the full interval movement
+        // margin before a costly distance evaluation may be skipped. No mesh
+        // is replaced by a solid proxy; uncertain intervals keep the old query.
+        if let Some(mesh) = b.shape.as_trimesh() {
+            let relative = pb.inv_mul(&pa);
+            let margin = speed * (hi - lo) * 0.5 + skin + roundoff;
+            let clear = if a.parts.is_empty() {
+                mesh.bvh()
+                    .intersect_aabb(&a.shape.compute_aabb(&relative).loosened(margin))
+                    .next()
+                    .is_none()
+            } else {
+                a.parts.iter().all(|(_, part)| {
+                    mesh.bvh()
+                        .intersect_aabb(&part.shape.compute_aabb(&relative).loosened(margin))
+                        .next()
+                        .is_none()
+                })
+            };
+            if clear {
+                charge.profile.mesh_interval_rejects += 1;
+                continue;
+            }
+        }
+        charge.profile.distance_queries += 1;
+        let distance_started = Instant::now();
         let distance =
             query::distance(&pa, a.shape.as_ref(), &pb, b.shape.as_ref()).map_err(|_| {
                 MorphError("unsupported physical distance query; movement refused".into())
             })?;
+        charge.profile.distance_ns += distance_started.elapsed().as_nanos();
         if distance > speed * (hi - lo) * 0.5 + skin {
             continue;
         }
         if hi - lo <= 0.00001 || speed == 0. || charge.visits >= 512 {
+            let contact_started = Instant::now();
             let closest = query::contact(
                 &pa,
                 a.shape.as_ref(),
@@ -656,6 +872,7 @@ fn cast(
             )
             .ok()
             .flatten();
+            charge.profile.contact_ns += contact_started.elapsed().as_nanos();
             let (normal, point) = if let Some(c) = closest {
                 (c.normal1, c.point1)
             } else {
@@ -703,38 +920,95 @@ fn record(
         .push(observation.clone());
     world.events.push(Event::Contact { observation });
 }
+/// A normal points out of the moving body into the obstacle. Project positive
+/// (inward) travel and bias the correction outward, bounded by the requested step.
 fn along_surface(start: RigidPose, aim: RigidPose, normal: [i64; 3]) -> RigidPose {
-    let delta = std::array::from_fn(|k| aim.translation[k].saturating_sub(start.translation[k]));
+    let travel = vec(std::array::from_fn(|k| {
+        aim.translation[k].saturating_sub(start.translation[k])
+    }));
     let n = vec(normal).normalize_or_zero();
     if n.length_squared() < 0.5 {
         return start;
     }
-    let travel = vec(delta);
     let into = travel.dot(n);
-    let tangent = if into < 0. { travel - n * into } else { travel };
-    if tangent.length() < 0.004 {
-        if into >= 0. {
-            return start;
-        }
-        let mut pose = start;
-        pose.translation = std::array::from_fn(|k| {
-            start.translation[k].saturating_add((n[k] * -0.02 * SCALE as f32).round() as i64)
-        });
-        return pose;
+    if into < -0.00001 {
+        return aim;
     }
-    let mut pose = aim;
+    let tangent = travel - n * into.max(0.);
+    let mut correction = tangent - n * 0.02;
+    if correction.length() > travel.length() {
+        correction = correction.normalize_or_zero() * travel.length();
+    }
+    let mut pose = start; // Obstructed bodies do not sweep an unchecked rotation.
     pose.translation = std::array::from_fn(|k| {
-        start.translation[k].saturating_add((tangent[k] * SCALE as f32).round() as i64)
+        start.translation[k].saturating_add((correction[k] * SCALE as f32).round() as i64)
     });
     pose
+}
+
+/// Existing overlap is not permission to tunnel. Accept a translation away only
+/// when four intermediate/endpoint contacts do not deepen the initial overlap.
+/// Tangential progress is allowed so a pre-existing wedged state can unwind. Every other obstacle is still swept normally.
+fn nondeepening_recovery(
+    a: &Geometry,
+    from: RigidPose,
+    to: RigidPose,
+    b: &Geometry,
+    bfrom: RigidPose,
+    bto: RigidPose,
+) -> Result<bool, MorphError> {
+    if from == to && bfrom == bto {
+        return Ok(false);
+    }
+    let same_rotation = |p: RigidPose, q: RigidPose| {
+        p.yaw_sin == q.yaw_sin && p.yaw_cos == q.yaw_cos && p.axial_roll == q.axial_roll
+    };
+    if !same_rotation(from, to) || !same_rotation(bfrom, bto) {
+        return Ok(false);
+    }
+    let origin = Position::from_absolute(from.translation)?;
+    let am = motion(from, to, origin)?;
+    let bm = motion(bfrom, bto, origin)?;
+    let contact_at = |t| {
+        query::contact(
+            &am.position_at_time(t),
+            a.shape.as_ref(),
+            &bm.position_at_time(t),
+            b.shape.as_ref(),
+            0.001,
+        )
+        .map_err(|_| MorphError("unsupported overlap recovery query".into()))
+    };
+    let Some(first) = contact_at(0.)? else {
+        return Ok(false);
+    };
+    let relative = am.linvel - bm.linvel;
+    if am.angvel == Vector::ZERO
+        && bm.angvel == Vector::ZERO
+        && relative.dot(first.normal1) > 0.00001
+    {
+        return Ok(false);
+    }
+    let mut previous = first.dist;
+    for t in [0.25, 0.5, 0.75, 1.] {
+        let depth = contact_at(t)?.map_or(0.001, |c| c.dist);
+        if depth + 0.00001 < previous {
+            return Ok(false);
+        }
+        previous = depth;
+    }
+    Ok(previous + 0.00001 >= first.dist)
 }
 fn retreat(agent: &mut Agent, normal: [i64; 3]) {
     let h = Vector::from_array(agent.heading.map(|v| v as f32 / SCALE as f32)).normalize();
     let n = Vector::from_array(normal.map(|v| v as f32 / SCALE as f32)).normalize_or_zero();
-    if h.dot(n) <= 0. {
+    if n.length_squared() < 0.5 {
         return;
     }
-    let away = (h - 2. * h.dot(n) * n).normalize_or_zero();
+    // A curved pipe can reject a shallow "away" direction as well. Turn
+    // toward clearance after an actual refusal instead of doing nothing
+    // whenever the first normal component is already slightly outward.
+    let away = -n;
     let alignment = h.dot(away).clamp(-1., 1.);
     let mut tangent = (away - h * alignment).normalize_or_zero();
     if tangent.length_squared() < 0.5 {
@@ -770,6 +1044,7 @@ pub(crate) fn resolve(
         return Ok(());
     }
     let started = Instant::now();
+    cache.casts.clear();
     require(
         next.config.environment == crate::emission::Environment::suspended(),
         "unsupported force field in collision mode",
@@ -795,6 +1070,7 @@ pub(crate) fn resolve(
         );
     }
     let mut stopped = BTreeSet::new();
+    let mut stopping_normals = BTreeMap::new();
     let mut reported = BTreeSet::new();
     let hunters = next
         .habitat
@@ -804,8 +1080,12 @@ pub(crate) fn resolve(
         .keys()
         .copied()
         .collect::<BTreeSet<_>>();
-    for _ in 0..=ids.len() {
-        let count = stopped.len();
+    let mut settled = false;
+    // First compose one bounded avoidance proposal. Later passes only verify
+    // or freeze it, so each changed verification pass stops another moving
+    // target instead of oscillating between expensive alternate corrections.
+    for pass in 0..=ids.len() + 1 {
+        let pass_targets = targets.clone();
         for (index, &a) in ids.iter().enumerate() {
             for &b in &ids[index + 1..] {
                 let pa = starts[&a];
@@ -826,9 +1106,7 @@ pub(crate) fn resolve(
                 if !near(pa, pb, shapes[&a].radius, shapes[&b].radius, da, db) {
                     continue;
                 }
-                if let Some(hit) =
-                    cast(&shapes[&a], pa, ta, &shapes[&b], pb, tb, &mut cache.profile)?
-                {
+                if let Some(hit) = cache.cast(&shapes[&a], pa, ta, &shapes[&b], pb, tb)? {
                     let prey = |id: u64| before.instances[&id].definition == BLOOD_SAC;
                     let hunter = |id: u64| hunters.contains(&id);
                     // Prey is not a wall. A bite is recorded and both keep their step.
@@ -850,25 +1128,36 @@ pub(crate) fn resolve(
                         );
                     }
                     if response == ContactResponse::Blocked {
-                        if hunter(a) && hunter(b) {
+                        if hit.0 <= 0.00001
+                            && nondeepening_recovery(&shapes[&a], pa, ta, &shapes[&b], pb, tb)?
+                        {
+                            continue;
+                        }
+                        stopping_normals.insert(a, hit.1);
+                        stopping_normals.insert(b, hit.1.map(|x| -x));
+                        if pass == 0 && hunter(a) && hunter(b) {
                             let slid_a = along_surface(pa, ta, hit.1);
                             let slid_b = along_surface(pb, tb, hit.1.map(|x| x.saturating_neg()));
-                            if slid_a.translation != pa.translation {
+                            if slid_a.translation != pa.translation && slid_a != ta {
                                 targets.insert(a, slid_a);
                             } else {
                                 targets.insert(a, pa);
                                 stopped.insert(a);
+                                stopping_normals.insert(a, hit.1);
                             }
-                            if slid_b.translation != pb.translation {
+                            if slid_b.translation != pb.translation && slid_b != tb {
                                 targets.insert(b, slid_b);
                             } else {
                                 targets.insert(b, pb);
                                 stopped.insert(b);
+                                stopping_normals.insert(b, hit.1.map(|x| -x));
                             }
                         } else {
                             targets.insert(a, pa);
                             targets.insert(b, pb);
                             stopped.extend([a, b]);
+                            stopping_normals.insert(a, hit.1);
+                            stopping_normals.insert(b, hit.1.map(|x| -x));
                         }
                     }
                 }
@@ -991,18 +1280,18 @@ pub(crate) fn resolve(
                 }
             }
             for (owner, pose, g) in static_shapes {
+                let target = targets[&id];
+                if target == start {
+                    break;
+                }
+                let delta = vec(std::array::from_fn(|k| {
+                    target.translation[k] - start.translation[k]
+                }))
+                .length();
                 if !near(start, pose, shapes[&id].radius, g.radius, delta, 0.) {
                     continue;
                 }
-                if let Some(hit) = cast(
-                    &shapes[&id],
-                    start,
-                    target,
-                    &g,
-                    pose,
-                    pose,
-                    &mut cache.profile,
-                )? {
+                if let Some(hit) = cache.cast(&shapes[&id], start, target, &g, pose, pose)? {
                     let source_nozzle = match &owner {
                         PhysicalTarget::Pipe { filament, .. } => {
                             let f = &before.assembly.as_ref().unwrap().filaments[filament];
@@ -1041,8 +1330,7 @@ pub(crate) fn resolve(
                     if let Some(nozzle) = source_nozzle {
                         for (component, part) in &shapes[&id].parts {
                             if *component != nozzle
-                                && cast(part, start, target, &g, pose, pose, &mut cache.profile)?
-                                    .is_some()
+                                && cache.cast(part, start, target, &g, pose, pose)?.is_some()
                             {
                                 source = false;
                                 break;
@@ -1080,25 +1368,43 @@ pub(crate) fn resolve(
                         continue;
                     }
                     if !source {
-                        if matches!(owner, PhysicalTarget::Pipe { .. })
+                        if hit.0 <= 0.00001
+                            && nondeepening_recovery(&shapes[&id], start, target, &g, pose, pose)?
+                        {
+                            continue;
+                        }
+                        stopping_normals.insert(id, hit.1);
+                        if pass == 0
+                            && matches!(
+                                owner,
+                                PhysicalTarget::Pipe { .. } | PhysicalTarget::Parcel { .. }
+                            )
                             && next.habitat.as_ref().unwrap().agents.contains_key(&id)
                         {
                             let slid = along_surface(start, target, hit.1);
-                            if slid.translation != start.translation {
+                            if slid.translation != start.translation && slid != target {
                                 targets.insert(id, slid);
                                 continue;
                             }
                         }
                         targets.insert(id, start);
                         stopped.insert(id);
+                        stopping_normals.insert(id, hit.1);
                         break;
                     }
                 }
             }
         }
-        if stopped.len() == count {
+        if targets == pass_targets {
+            settled = true;
             break;
         }
+    }
+    // Never commit a last, unchecked correction when the bounded solver fails
+    // to settle. Keep all starts; no authoritative tick or material is skipped.
+    if !settled {
+        targets.clone_from(&starts);
+        stopped.extend(ids.iter().copied());
     }
     for id in ids {
         let target = targets[&id];
@@ -1121,8 +1427,12 @@ pub(crate) fn resolve(
             agent.rigid = target;
             if stopped.contains(&id) {
                 agent.eating = feeding;
-                if let Some(contact) = blocking {
-                    retreat(agent, contact.normal);
+                if let Some(normal) = stopping_normals
+                    .get(&id)
+                    .copied()
+                    .or_else(|| blocking.map(|c| c.normal))
+                {
+                    retreat(agent, normal);
                 }
             }
             if let Some(plan) = plans.get_mut(&id) {
@@ -1188,6 +1498,11 @@ fn overlaps(a: &Geometry, pa: RigidPose, b: &Geometry, pb: RigidPose) -> Result<
     let origin = Position::from_absolute(pa.translation)?;
     let aa = motion(pa, pa, origin)?.start;
     let bb = motion(pb, pb, origin)?.start;
+    let aabb = a.shape.compute_aabb(&aa).loosened(0.0001);
+    let babb = b.shape.compute_aabb(&bb).loosened(0.0001);
+    if !aabb.intersects(&babb) {
+        return Ok(false);
+    }
     if query::intersection_test(&aa, a.shape.as_ref(), &bb, b.shape.as_ref())
         .map_err(|_| MorphError("unsupported overlap query".into()))?
     {
@@ -1200,12 +1515,13 @@ fn overlaps(a: &Geometry, pa: RigidPose, b: &Geometry, pb: RigidPose) -> Result<
     }
     // Surface-only intersection tests miss complete containment. Oriented closed
     // canonical component surfaces also supply the occupied-side point test.
-    Ok(a.vertices
-        .iter()
-        .any(|v| b.shape.contains_point(&bb, aa * (*v)))
-        || b.vertices
-            .iter()
-            .any(|v| a.shape.contains_point(&aa, bb * (*v))))
+    Ok(a.vertices.iter().any(|v| {
+        let p = aa * (*v);
+        babb.contains_local_point(p) && b.shape.contains_point(&bb, p)
+    }) || b.vertices.iter().any(|v| {
+        let p = bb * (*v);
+        aabb.contains_local_point(p) && a.shape.contains_point(&aa, p)
+    }))
 }
 fn clear_shape(
     world: &WorldSnapshot,
@@ -1461,7 +1777,16 @@ pub(crate) fn deposit_allowed(
             if !near(pose, rigid, g.radius, other.radius, 0., 0.) {
                 continue;
             }
-            if id != book.organism_id && overlaps(&g, pose, &other, rigid)? {
+            if id == book.organism_id {
+                // The source outlet may graft into its own deposit. That does
+                // not authorize the new pipe to pass through the trunk, pouch
+                // or other appendages. Own pipe/pipe braiding stays permitted.
+                for (component, part) in &other.parts {
+                    if *component != p.nozzle_id && overlaps(&g, pose, part, rigid)? {
+                        return Ok(false);
+                    }
+                }
+            } else if overlaps(&g, pose, &other, rigid)? {
                 return Ok(false);
             }
             let _ = body;
@@ -1821,6 +2146,266 @@ mod tests {
     use super::*;
     use crate::filament::{Assembly, Filament, Node, PipeSection};
 
+    #[test]
+    fn wet_pipe_cache_matches_cold_geometry_across_a_future_node_tick() {
+        let mut filament = straight(7, 60_000);
+        for (k, node) in filament.nodes.iter_mut().enumerate() {
+            node.deposited_tick = 35 + k as u64;
+        }
+        let mut assembly = Assembly::default();
+        assembly.filaments.insert(1, filament);
+        let mut warm = CollisionCache::default();
+        let (_, previous) = warm.pipe_in(&assembly, 40, 1, 0).unwrap();
+        let (_, cached) = warm.pipe_in(&assembly, 41, 1, 0).unwrap();
+        let (_, cold) = CollisionCache::default()
+            .pipe_in(&assembly, 41, 1, 0)
+            .unwrap();
+        assert_ne!(
+            previous.vertices, cold.vertices,
+            "fixture must actually age some geometry"
+        );
+        assert!(
+            cached.vertices == cold.vertices,
+            "cache reused last tick's radii across youngest-node age zero"
+        );
+    }
+    #[test]
+    fn paid_self_deposit_cannot_cross_the_trunk() {
+        use crate::emission::{EmissionStatus, EmitRequest, SECRETION_CHANNEL};
+        let world = ShipRuntime::habitat_simulation(AnatomySpec::bare(77), 77, 8)
+            .unwrap()
+            .snapshot();
+        let mut book = world.instances[&1].book.clone();
+        let nozzle = *book.registered.first().unwrap();
+        let status = book.try_emit(EmitRequest {
+            nozzle_id: nozzle,
+            origin: world.instances[&1].position.absolute().unwrap(),
+            direction: [0, 0, SCALE],
+            quantity: 1,
+            launch_speed: 0,
+            channel: SECRETION_CHANNEL,
+        });
+        let EmissionStatus::Admitted { parcel_id, .. } = status else {
+            panic!("fixture must pay for its parcel")
+        };
+        let saved = book.clone();
+        assert!(
+            !deposit_allowed(
+                &world,
+                world.assembly.as_ref().unwrap(),
+                &book,
+                world.config.construction.as_ref().unwrap(),
+                parcel_id,
+                &mut CollisionCache::default()
+            )
+            .unwrap(),
+            "own source exemption admitted a pipe through the trunk"
+        );
+        assert_eq!(book, saved, "rejection must preserve paid material");
+    }
+    #[test]
+    fn rotated_linear_sweeps_keep_world_velocity_and_relative_motion() {
+        let a = Geometry {
+            shape: Arc::new(Ball::new(0.01)),
+            radius: 0.01,
+            vertices: Arc::new(vec![Vector::ZERO]),
+            parts: vec![],
+            outlets: vec![],
+            writhe_slack: 0.,
+        };
+        let b = Geometry {
+            shape: Arc::new(Cuboid::new(Vector::new(0.001, 1., 1.))),
+            radius: 2.,
+            vertices: Arc::new(vec![Vector::ZERO]),
+            parts: vec![],
+            outlets: vec![],
+            writhe_slack: 0.,
+        };
+        for (sin, cos) in [(0, SCALE), (SCALE, 0), (0, -SCALE)] {
+            let from = RigidPose {
+                translation: [-SCALE, 0, 0],
+                yaw_sin: sin,
+                yaw_cos: cos,
+                axial_roll: 0,
+            };
+            let to = RigidPose {
+                translation: [SCALE, 0, 0],
+                ..from
+            };
+            let p = RigidPose::identity();
+            let mut profile = CollisionProfile::default();
+            assert!(
+                cast(&a, from, to, &b, p, p, &mut profile)
+                    .unwrap()
+                    .is_some(),
+                "rotation changed world-space velocity"
+            );
+            let moving = RigidPose {
+                translation: [2 * SCALE, 0, 0],
+                ..p
+            };
+            assert!(
+                cast(&a, from, to, &b, p, moving, &mut profile)
+                    .unwrap()
+                    .is_none(),
+                "equal velocities invented a collision"
+            );
+        }
+    }
+    #[test]
+    fn overlap_recovery_rejects_inward_motion_and_allows_clearance() {
+        let ball = |radius| Geometry {
+            shape: Arc::new(Ball::new(radius)),
+            radius,
+            vertices: Arc::new(vec![Vector::ZERO]),
+            parts: vec![],
+            outlets: vec![],
+            writhe_slack: 0.,
+        };
+        let a = ball(0.1);
+        let b = ball(0.1);
+        let from = RigidPose::identity();
+        let obstacle = RigidPose {
+            translation: [150_000, 0, 0],
+            ..from
+        };
+        let away = RigidPose {
+            translation: [-40_000, 0, 0],
+            ..from
+        };
+        let into = RigidPose {
+            translation: [40_000, 0, 0],
+            ..from
+        };
+        assert!(nondeepening_recovery(&a, from, away, &b, obstacle, obstacle).unwrap());
+        assert!(!nondeepening_recovery(&a, from, into, &b, obstacle, obstacle).unwrap());
+        let far = RigidPose {
+            translation: [500_000, 0, 0],
+            ..from
+        };
+        assert!(
+            !nondeepening_recovery(&a, from, into, &b, far, far).unwrap(),
+            "separated start must use the continuous sweep"
+        );
+    }
+    #[test]
+    fn body_cache_shares_geometry_and_invalidates_changed_definition() {
+        let mut world = ShipRuntime::habitat_simulation(AnatomySpec::bare(77), 77, 8)
+            .unwrap()
+            .snapshot();
+        let mut cache = CollisionCache::default();
+        let a = cache.body(&world, 1).unwrap();
+        let b = cache.body(&world, 1).unwrap();
+        assert!(Arc::ptr_eq(&a, &b));
+        world.config.definitions.get_mut(&1).unwrap().body.length *= 1.01;
+        let changed = cache.body(&world, 1).unwrap();
+        assert!(!Arc::ptr_eq(&a, &changed));
+        assert_eq!(cache.profile.body_builds, 2);
+    }
+    #[test]
+    fn blocked_shallow_escape_turns_further_toward_clearance() {
+        let pose = RigidPose::identity();
+        let mut a = Agent {
+            travel: None,
+            refilling: false,
+            rigid: pose,
+            heading: [-10_000, 999_950, 0],
+            eating: false,
+            born: 0,
+            last_birth: 0,
+            parent: None,
+        };
+        let before = a.heading[0];
+        retreat(&mut a, [SCALE, 0, 0]);
+        assert!(
+            a.heading[0] < before - 10_000,
+            "a refused shallow escape must not remain stuck on the same heading"
+        );
+    }
+    #[test]
+    fn slide_removes_inward_motion_and_preserves_escape() {
+        let a = Ball::new(0.1);
+        let b = Ball::new(0.1);
+        let contact = query::contact(
+            &Iso::IDENTITY,
+            &a,
+            &Iso::from_translation(Vector::X * 0.15),
+            &b,
+            0.1,
+        )
+        .unwrap()
+        .unwrap();
+        let normal = contact
+            .normal1
+            .to_array()
+            .map(|v| (v * SCALE as f32).round() as i64);
+        let start = RigidPose::identity();
+        let inward = RigidPose {
+            translation: [60_000, 10_000, 0],
+            ..start
+        };
+        assert!(
+            along_surface(start, inward, normal).translation[0] <= 0,
+            "slide preserved inward penetration"
+        );
+        let away = RigidPose {
+            translation: [-60_000, 10_000, 0],
+            ..start
+        };
+        assert_eq!(
+            along_surface(start, away, normal).translation,
+            away.translation,
+            "slide erased escape motion"
+        );
+    }
+    #[test]
+    fn cast_memo_reuses_only_identical_geometry_bounds_and_motion() {
+        let make = |radius: f32| Geometry {
+            shape: Arc::new(Ball::new(radius)),
+            radius,
+            vertices: Arc::new(vec![Vector::ZERO]),
+            parts: vec![],
+            outlets: vec![],
+            writhe_slack: 0.,
+        };
+        let a = make(0.1);
+        let b = make(0.3);
+        let mut memo = CollisionCache::default();
+        for x in [-2 * SCALE, 0, 2 * SCALE] {
+            for roll in [0, 100_000, 900_000] {
+                let from = RigidPose {
+                    translation: [x, 0, 0],
+                    axial_roll: roll,
+                    ..RigidPose::identity()
+                };
+                let to = RigidPose {
+                    translation: [x + SCALE, 0, 0],
+                    ..from
+                };
+                let p = RigidPose::identity();
+                let expected =
+                    cast(&a, from, to, &b, p, p, &mut CollisionProfile::default()).unwrap();
+                assert_eq!(memo.cast(&a, from, to, &b, p, p).unwrap(), expected);
+                let visits = memo.profile.queries;
+                assert_eq!(memo.cast(&a, from, to, &b, p, p).unwrap(), expected);
+                assert_eq!(memo.profile.queries, visits);
+                // Same shape, changed angular speed envelope must not reuse.
+                let enlarged = Geometry {
+                    radius: a.radius + 1.,
+                    ..a.clone()
+                };
+                memo.cast(&enlarged, from, to, &b, p, p).unwrap();
+                assert!(memo.profile.queries > visits);
+            }
+        }
+        assert_eq!(memo.profile.cast_cache_hits, 9);
+        let p = RigidPose::identity();
+        let new_shape = make(0.6);
+        memo.cast(&a, p, p, &new_shape, p, p).unwrap();
+        assert_eq!(memo.profile.cast_cache_hits, 9);
+        memo.casts.clear();
+        assert!(memo.casts.is_empty());
+    }
     fn straight(count: usize, spacing: i64) -> Filament {
         Filament {
             id: 1,

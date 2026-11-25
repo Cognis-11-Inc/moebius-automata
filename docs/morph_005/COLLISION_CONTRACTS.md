@@ -1,5 +1,13 @@
 # Collision contracts — 2026-11-24
 
+Current 2026-11-25 continuation: **PARTIAL, repairs implemented; final checks pending**.
+See [current repair status](SIMULATION_0001_REPAIR_STATUS.md) for response changes,
+linear/rotational query paths, wet-cache correction and retained failed experiments.
+The following receipts describe the preceding investigation.
+See [the causal diagnosis](SIMULATION_0001_COLLISION_DIAGNOSIS.md) and the
+[root results](../../SIMULATION_0001_PLAYABLE_COLONY_RESULTS.md). Historical
+receipts below do not certify absence of trapping or current-source performance.
+
 IN PROGRESS. Operator explicitly expanded the habitat slice to collision and
 three separate contracts. This supersedes the earlier no-collision scope;
 transport, fluid pressure, elastic mechanics and learned contact policies remain

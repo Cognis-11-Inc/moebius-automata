@@ -231,8 +231,12 @@
       "path": "_TEMPLATES/Organism_Species.md",
       "bytes": 377,
       "sha256": "d6aa2ec5611cb9712c2f89d7769f00a53b4eca8cb0c2c4f3ecaf2957782b5963"
+    },
+    {
+      "path": "07_EXPERIMENTS/SIMULATION_0001.md",
+      "sha256": "00f716b2640d5be7f99f62ebe64ffad4a52e6c960a3630ddae9da51c054fa2c3"
     }
   ],
   "snapshot_note": "Rehashed after the clean MORPH-003 suite on a8cb705. Six edited notes cite that implementation commit. Ship design canon is unchanged.",
-  "latest_update": "MORPH-005 material assembly/navigation: bounded local evidence; physical mouse and operator acceptance pending. Before/after independently archived on Mermogon."
+  "latest_update": "SIMULATION-0001 causal continuation: trapped native colony, expected-red slide defect, immutable codex-stall-diagnosis-v1 evidence. PARTIAL; no response repair or new clean-commit certification."
 }

@@ -47,10 +47,16 @@ fn pouch_is_anatomy_with_finite_capacity_and_valid_persistence() {
     let j = serde_json::to_string(&s).unwrap();
     assert_eq!(anatomy_from_json(&j).unwrap(), s);
     let mut w = ShipRuntime::restore(dinner()).unwrap();
+    let mut peak_stock = 0;
     for _ in 0..120 {
         w.tick().unwrap();
+        peak_stock = peak_stock.max(w.state().instances[&1].book.reservoir);
         assert!(w.state().instances[&1].book.reservoir <= 1024);
     }
+    eprintln!(
+        "POUCH observed_peak={peak_stock} final_stock={}",
+        w.state().instances[&1].book.reservoir
+    );
     assert!(
         w.state().instances[&1].book.reservoir > 256,
         "pouch never stored a large meal"
@@ -339,17 +345,11 @@ fn continuous_lumens_preserve_seals_and_wall_contacts_are_not_passages() {
         );
     }
     let mut state = w.snapshot();
-    state
-        .assembly
-        .as_mut()
-        .unwrap()
-        .filaments
-        .get_mut(&id)
-        .unwrap()
-        .section
-        .as_mut()
-        .unwrap()
-        .end_sealed = true;
+    // Seal all existing streams: the positive new-stream check must not depend
+    // on which nozzle remains physically clear after contact avoidance.
+    for filament in state.assembly.as_mut().unwrap().filaments.values_mut() {
+        filament.section.as_mut().unwrap().end_sealed = true;
+    }
     let snapshot = serde_json::to_vec(&state).unwrap();
     let mut sealed = ShipRuntime::restore(serde_json::from_slice(&snapshot).unwrap()).unwrap();
     assert!(
@@ -383,7 +383,15 @@ fn continuous_lumens_preserve_seals_and_wall_contacts_are_not_passages() {
         !open_mesh.positions.contains(&end),
         "open terminal was plugged"
     );
+    let all_sealed = sealed.state().assembly.as_ref().unwrap().filaments.clone();
     sealed.advance(5).unwrap();
+    for (id, stream) in &all_sealed {
+        assert_eq!(
+            &sealed.state().assembly.as_ref().unwrap().filaments[id],
+            stream,
+            "sealed stream was mutated"
+        );
+    }
     assert_eq!(
         sealed.state().assembly.as_ref().unwrap().filaments[&id],
         before,
@@ -517,4 +525,46 @@ fn extra_founders_are_paid_from_finite_condensate() {
     live.tick().unwrap();
     assert_eq!(live.state().condensate_gap(), 0);
     live.validate().unwrap();
+}
+
+#[test]
+fn a_fed_body_pursues_new_space_with_persisted_travel_memory() {
+    let mut s = world().snapshot();
+    s.habitat.as_mut().unwrap().rules.reproduction = false;
+    s.config.ports.clear();
+    s.config.ambient_light = 50;
+    for i in s.instances.values_mut() {
+        i.exposure = 50;
+        if i.definition == BLOOD_SAC {
+            i.position = Position::from_absolute([100 * SCALE, i.id as i64 * SCALE, 0]).unwrap();
+        }
+    }
+    s.instances.get_mut(&1).unwrap().book.initial += 400;
+    s.instances.get_mut(&1).unwrap().book.reservoir += 400;
+    s.condensate.as_mut().unwrap().founders += 400;
+    let origin = s.instances[&1].position;
+    let mut w = ShipRuntime::restore(s).unwrap();
+    w.advance(160).unwrap();
+    let memory = w.state().habitat.as_ref().unwrap().agents[&1]
+        .travel
+        .as_ref()
+        .unwrap();
+    assert!(
+        memory.target.is_some() && memory.visited.len() > 3,
+        "no new space was visited"
+    );
+    let d = w.state().instances[&1].position.relative(origin).unwrap();
+    assert!(
+        d.iter().map(|v| i128::from(*v).pow(2)).sum::<i128>() > i128::from(6 * SCALE).pow(2),
+        "fed body did not leave its founding patch"
+    );
+    let mut restored = ShipRuntime::restore(w.snapshot()).unwrap();
+    w.advance(20).unwrap();
+    restored.advance(20).unwrap();
+    assert!(
+        w.snapshot() == restored.snapshot(),
+        "warm/cold exploration replay diverged"
+    );
+    assert_eq!(w.state().condensate_gap(), 0);
+    w.validate().unwrap();
 }

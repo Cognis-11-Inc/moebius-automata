@@ -1,4 +1,108 @@
-# SIMULATION-0001 playable colony results
+# SIMULATION-0001 current repair checkpoint
+
+**PARTIAL — 2026-11-25.** Collision, cache, feeding-cost and authored exploration
+repairs are implemented; final checkpoint checks and matched performance work are
+pending. Latest completed run still peaks at1.86seconds/tick. See
+[current repair status](docs/morph_005/SIMULATION_0001_REPAIR_STATUS.md) and
+[coordinate audit](docs/morph_005/COORDINATE_DOMAIN_AUDIT.md).
+
+The following investigation is preserved as its historical pre-repair receipt.
+
+# SIMULATION-0001 previous investigation
+
+**PARTIAL — 2026-11-24 (America/Toronto).** The requested playable colony is
+not delivered. The operator observed the new native run trapped in secretion.
+The causal investigation is [recorded here](docs/morph_005/SIMULATION_0001_COLLISION_DIAGNOSIS.md).
+Wrong slide-normal handling is reproduced by a failing focused test. Candidate
+corrections can overwrite earlier ones without a final re-sweep. Own hollow
+pipes dominate the saved state's cost, while stationary free secretion parcels
+also stop bodies. **Collision-response repair is not implemented.**
+
+The earlier report below is preserved as history. Its green barrier and workspace
+checks do not establish absence of these newly reproduced defects. Current
+changes are uncommitted on main over `abdb664738a23c1aaf37c46810d26728f88c7d2f`.
+No push or clean-commit certification of this continuation.
+
+## What this continuation established
+
+- Current-source baseline reproduced reference digest `7b68517ba0f82ed979469ef059db5f151243eb6999fe8d37f2e58d69940c2afe`.
+- An interval AABB bound and exact-input cast memo preserved every 420-tick row
+  and the complete final snapshot. Preliminary mean tick changed from 24.839
+  to 24.097 ms, not enough to solve the authority lag. No proxy replaced the
+  hollow mesh. With final distance/contact instrumentation, the final exact
+  compatibility run averaged 24.976 ms (p95 89.427, p99 108.712, max 597.942).
+  A robust speed improvement is not established.
+- Creator startup now accepts founding count, world seed and finite abundance.
+  F2/F3 adjust founders, F4 increments world seed, F7/F8 adjust free condensate;
+  CLI values also initialize the creator. Existing saved-design startup remains.
+  The default overlay is compact; B retains full details. These are implemented
+  changes, not proof of a playable simulation.
+- Native two-founder seed 11, free condensate 4000, reached three bodies with one
+  paid birth at event tick 360. It completed 720 ticks and matched initial-state
+  replay exactly (`b509ab9d302d3a6abe888558b582a8219562d895bdcc953cce7ce23a64b332bc`).
+  Mean authority tick 189.610 ms, p95 654.742 ms, p99 697.509 ms, maximum
+  2061.339 ms. Mean retained draw CPU 2.458 ms. The 4096-frame log cap was
+  reached; authoritative ticks continued. The trap is a failed playability
+  outcome even though the recorder's completion status is PASS.
+
+## Registered finite-resource observations
+
+Protocol: [SIMULATION_0001_EXPERIMENT.json](docs/morph_005/SIMULATION_0001_EXPERIMENT.json).
+Three predetermined seeds, unchanged biology, explicit free condensate 4000.
+Longitudinal target 1200 ticks, soft 60-second measurement budget. Scaling target
+120 ticks, soft 20-second budget; those short cases cannot assess reproduction.
+Replay runs outside the measurement budget. All completed reports below have
+exact replay and material gap zero. Runs overlapped native capture and focused
+checks; timing is observed throughput under that load, not isolated capacity.
+
+| Case | Final tick | Bodies | Births | Generation | Mean ms/tick | Completion |
+|---|---:|---:|---:|---:|---:|---|
+| longitudinal-f1-s77 | 819 | 2 | 1 | 1 | 73.281 | PARTIAL |
+| longitudinal-f1-s11 | 1178 | 3 | 2 | 1 | 50.623 | PARTIAL |
+| longitudinal-f1-s23 | 494 | 2 | 1 | 1 | 121.137 | PARTIAL |
+| scaling-f5-s77 | 120 | 5 | 0 | 0 | 100.387 | PASS |
+| scaling-f5-s11 | 120 | 5 | 0 | 0 | 102.115 | PASS |
+| scaling-f5-s23 | 120 | 5 | 0 | 0 | 83.249 | PASS |
+| scaling-f10-s77 | 63 | 10 | 0 | 0 | 318.093 | PARTIAL |
+| scaling-f10-s11 | 72 | 10 | 0 | 0 | 275.349 | PARTIAL |
+| scaling-f10-s23 | 76 | 10 | 0 | 0 | 260.280 | PARTIAL |
+
+The three one-founder windows each produced paid offspring without lowering
+birth thresholds or moving food to the mouth. This establishes reachability,
+not continued competence: the observed offspring and founders can become trapped.
+All three longitudinal cases ended on their wall budget. Ten-founder cases also
+ended on their wall budget. Targets 30, 100 and 300 were refused by the existing
+rule ceiling, not empirically measured. Highest population measured in this
+continuation: 10 placed founders, not 10 descendants. The historical sixteen-
+founder result remains below. No sustainable colony size was established.
+
+Mortality and metabolic consumption remain unimplemented. Deaths/extinction and
+colony survival duration therefore are **not measurable under current rules**.
+Finite stock, light gating and rooted growth do not establish the proposed full
+spore ecology. No biology was added to manufacture a successful experiment.
+
+## Launch and evidence
+
+```sh
+cargo run --release --offline -p moebius-morph-lab --bin moebius-world-witness -- --first-simulation --probe-world --founders 2 --seed 11 --abundance 4000 --ticks 1200
+```
+
+This reproduces a world with known collision/playability defects. In the creator,
+use the same binary without `--first-simulation`; colony CLI settings are retained.
+For a saved design, add `--anatomy PATH` to a direct first-simulation launch and
+omit `--probe-world`. Existing play/pause/step/reset/rate/camera/F5 controls remain.
+
+New raw evidence, diagnostic source, hashes and restore receipt:
+[SIMULATION_0001_CAUSAL_STORAGE.json](docs/morph_005/SIMULATION_0001_CAUSAL_STORAGE.json).
+Focused tests and static checks are recorded there. A clean-commit full suite is
+pending; it must not be used to conceal the expected-red slide regression.
+Next dependency is the bounded collision-response repair described in the causal
+report, followed by this saved-state case and a fresh complete-history replay.
+
+---
+
+## Preserved earlier Grok receipt
+
 
 Status: **PARTIAL**. Date: 2026-11-25. Measurements were taken on dirty `main` at `5a83c21fac6b6fb3032e40ce608f097a0a86356b`. That source is local commit `e863824f13422f5bf83a03c604a79eb85152db62`. The clean suite passed there. Nothing was pushed. Rustc 1.99.1, Cargo offline. Collision behavior is the validated fill-on-miss sample sphere. This pass did not replace the hollow trimesh.
 

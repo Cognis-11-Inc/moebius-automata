@@ -1,0 +1,9 @@
+{
+  "experiment": "SIMULATION-0001 repair/exploration continuation",
+  "archive_version": "repair-exploration-checkpoint-v1",
+  "file_count": 495,
+  "raw_bytes": 432268929,
+  "purpose": "Retain all intermediate measurements, traces, snapshots, binaries, source variants and failed/null experiments; source overlay identifies the uncommitted checkpoint. Includes already archived coordinate working copies for continuity.",
+  "git_policy": "Reports, protocol, classification and storage receipt in Git; bulky raw evidence external only.",
+  "authority": "Raw run receipts prove their identified versions, not final current-source certification."
+}

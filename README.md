@@ -1,5 +1,10 @@
 # Möbius Automata
 
+SIMULATION-0001 is [under repair](docs/morph_005/SIMULATION_0001_REPAIR_STATUS.md):
+collision and exploration changes are implemented, but smooth operation remains
+unverified. The [coordinate-domain audit](docs/morph_005/COORDINATE_DOMAIN_AUDIT.md)
+found no material cost from the enormous empty coordinate envelope.
+
 An artificial-life vivarium with small biomechanical inhabitants. The default
 live habitat is the **nursery**: a 256³ periodic cube with fixed edible clots.
 Eight recurrent neurons command 26 rotational axes and secretion. Feeding is
@@ -259,6 +264,11 @@ intelligence or ecological interactions. Geometry is generated only for visible
 instances. No volumetric solver, floor or live Lisp/Python authority is added.
 
 ## First simulation — food and Arachnitech
+
+Current continuation is **PARTIAL**: own-pipe and stationary secretion contacts
+can trap bodies, and authority ticks become very slow. The
+[causal diagnosis](docs/morph_005/SIMULATION_0001_COLLISION_DIAGNOSIS.md)
+records the reproduced response defects and controlled timing evidence.
 
 Launch the ship witness, press **N**, design the Arachnitech, then click
 **Start Simulation** (or press **Enter**). In the creator, **S** saves the

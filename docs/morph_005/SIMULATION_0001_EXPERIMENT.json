@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "purpose": "Finite-resource longitudinal observations and separate short scaling probes; no biological rule changes",
+  "anatomy": "showcase(seed), FoodPouch added by canonical habitat startup",
+  "abundance": 4000,
+  "seeds": [77, 11, 23],
+  "longitudinal": {"founders": [1], "ticks": 1200, "wall_seconds": 60},
+  "scaling": {"founders": [5, 10], "ticks": 120, "wall_seconds": 20},
+  "refused_targets": [30, 100, 300],
+  "limits": [
+    "Wall budgets are checked between complete atomic ticks; a tick may exceed the budget",
+    "Replay runs after measurement and outside the wall budget",
+    "1200 ticks are 20 simulated seconds and cannot establish ecological stability",
+    "Short scaling runs end before the default birth interval and are not growth evidence",
+    "Mortality and metabolic consumption are unimplemented; no extinction or survival claim",
+    "Founders above 16 are refused by current rules, not measured engine capacity"
+  ]
+}

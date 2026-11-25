@@ -189,6 +189,13 @@ pub(crate) fn ring(
     }
     start
 }
+/// Numerical oral landmark shared with full mesh generation. No mesh allocation.
+pub(crate) fn mouth_landmark(s: &WormSpec, p: Pose) -> V {
+    let head = center(s, p, 1.);
+    let z = tangent(s, p, 1.);
+    let outer = s.radius * s.radius_profile[3];
+    add(head, mul(z, outer * 0.12))
+}
 pub(crate) fn generate(s: &WormSpec, p: Pose) -> Organism {
     let n = s.radial_segments;
     let mut body = Surface::new("body_lips_and_recessed_throat");
@@ -244,7 +251,7 @@ pub(crate) fn generate(s: &WormSpec, p: Pose) -> Organism {
         previous = start;
     }
     let mouth_ring = (previous..previous + n as u32).collect();
-    let mouth_center = add(head, mul(z, outer * 0.12));
+    let mouth_center = mouth_landmark(s, p);
     for i in 1..=12 {
         let q = i as f32 / 12.;
         let c = add(mouth_center, mul(z, -outer * s.mouth.depth * q));

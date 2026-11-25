@@ -81,8 +81,10 @@ fn barrier_world() -> WorldSnapshot {
     // Intersect the proposed +X path of a real body/organ envelope, not a rendered mesh.
     world.solids.push(SolidBox {
         id: 1,
-        min: Position::from_absolute([2 * SCALE, -2 * SCALE, -2 * SCALE]).unwrap(),
-        max: Position::from_absolute([2 * SCALE + 1000, 2 * SCALE, 2 * SCALE]).unwrap(),
+        // Exploration can legally go around the former 4m-wide box; keep the
+        // plane assertion meaningful across the full 100-tick travel envelope.
+        min: Position::from_absolute([2 * SCALE, -20 * SCALE, -20 * SCALE]).unwrap(),
+        max: Position::from_absolute([2 * SCALE + 1000, 20 * SCALE, 20 * SCALE]).unwrap(),
     });
     world
 }
@@ -104,7 +106,10 @@ fn canonical_world_blocks_motion_and_exposes_biological_contacts() {
             .geometry;
         for point in numerical.surfaces.iter().flat_map(|s| &s.positions) {
             let p = moebius_morph::emission::place_point(*point, pose).unwrap();
-            assert!(p[0] < 2 * SCALE, "presented anatomy penetrated the barrier");
+            assert!(
+                p[0] < 2 * SCALE,
+                "presented anatomy penetrated the barrier: point={p:?}, body={pose:?}"
+            );
         }
         let position = w.state().instances[&1].position.absolute().unwrap();
         assert!(

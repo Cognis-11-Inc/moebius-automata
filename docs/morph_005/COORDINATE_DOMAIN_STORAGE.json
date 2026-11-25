@@ -1,0 +1,18 @@
+{
+  "status": "VERIFIED_AND_RESTORED",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon"
+  },
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25/coordinate-domain-v1/evidence.tar.gz",
+  "sha256": "fd911d715ea94d5dd4ae5ef3b5808eaa29a804bf47fc702663b72c66b353d958",
+  "archive_bytes": 11523536,
+  "manifest_sha256": "8c195330abfd46400bb47bb5c7dd67763ad62ed9ba61e9faaf8cb4aec748ad60",
+  "file_count": 234,
+  "raw_bytes": 142370278,
+  "restore_directory": "/tmp/moebius-domain-restore-si0ittly",
+  "local_copy": "/tmp/moebius-domain-audit-20261125T034608Z",
+  "all_member_and_restored_hashes_match": true,
+  "restore": "Verify mount UUID and archive SHA-256, extract into a NEW directory, verify every MANIFEST.json member. Rebuild archived builds/BOUND with cargo build --release --offline -p moebius-morph --example coordinate_domain_bench, then run on the same archived opening.json or congested.json. Production sources were not changed to alter their supported bound."
+}

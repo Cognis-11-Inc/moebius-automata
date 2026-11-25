@@ -84,6 +84,9 @@ enum Gate {
 #[derive(Resource)]
 struct Display {
     nav: Navigation,
+    founders: usize,
+    world_seed: u64,
+    abundance: Option<u64>,
     sphere: WitnessSphere,
     witness_follow: bool,
     gate: Gate,
@@ -175,11 +178,6 @@ fn main() {
         std::fs::create_dir(out).expect("new capture directory");
     }
     let recording = args.record.is_some();
-    if (args.founders != 1 || args.seed.is_some() || args.abundance.is_some())
-        && !args.first_simulation
-    {
-        panic!("--founders, --seed and --abundance belong to a habitat launch");
-    }
     assert!(
         (1..=16).contains(&args.founders),
         "founding population is 1..=16"
@@ -332,6 +330,11 @@ fn authority_report(timing: &RunTiming) -> serde_json::Value {
             "mean_resolve_ms": (profile.resolve_ns as f64 / ticks) / 1e6,
             "queries": profile.queries,
             "query_ns": profile.query_ns,
+            "distance_queries": profile.distance_queries,
+        "distance_ns": profile.distance_ns,
+        "contact_ns": profile.contact_ns,
+            "interval_rejects": profile.interval_rejects,
+            "cast_cache_hits": profile.cast_cache_hits,
             "body_builds": profile.body_builds,
             "body_hits": profile.body_hits,
             "body_geometry_ns": profile.body_geometry_ns,
@@ -432,6 +435,11 @@ fn new_display(
     let opening_tick = snapshot.tick;
     Display {
         nav,
+        founders: args.founders,
+        world_seed: args
+            .seed
+            .unwrap_or(if args.probe_world { 77 } else { 20261123 }),
+        abundance: args.abundance,
         sphere: WitnessSphere {
             center: tracked_at,
             radius: SHIP_WITNESS_RADIUS,
@@ -890,6 +898,10 @@ fn controls(
     let status = w.playback().unwrap();
     if status.generation != d.generation {
         d.generation = status.generation;
+        d.peak_population = d.snapshot.habitat.as_ref().map_or(0, |h| h.agents.len());
+        d.rate_mark_tick = d.snapshot.tick;
+        d.rate_mark = Instant::now();
+        d.sim_hz = 0.;
         d.index_nodes = usize::MAX;
         d.last_target = target(&d);
     }
@@ -1092,22 +1104,25 @@ fn preview_transform(nav: &Navigation) -> Transform {
 }
 fn begin_ship(spec: AnatomySpec, d: &mut Display, authority: &Authority) {
     let steps = d.ticks.min(16384) as usize;
-    let world = match ShipRuntime::habitat_simulation(spec, 20261123, steps) {
-        Ok(world) => world,
-        Err(error) => {
-            d.notice = format!("This body cannot start the ship: {error}");
-            return;
-        }
-    };
+    let world =
+        match ShipRuntime::habitat_colony(spec, d.world_seed, steps, d.founders, d.abundance) {
+            Ok(world) => world,
+            Err(error) => {
+                d.notice = format!("This body cannot start the ship: {error}");
+                return;
+            }
+        };
     match Worker::interactive(world, d.ticks, Duration::from_nanos(TICK_NANOS), false) {
         Ok(worker) => {
             *authority.0.lock().unwrap() = Some(worker);
             d.gate = Gate::Running;
             d.design = None;
             d.follow = true;
-            d.notice =
-                "Food pouch stores meals. Explore to lay trails; stop to eat. Blood-Sacs evade locally."
-                    .into();
+            d.peak_population = d.founders;
+            d.rate_mark_tick = 0;
+            d.rate_mark = Instant::now();
+            d.sim_hz = 0.;
+            d.notice = "Finite food. Authored movement. No mortality rule.".into();
         }
         Err(error) => d.notice = format!("Worker refused: {error}"),
     }
@@ -1190,6 +1205,21 @@ fn gate_keys(keys: &ButtonInput<KeyCode>, time: &Time, d: &mut Display, authorit
     }
     if keys.pressed(KeyCode::AltLeft) || keys.pressed(KeyCode::AltRight) {
         return;
+    }
+    if keys.just_pressed(KeyCode::F2) {
+        d.founders = d.founders.saturating_sub(1).max(1);
+    }
+    if keys.just_pressed(KeyCode::F3) {
+        d.founders = (d.founders + 1).min(16);
+    }
+    if keys.just_pressed(KeyCode::F4) {
+        d.world_seed = d.world_seed.wrapping_add(1);
+    }
+    if keys.just_pressed(KeyCode::F7) {
+        d.abundance = Some(d.abundance.unwrap_or(4000).saturating_sub(250));
+    }
+    if keys.just_pressed(KeyCode::F8) {
+        d.abundance = Some((d.abundance.unwrap_or(4000) + 250).min(1_000_000));
     }
     let Some(session) = d.design.as_mut() else {
         return;
@@ -1369,8 +1399,11 @@ fn draw_front(
             let session = d.design.as_ref().unwrap();
             let part = session.component().map(|c| c.kind()).unwrap_or("trunk");
             format!(
-                "DESIGN THE ARACHNITECH\nSelected {part}   {}\nA flagellum   P spine   N nozzle   B food pouch   D duplicate   Delete remove\nTab select   arrows adjust   [ ] length   - = thickness   , . mouth\nH full showcase   R another seed   S save anatomy   L reload anatomy\nDrag: orbit   Wheel: zoom   Middle drag: pan   Home: frame body\nClick Start Simulation or press Enter. Escape returns.\n{}\n{}",
+                "DESIGN THE ARACHNITECH\nSelected {part}   {}\nA flagellum   P spine   N nozzle   B food pouch   D duplicate   Delete remove\nTab select   arrows adjust   [ ] length   - = thickness   , . mouth\nH full showcase   R another seed   S save anatomy   L reload anatomy\nDrag: orbit   Wheel: zoom   Middle drag: pan   Home: frame body\nFounders {} [F2/F3]   World seed {} [F4 +1]\nFree condensate {:?} [F7/F8 -/+250; None = default]\nClick Start Simulation or press Enter. Escape returns.\n{}\n{}",
                 session.field.label(),
+                d.founders,
+                d.world_seed,
+                d.abundance,
                 session.status,
                 d.notice
             )
@@ -2017,7 +2050,7 @@ fn draw(
         let frame_hz = 1. / frame_s;
         (
             format!(
-                "Sim {sim_s:.2}s | colony {agents} peak {peak} | births {births} | deaths 0 | generation {depth}\nSac food {sac_food} | stored {stored} | tick {tick_hz:.1} Hz | frame {frame_hz:.1} Hz\n"
+                "Sim {sim_s:.2}s | colony {agents} peak {peak}\nBirths {births} | deaths N/A | generation {depth}\nFood {sac_food} | stored {stored}\nTick {tick_hz:.1} Hz | frame {frame_hz:.1} Hz\n"
             ),
             peak,
             shown,
@@ -2034,7 +2067,7 @@ fn draw(
         )
     };
     for mut t in &mut text {
-        t.0 = format!(
+        let details = format!(
             "MŒBIUS | tick {} / {} | {}x {}\n{colony_line}Selected {:?} | {:?} | follow {}\nCoordinates [um] {:?}\nArachnitech: {}\nFood pouch {}/{} | eaten {} | free {} | bound {} | balance {}\nFilaments {} | nodes {} | visible chunks {}\nBlood-Sacs {} | condensate {} | generic sites {}\n{}{}Flight speed {:.2}m/s | sensitivity {:.4}\nPale snailpipe trails, amber secretion, red Blood-Sacs. Uptake lines mark meals.\n{}\nDrone {}   M mute   [ ] volume\nG adapts the orbit. Wheel dollies in. F5 saves. Home frames the body.\nLocal pursuit/evasion (authored). Blood-Sacs root on paid snailpipe substrate.",
             d.snapshot.tick,
             d.ticks,
@@ -2082,6 +2115,30 @@ fn draw(
                 format!("{}/10", mix.level)
             }
         );
+        t.0 = if d.diagnostics || d.snapshot.habitat.is_none() {
+            details
+        } else {
+            format!(
+                "MŒBIUS  {} / {}  {}x {}\n{colony_line}Blood-Sacs {} | nodes {nodes} | material gap {}\nPouch {}/{} | eaten {} | {}\n{:?} | {:?} | follow {}\n[B] details   [Home] frame   [F5] save\nMortality / metabolism: unimplemented",
+                d.snapshot.tick,
+                d.ticks,
+                playback.rate,
+                if playback.playing { "PLAY" } else { "PAUSE" },
+                d.snapshot
+                    .instances
+                    .values()
+                    .filter(|i| i.definition == BLOOD_SAC)
+                    .count(),
+                d.snapshot.condensate_gap(),
+                book.reservoir,
+                pouch_capacity,
+                book.external_input,
+                activity,
+                d.selected,
+                d.nav.mode,
+                d.follow,
+            )
+        };
     }
     d.peak_population = next_peak;
     d.shown_tick = next_shown;
@@ -2269,6 +2326,46 @@ mod tests {
             bevy::ui::Display::None
         );
         stop_and_check_run(&mut app);
+    }
+    #[test]
+    fn creator_launch_uses_founders_seed_and_finite_abundance() {
+        let mut app = creator_app();
+        {
+            let mut d = app.world_mut().resource_mut::<Display>();
+            d.founders = 2;
+            d.world_seed = 23;
+            d.abundance = Some(1500);
+        }
+        let spec = app
+            .world()
+            .resource::<Display>()
+            .design
+            .as_ref()
+            .unwrap()
+            .spec
+            .clone();
+        let button = start_entity(&mut app);
+        app.world_mut().trigger(Activate { entity: button });
+        let lock = app.world().resource::<Authority>().0.clone();
+        let worker = lock.lock().unwrap().take().unwrap();
+        worker.control(Playback::Stop).unwrap();
+        let snapshot = worker.finish().unwrap();
+        assert_eq!(snapshot.config.seed, 23);
+        assert_eq!(snapshot.habitat.as_ref().unwrap().agents.len(), 2);
+        assert!(
+            snapshot
+                .habitat
+                .as_ref()
+                .unwrap()
+                .agents
+                .values()
+                .all(|a| a.parent.is_none())
+        );
+        assert_eq!(snapshot.condensate_gap(), 0);
+        let mut control = ShipRuntime::habitat_colony(spec, 23, 90, 2, Some(1500)).unwrap();
+        control.advance(snapshot.tick).unwrap();
+        assert_eq!(snapshot, control.snapshot());
+        assert_eq!(app.world().resource::<Display>().peak_population, 2);
     }
     #[test]
     fn creator_enter_still_starts_the_same_worker() {

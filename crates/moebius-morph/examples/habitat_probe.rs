@@ -11,6 +11,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut founders = 1usize;
     let mut seed = 77u64;
     let mut abundance = None;
+    let mut wall_seconds = None;
+    let mut resume = None;
     let mut positional = Vec::new();
     let mut index = 0;
     while index < args.len() {
@@ -23,6 +25,20 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             "--seed" => {
                 index += 1;
                 seed = args.get(index).ok_or("--seed needs a value")?.parse()?;
+            }
+            "--resume" => {
+                index += 1;
+                resume = Some(PathBuf::from(
+                    args.get(index).ok_or("--resume needs a snapshot")?,
+                ));
+            }
+            "--wall-seconds" => {
+                index += 1;
+                wall_seconds = Some(
+                    args.get(index)
+                        .ok_or("--wall-seconds needs a value")?
+                        .parse::<u64>()?,
+                );
             }
             "--abundance" => {
                 index += 1;
@@ -71,7 +87,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     )?;
     let start = std::time::Instant::now();
     let steps = ticks.clamp(1, 16384) as usize;
-    let mut w = if founders == 1 && abundance.is_none() {
+    let mut w = if let Some(path) = &resume {
+        ShipRuntime::restore(WorldSnapshot::load(path)?)?
+    } else if founders == 1 && abundance.is_none() {
         ShipRuntime::habitat_simulation(spec, seed, steps)?
     } else {
         ShipRuntime::habitat_colony(spec, seed, steps, founders, abundance)?
@@ -79,6 +97,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     if diagnostic_collisions_off {
         w.diagnostic_disable_collisions()?;
     }
+    let initial_tick = w.state().tick;
     let mut simulation_ns = 0u128;
     let mut tick_ns = Vec::new();
     let mut samples = Vec::new();
@@ -90,13 +109,20 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut simultaneous = 0u64;
     let mut maximum_stock = 0;
     let mut path_um = 0f64;
+    let mut journeys = std::collections::BTreeMap::<u64, (Position, f64, f64, u64, u64)>::new();
     let mut error = None;
+    let mut stop = "completed";
     for _ in 0..ticks {
+        if wall_seconds.is_some_and(|limit| start.elapsed().as_secs() >= limit) {
+            stop = "wall_clock";
+            break;
+        }
         let before = w.snapshot();
         let profile_before = w.collision_profile();
         let tick_started = std::time::Instant::now();
         if let Err(e) = w.tick() {
             error = Some(e.to_string());
+            stop = "error";
             break;
         }
         let elapsed_ns = tick_started.elapsed().as_nanos();
@@ -126,10 +152,34 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         for (&id, a) in &s.habitat.as_ref().unwrap().agents {
             let body = &s.instances[&id];
             maximum_stock = maximum_stock.max(body.book.reservoir);
+            let journey = journeys.entry(id).or_insert((
+                before
+                    .instances
+                    .get(&id)
+                    .map_or(body.position, |b| b.position),
+                0.,
+                0.,
+                0,
+                0,
+            ));
+            let displacement = body.position.relative(journey.0)?;
+            journey.2 = journey.2.max(
+                displacement
+                    .iter()
+                    .map(|v| (*v as f64).powi(2))
+                    .sum::<f64>()
+                    .sqrt()
+                    / 1e6,
+            );
+            journey.4 += u64::from(s.habitat.as_ref().unwrap().contacts.iter().any(|c| {
+                c.organism == id && c.response == moebius_morph::collision::ContactResponse::Blocked
+            }));
             if let Some(old) = before.instances.get(&id) {
                 let d = body.position.relative(old.position)?;
                 let moved = d != [0; 3];
                 movements += u64::from(moved);
+                journey.1 += d.iter().map(|v| (*v as f64).powi(2)).sum::<f64>().sqrt() / 1e6;
+                journey.3 += u64::from(moved);
                 path_um += d.iter().map(|x| (*x as f64).powi(2)).sum::<f64>().sqrt();
                 let emitted=s.events.iter().filter(|e|matches!(e,Event::Emitted{at,organism,..}if *at==before.tick&&*organism==id)).count();
                 let fed = s
@@ -164,6 +214,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             && let Err(e) = w.validate()
         {
             error = Some(e.to_string());
+            stop = "error";
             break;
         }
     }
@@ -172,20 +223,23 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     final_state.save(&out.join("final.json"))?;
     let vm_hwm_kb_before_replay = proc_kib("VmHWM:");
     let mut replay = ShipRuntime::restore(WorldSnapshot::load(&out.join("initial.json"))?)?;
-    replay.advance(final_state.tick)?;
+    replay.advance(final_state.tick - initial_tick)?;
     let vm_hwm_kb_after_replay = proc_kib("VmHWM:");
     let vm_rss_kb = proc_kib("VmRSS:");
     let writhe_slack =
         moebius_morph::collision::presentation_slack(&final_state.config.definitions[&1])?;
     let profile = w.collision_profile();
-    let tick_count = final_state.tick.max(1) as f64;
+    let tick_count = tick_ns.len().max(1) as f64;
     let claims = if diagnostic_collisions_off {
         "DIAGNOSTIC ONLY. Habitat collision mode was turned off for this process. Sac offsets, birth placement, spawn checks, and contact admission differ from the product simulation. This world is not an acceptable final simulation. Rendering cost is absent. An exterior collision primitive was not substituted for the hollow pipe."
     } else {
         "Headless throughput only. Authored local policy, finite stock and graph contacts. Collision mode stayed on. The writhe is not propulsion and is not learned. Rendering cost is absent from this run. Pipe candidates still use the hollow trimesh. An exterior primitive was not used."
     };
-    let status = if error.is_some() {
+    let replay_equal = replay.snapshot() == final_state;
+    let status = if error.is_some() || !replay_equal || final_state.condensate_gap() != 0 {
         "FAILED"
+    } else if stop != "completed" {
+        "PARTIAL"
     } else if diagnostic_collisions_off {
         "DIAGNOSTIC"
     } else {
@@ -198,6 +252,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         "mean_resolve_ms": (profile.resolve_ns as f64 / tick_count) / 1e6,
         "queries": profile.queries,
         "query_ns": profile.query_ns,
+        "interval_rejects": profile.interval_rejects,
+        "distance_queries": profile.distance_queries,
+        "distance_ns": profile.distance_ns,
+        "contact_ns": profile.contact_ns,
+        "cast_cache_hits": profile.cast_cache_hits,
+        "linear_casts": profile.linear_casts,
+        "mesh_interval_rejects": profile.mesh_interval_rejects,
         "body_builds": profile.body_builds,
         "body_hits": profile.body_hits,
         "body_geometry_ns": profile.body_geometry_ns,
@@ -207,14 +268,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         "pipe_rejects": profile.pipe_rejects,
         "pipe_geometry_ns": profile.pipe_geometry_ns,
     });
-    let report = serde_json::json!({
+    let mut report = serde_json::json!({
         "status": status,
         "error": error,
         "diagnostic_collisions_off": diagnostic_collisions_off,
         "collisions_enabled": !diagnostic_collisions_off,
         "ticks": final_state.tick,
         "digest": final_state.digest()?,
-        "replay_equal": replay.snapshot() == final_state,
+        "replay_equal": replay_equal,
         "founders": founders,
         "seed": seed,
         "abundance": abundance,
@@ -244,6 +305,31 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         "samples": samples,
         "claims": claims,
     });
+    let experiment = serde_json::json!({
+        "stop": stop,
+        "requested_ticks": ticks,
+        "initial_tick": initial_tick,
+        "ticks_advanced": final_state.tick - initial_tick,
+        "resume": resume,
+        "wall_seconds": wall_seconds,
+        "simulated_seconds": final_state.tick as f64 * TICK_NANOS as f64 / 1e9,
+        "deaths": null,
+        "mortality": "UNIMPLEMENTED: no death or metabolic consumption rule; survival duration is not measurable",
+        "generation_depth": final_state.habitat.as_ref().unwrap().agents.keys().map(|id| {
+            let mut depth = 0;
+            let mut current = *id;
+            while let Some(parent) = final_state.habitat.as_ref().unwrap().agents[&current].parent {
+                depth += 1;
+                current = parent;
+            }
+            depth
+        }).max().unwrap_or(0),
+    });
+    report
+        .as_object_mut()
+        .unwrap()
+        .extend(experiment.as_object().unwrap().clone());
+    report["journeys"] = serde_json::json!(journeys.iter().map(|(id,(origin,path,max_net,moving,blocked))|serde_json::json!({"id":id,"origin":origin,"path_m":path,"max_net_m":max_net,"moving_ticks":moving,"blocked_ticks":blocked,"remembered_cells":final_state.habitat.as_ref().unwrap().agents[id].travel.as_ref().map_or(0,|m|m.visited.len())})).collect::<Vec<_>>());
     fs::write(
         out.join("tick-times-ns.json"),
         serde_json::to_vec(&tick_ns)?,

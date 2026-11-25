@@ -1,3 +1,272 @@
+# Authorized publication checkpoint — 2026-11-25 (America/Toronto)
+
+Codex IN PROGRESS. Operator explicitly requests commit, push, then focused
+compilation/regressions and matched collision benchmarks, with smooth/lightweight
+operation as the target. This supersedes earlier no-push language for this work.
+Entry main abdb664, dirty; entire existing task worktree is authorized. Corrected
+the new steering test's `<-` token spacing, formatted source, and reconciled
+README/root results and habitat/collision headers with implemented WIP repairs.
+`docs/morph_005/SIMULATION_0001_REPAIR_STATUS.md` records authority, archaeology,
+changes, failures and pending checks. No runtime policy change in this checkpoint
+beyond the already present repairs. No test success on this checkpoint is claimed.
+
+`git fetch origin` succeeded; main is3ahead/0behind before the new commit.
+`cargo fmt --all` and `git diff --check` PASS. Following the Operator's requested
+order, focused tests and clean-commit broad checks remain pending after publication.
+
+Mermogon UUID D0A02EEBA02ED82C verified. New immutable
+`.../SIMULATION-0001/2026-11-25/repair-exploration-checkpoint-v1/evidence.tar.gz`,
+495 files,432268929raw bytes,36962377archive bytes, SHA256
+`0a5f2e63d9d646ff921e502128ae4960e382c56a435b54c7a44f3480e83bca5a`.
+Every restored member checked; prior local copies retained. Classification and
+receipt: `SIMULATION_0001_REPAIR_CLASSIFICATION.json` / `...REPAIR_STORAGE.json`
+under docs/morph_005. Prior coordinate and causal archive hashes also rechecked.
+Raw new-session working directory: `/tmp/moebius-sim0001-light-20261125T220737Z`.
+
+Next: commit/push reviewed checkpoint, verify remote SHA, run focused checks and
+strict static checks, preserve a baseline binary/source, then matched candidate
+benchmarks including complete state/contact equality and mean/p95/p99/max/RSS.
+Do not claim the 88ms average or second-long spikes are acceptable. Keep finite
+material and hollow collisions; no coordinate redesign or fake learning.
+
+---
+
+# Rehydration checkpoint — 2026-11-25 (America/Toronto)
+
+Codex, incoming rehydration requested by Operator. **DONE for rehydration;
+SIMULATION-0001 remains PARTIAL.** Read AGENTS, the relevant current and historical
+handoff sections, MORPH-004/005 authority records, current habitat/collision
+contracts, original SIMULATION-0001 directive, source and newer experiment records.
+This turn changes continuity documentation only; preserve all existing runtime
+work. No new commit, push, experiment or test execution in this rehydration turn.
+
+Verified repo `/home/cognis/Cognis_Lab/Möbius Automata`, branch main, HEAD
+`abdb664738a23c1aaf37c46810d26728f88c7d2f`. Entry/exit dirty: 14 modified tracked
+paths plus 12 untracked source/report/protocol paths. No habitat_probe or Cargo
+build/test process was running at inspection. `git diff --check` PASS before this
+note. Current contracts/root results still say repair is pending; those historical
+headings have not yet been reconciled with the newer uncommitted implementation.
+
+The preceding active-continuation entry is incomplete. Source and retained logs
+establish these later developments (not clean-commit certification):
+
+- `src/habitat.rs` now contains bounded persisted `TravelMemory` (256 visited
+  2-metre cells), local exploration targets, refill hysteresis, offspring memory
+  reset and spherical `turn_heading` for exactly-behind targets. These are authored
+  policy changes, not learning. `tests/habitat.rs` contains a fed-body >6-metre
+  departure and warm/restored continuation regression.
+- `src/collision.rs` now uses a content/time-sensitive wet-pipe cache key. Its old
+  youngest-age-zero key aliased consecutive mesh times around future-node
+  admission. `pipe-cache-honest-red.log` records failure under the old key;
+  `exploration-cache-fixed-focused.log` records the new cache and fed-body replay
+  tests passing. That focused run still failed the original large-pouch test.
+- The subsequent `exploration-pouch-spherical-steer.log` records that original
+  pouch assertion passing (peak344/final266). The complete focused suite has NOT
+  been rerun after the last steering changes. The newly added steering unit test
+  currently contains `heading[0]<-900_000`; check/fix its token spacing through a
+  focused compile before claiming the current library tests compile.
+- Compiler/runtime share `mouth_landmark`; auto-deposit capture eligibility is
+  filtered before queue caps; disjoint AABBs reject impossible containment before
+  expensive mesh work. Raw 40-tick `pre-aabb-continuation` versus
+  `aabb-continuation` means are64.710/39.328ms, maxima504.264/217.673ms. Outcomes
+  differ slightly; this is a corrective containment change, not exact equivalence.
+- The far-chunk gate STILL builds cache misses (`pipe_separated && pipe_has` at
+  five call sites). Retesting a pre-build skip after the proven cache-key repair
+  is pending; do not report that optimization as implemented or validated.
+
+Raw working evidence remains `/tmp/moebius-domain-audit-20261125T034608Z`.
+Latest completed `travel-fill-420/report.json`: seed11, founders2, abundance4000,
+420 ticks, 3 agents, 1 paid birth, material gap0, exact replay. Mean88.219ms,
+median18.219ms, p95497.879ms, p99856.500ms, max1858.943ms. Founders' maximum net
+displacements3.724/3.953m versus paths16.691/16.541m. Recorder PASS is not playable
+acceptance. A different earlier `travel-release-candidate` reached796/1800ticks
+before its wall budget: mean112.762ms, max3702.312ms, founder1 max net7.047m,
+4 bodies/2 births, exact replay and gap0. This is a PARTIAL run and different
+source, not evidence of final production throughput or unrestricted exploration.
+Current source-to-run BLAKE3 equality was not independently recomputed this turn
+(Python blake3 and b3sum unavailable); per-run source maps remain retained.
+
+Coordinate audit remains complete: no physical ship-extent setting, no material
+cost from changing the supported coordinate envelope in matched local scenes.
+See `docs/morph_005/COORDINATE_DOMAIN_AUDIT.md`. Mermogon mount UUID
+`D0A02EEBA02ED82C` reverified and coordinate-domain-v1 archive SHA-256 recomputed:
+`fd911d715ea94d5dd4ae5ef3b5808eaa29a804bf47fc702663b72c66b353d958`, matching
+`COORDINATE_DOMAIN_STORAGE.json`. No transfer/removal or fresh restoration here.
+Newer repair/travel raw evidence has NOT yet received its final immutable archive.
+
+Next authorized dependency order: preserve current dirt; compile/fix the steering
+unit test and rerun focused physics/habitat/emission/witness checks; capture source
+identity and test the far-chunk candidate against the retained fill baseline with
+complete snapshot AND contact-log equality; measure fresh distance/coverage and
+tail tick cost with final source; reconcile reports/Atlas and archive all failures
+and final evidence; review diff; authorized local clean commit then full suite.
+No coordinate redesign, disabled product collisions, material deletion, new biology,
+new learning claim, or push. Safe first command: `git status --short`, then
+`cargo test --release --offline -p moebius-morph --lib an_exactly_behind_goal_turns_without_instant_reversal`.
+
+---
+
+# Active continuation — 2026-11-24T23:20:46.539258-05:00
+
+Codex IN PROGRESS. User requested a matched coordinate-domain cost audit, then
+explicitly authorized repair, then required travel/exploration and repeatedly
+emphasized unacceptable lag. All prior scope persists: finite material, actual
+physics, no fake learning, no coordinate redesign or push.
+
+Entry/HEAD main abdb664, dirty from preceding same-session work. No new commit.
+Coordinate audit COMPLETE: docs/morph_005/COORDINATE_DOMAIN_AUDIT.md and SUMMARY,
+CLASSIFICATION, STORAGE JSON. No physical-extent setting exists. Isolated
+MAX_POSITION bounds 1km/30,000km/1,000,000km, same local snapshots, six permutations:
+opening29.502/29.065/29.264 ms; congested486.655/485.468/490.015 ms. Exact states,
+queries and allocation totals match. No material empty-domain cost. Verified
+Mermogon coordinate-domain-v1 archive, 234 members, SHA
+fd911d715ea94d5dd4ae5ef3b5808eaa29a804bf47fc702663b72c66b353d958.
+
+Repair WIP under /tmp/moebius-domain-audit-20261125T034608Z. Source collision.rs
+fixes slide sign, candidate composition+verification, stopping-normal selection,
+turning toward clearance, source-only self-deposit exemptions, shared geometry,
+value-validated spec hashes, linear sweeps; rotational interval fallback retained.
+New unit regressions and exact paid-material rejection. Seal fixture strengthened
+to seal all old streams, original five-tick window/all assertions retained.
+A rotation-unlock experiment failed active-offspring test and was reverted.
+A padded-linear angular shortcut FAILED the thin rotational barrier regression,
+was archived and reverted. Do not reinstate it. The status-validated nonlinear
+experiment was slower (94 vs76ms) and is being rejected too, not accepted as a fix.
+
+Accepted prior final native 720 seed11 founders2 abundance4000: exact replay,
+3 agents/1 birth(event452),153 nodes, mean108.95ms p99 732.61/max3752.74. This is
+still too slow, not full success. Fresh continuation40ticks: all3 move (24/10/40
+unique positions). Legacy saved body8 remains wedged; do not claim full old-save
+recovery. Old native-v10 is a rejected rotation-unlock prototype, not final source.
+
+Further WIP: compiler/runtime shared numerical mouth_landmark avoids full meshes;
+40-tick exact snapshot/contact equality PASS, mean99.8 ->80.4ms. Existing mesh BVH
+interval rejection passes rotational guard but little speed benefit. Runtime
+now filters capture eligibility BEFORE auto-deposit queue caps, retaining all
+material; standalone regression still needed. Full/broad suite NOT RUN, final
+archive/Atlas/report/commit gates pending. No new experiments are certified clean.
+
+Next: explicit authored exploration goals/visited-space memory + foraging
+hysteresis in existing habitat policy, with measured distance/coverage and lag.
+Keep inherited states readable. Test numeric landmarks, queue starvation, physics
+regressions; benchmark fresh/frozen cases; archive failures; clean authorized local
+commit then full release suite. No biology/learning claims or guaranteed flourishing.
+Preserve all current dirt and raw versions. Safe first: git status --short.
+
+---
+
+# SIMULATION-0001 trapped-colony causal investigation — 2026-11-24T22:38:20.913383-05:00
+
+Agent Codex. **DONE for the requested "find why" investigation; PARTIAL for
+SIMULATION-0001. Collision response repair NOT IMPLEMENTED.** Operator first
+requested rehydration/Grok review, then supplied the First Colony directive
+(local in-scope commits authorized, no push/new biology), then prioritized the
+native screenshot's own-secretion trapping and severe lag. Do not promote the
+recording's PASS completion flag into playability acceptance.
+
+Repo `/home/cognis/Cognis_Lab/Möbius Automata`, main, HEAD
+`abdb664738a23c1aaf37c46810d26728f88c7d2f`. Entry clean, exit dirty. All current
+changes are uncommitted. No commit or push performed. No prior work, saves,
+archives, raw failures or Git history removed. Older relevant continuity follows.
+
+Primary findings and scope:
+- Read AGENTS/HANDOFF, current source/tests/configuration, MORPH-004/005
+  authority records, habitat/collision contracts, Grok's report/raw receipts.
+  `docs/morph_005/SIMULATION_0001_COLLISION_DIAGNOSIS.md` gives evidence levels,
+  exact interventions, limitations and next repair. No external study consulted.
+- Fresh 420-tick baseline reproduced reference digest
+  `7b68517ba0f82ed979469ef059db5f151243eb6999fe8d37f2e58d69940c2afe`.
+  Interval bounds + exact-input cast memo preserve every trace row and final
+  snapshot byte-for-byte. Final instrumented mean 24.976 ms versus baseline
+  24.839 ms: **no robust speed improvement established**. Visits 15645 -> 14896.
+- Native two founders, seed11, free condensate4000, 720 ticks: exact headless
+  replay, digest `b509ab9d302d3a6abe888558b582a8219562d895bdcc953cce7ce23a64b332bc`.
+  One birth at event tick360 (parent1 -> child18, paid64). Mean authority
+  189.610 ms, p95 654.742, p99 697.509, max2061.339. Retained draw CPU mean2.458
+  ms, frame mean16.664. Frame log capped4096; ticks continued to720. Operator
+  screenshot at650 is this run. The completed recording is a failed playability
+  outcome: body8 and child18 remain stationary in five restored canonical ticks.
+- At restored tick720, canonical ticks cost486.7–525.7 ms, distance413–417 ms,
+  contact32–34 ms. Same-snapshot counterfactual resolve: baseline653.037 ms,
+  own-pipe exclusions134.241 ms. Own-pipe exclusion does not release8/18;
+  free-parcel exclusion does. Body8 is obstructed by own parcel35, child18 by
+  parent parcel133 plus organism contacts. These exclusions were diagnostic,
+  not valid product worlds or fixes. All temporary filters were removed by
+  byte-identical restore; diagnostic source/logs remain archived.
+- A real-Parry-normal regression fails exit101: along_surface preserves inward
+  motion (60,10,0 mm). Source also shows stale candidate overwrites and outer
+  termination based on stopped-count rather than changed paths. Tight envelopes
+  already report8–14 cm own-pipe penetrations. Origin of the accumulated overlap,
+  relative contribution of each response defect and a valid repair remain open.
+  No response-law or hollow-mesh representation change was admitted.
+- Three registered one-founder runs (seeds77/11/23) reached819/1178/494 ticks,
+  produced1/2/1 paid births, exact replay and material gap0. All hit soft60-second
+  measurement budgets. Scaling five/ten-founder cases are performance-only short
+  runs; 30/100/300 refused by rule ceiling16. No mortality/metabolic consumption
+  exists; extinction/survival and sustainable population are not established.
+
+Uncommitted implementation:
+- `crates/moebius-morph/src/collision.rs`: interval AABB lower bound, bounded
+  exact-shape/bounds/motion memo, distance/contact/query counters and memo test.
+  Existing response defects deliberately remain visible; diagnostic filters absent.
+- `crates/moebius-morph-lab/src/bin/moebius-world-witness.rs`: creator uses
+  founder/seed/abundance settings (F2/F3,F4,F7/F8), compact HUD with B details,
+  reset telemetry and actual-worker founding-settings regression.
+- `crates/moebius-morph/examples/habitat_probe.rs`: soft wall budget, retained
+  partial report/snapshot, lineage/mortality limits and query phase counters;
+  recorder status now checks replay/material correctness.
+- `python/simulation_0001_experiments.py`,
+  `docs/morph_005/SIMULATION_0001_EXPERIMENT.json`: existing recorder orchestration
+  and preregistered finite-resource observations; future jobs capture executable.
+- Root README/results, habitat/collision contracts and stabilization/diagnosis
+  docs updated. `SIMULATION_0001_CAUSAL_CLASSIFICATION.json`,
+  `SIMULATION_0001_CAUSAL_STORAGE.json`, `SIMULATION_0001_ATLAS_VALIDATION.json`
+  under docs/morph_005 retain inventories, hashes and receipts. Atlas inventory
+  in docs/morph_002/ATLAS_REFERENCE.json now covers SIMULATION_0001 note.
+
+Validation, rustc1.99.1/offline, dirty source:
+- `cargo test --release --offline -p moebius-morph --test collision --test habitat --test emission --lib -p moebius-morph-lab --bin moebius-world-witness -- --test-threads=8`:
+ 52 passed (morph lib5, collision8, emission5, habitat11, lab lib14, witness9).
+- `cargo clippy --workspace --all-targets --offline -- -D warnings`: PASS.
+- `cargo fmt --all -- --check`, Python py_compile and git diff --check: PASS.
+- Canonical resolve-bypass honest-red: exit101, presented anatomy penetrated
+  barrier; source restored byte-identically. Separate slide-sign expected-red:
+  exit101. That ad hoc diagnostic test/source is retained in the archive, not
+  claimed as a passing production guard. Initial macro recursion/Clippy failures
+  are preserved alongside corrected checks.
+- Full clean-commit workspace suite NOT RUN for this continuation. Known response
+  defects remain. No clean certification, hosted CI, release or push claim.
+
+Persistence:
+- UUID D0A02EEBA02ED82C mounted Mermogon verified on this operation. Immutable
+  `/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25/codex-stall-diagnosis-v1/evidence.tar.gz`
+  SHA-256 `bc9b30a1086cf6f667c26479e159ae65e0aa32443a7e8694d159cfa7a1bd5a0d`.
+  158 raw/source/receipt files, 245529622 bytes, archive 52223348 bytes.
+  Every archive member and every restored file hashed successfully. Restore
+  `/tmp/moebius-sim0001-restore-mwbykb50`. Local working originals retained at
+  `/tmp/moebius-sim0001-codex-20261125T031824Z`. Source overlay and binaries have
+  separate identities; consult SOURCE_MAP.json and individual source-blake3 logs.
+- Stable Diffusion Atlas UUID8CA451CDA451BA82 verified; existing SIMULATION_0001
+  note updated only after external archive verification. Before/after texts are
+  archived. Atlas checker PASS45notes/197links, inventory updated. Older sealed
+  MORPH-005 archives were not rewritten. No bulky raw evidence added to Git.
+
+Next dependency, in order:
+1. `git status --short`, then read the collision diagnosis and archived expected-red
+   source. Preserve all current uncommitted changes and historical measurements.
+2. Repair slide normal orientation, compose/re-sweep response candidates, define
+   separation from existing overlap and precise source-graft/self-deposit rights.
+   Preserve every material parcel; do not "fix" this by disabling collisions.
+3. Regressions must reproduce the actual failure (including stationary parcels),
+   then saved tick720 continuation and fresh seed11 complete-history native/headless
+   comparison. Response fixes will change old authoritative outcomes; document
+   differences instead of claiming an equivalent cache optimization.
+4. Only after correctness, remeasure dense-scene throughput and complete remaining
+   release/clean-commit gates under the already authorized scope. No SIMULATION-0002,
+   new biology, changed physics representation without its required ruling, or push.
+
+---
+
 # SIMULATION-0001 clean suite recorded — 2026-11-25T03:03:28Z
 
 Agent Grok. Branch main, implementation commit `e863824f13422f5bf83a03c604a79eb85152db62`, ahead of origin/main by 1, not pushed. Status remains PARTIAL. No SIMULATION-0002.

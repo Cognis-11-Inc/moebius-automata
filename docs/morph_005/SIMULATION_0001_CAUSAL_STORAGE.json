@@ -1,0 +1,29 @@
+{
+  "status": "ARCHIVED_AND_RESTORED",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon"
+  },
+  "archive_version": "codex-stall-diagnosis-v1",
+  "archive_path": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25/codex-stall-diagnosis-v1/evidence.tar.gz",
+  "archive_bytes": 52223348,
+  "archive_sha256": "bc9b30a1086cf6f667c26479e159ae65e0aa32443a7e8694d159cfa7a1bd5a0d",
+  "external_manifest_path": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25/codex-stall-diagnosis-v1/MANIFEST.json",
+  "external_manifest_sha256": "c57e104e47ca52fe442a955d931dcaf0891451a10903fb23784f32259d990155",
+  "file_count": 158,
+  "raw_bytes": 245529622,
+  "every_archive_member_verified": true,
+  "every_restored_file_verified": true,
+  "restore_directory": "/tmp/moebius-sim0001-restore-mwbykb50",
+  "local_working_copy_retained": "/tmp/moebius-sim0001-codex-20261125T031824Z",
+  "source_identity": "main abdb664738a23c1aaf37c46810d26728f88c7d2f plus uncommitted overlay in SOURCE_MAP.json/source-final.patch",
+  "restore_instructions": [
+    "Verify findmnt target and UUID D0A02EEBA02ED82C before reading or restoring.",
+    "Verify evidence.tar.gz SHA-256 and MANIFEST.json SHA-256 against this receipt.",
+    "Extract with Python tarfile data filter into a NEW empty directory.",
+    "Verify every member against the external MANIFEST.json sha256/bytes.",
+    "SOURCE_MAP.json overlays repository files onto recorded Git HEAD. Measured-binary receipts and source hashes identify intermediate measurements; source-final is the final uncommitted overlay.",
+    "Do not overwrite old archives or infer a clean-commit full-suite certification."
+  ]
+}

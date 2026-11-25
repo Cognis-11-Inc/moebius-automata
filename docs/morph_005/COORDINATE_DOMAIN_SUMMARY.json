@@ -1,0 +1,146 @@
+[
+  {
+    "scene": "opening",
+    "bound_m": 1000,
+    "runs": 6,
+    "mean_ms": 29.502362766666668,
+    "sd_run_mean_ms": 0.28598902809986126,
+    "query_counts": [
+      893
+    ],
+    "total_allocations": [
+      185424
+    ],
+    "allocated_bytes": [
+      174034735
+    ],
+    "peak_live_bytes": [
+      2433425
+    ],
+    "vm_hwm_kib_range": [
+      8536,
+      8716
+    ],
+    "exact_snapshots_and_tick_digests": true
+  },
+  {
+    "scene": "opening",
+    "bound_m": 30000000,
+    "runs": 6,
+    "mean_ms": 29.064539933333332,
+    "sd_run_mean_ms": 0.23869997902120316,
+    "query_counts": [
+      893
+    ],
+    "total_allocations": [
+      185424
+    ],
+    "allocated_bytes": [
+      174034735
+    ],
+    "peak_live_bytes": [
+      2433429
+    ],
+    "vm_hwm_kib_range": [
+      8568,
+      8752
+    ],
+    "exact_snapshots_and_tick_digests": true
+  },
+  {
+    "scene": "opening",
+    "bound_m": 1000000000,
+    "runs": 6,
+    "mean_ms": 29.263885883333334,
+    "sd_run_mean_ms": 0.14911549640124314,
+    "query_counts": [
+      893
+    ],
+    "total_allocations": [
+      185424
+    ],
+    "allocated_bytes": [
+      174034735
+    ],
+    "peak_live_bytes": [
+      2433431
+    ],
+    "vm_hwm_kib_range": [
+      8484,
+      8772
+    ],
+    "exact_snapshots_and_tick_digests": true
+  },
+  {
+    "scene": "congested",
+    "bound_m": 1000,
+    "runs": 6,
+    "mean_ms": 486.65544,
+    "sd_run_mean_ms": 1.9977742499300062,
+    "query_counts": [
+      3340
+    ],
+    "total_allocations": [
+      295757
+    ],
+    "allocated_bytes": [
+      229648195
+    ],
+    "peak_live_bytes": [
+      17214583
+    ],
+    "vm_hwm_kib_range": [
+      35508,
+      36444
+    ],
+    "exact_snapshots_and_tick_digests": true
+  },
+  {
+    "scene": "congested",
+    "bound_m": 30000000,
+    "runs": 6,
+    "mean_ms": 485.46760077777776,
+    "sd_run_mean_ms": 2.5675728368833046,
+    "query_counts": [
+      3340
+    ],
+    "total_allocations": [
+      295757
+    ],
+    "allocated_bytes": [
+      229648195
+    ],
+    "peak_live_bytes": [
+      17214587
+    ],
+    "vm_hwm_kib_range": [
+      35960,
+      36368
+    ],
+    "exact_snapshots_and_tick_digests": true
+  },
+  {
+    "scene": "congested",
+    "bound_m": 1000000000,
+    "runs": 6,
+    "mean_ms": 490.01532861111116,
+    "sd_run_mean_ms": 3.995954809749195,
+    "query_counts": [
+      3340
+    ],
+    "total_allocations": [
+      295757
+    ],
+    "allocated_bytes": [
+      229648195
+    ],
+    "peak_live_bytes": [
+      17214589
+    ],
+    "vm_hwm_kib_range": [
+      35672,
+      36372
+    ],
+    "exact_snapshots_and_tick_digests": true
+  }
+]
