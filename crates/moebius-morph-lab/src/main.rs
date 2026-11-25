@@ -221,7 +221,9 @@ fn keys(
         edits.push(Edit::Field(i + 1));
     }
     if input.just_pressed(KeyCode::ArrowUp) {
-        edits.push(Edit::Field((i + 11) % 12));
+        edits.push(Edit::Field(
+            (i + ComponentField::ALL.len() - 1) % ComponentField::ALL.len(),
+        ));
     }
     if input.just_pressed(KeyCode::Tab) {
         edits.push(if input.pressed(KeyCode::ShiftLeft) {
@@ -241,6 +243,7 @@ fn keys(
         (KeyCode::KeyA, Edit::AddFlagellum),
         (KeyCode::KeyP, Edit::AddSpine),
         (KeyCode::KeyN, Edit::AddNozzle),
+        (KeyCode::KeyB, Edit::AddFoodPouch),
         (KeyCode::KeyD, Edit::Duplicate),
         (KeyCode::Delete, Edit::Remove),
         (KeyCode::BracketLeft, Edit::BodyLength(-step)),

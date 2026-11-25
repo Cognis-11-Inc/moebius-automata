@@ -160,3 +160,39 @@ pub fn food_gore(sites: &[(Vec3, f32, u64)], frame: u32) -> Mesh {
     }
     buf.mesh()
 }
+
+/// Root stalks connecting world-owned sac attachments to their visible bodies.
+pub fn substrate_roots(roots: &[(Vec3, Vec3)]) -> Mesh {
+    let mut buf = Buf::new();
+    for (root, tip) in roots {
+        let axis = (*tip - *root).normalize_or_zero();
+        let radius =
+            moebius_morph::habitat::ROOT_RADIUS as f32 / moebius_morph::emission::SCALE as f32;
+        let cross = if axis.cross(Vec3::X).length_squared() > 0.01 {
+            axis.cross(Vec3::X)
+        } else {
+            axis.cross(Vec3::Y)
+        };
+        let side = cross.normalize_or_zero() * radius;
+        let up = axis.cross(side).normalize_or_zero() * radius;
+        for k in 0..8 {
+            let a = k as f32 * std::f32::consts::TAU / 8.;
+            let b = (k + 1) as f32 * std::f32::consts::TAU / 8.;
+            let x = side * a.cos() + up * a.sin();
+            let y = side * b.cos() + up * b.sin();
+            buf.tri(
+                (*root + x).to_array(),
+                (*root + y).to_array(),
+                (*tip + x * 0.65).to_array(),
+                [0.35, 0.07, 0.08, 1.],
+            );
+            buf.tri(
+                (*root + y).to_array(),
+                (*tip + y * 0.65).to_array(),
+                (*tip + x * 0.65).to_array(),
+                [0.35, 0.07, 0.08, 1.],
+            );
+        }
+    }
+    buf.mesh()
+}

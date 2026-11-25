@@ -33,6 +33,11 @@ pub struct Component {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "type", deny_unknown_fields)]
 pub enum Shape {
+    FoodPouch {
+        length: f32,
+        radius: f32,
+        capacity: u64,
+    },
     Flagellum {
         length: f32,
         radius: f32,
@@ -106,10 +111,50 @@ impl Component {
             Shape::Flagellum { .. } => "Flagellum",
             Shape::Spine { .. } => "Spine",
             Shape::SecretionNozzle { .. } => "Nozzle (unbound)",
+            Shape::FoodPouch { .. } => "Food pouch",
         }
     }
 }
 impl AnatomySpec {
+    pub fn food_capacity(&self) -> u64 {
+        self.components
+            .iter()
+            .filter_map(|c| match c.shape {
+                Shape::FoodPouch { capacity, .. } => Some(capacity),
+                _ => None,
+            })
+            .sum()
+    }
+    pub fn add_food_pouch(&mut self) {
+        // Keep a new pouch away from existing outlet roots; do not cover a
+        // player-built nozzle by blindly mounting both organs at one coordinate.
+        let mut best = (f32::NEG_INFINITY, 0.16, 0.);
+        for station in [0.16, 0.46, 0.80] {
+            for k in 0..16 {
+                let angle = k as f32 * TAU / 16.;
+                let score = self
+                    .components
+                    .iter()
+                    .map(|c| {
+                        let d = (angle - c.attachment.azimuth + PI).rem_euclid(TAU) - PI;
+                        ((station - c.attachment.station) * self.body.length).powi(2)
+                            + (d * self.body.radius).powi(2)
+                    })
+                    .fold(f32::INFINITY, f32::min);
+                if score > best.0 {
+                    best = (score, station, angle);
+                }
+            }
+        }
+        let mut pouch = Component::flagellum(self.next_id(), best.1, best.2);
+        pouch.shape = Shape::FoodPouch {
+            length: 0.65,
+            radius: 0.22,
+            capacity: 1024,
+        };
+        self.components.push(pouch);
+    }
+
     pub fn migrate(mut body: WormSpec) -> Result<Self, MorphError> {
         body.validate()?;
         let components = std::mem::take(&mut body.flagella)
@@ -281,6 +326,19 @@ impl AnatomySpec {
                 "invalid attachment coordinates or orientation",
             )?;
             let (l, r) = match &c.shape {
+                Shape::FoodPouch {
+                    length,
+                    radius,
+                    capacity,
+                } => {
+                    require(
+                        (64..=8192).contains(capacity)
+                            && bound(*length, 0.3, 2.)
+                            && bound(*radius, 0.08, 0.5),
+                        "invalid food pouch",
+                    )?;
+                    continue;
+                }
                 Shape::Flagellum {
                     length,
                     radius,
@@ -383,6 +441,7 @@ fn compose(s: &AnatomySpec, p: Pose) -> AnatomicalPose {
         ));
         let (sx, sy) = frame(direction, mount.binormal);
         let (length, radius, taper, curve, amp, freq, phase, nozzle) = match &c.shape {
+            Shape::FoodPouch { length, radius, .. } => (*length, *radius, 0., 0., 0., 0., 0., None),
             Shape::Flagellum {
                 length,
                 radius,
@@ -419,6 +478,7 @@ fn compose(s: &AnatomySpec, p: Pose) -> AnatomicalPose {
         let origin = mount.origin;
         let mut part = Surface::new(&format!("component_{}_{}", c.id, c.kind()));
         let color = match c.shape {
+            Shape::FoodPouch { .. } => [0.30, 0.13, 0.23],
             Shape::Spine { .. } => [0.30, 0.24, 0.19],
             Shape::SecretionNozzle { .. } => [0.31, 0.075, 0.10],
             _ => s.body.appearance.flagella,
@@ -429,7 +489,10 @@ fn compose(s: &AnatomySpec, p: Pose) -> AnatomicalPose {
         // It remains its own closed surface: not a weld, load path, or material
         // joint. Flagella keep the previous round tube. The nozzle lip and cavity
         // sit past this blend.
-        let flesh = matches!(c.shape, Shape::Spine { .. } | Shape::SecretionNozzle { .. });
+        let flesh = matches!(
+            c.shape,
+            Shape::Spine { .. } | Shape::SecretionNozzle { .. } | Shape::FoodPouch { .. }
+        );
         let skin = s.body.appearance.skin;
         let flesh_normal = mount.normal;
         let flesh_weight = |u: f32| {
@@ -458,7 +521,11 @@ fn compose(s: &AnatomySpec, p: Pose) -> AnatomicalPose {
             } else {
                 r as f32 / 29.
             };
-            let rad = radius * (1. - u * taper);
+            let rad = if matches!(c.shape, Shape::FoodPouch { .. }) {
+                radius * (0.16 + 0.84 * (PI * u).sin().max(0.))
+            } else {
+                radius * (1. - u * taper)
+            };
             let w = flesh_weight(u);
             let tone = if w == 0. {
                 color

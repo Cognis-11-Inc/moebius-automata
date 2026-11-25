@@ -2,6 +2,36 @@ use moebius_morph::emission::*;
 use moebius_morph::{AnatomySpec, CompiledAnatomy, Shape};
 
 #[test]
+fn axial_roll_precedes_yaw_and_legacy_zero_roll_is_omitted() {
+    let rigid = RigidPose {
+        axial_roll: 1_570_796,
+        yaw_sin: SCALE,
+        yaw_cos: 0,
+        ..RigidPose::identity()
+    };
+    let point = place_point([1., 0., 0.], rigid).unwrap();
+    assert!(point[0].abs() <= 1 && point[2].abs() <= 1);
+    assert_eq!(point[1], SCALE);
+    assert!(
+        !serde_json::to_string(&RigidPose::identity())
+            .unwrap()
+            .contains("axial_roll")
+    );
+    for roll in [-1, 6_283_185, i64::MAX] {
+        assert!(
+            place_point(
+                [0.; 3],
+                RigidPose {
+                    axial_roll: roll,
+                    ..RigidPose::identity()
+                }
+            )
+            .is_err()
+        );
+    }
+}
+
+#[test]
 fn controlled_experiments_conserve_and_reproduce() {
     let report = evaluate_morph003().unwrap();
     assert_eq!(report.experiment_a.parcels, 0);

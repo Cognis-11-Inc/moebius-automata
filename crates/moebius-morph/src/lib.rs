@@ -1,10 +1,12 @@
 //! Versioned anatomy and the canonical free-space ship runtime (MORPH-004).
 //! The unchanged MORPH-003 book supplies material transitions; nursery core is separate.
 mod anatomy;
+pub mod collision;
 mod compiler;
 pub mod emission;
 pub mod filament;
 pub mod food;
+pub mod habitat;
 pub mod runtime;
 pub mod witness;
 pub use anatomy::*;

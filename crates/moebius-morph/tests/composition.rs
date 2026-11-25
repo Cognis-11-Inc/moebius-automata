@@ -219,6 +219,7 @@ fn spine_and_nozzle_roots_fuse_into_body_flesh() {
         let mut flagella = 0;
         for (i, component) in spec.components.iter().enumerate() {
             let (kind, radius, distal) = match component.shape {
+                Shape::FoodPouch { radius, .. } => ("pouch", radius, [0.30, 0.13, 0.23]),
                 Shape::Spine { radius, .. } => ("spine", radius, [0.30, 0.24, 0.19]),
                 Shape::SecretionNozzle { radius, .. } => ("nozzle", radius, [0.31, 0.075, 0.10]),
                 Shape::Flagellum { radius, .. } => {

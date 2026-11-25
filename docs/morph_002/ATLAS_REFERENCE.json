@@ -34,8 +34,8 @@
     },
     {
       "path": "01_CANON/MOEBIUS_SHIP.md",
-      "bytes": 5226,
-      "sha256": "3d44386625fe8ac024da7a06bd87a13f600098aca476aaa9f4ef0ea48621e268"
+      "bytes": 5412,
+      "sha256": "14f70523d6a5797d539032ef2a0ec079561e60b60af4d765bfc9a7d87ff57af5"
     },
     {
       "path": "01_CANON/MOEBIUS_VESSEL.md",
@@ -44,8 +44,8 @@
     },
     {
       "path": "01_CANON/SHIP_DIMENSIONS.md",
-      "bytes": 1257,
-      "sha256": "03166dcac6f5107f6fc84fa58e33ebd0e0f6fac3fabc933c9c2c50fbe871d7d5"
+      "bytes": 1485,
+      "sha256": "54f1d07c482abb730ec38fe3bca41c309da299550cc399ce16c39719f767579f"
     },
     {
       "path": "02_ANATOMY/COMPONENT_LIBRARY.md",
@@ -94,8 +94,8 @@
     },
     {
       "path": "07_EXPERIMENTS/INDEX.md",
-      "bytes": 806,
-      "sha256": "193238dce500ee97899daba6480af0165ebe0f0e1f496f14e90980fb90efda40"
+      "bytes": 1022,
+      "sha256": "05ae53cadea30cbd5b2524872594eea5af87a50cc7e5c7eb6c4082cf7d95b2c4"
     },
     {
       "path": "07_EXPERIMENTS/MORPH_001.md",

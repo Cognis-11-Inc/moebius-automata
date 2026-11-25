@@ -8,6 +8,360 @@ fn first() -> ShipRuntime {
     ShipRuntime::first_simulation(AnatomySpec::bare(20261123), 20261123, 600).unwrap()
 }
 
+fn four_nozzles() -> AnatomySpec {
+    let mut spec = AnatomySpec::bare(77);
+    let template = spec.components[0].clone();
+    spec.components.clear();
+    for k in 0..4 {
+        let mut nozzle = template.clone();
+        nozzle.id = k + 2;
+        nozzle.attachment.azimuth = k as f32 * std::f32::consts::FRAC_PI_2;
+        nozzle.orientation = [0.; 2];
+        spec.components.push(nozzle);
+    }
+    spec
+}
+
+#[test]
+fn four_nozzles_lay_four_separate_paid_streams_and_stop_when_empty() {
+    let ship = ShipRuntime::first_simulation(four_nozzles(), 77, 90).unwrap();
+    let mut state = remove_food(ship.snapshot());
+    state.steering.as_mut().unwrap().seeking_food = false;
+    state
+        .config
+        .construction
+        .as_mut()
+        .unwrap()
+        .foraging
+        .as_mut()
+        .unwrap()
+        .refill_below = 0;
+    let mut ship = ShipRuntime::restore(state).unwrap();
+    ship.advance(30).unwrap();
+    let state = ship.state();
+    let book = &state.instances[&1].book;
+    let assembly = state.assembly.as_ref().unwrap();
+    assert_eq!(
+        assembly.filaments.len(),
+        4,
+        "one continuous pipe per nozzle"
+    );
+    let nozzles: std::collections::BTreeSet<_> =
+        assembly.filaments.values().map(|f| f.nozzle).collect();
+    assert_eq!(nozzles, book.registered);
+    for f in assembly.filaments.values() {
+        assert!(f.nodes.len() >= 4);
+        assert!(
+            book.bound
+                .iter()
+                .filter(|b| b.filament == f.id)
+                .all(|b| b.parcel.nozzle_id == f.nozzle)
+        );
+    }
+    assert_eq!(book.reservoir, 0);
+    assert_eq!(book.external_input, 0);
+    assert_eq!(
+        book.bound_quantity().unwrap() + book.parcels.iter().map(|p| p.quantity).sum::<u64>(),
+        book.initial
+    );
+    assert_eq!(book.residual().unwrap(), 0);
+    let before = assembly.clone();
+    ship.advance(30).unwrap();
+    assert_eq!(*ship.state().assembly.as_ref().unwrap(), before);
+    ship.validate().unwrap();
+}
+
+#[test]
+fn four_pipes_cost_four_times_the_stock_of_one_per_laying_tick() {
+    let mut remaining = Vec::new();
+    for spec in [AnatomySpec::bare(77), four_nozzles()] {
+        let mut state = remove_food(
+            ShipRuntime::first_simulation(spec, 77, 90)
+                .unwrap()
+                .snapshot(),
+        );
+        state.steering.as_mut().unwrap().seeking_food = false;
+        state
+            .config
+            .construction
+            .as_mut()
+            .unwrap()
+            .foraging
+            .as_mut()
+            .unwrap()
+            .refill_below = 0;
+        let mut ship = ShipRuntime::restore(state).unwrap();
+        ship.advance(4).unwrap();
+        let book = &ship.state().instances[&1].book;
+        remaining.push(book.initial - book.reservoir);
+        assert_eq!(book.residual().unwrap(), 0);
+    }
+    assert_eq!(remaining, vec![4, 16]);
+}
+
+#[test]
+fn stationary_constructors_do_not_emit_and_each_trail_birth_has_a_moving_step() {
+    for spec in [AnatomySpec::bare(77), four_nozzles()] {
+        let mut state = remove_food(
+            ShipRuntime::first_simulation(spec.clone(), 77, 240)
+                .unwrap()
+                .snapshot(),
+        );
+        state.steering.as_mut().unwrap().seeking_food = true;
+        let mut stationary = ShipRuntime::restore(state).unwrap();
+        let before = stationary.snapshot();
+        stationary.advance(30).unwrap();
+        assert_eq!(
+            stationary.state().instances[&1].position,
+            before.instances[&1].position
+        );
+        assert_eq!(
+            stationary.state().instances[&1].book.reservoir,
+            before.instances[&1].book.reservoir
+        );
+        assert_eq!(stationary.state().assembly.as_ref().unwrap().nodes(), 0);
+        assert!(
+            !stationary
+                .state()
+                .events
+                .iter()
+                .any(|e| matches!(e, Event::Emitted { organism: 1, .. }))
+        );
+        let mut active = ShipRuntime::first_simulation(spec, 77, 240).unwrap();
+        let mut births = 0;
+        for _ in 0..180 {
+            let before = active.snapshot();
+            active.tick().unwrap();
+            let emitted = active
+                .state()
+                .events
+                .iter()
+                .filter(
+                    |e| matches!(e, Event::Emitted { at, organism: 1, .. } if *at == before.tick),
+                )
+                .count();
+            if emitted > 0 {
+                births += emitted;
+                assert_ne!(
+                    active.state().instances[&1].position,
+                    before.instances[&1].position
+                );
+            }
+        }
+        assert!(
+            births > 0,
+            "motion guard cannot disable all trail production"
+        );
+    }
+}
+
+#[test]
+fn four_nozzles_refill_before_laying_and_then_move_and_spin() {
+    let mut ship = ShipRuntime::first_simulation(four_nozzles(), 77, 300).unwrap();
+    let mut building_ticks = 0;
+    let mut seeking_ticks = 0;
+    for _ in 0..180 {
+        let before = ship.snapshot();
+        ship.tick().unwrap();
+        let after = ship.state();
+        let steering = after.steering.unwrap();
+        let emissions = after.events.iter().filter(|event| matches!(event, Event::Emitted { at, organism: 1, .. } if *at == before.tick)).count();
+        if steering.seeking_food {
+            seeking_ticks += 1;
+            assert_eq!(emissions, 0, "refilling must accumulate stock");
+        } else {
+            building_ticks += 1;
+            assert_eq!(emissions, 4);
+            assert_ne!(after.instances[&1].position, before.instances[&1].position);
+            assert_ne!(
+                steering.rigid.axial_roll,
+                before.steering.unwrap().rigid.axial_roll
+            );
+        }
+        assert_eq!(after.instances[&1].book.residual().unwrap(), 0);
+        assert_eq!(after.condensate_gap(), 0);
+    }
+    assert!(
+        building_ticks >= 20 && seeking_ticks >= 20,
+        "refill/build cycle absent"
+    );
+    assert_eq!(
+        ship.state()
+            .assembly
+            .as_ref()
+            .unwrap()
+            .filaments
+            .values()
+            .map(|f| f.nozzle)
+            .collect::<std::collections::BTreeSet<_>>()
+            .len(),
+        4
+    );
+}
+
+#[test]
+fn legacy_mode_without_parallel_or_spin_fields_keeps_its_single_stream() {
+    let mut state = ShipRuntime::first_simulation(four_nozzles(), 77, 90)
+        .unwrap()
+        .snapshot();
+    let rules = state
+        .config
+        .construction
+        .as_mut()
+        .unwrap()
+        .foraging
+        .as_mut()
+        .unwrap();
+    rules.parallel_nozzles = false;
+    rules.axial_spin = 0;
+    rules.trail_on_motion = false;
+    let json = serde_json::to_string(&state).unwrap();
+    assert!(!json.contains("parallel_nozzles"));
+    assert!(!json.contains("axial_spin"));
+    assert!(!json.contains("trail_on_motion"));
+    assert!(!json.contains("axial_roll"));
+    let decoded: WorldSnapshot = serde_json::from_str(&json).unwrap();
+    assert_eq!(serde_json::to_string(&decoded).unwrap(), json);
+    let mut ship = ShipRuntime::restore(decoded).unwrap();
+    ship.advance(30).unwrap();
+    let primary = ship.state().config.construction.as_ref().unwrap().nozzle;
+    assert!(!ship.state().assembly.as_ref().unwrap().filaments.is_empty());
+    assert!(
+        ship.state()
+            .assembly
+            .as_ref()
+            .unwrap()
+            .filaments
+            .values()
+            .all(|f| f.nozzle == primary)
+    );
+}
+
+#[test]
+fn axial_spin_winds_four_paid_pipes_and_restore_continues_the_same_braid() {
+    let ship = ShipRuntime::first_simulation(four_nozzles(), 77, 240).unwrap();
+    let mut state = remove_food(ship.snapshot());
+    // Diagnostic founding stock, explicitly distinct from production defaults.
+    state.instances.get_mut(&1).unwrap().book.initial += 1000;
+    state.instances.get_mut(&1).unwrap().book.reservoir += 1000;
+    state.condensate.as_mut().unwrap().founders += 1000;
+    let mut still = state.clone();
+    still
+        .config
+        .construction
+        .as_mut()
+        .unwrap()
+        .foraging
+        .as_mut()
+        .unwrap()
+        .axial_spin = 0;
+    let mut spun = ShipRuntime::restore(state).unwrap();
+    let mut still = ShipRuntime::restore(still).unwrap();
+    let mut poses = Vec::new();
+    for _ in 0..90 {
+        poses.push(still.state().body_pose(1).unwrap());
+        spun.tick().unwrap();
+        still.tick().unwrap();
+    }
+    let serialized = serde_json::to_vec(&spun.snapshot()).unwrap();
+    let mut restored = ShipRuntime::restore(serde_json::from_slice(&serialized).unwrap()).unwrap();
+    for _ in 90..180 {
+        poses.push(still.state().body_pose(1).unwrap());
+        spun.tick().unwrap();
+        still.tick().unwrap();
+        restored.tick().unwrap();
+    }
+    assert_eq!(spun.snapshot(), restored.snapshot());
+    let a = spun.state();
+    let b = still.state();
+    assert_eq!(
+        a.instances[&1].book.reservoir,
+        b.instances[&1].book.reservoir
+    );
+    assert_eq!(
+        a.instances[&1].book.bound_quantity().unwrap(),
+        b.instances[&1].book.bound_quantity().unwrap()
+    );
+    assert_eq!(a.assembly.as_ref().unwrap().filaments.len(), 4);
+    assert_eq!(b.assembly.as_ref().unwrap().filaments.len(), 4);
+    for nozzle in &a.instances[&1].book.registered {
+        let rotated: Vec<_> = a.instances[&1]
+            .book
+            .bound
+            .iter()
+            .filter(|p| p.parcel.nozzle_id == *nozzle)
+            .collect();
+        let fixed: Vec<_> = b.instances[&1]
+            .book
+            .bound
+            .iter()
+            .filter(|p| p.parcel.nozzle_id == *nozzle)
+            .collect();
+        assert!(rotated.len() >= 170);
+        assert_eq!(rotated.len(), fixed.len());
+        let mut winding = 0.;
+        let mut previous: Option<f64> = None;
+        for (p, q) in rotated.iter().zip(&fixed) {
+            assert_eq!(p.parcel.created_tick, q.parcel.created_tick);
+            let pose = poses[p.parcel.created_tick as usize];
+            let angle = |position: [i64; 3]| {
+                let d: [f64; 3] =
+                    std::array::from_fn(|k| (position[k] - pose.translation[k]) as f64);
+                let x = (d[0] * pose.yaw_cos as f64 - d[2] * pose.yaw_sin as f64) / SCALE as f64;
+                d[1].atan2(x)
+            };
+            let delta = angle(p.parcel.position) - angle(q.parcel.position);
+            if let Some(prev) = previous {
+                winding += (delta - prev + std::f64::consts::PI).rem_euclid(std::f64::consts::TAU)
+                    - std::f64::consts::PI;
+            }
+            previous = Some(delta);
+        }
+        assert!(
+            winding > std::f64::consts::TAU,
+            "nozzle {nozzle} did not complete a turn: {winding}"
+        );
+    }
+    assert_eq!(a.condensate_gap(), 0);
+    spun.validate().unwrap();
+    let mut corrupted = a.clone();
+    corrupted
+        .assembly
+        .as_mut()
+        .unwrap()
+        .filaments
+        .values_mut()
+        .next()
+        .unwrap()
+        .nozzle = 999;
+    assert!(ShipRuntime::restore(corrupted).is_err());
+}
+
+#[test]
+fn player_body_with_multiple_nozzles_starts_and_preserves_all_parts() {
+    let mut spec = AnatomySpec::bare(77);
+    let mut nozzle = spec
+        .components
+        .iter()
+        .find(|c| matches!(c.shape, moebius_morph::Shape::SecretionNozzle { .. }))
+        .unwrap()
+        .clone();
+    nozzle.id = spec.next_id();
+    nozzle.attachment.azimuth += 1.;
+    spec.components.push(nozzle);
+    let mut ship = ShipRuntime::first_simulation(spec.clone(), 77, 120).unwrap();
+    assert_eq!(ship.state().config.definitions[&1], spec);
+    assert_eq!(ship.state().instances[&1].book.registered.len(), 2);
+    ship.advance(90).unwrap();
+    assert_eq!(ship.state().instances[&1].book.residual().unwrap(), 0);
+    assert_eq!(ship.state().condensate_gap(), 0);
+    ship.validate().unwrap();
+    let restored = ShipRuntime::restore(ship.snapshot()).unwrap();
+    assert_eq!(restored.snapshot(), ship.snapshot());
+    // Historical route-only fixtures retain their existing one-nozzle contract.
+    assert!(moebius_morph::filament::construction_from(spec, 77, 120, 24, "head-first").is_err());
+}
+
 fn dark(mut state: WorldSnapshot) -> WorldSnapshot {
     state.config.ambient_light = 0;
     state.config.ports.clear();
@@ -101,8 +455,11 @@ fn same_constructor_eats_then_builds_beyond_its_founding_stock() {
         "construction never used intake"
     );
     assert_eq!(unfed.external_input, 0);
-    assert_eq!(unfed.reservoir, 0);
-    assert!(unfed.bound_quantity().unwrap() + unfed.in_world().unwrap() <= initial);
+    // Operator changed the contract: a stationary body must retain its stock,
+    // rather than converting it into a pile at its resting nozzle.
+    assert_eq!(unfed.reservoir, initial);
+    assert_eq!(unfed.bound_quantity().unwrap(), 0);
+    assert_eq!(unfed.in_world().unwrap(), 0);
     let events: u64 = fed
         .state()
         .events

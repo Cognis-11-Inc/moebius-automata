@@ -18,9 +18,10 @@ pub enum ComponentField {
     Frequency,
     Phase,
     Aperture,
+    Capacity,
 }
 impl ComponentField {
-    pub const ALL: [Self; 12] = [
+    pub const ALL: [Self; 13] = [
         Self::Length,
         Self::Radius,
         Self::Station,
@@ -33,6 +34,7 @@ impl ComponentField {
         Self::Frequency,
         Self::Phase,
         Self::Aperture,
+        Self::Capacity,
     ];
     pub fn label(self) -> &'static str {
         match self {
@@ -48,6 +50,7 @@ impl ComponentField {
             Self::Frequency => "Animation frequency",
             Self::Phase => "Animation phase",
             Self::Aperture => "Nozzle aperture",
+            Self::Capacity => "Food pouch capacity",
         }
     }
     pub fn value(self, c: &Component) -> Option<f32> {
@@ -62,13 +65,15 @@ impl ComponentField {
             (
                 Shape::Flagellum { length, .. }
                 | Shape::Spine { length, .. }
-                | Shape::SecretionNozzle { length, .. },
+                | Shape::SecretionNozzle { length, .. }
+                | Shape::FoodPouch { length, .. },
                 Self::Length,
             ) => Some(*length),
             (
                 Shape::Flagellum { radius, .. }
                 | Shape::Spine { radius, .. }
-                | Shape::SecretionNozzle { radius, .. },
+                | Shape::SecretionNozzle { radius, .. }
+                | Shape::FoodPouch { radius, .. },
                 Self::Radius,
             ) => Some(*radius),
             (Shape::Flagellum { taper, .. } | Shape::Spine { taper, .. }, Self::Taper) => {
@@ -82,6 +87,7 @@ impl ComponentField {
             (Shape::Flagellum { frequency, .. }, Self::Frequency) => Some(*frequency),
             (Shape::Flagellum { phase, .. }, Self::Phase) => Some(*phase),
             (Shape::SecretionNozzle { aperture, .. }, Self::Aperture) => Some(*aperture),
+            (Shape::FoodPouch { capacity, .. }, Self::Capacity) => Some(*capacity as f32),
             _ => None,
         }
     }
@@ -93,6 +99,7 @@ pub enum Edit {
     AddFlagellum,
     AddSpine,
     AddNozzle,
+    AddFoodPouch,
     Duplicate,
     Remove,
     Field(usize),
@@ -190,6 +197,10 @@ impl CompositionSession {
             Edit::Reload => candidate = load_anatomy(&self.path)?,
             Edit::Seed => candidate = AnatomySpec::from_seed(candidate.body.seed.wrapping_add(1)),
             Edit::Showcase => candidate = AnatomySpec::showcase(candidate.body.seed),
+            Edit::AddFoodPouch => {
+                candidate.add_food_pouch();
+                selected = candidate.components.last().map(|c| c.id);
+            }
             Edit::AddFlagellum | Edit::AddSpine | Edit::AddNozzle => {
                 let id = candidate.next_id();
                 let mut c = Component::flagellum(id, 0.35, (id as f32 * 1.7).rem_euclid(TAU));
@@ -256,18 +267,36 @@ impl CompositionSession {
                     ComponentField::Pitch => {
                         c.orientation[1] = (c.orientation[1] + d * 0.1).clamp(-PI, PI)
                     }
+                    ComponentField::Capacity => {
+                        let Shape::FoodPouch { capacity, .. } = &mut c.shape else {
+                            return Err(MorphError("capacity applies to a food pouch".into()));
+                        };
+                        *capacity = (*capacity as f32 + d * 128.).clamp(64., 8192.) as u64;
+                    }
+                    ComponentField::Radius if matches!(c.shape, Shape::FoodPouch { .. }) => {
+                        if let Shape::FoodPouch { radius, .. } = &mut c.shape {
+                            *radius = (*radius + d * 0.01).clamp(0.08, 0.5);
+                        }
+                    }
+                    ComponentField::Length if matches!(c.shape, Shape::FoodPouch { .. }) => {
+                        if let Shape::FoodPouch { length, .. } = &mut c.shape {
+                            *length = (*length + d * 0.05).clamp(0.3, 2.);
+                        }
+                    }
                     field => {
                         let (v, step, lo, hi) = match (&mut c.shape, field) {
                             (
                                 Shape::Flagellum { length, .. }
                                 | Shape::Spine { length, .. }
-                                | Shape::SecretionNozzle { length, .. },
+                                | Shape::SecretionNozzle { length, .. }
+                                | Shape::FoodPouch { length, .. },
                                 ComponentField::Length,
                             ) => (length, 0.05, 0.15, 3.),
                             (
                                 Shape::Flagellum { radius, .. }
                                 | Shape::Spine { radius, .. }
-                                | Shape::SecretionNozzle { radius, .. },
+                                | Shape::SecretionNozzle { radius, .. }
+                                | Shape::FoodPouch { radius, .. },
                                 ComponentField::Radius,
                             ) => (radius, 0.005, 0.008, 0.15),
                             (
@@ -321,6 +350,32 @@ impl CompositionSession {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn food_pouch_is_editable_storage_anatomy_not_a_nozzle() {
+        let mut editor =
+            CompositionSession::new(AnatomySpec::bare(77), PathBuf::from("unused-pouch.json"))
+                .unwrap();
+        let outputs = editor.geometry().unwrap().surfaces.len();
+        editor.edit(Edit::AddFoodPouch).unwrap();
+        assert_eq!(editor.spec.food_capacity(), 1024);
+        assert_eq!(editor.geometry().unwrap().surfaces.len(), outputs + 1);
+        editor
+            .edit(Edit::Field(
+                ComponentField::ALL
+                    .iter()
+                    .position(|f| *f == ComponentField::Capacity)
+                    .unwrap(),
+            ))
+            .unwrap();
+        editor.edit(Edit::Adjust(1.)).unwrap();
+        assert_eq!(editor.spec.food_capacity(), 1152);
+        assert_eq!(
+            editor.compiled.pose(editor.pose()).unwrap().outputs.len(),
+            1
+        );
+        let json = serde_json::to_string(&editor.spec).unwrap();
+        assert_eq!(anatomy_from_json(&json).unwrap(), editor.spec);
+    }
     #[test]
     fn individual_edits_deletion_duplication_persistence_and_invalid_reload() {
         let path =

@@ -14,7 +14,7 @@ use bevy::{
 use clap::Parser;
 use moebius_morph::{
     emission::SCALE,
-    filament::{Assembly, CHUNK_EDGES, StructuralIndex, construction_fixture, filament_chunk},
+    filament::{Assembly, CHUNK_EDGES, StructuralIndex, construction_fixture, filament_chunk_at},
     runtime::*,
     witness::*,
     *,
@@ -43,12 +43,29 @@ struct Args {
     /// Start the functional food/constructor loop directly, using the bare anatomy.
     #[arg(long)]
     first_simulation: bool,
+    /// Use a saved player anatomy for direct first-simulation startup.
+    #[arg(long, requires = "first_simulation")]
+    anatomy: Option<PathBuf>,
     #[arg(long)]
     record: Option<PathBuf>,
     #[arg(long, default_value_t = 2)]
     mesh_budget: usize,
     #[arg(long, default_value_t = 0.003)]
     sensitivity: f32,
+    /// Measurement world shared with `habitat_probe`: showcase anatomy, seed 77.
+    /// The default first-simulation receipt stays bare anatomy, seed 20261123.
+    #[arg(long, requires = "first_simulation", conflicts_with = "anatomy")]
+    probe_world: bool,
+    /// Founding Arachnitechs. One is the existing habitat. Each extra body is
+    /// paid from condensate. The habitat budget stops at 16.
+    #[arg(long, default_value_t = 1)]
+    founders: usize,
+    /// World seed for a direct habitat launch. Probe default 77. Bare default 20261123.
+    #[arg(long)]
+    seed: Option<u64>,
+    /// Free condensate after the founding Blood-Sacs have been paid.
+    #[arg(long)]
+    abundance: Option<u64>,
 }
 #[derive(Resource)]
 struct Authority(Arc<Mutex<Option<Worker>>>);
@@ -57,7 +74,7 @@ enum Selected {
     Organism(u64),
     Filament(u64),
 }
-type ChunkMesh = (Entity, Handle<Mesh>, Position, usize);
+type ChunkMesh = (Entity, Handle<Mesh>, Position, u64);
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 enum Gate {
     Title,
@@ -86,10 +103,14 @@ struct Display {
     index: StructuralIndex,
     index_nodes: usize,
     material: Handle<StandardMaterial>,
+    wet_pipe: Handle<StandardMaterial>,
+    hard_pipe: Handle<StandardMaterial>,
+    sac_roots: Option<(Entity, Handle<Mesh>)>,
     frame: u64,
     out: Option<PathBuf>,
     ticks: u64,
     rows: Vec<serde_json::Value>,
+    frame_log_capped: bool,
     telemetry: Arc<Mutex<Option<serde_json::Value>>>,
     show_filaments: bool,
     show_parcels: bool,
@@ -98,7 +119,23 @@ struct Display {
     mesh_budget: usize,
     generation: u64,
     captures: usize,
+    final_capture_frame: Option<u32>,
     camera_cpu_ns: u128,
+    mesh_cpu_ns: u128,
+    pipe_mesh_cpu_ns: u128,
+    gore_cpu_ns: u128,
+    body_rebuilds: u64,
+    body_reused: u64,
+    last_row_tick: u64,
+    shown_tick: u64,
+    peak_population: usize,
+    /// Wall-clock window for the authoritative tick rate. A single frame
+    /// often contains no tick, so the overlay keeps the last 0.25 s sample.
+    rate_mark_tick: u64,
+    rate_mark: Instant,
+    sim_hz: f64,
+    /// tick, eating, reservoir. Unchanged pose keeps the mesh.
+    body_stamp: BTreeMap<u64, (u64, u8, u64)>,
     started: Instant,
     last_frame: Instant,
 }
@@ -106,6 +143,8 @@ struct Display {
 struct SceneCamera;
 #[derive(Component)]
 struct Status;
+#[derive(Component)]
+struct StartSimulation;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 enum Command {
     PlayPause,
@@ -136,13 +175,35 @@ fn main() {
         std::fs::create_dir(out).expect("new capture directory");
     }
     let recording = args.record.is_some();
-    let mut world = if args.first_simulation {
-        ShipRuntime::first_simulation(
-            AnatomySpec::bare(20261123),
-            20261123,
-            args.ticks.min(16384) as usize,
+    if (args.founders != 1 || args.seed.is_some() || args.abundance.is_some())
+        && !args.first_simulation
+    {
+        panic!("--founders, --seed and --abundance belong to a habitat launch");
+    }
+    assert!(
+        (1..=16).contains(&args.founders),
+        "founding population is 1..=16"
+    );
+    let steps = args.ticks.min(16384) as usize;
+    let mut world = if args.probe_world {
+        let seed = args.seed.unwrap_or(77);
+        ShipRuntime::habitat_colony(
+            AnatomySpec::showcase(seed),
+            seed,
+            steps,
+            args.founders,
+            args.abundance,
         )
-        .unwrap()
+        .expect("habitat colony")
+    } else if args.first_simulation {
+        let seed = args.seed.unwrap_or(20261123);
+        let spec = args
+            .anatomy
+            .as_ref()
+            .map_or_else(|| Ok(AnatomySpec::bare(seed)), |path| load_anatomy(path))
+            .expect("valid saved player anatomy");
+        ShipRuntime::habitat_colony(spec, seed, steps, args.founders, args.abundance)
+            .expect("habitat colony")
     } else if args.construction || !recording {
         construction_fixture(20261123, args.ticks.min(16384) as usize, 512, "head-first").unwrap()
     } else {
@@ -163,10 +224,6 @@ fn main() {
     };
     let authority = Arc::new(Mutex::new(worker));
     let telemetry = Arc::new(Mutex::new(None));
-    let mut nav = Navigation::new();
-    nav.sensitivity = args.sensitivity;
-    let first = snapshot.instances.values().next().unwrap();
-    nav.focus(first.position, 2.2);
     let mut app = App::new();
     app.add_plugins(DefaultPlugins.set(WindowPlugin {
         primary_window: Some(Window {
@@ -183,10 +240,200 @@ fn main() {
         ..default()
     })
     .insert_resource(Authority(authority.clone()))
-    .insert_resource(Display {
+    .insert_resource(new_display(&args, snapshot, telemetry.clone()))
+    .add_observer(buttons)
+    .add_systems(Startup, setup)
+    .add_systems(
+        Update,
+        (inject_input, controls, start_button_state, draw).chain(),
+    );
+    moebius_morph_lab::register_ambient(&mut app, args.record.is_none());
+    app.run();
+    let Some(worker) = authority.lock().unwrap().take() else {
+        return;
+    };
+    let playback = worker.playback().unwrap();
+    let _ = worker.control(Playback::Stop);
+    let (final_state, timing) = worker.finish_measured().expect("authoritative run");
+    if let Some(out) = &args.record {
+        initial.save(&out.join("world-initial.json")).unwrap();
+        final_state.save(&out.join("world-final.json")).unwrap();
+        let vm_hwm_kb_before_replay = proc_kib("VmHWM:");
+        let mut reference = ShipRuntime::restore(initial).unwrap();
+        reference.advance(final_state.tick).unwrap();
+        let vm_hwm_kb_after_replay = proc_kib("VmHWM:");
+        let vm_rss_kb = proc_kib("VmRSS:");
+        assert_eq!(reference.snapshot(), final_state);
+        let mut report = telemetry.lock().unwrap().take().unwrap_or_else(|| {
+            serde_json::json!({
+                "status": "EARLY_CLOSE",
+                "reason": "witness closed before recording telemetry was stored; saved world state is the retained evidence",
+            })
+        });
+        let complete = final_state.tick >= args.ticks
+            && report.get("status").and_then(|value| value.as_str()) != Some("EARLY_CLOSE");
+        report["status"] = serde_json::json!(if complete { "PASS" } else { "EARLY_CLOSE" });
+        report["ticks"] = serde_json::json!(final_state.tick);
+        report["requested_ticks"] = serde_json::json!(args.ticks);
+        report["final_digest"] = serde_json::json!(final_state.digest().unwrap());
+        report["headless_equal"] = serde_json::json!(true);
+        report["reset_digests"] = serde_json::json!(playback.reset_digests);
+        report["playback_controls"] = serde_json::json!(
+            playback
+                .controls
+                .iter()
+                .map(
+                    |(n, t, c)| serde_json::json!({"ordinal":n,"tick":t,"command":format!("{c:?}")})
+                )
+                .collect::<Vec<_>>()
+        );
+        report["authority"] = authority_report(&timing);
+        report["vm_hwm_kb_before_replay"] = serde_json::json!(vm_hwm_kb_before_replay);
+        report["vm_hwm_kb_after_replay"] = serde_json::json!(vm_hwm_kb_after_replay);
+        report["vm_rss_kb"] = serde_json::json!(vm_rss_kb);
+        report["percentile"] = serde_json::json!("nearest-rank, index = ceil((n-1)*p)");
+        if let Some(rows) = report.get("rows").and_then(|value| value.as_array()) {
+            report["presentation"] = presentation_report(rows);
+        }
+        report["witness_cache"] = serde_json::json!(
+            "The Witness Sphere decides visibility. It does not rebuild a mesh whose stamp is unchanged. A builder mesh stamp is tick, eating, and reservoir. Blood-Sacs update transforms only. A pipe chunk stamp is its presentation age bucket and lookahead span, and at most mesh_budget chunks are rebuilt per frame. The traveling body wave changes with the tick, so one rebuild per tick is the pose. Frame interval includes the authority pace sleep and is not the tick cost."
+        );
+        std::fs::write(
+            out.join("render-report.json"),
+            serde_json::to_vec_pretty(&report).unwrap(),
+        )
+        .unwrap();
+        std::fs::write(
+            out.join("authority-ticks.json"),
+            serde_json::to_vec(&serde_json::json!({
+                "tick_ns": timing.tick_ns,
+                "publish_ns": timing.publish_ns,
+            }))
+            .unwrap(),
+        )
+        .unwrap();
+        println!(
+            "MORPH005_WITNESS_COMPLETE {}",
+            final_state.digest().unwrap()
+        );
+    }
+}
+
+fn authority_report(timing: &RunTiming) -> serde_json::Value {
+    let profile = &timing.collision;
+    let ticks = timing.tick_ns.len().max(1) as f64;
+    serde_json::json!({
+        "tick_ms": time_summary(&timing.tick_ns),
+        "publish_ms": time_summary(&timing.publish_ns),
+        "note": "tick_ms is ShipRuntime::tick on the authority thread. publish_ms is the snapshot copy handed to the witness. The pace sleep is in neither sample. Frame time is not tick time. Collision counters are not world state.",
+        "collision": {
+            "resolve_calls": profile.resolve_calls,
+            "resolve_ns": profile.resolve_ns,
+            "mean_resolve_ms": (profile.resolve_ns as f64 / ticks) / 1e6,
+            "queries": profile.queries,
+            "query_ns": profile.query_ns,
+            "body_builds": profile.body_builds,
+            "body_hits": profile.body_hits,
+            "body_geometry_ns": profile.body_geometry_ns,
+            "pipe_builds": profile.pipe_builds,
+            "pipe_hits": profile.pipe_hits,
+            "pipe_candidates": profile.pipe_candidates,
+            "pipe_rejects": profile.pipe_rejects,
+            "pipe_geometry_ns": profile.pipe_geometry_ns,
+        }
+    })
+}
+
+fn presentation_report(rows: &[serde_json::Value]) -> serde_json::Value {
+    let intervals = json_u128(rows, "frame_interval_ns");
+    serde_json::json!({
+        "frames": rows.len(),
+        "frame_interval_ms": time_summary(&intervals),
+        "draw_cpu_ms": time_summary(&json_u128(rows, "cpu_ns")),
+        "body_mesh_cpu_ms": time_summary(&json_u128(rows, "mesh_cpu_ns")),
+        "pipe_mesh_cpu_ms": time_summary(&json_u128(rows, "pipe_mesh_cpu_ns")),
+        "gore_cpu_ms": time_summary(&json_u128(rows, "gore_cpu_ns")),
+        "camera_cpu_ms": time_summary(&json_u128(rows, "camera_cpu_ns")),
+        "body_rebuilds": json_u128(rows, "body_rebuilds").iter().sum::<u128>(),
+        "body_reused": json_u128(rows, "body_reused").iter().sum::<u128>(),
+        "pipe_meshes_generated": json_u128(rows, "meshes_generated").iter().sum::<u128>(),
+    })
+}
+
+fn json_u128(rows: &[serde_json::Value], name: &str) -> Vec<u128> {
+    rows.iter()
+        .filter_map(|row| row.get(name).and_then(serde_json::Value::as_u64))
+        .map(u128::from)
+        .collect()
+}
+
+fn time_summary(samples: &[u128]) -> serde_json::Value {
+    let sum = samples.iter().copied().sum::<u128>();
+    let n = samples.len().max(1) as f64;
+    serde_json::json!({
+        "count": samples.len(),
+        "mean_ms": (sum as f64 / n) / 1e6,
+        "p50_ms": nearest_rank(samples, 0.50) as f64 / 1e6,
+        "p95_ms": nearest_rank(samples, 0.95) as f64 / 1e6,
+        "p99_ms": nearest_rank(samples, 0.99) as f64 / 1e6,
+        "max_ms": nearest_rank(samples, 1.0) as f64 / 1e6,
+    })
+}
+
+fn nearest_rank(samples: &[u128], fraction: f64) -> u128 {
+    if samples.is_empty() {
+        return 0;
+    }
+    let mut sorted = samples.to_vec();
+    sorted.sort_unstable();
+    let index = ((sorted.len() - 1) as f64 * fraction).ceil() as usize;
+    sorted[index.min(sorted.len() - 1)]
+}
+
+fn proc_kib(prefix: &str) -> Option<u64> {
+    let text = std::fs::read_to_string("/proc/self/status").ok()?;
+    text.lines().find_map(|line| {
+        let rest = line.strip_prefix(prefix)?;
+        rest.split_whitespace().next()?.parse().ok()
+    })
+}
+
+fn new_display(
+    args: &Args,
+    snapshot: Arc<WorldSnapshot>,
+    telemetry: Arc<Mutex<Option<serde_json::Value>>>,
+) -> Display {
+    let recording = args.record.is_some();
+    let mut nav = Navigation::new();
+    nav.sensitivity = args.sensitivity;
+    let first = snapshot.instances.values().next().unwrap().id;
+    // A habitat receipt follows the founding builder. Construction keeps the
+    // first instance and its own scripted camera.
+    let tracked = if recording && snapshot.habitat.is_some() && snapshot.instances.contains_key(&1)
+    {
+        1
+    } else {
+        first
+    };
+    let tracked_at = snapshot.instances[&tracked].position;
+    let peak_population = snapshot
+        .habitat
+        .as_ref()
+        .map(|habitat| habitat.agents.len())
+        .unwrap_or(0);
+    if let Some((center, span)) = colony_focus(&snapshot) {
+        nav.focus(center, span);
+    } else {
+        nav.focus(tracked_at, 2.2);
+    }
+    if recording && snapshot.habitat.is_some() {
+        nav.mode = NavigationMode::Orbit;
+    }
+    let opening_tick = snapshot.tick;
+    Display {
         nav,
         sphere: WitnessSphere {
-            center: first.position,
+            center: tracked_at,
             radius: SHIP_WITNESS_RADIUS,
         },
         witness_follow: true,
@@ -202,19 +449,23 @@ fn main() {
         gore: None,
         drops: None,
         food_gore: None,
-        selected: Selected::Organism(first.id),
+        selected: Selected::Organism(tracked),
         follow: args.construction || args.first_simulation,
-        last_target: first.position,
+        last_target: tracked_at,
         snapshot,
         bodies: BTreeMap::new(),
         chunks: BTreeMap::new(),
         index: StructuralIndex::default(),
         index_nodes: 0,
         material: default(),
+        wet_pipe: default(),
+        hard_pipe: default(),
+        sac_roots: None,
         frame: 0,
         out: args.record.clone(),
         ticks: args.ticks,
         rows: vec![],
+        frame_log_capped: false,
         telemetry: telemetry.clone(),
         show_filaments: true,
         show_parcels: true,
@@ -223,57 +474,25 @@ fn main() {
         mesh_budget: args.mesh_budget,
         generation: 0,
         captures: 0,
+        final_capture_frame: None,
         started: Instant::now(),
         last_frame: Instant::now(),
         camera_cpu_ns: 0,
-    })
-    .add_observer(buttons)
-    .add_systems(Startup, setup)
-    .add_systems(Update, (inject_input, controls, draw).chain());
-    moebius_morph_lab::register_ambient(&mut app, args.record.is_none());
-    app.run();
-    let Some(worker) = authority.lock().unwrap().take() else {
-        return;
-    };
-    let playback = worker.playback().unwrap();
-    let _ = worker.control(Playback::Stop);
-    let final_state = worker.finish().expect("authoritative run");
-    if let Some(out) = &args.record {
-        initial.save(&out.join("world-initial.json")).unwrap();
-        final_state.save(&out.join("world-final.json")).unwrap();
-        let mut reference = ShipRuntime::restore(initial).unwrap();
-        reference.advance(final_state.tick).unwrap();
-        assert_eq!(reference.snapshot(), final_state);
-        let mut report = telemetry
-            .lock()
-            .unwrap()
-            .take()
-            .expect("recorded witness completion; early-close evidence retained");
-        report["status"] = serde_json::json!("PASS");
-        report["ticks"] = serde_json::json!(final_state.tick);
-        report["final_digest"] = serde_json::json!(final_state.digest().unwrap());
-        report["headless_equal"] = serde_json::json!(true);
-        report["reset_digests"] = serde_json::json!(playback.reset_digests);
-        report["playback_controls"] = serde_json::json!(
-            playback
-                .controls
-                .iter()
-                .map(
-                    |(n, t, c)| serde_json::json!({"ordinal":n,"tick":t,"command":format!("{c:?}")})
-                )
-                .collect::<Vec<_>>()
-        );
-        std::fs::write(
-            out.join("render-report.json"),
-            serde_json::to_vec_pretty(&report).unwrap(),
-        )
-        .unwrap();
-        println!(
-            "MORPH005_WITNESS_COMPLETE {}",
-            final_state.digest().unwrap()
-        );
+        mesh_cpu_ns: 0,
+        pipe_mesh_cpu_ns: 0,
+        gore_cpu_ns: 0,
+        body_rebuilds: 0,
+        body_reused: 0,
+        shown_tick: 0,
+        peak_population,
+        rate_mark_tick: opening_tick,
+        rate_mark: Instant::now(),
+        sim_hz: 0.,
+        last_row_tick: 0,
+        body_stamp: BTreeMap::new(),
     }
 }
+
 fn setup(
     mut commands: Commands,
     mut materials: ResMut<Assets<StandardMaterial>>,
@@ -307,9 +526,23 @@ fn setup(
         perceptual_roughness: 0.48,
         ..default()
     });
+    display.wet_pipe = materials.add(StandardMaterial {
+        base_color: Color::WHITE,
+        perceptual_roughness: 0.16,
+        clearcoat: 0.85,
+        clearcoat_perceptual_roughness: 0.10,
+        ..default()
+    });
+    display.hard_pipe = materials.add(StandardMaterial {
+        base_color: Color::WHITE,
+        perceptual_roughness: 0.52,
+        clearcoat: 0.2,
+        ..default()
+    });
     if display.panel {
         spawn_panel(&mut commands);
     }
+    spawn_start_button(&mut commands);
     commands.spawn((
         Text::new("Preparing authoritative snapshot"),
         TextFont {
@@ -431,10 +664,15 @@ fn spawn_panel(commands: &mut Commands) {
 fn buttons(
     event: On<Activate>,
     buttons: Query<&Control>,
+    start: Query<(), With<StartSimulation>>,
     keys: Res<ButtonInput<KeyCode>>,
     mut d: ResMut<Display>,
     a: Res<Authority>,
 ) {
+    if start.contains(event.entity) {
+        start_design(&mut d, &a);
+        return;
+    }
     if keys.just_pressed(KeyCode::Space) || keys.just_pressed(KeyCode::Enter) {
         return;
     }
@@ -446,6 +684,114 @@ fn buttons(
         command(control.0, &mut d, worker);
     }
 }
+fn spawn_start_button(commands: &mut Commands) {
+    commands
+        .spawn((
+            Button,
+            StartSimulation,
+            bevy::picking::hover::Hovered::default(),
+            Node {
+                display: bevy::ui::Display::None,
+                position_type: PositionType::Absolute,
+                right: Val::Px(24.),
+                bottom: Val::Px(24.),
+                padding: UiRect::axes(Val::Px(28.), Val::Px(18.)),
+                ..default()
+            },
+            BackgroundColor(Color::srgb(0.12, 0.34, 0.30)),
+        ))
+        .with_children(|button| {
+            button.spawn((
+                Text::new("Start Simulation  [Enter]"),
+                TextFont {
+                    font_size: FontSize::Px(22.),
+                    ..default()
+                },
+                TextColor(Color::srgb(0.95, 0.94, 0.85)),
+            ));
+        });
+}
+fn start_button_state(
+    d: Res<Display>,
+    mut buttons: Query<
+        (
+            &mut Node,
+            &mut BackgroundColor,
+            &bevy::picking::hover::Hovered,
+            Has<bevy::ui::Pressed>,
+        ),
+        With<StartSimulation>,
+    >,
+) {
+    for (mut node, mut color, hovered, pressed) in &mut buttons {
+        node.display = if d.gate == Gate::Design {
+            bevy::ui::Display::Flex
+        } else {
+            bevy::ui::Display::None
+        };
+        color.0 = match (pressed, hovered.get()) {
+            (true, _) => Color::srgb(0.10, 0.26, 0.23),
+            (_, true) => Color::srgb(0.18, 0.46, 0.39),
+            _ => Color::srgb(0.12, 0.34, 0.30),
+        };
+    }
+}
+/// Construction recordings exercise flight, orbit, and selection.
+/// A habitat receipt must not inherit that script: it steals the builder.
+fn construction_camera_script(d: &Display) -> bool {
+    d.out.is_some() && d.snapshot.habitat.is_none()
+}
+/// Centre and view distance for a founding group. One body keeps the old frame.
+fn colony_focus(snapshot: &WorldSnapshot) -> Option<(Position, f64)> {
+    let habitat = snapshot.habitat.as_ref()?;
+    if habitat.agents.len() < 2 {
+        return None;
+    }
+    let points = habitat
+        .agents
+        .keys()
+        .map(|id| snapshot.instances[id].position.absolute())
+        .collect::<Result<Vec<_>, _>>()
+        .ok()?;
+    let count = points.len() as i64;
+    let mean = [0, 1, 2].map(|axis| points.iter().map(|point| point[axis]).sum::<i64>() / count);
+    let center = Position::from_absolute(mean).ok()?;
+    let reach = points
+        .iter()
+        .map(|point| {
+            (0..3)
+                .map(|axis| (point[axis] - mean[axis]) as f64)
+                .map(|value| value * value)
+                .sum::<f64>()
+                .sqrt()
+        })
+        .fold(0f64, f64::max);
+    Some((center, (reach / SCALE as f64 + 4.).clamp(6., 18.)))
+}
+fn generation_depth(snapshot: &WorldSnapshot) -> u32 {
+    let Some(habitat) = &snapshot.habitat else {
+        return 0;
+    };
+    fn walk(
+        habitat: &moebius_morph::habitat::Habitat,
+        id: u64,
+        seen: &mut std::collections::BTreeSet<u64>,
+    ) -> u32 {
+        if !seen.insert(id) {
+            return 0;
+        }
+        match habitat.agents.get(&id).and_then(|agent| agent.parent) {
+            Some(parent) => 1 + walk(habitat, parent, seen),
+            None => 0,
+        }
+    }
+    habitat
+        .agents
+        .keys()
+        .map(|id| walk(habitat, *id, &mut std::collections::BTreeSet::new()))
+        .max()
+        .unwrap_or(0)
+}
 fn inject_input(
     d: Res<Display>,
     mut keys: ResMut<ButtonInput<KeyCode>>,
@@ -454,7 +800,7 @@ fn inject_input(
     mut wheel: MessageWriter<MouseWheel>,
     windows: Query<Entity, With<Window>>,
 ) {
-    if d.out.is_none() {
+    if !construction_camera_script(&d) {
         return;
     }
     let frame = d.frame + 1;
@@ -566,9 +912,23 @@ fn controls(
         }
     }
     if keys.just_pressed(KeyCode::Home) {
-        d.nav = Navigation::new();
-        d.follow = false;
-        d.adapt = true;
+        if d.snapshot.habitat.is_some() {
+            let framed = colony_focus(&d.snapshot);
+            let body = target(&d);
+            d.follow = true;
+            d.adapt = true;
+            d.nav.mode = NavigationMode::Orbit;
+            if let Some((center, span)) = framed {
+                d.nav.focus(center, span);
+            } else {
+                d.nav.focus(body, 8.);
+            }
+            d.last_target = body;
+        } else {
+            d.nav = Navigation::new();
+            d.follow = false;
+            d.adapt = true;
+        }
     }
     if keys.just_pressed(KeyCode::KeyG) && d.out.is_none() {
         d.adapt = !d.adapt;
@@ -661,9 +1021,15 @@ fn controls(
         }
         d.nav.wheel(event.y);
     }
-    if d.adapt && d.follow && d.out.is_none() && d.nav.mode == NavigationMode::Orbit {
+    // Interactive orbit keeps the existing fit. A habitat receipt stays outside
+    // the trunk and close enough that the builder and its fresh pipes remain readable.
+    if d.adapt && d.follow && d.nav.mode == NavigationMode::Orbit {
         let span = local_span(&d.snapshot, at);
-        d.nav.fit(span);
+        if d.out.is_none() {
+            d.nav.fit(span);
+        } else if d.snapshot.habitat.is_some() {
+            d.nav.fit(span.clamp(6., 14.));
+        }
     }
     if d.witness_follow {
         d.sphere.center = d.nav.position;
@@ -674,7 +1040,8 @@ fn save_path() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../saves/latest.json")
 }
 fn open_design(d: &mut Display) {
-    let spec = AnatomySpec::bare(20261123);
+    let mut spec = AnatomySpec::bare(20261123);
+    spec.add_food_pouch();
     d.design = Some(
         CompositionSession::new(spec, save_path().with_file_name("arachnitech.json")).unwrap(),
     );
@@ -725,7 +1092,7 @@ fn preview_transform(nav: &Navigation) -> Transform {
 }
 fn begin_ship(spec: AnatomySpec, d: &mut Display, authority: &Authority) {
     let steps = d.ticks.min(16384) as usize;
-    let world = match ShipRuntime::first_simulation(spec, 20261123, steps) {
+    let world = match ShipRuntime::habitat_simulation(spec, 20261123, steps) {
         Ok(world) => world,
         Err(error) => {
             d.notice = format!("This body cannot start the ship: {error}");
@@ -739,11 +1106,29 @@ fn begin_ship(spec: AnatomySpec, d: &mut Display, authority: &Authority) {
             d.design = None;
             d.follow = true;
             d.notice =
-                "Blood-Sacs feed this Arachnitech. Its secretion builds the scaffold. Steering is authored."
+                "Food pouch stores meals. Explore to lay trails; stop to eat. Blood-Sacs evade locally."
                     .into();
         }
         Err(error) => d.notice = format!("Worker refused: {error}"),
     }
+}
+/// Mouse and keyboard share validation and the canonical worker startup path.
+fn start_design(d: &mut Display, authority: &Authority) {
+    if d.gate != Gate::Design {
+        return;
+    }
+    let Some(spec) = d.design.as_ref().map(|session| session.spec.clone()) else {
+        return;
+    };
+    if !spec
+        .components
+        .iter()
+        .any(|part| matches!(part.shape, Shape::SecretionNozzle { .. }))
+    {
+        d.notice = "Add a secretion nozzle before starting. Press N to add one.".into();
+        return;
+    }
+    begin_ship(spec, d, authority);
 }
 fn load_ship(d: &mut Display, authority: &Authority) {
     let snapshot = match WorldSnapshot::load(&save_path()) {
@@ -800,18 +1185,7 @@ fn gate_keys(keys: &ButtonInput<KeyCode>, time: &Time, d: &mut Display, authorit
         return;
     }
     if keys.just_pressed(KeyCode::Enter) {
-        let Some(spec) = d.design.as_ref().map(|session| session.spec.clone()) else {
-            return;
-        };
-        if !spec
-            .components
-            .iter()
-            .any(|part| matches!(part.shape, Shape::SecretionNozzle { .. }))
-        {
-            d.notice = "Keep a nozzle. That mouth lays the pipe. Press N.".into();
-            return;
-        }
-        begin_ship(spec, d, authority);
+        start_design(d, authority);
         return;
     }
     if keys.pressed(KeyCode::AltLeft) || keys.pressed(KeyCode::AltRight) {
@@ -829,7 +1203,9 @@ fn gate_keys(keys: &ButtonInput<KeyCode>, time: &Time, d: &mut Display, authorit
         edits.push(Edit::Field(index + 1));
     }
     if keys.just_pressed(KeyCode::ArrowUp) {
-        edits.push(Edit::Field((index + 11) % 12));
+        edits.push(Edit::Field(
+            (index + ComponentField::ALL.len() - 1) % ComponentField::ALL.len(),
+        ));
     }
     if keys.just_pressed(KeyCode::Tab) {
         edits.push(if keys.pressed(KeyCode::ShiftLeft) {
@@ -849,6 +1225,7 @@ fn gate_keys(keys: &ButtonInput<KeyCode>, time: &Time, d: &mut Display, authorit
         (KeyCode::KeyA, Edit::AddFlagellum),
         (KeyCode::KeyP, Edit::AddSpine),
         (KeyCode::KeyN, Edit::AddNozzle),
+        (KeyCode::KeyB, Edit::AddFoodPouch),
         (KeyCode::KeyD, Edit::Duplicate),
         (KeyCode::Delete, Edit::Remove),
         (KeyCode::BracketLeft, Edit::BodyLength(-step)),
@@ -860,6 +1237,7 @@ fn gate_keys(keys: &ButtonInput<KeyCode>, time: &Time, d: &mut Display, authorit
         (KeyCode::KeyH, Edit::Showcase),
         (KeyCode::KeyR, Edit::Seed),
         (KeyCode::KeyS, Edit::Save),
+        (KeyCode::KeyL, Edit::Reload),
     ] {
         if keys.just_pressed(key) {
             edits.push(edit);
@@ -991,7 +1369,7 @@ fn draw_front(
             let session = d.design.as_ref().unwrap();
             let part = session.component().map(|c| c.kind()).unwrap_or("trunk");
             format!(
-                "DESIGN THE ARACHNITECH\nSelected {part}   {}\nA flagellum   P spine   N nozzle   D duplicate   Delete remove\nTab select   arrows adjust   [ ] length   - = thickness   , . mouth\nH full showcase   R another seed   S save this anatomy\nDrag: orbit   Wheel: zoom   Middle drag: pan   Home: frame body\nEnter begins the ship. Escape returns.\n{}\n{}",
+                "DESIGN THE ARACHNITECH\nSelected {part}   {}\nA flagellum   P spine   N nozzle   B food pouch   D duplicate   Delete remove\nTab select   arrows adjust   [ ] length   - = thickness   , . mouth\nH full showcase   R another seed   S save anatomy   L reload anatomy\nDrag: orbit   Wheel: zoom   Middle drag: pan   Home: frame body\nClick Start Simulation or press Enter. Escape returns.\n{}\n{}",
                 session.field.label(),
                 session.status,
                 d.notice
@@ -1046,6 +1424,31 @@ fn mesh(s: &Surface) -> Mesh {
     m.insert_indices(Indices::U32(s.indices.clone()));
     m
 }
+const RECORDING_FRAME_BUDGET: usize = 4096;
+const RECORDING_FRAME_SAFETY: u64 = 65536;
+fn admit_recording_row(rows: &mut Vec<serde_json::Value>, row: serde_json::Value) -> bool {
+    if rows.len() >= RECORDING_FRAME_BUDGET {
+        return false;
+    }
+    rows.push(row);
+    true
+}
+fn recording_observation(d: &Display) -> serde_json::Value {
+    serde_json::json!({
+        "frames": d.frame,
+        "captures": d.captures,
+        "rows": d.rows,
+        "elapsed_ns": d.started.elapsed().as_nanos(),
+        "mesh_budget": d.mesh_budget,
+        "frame_log_capped": d.frame_log_capped,
+        "frame_rows": d.rows.len(),
+        "tick": d.snapshot.tick,
+        "requested_ticks": d.ticks,
+        "claims": "PARTIAL. Authored habitat motion and paid snailpipe. Writhe is presentation. Propulsion is the rigid step. No learned control.",
+        "gpu_timestamps": "unavailable; CPU/end-to-end frame timings only",
+        "UI_test": "programmatic Activate on actual production widgets; no physical mouse playtest claimed",
+    })
+}
 #[allow(clippy::too_many_arguments)]
 fn draw(
     mut commands: Commands,
@@ -1061,6 +1464,11 @@ fn draw(
     mix: Res<moebius_morph_lab::AmbientMix>,
 ) {
     let started = Instant::now();
+    d.mesh_cpu_ns = 0;
+    d.pipe_mesh_cpu_ns = 0;
+    d.gore_cpu_ns = 0;
+    d.body_rebuilds = 0;
+    d.body_reused = 0;
     d.frame += 1;
     let frame = d.frame;
     let frame_interval = d.last_frame.elapsed().as_nanos();
@@ -1082,7 +1490,9 @@ fn draw(
         return;
     };
     let playback = w.playback().unwrap();
-    if d.out.is_some() {
+    // The construction recording looks away and resets. A habitat receipt must
+    // keep hunting, feeding, and laying pipe without that scripted interruption.
+    if construction_camera_script(&d) {
         let action = match frame {
             30 | 40 => Some(Command::PlayPause),
             35 => Some(Command::Step),
@@ -1140,12 +1550,19 @@ fn draw(
     }
     for id in &view.organisms {
         let instance = &d.snapshot.instances[id];
-        let spec = &d.snapshot.config.definitions[&instance.definition];
+        let mut filled_spec = d.snapshot.config.definitions[&instance.definition].clone();
+        let capacity = filled_spec.food_capacity();
+        if capacity > 0 {
+            for c in &mut filled_spec.components {
+                if let Shape::FoodPouch { radius, .. } = &mut c.shape {
+                    *radius *= 0.65
+                        + 0.35 * (instance.book.reservoir as f32 / capacity as f32).clamp(0., 1.);
+                    *radius = radius.max(0.08);
+                }
+            }
+        }
+        let spec = &filled_spec;
         let pose = d.snapshot.anatomical_pose(*id).unwrap();
-        let g = CompiledAnatomy::new(spec.clone())
-            .unwrap()
-            .pose(pose)
-            .unwrap();
         let at = Vec3::from_array(
             instance
                 .position
@@ -1169,8 +1586,46 @@ fn draw(
             1.
         };
         let transform = Transform::from_translation(at)
-            .with_rotation(Quat::from_rotation_y(yaw))
+            .with_rotation(
+                Quat::from_rotation_y(yaw)
+                    * Quat::from_rotation_z(rigid.axial_roll as f32 / 1_000_000.),
+            )
             .with_scale(Vec3::splat(scale));
+        // Blood-Sac anatomy is rest-pose geometry; growth and evasion change
+        // only its transform. Do not regenerate hundreds of unchanged surfaces.
+        if instance.definition == BLOOD_SAC
+            && let Some(parts) = d.bodies.get(id)
+        {
+            for (e, _) in parts {
+                if let Ok(mut t) = transforms.get_mut(*e) {
+                    *t = transform;
+                }
+            }
+            continue;
+        }
+        let eating = d
+            .snapshot
+            .habitat
+            .as_ref()
+            .and_then(|habitat| habitat.agents.get(id))
+            .is_some_and(|agent| agent.eating);
+        // Sphere visibility does not rebuild an unchanged stamp. The wave's
+        // phase advances with the tick, so a new tick is a real pose change.
+        let stamp = (d.snapshot.tick, u8::from(eating), instance.book.reservoir);
+        if d.bodies.contains_key(id) && d.body_stamp.get(id) == Some(&stamp) {
+            for (e, _) in &d.bodies[id] {
+                if let Ok(mut t) = transforms.get_mut(*e) {
+                    *t = transform;
+                }
+            }
+            d.body_reused += 1;
+            continue;
+        }
+        let mesh_started = Instant::now();
+        let g = CompiledAnatomy::new(spec.clone())
+            .unwrap()
+            .pose(pose)
+            .unwrap();
         if !d.bodies.contains_key(id) {
             let mut parts = vec![];
             for s in &g.geometry.surfaces {
@@ -1195,6 +1650,9 @@ fn draw(
                 }
             }
         }
+        d.body_stamp.insert(*id, stamp);
+        d.body_rebuilds += 1;
+        d.mesh_cpu_ns += mesh_started.elapsed().as_nanos();
         if d.diagnostics {
             let rigid = d.snapshot.body_pose(*id).unwrap();
             for output in g.outputs {
@@ -1218,6 +1676,8 @@ fn draw(
         } = event
             && d.snapshot.tick.saturating_sub(*at) <= 12
             && let Some(sac) = d.snapshot.instances.get(source)
+            && d.sphere.contains(*mouth).unwrap_or(false)
+            && d.sphere.contains(sac.position).unwrap_or(false)
         {
             let local = |p: Position| {
                 Vec3::from_array(
@@ -1233,6 +1693,35 @@ fn draw(
             );
         }
     }
+    let mut roots = Vec::new();
+    if let Some(h) = &d.snapshot.habitat {
+        for (id, a) in &h.sacs {
+            if !visible.contains(id) {
+                continue;
+            }
+            if let Some(root) = moebius_morph::habitat::anchor(&d.snapshot, a) {
+                if !d.sphere.contains(root).unwrap_or(false) {
+                    continue;
+                }
+                let local = |p: Position| {
+                    Vec3::from_array(
+                        p.relative(d.nav.position)
+                            .unwrap()
+                            .map(|v| v as f32 / SCALE as f32),
+                    )
+                };
+                roots.push((local(root), local(d.snapshot.instances[id].position)));
+            }
+        }
+    }
+    let material = d.material.clone();
+    paint(
+        &mut commands,
+        &mut meshes,
+        &material,
+        &mut d.sac_roots,
+        moebius_morph_lab::gore::substrate_roots(&roots),
+    );
     let mut drip_sites = Vec::new();
     for id in &view.organisms {
         let instance = &d.snapshot.instances[id];
@@ -1319,12 +1808,24 @@ fn draw(
         }
     }
     let mut generated = 0;
+    let pipe_started = Instant::now();
     for key in desired {
         let f = &d.snapshot.assembly.as_ref().unwrap().filaments[&key.0];
-        let count = (f.nodes.len() - key.1 * CHUNK_EDGES).min(CHUNK_EDGES + 1);
-        let changed = d.chunks.get(&key).is_none_or(|v| v.3 != count);
+
+        let end = (key.1 * CHUNK_EDGES + CHUNK_EDGES).min(f.nodes.len() - 1);
+        let age = d
+            .snapshot
+            .tick
+            .saturating_sub(f.nodes[end].deposited_tick.max(f.created_tick));
+        let phase = (age / 24).min(8);
+        // Presentation bucket only. Collision keeps the finer wet-to-dry age.
+        // One-neighbour lookahead invalidates a sealed chunk's shared end tangent once.
+        // An unchanged stamp is not rebuilt. Off-sphere chunks are despawned.
+        let stamp =
+            (((f.nodes.len() - key.1 * CHUNK_EDGES).min(CHUNK_EDGES + 2) as u64) << 8) | phase;
+        let changed = d.chunks.get(&key).is_none_or(|v| v.3 != stamp);
         if changed && generated < d.mesh_budget {
-            let (origin, surface) = filament_chunk(f, key.1).unwrap();
+            let (origin, surface) = filament_chunk_at(f, key.1, d.snapshot.tick).unwrap();
             let h = meshes.add(mesh(&surface));
             let at = origin
                 .relative(d.nav.position)
@@ -1333,17 +1834,22 @@ fn draw(
             let e = commands
                 .spawn((
                     Mesh3d(h.clone()),
-                    MeshMaterial3d(d.material.clone()),
+                    MeshMaterial3d(if phase < 4 {
+                        d.wet_pipe.clone()
+                    } else {
+                        d.hard_pipe.clone()
+                    }),
                     Transform::from_translation(Vec3::from_array(at)),
                 ))
                 .id();
-            if let Some((old, old_h, _, _)) = d.chunks.insert(key, (e, h, origin, count)) {
+            if let Some((old, old_h, _, _)) = d.chunks.insert(key, (e, h, origin, stamp)) {
                 commands.entity(old).despawn();
                 meshes.remove(old_h.id());
             }
             generated += 1;
         }
     }
+    d.pipe_mesh_cpu_ns += pipe_started.elapsed().as_nanos();
     for (e, _, origin, _) in d.chunks.values() {
         if let Ok(mut t) = transforms.get_mut(*e) {
             t.translation = Vec3::from_array(
@@ -1374,6 +1880,7 @@ fn draw(
             ));
         }
     }
+    let gore_started = Instant::now();
     paint(
         &mut commands,
         &mut meshes,
@@ -1381,6 +1888,7 @@ fn draw(
         &mut d.food_gore,
         moebius_morph_lab::gore::food_gore(&sites, frame),
     );
+    d.gore_cpu_ns += gore_started.elapsed().as_nanos();
     if d.diagnostics {
         let at = d
             .sphere
@@ -1417,6 +1925,8 @@ fn draw(
     } else {
         String::new()
     };
+    let pouch_capacity =
+        d.snapshot.config.definitions[&d.snapshot.instances[&1].definition].food_capacity();
     let activity = d
         .snapshot
         .steering
@@ -1424,12 +1934,108 @@ fn draw(
             if state.seeking_food {
                 "seeking food"
             } else {
-                "stocked / building"
+                if d.snapshot
+                    .config
+                    .construction
+                    .as_ref()
+                    .and_then(|r| r.foraging.as_ref())
+                    .is_some_and(|r| r.axial_spin != 0)
+                {
+                    "stocked / braiding"
+                } else {
+                    "stocked / building"
+                }
             }
         });
+    let activity = if let Some(h) = &d.snapshot.habitat {
+        if h.agents[&1].eating {
+            "feeding / secretion closed"
+        } else if !book.emission_enabled {
+            "exploring / secretion disabled"
+        } else if book.external_input > 0
+            && book.bound.len() >= book.registered.len() * 8
+            && book.reservoir <= h.rules.reserve_food.min(pouch_capacity / 4)
+        {
+            "exploring / conserving pouch"
+        } else {
+            "exploring / laying trails"
+        }
+    } else {
+        activity
+    };
+    let cage = if let Some(h) = &d.snapshot.habitat {
+        format!(
+            "{cage}Arachnitech {} | rooted sacs {} | wall contacts {} (closed)\n",
+            h.agents.len(),
+            h.sacs.len(),
+            d.snapshot
+                .assembly
+                .as_ref()
+                .map_or(0, |a| a.junctions.len())
+        )
+    } else {
+        cage
+    };
+    let (colony_line, next_peak, next_shown, next_hz, refresh_rate) = if let Some(habitat) =
+        d.snapshot.habitat.as_ref()
+    {
+        let agents = habitat.agents.len();
+        let peak = d.peak_population.max(agents);
+        let births = d
+            .snapshot
+            .events
+            .iter()
+            .filter(|event| matches!(event, moebius_morph::runtime::Event::Reproduced { .. }))
+            .count();
+        let stored: u64 = d
+            .snapshot
+            .instances
+            .values()
+            .filter(|organism| organism.definition != BLOOD_SAC)
+            .map(|organism| organism.book.reservoir)
+            .sum();
+        let sac_food: u64 = d
+            .snapshot
+            .instances
+            .values()
+            .filter(|organism| organism.definition == BLOOD_SAC)
+            .map(|organism| organism.book.reservoir)
+            .sum();
+        let shown = d.snapshot.tick;
+        let sim_s = shown as f64 * (TICK_NANOS as f64 / 1e9);
+        let frame_s = (frame_interval as f64 / 1e9).max(1e-6);
+        let depth = generation_depth(&d.snapshot);
+        let window_s = d.rate_mark.elapsed().as_secs_f64();
+        let (tick_hz, refresh_rate) = if window_s >= 0.25 {
+            (
+                shown.saturating_sub(d.rate_mark_tick) as f64 / window_s,
+                true,
+            )
+        } else {
+            (d.sim_hz, false)
+        };
+        let frame_hz = 1. / frame_s;
+        (
+            format!(
+                "Sim {sim_s:.2}s | colony {agents} peak {peak} | births {births} | deaths 0 | generation {depth}\nSac food {sac_food} | stored {stored} | tick {tick_hz:.1} Hz | frame {frame_hz:.1} Hz\n"
+            ),
+            peak,
+            shown,
+            tick_hz,
+            refresh_rate,
+        )
+    } else {
+        (
+            String::new(),
+            d.peak_population,
+            d.shown_tick,
+            d.sim_hz,
+            false,
+        )
+    };
     for mut t in &mut text {
         t.0 = format!(
-            "MŒBIUS | tick {} / {} | {}x {}\nSelected {:?} | {:?} | follow {}\nCoordinates [um] {:?}\nArachnitech: {}\nConstructor stock {} | eaten {} | free {} | bound {} | balance {}\nFilaments {} | nodes {} | visible chunks {}\nBlood-Sacs {} | condensate {} | generic sites {}\n{}{}Flight speed {:.2}m/s | sensitivity {:.4}\nOchre scaffold, amber secretion, red food. Uptake lines mark actual meals.\n{}\nDrone {}   M mute   [ ] volume\nG adapts the orbit. Wheel dollies in. F5 saves.\nNearest-food steering (authored). Scaffold supports food growth.",
+            "MŒBIUS | tick {} / {} | {}x {}\n{colony_line}Selected {:?} | {:?} | follow {}\nCoordinates [um] {:?}\nArachnitech: {}\nFood pouch {}/{} | eaten {} | free {} | bound {} | balance {}\nFilaments {} | nodes {} | visible chunks {}\nBlood-Sacs {} | condensate {} | generic sites {}\n{}{}Flight speed {:.2}m/s | sensitivity {:.4}\nPale snailpipe trails, amber secretion, red Blood-Sacs. Uptake lines mark meals.\n{}\nDrone {}   M mute   [ ] volume\nG adapts the orbit. Wheel dollies in. F5 saves. Home frames the body.\nLocal pursuit/evasion (authored). Blood-Sacs root on paid snailpipe substrate.",
             d.snapshot.tick,
             d.ticks,
             playback.rate,
@@ -1440,6 +2046,7 @@ fn draw(
             position,
             activity,
             book.reservoir,
+            pouch_capacity,
             book.external_input,
             free,
             bound,
@@ -1476,13 +2083,15 @@ fn draw(
             }
         );
     }
+    d.peak_population = next_peak;
+    d.shown_tick = next_shown;
+    if refresh_rate {
+        d.rate_mark_tick = next_shown;
+        d.rate_mark = Instant::now();
+        d.sim_hz = next_hz;
+    }
     assert_eq!(before, d.snapshot.digest().unwrap());
     if d.out.is_some() {
-        if d.rows.len() >= 4096 {
-            eprintln!("Recording frame budget exceeded; no world history discarded");
-            exit.write(AppExit::error());
-            return;
-        }
         let tick = d.snapshot.tick;
         let chunks = d.chunks.len();
         let cpu = started.elapsed().as_nanos();
@@ -1492,7 +2101,15 @@ fn draw(
         let camera_mode = format!("{:?}", d.nav.mode);
         let camera_rotation = d.nav.rotation.to_array();
         let camera_speed = d.nav.speed;
-        d.rows.push(serde_json::json!({"frame":frame,"tick":tick,"generation":generation,"digest":before,"nodes":nodes,"bound":bound,"free":free,"filaments":filaments,"chunks":chunks,"meshes_generated":generated,"cpu_ns":cpu,"frame_interval_ns":frame_interval,"camera_cpu_ns":camera_cpu_ns,"mesh_assets":meshes.len(),"camera":camera,"camera_mode":camera_mode,"camera_rotation":camera_rotation,"camera_speed":camera_speed}));
+        let tick_delta = tick.saturating_sub(d.last_row_tick);
+        d.last_row_tick = tick;
+        let row = serde_json::json!({"frame":frame,"tick":tick,"tick_delta":tick_delta,"generation":generation,"digest":before,"nodes":nodes,"bound":bound,"free":free,"filaments":filaments,"chunks":chunks,"meshes_generated":generated,"cpu_ns":cpu,"frame_interval_ns":frame_interval,"camera_cpu_ns":camera_cpu_ns,"mesh_cpu_ns":d.mesh_cpu_ns,"pipe_mesh_cpu_ns":d.pipe_mesh_cpu_ns,"gore_cpu_ns":d.gore_cpu_ns,"body_rebuilds":d.body_rebuilds,"body_reused":d.body_reused,"mesh_assets":meshes.len(),"camera":camera,"camera_mode":camera_mode,"camera_rotation":camera_rotation,"camera_speed":camera_speed});
+        if !admit_recording_row(&mut d.rows, row) && !d.frame_log_capped {
+            d.frame_log_capped = true;
+            eprintln!(
+                "Recording frame budget exceeded; frame log stopped at {RECORDING_FRAME_BUDGET}; world ticks continue"
+            );
+        }
         if [25, 55, 120, 175, 200, 280].contains(&frame) {
             d.captures += 1;
             commands
@@ -1504,10 +2121,55 @@ fn draw(
                         .join(format!("frame_{frame:03}.png")),
                 ));
         }
-        if frame >= 320 && d.snapshot.tick >= d.ticks {
-            *d.telemetry.lock().unwrap() = Some(
-                serde_json::json!({"frames":d.frame,"captures":d.captures,"rows":d.rows,"elapsed_ns":d.started.elapsed().as_nanos(),"mesh_budget":d.mesh_budget,"claims":"authored motion and static material binding; no locomotion or mechanics","gpu_timestamps":"unavailable; CPU/end-to-end frame timings only","UI_test":"programmatic Activate on actual production widgets; no physical mouse playtest claimed"}),
+        if frame >= 320 && d.snapshot.tick >= d.ticks && d.final_capture_frame.is_none() {
+            if d.snapshot.habitat.is_some() && d.snapshot.instances.contains_key(&1) {
+                d.selected = Selected::Organism(1);
+                d.follow = true;
+                d.adapt = true;
+                // last_target must match the new selection before the next follow step.
+                // A stale Blood-Sac selection would throw the closing camera off the builder.
+                d.last_target = target(&d);
+                if d.nav.mode != NavigationMode::Orbit {
+                    d.nav.switch();
+                }
+                let at = d.last_target;
+                let span = local_span(&d.snapshot, at).clamp(6., 14.);
+                d.nav.focus(at, span);
+            } else {
+                d.selected = Selected::Organism(1);
+                d.follow = true;
+                let at = target(&d);
+                let span = local_span(&d.snapshot, at).clamp(5., 10.);
+                d.nav.focus(at, span);
+            }
+            d.final_capture_frame = Some(frame);
+        }
+        if let Some(last) = d.final_capture_frame
+            && frame == last + 8
+        {
+            d.captures += 1;
+            commands
+                .spawn(Screenshot::primary_window())
+                .observe(save_to_disk(
+                    d.out.as_ref().unwrap().join("final_habitat.png"),
+                ));
+        }
+        if d.frame >= RECORDING_FRAME_SAFETY && d.snapshot.tick < d.ticks {
+            let mut report = recording_observation(&d);
+            report["status"] = serde_json::json!("EARLY_CLOSE");
+            report["reason"] = serde_json::json!(
+                "presentation safety ceiling before the requested tick; world history to this tick retained"
             );
+            *d.telemetry.lock().unwrap() = Some(report);
+            eprintln!(
+                "Recording presentation ceiling {RECORDING_FRAME_SAFETY} reached at tick {}; requested {}",
+                d.snapshot.tick, d.ticks
+            );
+            exit.write(AppExit::error());
+            return;
+        }
+        if d.final_capture_frame.is_some_and(|last| frame >= last + 12) {
+            *d.telemetry.lock().unwrap() = Some(recording_observation(&d));
             exit.write(AppExit::Success);
         }
     }
@@ -1516,6 +2178,143 @@ fn draw(
 #[cfg(test)]
 mod tests {
     use super::*;
+    fn creator_app() -> App {
+        let args = Args::parse_from(["witness", "--ticks", "90"]);
+        let snapshot = Arc::new(fixture(1, 77).unwrap().snapshot());
+        let mut display = new_display(&args, snapshot, Arc::new(Mutex::new(None)));
+        open_design(&mut display);
+        let mut app = App::new();
+        app.insert_resource(display)
+            .insert_resource(Authority(Arc::new(Mutex::new(None))))
+            .insert_resource(ButtonInput::<KeyCode>::default())
+            .add_observer(buttons)
+            .add_systems(Startup, |mut commands: Commands| {
+                spawn_start_button(&mut commands)
+            })
+            .add_systems(Update, start_button_state);
+        app.update();
+        app
+    }
+    fn start_entity(app: &mut App) -> Entity {
+        app.world_mut()
+            .query_filtered::<Entity, With<StartSimulation>>()
+            .single(app.world())
+            .unwrap()
+    }
+    fn stop_and_check_run(app: &mut App) {
+        assert_eq!(app.world().resource::<Display>().gate, Gate::Running);
+        assert!(app.world().resource::<Display>().design.is_none());
+        let lock = app.world().resource::<Authority>().0.clone();
+        let worker = lock.lock().unwrap().take().unwrap();
+        assert!(worker.playback().unwrap().playing);
+        let deadline = Instant::now() + Duration::from_secs(3);
+        while worker.latest().unwrap().tick < 2 && Instant::now() < deadline {
+            std::thread::sleep(Duration::from_millis(2));
+        }
+        worker.control(Playback::Stop).unwrap();
+        let snapshot = worker.finish().unwrap();
+        assert!(snapshot.tick >= 2, "startup must advance committed ticks");
+        assert_eq!(snapshot.config.definitions[&1].body.seed, 20261123);
+        ShipRuntime::restore(snapshot).unwrap().validate().unwrap();
+    }
+    #[test]
+    fn recording_frame_log_caps_at_the_budget_and_rejects_another_row() {
+        let mut rows = vec![serde_json::json!(0); RECORDING_FRAME_BUDGET - 1];
+        assert!(admit_recording_row(&mut rows, serde_json::json!("last")));
+        assert_eq!(rows.len(), RECORDING_FRAME_BUDGET);
+        assert!(!admit_recording_row(
+            &mut rows,
+            serde_json::json!("overflow")
+        ));
+        assert_eq!(rows.len(), RECORDING_FRAME_BUDGET);
+    }
+    #[test]
+    fn creator_start_button_runs_the_player_body_and_hides_after_start() {
+        let mut app = creator_app();
+        // Exercise the real editor actions that originally triggered startup refusal.
+        for _ in 0..3 {
+            app.world_mut()
+                .resource_mut::<Display>()
+                .design
+                .as_mut()
+                .unwrap()
+                .edit(Edit::AddNozzle)
+                .unwrap();
+        }
+        let button = start_entity(&mut app);
+        assert_eq!(
+            app.world().get::<Node>(button).unwrap().display,
+            bevy::ui::Display::Flex
+        );
+        app.world_mut().trigger(Activate { entity: button });
+        app.update();
+        assert_eq!(
+            app.world()
+                .resource::<Authority>()
+                .0
+                .lock()
+                .unwrap()
+                .as_ref()
+                .unwrap()
+                .latest()
+                .unwrap()
+                .instances[&1]
+                .book
+                .registered
+                .len(),
+            4
+        );
+        assert_eq!(
+            app.world().get::<Node>(button).unwrap().display,
+            bevy::ui::Display::None
+        );
+        stop_and_check_run(&mut app);
+    }
+    #[test]
+    fn creator_enter_still_starts_the_same_worker() {
+        let mut app = creator_app();
+        let mut keys = ButtonInput::default();
+        keys.press(KeyCode::Enter);
+        let authority = Authority(app.world().resource::<Authority>().0.clone());
+        gate_keys(
+            &keys,
+            &Time::default(),
+            &mut app.world_mut().resource_mut::<Display>(),
+            &authority,
+        );
+        stop_and_check_run(&mut app);
+    }
+    #[test]
+    fn creator_start_button_preserves_design_and_explains_missing_nozzle() {
+        let mut app = creator_app();
+        app.world_mut()
+            .resource_mut::<Display>()
+            .design
+            .as_mut()
+            .unwrap()
+            .spec
+            .components
+            .retain(|part| !matches!(part.shape, Shape::SecretionNozzle { .. }));
+        let button = start_entity(&mut app);
+        app.world_mut().trigger(Activate { entity: button });
+        app.update();
+        let d = app.world().resource::<Display>();
+        assert_eq!(d.gate, Gate::Design);
+        assert!(d.design.is_some());
+        assert!(d.notice.contains("nozzle"));
+        assert!(
+            app.world()
+                .resource::<Authority>()
+                .0
+                .lock()
+                .unwrap()
+                .is_none()
+        );
+        assert_eq!(
+            app.world().get::<Node>(button).unwrap().display,
+            bevy::ui::Display::Flex
+        );
+    }
     #[test]
     fn new_game_starts_the_same_functional_runtime_with_the_player_body() {
         let mut ship = ShipRuntime::first_simulation(AnatomySpec::bare(77), 20261123, 90).unwrap();
@@ -1585,6 +2384,41 @@ mod tests {
             frame_preview(&mut nav, &geometry);
             assert!(preview_transform(&nav).translation.is_finite());
         }
+    }
+    #[test]
+    fn habitat_recording_orbits_the_founder_and_skips_the_construction_camera_script() {
+        let habitat =
+            ShipRuntime::habitat_simulation(AnatomySpec::bare(20261123), 20261123, 8).unwrap();
+        let snapshot = Arc::new(habitat.snapshot());
+        assert!(snapshot.habitat.is_some());
+        let args = Args::parse_from([
+            "witness",
+            "--first-simulation",
+            "--ticks",
+            "8",
+            "--record",
+            "/tmp/moebius-habitat-camera-gate",
+        ]);
+        let display = new_display(&args, snapshot, Arc::new(Mutex::new(None)));
+        assert!(!construction_camera_script(&display));
+        assert_eq!(display.nav.mode, NavigationMode::Orbit);
+        assert!(display.follow);
+        assert_eq!(display.selected, Selected::Organism(1));
+        let construction =
+            ShipRuntime::first_simulation(AnatomySpec::bare(77), 20261123, 8).unwrap();
+        let plain = Arc::new(construction.snapshot());
+        assert!(plain.habitat.is_none());
+        let args = Args::parse_from([
+            "witness",
+            "--construction",
+            "--ticks",
+            "8",
+            "--record",
+            "/tmp/moebius-construction-camera-gate",
+        ]);
+        let scripted = new_display(&args, plain, Arc::new(Mutex::new(None)));
+        assert!(construction_camera_script(&scripted));
+        assert_eq!(scripted.nav.mode, NavigationMode::Flight);
     }
     #[test]
     fn closing_or_consuming_the_app_retains_the_authority_until_its_exact_target() {

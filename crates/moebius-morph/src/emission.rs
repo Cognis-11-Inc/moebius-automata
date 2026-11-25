@@ -175,6 +175,9 @@ pub struct Ledger {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct RigidPose {
+    /// Local +Z axial rotation, applied before world yaw. Absent in legacy poses.
+    #[serde(default, skip_serializing_if = "is_zero")]
+    pub axial_roll: i64,
     pub translation: [i64; 3],
     pub yaw_sin: i64,
     pub yaw_cos: i64,
@@ -183,6 +186,7 @@ pub struct RigidPose {
 impl RigidPose {
     pub fn identity() -> Self {
         Self {
+            axial_roll: 0,
             translation: [0, 0, 0],
             yaw_sin: 0,
             yaw_cos: SCALE,
@@ -222,11 +226,16 @@ impl AuthoredTrajectory {
             *slot = add_i64(i128::from(*slot), delta, "trajectory")?;
         }
         Ok(RigidPose {
+            axial_roll: 0,
             translation,
             yaw_sin: self.yaw_sin,
             yaw_cos: self.yaw_cos,
         })
     }
+}
+
+pub(crate) fn is_zero(value: &i64) -> bool {
+    *value == 0
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -791,6 +800,26 @@ fn blend(velocity: i64, flow: i64, couple: u32) -> Result<i64, MorphError> {
 }
 
 fn rotate_y(vector: [i64; 3], rigid: RigidPose) -> Result<[i64; 3], MorphError> {
+    require_book(
+        (0..6_283_185).contains(&rigid.axial_roll),
+        "axial roll outside one turn",
+    )?;
+    let vector = if rigid.axial_roll == 0 {
+        vector
+    } else {
+        let angle = rigid.axial_roll as f64 / 1_000_000.;
+        let sin = (angle.sin() * SCALE as f64).round() as i128;
+        let cos = (angle.cos() * SCALE as f64).round() as i128;
+        let x = i128::from(vector[0]);
+        let y = i128::from(vector[1]);
+        [
+            i64::try_from((x * cos - y * sin) / i128::from(SCALE))
+                .map_err(|_| MorphError("roll overflow".into()))?,
+            i64::try_from((x * sin + y * cos) / i128::from(SCALE))
+                .map_err(|_| MorphError("roll overflow".into()))?,
+            vector[2],
+        ]
+    };
     let x = i128::from(vector[0]);
     let z = i128::from(vector[2]);
     let sin = i128::from(rigid.yaw_sin);

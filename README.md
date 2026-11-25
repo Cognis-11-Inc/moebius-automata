@@ -260,13 +260,29 @@ instances. No volumetric solver, floor or live Lisp/Python authority is added.
 
 ## First simulation — food and Arachnitech
 
-Launch the ship witness, press **N**, design the Arachnitech, then **Enter**.
-The new game uses the player anatomy, one active constructor, and Blood-Sacs
-paid from a finite condensate stock. The same constructor approaches local food,
-eats at its generated mouth, then leaves the meal to build while stocked. It
-spends that intake through its nozzles. Its
-configured structural nozzle binds paid material into the persistent scaffold.
-Nearby scaffold plus light permits the existing food-fixation rule to run.
+Launch the ship witness, press **N**, design the Arachnitech, then click
+**Start Simulation** (or press **Enter**). In the creator, **S** saves the
+anatomy and **L** reloads it, including after restarting the app.
+The new game starts with one Arachnitech and paid Blood-Sacs. A food pouch
+stores up to **1024 units** by default; **B** adds a pouch in the creator and its
+Capacity parameter changes its limit. Older anatomies gain a pouch when entering
+habitat mode; their saved source file is not overwritten. Fullness is visible.
+
+Arachnitech pauses secretion during meals and lays paid snailpipe only while
+moving/exploring. Four active nozzles spend four units per emitting tick. A
+protected reserve and a short paid founding root prevent immediate emptying.
+Blood-Sacs evade nearby mouths, crawl on substrate, and can detach at a tip.
+Light and real pipe attachment permit fixation from finite condensate; new
+substrate colonies and Arachnitech offspring are paid material transfers.
+The authored population limits are eight Arachnitech and 48 Blood-Sacs.
+
+Snailpipes persist as paid graph samples. Their hollow sections store inner and
+outer radii and sealed/open end states. Smooth sweeps have wet fresh walls,
+subtle ridges and an older hardened appearance. Ordinary segment bores are
+continuous; sealed ends remain sealed. Wall contacts encourage route bundles
+but **do not open branches**. Open branch bores and gas/liquid transport remain
+unimplemented. See the three-property contract and evidence in
+[habitat refinement](docs/morph_005/HABITAT_REFINEMENT.md).
 
 To inspect this loop directly with the basic anatomy:
 
@@ -274,18 +290,52 @@ To inspect this loop directly with the basic anatomy:
 cargo run --release --offline -p moebius-morph-lab --bin moebius-world-witness -- --first-simulation --ticks 3600
 ```
 
+A founding group uses the same habitat. Each extra Arachnitech is paid from
+the finite condensate. The budget is 16. Home frames the selected body, or
+the group when more than one founder is present. Play, pause, single-step,
+1x/4x/16x, save (F5) and load (L from the title) do not skip authoritative
+ticks. Four times speed runs four ticks, then waits out the same pace.
+
+```sh
+cargo run --release --offline -p moebius-morph-lab --bin moebius-world-witness -- --first-simulation --probe-world --founders 4 --seed 77 --ticks 3600
+cargo run --release --offline -p moebius-morph --example habitat_probe -- /tmp/NEW_COLONY 420 --seed 77 --founders 1
+```
+
+`--abundance` sets the free condensate left after the founding Blood-Sacs are
+paid. Movement stays authored. There is no Arachnitech mortality rule, and
+Blood-Sac light does not create new biomass.
+
 The HUD shows constructor stock, total eaten, free secretion, bound material,
 and balance. Brief uptake lines identify actual committed meals. In the creator,
 drag to orbit, wheel to zoom, middle-drag to pan, and Home to frame the body.
 Space pauses the simulation, R restarts its initial state, and F5 saves it.
 Existing saves retain their configured behavior; use N for a new functional run.
 
-Nearest-food steering is an explicit bounded kinematic rule. It is not learned
-locomotion or physical propulsion. The scaffold is persistent material with an
-ecological effect on food fixation; living structural tissue, hollow pipe
-physiology, and a functioning population of constructors are not established.
-The run remains explicitly tick-bounded. See
-[implementation and evidence](docs/morph_005/FIRST_SIMULATION.md).
+Pursuit, evasion and directional memory are explicit bounded kinematic rules.
+Paid reproduction is implemented; learned locomotion, adaptive ecology, mechanical
+strength and pipe transport are not established. The run remains explicitly
+tick-bounded. Historical first-loop evidence is retained in
+[the earlier report](docs/morph_005/FIRST_SIMULATION.md).
+
+Arachnitech's role is snailpipe trails. Wall building is reserved for the second
+Automaton species; that species is not implemented here. Winding is geometrical:
+strength and load-bearing bonds are not simulated. New habitat runs use canonical
+world contact admission, conservative body-part envelopes, and hollow pipe
+collision surfaces. The Witness sphere only selects presentation; offscreen
+collisions use the same rules. Those contact queries currently miss the 60 Hz
+tick. On the measured 420-tick showcase probe the mean tick is 24.9 ms, and
+about 96% of collision time is swept distance queries against hollow pipe
+meshes. A sample-sphere reject of an already-cached far chunk preserves that
+world's digest and leaves the query count at 15645 on a 58-node network.
+With the witness open, the same world still spends about 25.5 ms in the
+authority tick. Snapshot publish is about 0.007 ms and draw CPU about 1.2 ms.
+The witness reuses a mesh whose stamp is unchanged. Mesh budgets 1 and 16
+generated the same 80 pipe meshes over 420 ticks. See [collision contracts and limits](docs/morph_005/COLLISION_CONTRACTS.md).
+SIMULATION-0001 remains PARTIAL until an authorized clean-commit certification.
+A founding group of 2 to 16 is measured in
+[the playable colony results](SIMULATION_0001_PLAYABLE_COLONY_RESULTS.md).
+Sixteen founders averaged 790 ms/tick. Counts of 30, 100, and 300 are refused.
+The measured showcase windows produced no Arachnitech birth.
 
 ## MORPH-005 — the first filament
 

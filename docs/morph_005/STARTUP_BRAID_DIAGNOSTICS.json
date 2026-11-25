@@ -1,0 +1,256 @@
+{
+  "date": "2026-11-24",
+  "purpose": "Native startup/four-nozzle diagnostic evidence; v1 stationary policy failure retained alongside corrected v2; replay PASS is separate from behavior and appearance.",
+  "source_head": "5a83c21fac6b6fb3032e40ce608f097a0a86356b",
+  "source_state": "dirty, uncommitted runtime changes",
+  "archive_version": "20261124T203352Z",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-005/2026-11-24/startup-braid/20261124T203352Z/raw.tar",
+  "archive_sha256": "2a234fac7661a6db59db52d30353bc4adff18647d5cf2b4e22978f04d925efef",
+  "file_count": 20,
+  "raw_bytes": 7776888,
+  "archive_bytes": 7813120,
+  "archive_and_member_verification": "PASS",
+  "restore_verification": "PASS",
+  "restore_working_copy": "/tmp/moebius-startup-braid-restore-20261124T203352Z",
+  "originals_retained": true,
+  "members": [
+    {
+      "member": "v1/frame_025.png",
+      "bytes": 351144,
+      "sha256": "39ac5096496d8d21309bf5aefb59bdac8e963e65f39e13f227182ad34bc4cddd",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v1/frame_025.png"
+    },
+    {
+      "member": "v1/frame_055.png",
+      "bytes": 351645,
+      "sha256": "3692b0dafd237997ac815a236041f46bc9d628065a3b2e80a5d7613e358c0a21",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v1/frame_055.png"
+    },
+    {
+      "member": "v1/frame_120.png",
+      "bytes": 340579,
+      "sha256": "c1417e422bfdc7761a2fcb71921cf780b6668da3d4c90a8c23ff213bbb672d77",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v1/frame_120.png"
+    },
+    {
+      "member": "v1/frame_175.png",
+      "bytes": 294737,
+      "sha256": "5e40564cae2367b366188e9bdf701c18b7d56e9713b925e23d1e29ecbc971e3d",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v1/frame_175.png"
+    },
+    {
+      "member": "v1/frame_200.png",
+      "bytes": 341291,
+      "sha256": "85dc89fad31ccb1ab5e96b9f32f7ac677a4c012858d41b64f16b4160bc2dc6bf",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v1/frame_200.png"
+    },
+    {
+      "member": "v1/frame_280.png",
+      "bytes": 343903,
+      "sha256": "91ea21da7bb92c72596d5010ad1735da13940d170bef50d9ddf82bccb78b9067",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v1/frame_280.png"
+    },
+    {
+      "member": "v1/render-report.json",
+      "bytes": 254813,
+      "sha256": "73bb929d661e4adb5a3faa92f1c9f1373cbf1ef4035defe992e13ddb13d3fe1e",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v1/render-report.json"
+    },
+    {
+      "member": "v1/world-final.json",
+      "bytes": 2002459,
+      "sha256": "01539404a8c35a2e9f526bb768ccde990c1ac76758364a94a496baac44ad0651",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v1/world-final.json"
+    },
+    {
+      "member": "v1/world-initial.json",
+      "bytes": 88204,
+      "sha256": "b2fd5c926487504ba607314fb0181d34072359da731fd8444682e81fca8cfb1e",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v1/world-initial.json"
+    },
+    {
+      "member": "v2/frame_025.png",
+      "bytes": 396954,
+      "sha256": "7de220c8b398f10ef3f8c6dfa0735ab4efbf08744f20c4ecdbaaa3c45ce114b9",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v2/frame_025.png"
+    },
+    {
+      "member": "v2/frame_055.png",
+      "bytes": 401449,
+      "sha256": "436d022bf405e0b4bb78b6abfaa661a16e56c81c61d2358e34b6d5f751867047",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v2/frame_055.png"
+    },
+    {
+      "member": "v2/frame_120.png",
+      "bytes": 385994,
+      "sha256": "b72e4d86c80b9c20bcf410b8a0b8e09b2c5ed56800779cd6b78446a966b2c49f",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v2/frame_120.png"
+    },
+    {
+      "member": "v2/frame_175.png",
+      "bytes": 291018,
+      "sha256": "831778a17bd8fa23ad39489175c6d91d0a5f1f347694952de47dcc4aa6b506a7",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v2/frame_175.png"
+    },
+    {
+      "member": "v2/frame_200.png",
+      "bytes": 387404,
+      "sha256": "341a3ab77847c2f0fb744a693a589689a9c49c6cd7e9f3598d33f2b83bf28e69",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v2/frame_200.png"
+    },
+    {
+      "member": "v2/frame_280.png",
+      "bytes": 388980,
+      "sha256": "718253bb180b42fae3c28e3b01d7b02dfee3e99cdbe532ce3cf693b0f816845c",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v2/frame_280.png"
+    },
+    {
+      "member": "v2/render-report.json",
+      "bytes": 254318,
+      "sha256": "5b0a9d1cd9e37980775ec1f58cd0cee20f45d45f1f446404ac7d963d10e61b6c",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v2/render-report.json"
+    },
+    {
+      "member": "v2/world-final.json",
+      "bytes": 811789,
+      "sha256": "0a53bc027cc3d4a266dcecd2214899991190ae1671de11e518b493f2eac65171",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v2/world-final.json"
+    },
+    {
+      "member": "v2/world-initial.json",
+      "bytes": 88205,
+      "sha256": "7b915f88b7bde0df76750d9a98ba8dc24d802e88a2bc9ff85fcc1707529daa89",
+      "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v2/world-initial.json"
+    },
+    {
+      "member": "honest-red/parallel.log",
+      "bytes": 1013,
+      "sha256": "b0766ba97c6b9d383c0539310b9bf0b55e7e43d58c2240d653599623fcdff9c4",
+      "working_copy": "/tmp/moebius-four-nozzle-red-parallel.log"
+    },
+    {
+      "member": "honest-red/spin.log",
+      "bytes": 989,
+      "sha256": "2a37ad9973016bc342077010237bb87d82d4ee7b3518827da526b5321e4d9b5c",
+      "working_copy": "/tmp/moebius-four-nozzle-red-spin.log"
+    }
+  ],
+  "source_sha256": {
+    "crates/moebius-morph/src/runtime.rs": "ffc03ecb84dd4a6f52d7585b6cd1ca879e71ff3fd153edeff8be756ec4a88a9c",
+    "crates/moebius-morph/src/filament.rs": "18632d978d9cfb12c056117f5c271520bae28c0011b174890e8ccbfbcffb883d",
+    "crates/moebius-morph/src/emission.rs": "258895727371f572ccf085b7e5027e162adadfcbd9f998997af47d3754a34d2d",
+    "crates/moebius-morph-lab/src/bin/moebius-world-witness.rs": "da842613e43c3d5f2a4542b7aa1d24fec49ab286101c5ad997f3873218d19ca8"
+  },
+  "restore_command": "mkdir NEW_DIRECTORY && tar -xf /run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-005/2026-11-24/startup-braid/20261124T203352Z/raw.tar -C NEW_DIRECTORY",
+  "limits": [
+    "Native witness input/control replay, not a physical-mouse test or Operator visual acceptance.",
+    "No mechanical strength or hollow living-tissue validation.",
+    "No clean-commit broad suite or publication in this session."
+  ],
+  "final_motion_guard_receipt": {
+    "archive_version": "20261124T203844Z",
+    "volume_uuid": "D0A02EEBA02ED82C",
+    "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-005/2026-11-24/startup-braid/20261124T203844Z/raw.tar",
+    "archive_sha256": "b5b29134a4494049a146c26e5c3f5f3f30dc9c349cb1b40126fba402e7496a0e",
+    "file_count": 11,
+    "raw_bytes": 3418649,
+    "archive_bytes": 3440640,
+    "archive_and_member_verification": "PASS",
+    "restore_verification": "PASS",
+    "originals_retained": true,
+    "restore_working_copy": "/tmp/moebius-startup-braid-final-restore-20261124T203844Z",
+    "members": [
+      {
+        "member": "v3/frame_025.png",
+        "bytes": 398407,
+        "sha256": "5f8772fc0282167f85c402dcbbd3125cd324fc107657f3ea2c890db10a59cfed",
+        "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v3/frame_025.png"
+      },
+      {
+        "member": "v3/frame_055.png",
+        "bytes": 401981,
+        "sha256": "c2465ddecf1330edc9f9468105e810226ed1a177b96f3eaf9e3d297e270e7d56",
+        "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v3/frame_055.png"
+      },
+      {
+        "member": "v3/frame_120.png",
+        "bytes": 386386,
+        "sha256": "ff7448ef0162b6fab32cbd12da087fa46e164f7a319e48b4e85cf868a5fa902d",
+        "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v3/frame_120.png"
+      },
+      {
+        "member": "v3/frame_175.png",
+        "bytes": 298566,
+        "sha256": "9f15724441ae485271562c1051566ebd092a7799d48aa09fb96ebb6a01edbb07",
+        "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v3/frame_175.png"
+      },
+      {
+        "member": "v3/frame_200.png",
+        "bytes": 387692,
+        "sha256": "dcc09fe232112950644bbe36cad3d9c87f949597973fcafeb164a842091c8e3d",
+        "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v3/frame_200.png"
+      },
+      {
+        "member": "v3/frame_280.png",
+        "bytes": 389243,
+        "sha256": "d185e54e3a21b91ced5834de9663dec810dcc81b817c7a0ae03d28f4cd76bd34",
+        "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v3/frame_280.png"
+      },
+      {
+        "member": "v3/render-report.json",
+        "bytes": 254299,
+        "sha256": "1263464e9648cddb6d90cd364d49734a0af4a191801250c416194db71d8799b2",
+        "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v3/render-report.json"
+      },
+      {
+        "member": "v3/world-final.json",
+        "bytes": 811822,
+        "sha256": "376d4f805aabb08eb31976d1fec42bc4f570e2e610daab9db650c4e0bdd3439f",
+        "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v3/world-final.json"
+      },
+      {
+        "member": "v3/world-initial.json",
+        "bytes": 88238,
+        "sha256": "bc68f866f0b22c626a783ba591e7932cf3aeae0dffcd639822213b7f138dcf80",
+        "working_copy": "/tmp/moebius-four-nozzle-native-20261124-v3/world-initial.json"
+      },
+      {
+        "member": "honest-red/motion.log",
+        "bytes": 1027,
+        "sha256": "827d82dd5fd1b0a96397062622a9e001c00e315beb6c6a869856a6eb419883f4",
+        "working_copy": "/tmp/moebius-four-nozzle-red-motion.log"
+      },
+      {
+        "member": "honest-red/refill.log",
+        "bytes": 988,
+        "sha256": "d3912d06e5c0e3f2d6530a9edfec0cd8c63ee16035b3930ecca3059b2febbc1f",
+        "working_copy": "/tmp/moebius-four-nozzle-red-refill.log"
+      }
+    ],
+    "source_sha256": {
+      "crates/moebius-morph/src/runtime.rs": "204a45d26cd85669283e4df08fc7d0a982b6229c0cd2e08c204c9957534a76b9",
+      "crates/moebius-morph/src/filament.rs": "43118c04d146d9075f47753f1e2a7713ffc1a4f1386f43cf4856b7f2e6077b66",
+      "crates/moebius-morph/src/emission.rs": "258895727371f572ccf085b7e5027e162adadfcbd9f998997af47d3754a34d2d",
+      "crates/moebius-morph-lab/src/bin/moebius-world-witness.rs": "463eafde120416a2aa146eb271780291f40aa4b329fddc84c43e1dc7c86ac056"
+    },
+    "native_result": {
+      "status": "PASS",
+      "headless_equal": true,
+      "ticks": 360,
+      "digest": "235e4aea5dcc68fd673253c50239b8753de8606f9671cf26a65d72e12d4232d9",
+      "stock": 39,
+      "intake": 519,
+      "bound": 500,
+      "filaments": 4,
+      "nodes_per_nozzle": {
+        "6": 125,
+        "7": 125,
+        "8": 125,
+        "9": 125
+      },
+      "motion_guard_enabled": true
+    },
+    "restore_command": "mkdir NEW_DIRECTORY && tar -xf /run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-005/2026-11-24/startup-braid/20261124T203844Z/raw.tar -C NEW_DIRECTORY"
+  }
+}

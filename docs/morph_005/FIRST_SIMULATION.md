@@ -235,3 +235,120 @@ is also checked clean. Its final clean-suite receipt is attached to its HEAD in
 `refs/notes/first-simulation-validation`. The post-push remote-ref/clean-tree
 receipt is in `refs/notes/first-simulation-publication`. Fetch these notes refs
 explicitly; an absent note means the corresponding verification is pending.
+
+
+## Startup, four-nozzle trails and species responsibility — 2026-11-24
+
+Operator authorization: repair creator startup; add a Start Simulation button;
+four nozzles must lay four paid snailpipe trails, with axial rotation winding
+them together. Each trail costs food. Subsequent clarification: produce trails
+as the body moves, and reserve wall building for the second Automaton species.
+This is a runtime change within ShipRuntime, not a new species implementation.
+
+Containment: preserve finite stock, per-parcel provenance, old route fixtures and
+snapshot decoding. No wall builder, strength solver, collision/bond mechanics,
+new physiology, unlimited food, nursery adapter or renderer material authority.
+Four wound trajectories are geometrical evidence, not validated reinforcement.
+
+| Concern | Path/symbol | Status | Input -> output / consumer | Authority/tests | Reuse ruling / seam |
+|---|---|---|---|---|---|
+| Creator startup | morph-lab witness gate_keys / begin_ship | active | edited AnatomySpec -> canonical worker | creator activation/Enter tests | reuse one shared start_design action and add a visible button |
+| Startup refusal | morph filament construction_from; runtime first_simulation | reproduced defect | multi-nozzle body -> old one-nozzle guard before mode setup | multi-nozzle regression fails on original code | prepare complete construction inputs, food ledger and steering before restore/validation |
+| Pipe assembly | filament Assembly::deposit / validate | canonical | admitted parcel -> paid persistent filament | four-stream, provenance and depletion tests | choose latest filament by organism/nozzle, one successful deposit per nozzle per tick; no extra material owner |
+| Axial rotation | emission RigidPose / placement; runtime steer_constructor | canonical authored kinematics | explicit bounded roll -> numerical nozzle/landmark positions and rendered body | winding vs spin-off, transform and exact continuation tests | local +Z roll before world yaw, shared with renderer |
+| Refill/build | runtime tick / steer_constructor / blood_tick | authored | finite intake/reserve -> refill, then moving four-stream build | cycle, fourfold cost, motion guard and red/green tests | pause parallel secretion during refill; short root paid from original founding stock bootstraps existing fixation |
+| Walls / strength | no new implementation | reserved / NOT IMPLEMENTED | future second species | NOT RUN | operator owns next species; do not claim mechanics or start another runtime |
+
+Paths are under crates/moebius-morph/src except the witness in
+crates/moebius-morph-lab/src/bin/moebius-world-witness.rs. Inspected AGENTS,
+current/relevant historical HANDOFF, README, MORPH_005_ARCHITECTURE, this report,
+composition editor, runtime, emission, filament, witness worker and relevant
+tests/history (d333fd4). Only main/origin/main branches were listed; no exhaustive
+historical/stash audit or external scientific research was performed.
+
+IMPLEMENTED: creator Start Simulation button with hover/pressed feedback and
+shared Enter validation; missing-nozzle refusal preserves the design. L reloads
+the saved anatomy in the creator. Optional --first-simulation --anatomy PATH
+starts that exact saved input through the same factory. New opt-in foraging
+fields parallel_nozzles, axial_spin and trail_on_motion default off/zero when
+absent, preserving legacy one-stream mode and serialized zero-roll forms.
+New multi-nozzle games enable parallel deposition and 0.05 rad/tick axial spin
+while building. New games admit secretion only on a moving committed step.
+Previously admitted free material can finish binding after motion stops.
+Stock, bite, speed, refill/build thresholds and founding material are unchanged.
+
+The old food-free assertion that a stationary body exhausts its founding stock
+was replaced with the operator's new contract: it retains all that stock and
+creates zero free/bound material. The positive moving/intake/build checks and
+conservation assertions remain. No tests were skipped or disabled.
+
+Failure chronology: original multi-nozzle startup reproduced exactly as
+"one configured construction nozzle required" (exit101). An intermediate
+initialization attempted validation before its food ledger existed: all nine
+then-current first-simulation tests failed; complete-state initialization fixed
+that ordering. Initial hover code raised deprecation warnings and was replaced
+with current local Bevy Hovered/Pressed components. One new winding test needed
+an explicit Option<f64> annotation before it compiled. Native v1 replay passed
+but showed the four-unit bite immediately spent by four outlets: stock stayed
+22, no axial rotation, short piles at the nozzles. v1 is a behavioral failure,
+not a successful braid. A first refill-only attempt lacked the founding root;
+the cycle regression failed. Paying for that root from the existing 24 units
+and suppressing refill secretion fixed the cycle; native v2 shows wound trails.
+The requested final motion guard initially failed an old stationary-exhaustion
+assertion, which was corrected to the new explicit contract as described above.
+A format check run during an intentional refill fault saw that temporary fault;
+restored final source subsequently passed format/whitespace/Clippy checks.
+
+VALIDATED on rustc1.99.1 and the existing offline Cargo cache:
+
+```
+cargo test --release --offline -p moebius-morph --test first_simulation --test filament --test runtime --test blood --test emission
+cargo test --release --offline -p moebius-morph-lab --bin moebius-world-witness
+cargo clippy --offline -p moebius-morph -p moebius-morph-lab --all-targets -- -D warnings
+cargo fmt --all -- --check
+git diff --check
+cargo build --release --offline -p moebius-morph-lab --bin moebius-world-witness
+```
+
+40 morph tests plus 6 witness tests pass, zero failures. Four intentional faults
+independently fail the focused tests: parallel assembly off (1 pipe instead of4),
+spin off (0 winding), motion guard off (stationary stock exhausted), refill gate
+off (four emissions during refill). All faults restored; final46 tests pass.
+Four outlets spend16 units versus4 for one outlet over four laying ticks.
+A separate explicitly stocked diagnostic fixture winds every one of four
+material-backed streams through more than a full turn in180ticks; spin-off has
+the same expenditure, and serialization at90 continues exactly. Its extra1000
+founding units are test inputs, not production food or default changes.
+
+Native commands use the operator's saved eight-part/four-nozzle AnatomySpec,
+without overwriting it:
+
+```
+target/release/moebius-world-witness --first-simulation --anatomy saves/arachnitech.json --ticks 360 --record /tmp/moebius-four-nozzle-native-20261124-v1
+target/release/moebius-world-witness --first-simulation --anatomy saves/arachnitech.json --ticks 360 --record /tmp/moebius-four-nozzle-native-20261124-v2
+target/release/moebius-world-witness --first-simulation --anatomy saves/arachnitech.json --ticks 360 --record /tmp/moebius-four-nozzle-native-20261124-v3
+```
+
+v1/v2 are interim source states, not final-source certification. Each produced
+six PNGs, initial/final snapshots and a render/replay report. v1:360ticks,
+1438 intake,1436 bound,4 filaments,roll0. v2:360ticks,519 intake,500 bound,
+4 filaments,stock39,roll16815 microradians after wrapping. Both headless replay
+comparisons pass; visual outcomes differ. v1 frame055 and v2 frame280 pixels
+were inspected. v3 contains the final motion guard and updated food/trail labels;
+its final receipt is recorded below after completion.
+
+Retention: STARTUP_BRAID_DIAGNOSTICS.json records immutable Mermogon archives,
+run identities, counts, sizes, SHA-256 member/archive hashes and verified
+restoration. Originals and all failed/intermediate runs remain. No raw evidence
+is added to Git. No clean-commit broad suite, new commit, push, hosted CI,
+physical-mouse playtest, learned propulsion, wall-building or strength claim.
+
+Final v3:360ticks, digest `235e4aea5dcc68fd673253c50239b8753de8606f9671cf26a65d72e12d4232d9`, exact headless equality PASS;
+519 intake, 39 stock, 500 bound,
+4 filaments, per-nozzle nodes {'6': 125, '7': 125, '8': 125, '9': 125}. v3 frame280 pixels inspected.
+Final source/recording hashes and verified external restoration are in
+STARTUP_BRAID_DIAGNOSTICS.json final_motion_guard_receipt. The initial archive
+retains20files/7776888bytes; final follow-up retains11files/3418649bytes.
+Mermogon UUID D0A02EEBA02ED82C and write access were reverified for each transfer.
+An external key-injection attempt did not retain app focus and is not counted
+as UI acceptance; production Activate handling is covered by headless tests.

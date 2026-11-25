@@ -4,7 +4,7 @@ use std::{
     collections::BTreeSet,
     sync::{Arc, Mutex, mpsc},
     thread,
-    time::Duration,
+    time::{Duration, Instant},
 };
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct WitnessSphere {
@@ -19,19 +19,25 @@ pub struct WitnessView {
     pub exposures: Vec<(u64, u64)>,
 }
 impl WitnessSphere {
+    pub fn contains(&self, p: Position) -> Result<bool, MorphError> {
+        require(
+            (0..=MAX_POSITION).contains(&self.radius),
+            "invalid witness radius",
+        )?;
+        Ok(p.relative(self.center)?
+            .iter()
+            .map(|v| i128::from(*v).pow(2))
+            .sum::<i128>()
+            <= i128::from(self.radius).pow(2))
+    }
+
     pub fn inspect(&self, state: &WorldSnapshot) -> Result<WitnessView, MorphError> {
         self.center.absolute()?;
         require(
             (0..=MAX_POSITION).contains(&self.radius),
             "invalid witness radius",
         )?;
-        let inside = |p: Position| -> Result<bool, MorphError> {
-            let d = p.relative(self.center)?;
-            Ok(d.iter()
-                .map(|&v| i128::from(v) * i128::from(v))
-                .sum::<i128>()
-                <= i128::from(self.radius) * i128::from(self.radius))
-        };
+        let inside = |p| self.contains(p);
         let mut view = WitnessView {
             tick: state.tick,
             organisms: vec![],
@@ -79,12 +85,22 @@ impl PresentationCache {
         changes
     }
 }
+/// Authority-thread timings. Not world state and not part of a digest.
+#[derive(Clone, Debug, Default)]
+pub struct RunTiming {
+    /// `ShipRuntime::tick` only. The pace sleep is outside this sample.
+    pub tick_ns: Vec<u128>,
+    /// Snapshot copy published to the witness after a tick.
+    pub publish_ns: Vec<u128>,
+    pub collision: crate::collision::CollisionProfile,
+}
 pub struct Worker {
     latest: Arc<Mutex<Option<Arc<WorldSnapshot>>>>,
     result: mpsc::Receiver<Result<WorldSnapshot, MorphError>>,
     thread: Option<thread::JoinHandle<()>>,
     controls: mpsc::SyncSender<Playback>,
     status: Arc<Mutex<PlaybackStatus>>,
+    timing: Arc<Mutex<RunTiming>>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Playback {
@@ -162,6 +178,8 @@ impl Worker {
         let info = status.clone();
         let (tx, result) = mpsc::channel();
         let (controls, commands) = mpsc::sync_channel(64);
+        let timing = Arc::new(Mutex::new(RunTiming::default()));
+        let recorded = timing.clone();
         let handle = thread::Builder::new()
             .name("moebius-ship-authority".into())
             .spawn(move || {
@@ -171,6 +189,8 @@ impl Worker {
                     let mut rate = 1;
                     let mut single = 0usize;
                     let mut stop = false;
+                    let mut tick_ns = Vec::new();
+                    let mut publish_ns = Vec::new();
                     loop {
                         for command in commands.try_iter() {
                             let mut state = info
@@ -200,6 +220,8 @@ impl Worker {
                                     world = ShipRuntime::restore(initial.clone())?;
                                     left = ticks;
                                     single = 0;
+                                    tick_ns.clear();
+                                    publish_ns.clear();
                                     state.generation += 1;
                                     *slot.lock().map_err(|_| {
                                         MorphError("snapshot slot poisoned".into())
@@ -220,15 +242,19 @@ impl Worker {
                             single.min(1)
                         };
                         for _ in 0..budget.min(left as usize) {
+                            let tick_started = Instant::now();
                             world.tick()?;
+                            tick_ns.push(tick_started.elapsed().as_nanos());
                             left -= 1;
                             single = single.saturating_sub(1);
+                            let publish_started = Instant::now();
                             if world.state().tick.is_multiple_of(publish_every) {
                                 *slot
                                     .lock()
                                     .map_err(|_| MorphError("snapshot slot poisoned".into()))? =
                                     Some(Arc::new(world.snapshot()));
                             }
+                            publish_ns.push(publish_started.elapsed().as_nanos());
                         }
                         {
                             let mut s = info
@@ -249,6 +275,14 @@ impl Worker {
                         }
                     }
                     let snapshot = world.snapshot();
+                    {
+                        let mut timing = recorded
+                            .lock()
+                            .map_err(|_| MorphError("timing poisoned".into()))?;
+                        timing.tick_ns = tick_ns;
+                        timing.publish_ns = publish_ns;
+                        timing.collision = world.collision_profile();
+                    }
                     *slot
                         .lock()
                         .map_err(|_| MorphError("snapshot slot poisoned".into()))? =
@@ -270,6 +304,7 @@ impl Worker {
             thread: Some(handle),
             controls,
             status,
+            timing,
         })
     }
     pub fn latest(&self) -> Result<Arc<WorldSnapshot>, MorphError> {
@@ -287,5 +322,16 @@ impl Worker {
                 .map_err(|_| MorphError("authority worker panic".into()))?;
         }
         result
+    }
+    /// Waits for the authority thread, then returns its tick samples.
+    /// Samples are not world state. A failed run can leave them empty.
+    pub fn finish_measured(self) -> Result<(WorldSnapshot, RunTiming), MorphError> {
+        let timing = Arc::clone(&self.timing);
+        let snapshot = self.finish()?;
+        let timing = timing
+            .lock()
+            .map_err(|_| MorphError("timing poisoned".into()))?
+            .clone();
+        Ok((snapshot, timing))
     }
 }

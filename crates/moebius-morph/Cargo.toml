@@ -11,3 +11,5 @@ publish.workspace = true
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 blake3 = "1"
+
+parry3d = { version = "=0.27.0", default-features = false, features = ["required-features", "std", "alloc", "enhanced-determinism"] }

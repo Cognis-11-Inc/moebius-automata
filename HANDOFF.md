@@ -1,3 +1,271 @@
+# SIMULATION-0001 playable colony measured — 2026-11-25T02:44:31Z
+
+Agent Grok. Branch main, HEAD `5a83c21fac6b6fb3032e40ce608f097a0a86356b`, dirty,
+no push. Status remains PARTIAL. No SIMULATION-0002. `collision.rs` was not
+given a new contact rule. A `PipeCacheKey` alias and a test-only `from_ref`
+satisfied Clippy. Resolve is unchanged. The contract digest was reproduced.
+
+VERIFIED this session, rustc 1.99.1, offline, dirty tree.
+
+- `ShipRuntime::habitat_colony` pays extra founders from finite condensate. Founders 1 and abundance unset match `habitat_simulation` by snapshot and digest (`one_founder_colony_matches_habitat_simulation`). Parents of extra founders are `None`. Population above 16 is an error.
+- Scale record `/tmp/moebius-colony-scale-20261125/summary.json`. Founders 1, seed 77, 420 ticks: digest `7b68517ba0f82ed979469ef059db5f151243eb6999fe8d37f2e58d69940c2afe`, mean tick 24.358 ms, p95 85.554, p99 112.557, max 569.275, queries 15645, pipe builds 623, hits 905, rejects 971, meals 42, nodes 58, births 0, material gap 0, stored 128 at tick 420. Two founders, seed 77, 180 ticks: mean 42.321 ms, digest `91ddb63588132a8125f11279361c2143d6791ea3c637fb8602e73af86568ba19`. Four founders stopped at tick 77 on a 4574.479 ms tick. Eight founders mean 269.686 ms. Sixteen founders mean 790.071 ms, 97429 queries, 341 nodes, 60 ticks, births 0. Founders 30, 100, and 300 were refused by the ceiling of 16.
+- Native `/tmp/moebius-colony-native-20261125b`: PASS, headless equal, same two-founder digest, tick 180/180, frames 658, frame log not capped. Authority mean 43.532 ms. Publish mean 0.007 ms. Draw mean 1.442 ms. Frame interval mean 16.651 ms. Both founders are in the opening frames. Tick 180 shows pouch 84/1024, eaten 68, nodes 32, births 0. HUD tick rate is a 0.25 s sample.
+- Tests: habitat 11/11 in 31.53 s, collision 8/8 in 1.17 s, emission 5/5 in 0.28 s, including `paid_offspring_are_active_and_resume_exactly_after_reload` and `controlled_experiments_conserve_and_reproduce`. Witness bin 8/8 in 0.37 s after the final `if let` (`/tmp/moebius-colony-witness-final.log`). Sphere-gate lib test passed after the Clippy edit. Honest-red: resolve bypass, canonical collision test panicked `presented anatomy penetrated the barrier`, source restored byte-identical, then the alias and `from_ref` were applied. `cargo clippy --offline -p moebius-morph -p moebius-morph-lab --all-targets -- -D warnings` exit 0.
+- Atlas: `python3 python/morph_002_atlas.py` PASS at 2026-11-25T02:52:07Z. 45 notes, 197 internal links, UUID `8CA451CDA451BA82`. The live inventory for `01_CANON/MOEBIUS_SHIP.md` and `01_CANON/SHIP_DIMENSIONS.md` was behind the vault text dated 2026-11-23 22:28 (operator size 30,000 km by 3,000 km, plus a timestamp). Those two hashes now match the vault. Sealed MORPH-005 `v1/atlas-after.tar` still holds the earlier wording and was not rewritten.
+- Report: `SIMULATION_0001_PLAYABLE_COLONY_RESULTS.md`. Archive copied and `sha256sum -c` passed on Mermogon `/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25` (UUID `D0A02EEBA02ED82C`, 2,990,567 bytes). Local `/tmp` copies were kept.
+
+Not done: exterior primitive, writhe clearance on pipes and organisms, natural reproduction in these windows, an Arachnitech death rule, founders above 16, a steady 16.7 ms tick, clean-commit workspace suite, push.
+
+Safe next inspection: `SIMULATION_0001_PLAYABLE_COLONY_RESULTS.md`, then `git status --short`. Do not certify this dirty tree.
+
+Earlier filter comparison follows.
+
+---
+
+# SIMULATION-0001 filter comparison recorded — 2026-11-25T01:47:54Z
+
+Agent Grok. Branch main, HEAD `5a83c21fac6b6fb3032e40ce608f097a0a86356b`, dirty,
+no commit, no push. Status remains PARTIAL. No archive. No completion claim.
+`collision.rs` was not edited this turn. The tree already drops the centerline
+filter, keeps the narrowed pipe cache key, and skips a chunk only when the
+sample sphere says it is far and the cache already holds that key. A miss is
+still built.
+
+VERIFIED this session, rustc 1.99.1, offline, dirty tree. Showcase seed 77,
+420 ticks, contract digest
+`7b68517ba0f82ed979469ef059db5f151243eb6999fe8d37f2e58d69940c2afe`.
+
+- A `/tmp/moebius-perf-a-fill`: PASS, collisions on, replay equal, material gap 0. Tick log matches the pre-filter baseline on every agent row and every contact row. Mean tick 24.895 ms, p50 8.168, p95 88.049, p99 115.362, max 578.153. Queries 15645, pipe builds 623, pipe hits 905, pipe rejects 971, mean resolve 19.638 ms. VmHWM 13468 kB after replay.
+- Cache-key receipt `/tmp/moebius-perf-a-noreject`: same digest, pipe rejects 0, pipe hits 1837, queries 15645, mean tick 24.844 ms. The forced-fetch bisect is not in the source.
+- Rejected, and absent from source: centerline `/tmp/moebius-perf-a-full`, control-polygon sphere `/tmp/moebius-perf-a-sphere`, sample sphere used as a pre-build skip `/tmp/moebius-perf-a-sample`. All three digest `8ca37da92b57e11ff4b2f0846788fc338140965ff75aeab6e21e05107542dc43`, pipe builds 612. Their contact logs agree with each other and differ from the baseline on ticks 288, 294, 300, and 301, each a sample of organism 1 on pipe filament 2 chunk 0. Agent rows match. Path metres match. The digest does not.
+- B `/tmp/moebius-perf-b-collision-off`: status DIAGNOSTIC, digest `e3346b4b41bb932d0b7103e215560915cfe74512b61d083c7e3652f6ecb82e65`, mean tick 5.570 ms, p95 8.657, max 8.770, resolve calls 0. Agents 2, nodes 272, Blood-Sacs 30, path 22.884 m. Collision mode off also changes habitat placement. This is a different world, and it is not a product run.
+- C `/tmp/moebius-perf-c-minimal` (`--mesh-budget 1`) and D `/tmp/moebius-perf-d-detailed` (`--mesh-budget 16`): both PASS, headless equal, digest exact. Authority mean tick 25.633 ms and 25.469 ms. Publish mean about 0.007 ms. Draw CPU mean 1.219 ms and 1.265 ms. Frame interval mean about 16.66 ms includes the pace sleep and is not the tick. Body rebuilds 430 in both. Pipe meshes generated 80 in both. Witness VmHWM 299512 kB and 295220 kB.
+- The lag on this 58-node world is the nearby hollow-trimesh cast. The kept gate does not reduce the 15645 queries. Mean tick stays above 16.7 ms. An exterior primitive remains a candidate. Writhe clearance still covers solids only.
+- Tests this turn: `cargo test --release --offline -p moebius-morph --test collision --test emission -- --test-threads=8` — collision 8/8 in 1.16 s, emission 5/5 in 0.28 s, including `controlled_experiments_conserve_and_reproduce` and `diagnostic_collision_switch_is_off_only_when_requested_and_skips_resolve`. Witness bin 8/8 in 0.37 s. Lib `collision::` 2/2 in 0.91 s (debug). Honest-red source bypass was not repeated. Clippy was not re-run. The full workspace suite was not run.
+
+Docs written this turn: `docs/morph_005/COLLISION_CONTRACTS.md` (section "Same-seed filter comparison"), `docs/morph_005/HABITAT_REFINEMENT.md`, `README.md`. Native v7 and `/tmp/moebius-habitat-throughput-20261124` were not overwritten.
+
+Not done: an exterior primitive, writhe clearance on pipes and organisms, collision costs that stay bounded as the network grows, clean-commit full suite, Mermogon transfer, commit, push.
+
+Safe next inspection: `docs/morph_005/COLLISION_CONTRACTS.md`, section "Same-seed filter comparison". Do not certify this dirty tree.
+
+Earlier confirmation follows.
+
+---
+
+# SIMULATION-0001 validation remains PARTIAL — 2026-11-25T00:16:18Z
+
+Agent Grok. Branch main, HEAD `5a83c21fac6b6fb3032e40ce608f097a0a86356b`, dirty,
+no commit, no push. Operator ordered the six certification checks and kept
+status PARTIAL. No archive this turn. No completion claim.
+
+This turn's source change is the habitat receipt camera in
+`crates/moebius-morph-lab/src/bin/moebius-world-witness.rs`:
+`construction_camera_script` is recording-and-not-habitat. Habitat recordings
+start in Orbit on organism 1, fit between 6 m and 14 m, and set `last_target`
+before the closing focus. Construction recordings keep the scripted camera.
+
+VERIFIED this session, rustc 1.99.1, offline, dirty tree:
+
+- Honest-red: `resolve` bypassed, `canonical_world_blocks_motion_and_exposes_biological_contacts` exit 101, panic `presented anatomy penetrated the barrier`. Source restored; `crate::collision::resolve` is present. Restored collision suite 7/7 in 1.19 s.
+- `cargo test --release --offline -p moebius-morph --test habitat --test collision --test emission -- --test-threads=8`: habitat 9/9 in 31.30 s, collision 7/7, emission 5/5 including `controlled_experiments_conserve_and_reproduce`.
+- Witness bin 8/8 in 0.61 s, including the new habitat-camera gate.
+- `cargo clippy --offline -p moebius-morph -p moebius-morph-lab --all-targets -- -D warnings` exit 0 (dev profile).
+- Release witness rebuilt 2026-11-24 19:13:11 -0500.
+- Headless probe already on disk, not re-run this turn: `/tmp/moebius-habitat-throughput-20261124/report.json`, showcase seed 77, 420 ticks, PASS, digest `7b68517ba0f82ed979469ef059db5f151243eb6999fe8d37f2e58d69940c2afe`, mean tick 24.896 ms, mean resolve 19.600 ms, query share about 96%, pipe geometry about 3%, movements 420, material gap 0. Rendering is absent from that run.
+- Native `/tmp/moebius-habitat-native-v7`: PASS, headless equal, digest `76309b40cee405ef51e80107c360737a2803513d2ad4ef753953bf90d5333fc5` (same as v5 and v6). 1641 frames, tick 420/420, not capped, elapsed 27.354 s. All frames Orbit. Mean frame 16.660 ms, mean draw 0.921 ms, body rebuilds 434, reused 1226. Condensate gap 0. Fed 55 / 212, Deposited 108, bound 108, nodes 108, filaments 5, Blood-Sacs 20, rooted 6, AssemblyRejected 312 `NoEligibleMaterial`. Closing frame shows organism 1 with pipes and sacs. v3/v4/v5/v6 were not overwritten.
+
+Relationship, unchanged this turn and still in `collision.rs`: tight hull bend 0.12; presentation bend 0.72; solids only take `presentation_slack` (bare seed 77 = 0.11743747 m; probe body = 0.26036128401756287 m). Writhe is not propulsion and is not learned.
+
+Not done: query rewrite, pipe-age quantization, clean-commit full suite, Mermogon transfer of v7, commit, push. Mean tick remains over 16.7 ms. Docs updated in the dirty tree: `docs/morph_005/COLLISION_CONTRACTS.md`, `docs/morph_005/HABITAT_REFINEMENT.md`, `README.md`.
+
+Safe next inspection: `git status --short`, then `docs/morph_005/COLLISION_CONTRACTS.md` measured section. Do not certify this dirty tree.
+
+Earlier confirmation follows.
+
+---
+
+# SIMULATION-0001 priorities confirmed — 2026-11-24
+
+Agent Grok. Branch main, HEAD `5a83c21`, dirty, no commit. The operator restated
+the four priorities and the dinner/architect line as the standing contract.
+No further runtime edit on this confirmation. Source still matches the entry
+below: gulp shortens the step, authored bend-0.72 writhe is separate from the
+step and from the bend-0.12 hull, own pipes and another builder deflect, own
+deposits may braid, solids block. Native window still not launched. Collision
+query cost and the per-frame mesh rebuild remain open. No learning claim.
+Earlier implementation entry follows.
+
+---
+
+# SIMULATION-0001 priorities applied to the first builder — 2026-11-24
+
+Agent Grok. Branch main, HEAD `5a83c21`, dirty, no commit. Operator priorities,
+in order: continuous life, embodied authored motion distinct from propulsion,
+collision that does not trap the Arachnitech on its own pipes, and persistent
+material structures. Dinner is the first drive, reproduction the second,
+snailpipe the unnoticed trail. No worm brain. No learning claim.
+
+Focused result this turn: `cargo test --release --offline -p moebius-morph --test habitat --test collision` — 9 habitat + 6 collision passed. A gulp no longer parks the body. Own deposits are not rejected for touching the builder or its other fresh pipes. Pipe contact and contact with another builder deflect the step. Solids still block, and the barrier penetration test still passes. The rendered pose writhes; the cached hull stays bend 0.12. Native window was not launched. Earlier checkpoint follows.
+
+---
+
+# Collision slice paused on window cost — 2026-11-24T22:28:52Z
+
+Agent Grok, finishing Codex session `01a20f35-1844-7a31-abb3-291abbad4e64`
+("Fix Archentech simulation startup"). Reader skipped 140 foreign
+instruction/reasoning records. Branch main, HEAD `5a83c21`, dirty, no commit.
+
+The world rules Codex was writing are in the tree and focused-tested on this
+source: collision 6/6, witness bin 7/7 including the new frame-log cap,
+strict Clippy and fmt for `moebius-morph` and `moebius-morph-lab`. Headless
+`habitat_probe` 420 ticks: 8.14 s, digest
+`a2568647e4d693c86c4ef319e0631332e864af317d830b5f50bc066e30251c89`, replay
+equal, material gap 0, 24 nodes, 1 agent, 16 sacs, 3 meals, no feeding or
+rest emission. Release witness binary rebuilt at 22:28:52Z and not launched.
+
+Why the window lagged: habitat ticks now run swept Parry queries against
+body hulls and hollow pipe meshes, and they miss the 16.7 ms tick. The
+witness also rebuilds the Arachnitech mesh every frame on the integrated
+GPU (RADV RAPHAEL). The 17:01 binary still aborted at 4096 recorded frames
+and panicked; native-v3 reached tick 279, native-v4 did the same and exited
+101. That v4 window was closed. Do not treat it as a completed recording.
+Source now keeps world ticks after the frame log caps. Native 420-tick
+completion is not claimed. No Mermogon transfer this turn. Earlier Codex
+checkpoint follows.
+
+---
+
+# In-progress refinement/collision checkpoint — 2026-11-24T21:25:33.288924+00:00
+
+Codex active; NOT COMPLETE. User authorized snailpipe refinement, pursuit/evasion,
+active paid reproduction, FoodPouch, hollow geometry and basic lumen topology,
+then expanded scope to collision detection/response/contact observations.
+See docs/morph_005/HABITAT_REFINEMENT.md and COLLISION_CONTRACTS.md. main remains
+5a83c21, dirty with prior startup work preserved. No commit/push authorized.
+New files include habitat.rs, tests/habitat.rs and examples/habitat_probe.rs.
+Before collision dependency changes:75 focused tests (including a spline-bound
+follow-up), static checks previously74-test checkpoint; final collision tests
+NOT RUN. Parry dependency just added; initial offline resolution failed, editor
+Cargo resolution added cached dependencies without changing old versions.
+Collision runtime integration is still IN PROGRESS, not validated.
+
+Interim habitat v4/v5 headless and native v1/v2:7 agents,1465 nodes,8 wall
+contacts, max341 stored food, exact per-run replay. No secretion while feeding
+or stationary; material gap0. Hollow sections have radii and persisted seals;
+wall contacts do not open passages. Open branch bores and transport NOT
+IMPLEMENTED.75-test suite is not a clean-commit certification. Three honest-red
+pouch/seal/false-branch faults failed and were restored. Raw intermediate/failed
+runs remain in /tmp/moebius-habitat-probe-v1..v5 and native-v1/v2; not externally
+archived yet. Preserve them, source snapshots/provenance gaps and prior receipts.
+
+Safe first command if interrupted:git status --short, then read collision scope
+and current source. Do not claim this WIP checkpoint as a completed collision
+or full habitat implementation. Earlier completed-session history follows.
+
+---
+
+# Startup and moving multi-nozzle snailpipe trails — 2026-11-24T20:39:30.317253+00:00
+
+Agent Codex. DONE for the bounded startup/multi-nozzle/motion slice. The operator
+reported creator startup failure, requested a Start Simulation button, four
+paid snailpipe trails winding with body rotation, and clarified that trails
+must be produced while moving. Wall building is reserved for the second
+Automaton species. No second species, wall/strength solver or new physiology
+is authorized or implemented by this slice.
+
+Repo `/home/cognis/Cognis_Lab/Möbius Automata`, branch main,
+HEAD `5a83c21fac6b6fb3032e40ce608f097a0a86356b`. Clean entry; dirty exit with
+all this slice's changes uncommitted. No commit/push authorization inferred
+from historical publication entries. No save overwrite, reset, evidence removal
+or history rewrite. Earlier continuity remains below.
+
+VERIFIED cause: first_simulation called the historical one-nozzle
+construction_from factory before installing foraging. Multiple designed nozzles
+therefore failed as "one configured construction nozzle required". Original
+failure reproduced by regression and visible native/supplied screenshots.
+Complete-state preparation now installs all startup rules/steering/finite food
+before canonical restore validation; historical route-only guards remain.
+
+Files/symbols changed:
+- `crates/moebius-morph-lab/src/bin/moebius-world-witness.rs`: StartSimulation
+  widget, shared start_design for button/Enter, new_display for production/test
+  setup; creator L -> existing Edit::Reload; direct --first-simulation --anatomy;
+  rendered body uses the numerical axial roll; clearer food/trail HUD labels.
+- `crates/moebius-morph/src/filament.rs`: reusable construction_setup inputs;
+  opt-in ForagingRules parallel_nozzles/axial_spin/trail_on_motion;
+  Assembly deposit chooses latest stream by organism/nozzle, validates all
+  paid provenance, preserves legacy single-stream mode.
+- `crates/moebius-morph/src/runtime.rs`: initial_snapshot and existing garden
+  initialization reused before validation; new-game per-nozzle assembly and
+  bounded candidate scan; multi-nozzle build spin and refill secretion pause;
+  short initial root paid from unchanged24-unit stock; no stationary emission.
+- `crates/moebius-morph/src/emission.rs`: optional zero-omitted RigidPose axial
+  roll, local +Z before yaw, used for numerical nozzles and mouth landmarks.
+- `crates/moebius-morph/tests/first_simulation.rs`, `tests/emission.rs` (same
+  crate): startup, four-stream cost/exhaustion/provenance/winding/continuation,
+  legacy serialization and exact moving-step admission tests. The old test
+  expectation of stationary stock exhaustion was updated to the operator's
+  new explicit requirement: retain24, zero free/bound material.
+- README and `docs/morph_005/FIRST_SIMULATION.md`: behavior, containment,
+  archaeology/reuse matrix, failures/nulls, commands, limits and decisions.
+- `docs/morph_005/STARTUP_BRAID_DIAGNOSTICS.json`: two external archive receipts.
+
+Final focused validation on rustc1.99.1/offline Cargo cache: PASS,46tests
+(40morph +6witness), zero failures:
+`cargo test --release --offline -p moebius-morph --test first_simulation --test filament --test runtime --test blood --test emission`
+`cargo test --release --offline -p moebius-morph-lab --bin moebius-world-witness`
+`cargo clippy --offline -p moebius-morph -p moebius-morph-lab --all-targets -- -D warnings`
+`cargo fmt --all -- --check`, `git diff --check`, release witness build PASS.
+Four independent intentional faults failed focused running tests: parallel
+assembly off, axial spin off, motion guard off, refill suppression off. All
+restored. Report preserves interim finite-ledger initialization failures,
+test compilation/deprecation failures, a stationary native policy failure,
+a rootless refill-cycle failure and the changed stationary test expectation.
+No tests skipped/disabled. Full clean-commit suite NOT RUN: no new authorized
+commit. No hosted CI claim.
+
+Final native v3 used the actual saved eight-part/four-nozzle anatomy,360ticks:
+519intake,39stock,500bound,4filaments,125nodes per nozzle6/7/8/9;
+book/global material balances0; exact headless replay PASS, digest
+`235e4aea5dcc68fd673253c50239b8753de8606f9671cf26a65d72e12d4232d9`.
+Final v3 frame280 and interim v1/v2 rendered pixels inspected. Real production
+Activate observer is covered headlessly; physical mouse acceptance is NOT
+claimed. A global key-injection attempt lost app focus and was not counted.
+Tests establish 4x stock expenditure at the default rate, no emission at rest,
+and >one turn per stream in a separate explicitly provisioned diagnostic
+fixture. That fixture's extra1000founding units do not change production defaults.
+
+Artifacts: all three native runs and all four honest-red logs retained.
+Mermogon mount UUID D0A02EEBA02ED82C/label/write permission reverified on each
+transfer. Immutable versioned archives under
+`/run/media/cognis/Mermogon/Moebius-Automata/experiments/MORPH-005/2026-11-24/startup-braid/`:
+`20261124T203352Z/raw.tar` (20files,7776888raw bytes), and
+`20261124T203844Z/raw.tar` (11files,3418649raw bytes).
+Archive/member SHA-256 and full restoration vs originals PASS. Per-file
+identities, final source hashes and restore commands are in the JSON receipt.
+No raw data added to Git; original /tmp copies and prior archives remain.
+No new external scientific publications consulted.
+
+Known limits/non-claims: authored free kinematic movement/spin, finite tick
+and material/history/node budgets, static solid rod geometry, no hollow living
+pipe, mechanics, collision/fusion, reinforcement or learned foraging. Production
+refill/build passes create short winding trails near food, not a validated
+long load-bearing braid. Older saves without new opt-ins retain old behavior;
+new game is required for current defaults. Wall-builder species remains future
+operator-owned work. Do not expand or claim it implemented.
+
+Next authorized action: inspect the corrected simulation and creator. The final
+binary is rebuilt; the saved-body3600tick run was reopened and its process
+verified active, with no startup error in its log. Reopen with
+`target/release/moebius-world-witness --first-simulation --anatomy saves/arachnitech.json --ticks 3600`.
+For creator: normal launch -> N -> L (reload saved anatomy) -> Start Simulation
+or Enter. Space pauses, R restarts, F5 explicitly saves. Safe first inspection:
+`git status --short`, then the report's final follow-up section. Pending broader
+certification requires an authorized clean commit; do not certify a dirty tree.
+
+---
+
 # Publication validation receipt — 2026-11-24 (America/Toronto)
 
 Agent Codex. Operator-authorized whole-worktree implementation committed as

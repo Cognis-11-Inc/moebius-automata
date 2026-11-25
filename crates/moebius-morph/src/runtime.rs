@@ -112,6 +112,15 @@ pub struct Intervention {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "event", deny_unknown_fields)]
 pub enum Event {
+    Contact {
+        observation: crate::collision::ContactObservation,
+    },
+    Reproduced {
+        at: u64,
+        parent: u64,
+        child: u64,
+        quantity: u64,
+    },
     Fed {
         at: u64,
         organism: u64,
@@ -188,6 +197,10 @@ pub const BLOOD_SAC: u64 = 2;
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct WorldSnapshot {
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub solids: Vec<crate::collision::SolidBox>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub habitat: Option<crate::habitat::Habitat>,
     /// Opt-in kinematic constructor pose; absent in historical authored fixtures.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub steering: Option<ConstructorState>,
@@ -209,8 +222,9 @@ pub struct ShipRuntime {
     state: WorldSnapshot,
     outputs: BTreeMap<u64, Vec<PlacedNozzle>>,
     animator: Option<CompiledAnatomy>,
+    collision_cache: crate::collision::CollisionCache,
 }
-fn exposure(c: &WorldConfig, p: Position) -> Result<u64, MorphError> {
+pub(crate) fn exposure(c: &WorldConfig, p: Position) -> Result<u64, MorphError> {
     let mut total = c.ambient_light;
     for port in &c.ports {
         let d = p.relative(port.position)?;
@@ -260,27 +274,109 @@ fn outputs(c: &WorldConfig) -> Result<BTreeMap<u64, Vec<PlacedNozzle>>, MorphErr
         })
         .collect()
 }
+fn initial_snapshot(
+    config: WorldConfig,
+    instances: Vec<Instance>,
+) -> Result<WorldSnapshot, MorphError> {
+    let mut map = BTreeMap::new();
+    for i in instances {
+        require(map.insert(i.id, i).is_none(), "duplicate organism identity")?;
+    }
+    Ok(WorldSnapshot {
+        solids: vec![],
+        habitat: None,
+        steering: None,
+        assembly: config
+            .construction
+            .as_ref()
+            .map(|_| crate::filament::Assembly::default()),
+        food: None,
+        condensate: None,
+        version: if config.construction.is_some() { 2 } else { 1 },
+        tick: 0,
+        config,
+        instances: map,
+        pending: vec![],
+        events: vec![],
+    })
+}
+fn unit_heading(yaw: f64) -> [i64; 3] {
+    let raw = [
+        (yaw.sin() * SCALE as f64).round() as i64,
+        0,
+        (yaw.cos() * SCALE as f64).round() as i64,
+    ];
+    let length = raw
+        .iter()
+        .map(|x| (*x as f64).powi(2))
+        .sum::<f64>()
+        .sqrt()
+        .max(1.);
+    raw.map(|x| (x as f64 * SCALE as f64 / length).round() as i64)
+}
+fn template_pose(state: &WorldSnapshot) -> crate::emission::RigidPose {
+    state
+        .habitat
+        .as_ref()
+        .and_then(|habitat| habitat.agents.get(&1))
+        .map(|agent| agent.rigid)
+        .unwrap_or_else(crate::emission::RigidPose::identity)
+}
+fn sow_blood_garden_state(state: &mut WorldSnapshot) -> Result<(), MorphError> {
+    require(state.condensate.is_none(), "condensate already open")?;
+    require(
+        !state.config.definitions.contains_key(&BLOOD_SAC),
+        "blood sac already defined",
+    )?;
+    let spec = AnatomySpec::blood_sac(state.config.seed.wrapping_add(19));
+    state.config.definitions.insert(BLOOD_SAC, spec);
+    state.config.ambient_light = 0;
+    state.config.ports.push(LightPort {
+        id: 7,
+        position: Position::from_absolute([SCALE / 2, 0, 0])?,
+        intensity: 8_000,
+    });
+    state.config.ports.push(LightPort {
+        id: 8,
+        position: Position::from_absolute([0, 0, 40 * SCALE])?,
+        intensity: 8_000,
+    });
+    let founders = state
+        .instances
+        .values()
+        .map(|organism| organism.book.initial)
+        .sum();
+    state.condensate = Some(Condensate {
+        initial: 4_000,
+        biomass: 4_000,
+        founders,
+    });
+    let placed: Vec<(u64, Position)> = state
+        .instances
+        .iter()
+        .map(|(id, organism)| (*id, organism.position))
+        .collect();
+    for (id, position) in placed {
+        let lit = exposure(&state.config, position)?;
+        state.instances.get_mut(&id).unwrap().exposure = lit;
+    }
+    let clock = state.tick;
+    for (at, quantity) in [
+        ([SCALE, 0, 0], 6u64),
+        ([8_000 * SCALE, 0, 0], 4),
+        ([0, 0, 40 * SCALE], 4),
+        ([6 * SCALE, 0, SCALE / 5], 22),
+        ([6 * SCALE, SCALE / 3, 0], 22),
+        ([6 * SCALE + SCALE, 0, -(SCALE / 4)], 22),
+    ] {
+        pay_sac(state, Position::from_absolute(at)?, quantity, clock)?;
+    }
+    Ok(())
+}
+
 impl ShipRuntime {
     pub fn new(config: WorldConfig, instances: Vec<Instance>) -> Result<Self, MorphError> {
-        let mut map = BTreeMap::new();
-        for i in instances {
-            require(map.insert(i.id, i).is_none(), "duplicate organism identity")?;
-        }
-        Self::restore(WorldSnapshot {
-            steering: None,
-            assembly: config
-                .construction
-                .as_ref()
-                .map(|_| crate::filament::Assembly::default()),
-            food: None,
-            condensate: None,
-            version: if config.construction.is_some() { 2 } else { 1 },
-            tick: 0,
-            config,
-            instances: map,
-            pending: vec![],
-            events: vec![],
-        })
+        Self::restore(initial_snapshot(config, instances)?)
     }
     pub fn restore(state: WorldSnapshot) -> Result<Self, MorphError> {
         let out = outputs(&state.config)?;
@@ -297,6 +393,7 @@ impl ShipRuntime {
             None
         };
         let result = Self {
+            collision_cache: crate::collision::CollisionCache::default(),
             animator,
             state,
             outputs: out,
@@ -311,12 +408,19 @@ impl ShipRuntime {
         seed: u64,
         steps: usize,
     ) -> Result<Self, MorphError> {
-        let mut world = crate::filament::construction_from(spec, seed, steps, 24, "head-first")?;
-        world.sow_blood_garden()?;
-        let mut state = world.snapshot();
-        let rules = state.config.construction.as_mut().unwrap();
+        let (mut config, instances) =
+            crate::filament::construction_setup(spec, seed, steps, 24, "head-first")?;
+        let rules = config.construction.as_mut().unwrap();
         rules.experiment = format!("first-simulation/seed{seed}");
         rules.foraging = Some(crate::filament::ForagingRules {
+            infrastructure: false,
+            trail_on_motion: true,
+            parallel_nozzles: instances[0].book.registered.len() > 1,
+            axial_spin: if instances[0].book.registered.len() > 1 {
+                50_000
+            } else {
+                0
+            },
             search_radius: 12 * SCALE,
             mouth_radius: SCALE / 4,
             step: SCALE / 40,
@@ -324,13 +428,150 @@ impl ShipRuntime {
             refill_below: 12,
             build_above: 48,
         });
-        state.steering = Some(ConstructorState {
+        let steering = ConstructorState {
             rigid: rules.rigid(0),
-            seeking_food: true,
+            // Spend founding stock on a short four-stream root before refill.
+            // This gives nearby food the existing scaffold needed for fixation.
+            seeking_food: !rules.parallel_nozzles(),
+        };
+        let mut state = initial_snapshot(config, instances)?;
+        state.steering = Some(steering);
+        sow_blood_garden_state(&mut state)?;
+        Self::restore(state)
+    }
+    pub fn habitat_simulation(
+        mut spec: AnatomySpec,
+        seed: u64,
+        steps: usize,
+    ) -> Result<Self, MorphError> {
+        if spec.food_capacity() == 0 {
+            spec.add_food_pouch();
+        }
+        let mut state = Self::first_simulation(spec, seed, steps)?.snapshot();
+        let r = state.steering.unwrap().rigid;
+        state.habitat = Some(crate::habitat::Habitat {
+            contacts: vec![],
+            rules: crate::habitat::HabitatRules::default(),
+            agents: BTreeMap::from([(
+                1,
+                crate::habitat::Agent {
+                    rigid: r,
+                    heading: [r.yaw_sin, 0, r.yaw_cos],
+                    eating: false,
+                    born: 0,
+                    last_birth: 0,
+                    parent: None,
+                },
+            )]),
+            sacs: BTreeMap::new(),
         });
-        world = Self::restore(state)?;
-        world.validate()?;
-        Ok(world)
+        let rules = state.config.construction.as_mut().unwrap();
+        rules.foraging.as_mut().unwrap().infrastructure = true;
+        rules.foraging.as_mut().unwrap().parallel_nozzles = true;
+        rules.age = 0;
+        state.instances.get_mut(&1).unwrap().book.launch_speed = 0;
+        crate::collision::place_founders(&mut state)?;
+        Self::restore(state)
+    }
+    /// A founding group paid from the finite condensate.
+    /// `founders == 1` and `free_biomass == None` is `habitat_simulation` unchanged.
+    /// Extra founders are initial conditions. They are not scripted births, and
+    /// movement stays the authored habitat step.
+    pub fn habitat_colony(
+        spec: AnatomySpec,
+        seed: u64,
+        steps: usize,
+        founders: usize,
+        free_biomass: Option<u64>,
+    ) -> Result<Self, MorphError> {
+        let mut state = Self::habitat_simulation(spec, seed, steps)?.snapshot();
+        require(
+            (1..=16).contains(&founders),
+            "founding population is outside the habitat budget of 16",
+        )?;
+        if founders > state.habitat.as_ref().unwrap().rules.max_agents {
+            state.habitat.as_mut().unwrap().rules.max_agents = founders;
+        }
+        if let Some(free) = free_biomass {
+            require(free <= 1_000_000, "condensate abundance")?;
+            let stock = state.condensate.as_mut().unwrap();
+            let paid = stock
+                .initial
+                .checked_sub(stock.biomass)
+                .ok_or_else(|| MorphError("condensate paid more than it opened with".into()))?;
+            stock.initial = free
+                .checked_add(paid)
+                .ok_or_else(|| MorphError("condensate abundance overflow".into()))?;
+            stock.biomass = free;
+        }
+        if founders > 1 {
+            let template = state.instances[&1].clone();
+            let cost = template.book.initial;
+            let spec = state.config.definitions[&template.definition].clone();
+            for n in 1..founders {
+                let biomass = state.condensate.as_ref().unwrap().biomass;
+                require(
+                    biomass >= cost && cost > 0,
+                    "condensate cannot pay another founder",
+                )?;
+                let yaw = n as f64 * std::f64::consts::TAU / founders as f64;
+                let heading = unit_heading(yaw);
+                let mut near = template_pose(&state);
+                near.translation = template
+                    .position
+                    .offset([
+                        (yaw.cos() * 4. * SCALE as f64).round() as i64,
+                        0,
+                        (yaw.sin() * 4. * SCALE as f64).round() as i64,
+                    ])?
+                    .absolute()?;
+                near.yaw_sin = heading[0];
+                near.yaw_cos = heading[2];
+                near.axial_roll = 0;
+                let pose =
+                    crate::collision::spawn_pose(&state, template.definition, near, None)?
+                        .ok_or_else(|| MorphError("no nonpenetrating founder placement".into()))?;
+                let position = Position::from_absolute(pose.translation)?;
+                state.condensate.as_mut().unwrap().biomass -= cost;
+                let id = state.instances.keys().max().copied().unwrap() + 1;
+                let mut book = template.book.clone();
+                book.organism_id = id;
+                book.bound.clear();
+                book.tick = state.tick;
+                book.initial = cost;
+                book.external_input = 0;
+                book.reservoir = cost;
+                book.sinks = 0;
+                book.next_id = 1;
+                book.parcels.clear();
+                book.admitted.clear();
+                book.last_admit_tick.clear();
+                book.emission_enabled = true;
+                book.launch_speed = 0;
+                book.last_status = crate::emission::EmissionStatus::Disabled;
+                book.sync_nozzles(&spec);
+                state.instances.insert(
+                    id,
+                    Instance {
+                        id,
+                        definition: template.definition,
+                        position,
+                        velocity: [0; 3],
+                        exposure: exposure(&state.config, position)?,
+                        book,
+                    },
+                );
+                let mut agent = state.habitat.as_ref().unwrap().agents[&1].clone();
+                agent.rigid = pose;
+                agent.heading = heading;
+                agent.eating = false;
+                agent.born = state.tick;
+                agent.last_birth = state.tick;
+                agent.parent = None;
+                state.habitat.as_mut().unwrap().agents.insert(id, agent);
+            }
+        }
+        Self::restore(state)
     }
     /// A dozen small bodies in the near food cloud. They do not lay the snailpipe.
     pub fn sow_brood(&mut self, count: usize) -> Result<(), MorphError> {
@@ -371,61 +612,7 @@ impl ShipRuntime {
     /// Finite condensate, one local lantern, and Blood-Sacs paid out of that stock.
     /// Light gates fixation. Biomass does not appear. The witness sphere is not consulted.
     pub fn sow_blood_garden(&mut self) -> Result<(), MorphError> {
-        require(self.state.condensate.is_none(), "condensate already open")?;
-        require(
-            !self.state.config.definitions.contains_key(&BLOOD_SAC),
-            "blood sac already defined",
-        )?;
-        let spec = AnatomySpec::blood_sac(self.state.config.seed.wrapping_add(19));
-        self.state.config.definitions.insert(BLOOD_SAC, spec);
-        self.state.config.ambient_light = 0;
-        self.state.config.ports.push(LightPort {
-            id: 7,
-            position: Position::from_absolute([SCALE / 2, 0, 0])?,
-            intensity: 8_000,
-        });
-        self.state.config.ports.push(LightPort {
-            id: 8,
-            position: Position::from_absolute([0, 0, 40 * SCALE])?,
-            intensity: 8_000,
-        });
-        let founders = self
-            .state
-            .instances
-            .values()
-            .map(|organism| organism.book.initial)
-            .sum();
-        self.state.condensate = Some(Condensate {
-            initial: 4_000,
-            biomass: 4_000,
-            founders,
-        });
-        let placed: Vec<(u64, Position)> = self
-            .state
-            .instances
-            .iter()
-            .map(|(id, organism)| (*id, organism.position))
-            .collect();
-        for (id, position) in placed {
-            let lit = exposure(&self.state.config, position)?;
-            self.state.instances.get_mut(&id).unwrap().exposure = lit;
-        }
-        let clock = self.state.tick;
-        for (at, quantity) in [
-            ([SCALE, 0, 0], 6u64),
-            ([8_000 * SCALE, 0, 0], 4),
-            ([0, 0, 40 * SCALE], 4),
-            ([6 * SCALE, 0, SCALE / 5], 22),
-            ([6 * SCALE, SCALE / 3, 0], 22),
-            ([6 * SCALE + SCALE, 0, -(SCALE / 4)], 22),
-        ] {
-            pay_sac(
-                &mut self.state,
-                Position::from_absolute(at)?,
-                quantity,
-                clock,
-            )?;
-        }
+        sow_blood_garden_state(&mut self.state)?;
         self.outputs = outputs(&self.state.config)?;
         self.validate()
     }
@@ -470,6 +657,18 @@ impl ShipRuntime {
             )?;
         }
         match &command.action {
+            Operation::SetEnvironment { environment }
+                if self
+                    .state
+                    .habitat
+                    .as_ref()
+                    .is_some_and(|h| h.rules.collisions) =>
+            {
+                require(
+                    *environment == Environment::suspended(),
+                    "force-field changes need collision-aware droplet integration",
+                )?;
+            }
             Operation::SetEmission { organism, .. } => require(
                 self.state.instances.contains_key(organism),
                 "unknown emission target",
@@ -499,6 +698,22 @@ impl ShipRuntime {
         });
         self.state.pending.push(command);
         self.state.pending.sort_by_key(|c| (c.tick, c.sequence));
+        Ok(())
+    }
+    /// Query counters for the last ticks. Not part of the world digest.
+    pub fn collision_profile(&self) -> crate::collision::CollisionProfile {
+        self.collision_cache.profile()
+    }
+    /// Diagnostic only. Turns habitat collision mode off for this runtime.
+    /// Sac offsets, birth placement, spawn checks, and `collision::resolve`
+    /// all follow the flag. The product default stays on. The resulting world
+    /// is not an acceptable simulation.
+    pub fn diagnostic_disable_collisions(&mut self) -> Result<(), MorphError> {
+        let habitat =
+            self.state.habitat.as_mut().ok_or_else(|| {
+                MorphError("diagnostic collision switch requires a habitat".into())
+            })?;
+        habitat.rules.collisions = false;
         Ok(())
     }
     pub fn tick(&mut self) -> Result<(), MorphError> {
@@ -533,11 +748,48 @@ impl ShipRuntime {
             });
         }
         let construction = next.config.construction.clone();
-        let steering = steer_constructor(&next)?;
+        let mut habitat_plans = if next.habitat.is_some() {
+            crate::habitat::prepare(&mut next)?
+        } else {
+            BTreeMap::new()
+        };
+        crate::collision::resolve(
+            &self.state,
+            &mut next,
+            &mut habitat_plans,
+            &mut self.collision_cache,
+        )?;
+        let steering = if next.habitat.is_some() {
+            habitat_plans
+                .get(&construction.as_ref().unwrap().organism)
+                .copied()
+        } else {
+            steer_constructor(&next)?
+        };
+        let physical_next = next
+            .habitat
+            .as_ref()
+            .is_some_and(|h| h.rules.collisions)
+            .then(|| next.clone());
         for i in next.instances.values_mut() {
             require(i.book.tick == tick, "material substate timeline mismatch")?;
-            let active = construction.as_ref().filter(|r| r.organism == i.id);
-            let mut nozzle_position = None;
+            let mut per_body = construction.clone();
+            if habitat_plans.contains_key(&i.id) {
+                let r = per_body.as_mut().unwrap();
+                r.organism = i.id;
+                r.nozzle = *i
+                    .book
+                    .registered
+                    .first()
+                    .ok_or_else(|| MorphError("constructor nozzle missing".into()))?;
+            }
+            let active = per_body.as_ref().filter(|r| r.organism == i.id);
+            let steering = if next.habitat.is_some() {
+                habitat_plans.get(&i.id).copied()
+            } else {
+                steering
+            };
+            let mut nozzle_positions = BTreeMap::new();
             let frame_outputs = if let Some(r) = active {
                 let posed = self
                     .animator
@@ -565,10 +817,68 @@ impl ShipRuntime {
                     .collect::<Result<Vec<_>, MorphError>>()?
             };
             for nozzle in frame_outputs {
-                if active.is_some_and(|r| r.nozzle == nozzle.nozzle_id) {
-                    nozzle_position = Some(Position::from_absolute(nozzle.origin)?);
+                if active.is_some() {
+                    nozzle_positions
+                        .insert(nozzle.nozzle_id, Position::from_absolute(nozzle.origin)?);
+                }
+                if let Some(h) = &next.habitat {
+                    let capacity = next.config.definitions[&i.definition].food_capacity();
+                    let reserve = h.rules.reserve_food.min(capacity / 4);
+                    if i.book.external_input > 0
+                        && i.book.bound.len() >= i.book.registered.len() * 8
+                        && i.book.reservoir <= reserve
+                    {
+                        continue;
+                    }
                 }
                 if active.is_some_and(|r| !r.emitting(tick)) {
+                    continue;
+                }
+                if active.is_some_and(|r| r.foraging.as_ref().is_some_and(|f| f.trail_on_motion)) {
+                    let origin = i.position.absolute()?;
+                    if steering.is_none_or(|state| state.rigid.translation == origin) {
+                        continue;
+                    }
+                }
+                // Parallel nozzles can spend an entire bite in one tick. Refill
+                // first, then lay while building; otherwise four outlets park
+                // forever at a four-unit meal with no reserve for a building pass.
+                if active.is_some_and(|rules| rules.parallel_nozzles())
+                    && steering.is_some_and(|state| state.seeking_food)
+                {
+                    continue;
+                }
+                if let Some(physical) = &physical_next
+                    && let Some(target) = crate::collision::emission_obstacle(
+                        physical,
+                        next.assembly.as_ref().unwrap(),
+                        i.id,
+                        nozzle.nozzle_id,
+                        nozzle.origin,
+                        &mut self.collision_cache,
+                    )?
+                {
+                    let observation = crate::collision::ContactObservation {
+                        at: tick,
+                        predicted: true,
+                        organism: i.id,
+                        target,
+                        point: Position::from_absolute(nozzle.origin)?,
+                        normal: [0; 3],
+                        response: crate::collision::ContactResponse::SecretionBlocked,
+                        toi_millionths: 0,
+                    };
+                    next.habitat
+                        .as_mut()
+                        .unwrap()
+                        .contacts
+                        .push(observation.clone());
+                    next.events.push(Event::Contact { observation });
+                    next.events.push(Event::EmissionRejected {
+                        at: tick,
+                        organism: i.id,
+                        reason: "PhysicalObstruction".into(),
+                    });
                     continue;
                 }
                 let status = i.book.try_emit(EmitRequest {
@@ -601,6 +911,7 @@ impl ShipRuntime {
             }
             i.book.step()?;
             if let Some(r) = active {
+                let mut candidates_per_nozzle = BTreeMap::<u64, usize>::new();
                 let eligible = if manual_deposits.iter().any(|(id, _)| *id == i.id) {
                     manual_deposits
                         .iter()
@@ -612,7 +923,15 @@ impl ShipRuntime {
                         .parcels
                         .iter()
                         .filter(|p| i.book.tick.saturating_sub(p.created_tick) >= r.age)
-                        .take(32)
+                        .filter(|p| {
+                            if !r.parallel_nozzles() {
+                                return true;
+                            }
+                            let count = candidates_per_nozzle.entry(p.nozzle_id).or_default();
+                            *count += 1;
+                            *count <= 32
+                        })
+                        .take(if r.parallel_nozzles() { 4096 } else { 32 })
                         .map(|p| p.id)
                         .collect::<Vec<_>>()
                 };
@@ -624,18 +943,48 @@ impl ShipRuntime {
                         reason: "NoEligibleMaterial".into(),
                     });
                 }
+                let mut deposited_nozzles = BTreeSet::new();
                 for parcel in eligible {
-                    let result = next
-                        .assembly
-                        .as_mut()
-                        .ok_or_else(|| MorphError("assembly missing".into()))?
-                        .deposit(
-                            &mut i.book,
+                    let nozzle = i
+                        .book
+                        .parcels
+                        .iter()
+                        .find(|p| p.id == parcel)
+                        .ok_or_else(|| MorphError("assembly parcel missing".into()))?
+                        .nozzle_id;
+                    if deposited_nozzles.contains(&nozzle) {
+                        continue;
+                    }
+                    if let Some(physical) = &physical_next
+                        && !crate::collision::deposit_allowed(
+                            physical,
+                            next.assembly.as_ref().unwrap(),
+                            &i.book,
                             r,
                             parcel,
-                            nozzle_position
-                                .ok_or_else(|| MorphError("construction nozzle missing".into()))?,
-                        );
+                            &mut self.collision_cache,
+                        )?
+                    {
+                        next.events.push(Event::AssemblyRejected {
+                            at: tick,
+                            organism: i.id,
+                            parcel: Some(parcel),
+                            reason: "PhysicalObstruction".into(),
+                        });
+                        continue;
+                    }
+                    let result =
+                        next.assembly
+                            .as_mut()
+                            .ok_or_else(|| MorphError("assembly missing".into()))?
+                            .deposit(
+                                &mut i.book,
+                                r,
+                                parcel,
+                                nozzle_positions.get(&nozzle).copied().ok_or_else(|| {
+                                    MorphError("construction nozzle missing".into())
+                                })?,
+                            );
                     match result {
                         Ok((filament, node, quantity)) => {
                             next.events.push(Event::Deposited {
@@ -646,7 +995,10 @@ impl ShipRuntime {
                                 node,
                                 quantity,
                             });
-                            break;
+                            deposited_nozzles.insert(nozzle);
+                            if !r.parallel_nozzles() {
+                                break;
+                            }
                         }
                         Err(e) => next.events.push(Event::AssemblyRejected {
                             at: tick,
@@ -737,7 +1089,12 @@ impl ShipRuntime {
             }
         }
         blood_tick(&mut next)?;
-        birth(&mut next)?;
+        if next.habitat.is_some() {
+            crate::habitat::finish(&mut next)?;
+            crate::collision::admit_roots(&self.state, &mut next, &mut self.collision_cache)?;
+        } else {
+            birth(&mut next)?;
+        }
         next.tick = tick
             .checked_add(1)
             .ok_or_else(|| MorphError("world tick overflow".into()))?;
@@ -810,6 +1167,17 @@ impl ShipRuntime {
                 "exposure mismatch",
             )?;
         }
+        require(s.solids.len() <= 1024, "physical obstacle budget")?;
+        let mut solid_ids = BTreeSet::new();
+        for obstacle in &s.solids {
+            let min = obstacle.min.absolute()?;
+            let max = obstacle.max.absolute()?;
+            require(
+                solid_ids.insert(obstacle.id) && (0..3).all(|k| max[k] > min[k]),
+                "invalid physical obstacle",
+            )?;
+        }
+        crate::habitat::validate(s)?;
         if let Some(r) = &s.config.construction {
             r.validate()?;
             require(
@@ -859,10 +1227,22 @@ impl ShipRuntime {
                     "trajectory state mismatch",
                 )?;
             }
-            s.assembly
-                .as_ref()
-                .ok_or_else(|| MorphError("missing assembly state".into()))?
-                .validate(&i.book, r)?;
+            if let Some(h) = &s.habitat {
+                for id in h.agents.keys() {
+                    let mut per_body = r.clone();
+                    per_body.organism = *id;
+                    per_body.nozzle = *s.instances[id].book.registered.first().unwrap();
+                    s.assembly
+                        .as_ref()
+                        .unwrap()
+                        .validate(&s.instances[id].book, &per_body)?;
+                }
+            } else {
+                s.assembly
+                    .as_ref()
+                    .ok_or_else(|| MorphError("missing assembly state".into()))?
+                    .validate(&i.book, r)?;
+            }
         } else {
             require(
                 s.steering.is_none()
@@ -893,6 +1273,31 @@ impl ShipRuntime {
             .collect();
         for e in &s.events {
             match e {
+                Event::Contact { observation } => {
+                    require(
+                        observation.at < s.tick
+                            && s.instances.contains_key(&observation.organism)
+                            && observation.toi_millionths <= 1_000_000,
+                        "invalid contact observation",
+                    )?;
+                    observation.point.absolute()?;
+                }
+                Event::Reproduced {
+                    at,
+                    parent,
+                    child,
+                    quantity,
+                } => {
+                    require(
+                        *at < s.tick
+                            && *quantity > 0
+                            && s.instances.contains_key(parent)
+                            && s.instances
+                                .get(child)
+                                .is_some_and(|i| i.book.initial == *quantity),
+                        "invalid reproductive transfer",
+                    )?;
+                }
                 Event::Deposited {
                     at,
                     organism,
@@ -1145,7 +1550,7 @@ fn pay_sac(
     insert_sac(world, position, quantity, clock)
 }
 
-fn insert_sac(
+pub(crate) fn insert_sac(
     world: &mut WorldSnapshot,
     position: Position,
     quantity: u64,
@@ -1251,6 +1656,7 @@ fn steer_constructor(world: &WorldSnapshot) -> Result<Option<ConstructorState>, 
     }
     let mut rigid = state.rigid;
     if !state.seeking_food {
+        rigid.axial_roll = (rigid.axial_roll + rules.axial_spin).rem_euclid(6_283_185);
         // A fed constructor advances along its current axis while paying for
         // secretion. No learned controller or propulsion law is implied.
         if body.book.emission_enabled && body.book.reservoir > 0 {
@@ -1364,6 +1770,13 @@ fn blood_tick(world: &mut WorldSnapshot) -> Result<(), MorphError> {
         .collect();
     for id in sacs {
         let organism = &world.instances[&id];
+        if world
+            .habitat
+            .as_ref()
+            .is_some_and(|h| !h.sacs.contains_key(&id))
+        {
+            continue;
+        }
         if organism.book.reservoir >= 64
             || organism.exposure < 30
             || !beside_flesh(organism.position, &flesh)?
@@ -1396,6 +1809,10 @@ fn blood_tick(world: &mut WorldSnapshot) -> Result<(), MorphError> {
         .values()
         .filter(|organism| {
             organism.definition != BLOOD_SAC
+                && world
+                    .habitat
+                    .as_ref()
+                    .is_none_or(|h| h.agents.get(&organism.id).is_some_and(|a| a.eating))
                 && (foraging.is_some() || Some(organism.id) != builder)
                 && (Some(organism.id) != builder
                     || world.steering.is_none_or(|state| state.seeking_food))
@@ -1414,15 +1831,27 @@ fn blood_tick(world: &mut WorldSnapshot) -> Result<(), MorphError> {
         .flatten()
         .collect();
     for (eater, mouth) in mouths {
-        let radius = foraging.as_ref().map_or(2 * SCALE, |r| r.mouth_radius);
+        let radius = if world.habitat.is_some() {
+            420_000
+        } else {
+            foraging.as_ref().map_or(2 * SCALE, |r| r.mouth_radius)
+        };
         let Some(sac) = meal_within(world, mouth, radius)? else {
             continue;
+        };
+        let room = if world.habitat.is_some() {
+            world.config.definitions[&world.instances[&eater].definition]
+                .food_capacity()
+                .saturating_sub(world.instances[&eater].book.reservoir)
+        } else {
+            u64::MAX
         };
         let gulp = world.instances[&sac]
             .book
             .reservoir
             .saturating_sub(1)
-            .min(foraging.as_ref().map_or(8, |r| r.bite));
+            .min(foraging.as_ref().map_or(8, |r| r.bite))
+            .min(room);
         if gulp == 0 {
             continue;
         }
@@ -1437,7 +1866,12 @@ fn blood_tick(world: &mut WorldSnapshot) -> Result<(), MorphError> {
                 mouth,
             });
         }
-        hemorrhage(world, sac, clock, 18)?;
+        if world.habitat.is_none() {
+            hemorrhage(world, sac, clock, 18)?;
+        }
+    }
+    if world.habitat.is_some() {
+        return Ok(());
     }
     let mature: Vec<u64> = world
         .instances
@@ -1452,12 +1886,26 @@ fn blood_tick(world: &mut WorldSnapshot) -> Result<(), MorphError> {
 }
 
 impl WorldSnapshot {
+    pub fn contact_observations(
+        &self,
+        organism: u64,
+    ) -> Vec<&crate::collision::ContactObservation> {
+        self.habitat.as_ref().map_or_else(Vec::new, |h| {
+            h.contacts
+                .iter()
+                .filter(|c| c.organism == organism)
+                .collect()
+        })
+    }
     /// Shared by numerical landmarks and the renderer. Camera state is never read.
     pub fn body_pose(&self, organism: u64) -> Result<RigidPose, MorphError> {
         let instance = self
             .instances
             .get(&organism)
             .ok_or_else(|| MorphError("body missing".into()))?;
+        if let Some(agent) = self.habitat.as_ref().and_then(|h| h.agents.get(&organism)) {
+            return Ok(agent.rigid);
+        }
         if let Some(rules) = self
             .config
             .construction
@@ -1486,6 +1934,22 @@ impl WorldSnapshot {
             .get(&organism)
             .ok_or_else(|| MorphError("body missing".into()))?;
         let spec = &self.config.definitions[&instance.definition];
+        if self
+            .habitat
+            .as_ref()
+            .is_some_and(|h| h.agents.contains_key(&organism))
+        {
+            let eating = self
+                .habitat
+                .as_ref()
+                .unwrap()
+                .agents
+                .get(&organism)
+                .is_some_and(|agent| agent.eating);
+            return Ok(crate::collision::habitat_presentation_pose(
+                spec, tick, eating,
+            ));
+        }
         if let Some(rules) = self
             .config
             .construction

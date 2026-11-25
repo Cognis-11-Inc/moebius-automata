@@ -9,6 +9,16 @@ use std::collections::{BTreeMap, BTreeSet};
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ForagingRules {
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub infrastructure: bool,
+    /// New trail mode: material is emitted only on a committed moving step.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub trail_on_motion: bool,
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub parallel_nozzles: bool,
+    /// Authored axial rotation while building, in microradians per tick.
+    #[serde(default, skip_serializing_if = "crate::emission::is_zero")]
+    pub axial_spin: i64,
     pub search_radius: i64,
     pub mouth_radius: i64,
     pub step: i64,
@@ -19,7 +29,8 @@ pub struct ForagingRules {
 impl ForagingRules {
     pub fn validate(&self) -> Result<(), MorphError> {
         require(
-            self.mouth_radius > 0
+            self.axial_spin.unsigned_abs() <= 100_000
+                && self.mouth_radius > 0
                 && self.mouth_radius <= SCALE
                 && self.search_radius > self.mouth_radius
                 && self.search_radius <= 80 * SCALE
@@ -51,6 +62,11 @@ pub struct ConstructionRules {
     pub max_events: usize,
 }
 impl ConstructionRules {
+    pub fn parallel_nozzles(&self) -> bool {
+        self.foraging
+            .as_ref()
+            .is_some_and(|rules| rules.parallel_nozzles)
+    }
     pub fn validate(&self) -> Result<(), MorphError> {
         if let Some(rules) = &self.foraging {
             rules.validate()?;
@@ -84,6 +100,7 @@ impl ConstructionRules {
             "invalid structural/history budget",
         )?;
         for p in &self.route {
+            crate::emission::place_point([0.; 3], *p)?;
             Position::from_absolute(p.translation)?;
             crate::emission::AuthoredTrajectory {
                 origin: p.translation,
@@ -105,6 +122,8 @@ impl ConstructionRules {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Node {
+    #[serde(default, skip_serializing_if = "is_zero_tick")]
+    pub deposited_tick: u64,
     pub id: u64,
     pub parcel: u64,
     pub position: Position,
@@ -118,7 +137,29 @@ pub struct Chew {
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
+pub struct PipeSection {
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub start_sealed: bool,
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub end_sealed: bool,
+    pub outer_radius: i64,
+    pub inner_radius: i64,
+}
+impl PipeSection {
+    pub fn radii_at(&self, age: u64) -> (f32, f32) {
+        let wet = (1. - age as f32 / 192.).clamp(0., 1.);
+        let scale = (0.7 + 0.3 * wet) / SCALE as f32;
+        (
+            self.outer_radius as f32 * scale,
+            self.inner_radius as f32 * scale,
+        )
+    }
+}
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Filament {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub section: Option<PipeSection>,
     pub id: u64,
     pub organism: u64,
     pub nozzle: u64,
@@ -131,13 +172,25 @@ pub struct Filament {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Assembly {
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub junctions: Vec<Junction>,
     pub next_id: u64,
     pub filaments: BTreeMap<u64, Filament>,
     pub active: Option<u64>,
 }
+fn is_zero_tick(value: &u64) -> bool {
+    *value == 0
+}
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Junction {
+    pub first: (u64, u64),
+    pub second: (u64, u64),
+}
 impl Default for Assembly {
     fn default() -> Self {
         Self {
+            junctions: vec![],
             next_id: 1,
             filaments: BTreeMap::new(),
             active: None,
@@ -148,6 +201,21 @@ fn distance2(a: Position, b: Position) -> Result<i128, MorphError> {
     Ok(a.relative(b)?.iter().map(|v| i128::from(*v).pow(2)).sum())
 }
 impl Assembly {
+    /// A wall contact is not a lumen junction. No cross-filament passage is
+    /// currently admitted; future branches must add and validate that contract.
+    pub fn lumen_connected(&self, first: (u64, u64), second: (u64, u64)) -> bool {
+        let open = |key: (u64, u64)| {
+            let Some(f) = self.filaments.get(&key.0) else {
+                return false;
+            };
+            let Some(p) = &f.section else { return false };
+            let Some(index) = f.nodes.iter().position(|n| n.id == key.1) else {
+                return false;
+            };
+            !(index == 0 && p.start_sealed || index + 1 == f.nodes.len() && p.end_sealed)
+        };
+        first.0 == second.0 && open(first) && open(second)
+    }
     pub fn nodes(&self) -> usize {
         self.filaments.values().map(|f| f.nodes.len()).sum()
     }
@@ -166,7 +234,8 @@ impl Assembly {
             .ok_or_else(|| MorphError("NoAvailableMaterial".into()))?;
         require(
             p.organism_id == r.organism
-                && p.nozzle_id == r.nozzle
+                && (p.nozzle_id == r.nozzle
+                    || (r.parallel_nozzles() && book.registered.contains(&p.nozzle_id)))
                 && p.material == MaterialKind::Secretion,
             "incompatible provenance",
         )?;
@@ -180,7 +249,15 @@ impl Assembly {
             "BeyondCaptureRadius",
         )?;
         require(self.nodes() < r.max_nodes, "NodeBudget")?;
-        let mut id = self.active.unwrap_or(self.next_id);
+        let mut id = if r.parallel_nozzles() {
+            self.filaments
+                .iter()
+                .rev()
+                .find(|(_, f)| f.organism == p.organism_id && f.nozzle == p.nozzle_id)
+                .map_or(self.next_id, |(id, _)| *id)
+        } else {
+            self.active.unwrap_or(self.next_id)
+        };
         if let Some(f) = self.filaments.get(&id) {
             let last = f
                 .nodes
@@ -188,7 +265,9 @@ impl Assembly {
                 .ok_or_else(|| MorphError("empty existing filament".into()))?;
             let d = distance2(last.position, position)?;
             require(d >= i128::from(r.min_length).pow(2), "SegmentTooShort")?;
-            if d > i128::from(r.max_length).pow(2) {
+            if d > i128::from(r.max_length).pow(2)
+                || f.section.as_ref().is_some_and(|p| p.end_sealed)
+            {
                 id = self.next_id;
             }
         }
@@ -217,8 +296,18 @@ impl Assembly {
         book.bind(parcel, p.quantity, id, node)?;
         let f = self.filaments.entry(id).or_insert_with(|| Filament {
             id,
+            section: r
+                .foraging
+                .as_ref()
+                .is_some_and(|r| r.infrastructure)
+                .then_some(PipeSection {
+                    outer_radius: 50_000,
+                    inner_radius: 31_000,
+                    start_sealed: true,
+                    end_sealed: false,
+                }),
             organism: r.organism,
-            nozzle: r.nozzle,
+            nozzle: p.nozzle_id,
             created_tick: book.tick,
             experiment: r.experiment.clone(),
             material: p.material,
@@ -227,12 +316,37 @@ impl Assembly {
         });
         f.quantity = total;
         f.nodes.push(Node {
+            deposited_tick: if r.foraging.as_ref().is_some_and(|r| r.infrastructure) {
+                book.tick
+            } else {
+                0
+            },
             id: node,
             parcel,
             position,
         });
         self.next_id = next_id;
         self.active = Some(id);
+        if r.foraging.as_ref().is_some_and(|r| r.infrastructure) && self.junctions.len() < 256 {
+            let choice = self
+                .filaments
+                .values()
+                .filter(|f| f.id != id)
+                .flat_map(|f| f.nodes.iter().map(move |n| (f.id, n)))
+                .filter_map(|(f, n)| distance2(position, n.position).ok().map(|d| (d, f, n.id)))
+                .filter(|(d, _, _)| *d <= i128::from(80_000).pow(2))
+                .min();
+            if let Some((_, other, other_node)) = choice {
+                // A topological contact between two already-paid deposits, no bridge material.
+                let first = (id, node);
+                let second = (other, other_node);
+                if !self.junctions.iter().any(|j| {
+                    j.first.0 == id && j.second.0 == other || j.first.0 == other && j.second.0 == id
+                }) {
+                    self.junctions.push(Junction { first, second });
+                }
+            }
+        }
         Ok((id, node, p.quantity))
     }
     pub fn validate(&self, book: &MaterialBook, r: &ConstructionRules) -> Result<(), MorphError> {
@@ -245,26 +359,60 @@ impl Assembly {
                 .is_none_or(|id| self.filaments.contains_key(&id)),
             "dangling active filament",
         )?;
+        require(self.junctions.len() <= 256, "junction budget")?;
+        for junction in &self.junctions {
+            let point = |key: (u64, u64)| {
+                self.filaments
+                    .get(&key.0)
+                    .and_then(|f| f.nodes.iter().find(|n| n.id == key.1))
+                    .map(|n| n.position)
+            };
+            let a = point(junction.first).ok_or_else(|| MorphError("dangling junction".into()))?;
+            let b = point(junction.second).ok_or_else(|| MorphError("dangling junction".into()))?;
+            require(
+                junction.first.0 != junction.second.0
+                    && distance2(a, b)? <= i128::from(80_000).pow(2),
+                "unbacked junction span",
+            )?;
+        }
+        let bound_index = book
+            .bound
+            .iter()
+            .map(|b| ((b.filament, b.node), b))
+            .collect::<BTreeMap<_, _>>();
         let mut used = BTreeSet::new();
         for (&id, f) in &self.filaments {
+            if r.foraging.as_ref().is_some_and(|f| f.infrastructure)
+                && f.organism != book.organism_id
+            {
+                continue;
+            }
             require(
                 id == f.id
                     && id > 0
                     && id < self.next_id
                     && f.organism == r.organism
-                    && f.nozzle == r.nozzle
+                    && (f.nozzle == r.nozzle
+                        || (r.parallel_nozzles() && book.registered.contains(&f.nozzle)))
                     && f.experiment == r.experiment
                     && !f.nodes.is_empty()
                     && f.created_tick <= book.tick
                     && f.material == MaterialKind::Secretion,
                 "invalid filament identity/provenance",
             )?;
+            if let Some(section) = &f.section {
+                require(
+                    section.inner_radius >= 1000
+                        && section.inner_radius < section.outer_radius
+                        && section.outer_radius <= 80_000,
+                    "invalid hollow pipe section",
+                )?;
+            }
             let mut quantity = 0u64;
             for (n, node) in f.nodes.iter().enumerate() {
-                let b = book
-                    .bound
-                    .iter()
-                    .find(|b| b.filament == id && b.node == node.id)
+                let b = bound_index
+                    .get(&(id, node.id))
+                    .copied()
                     .ok_or_else(|| MorphError("structure without bound material".into()))?;
                 require(
                     node.id > 0
@@ -273,7 +421,8 @@ impl Assembly {
                         && b.parcel.id == node.parcel
                         && b.parcel.position == node.position.absolute()?
                         && b.parcel.nozzle_id == f.nozzle
-                        && b.parcel.organism_id == f.organism,
+                        && b.parcel.organism_id == f.organism
+                        && (f.section.is_none() || node.deposited_tick == b.bound_tick),
                     "bound node provenance mismatch",
                 )?;
                 if n == 0 {
@@ -370,6 +519,8 @@ impl Assembly {
             }
             (node, quantity, filament.nodes.is_empty())
         };
+        self.junctions
+            .retain(|j| j.first != (filament_id, node.id) && j.second != (filament_id, node.id));
         if empty {
             self.filaments.remove(&filament_id);
             if self.active == Some(filament_id) {
@@ -430,6 +581,18 @@ pub fn construction_from(
     reserve: u64,
     kind: &str,
 ) -> Result<crate::runtime::ShipRuntime, MorphError> {
+    let (config, instances) = construction_setup(spec, seed, steps, reserve, kind)?;
+    crate::runtime::ShipRuntime::new(config, instances)
+}
+
+/// Build the inputs before runtime validation so callers can install their mode's rules.
+pub(crate) fn construction_setup(
+    spec: AnatomySpec,
+    seed: u64,
+    steps: usize,
+    reserve: u64,
+    kind: &str,
+) -> Result<(crate::runtime::WorldConfig, Vec<crate::runtime::Instance>), MorphError> {
     use crate::{
         emission::{Environment, MaterialBook},
         runtime::*,
@@ -513,7 +676,7 @@ pub fn construction_from(
         definitions: BTreeMap::from([(1, spec)]),
         construction: Some(r),
     };
-    ShipRuntime::new(
+    Ok((
         config,
         vec![Instance {
             id: 1,
@@ -523,7 +686,7 @@ pub fn construction_from(
             exposure: 10,
             book,
         }],
-    )
+    ))
 }
 
 /// Derived presentation index; never serialized as authoritative state.16-edge chunks,
@@ -549,6 +712,8 @@ impl StructuralIndex {
                         high[axis] = high[axis].max(p[axis]);
                     }
                 }
+                low = low.map(|v| v - 300_000);
+                high = high.map(|v| v + 300_000);
                 let key = (f.id, start / CHUNK_EDGES);
                 index.chunks.insert(key, (low, high));
                 let first = low.map(|v| v.div_euclid(crate::runtime::REGION));
@@ -606,7 +771,7 @@ impl StructuralIndex {
             .collect())
     }
 }
-/// Presentation surface from existing graph samples; no quantity writes or implicit support.
+/// Presentation-only sweeps. All samples derive from paid nodes; no book writes.
 pub fn filament_chunk(f: &Filament, chunk: usize) -> Result<(Position, Surface), MorphError> {
     use crate::math::*;
     let start = chunk * CHUNK_EDGES;
@@ -659,6 +824,147 @@ pub fn filament_chunk(f: &Filament, chunk: usize) -> Result<(Position, Surface),
     let tip = mesh.vertex(*points.last().unwrap(), [0.5, 1.], color);
     for j in 0..sides as u32 {
         mesh.triangle(previous + j, previous + (j + 1) % sides as u32, tip);
+    }
+    mesh.normals();
+    Ok((origin, mesh))
+}
+
+/// Subdivided cubic Hermite sweep with global neighbour tangents shared across chunks.
+pub fn filament_chunk_at(
+    f: &Filament,
+    chunk: usize,
+    tick: u64,
+) -> Result<(Position, Surface), MorphError> {
+    use crate::math::*;
+    let Some(section) = &f.section else {
+        return filament_chunk(f, chunk);
+    };
+    let start = chunk * CHUNK_EDGES;
+    let end = (start + CHUNK_EDGES).min(f.nodes.len().saturating_sub(1));
+    require(end > start, "no structural edge in chunk")?;
+    let origin = f.nodes[start].position;
+    let point = |k: usize| -> Result<V, MorphError> {
+        Ok(f.nodes[k]
+            .position
+            .relative(origin)?
+            .map(|v| v as f32 / SCALE as f32))
+    };
+    let tangent = |k: usize| -> Result<V, MorphError> {
+        let left = k.saturating_sub(1);
+        let right = (k + 1).min(f.nodes.len() - 1);
+        let t = sub(point(right)?, point(left)?);
+        let scale = if left == k || right == k { 1. } else { 0.5 };
+        Ok(mul(t, scale))
+    };
+    let mut mesh = Surface::new("persistent_snailpipe_sweep");
+    let mut previous = 0;
+    let mut previous_inner = 0;
+    let sides = 10;
+    for edge in start..end {
+        for sample in 0..=3 {
+            if edge > start && sample == 0 {
+                continue;
+            }
+            let t = sample as f32 / 3.;
+            let p = point(edge)?;
+            let q = point(edge + 1)?;
+            let m = tangent(edge)?;
+            let n = tangent(edge + 1)?;
+            let center = add(
+                add(
+                    mul(p, 2. * t * t * t - 3. * t * t + 1.),
+                    mul(m, t * t * t - 2. * t * t + t),
+                ),
+                add(
+                    mul(q, -2. * t * t * t + 3. * t * t),
+                    mul(n, t * t * t - t * t),
+                ),
+            );
+            let direction = add(
+                add(
+                    mul(p, 6. * t * t - 6. * t),
+                    mul(m, 3. * t * t - 4. * t + 1.),
+                ),
+                add(mul(q, -6. * t * t + 6. * t), mul(n, 3. * t * t - 2. * t)),
+            );
+            let unit_direction = unit(direction);
+            let reference = if unit_direction[1].abs() < 0.95 {
+                [0., 1., 0.]
+            } else {
+                [1., 0., 0.]
+            };
+            let (x, y) = frame(unit_direction, reference);
+            let born = f.nodes[edge].deposited_tick.max(f.created_tick) as f32 * (1. - t)
+                + f.nodes[edge + 1].deposited_tick.max(f.created_tick) as f32 * t;
+            let age = (tick as f32 - born).max(0.);
+            let wet = (1. - age / 192.).clamp(0., 1.);
+            let phase = edge as f32 + t;
+            let ridges = 1. + 0.065 * (phase * 2.1).sin().powi(6);
+            let (radius, lumen) = section.radii_at(age as u64);
+            let radius = radius * ridges * (1. + 0.035 * (phase * 0.37 + f.nozzle as f32).sin());
+            let color = mix([0.36, 0.27, 0.16], [0.62, 0.41, 0.35], wet);
+            let ring = crate::compiler::ring(
+                &mut mesh,
+                center,
+                (x, y),
+                [radius, radius * 0.94],
+                phase,
+                sides,
+                color,
+            );
+            let at_start = edge == 0 && sample == 0 && section.start_sealed;
+            let at_end = edge + 1 == f.nodes.len() - 1 && sample == 3 && section.end_sealed;
+            let cap_depth = (radius - lumen).min(length(sub(q, p)) * 0.25);
+            let inner_center = if at_start {
+                add(center, mul(unit_direction, cap_depth))
+            } else if at_end {
+                sub(center, mul(unit_direction, cap_depth))
+            } else {
+                center
+            };
+            let inner = crate::compiler::ring(
+                &mut mesh,
+                inner_center,
+                (x, y),
+                [lumen, lumen * 0.94],
+                phase,
+                sides,
+                mul(color, 0.70),
+            );
+            if edge == start && sample == 0 {
+                if at_start {
+                    let outside = mesh.vertex(center, [0.5, 0.], color);
+                    let inside = mesh.vertex(inner_center, [0.5, 0.], mul(color, 0.70));
+                    for j in 0..sides as u32 {
+                        let k = (j + 1) % sides as u32;
+                        mesh.triangle(outside, ring + k, ring + j);
+                        mesh.triangle(inside, inner + j, inner + k);
+                    }
+                } else {
+                    mesh.bridge(inner, ring, sides);
+                }
+            } else {
+                mesh.bridge(previous, ring, sides);
+                mesh.bridge(inner, previous_inner, sides);
+            }
+            previous = ring;
+            previous_inner = inner;
+        }
+    }
+    if end == f.nodes.len() - 1 && section.end_sealed {
+        let center = point(end)?;
+        let t = unit(tangent(end)?);
+        let (outer, inner) = section.radii_at(tick.saturating_sub(f.nodes[end].deposited_tick));
+        let depth = (outer - inner).min(length(sub(point(end)?, point(end - 1)?)) * 0.25);
+        let outside = mesh.vertex(center, [0.5, 1.], [0.36, 0.27, 0.16]);
+        let inside = mesh.vertex(sub(center, mul(t, depth)), [0.5, 1.], [0.25, 0.18, 0.12]);
+        for j in 0..sides as u32 {
+            let k = (j + 1) % sides as u32;
+            mesh.triangle(outside, previous + j, previous + k);
+            mesh.triangle(inside, previous_inner + k, previous_inner + j);
+        }
+    } else {
+        mesh.bridge(previous, previous_inner, sides);
     }
     mesh.normals();
     Ok((origin, mesh))
