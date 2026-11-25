@@ -112,7 +112,7 @@ The first allocation pair accidentally used identical executables from a shared 
 
 ## Validation and remaining gates
 
-Focused restored source:81 tests pass (17 morph library,8 collision,7 composition,5 emission,9 filament,12 habitat,14 lab library,9 witness). Three intentionally injected normal/history-budget/resolve faults fail their focused assertions and restore byte-identically; the actual tetrahedron panic also has honest-red/restored evidence. The initial8-tick probe did not reach that panic and is not counted as honest-red. Strict Clippy/format checks pass; final clean-commit full workspace certification is recorded separately after execution.
+Focused restored source:81 tests pass (17 morph library,8 collision,7 composition,5 emission,9 filament,12 habitat,14 lab library,9 witness). Three intentionally injected normal/history-budget/resolve faults fail their focused assertions and restore byte-identically; the actual tetrahedron panic also has honest-red/restored evidence. The initial8-tick probe did not reach that panic and is not counted as honest-red. Strict Clippy/format checks pass. The full workspace suite passed228 tests, zero failures/ignored, on clean commit `cdc3acdc865ae48011e2c65f370428f1f312e915`. See the [exact source and archive receipt](SIMULATION_0001_PERFORMANCE_VALIDATION.json); this follow-up changes documentation only.
 
 **Performance remains unacceptable.** The congested save, population spikes, growing-run slowdown and native tick stalls all fail the working total-authority budget. No new biology is admitted. No sustainable ecology, mortality, metabolism, learned motion or enormous-population capacity is established.
 

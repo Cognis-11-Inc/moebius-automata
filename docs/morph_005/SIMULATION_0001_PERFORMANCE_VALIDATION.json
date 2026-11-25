@@ -1,0 +1,63 @@
+{
+  "status": "PASS_CLEAN_SOURCE_CONTRACTS",
+  "source_commit": "cdc3acdc865ae48011e2c65f370428f1f312e915",
+  "clean_before": true,
+  "git_status_before": "",
+  "command": [
+    "cargo",
+    "test",
+    "--workspace",
+    "--release",
+    "--offline",
+    "--",
+    "--test-threads=8"
+  ],
+  "started_utc": "2026-11-25T23:09:05.397796+00:00",
+  "environment": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+  "returncode": 0,
+  "completed_utc": "2026-11-25T23:09:24.451249+00:00",
+  "result_lines": 32,
+  "passed": 228,
+  "failed": 0,
+  "ignored": 0,
+  "git_status_after": "",
+  "clean_after": true,
+  "runtime_source_tree": "786f100521979a4e3830e6d909b38e7156a691e7",
+  "focused_tests_passed": 81,
+  "honest_red": "Three injected normal/history-budget/resolve faults fail assertions and restore byte-identically; real dense tetrahedron regression fails before guard then passes",
+  "archive_classification": {
+    "purpose": "Clean-commit full-workspace validation log/receipt and Atlas continuity snapshots",
+    "file_count": 4,
+    "bytes": 34719,
+    "Git": "Authoritative compact validation/archive/hash receipt; raw full log and note versions in immutable external archive"
+  },
+  "storage": {
+    "volume_uuid": "D0A02EEBA02ED82C",
+    "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25/performance-validation-v1/evidence.tar.gz",
+    "sha256": "b1cf8572daf79ce9cf36a4e2afe886f69f63fef865df7791a1f0900b0047b738",
+    "archive_bytes": 10575,
+    "manifest_sha256": "728d43e8c4f9447aa08980bd4ba99db26860a68c3371f69bef8c8811b243153f",
+    "members": {
+      "CLEAN_SUITE.json": {
+        "sha256": "0bcd9d936a579e8dac2b2919eeb3779af686f624867c227134e785f04c14bf34",
+        "bytes": 570
+      },
+      "atlas-after.md": {
+        "sha256": "0f4155874da18f04fc00fbba358863e685729278d124bf0228c82d5416297714",
+        "bytes": 5624
+      },
+      "atlas-before.md": {
+        "sha256": "f6af3bb5d961f1ad19940c0e759b70ffc3dc5de73f678c5dc726a61a7e76e888",
+        "bytes": 5101
+      },
+      "workspace-full.log": {
+        "sha256": "d47dabadb055631074bef097662fbb6380c379d42a26090e375d9868be4e97a5",
+        "bytes": 23424
+      }
+    },
+    "restore_directory": "/tmp/moebius-performance-validation-restore-e_sxog9f",
+    "all_restored_hashes_match": true
+  },
+  "limits": "Full suite on exact clean source above; following commit changes receipts/navigation documentation only. No hosted CI or acceptable performance claim.",
+  "performance_phase_status": "PARTIAL / UNACCEPTABLE"
+}

@@ -1,3 +1,49 @@
+# Performance stabilization measured and source certified — 2026-11-25
+
+Codex. **PARTIAL / PERFORMANCE UNACCEPTABLE.** Operator holds back additional
+biological complexity for this phase. The initial3573e1a commit was pushed; the
+follow-up runtime is committed as cdc3acdc865ae48011e2c65f370428f1f312e915. Current
+dirty paths at this receipt write contain only validation/navigation documentation;
+the next action is the already authorized final receipt commit and push.
+
+Full suite VERIFIED on exact clean cdc3acd, empty git status before and after:
+`cargo test --workspace --release --offline -- --test-threads=8` —228passed,
+0failed,0ignored,32 result lines; rustc1.99.1,2026-11-25T23:09:05..23:09:24UTC.
+Focused81, Clippy, formatting, whitespace and Atlas checks also pass. Archive and
+exact source/command receipt: docs/morph_005/SIMULATION_0001_PERFORMANCE_VALIDATION.json.
+No numerical source changes follow the certified commit. Hosted CI unverified.
+
+Current report: docs/morph_005/PERFORMANCE_STABILIZATION.md, with machine-readable
+PERFORMANCE_SUMMARY.json beside it. All required benchmark categories were
+attempted; performance gates fail. The long target3600 was not completed;2818ticks
+reach8 organisms and1007nodes before180s. Congested save remains about182ms/tick;
+8-founder spikes exceed1s; native720 authority averages52.9ms while frames average
+16.67ms. Do not call lag resolved or extrapolate enormous-population capacity.
+The same-world720 baseline timing process was terminated during replay; no timing
+is claimed, but its completed state/contact rows match the validated optimized
+run. Other rejected, invalid and failed runs remain explicitly preserved.
+
+Mermogon UUID D0A02EEBA02ED82C verified on both operations. Main raw archive:
+performance-stabilization-v1,772members, SHA256
+21702799694a1de7ca7bcc2f12ecc2c6e833a6378c8a093beade5209dad90d8f.
+Full clean-suite/Atlas validation archive: performance-validation-v1,4members,
+SHA256 b1cf8572daf79ce9cf36a4e2afe886f69f63fef865df7791a1f0900b0047b738.
+Both sets restored and every member hash checked; all local copies retained.
+Atlas UUID8CA451CDA451BA82 reverified, note points to certified runtime cdc3acd,
+checker45notes/197links PASS. Sealed older archives unchanged.
+
+Next dependency after publication: attribute recovery/admission and allocation
+hotspots on the retained congested/long states; eliminate occupied-state copy/
+allocation amplification and index nearby physical candidates while preserving
+query order, exact outcomes, finite material, hollow geometry and witness
+neutrality. Repeat this same acceptance matrix. No new biology or physical proxy
+without its governing authority. Safe first command: git status --short, then
+read PERFORMANCE_STABILIZATION.md and its storage/validation receipts.
+
+Earlier implementation and failed-gate chronology follows.
+
+---
+
 # Performance implementation ready for clean-source certification — 2026-11-25
 
 Codex. **PARTIAL: performance remains unacceptable; biological expansion held
