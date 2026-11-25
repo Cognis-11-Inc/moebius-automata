@@ -1,5 +1,9 @@
 # SIMULATION-0001 repair checkpoint — 2026-11-25
 
+This is the initial3573e1a checkpoint record. See the subsequent
+[performance stabilization measurements](PERFORMANCE_STABILIZATION.md) for current
+implementation, validation and failed performance gates. History below is retained.
+
 **PARTIAL.** Operator authorizes commit/push of the current work, then focused
 regression checks and matched collision benchmarks. Smooth, lightweight simulation
 remains the acceptance target; a completed recorder is not playable acceptance.

@@ -1,0 +1,21 @@
+{
+  "status": "VERIFIED_AND_RESTORED",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon"
+  },
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25/performance-stabilization-v1/evidence.tar.gz",
+  "sha256": "21702799694a1de7ca7bcc2f12ecc2c6e833a6378c8a093beade5209dad90d8f",
+  "archive_bytes": 171683498,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25/performance-stabilization-v1/MANIFEST.json",
+  "manifest_sha256": "610342d3fc8608f7e95c8cbe004d8aa49f25cdd2a5087330350d03fd25ab0aef",
+  "file_count": 772,
+  "raw_bytes": 1252567071,
+  "all_restored_file_hashes_match": true,
+  "restore_directory": "/tmp/moebius-performance-restore-_jv0tg32",
+  "source_base": "3573e1a3b5a6dd0f1093c0a14c5b70b523d0861a",
+  "source_overlay": "work/SOURCE_MAP.json, source-final/, source-final.patch; measured-source/ plus matrix-v2 source map identifies timed code. Intermediate source gaps/failures are retained.",
+  "local_copy_retained": "/tmp/moebius-sim0001-light-20261125T220737Z",
+  "restore": "Verify volume UUID and archive/manifest hashes; extract with tarfile data filter into a NEW directory; verify every manifest member. Rebuild base Git commit with source overlay using release/offline Cargo. Timed source copy and each binary/source hash distinguish variants. Set input snapshot paths from archived input files or prior verified receipts; never overwrite an archive."
+}

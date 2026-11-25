@@ -1,0 +1,67 @@
+{
+  "status": "REGISTERED_DURING_INVESTIGATION",
+  "date": "2026-11-25",
+  "baseline_commit": "3573e1a3b5a6dd0f1093c0a14c5b70b523d0861a",
+  "scope": "Existing canonical collision/cache query implementation; no coordinate or shape representation change",
+  "engineering_target_not_measured_result": {
+    "two_founder_mean_ms": 2,
+    "two_founder_p99_ms": 8.3,
+    "two_founder_max_ms": 16.7,
+    "reason": "Reserve most of a 60Hz game budget for future systems; targets are stricter than merely completing the recording."
+  },
+  "scenes": [
+    {
+      "id": "continuation",
+      "snapshot": "repair-exploration-checkpoint-v1/prior-work/repair-native-final/world-final.json",
+      "ticks": 40
+    },
+    {
+      "id": "congested",
+      "snapshot": "codex-stall-diagnosis-v1/native-colony/world-final.json",
+      "ticks": 5
+    },
+    {
+      "id": "fresh420",
+      "factory": "habitat_colony showcase seed11, founders2, free condensate4000, steps420",
+      "ticks": 420
+    }
+  ],
+  "method": [
+    "Fresh independent process per observation; baseline/candidate executable and source identities retained.",
+    "No concurrent compilation, tests or other benchmark jobs during timed cases.",
+    "Same initial.json bytes, complete final.json bytes, and every ticks.jsonl row including contacts must match for equivalence claims.",
+    "Require replay equality and material gap0; preserve failed or non-equivalent experiments.",
+    "Short scenes screen candidates; repeat accepted saved-scene pair in alternating order three times. Full-history comparison required before acceptance.",
+    "Record per-tick timings, mean/median/p95/p99/max, narrow-phase counters and VmHWM. First tick/cold costs retained.",
+    "No timing claim beyond measured hardware/population/history; do not infer future game capacity."
+  ],
+  "variants": [
+    "baseline",
+    "far pre-build rejection after wet-cache alias fix",
+    "bounded nearest-distance prefilter (experimental; first recorder build invalid/stale run excluded)",
+    "shared spawn-placement cache",
+    "bounded nearest-point clearance query without duplicate global distance (prepared candidate)"
+  ],
+  "artifacts": "Immutable Mermogon version and SHA/member/restore receipts required before result commit.",
+  "phase": "Performance stabilization; additional biological complexity held back by Operator on 2026-11-25",
+  "extended_acceptance_matrix": {
+    "population_founders": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "scaling_ticks": 120,
+    "scaling_soft_wall_budget_seconds": 20,
+    "unsupported_founders_to_verify": [
+      30,
+      100,
+      300
+    ],
+    "long_duration_target_ticks": 3600,
+    "long_duration_soft_wall_budget_seconds": 180,
+    "long_duration_limit": "Report actual ticks/simulation time and budget/history failures; do not call an incomplete long run validated.",
+    "native": "720 ticks, first-simulation bare anatomy seed11, founders2, abundance4000; measure frames and authority separately; exact replay required."
+  }
+}

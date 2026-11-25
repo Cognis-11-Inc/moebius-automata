@@ -116,6 +116,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         positions.push(json!({"origin_m":metres,"operations":200_000,"ns":start.elapsed().as_nanos(),"checksum":checksum}));
     }
     let report = json!({"max_position_m":MAX_POSITION / SCALE,"region_m":REGION / SCALE,
+        "source_blake3": {
+            "collision.rs":blake3::hash(include_bytes!("../src/collision.rs")).to_hex().to_string(),
+            "runtime.rs":blake3::hash(include_bytes!("../src/runtime.rs")).to_hex().to_string(),
+            "anatomy.rs":blake3::hash(include_bytes!("../src/anatomy.rs")).to_hex().to_string(),
+            "compiler.rs":blake3::hash(include_bytes!("../src/compiler.rs")).to_hex().to_string()
+        },
         "start_tick":start_tick,"ticks":ticks,"restore_ns":restore_ns,"tick_rows":rows,
         "queries":p.queries-profile.queries,"distance_queries":p.distance_queries-profile.distance_queries,
         "pipe_builds":p.pipe_builds-profile.pipe_builds,"body_builds":p.body_builds-profile.body_builds,

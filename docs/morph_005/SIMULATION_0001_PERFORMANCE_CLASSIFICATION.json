@@ -1,0 +1,21 @@
+{
+  "experiment": "SIMULATION-0001 performance stabilization",
+  "archive_version": "performance-stabilization-v1",
+  "file_count": 772,
+  "raw_bytes": 1252567071,
+  "by_suffix": {
+    ".json": 414,
+    "<none>": 24,
+    ".log": 134,
+    ".patch": 3,
+    ".md": 18,
+    ".rs": 85,
+    ".jsonl": 77,
+    ".txt": 4,
+    ".py": 6,
+    ".png": 7
+  },
+  "purpose": "All measured, rejected, failed, interrupted and excluded candidate records; source overlays and executable identities; matrix/scaling/long/native evidence and screenshots; honest-red/restored logs. No failures removed.",
+  "Git": "Authoritative phase report/protocol/summary/classification/manifest/storage receipts and source only; no raw traces/snapshots/binaries/images.",
+  "retained_local_copy": "/tmp/moebius-sim0001-light-20261125T220737Z"
+}

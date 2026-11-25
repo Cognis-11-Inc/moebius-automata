@@ -1,5 +1,9 @@
 # SIMULATION-0001 current repair checkpoint
 
+**Current phase: [performance stabilization](docs/morph_005/PERFORMANCE_STABILIZATION.md).**
+Additional biological complexity is held back. Congested-save, duration, scaling
+and native spike checks are required; the lag remains unresolved.
+
 **PARTIAL — 2026-11-25.** Collision, cache, feeding-cost and authored exploration
 repairs are implemented; final checkpoint checks and matched performance work are
 pending. Latest completed run still peaks at1.86seconds/tick. See

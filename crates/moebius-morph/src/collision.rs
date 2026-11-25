@@ -7,8 +7,9 @@ use crate::{
     runtime::*,
     *,
 };
+use parry3d::query::gjk::{self, CsoPoint, GJKResult, VoronoiSimplex};
 use parry3d::{
-    bounding_volume::BoundingVolume,
+    bounding_volume::{Aabb, BoundingVolume},
     math::{Pose as Iso, Rot3, Vector},
     query::{
         self, DefaultQueryDispatcher, NonlinearRigidMotion, QueryDispatcher, ShapeCastOptions,
@@ -16,8 +17,9 @@ use parry3d::{
     },
     shape::{
         Ball, Capsule, Compound, ConvexPolyhedron, Cuboid, Shape, SharedShape, TriMesh,
-        TriMeshFlags,
+        TriMeshFlags, TypedCompositeShape,
     },
+    utils::PoseOpt,
 };
 use serde::{Deserialize, Serialize};
 use std::{
@@ -135,7 +137,8 @@ pub struct CollisionProfile {
     pub query_ns: u128,
     /// Intervals rejected by a conservative AABB distance lower bound.
     pub interval_rejects: u64,
-    /// Actual Parry distance evaluations (queries also counts bound-only visits).
+    /// Distance-predicate searches; queries also counts bound-only visits.
+    /// A search can inspect multiple leaves or finish on a certified bound.
     pub distance_queries: u64,
     pub distance_ns: u128,
     pub contact_ns: u128,
@@ -497,14 +500,6 @@ impl CollisionCache {
         self.pipes.insert(key, (origin, g.clone()));
         Ok((origin, g))
     }
-    /// True when skipping this chunk cannot drop a cache fill.
-    /// A single-node ball is rebuilt on demand and stores nothing.
-    fn pipe_has(&self, f: &crate::filament::Filament, chunk: usize, tick: u64) -> bool {
-        match pipe_key(f.id, f, chunk, tick) {
-            None => true,
-            Some(key) => self.pipes.contains_key(&key),
-        }
-    }
 }
 
 fn pipe_key(
@@ -704,6 +699,100 @@ impl Drop for QueryNanos<'_> {
         self.profile.query_ns += self.started.elapsed().as_nanos();
     }
 }
+/// Test interval clearance with original Parry leaf kernels. One leaf within
+/// the bound proves the predicate for the union: stop then instead of finding
+/// the globally nearest triangle/component. Expanded BVH bounds cover roundoff;
+/// no physical shape is replaced or approximated.
+fn within_distance(
+    relative: &Iso,
+    a: &dyn Shape,
+    b: &dyn Shape,
+    limit: f32,
+    roundoff: f32,
+) -> Result<bool, query::Unsupported> {
+    let (composite, relative, other) = if let Some(c) = a.as_composite_shape() {
+        (c, *relative, b)
+    } else if let Some(c) = b.as_composite_shape() {
+        (c, relative.inverse(), a)
+    } else {
+        // Ask GJK for proximity without solving exact witnesses first. Accept
+        // only certified lower/upper bounds outside a roundoff band; otherwise
+        // preserve the original distance kernel, including uncertain failures.
+        if a.as_ball().is_none()
+            && b.as_ball().is_none()
+            && !(a.as_cuboid().is_some() && b.as_cuboid().is_some())
+            && let (Some(sa), Some(sb)) = (a.as_support_map(), b.as_support_map())
+        {
+            let dir = -relative.translation;
+            let dir = if dir.length_squared() > parry3d::math::DEFAULT_EPSILON.powi(2) {
+                dir.normalize()
+            } else {
+                Vector::X
+            };
+            let mut simplex = VoronoiSimplex::new();
+            simplex.reset(CsoPoint::from_shapes(relative, sa, sb, dir));
+            match gjk::closest_points(relative, sa, sb, limit + roundoff, false, &mut simplex) {
+                GJKResult::Intersection => return Ok(true),
+                GJKResult::NoIntersection(axis) => {
+                    // NoIntersection also represents the iteration limit in
+                    // Parry; a real separating support plane is required.
+                    let support = CsoPoint::from_shapes(relative, sa, sb, axis);
+                    if -axis.dot(support.point) > limit + roundoff {
+                        return Ok(false);
+                    }
+                }
+                GJKResult::Proximity(_) => {
+                    simplex.project_origin_and_reduce();
+                    // Parry exposes three projected coordinates in 3D. A
+                    // full tetrahedron has no readable fourth coordinate;
+                    // leave this ambiguous case to the original kernel.
+                    if simplex.dimension() < 3 {
+                        let mut p = Vector::ZERO;
+                        let mut q = Vector::ZERO;
+                        for i in 0..=simplex.dimension() {
+                            p += simplex.point(i).orig1 * simplex.proj_coord(i);
+                            q += simplex.point(i).orig2 * simplex.proj_coord(i);
+                        }
+                        if (p - q).length() + roundoff < limit {
+                            return Ok(true);
+                        }
+                    }
+                }
+                _ => {}
+            }
+        }
+        return DefaultQueryDispatcher
+            .distance(relative, a, b)
+            .map(|d| d <= limit);
+    };
+    let bounds = other.compute_aabb(&relative);
+    let shift = -bounds.center();
+    let margin = bounds.half_extents();
+    Ok(composite
+        .bvh()
+        .find_best(
+            limit + roundoff,
+            |node, _| {
+                Aabb {
+                    mins: node.mins() + shift - margin,
+                    maxs: node.maxs() + shift + margin,
+                }
+                .distance_to_origin()
+            },
+            |part, _| {
+                composite
+                    .map_untyped_part_at(part, |pose, shape, _| {
+                        within_distance(&pose.inv_mul(&relative), shape, other, limit, roundoff)
+                            .ok()
+                            .filter(|near| *near)
+                            .map(|_| 0f32)
+                    })
+                    .flatten()
+            },
+        )
+        .is_some())
+}
+
 fn cast(
     a: &Geometry,
     from: RigidPose,
@@ -853,12 +942,16 @@ fn cast(
         }
         charge.profile.distance_queries += 1;
         let distance_started = Instant::now();
-        let distance =
-            query::distance(&pa, a.shape.as_ref(), &pb, b.shape.as_ref()).map_err(|_| {
-                MorphError("unsupported physical distance query; movement refused".into())
-            })?;
+        let within = within_distance(
+            &pa.inv_mul(&pb),
+            a.shape.as_ref(),
+            b.shape.as_ref(),
+            speed * (hi - lo) * 0.5 + skin,
+            roundoff,
+        )
+        .map_err(|_| MorphError("unsupported physical distance query; movement refused".into()))?;
         charge.profile.distance_ns += distance_started.elapsed().as_nanos();
-        if distance > speed * (hi - lo) * 0.5 + skin {
+        if !within {
             continue;
         }
         if hi - lo <= 0.00001 || speed == 0. || charge.visits >= 512 {
@@ -1200,8 +1293,8 @@ pub(crate) fn resolve(
             if let Some(assembly) = &before.assembly {
                 for f in assembly.filaments.values() {
                     for chunk in 0..f.nodes.len().saturating_sub(1).div_ceil(CHUNK_EDGES).max(1) {
-                        // Sample sphere, then the hollow mesh. A miss is still
-                        // filled: skipping that fill moved contact samples.
+                        // Reject distant chunks before building their hollow mesh.
+                        // Content/time cache keys make cache fills observational.
                         let at = Position::from_absolute(start.translation)?;
                         if pipe_separated(
                             cache,
@@ -1210,8 +1303,7 @@ pub(crate) fn resolve(
                             before.tick,
                             at,
                             shapes[&id].radius + delta,
-                        )? && cache.pipe_has(f, chunk, before.tick)
-                        {
+                        )? {
                             continue;
                         }
                         let (origin, g) = cache.pipe(before, f.id, chunk)?;
@@ -1570,9 +1662,7 @@ fn clear_shape(
         for f in a.filaments.values() {
             for chunk in 0..f.nodes.len().saturating_sub(1).div_ceil(CHUNK_EDGES).max(1) {
                 let at = Position::from_absolute(pose.translation)?;
-                if pipe_separated(cache, f, chunk, world.tick, at, g.radius)?
-                    && cache.pipe_has(f, chunk, world.tick)
-                {
+                if pipe_separated(cache, f, chunk, world.tick, at, g.radius)? {
                     continue;
                 }
                 let (origin, other) = cache.pipe(world, f.id, chunk)?;
@@ -1599,6 +1689,7 @@ pub(crate) fn spawn_pose(
     definition: u64,
     near: RigidPose,
     skip: Option<u64>,
+    cache: &mut CollisionCache,
 ) -> Result<Option<RigidPose>, MorphError> {
     let source = world
         .instances
@@ -1606,7 +1697,6 @@ pub(crate) fn spawn_pose(
         .find(|i| i.definition == definition)
         .ok_or_else(|| MorphError("spawn definition lacks a physical source".into()))?
         .id;
-    let mut cache = CollisionCache::default();
     let g = cache.body(world, source)?;
     let distances = if definition == BLOOD_SAC {
         vec![0.25, 0.5, 0.8, 1.2, 2.]
@@ -1629,7 +1719,7 @@ pub(crate) fn spawn_pose(
                     (theta.sin() * distance * 1e6).round() as i64,
                 ])?
                 .absolute()?;
-            if clear_shape(world, &g, pose, skip, &mut cache)? {
+            if clear_shape(world, &g, pose, skip, cache)? {
                 return Ok(Some(pose));
             }
         }
@@ -1649,7 +1739,7 @@ pub(crate) fn place_founders(world: &mut WorldSnapshot) -> Result<(), MorphError
         let pose = world.body_pose(id)?;
         let g = cache.body(world, id)?;
         if !clear_shape(world, &g, pose, Some(id), &mut cache)? {
-            let candidate = spawn_pose(world, BLOOD_SAC, pose, Some(id))?
+            let candidate = spawn_pose(world, BLOOD_SAC, pose, Some(id), &mut cache)?
                 .ok_or_else(|| MorphError("no nonpenetrating founding food placement".into()))?;
             world.instances.get_mut(&id).unwrap().position =
                 Position::from_absolute(candidate.translation)?;
@@ -1803,9 +1893,7 @@ pub(crate) fn deposit_allowed(
                 .div_ceil(CHUNK_EDGES)
                 .max(1)
             {
-                if pipe_separated(cache, other, c, world.tick, origin, g.radius)?
-                    && cache.pipe_has(other, c, world.tick)
-                {
+                if pipe_separated(cache, other, c, world.tick, origin, g.radius)? {
                     continue;
                 }
                 let (anchor, shape) = cache.pipe_in(assembly, world.tick, other.id, c)?;
@@ -1896,9 +1984,7 @@ pub(crate) fn emission_obstacle(
         }
         for chunk in 0..f.nodes.len().saturating_sub(1).div_ceil(CHUNK_EDGES).max(1) {
             let at = Position::from_absolute(origin)?;
-            if pipe_separated(cache, f, chunk, world.tick, at, g.radius)?
-                && cache.pipe_has(f, chunk, world.tick)
-            {
+            if pipe_separated(cache, f, chunk, world.tick, at, g.radius)? {
                 continue;
             }
             let (anchor, other) = cache.pipe_in(assembly, world.tick, f.id, chunk)?;
@@ -2065,9 +2151,7 @@ pub(crate) fn admit_roots(
         {
             for f in assembly.filaments.values() {
                 for chunk in 0..f.nodes.len().saturating_sub(1).div_ceil(CHUNK_EDGES).max(1) {
-                    if pipe_separated(cache, f, chunk, next.tick, anchor, g.radius)?
-                        && cache.pipe_has(f, chunk, next.tick)
-                    {
+                    if pipe_separated(cache, f, chunk, next.tick, anchor, g.radius)? {
                         continue;
                     }
                     let (origin, other) = cache.pipe(next, f.id, chunk)?;
@@ -2145,6 +2229,92 @@ pub(crate) fn admit_roots(
 mod tests {
     use super::*;
     use crate::filament::{Assembly, Filament, Node, PipeSection};
+
+    #[test]
+    fn dense_eight_founder_proximity_handles_tetrahedron_simplexes() {
+        let mut world =
+            ShipRuntime::habitat_colony(AnatomySpec::showcase(11), 11, 120, 8, Some(4000)).unwrap();
+        world.advance(20).unwrap();
+        assert_eq!(world.state().condensate_gap(), 0);
+        world.validate().unwrap();
+    }
+
+    #[test]
+    fn bounded_predicate_matches_original_distance_for_body_and_hollow_mesh() {
+        let world = ShipRuntime::habitat_simulation(AnatomySpec::bare(77), 77, 8)
+            .unwrap()
+            .snapshot();
+        let mut cache = CollisionCache::default();
+        let body = cache.body(&world, 1).unwrap();
+        let food_id = world
+            .instances
+            .values()
+            .find(|i| i.definition == BLOOD_SAC)
+            .unwrap()
+            .id;
+        let food = cache.body(&world, food_id).unwrap();
+        let mut assembly = Assembly::default();
+        assembly.filaments.insert(1, straight(7, 60_000));
+        let (_, pipe) = cache.pipe_in(&assembly, 40, 1, 0).unwrap();
+        let mut near_cases = 0;
+        let mut far_cases = 0;
+        for k in -8i64..=8 {
+            let angle = k as f64 * 0.17;
+            let pose = RigidPose {
+                translation: [k * 250_000, (k % 3) * 120_000, k * 50_000],
+                yaw_sin: (angle.sin() * SCALE as f64).round() as i64,
+                yaw_cos: (angle.cos() * SCALE as f64).round() as i64,
+                axial_roll: k * 15_000,
+            };
+            let relative = motion(pose, pose, Position::from_absolute([0; 3]).unwrap())
+                .unwrap()
+                .start;
+            for other in [&food.shape, &pipe.shape] {
+                let exact = DefaultQueryDispatcher
+                    .distance(&relative, body.shape.as_ref(), other.as_ref())
+                    .unwrap();
+                for ceiling in [0.0001, 0.01, 0.1, 0.5, 2., 10.] {
+                    let within = within_distance(
+                        &relative,
+                        body.shape.as_ref(),
+                        other.as_ref(),
+                        ceiling,
+                        0.001,
+                    )
+                    .unwrap();
+                    assert_eq!(
+                        within,
+                        exact <= ceiling,
+                        "distance predicate changed: k={k}, limit={ceiling}, exact={exact}"
+                    );
+                    if within {
+                        near_cases += 1;
+                    } else {
+                        far_cases += 1;
+                    }
+                }
+            }
+        }
+        assert!(near_cases > 0 && far_cases > 0);
+    }
+
+    #[test]
+    fn repeated_spawn_search_reuses_shapes_and_matches_a_cold_cache() {
+        let world = ShipRuntime::habitat_simulation(AnatomySpec::bare(77), 77, 8)
+            .unwrap()
+            .snapshot();
+        let near = world.body_pose(1).unwrap();
+        let mut warm = CollisionCache::default();
+        let first = spawn_pose(&world, 1, near, None, &mut warm).unwrap();
+        assert!(first.is_some(), "fixture must have a legal placement");
+        let builds = warm.profile().body_builds;
+        assert!(builds > 0);
+        let again = spawn_pose(&world, 1, near, None, &mut warm).unwrap();
+        assert_eq!(first, again);
+        assert_eq!(warm.profile().body_builds, builds);
+        let cold = spawn_pose(&world, 1, near, None, &mut CollisionCache::default()).unwrap();
+        assert_eq!(again, cold);
+    }
 
     #[test]
     fn wet_pipe_cache_matches_cold_geometry_across_a_future_node_tick() {

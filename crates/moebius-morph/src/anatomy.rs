@@ -424,22 +424,78 @@ impl CompiledAnatomy {
     pub fn spec(&self) -> &AnatomySpec {
         &self.spec
     }
+
+    /// Numerical nozzle frames from the same attachment triangles and normals
+    /// as the full posed anatomy, without constructing visible component meshes.
+    pub fn output_frames(&self, p: Pose) -> Result<Vec<OutputFrame>, MorphError> {
+        require(
+            p.phase.is_finite()
+                && p.phase.abs() < 100000.
+                && [p.bend, p.mouth, p.flagella]
+                    .iter()
+                    .all(|v| (0. ..=1.).contains(v)),
+            "invalid pose",
+        )?;
+        let nozzles = self
+            .spec
+            .components
+            .iter()
+            .filter(|c| matches!(c.shape, Shape::SecretionNozzle { .. }))
+            .collect::<Vec<_>>();
+        let coordinates = nozzles
+            .iter()
+            .map(|c| c.attachment.clone())
+            .collect::<Vec<_>>();
+        let mounts = crate::compiler::attachment_landmarks(&self.spec.body, p, &coordinates);
+        Ok(nozzles
+            .into_iter()
+            .zip(mounts)
+            .map(|(c, mount)| {
+                let Shape::SecretionNozzle { length, output, .. } = &c.shape else {
+                    unreachable!()
+                };
+                let (direction, sx, sy) = component_frame(c, &mount);
+                // Preserve the full sweep's arithmetic, including zero amplitude
+                // and curvature, so the generated tip is the numerical landmark.
+                let wave = p.flagella * length * 0. * (PI * 1.).sin();
+                let angle = p.phase * 0. - 1. * TAU + 0.;
+                let position = add(
+                    add(mount.origin, mul(direction, length * 1.)),
+                    add(
+                        mul(sx, wave * angle.sin() + 0. * length * 1. * 1.),
+                        mul(sy, wave * 0.55 * angle.cos()),
+                    ),
+                );
+                OutputFrame {
+                    component_id: c.id,
+                    position,
+                    direction,
+                    metadata: output.clone(),
+                }
+            })
+            .collect())
+    }
+}
+
+fn component_frame(c: &Component, mount: &crate::AttachmentFrame) -> (V, V, V) {
+    let (yaw, pitch) = (c.orientation[0], c.orientation[1]);
+    let backwards = add(
+        mul(mount.tangent, -yaw.cos()),
+        mul(mount.binormal, yaw.sin()),
+    );
+    let direction = unit(add(
+        mul(mount.normal, 0.65 * pitch.cos() + 0.76 * pitch.sin()),
+        mul(backwards, 0.76 * pitch.cos() - 0.65 * pitch.sin()),
+    ));
+    let (sx, sy) = frame(direction, mount.binormal);
+    (direction, sx, sy)
 }
 fn compose(s: &AnatomySpec, p: Pose) -> AnatomicalPose {
     let mut geometry = generate(&s.body, p);
     let mut outputs = vec![];
     for c in &s.components {
         let mount = attachment(&s.body, p, &geometry.surfaces[0], &c.attachment);
-        let (yaw, pitch) = (c.orientation[0], c.orientation[1]);
-        let backwards = add(
-            mul(mount.tangent, -yaw.cos()),
-            mul(mount.binormal, yaw.sin()),
-        );
-        let direction = unit(add(
-            mul(mount.normal, 0.65 * pitch.cos() + 0.76 * pitch.sin()),
-            mul(backwards, 0.76 * pitch.cos() - 0.65 * pitch.sin()),
-        ));
-        let (sx, sy) = frame(direction, mount.binormal);
+        let (direction, sx, sy) = component_frame(c, &mount);
         let (length, radius, taper, curve, amp, freq, phase, nozzle) = match &c.shape {
             Shape::FoodPouch { length, radius, .. } => (*length, *radius, 0., 0., 0., 0., 0., None),
             Shape::Flagellum {

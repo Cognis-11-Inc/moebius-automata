@@ -452,7 +452,10 @@ pub(crate) fn prepare(
     Ok(plans)
 }
 
-pub(crate) fn finish(world: &mut WorldSnapshot) -> Result<(), MorphError> {
+pub(crate) fn finish(
+    world: &mut WorldSnapshot,
+    cache: &mut crate::collision::CollisionCache,
+) -> Result<(), MorphError> {
     let mut h = world.habitat.clone().unwrap();
     // Reproduction transfers paid reserve; newborns inherit anatomy and active policy.
     let parents = h.agents.keys().copied().collect::<Vec<_>>();
@@ -473,7 +476,8 @@ pub(crate) fn finish(world: &mut WorldSnapshot) -> Result<(), MorphError> {
         let mut child_pose = a.rigid;
         child_pose.translation = body.position.absolute()?;
         let position = if h.rules.collisions {
-            let Some(pose) = crate::collision::spawn_pose(world, definition, child_pose, None)?
+            let Some(pose) =
+                crate::collision::spawn_pose(world, definition, child_pose, None, cache)?
             else {
                 continue;
             };
@@ -558,7 +562,8 @@ pub(crate) fn finish(world: &mut WorldSnapshot) -> Result<(), MorphError> {
                 translation: position.absolute()?,
                 ..RigidPose::identity()
             };
-            let Some(pose) = crate::collision::spawn_pose(world, BLOOD_SAC, near, None)? else {
+            let Some(pose) = crate::collision::spawn_pose(world, BLOOD_SAC, near, None, cache)?
+            else {
                 world.habitat = Some(h);
                 return Ok(());
             };
@@ -597,7 +602,8 @@ pub(crate) fn finish(world: &mut WorldSnapshot) -> Result<(), MorphError> {
                 translation: position.absolute()?,
                 ..RigidPose::identity()
             };
-            let Some(pose) = crate::collision::spawn_pose(world, BLOOD_SAC, near, None)? else {
+            let Some(pose) = crate::collision::spawn_pose(world, BLOOD_SAC, near, None, cache)?
+            else {
                 continue;
             };
             Position::from_absolute(pose.translation)?

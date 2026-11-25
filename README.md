@@ -1,9 +1,10 @@
 # Möbius Automata
 
-SIMULATION-0001 is [under repair](docs/morph_005/SIMULATION_0001_REPAIR_STATUS.md):
-collision and exploration changes are implemented, but smooth operation remains
-unverified. The [coordinate-domain audit](docs/morph_005/COORDINATE_DOMAIN_AUDIT.md)
-found no material cost from the enormous empty coordinate envelope.
+The Ship is in [performance stabilization](docs/morph_005/PERFORMANCE_STABILIZATION.md).
+Additional biological complexity is held back; the lag remains unresolved.
+See the SIMULATION-0001 [repair history](docs/morph_005/SIMULATION_0001_REPAIR_STATUS.md).
+The [coordinate-domain audit](docs/morph_005/COORDINATE_DOMAIN_AUDIT.md) found no
+material cost from the enormous empty coordinate envelope.
 
 An artificial-life vivarium with small biomechanical inhabitants. The default
 live habitat is the **nursery**: a 256³ periodic cube with fixed edible clots.

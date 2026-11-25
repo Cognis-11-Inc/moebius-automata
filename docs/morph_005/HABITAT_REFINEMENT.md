@@ -1,5 +1,9 @@
 # Snailpipe habitat refinement — 2026-11-24
 
+2026-11-25: [performance stabilization](PERFORMANCE_STABILIZATION.md) holds back
+additional biological complexity. Numerical nozzle frames now match full posed
+meshes bit-for-bit without building component meshes each numerical tick.
+
 Current 2026-11-25 continuation: **PARTIAL, collision and exploration repairs implemented**.
 See [current repair status](SIMULATION_0001_REPAIR_STATUS.md). Final checks and
 smooth, lightweight operation remain pending. Historical receipts follow.

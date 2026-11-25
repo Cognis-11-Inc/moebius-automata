@@ -8,7 +8,7 @@
   "role": "interpretive navigation; live repository and independently versioned evidence authoritative",
   "updated_note": {
     "path": "07_EXPERIMENTS/SIMULATION_0001.md",
-    "sha256": "00f716b2640d5be7f99f62ebe64ffad4a52e6c960a3630ddae9da51c054fa2c3"
+    "sha256": "f6af3bb5d961f1ad19940c0e759b70ffc3dc5de73f678c5dc726a61a7e76e888"
   },
-  "before_and_after_archived": "codex-stall-diagnosis-v1/ evidence.tar.gz members atlas-before.md and atlas-after.md"
+  "before_and_after_archived": "performance-stabilization-v1/evidence.tar.gz work/atlas-before.md and work/atlas-after.md"
 }

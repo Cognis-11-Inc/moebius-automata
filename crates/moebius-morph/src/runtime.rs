@@ -546,6 +546,7 @@ impl ShipRuntime {
             stock.biomass = free;
         }
         if founders > 1 {
+            let mut placement_cache = crate::collision::CollisionCache::default();
             let template = state.instances[&1].clone();
             let cost = template.book.initial;
             let spec = state.config.definitions[&template.definition].clone();
@@ -569,9 +570,14 @@ impl ShipRuntime {
                 near.yaw_sin = heading[0];
                 near.yaw_cos = heading[2];
                 near.axial_roll = 0;
-                let pose =
-                    crate::collision::spawn_pose(&state, template.definition, near, None)?
-                        .ok_or_else(|| MorphError("no nonpenetrating founder placement".into()))?;
+                let pose = crate::collision::spawn_pose(
+                    &state,
+                    template.definition,
+                    near,
+                    None,
+                    &mut placement_cache,
+                )?
+                .ok_or_else(|| MorphError("no nonpenetrating founder placement".into()))?;
                 let position = Position::from_absolute(pose.translation)?;
                 state.condensate.as_mut().unwrap().biomass -= cost;
                 let id = state.instances.keys().max().copied().unwrap() + 1;
@@ -758,7 +764,23 @@ impl ShipRuntime {
         Ok(())
     }
     pub fn tick(&mut self) -> Result<(), MorphError> {
-        let mut next = self.state.clone();
+        // Existing events are immutable during a tick. Copy the mutable state,
+        // record this tick separately, and append only after every fallible gate.
+        // Work no longer grows with the entire retained causal event history.
+        let mut next = WorldSnapshot {
+            solids: self.state.solids.clone(),
+            habitat: self.state.habitat.clone(),
+            steering: self.state.steering,
+            assembly: self.state.assembly.clone(),
+            food: self.state.food.clone(),
+            condensate: self.state.condensate.clone(),
+            version: self.state.version,
+            tick: self.state.tick,
+            config: self.state.config.clone(),
+            instances: self.state.instances.clone(),
+            pending: self.state.pending.clone(),
+            events: Vec::new(),
+        };
         let tick = next.tick;
         let count = next.pending.partition_point(|c| c.tick == tick);
         let commands = next.pending.drain(..count).collect::<Vec<_>>();
@@ -832,13 +854,12 @@ impl ShipRuntime {
             };
             let mut nozzle_positions = BTreeMap::new();
             let frame_outputs = if let Some(r) = active {
-                let posed = self
+                let outputs = self
                     .animator
                     .as_ref()
                     .ok_or_else(|| MorphError("missing animator".into()))?
-                    .pose(self.state.anatomical_pose(i.id)?)?;
-                posed
-                    .outputs
+                    .output_frames(self.state.anatomical_pose(i.id)?)?;
+                outputs
                     .iter()
                     .map(|f| crate::emission::place_output(f, self.state.body_pose(r.organism)?))
                     .collect::<Result<Vec<_>, _>>()?
@@ -1116,7 +1137,7 @@ impl ShipRuntime {
         }
         blood_tick(&mut next)?;
         if next.habitat.is_some() {
-            crate::habitat::finish(&mut next)?;
+            crate::habitat::finish(&mut next, &mut self.collision_cache)?;
             crate::collision::admit_roots(&self.state, &mut next, &mut self.collision_cache)?;
         } else {
             birth(&mut next)?;
@@ -1126,7 +1147,7 @@ impl ShipRuntime {
             .ok_or_else(|| MorphError("world tick overflow".into()))?;
         if let Some(r) = &next.config.construction {
             require(
-                next.events.len() <= r.max_events,
+                self.state.events.len().saturating_add(next.events.len()) <= r.max_events,
                 "HistoryBudget: no authoritative ticks discarded",
             )?;
         }
@@ -1141,6 +1162,9 @@ impl ShipRuntime {
                 "first-simulation condensate balance failed",
             )?;
         }
+        let mut history = std::mem::take(&mut self.state.events);
+        history.append(&mut next.events);
+        next.events = history;
         self.state = next;
         Ok(())
     }

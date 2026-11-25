@@ -1,5 +1,46 @@
 use moebius_morph::*;
 use std::f32::consts::TAU;
+
+#[test]
+fn numerical_nozzle_frames_match_the_full_posed_mesh_bit_for_bit() {
+    for seed in [11, 23, 77] {
+        for rings in [24, 64, 128] {
+            let mut s = AnatomySpec::showcase(seed);
+            s.body.body_rings = rings;
+            for (j, c) in s.components.iter_mut().enumerate() {
+                c.attachment.station = if j % 2 == 0 { 0.08 } else { 0.85 };
+                c.attachment.azimuth = (j as f32 * 0.73) % TAU;
+            }
+            let compiled = CompiledAnatomy::new(s.clone()).unwrap();
+            for k in 0..8 {
+                let p = Pose {
+                    phase: k as f32 * 0.71,
+                    bend: k as f32 / 7.,
+                    mouth: 0.5,
+                    flagella: 1.,
+                };
+                let mesh = compiled.pose(p).unwrap().outputs;
+                let numerical = compiled.output_frames(p).unwrap();
+                assert_eq!(mesh.len(), numerical.len());
+                for (a, b) in mesh.iter().zip(&numerical) {
+                    assert_eq!(a.component_id, b.component_id);
+                    assert_eq!(a.metadata, b.metadata);
+                    assert_eq!(
+                        a.position.map(f32::to_bits),
+                        b.position.map(f32::to_bits),
+                        "tip seed={seed}, rings={rings}, phase={k}"
+                    );
+                    assert_eq!(
+                        a.direction.map(f32::to_bits),
+                        b.direction.map(f32::to_bits),
+                        "direction seed={seed}, rings={rings}, phase={k}"
+                    );
+                }
+            }
+        }
+    }
+}
+
 #[test]
 fn independent_identity_validation_and_typed_metadata() {
     let mut s = AnatomySpec::showcase(41);

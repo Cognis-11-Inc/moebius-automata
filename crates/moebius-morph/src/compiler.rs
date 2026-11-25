@@ -348,6 +348,16 @@ pub(crate) fn attachment(
     body: &Surface,
     coord: &crate::SurfaceCoordinate,
 ) -> AttachmentFrame {
+    attachment_sampled(s, p, coord, |i| body.positions[i], |i| body.normals[i])
+}
+
+fn attachment_sampled(
+    s: &WormSpec,
+    p: Pose,
+    coord: &crate::SurfaceCoordinate,
+    position: impl Fn(usize) -> V,
+    normal_at: impl Fn(usize) -> V,
+) -> AttachmentFrame {
     let n = s.radial_segments;
     let a = coord.station * s.body_rings as f32;
     let i = a.floor() as u32;
@@ -365,13 +375,13 @@ pub(crate) fn attachment(
             [1. - u, u + v - 1., 1. - v],
         )
     };
-    let interpolate = |array: &[V]| {
+    let interpolate = |sample: &dyn Fn(usize) -> V| {
         tri.iter()
             .zip(weights)
-            .fold([0.; 3], |p, (&i, w)| add(p, mul(array[i as usize], w)))
+            .fold([0.; 3], |p, (&i, w)| add(p, mul(sample(i as usize), w)))
     };
-    let origin = interpolate(&body.positions);
-    let normal = unit(interpolate(&body.normals));
+    let origin = interpolate(&position);
+    let normal = unit(interpolate(&normal_at));
     let t = tangent(s, p, coord.station);
     let tangent = unit(sub(t, mul(normal, dot(t, normal))));
     let binormal = unit(cross(normal, tangent));
@@ -384,4 +394,59 @@ pub(crate) fn attachment(
         barycentric: weights,
         capability: "decorative_unbound".into(),
     }
+}
+
+/// Sample only the trunk vertices and adjacent triangles used by attachments.
+/// Attachment stations exclude the tail/head rings. Accumulate incident faces
+/// in exactly the same order as Surface::bridge/normals; no component mesh.
+pub(crate) fn attachment_landmarks(
+    s: &WormSpec,
+    p: Pose,
+    coordinates: &[crate::SurfaceCoordinate],
+) -> Vec<AttachmentFrame> {
+    let n = s.radial_segments;
+    let mut side = [1., 0., 0.];
+    let frames = (0..=s.body_rings)
+        .map(|i| {
+            let t = i as f32 / s.body_rings as f32;
+            let (x, y) = frame(tangent(s, p, t), side);
+            side = x;
+            (t, center(s, p, t), x, y)
+        })
+        .collect::<Vec<_>>();
+    let position = |index: usize| {
+        let row = (index - 1) / n;
+        let j = (index - 1) % n;
+        let (t, c, x, y) = frames[row];
+        let a = j as f32 / n as f32 * TAU;
+        let r = radius(s, t, a);
+        add(c, add(mul(x, r * a.cos()), mul(y, r * s.aspect * a.sin())))
+    };
+    let normal = |index: usize| {
+        let row = (index - 1) / n;
+        let mut sum = [0.; 3];
+        for bridge in row..=row + 1 {
+            let a = 1 + (bridge - 1) * n;
+            let b = 1 + bridge * n;
+            for j in 0..n {
+                let k = (j + 1) % n;
+                for tri in [[a + j, a + k, b + j], [a + k, b + k, b + j]] {
+                    if tri.contains(&index) {
+                        sum = add(
+                            sum,
+                            cross(
+                                sub(position(tri[1]), position(tri[0])),
+                                sub(position(tri[2]), position(tri[0])),
+                            ),
+                        );
+                    }
+                }
+            }
+        }
+        unit(sum)
+    };
+    coordinates
+        .iter()
+        .map(|coord| attachment_sampled(s, p, coord, position, normal))
+        .collect()
 }

@@ -234,7 +234,7 @@
     },
     {
       "path": "07_EXPERIMENTS/SIMULATION_0001.md",
-      "sha256": "00f716b2640d5be7f99f62ebe64ffad4a52e6c960a3630ddae9da51c054fa2c3"
+      "sha256": "f6af3bb5d961f1ad19940c0e759b70ffc3dc5de73f678c5dc726a61a7e76e888"
     }
   ],
   "snapshot_note": "Rehashed after the clean MORPH-003 suite on a8cb705. Six edited notes cite that implementation commit. Ship design canon is unchanged.",

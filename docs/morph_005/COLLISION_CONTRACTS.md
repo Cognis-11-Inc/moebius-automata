@@ -1,5 +1,10 @@
 # Collision contracts — 2026-11-24
 
+2026-11-25: [performance stabilization](PERFORMANCE_STABILIZATION.md) is the
+current phase. Bounded distance predicates retain the hollow geometry and tested
+state/contact evidence. Congested-save and population spikes remain unacceptable;
+no lag-resolution claim. Earlier query receipts below describe their own versions.
+
 Current 2026-11-25 continuation: **PARTIAL, repairs implemented; final checks pending**.
 See [current repair status](SIMULATION_0001_REPAIR_STATUS.md) for response changes,
 linear/rotational query paths, wet-cache correction and retained failed experiments.

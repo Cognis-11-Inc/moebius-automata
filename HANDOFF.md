@@ -1,3 +1,143 @@
+# Performance implementation ready for clean-source certification — 2026-11-25
+
+Codex. **PARTIAL: performance remains unacceptable; biological expansion held
+back by Operator.** Initial requested commit/push3573e1a is verified on origin/main.
+This follow-up is currently uncommitted over that source, pending local commit
+and a clean full suite. No discarded ticks/material or collider proxy admitted.
+
+Implemented: collision.rs bounded boolean BVH/GJK clearance with exact fallback,
+correct full-tetrahedron handling, pre-build far-pipe rejection; shared spawn
+cache through habitat::finish/runtime; runtime::tick appends event deltas after
+fallible gates rather than cloning retained history; compiler attachment samples
+and anatomy::output_frames reuse canonical triangle normals/frame math without
+full numerical-tick component meshes. coordinate_domain_bench now embeds source
+hashes. Current phase, reuse ruling, matrix, failures and limits are recorded in
+docs/morph_005/PERFORMANCE_STABILIZATION.md and PERFORMANCE_SUMMARY/PROTOCOL JSON.
+
+VERIFIED measurements, release/offline rustc1.99.1, AMD7950X/powersave:
+- Two founders420ticks: mean87.641 ->33.859ms (61.4% reduction); complete
+  snapshots and all tick/contact rows match. Use summary for exact final figures.
+- Repeated saved continuation about37.5 ->18.7ms; congested save about203 ->182ms.
+  Three alternating pairs each; every snapshot/tick/contact comparison matches.
+- Scaling1/2/4/8/16 all120ticks; means0.604/23.426/12.488/77.192/105.140ms.
+  Eight-founder max1043.214ms;30/100/300 refused by rule ceiling16.
+- Long target3600 reached2818 on soft180s budget,8bodies/7paidbirths/1007nodes;
+  mean63.161ms/p99322.880/max596.209; exact replay/gap0. This is PARTIAL,
+  46.97simulated seconds. Founder1 net8.664m versus80.091m travelled.
+- Native720:4bodies/2births/653nodes, exact headless replay,3016frames uncapped;
+  authority52.901mean/398.966p99/635.394max ms. Frame16.669mean/17.138p99/
+  44.842max ms, drawCPU4.753mean, publish0.084mean. PNG inspected. Matching
+  optimized headless run51.822mean;720tick/contact rows and final snapshot match
+  baseline. Extra baseline timing process terminated143 during replay; no timing
+  inferred. Completed state/contact evidence retained and compared independently.
+- Allocation3ticks+onewarmup:399876 ->364084 allocations,295451183 ->263048702
+  cumulative requested bytes,16838892 ->9306054 peak live requested bytes.
+  Distinct embedded source hashes and matching digests/final state verified.
+
+Focused81 tests PASS, strict workspace Clippy/fmt/diff checks PASS. Three injected
+normal/history-budget/resolve faults fail assertions and restore byte-identically.
+Actual dense8-founder tetrahedron crash has failing20-tick regression then green
+restoration. Inadequate8-tick passing probe retained honestly. Faster changed
+contact query, stale-binary comparisons and null speed experiments rejected and
+retained. Corrected allocation uses isolated target outputs; detached baseline
+worktree /tmp/moebius-alloc-baseline-3573 retains only observer-hash harness patch.
+
+Mermogon UUID D0A02EEBA02ED82C freshly verified; immutable performance-stabilization-v1:
+772files/1252567071raw bytes,171683498archive bytes, SHA256
+21702799694a1de7ca7bcc2f12ecc2c6e833a6378c8a093beade5209dad90d8f.
+Every restored member verified. Receipt/classification/manifest in docs/morph_005.
+Local raw /tmp/moebius-sim0001-light-20261125T220737Z retained. Atlas UUID verified,
+note reconciled after archive validation; checker45notes/197links PASS. Earlier
+sealed versions unchanged. No bulky raw evidence proposed for Git.
+
+Next now: review/stage this authorized work; commit; verify clean HEAD; run
+`cargo test --workspace --release --offline -- --test-threads=8`; record exact
+tested SHA and validation archive; publish authorized follow-up and verify remote.
+Keep phase PARTIAL afterward: attribute recovery/admission and allocation/copy
+amplification, then nearby-candidate indexing with strict outcome gates; repeat
+the matrix. No new biology or smoothness/large-population claim. All timed jobs
+have finished. Safe first: git status --short.
+
+---
+
+# ACTIVE performance stabilization — 2026-11-25 (America/Toronto)
+
+Codex IN PROGRESS. Operator explicitly designates the whole phase as performance
+stabilization before additional biological complexity, and requires congested-save,
+longer-duration, population-scaling and frame/tick-spike benchmarks before any lag
+resolution claim. Keep strict equivalence discipline; do not accept faster altered
+contact evidence. Phase remains PARTIAL and unacceptable for production scale.
+
+LATEST execution update (supersedes RUNNING paragraphs below): matrix-v2 completed.
+Long run stopped on180s budget at2818/3600ticks,8agents/7births/1007nodes, exact
+replay/gap0; mean63.161ms, p99322.880ms, max596.209ms. Founder1 net8.664m versus
+path80.091m. Native720 completed with exact replay,4agents/2births,653nodes:
+authority mean52.901ms, p99398.966ms, max635.394ms; frame mean16.669ms,
+p9917.138ms/max44.842ms, drawCPUmean4.753ms, publishmean0.084ms. Closing PNG
+inspected in normal rendered view. Smoothness remains unachieved.
+
+RUNNING NOW exec36248: baseline-native720 then optimized-native720, same saved
+native-final/world-initial.json; compare full initial/final/tick-contact bytes and
+native final state. Do not run CPU-heavy jobs during these timings. Matrix and
+memory-observer processes finished. Raw native files are under native-final/.
+Pending after this: allocation comparison if useful; exact dense8/16 baseline
+comparisons; prepared `/tmp/moebius-performance-honest-red.py` (not executed yet);
+final focused/static checks, archival/Atlas/report, clean commit/full suite/push.
+
+Initial requested commit/push DONE: main3573e1a3b5a6dd0f1093c0a14c5b70b523d0861a,
+origin/main verified identical. Clean-checkpoint focused62 tests, strict Clippy,
+formatting and Atlas checks passed after that push. No full-workspace certification
+yet. Subsequent performance work is currently uncommitted; no user work discarded.
+
+Frozen numerical source for the running acceptance matrix includes: exact boolean
+BVH distance predicate + certified GJK bounds/exact fallback; pre-build distant
+pipe rejection after wet-cache fix; shared spawn cache; append-only tick event
+deltas; bit-identical numerical nozzle-frame sampling. Paths anatomy.rs,
+compiler.rs, collision.rs, habitat.rs, runtime.rs and tests/composition.rs under
+crates/moebius-morph. No collider proxy or new biology. Current phase/reuse record:
+docs/morph_005/PERFORMANCE_STABILIZATION.md. Protocol JSON sits beside it.
+
+Raw working directory `/tmp/moebius-sim0001-light-20261125T220737Z`;
+marker `/tmp/moebius-current-light-run`. Strict Clippy passed latest source;
+nozzle-frame test passes72 poses, saved continuation/congested full states/contact
+rows match. Current complete420-tick matrix case also exactly matches the pushed
+baseline: mean33.637ms, p99294.254ms, max404.839ms,
+versus87.641ms/p99848.775ms/max1846.523ms. Still not smooth. Do not extrapolate.
+Faster closest-point implementation was REJECTED for contact differences; failed
+recorder/stale-binary results marked INVALID_RUNS.json and preserved.
+
+Original matrix STOPPED at8 founders: uncommitted GJK proximity candidate read a
+fourth barycentric coordinate from Parry's three-coordinate projection array.
+Fault is preserved; a20-tick dense eight-founder test fails101 before the guard,
+then passes after full-tetrahedron proximity falls back to the original kernel.
+The first8-tick probe did not reach the fault and is retained as an inadequate
+passing probe, not an honest-red success. Do not publish the old matrix binary.
+
+RUNNING NOW: exec session82014 runs the corrected matrix under raw `matrix-v2/`,
+log `matrix-driver.log`, protocol/source/binary hashes MATRIX_PROTOCOL.json,
+incremental MATRIX_RESULTS.json. Three alternating saved-scene repeats, scaling
+1/2/4/8/16 founders (120ticks/soft20s), refusal30/100/300, then provisioned
+3600-tick long run with soft180s budget and exact replay outside that budget.
+Do not compile, test or run other CPU-heavy jobs during timed cases. Do not
+label budget-limited long/scaling cases as completed. Corrected matrix-probe and
+native witness binaries are captured under matrix-v2. No native720 run started yet.
+Corrected scaling1/2/4/8/16 all completed120ticks; means0.604/23.426/12.488/77.192/
+105.140ms;8-founder max1043.214ms. Long3600-tick case is now running. A late-start
+external memory observer (exec34958) writes matrix-v2/long-memory.jsonl and
+MEMORY_OBSERVER.json; distinguish measurement from exact replay. These results
+are not acceptable performance; count is not the only factor in these layouts.
+
+Next: inspect matrix progress; native first-simulation seed11 founders2 abundance
+4000 ticks720 with record (capture actual frames/authority, inspect PNG); allocation
+comparison if useful; focused final suite and honest-red/restored checks; archive
+all new raw versions/failures on UUID-verified Mermogon; update Atlas/report/receipts;
+commit clean source, run full release workspace suite, record exact tested SHA and
+publish authorized follow-up changes. Initial repair archive is already verified;
+new performance evidence NOT yet archived. Safe first: git status --short and
+tail raw matrix-driver.log; preserve frozen runtime source until timed jobs finish.
+
+---
+
 # Authorized publication checkpoint — 2026-11-25 (America/Toronto)
 
 Codex IN PROGRESS. Operator explicitly requests commit, push, then focused

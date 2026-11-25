@@ -1,0 +1,716 @@
+{
+  "phase_status": "PARTIAL / PERFORMANCE UNACCEPTABLE",
+  "biology_expansion": "HELD BACK BY OPERATOR",
+  "baseline_commit": "3573e1a3b5a6dd0f1093c0a14c5b70b523d0861a",
+  "environment": {
+    "platform": "Linux-6.18.60-1-lts-x86_64-with-glibc2.44",
+    "cpu": {
+      "CPU(s):": "32",
+      "Model name:": "AMD Ryzen 9 7950X 16-Core Processor",
+      "Thread(s) per core:": "2",
+      "Core(s) per socket:": "16"
+    },
+    "governor": "powersave",
+    "execution": "Release/offline. Independent sequential processes. No CPU affinity pinning. No claim of controlled ambient system load."
+  },
+  "working_total_authority_targets_ms": {
+    "mean": 2,
+    "p99": 8.3,
+    "max": 16.7
+  },
+  "matched_pairs": {
+    "fresh420": {
+      "equality": {
+        "initial.json": true,
+        "final.json": true,
+        "ticks.jsonl": true
+      },
+      "baseline": {
+        "count": 420,
+        "max_ms": 1846.522857,
+        "mean_ms": 87.6412336404762,
+        "p50_ms": 18.216388,
+        "p95_ms": 497.727292,
+        "p99_ms": 848.775476
+      },
+      "optimized": {
+        "count": 420,
+        "max_ms": 408.399985,
+        "mean_ms": 33.859536383333335,
+        "p50_ms": 13.727617,
+        "p95_ms": 148.930141,
+        "p99_ms": 299.563908
+      }
+    },
+    "continuation": {
+      "runs": 3,
+      "equality": [
+        {
+          "initial.json": true,
+          "final.json": true,
+          "ticks.jsonl": true
+        },
+        {
+          "initial.json": true,
+          "final.json": true,
+          "ticks.jsonl": true
+        },
+        {
+          "initial.json": true,
+          "final.json": true,
+          "ticks.jsonl": true
+        }
+      ],
+      "baseline-probe": {
+        "pooled_tick_ms": {
+          "count": 120,
+          "mean_ms": 37.807706275,
+          "p50_ms": 15.801711,
+          "p95_ms": 177.577702,
+          "p99_ms": 218.430863,
+          "max_ms": 218.734192
+        },
+        "run_mean_sd_ms": 0.035085070339292944,
+        "run_means_ms": [
+          37.79683265,
+          37.8469408,
+          37.779345375
+        ],
+        "vm_hwm_kib_before_replay": [
+          30308,
+          31788,
+          30996
+        ]
+      },
+      "matrix-probe": {
+        "pooled_tick_ms": {
+          "count": 120,
+          "mean_ms": 18.890078491666667,
+          "p50_ms": 11.896862,
+          "p95_ms": 39.036406,
+          "p99_ms": 203.756239,
+          "max_ms": 204.980655
+        },
+        "run_mean_sd_ms": 0.255616239631593,
+        "run_means_ms": [
+          18.831915825,
+          19.169764075,
+          18.668555575
+        ],
+        "vm_hwm_kib_before_replay": [
+          23772,
+          23548,
+          23792
+        ]
+      }
+    },
+    "congested": {
+      "runs": 3,
+      "equality": [
+        {
+          "initial.json": true,
+          "final.json": true,
+          "ticks.jsonl": true
+        },
+        {
+          "initial.json": true,
+          "final.json": true,
+          "ticks.jsonl": true
+        },
+        {
+          "initial.json": true,
+          "final.json": true,
+          "ticks.jsonl": true
+        }
+      ],
+      "baseline-probe": {
+        "pooled_tick_ms": {
+          "count": 15,
+          "mean_ms": 203.50713633333334,
+          "p50_ms": 170.15122,
+          "p95_ms": 431.26999,
+          "p99_ms": 431.26999,
+          "max_ms": 431.26999
+        },
+        "run_mean_sd_ms": 0.5753950751756006,
+        "run_means_ms": [
+          203.011997,
+          203.37103,
+          204.138382
+        ],
+        "vm_hwm_kib_before_replay": [
+          35912,
+          33712,
+          36068
+        ]
+      },
+      "matrix-probe": {
+        "pooled_tick_ms": {
+          "count": 15,
+          "mean_ms": 183.74609726666665,
+          "p50_ms": 122.281065,
+          "p95_ms": 409.640993,
+          "p99_ms": 409.640993,
+          "max_ms": 409.640993
+        },
+        "run_mean_sd_ms": 2.3339858472707102,
+        "run_means_ms": [
+          186.338035,
+          181.810688,
+          183.08956880000002
+        ],
+        "vm_hwm_kib_before_replay": [
+          29096,
+          27500,
+          27348
+        ]
+      }
+    },
+    "dense8-20ticks": {
+      "equality": {
+        "initial.json": true,
+        "final.json": true,
+        "ticks.jsonl": true
+      }
+    },
+    "dense16-20ticks": {
+      "equality": {
+        "initial.json": true,
+        "final.json": true,
+        "ticks.jsonl": true
+      }
+    },
+    "native720": {
+      "equality": {
+        "initial.json": true,
+        "final.json": true,
+        "ticks.jsonl": true
+      },
+      "native_final_equal": true,
+      "baseline_timing": "UNAVAILABLE: process externally terminated during replay, exit143; completed snapshot/contact trace retained",
+      "optimized_headless": {
+        "count": 720,
+        "max_ms": 635.520773,
+        "mean_ms": 51.82227455277778,
+        "p50_ms": 28.195213,
+        "p95_ms": 178.279605,
+        "p99_ms": 394.418883
+      }
+    }
+  },
+  "allocation": {
+    "baseline": {
+      "source_blake3": {
+        "anatomy.rs": "bf787069f01c8f5f17777fcd9743073e9212d2452fef7b5a500f77b69ad67b25",
+        "collision.rs": "20eab9f576c56512dfbaff48445e06b1bc2dcd855cd5956dc360669347eaaf1e",
+        "compiler.rs": "f581ecd18500959aabbb0dd3d17a95e5dc3e51bb51a60162f0f9e8b4750fb59e",
+        "runtime.rs": "46691c0496e619fcd2617415026a7114ba5367d838bd5b42251453c91b565582"
+      },
+      "ticks": 3,
+      "warmup_ticks": 1,
+      "allocations": 399876,
+      "requested_bytes": 295451183,
+      "peak_live_requested_bytes": 16838892,
+      "process_peak_rss_kib": 38772,
+      "digests": [
+        "db2b2837d7dc116e75f9856bc188f09ff29bfb0de1e3d5f7c8531461ce76f155",
+        "e86bc3e0c04923cfab066879295e2ca93cd4b1cec451a30b8e33ba03b784aacf",
+        "5e54d7620965c6f69a038bcb1a28c107daf154c709b343963b8e8e9a8245d063"
+      ]
+    },
+    "optimized": {
+      "source_blake3": {
+        "anatomy.rs": "5a89caf14867ec92199b6149d4fa3f2bbd953e07170dcc475e47ce973c12f25c",
+        "collision.rs": "c8890d55c58bea2db45332fff1778f37fd1810618aea154798d92902bba1b495",
+        "compiler.rs": "8aadec376de890a61d91f91efc02f1174fbdf81ed6cf891833efe29a7698c2f6",
+        "runtime.rs": "39612df86a8fbb14e17711b6da6ed9899014f6e3ab74325a7dcb9b56d863806d"
+      },
+      "ticks": 3,
+      "warmup_ticks": 1,
+      "allocations": 364084,
+      "requested_bytes": 263048702,
+      "peak_live_requested_bytes": 9306054,
+      "process_peak_rss_kib": 32684,
+      "digests": [
+        "db2b2837d7dc116e75f9856bc188f09ff29bfb0de1e3d5f7c8531461ce76f155",
+        "e86bc3e0c04923cfab066879295e2ca93cd4b1cec451a30b8e33ba03b784aacf",
+        "5e54d7620965c6f69a038bcb1a28c107daf154c709b343963b8e8e9a8245d063"
+      ]
+    }
+  },
+  "scaling": [
+    {
+      "founders": 1,
+      "status": "PASS",
+      "stop": "completed",
+      "ticks_advanced": 120,
+      "agent_count": 1,
+      "tick_ms": {
+        "count": 120,
+        "max_ms": 6.370454,
+        "mean_ms": 0.6043719583333333,
+        "p50_ms": 0.278669,
+        "p95_ms": 2.270325,
+        "p99_ms": 4.304229
+      },
+      "vm_hwm_kb_before_replay": 8740,
+      "replay_equal": true,
+      "material_gap": 0
+    },
+    {
+      "founders": 2,
+      "status": "PASS",
+      "stop": "completed",
+      "ticks_advanced": 120,
+      "agent_count": 2,
+      "tick_ms": {
+        "count": 120,
+        "max_ms": 411.01011,
+        "mean_ms": 23.425724941666665,
+        "p50_ms": 3.752712,
+        "p95_ms": 98.301513,
+        "p99_ms": 379.125756
+      },
+      "vm_hwm_kb_before_replay": 8740,
+      "replay_equal": true,
+      "material_gap": 0
+    },
+    {
+      "founders": 4,
+      "status": "PASS",
+      "stop": "completed",
+      "ticks_advanced": 120,
+      "agent_count": 4,
+      "tick_ms": {
+        "count": 120,
+        "max_ms": 58.02497,
+        "mean_ms": 12.487864475,
+        "p50_ms": 8.46964,
+        "p95_ms": 40.757822,
+        "p99_ms": 50.374209
+      },
+      "vm_hwm_kb_before_replay": 11088,
+      "replay_equal": true,
+      "material_gap": 0
+    },
+    {
+      "founders": 8,
+      "status": "PASS",
+      "stop": "completed",
+      "ticks_advanced": 120,
+      "agent_count": 8,
+      "tick_ms": {
+        "count": 120,
+        "max_ms": 1043.214237,
+        "mean_ms": 77.1916789,
+        "p50_ms": 17.764797,
+        "p95_ms": 459.164034,
+        "p99_ms": 757.505056
+      },
+      "vm_hwm_kb_before_replay": 14824,
+      "replay_equal": true,
+      "material_gap": 0
+    },
+    {
+      "founders": 16,
+      "status": "PASS",
+      "stop": "completed",
+      "ticks_advanced": 120,
+      "agent_count": 16,
+      "tick_ms": {
+        "count": 120,
+        "max_ms": 759.219022,
+        "mean_ms": 105.13958819166666,
+        "p50_ms": 69.392403,
+        "p95_ms": 439.753221,
+        "p99_ms": 691.168165
+      },
+      "vm_hwm_kb_before_replay": 20292,
+      "replay_equal": true,
+      "material_gap": 0
+    }
+  ],
+  "unsupported_founders": {
+    "counts": [
+      30,
+      100,
+      300
+    ],
+    "outcome": "REFUSED by current 16-founder configuration limit; not measured capacity"
+  },
+  "long_run": {
+    "status": "PARTIAL",
+    "stop": "wall_clock",
+    "ticks_advanced": 2818,
+    "requested_ticks": 3600,
+    "agent_count": 8,
+    "births": 7,
+    "nodes": 1007,
+    "tick_ms": {
+      "count": 2818,
+      "max_ms": 596.209418,
+      "mean_ms": 63.16121306387509,
+      "p50_ms": 49.055522,
+      "p95_ms": 199.404541,
+      "p99_ms": 322.879574
+    },
+    "replay_equal": true,
+    "material_gap": 0,
+    "vm_hwm_kb_before_replay": 76236,
+    "vm_hwm_kb_after_replay": 76236,
+    "journeys": [
+      {
+        "blocked_ticks": 1734,
+        "id": 1,
+        "max_net_m": 8.66368375488516,
+        "moving_ticks": 1533,
+        "origin": {
+          "local": [
+            0,
+            0,
+            0
+          ],
+          "region": [
+            0,
+            0,
+            0
+          ]
+        },
+        "path_m": 80.09149529450548,
+        "remembered_cells": 40
+      },
+      {
+        "blocked_ticks": 1996,
+        "id": 17,
+        "max_net_m": 6.589969159913042,
+        "moving_ticks": 1035,
+        "origin": {
+          "local": [
+            1337060,
+            1568344,
+            106959
+          ],
+          "region": [
+            0,
+            0,
+            0
+          ]
+        },
+        "path_m": 50.268702932136264,
+        "remembered_cells": 18
+      },
+      {
+        "blocked_ticks": 1929,
+        "id": 40,
+        "max_net_m": 2.9291925367872285,
+        "moving_ticks": 133,
+        "origin": {
+          "local": [
+            52555,
+            4337535,
+            999614608
+          ],
+          "region": [
+            0,
+            0,
+            -1
+          ]
+        },
+        "path_m": 6.7432558630667785,
+        "remembered_cells": 4
+      },
+      {
+        "blocked_ticks": 828,
+        "id": 42,
+        "max_net_m": 18.2246170508476,
+        "moving_ticks": 1481,
+        "origin": {
+          "local": [
+            997543083,
+            4216643,
+            395747
+          ],
+          "region": [
+            -1,
+            0,
+            0
+          ]
+        },
+        "path_m": 76.6392888237843,
+        "remembered_cells": 41
+      },
+      {
+        "blocked_ticks": 1163,
+        "id": 53,
+        "max_net_m": 4.273549981577846,
+        "moving_ticks": 1334,
+        "origin": {
+          "local": [
+            999159781,
+            1867689,
+            997945169
+          ],
+          "region": [
+            -1,
+            0,
+            -1
+          ]
+        },
+        "path_m": 55.705833857500664,
+        "remembered_cells": 12
+      },
+      {
+        "blocked_ticks": 813,
+        "id": 54,
+        "max_net_m": 9.068603035512195,
+        "moving_ticks": 861,
+        "origin": {
+          "local": [
+            1984046,
+            799035,
+            973773
+          ],
+          "region": [
+            0,
+            0,
+            0
+          ]
+        },
+        "path_m": 46.96153864940961,
+        "remembered_cells": 32
+      },
+      {
+        "blocked_ticks": 719,
+        "id": 55,
+        "max_net_m": 10.159641538220825,
+        "moving_ticks": 330,
+        "origin": {
+          "local": [
+            995822329,
+            994420524,
+            205178
+          ],
+          "region": [
+            -1,
+            -1,
+            0
+          ]
+        },
+        "path_m": 17.9271448033557,
+        "remembered_cells": 12
+      },
+      {
+        "blocked_ticks": 134,
+        "id": 56,
+        "max_net_m": 9.045017484550707,
+        "moving_ticks": 508,
+        "origin": {
+          "local": [
+            5201917,
+            4729467,
+            997583799
+          ],
+          "region": [
+            0,
+            0,
+            -1
+          ]
+        },
+        "path_m": 26.805998597279423,
+        "remembered_cells": 17
+      }
+    ],
+    "simulated_seconds": 46.96666666666667,
+    "time_windows": [
+      {
+        "ticks": [
+          1,
+          360
+        ],
+        "mean_ms": 3.000733777777778,
+        "end_agents": 1,
+        "end_nodes": 39
+      },
+      {
+        "ticks": [
+          361,
+          720
+        ],
+        "mean_ms": 11.217844952777776,
+        "end_agents": 2,
+        "end_nodes": 109
+      },
+      {
+        "ticks": [
+          721,
+          1080
+        ],
+        "mean_ms": 19.369220902777776,
+        "end_agents": 4,
+        "end_nodes": 363
+      },
+      {
+        "ticks": [
+          1081,
+          1440
+        ],
+        "mean_ms": 50.61809205833333,
+        "end_agents": 5,
+        "end_nodes": 582
+      },
+      {
+        "ticks": [
+          1441,
+          1800
+        ],
+        "mean_ms": 80.63295296944443,
+        "end_agents": 6,
+        "end_nodes": 798
+      },
+      {
+        "ticks": [
+          1801,
+          2160
+        ],
+        "mean_ms": 131.14629368333334,
+        "end_agents": 7,
+        "end_nodes": 876
+      },
+      {
+        "ticks": [
+          2161,
+          2520
+        ],
+        "mean_ms": 121.00019878611111,
+        "end_agents": 8,
+        "end_nodes": 956
+      },
+      {
+        "ticks": [
+          2521,
+          2818
+        ],
+        "mean_ms": 93.53549344630873,
+        "end_agents": 8,
+        "end_nodes": 1007
+      }
+    ]
+  },
+  "native": {
+    "status": "PASS",
+    "ticks": 720,
+    "headless_equal": true,
+    "frame_log_capped": false,
+    "authority": {
+      "collision": {
+        "body_builds": 2,
+        "body_geometry_ns": 5694796,
+        "body_hits": 502348,
+        "cast_cache_hits": 20774,
+        "contact_ns": 2708688074,
+        "distance_ns": 21810464867,
+        "distance_queries": 65382,
+        "interval_rejects": 3536,
+        "mean_resolve_ms": 48.552758293055554,
+        "pipe_builds": 6277,
+        "pipe_candidates": 70084,
+        "pipe_geometry_ns": 3464605736,
+        "pipe_hits": 63782,
+        "pipe_rejects": 405557,
+        "queries": 160596,
+        "query_ns": 27936837387,
+        "resolve_calls": 720,
+        "resolve_ns": 34957985971
+      },
+      "note": "tick_ms is ShipRuntime::tick on the authority thread. publish_ms is the snapshot copy handed to the witness. The pace sleep is in neither sample. Frame time is not tick time. Collision counters are not world state.",
+      "publish_ms": {
+        "count": 720,
+        "max_ms": 0.488828,
+        "mean_ms": 0.08397030555555557,
+        "p50_ms": 0.06396,
+        "p95_ms": 0.18786,
+        "p99_ms": 0.25334
+      },
+      "tick_ms": {
+        "count": 720,
+        "max_ms": 635.393837,
+        "mean_ms": 52.90079847222222,
+        "p50_ms": 28.796951,
+        "p95_ms": 181.710184,
+        "p99_ms": 398.965704
+      }
+    },
+    "presentation": {
+      "body_mesh_cpu_ms": {
+        "count": 3016,
+        "max_ms": 14.111616,
+        "mean_ms": 0.9243028133289125,
+        "p50_ms": 0.0,
+        "p95_ms": 5.157208,
+        "p99_ms": 5.748616
+      },
+      "body_rebuilds": 2151,
+      "body_reused": 8205,
+      "camera_cpu_ms": {
+        "count": 3016,
+        "max_ms": 0.143039,
+        "mean_ms": 0.017865475464190983,
+        "p50_ms": 0.0124,
+        "p95_ms": 0.06384,
+        "p99_ms": 0.07847
+      },
+      "draw_cpu_ms": {
+        "count": 3016,
+        "max_ms": 15.425882,
+        "mean_ms": 4.753436690981433,
+        "p50_ms": 4.32793,
+        "p95_ms": 11.026503,
+        "p99_ms": 12.26553
+      },
+      "frame_interval_ms": {
+        "count": 3016,
+        "max_ms": 44.842172,
+        "mean_ms": 16.66939910576923,
+        "p50_ms": 16.668269,
+        "p95_ms": 16.953059,
+        "p99_ms": 17.137869
+      },
+      "frames": 3016,
+      "gore_cpu_ms": {
+        "count": 3016,
+        "max_ms": 0.00118,
+        "mean_ms": 0.00023724767904509283,
+        "p50_ms": 0.00022,
+        "p95_ms": 0.00042,
+        "p99_ms": 0.00053
+      },
+      "pipe_mesh_cpu_ms": {
+        "count": 3016,
+        "max_ms": 0.107679,
+        "mean_ms": 0.007669853116710875,
+        "p50_ms": 0.00101,
+        "p95_ms": 0.04603,
+        "p99_ms": 0.06099
+      },
+      "pipe_meshes_generated": 909
+    }
+  },
+  "preserved_failures": [
+    "Direct closest-point replacement changed contact evidence and was rejected.",
+    "Duplicate bounded prefilter and separating-plane variants lacked useful speed improvement.",
+    "Initial recorder build failed; stale-binary measurements explicitly excluded.",
+    "Matrix v1 crashed at8 founders; tetrahedron projection guard and20-tick honest-red/restored regression added.",
+    "First8-tick regression probe passed without reaching the crash; retained, not called honest-red.",
+    "Extra native baseline timing process was terminated during replay (143); timing unavailable, full completed state/contact evidence retained and matched."
+  ],
+  "measurement_limits": [
+    "One machine, powersave governor, no CPU pinning or controlled ambient load.",
+    "Small fixed-layout scaling scenarios; changing founder count also changes interactions/placement. Nonmonotonic cost is not evidence of better capacity at4 versus2.",
+    "Three paired saved-scene repeats; full420 history comparison is one run per condition, not a repeated-seed study.",
+    "Native recording includes capture and startup costs. Frame interval includes pace sleep and is not tick cost.",
+    "VmHWM from recorder includes snapshot serialization/replay bookkeeping; allocation traffic is cumulative requested bytes, not RSS.",
+    "Long-duration target3600 not reached. A2818-tick observation is46.97 simulated seconds, not a sustainable-ecology result.",
+    "Legacy congested-save performance and inherited wedging remain unresolved. Mortality/metabolism are unimplemented.",
+    "Logical distance/query counters are not a complete count of inner GJK kernels or admission/recovery contacts."
+  ]
+}
