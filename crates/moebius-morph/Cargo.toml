@@ -19,6 +19,9 @@ blake3 = "1"
 serde_json = "1"
 
 [features]
+# Rejected/unqualified VI lanes remain reproducible but are not runtime defaults.
+experimental-collision-frontiers = []
+experimental-geometry-reuse = []
 allocation-attribution = []
 query-trace = []
 # Authentic query recipe capture / isolated canonical-query harness only.

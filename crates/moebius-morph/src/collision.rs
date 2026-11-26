@@ -34,6 +34,10 @@ use std::{
 #[path = "collision_fixtures.rs"]
 pub mod fixtures;
 
+#[path = "collision_execution.rs"]
+mod execution;
+pub use execution::{ExecutionPolicy, ExecutionProfile};
+
 /// Tight sample admitted into the cached hit volume. The witness writhe uses the
 /// same anatomy generator at a larger bend and a traveling phase.
 pub const COLLISION_BEND: f32 = 0.12;
@@ -246,6 +250,10 @@ struct Geometry {
 type PipeCacheKey = (u64, usize, [u8; 32]);
 #[derive(Default)]
 pub struct CollisionCache {
+    geometry_reuse: bool,
+    pending_geometry: Option<DepositGeometry>,
+    promoted_geometry: BTreeMap<(u64, usize), [u8; 32]>,
+    geometry_reuse_profile: GeometryReuseProfile,
     contact_workspace: ContactWorkspace,
     definitions: BTreeMap<(u64, u64, [u8; 32]), Arc<Geometry>>,
     specifications: BTreeMap<u64, (AnatomySpec, [u8; 32])>,
@@ -259,14 +267,219 @@ pub struct CollisionCache {
     /// through to `pipe_separated` and the hollow trimesh.
     horizon: PipeHorizon,
 }
+#[derive(Clone, Debug, Default, Serialize)]
+pub struct GeometryReuseProfile {
+    pub candidate_builds: u64,
+    pub promoted: u64,
+    pub consumed: u64,
+    pub mismatched: u64,
+    pub rejected: u64,
+}
+struct DepositGeometry {
+    parcel: u64,
+    organism: u64,
+    chunks: Vec<(PipeCacheKey, Position, Geometry)>,
+}
 type Hit = Option<(f32, [i64; 3], Position)>;
 type CastKey = (usize, u32, usize, u32, [i64; 24]);
+fn cast_key(a: &Geometry, b: &Geometry, endpoints: [RigidPose; 4]) -> CastKey {
+    let mut poses = [0; 24];
+    for (values, p) in poses.as_chunks_mut::<6>().0.iter_mut().zip(endpoints) {
+        values[..3].copy_from_slice(&p.translation);
+        values[3..].copy_from_slice(&[p.yaw_sin, p.yaw_cos, p.axial_roll]);
+    }
+    (
+        Arc::as_ptr(&a.shape) as *const () as usize,
+        a.radius.to_bits(),
+        Arc::as_ptr(&b.shape) as *const () as usize,
+        b.radius.to_bits(),
+        poses,
+    )
+}
 struct CastReceipt {
     // Keep both allocations alive: an address must never alias a new shape.
     _shapes: [Arc<dyn Shape>; 2],
     hit: Hit,
 }
 impl CollisionCache {
+    pub fn configure_geometry_reuse(&mut self, enabled: bool) {
+        self.geometry_reuse = enabled;
+        self.pending_geometry = None;
+    }
+    pub fn geometry_reuse_profile(&self) -> GeometryReuseProfile {
+        self.geometry_reuse_profile.clone()
+    }
+    pub(crate) fn discard_deposit_geometry(&mut self) {
+        if self.pending_geometry.take().is_some() {
+            self.geometry_reuse_profile.rejected += 1;
+        }
+    }
+    pub(crate) fn admit_deposit_geometry(
+        &mut self,
+        assembly: &crate::filament::Assembly,
+        book: &crate::emission::MaterialBook,
+        tick: u64,
+        admitted: (u64, u64, u64),
+    ) {
+        let Some(candidate) = self.pending_geometry.take() else {
+            return;
+        };
+        let (filament, node, parcel) = admitted;
+        let paid = candidate.parcel == parcel
+            && candidate.organism == book.organism_id
+            && book
+                .bound
+                .iter()
+                .any(|b| b.filament == filament && b.node == node && b.parcel.id == parcel)
+            && assembly.filaments.get(&filament).is_some_and(|f| {
+                f.organism == book.organism_id
+                    && f.nodes.iter().any(|n| n.id == node && n.parcel == parcel)
+            });
+        if !paid {
+            self.geometry_reuse_profile.rejected += 1;
+            return;
+        }
+        for (key, origin, g) in candidate.chunks {
+            if assembly
+                .filaments
+                .get(&filament)
+                .and_then(|f| pipe_key(filament, f, key.1, tick))
+                == Some(key)
+                && self.promoted_geometry.len() < 128
+            {
+                #[cfg(feature = "collision-fixture")]
+                fixtures::geometry_record(
+                    "promoted",
+                    tick,
+                    key,
+                    &g,
+                    false,
+                    Some((filament, node, parcel)),
+                );
+                self.pipes.insert((key.0, key.1), (key.2, origin, g));
+                self.promoted_geometry.insert((key.0, key.1), key.2);
+                self.geometry_reuse_profile.promoted += 1;
+            } else {
+                self.geometry_reuse_profile.mismatched += 1;
+            }
+        }
+    }
+    fn parallel_graft(
+        &mut self,
+        body: &Geometry,
+        nozzle: u64,
+        obstacle: &Geometry,
+        poses: [RigidPose; 4],
+    ) -> Result<bool, MorphError> {
+        let parts = body
+            .parts
+            .iter()
+            .filter(|(id, _)| *id != nozzle)
+            .collect::<Vec<_>>();
+        let tasks = parts
+            .iter()
+            .enumerate()
+            .map(|(ordinal, (component, part))| {
+                execution::Task::cast(
+                    self.contact_workspace.context.clone(),
+                    ordinal,
+                    *component,
+                    part,
+                    obstacle,
+                    poses,
+                )
+            })
+            .collect();
+        let mut frontier = self.contact_workspace.executor.as_mut().unwrap().run(tasks);
+        let mut result = Ok(true);
+        for (ordinal, (component, part)) in parts.into_iter().enumerate() {
+            let ready = frontier.as_mut().and_then(|f| {
+                let key = execution::Task::cast(
+                    self.contact_workspace.context.clone(),
+                    ordinal,
+                    *component,
+                    part,
+                    obstacle,
+                    poses,
+                )
+                .key();
+                self.contact_workspace
+                    .executor
+                    .as_mut()
+                    .unwrap()
+                    .consume(f, &key)
+            });
+            let fallback = ready.is_none();
+            let started = Instant::now();
+            let hit = match ready {
+                Some(Ok(execution::Value::Cast(hit))) => Ok(hit),
+                Some(Err(error)) => Err(error),
+                _ => self.cast(part, poses[0], poses[1], obstacle, poses[2], poses[3]),
+            };
+            if fallback {
+                self.contact_workspace
+                    .executor
+                    .as_mut()
+                    .unwrap()
+                    .profile
+                    .fallback_ns += started.elapsed().as_nanos();
+            }
+            match hit {
+                Ok(Some(_)) => {
+                    result = Ok(false);
+                    break;
+                }
+                Err(error) => {
+                    result = Err(error);
+                    break;
+                }
+                Ok(None) => {}
+            }
+        }
+        if let Some(frontier) = frontier {
+            self.contact_workspace
+                .executor
+                .as_mut()
+                .unwrap()
+                .finish(frontier);
+        }
+        result
+    }
+    pub fn configure_execution(&mut self, policy: ExecutionPolicy) -> Result<(), MorphError> {
+        require(
+            cfg!(feature = "experimental-collision-frontiers")
+                || (!policy.graft && !policy.static_queries),
+            "unqualified collision frontiers require explicit experimental feature",
+        )?;
+        require(
+            (1..=32).contains(&policy.workers) && (2..=64).contains(&policy.minimum_frontier),
+            "invalid collision executor policy",
+        )?;
+        require(
+            (2..=64).contains(&policy.frontier_limit),
+            "invalid frontier capacity",
+        )?;
+        let executor =
+            if policy.workers > 1 && (policy.graft || policy.recovery || policy.static_queries) {
+                Some(execution::Executor::new(policy)?)
+            } else {
+                None
+            };
+        self.contact_workspace.executor = executor;
+        Ok(())
+    }
+    pub fn execution_profile(&self) -> ExecutionProfile {
+        self.contact_workspace
+            .executor
+            .as_ref()
+            .map_or_else(ExecutionProfile::default, |e| e.profile.clone())
+    }
+    pub fn execution_policy(&self) -> ExecutionPolicy {
+        self.contact_workspace
+            .executor
+            .as_ref()
+            .map_or_else(ExecutionPolicy::default, |e| e.policy)
+    }
     fn cast(
         &mut self,
         a: &Geometry,
@@ -276,23 +489,7 @@ impl CollisionCache {
         bfrom: RigidPose,
         bto: RigidPose,
     ) -> Result<Hit, MorphError> {
-        let mut poses = [0; 24];
-        for (values, p) in poses
-            .as_chunks_mut::<6>()
-            .0
-            .iter_mut()
-            .zip([from, to, bfrom, bto])
-        {
-            values[..3].copy_from_slice(&p.translation);
-            values[3..].copy_from_slice(&[p.yaw_sin, p.yaw_cos, p.axial_roll]);
-        }
-        let key = (
-            Arc::as_ptr(&a.shape) as *const () as usize,
-            a.radius.to_bits(),
-            Arc::as_ptr(&b.shape) as *const () as usize,
-            b.radius.to_bits(),
-            poses,
-        );
+        let key = cast_key(a, b, [from, to, bfrom, bto]);
         if let Some(receipt) = self.casts.get(&key) {
             self.profile.cast_cache_hits += 1;
             #[cfg(feature = "query-trace")]
@@ -300,7 +497,7 @@ impl CollisionCache {
             return Ok(receipt.hit);
         }
         #[cfg(feature = "query-trace")]
-        query_trace::note_cast(query_trace::pose_fingerprint(&poses));
+        query_trace::note_cast(query_trace::pose_fingerprint(&key.4));
         #[cfg(feature = "query-trace")]
         let cast_started = Instant::now();
         let cast_result = cast(
@@ -366,6 +563,8 @@ fn motion(
 fn geometry(surfaces: &[Surface], scale: f32) -> Result<Geometry, MorphError> {
     #[cfg(feature = "allocation-attribution")]
     let _allocation_scope = crate::profiling::enter(14);
+    #[cfg(all(feature = "allocation-attribution", feature = "collision-fixture"))]
+    let allocation_before = crate::profiling::snapshot()[14][5];
 
     let mut vertices = Vec::new();
     let mut indices = Vec::new();
@@ -389,14 +588,17 @@ fn geometry(surfaces: &[Surface], scale: f32) -> Result<Geometry, MorphError> {
     let radius = vertices.iter().map(|p| p.length()).fold(0f32, f32::max);
     let mesh = TriMesh::with_flags(vertices.clone(), indices, TriMeshFlags::ORIENTED)
         .map_err(|e| MorphError(format!("physical mesh rejected: {e}")))?;
-    Ok(Geometry {
+    let result = Geometry {
         shape: Arc::new(mesh),
         radius,
         vertices: Arc::new(vertices),
         parts: vec![],
         outlets: vec![],
         writhe_slack: OnceLock::from(0.),
-    })
+    };
+    #[cfg(all(feature = "allocation-attribution", feature = "collision-fixture"))]
+    fixtures::geometry_bytes(crate::profiling::snapshot()[14][5] - allocation_before);
+    Ok(result)
 }
 impl CollisionCache {
     fn body(&mut self, world: &WorldSnapshot, id: u64) -> Result<Arc<Geometry>, MorphError> {
@@ -558,14 +760,22 @@ impl CollisionCache {
         if let Some((hash, origin, geometry)) = self.pipes.get(&(id, chunk))
             && *hash == key.2
         {
+            if self.promoted_geometry.remove(&(id, chunk)) == Some(key.2) {
+                self.geometry_reuse_profile.consumed += 1;
+            }
             self.profile.pipe_hits += 1;
+            #[cfg(feature = "collision-fixture")]
+            fixtures::geometry_record("pipe-hit", tick, key, geometry, false, None);
             return Ok((*origin, geometry.clone()));
         }
         let built = Instant::now();
+        self.promoted_geometry.remove(&(id, chunk));
         self.profile.pipe_builds += 1;
         let (origin, surface) = filament_chunk_at(f, chunk, tick)?;
         let g = geometry(&[surface], 1.)?;
         self.profile.pipe_geometry_ns += built.elapsed().as_nanos();
+        #[cfg(feature = "collision-fixture")]
+        fixtures::geometry_record("pipe-build", tick, key, &g, true, None);
         self.pipes.insert((id, chunk), (key.2, origin, g.clone()));
         Ok((origin, g))
     }
@@ -2104,24 +2314,18 @@ struct ContactReceipt {
 }
 #[derive(Default)]
 struct ContactWorkspace {
+    executor: Option<execution::Executor>,
+    context: execution::Context,
     epa: Option<EPA>,
     contacts: BTreeMap<ContactKey, ContactReceipt>,
     hits: u64,
     misses: u64,
     supports: SupportCache,
 }
-fn cached_world_contact(
-    workspace: &mut ContactWorkspace,
-    pa: &Iso,
-    a: &Geometry,
-    pb: &Iso,
-    b: &Geometry,
-    prediction: f32,
-) -> Result<Option<query::Contact>, query::Unsupported> {
-    let relative = pa.inv_mul(pb);
+fn contact_key(relative: &Iso, a: &Geometry, b: &Geometry, prediction: f32) -> ContactKey {
     let t = relative.translation.to_array().map(f32::to_bits);
     let q = relative.rotation.to_array().map(f32::to_bits);
-    let key = (
+    (
         Arc::as_ptr(&a.shape) as *const () as usize,
         Arc::as_ptr(&b.shape) as *const () as usize,
         [
@@ -2134,7 +2338,18 @@ fn cached_world_contact(
             q[3],
             prediction.to_bits(),
         ],
-    );
+    )
+}
+fn cached_world_contact(
+    workspace: &mut ContactWorkspace,
+    pa: &Iso,
+    a: &Geometry,
+    pb: &Iso,
+    b: &Geometry,
+    prediction: f32,
+) -> Result<Option<query::Contact>, query::Unsupported> {
+    let relative = pa.inv_mul(pb);
+    let key = contact_key(&relative, a, b, prediction);
     let mut contact = if let Some(receipt) = workspace.contacts.get(&key) {
         workspace.hits += 1;
         receipt.contact
@@ -2221,15 +2436,109 @@ fn nondeepening_recovery(
     {
         return Ok(false);
     }
+    let poses = [from, to, bfrom, bto];
+    let mut frontier = if workspace
+        .executor
+        .as_ref()
+        .is_some_and(|e| e.policy.recovery)
+    {
+        let tasks = [0.25, 0.5, 0.75, 1.]
+            .into_iter()
+            .enumerate()
+            .filter(|(_, t)| {
+                !workspace.contacts.contains_key(&contact_key(
+                    &am.position_at_time(*t).inv_mul(&bm.position_at_time(*t)),
+                    a,
+                    b,
+                    0.001,
+                ))
+            })
+            .map(|(i, t)| {
+                execution::Task::contact(
+                    workspace.context.clone(),
+                    i,
+                    a,
+                    b,
+                    poses,
+                    (am.position_at_time(t), bm.position_at_time(t), t),
+                )
+            })
+            .collect();
+        workspace.executor.as_mut().unwrap().run(tasks)
+    } else {
+        None
+    };
     let mut previous = first.dist;
-    for t in [0.25, 0.5, 0.75, 1.] {
-        let depth = contact_at(t)?.map_or(0.001, |c| c.dist);
+    let mut outcome = Ok(true);
+    for (ordinal, t) in [0.25, 0.5, 0.75, 1.].into_iter().enumerate() {
+        let pa = am.position_at_time(t);
+        let pb = bm.position_at_time(t);
+        let ready = frontier.as_mut().and_then(|f| {
+            if workspace
+                .contacts
+                .contains_key(&contact_key(&pa.inv_mul(&pb), a, b, 0.001))
+            {
+                return None;
+            }
+            let key = execution::Task::contact(
+                workspace.context.clone(),
+                ordinal,
+                a,
+                b,
+                poses,
+                (pa, pb, t),
+            )
+            .key();
+            workspace.executor.as_mut().unwrap().consume(f, &key)
+        });
+        let fallback = ready.is_none();
+        let started = Instant::now();
+        let result = match ready {
+            Some(Ok(execution::Value::Contact(contact))) => {
+                if workspace.contacts.len() < 8192 {
+                    workspace.contacts.insert(
+                        contact_key(&pa.inv_mul(&pb), a, b, 0.001),
+                        ContactReceipt {
+                            _shapes: [a.shape.clone(), b.shape.clone()],
+                            contact,
+                        },
+                    );
+                }
+                let mut world_contact = contact;
+                if let Some(c) = &mut world_contact {
+                    c.transform_by_mut(&pa, &pb);
+                }
+                Ok(world_contact)
+            }
+            Some(Err(error)) => Err(error),
+            _ => cached_world_contact(workspace, &pa, a, &pb, b, 0.001)
+                .map_err(|_| MorphError("unsupported overlap recovery query".into())),
+        };
+        if fallback && let Some(executor) = workspace.executor.as_mut() {
+            executor.profile.fallback_ns += started.elapsed().as_nanos();
+        }
+        #[cfg(feature = "collision-fixture")]
+        if let Ok(contact) = &result {
+            recovery_trace.sample(t, contact.map(|c| c.dist), started.elapsed().as_nanos());
+        }
+        let contact = match result {
+            Ok(contact) => contact,
+            Err(error) => {
+                outcome = Err(error);
+                break;
+            }
+        };
+        let depth = contact.map_or(0.001, |c| c.dist);
         if depth + 0.00001 < previous {
-            return Ok(false);
+            outcome = Ok(false);
+            break;
         }
         previous = depth;
     }
-    Ok(previous + 0.00001 >= first.dist)
+    if let Some(frontier) = frontier {
+        workspace.executor.as_mut().unwrap().finish(frontier);
+    }
+    Ok(outcome? && previous + 0.00001 >= first.dist)
 }
 fn retreat(agent: &mut Agent, normal: [i64; 3]) {
     let h = Vector::from_array(agent.heading.map(|v| v as f32 / SCALE as f32)).normalize();
@@ -2280,6 +2589,10 @@ pub(crate) fn resolve(
     }
     let started = Instant::now();
     cache.casts.clear();
+    cache.discard_deposit_geometry();
+    cache
+        .promoted_geometry
+        .retain(|key, hash| cache.pipes.get(key).is_some_and(|p| p.0 == *hash));
     cache.contact_workspace.contacts.clear();
     require(
         next.config.environment == crate::emission::Environment::suspended(),
@@ -2344,6 +2657,14 @@ pub(crate) fn resolve(
                 }
                 #[cfg(feature = "query-trace")]
                 query_trace::set_pair(&format!("t{}:body:{a}:body:{b}", before.tick), 0);
+                if cache.contact_workspace.executor.is_some() {
+                    cache.contact_workspace.context = execution::Context {
+                        tick: before.tick,
+                        pass,
+                        body: a,
+                        target: Some(PhysicalTarget::Organism { id: b }),
+                    };
+                }
                 #[cfg(feature = "collision-fixture")]
                 fixtures::recovery_pair(before.tick, a, PhysicalTarget::Organism { id: b });
                 if let Some(hit) = cache.cast(&shapes[&a], pa, ta, &shapes[&b], pb, tb)? {
@@ -2531,7 +2852,12 @@ pub(crate) fn resolve(
                     ));
                 }
             }
-            for (owner, pose, g) in static_shapes {
+            let mut static_frontier = None;
+            let mut static_ordinals = Vec::new();
+            let mut prefetched_until = 0;
+            for (static_index, (owner, pose, g)) in static_shapes.iter().enumerate() {
+                let owner = owner.clone();
+                let pose = *pose;
                 let target = targets[&id];
                 if target == start {
                     break;
@@ -2540,11 +2866,87 @@ pub(crate) fn resolve(
                     target.translation[k] - start.translation[k]
                 }))
                 .length();
+                if cache
+                    .contact_workspace
+                    .executor
+                    .as_ref()
+                    .is_some_and(|e| e.policy.static_queries)
+                    && static_index >= prefetched_until
+                {
+                    if let Some(frontier) = static_frontier.take() {
+                        cache
+                            .contact_workspace
+                            .executor
+                            .as_mut()
+                            .unwrap()
+                            .finish(frontier);
+                    }
+                    static_ordinals.clear();
+                    let limit = cache
+                        .contact_workspace
+                        .executor
+                        .as_ref()
+                        .unwrap()
+                        .policy
+                        .frontier_limit;
+                    let mut tasks = Vec::new();
+                    for (index, (target_owner, target_pose, geometry)) in
+                        static_shapes.iter().enumerate().skip(static_index)
+                    {
+                        if near(
+                            start,
+                            *target_pose,
+                            shapes[&id].radius,
+                            geometry.radius,
+                            delta,
+                            0.,
+                        ) && !cache.casts.contains_key(&cast_key(
+                            &shapes[&id],
+                            geometry,
+                            [start, target, *target_pose, *target_pose],
+                        )) {
+                            static_ordinals.push(index);
+                            tasks.push(execution::Task::cast(
+                                execution::Context {
+                                    tick: before.tick,
+                                    pass,
+                                    body: id,
+                                    target: Some(target_owner.clone()),
+                                },
+                                tasks.len(),
+                                0,
+                                &shapes[&id],
+                                geometry,
+                                [start, target, *target_pose, *target_pose],
+                            ));
+                            if tasks.len() == limit {
+                                break;
+                            }
+                        }
+                    }
+                    prefetched_until = static_ordinals
+                        .last()
+                        .map_or(static_shapes.len(), |i| i + 1);
+                    static_frontier = cache
+                        .contact_workspace
+                        .executor
+                        .as_mut()
+                        .unwrap()
+                        .run(tasks);
+                }
                 if !near(start, pose, shapes[&id].radius, g.radius, delta, 0.) {
                     continue;
                 }
                 #[cfg(feature = "query-trace")]
                 trace_static_pair(before.tick, id, &owner, before.assembly.as_ref());
+                if cache.contact_workspace.executor.is_some() {
+                    cache.contact_workspace.context = execution::Context {
+                        tick: before.tick,
+                        pass,
+                        body: id,
+                        target: Some(owner.clone()),
+                    };
+                }
                 #[cfg(feature = "collision-fixture")]
                 fixtures::recovery_pair(before.tick, id, owner.clone());
                 #[cfg(feature = "collision-fixture")]
@@ -2553,9 +2955,49 @@ pub(crate) fn resolve(
                     id,
                     &owner,
                     [start, target, pose, pose],
-                    [&shapes[&id], &g],
+                    [&shapes[&id], g],
                 );
-                let cast_result = cache.cast(&shapes[&id], start, target, &g, pose, pose);
+                let ready = static_frontier.as_mut().and_then(|frontier| {
+                    let ordinal = static_ordinals
+                        .iter()
+                        .position(|index| *index == static_index)?;
+                    let key = execution::Task::cast(
+                        cache.contact_workspace.context.clone(),
+                        ordinal,
+                        0,
+                        &shapes[&id],
+                        g,
+                        [start, target, pose, pose],
+                    )
+                    .key();
+                    cache
+                        .contact_workspace
+                        .executor
+                        .as_mut()
+                        .unwrap()
+                        .consume(frontier, &key)
+                });
+                let fallback = ready.is_none();
+                let started = Instant::now();
+                let cast_result = match ready {
+                    Some(Ok(execution::Value::Cast(hit))) => {
+                        if cache.casts.len() < 8192 {
+                            cache.casts.insert(
+                                cast_key(&shapes[&id], g, [start, target, pose, pose]),
+                                CastReceipt {
+                                    _shapes: [shapes[&id].shape.clone(), g.shape.clone()],
+                                    hit,
+                                },
+                            );
+                        }
+                        Ok(hit)
+                    }
+                    Some(Err(error)) => Err(error),
+                    _ => cache.cast(&shapes[&id], start, target, g, pose, pose),
+                };
+                if fallback && let Some(executor) = cache.contact_workspace.executor.as_mut() {
+                    executor.profile.fallback_ns += started.elapsed().as_nanos();
+                }
                 #[cfg(feature = "collision-fixture")]
                 if let Some(pending) = pending_fixture {
                     fixtures::finish(pending, &cast_result);
@@ -2597,21 +3039,35 @@ pub(crate) fn resolve(
                     // permission from an approximate whole-body contact point.
                     let mut source = source_nozzle.is_some();
                     if let Some(nozzle) = source_nozzle {
-                        for (component, part) in &shapes[&id].parts {
-                            if *component != nozzle && {
-                                #[cfg(feature = "query-trace")]
-                                query_trace::set_pair(
-                                    &format!(
-                                        "t{}:body:{id}:part:{component}:{}",
-                                        before.tick,
-                                        owner_label(&owner)
-                                    ),
-                                    0,
-                                );
-                                cache.cast(part, start, target, &g, pose, pose)?.is_some()
-                            } {
-                                source = false;
-                                break;
+                        if cache
+                            .contact_workspace
+                            .executor
+                            .as_ref()
+                            .is_some_and(|e| e.policy.graft)
+                        {
+                            source = cache.parallel_graft(
+                                &shapes[&id],
+                                nozzle,
+                                g,
+                                [start, target, pose, pose],
+                            )?;
+                        } else {
+                            for (component, part) in &shapes[&id].parts {
+                                if *component != nozzle && {
+                                    #[cfg(feature = "query-trace")]
+                                    query_trace::set_pair(
+                                        &format!(
+                                            "t{}:body:{id}:part:{component}:{}",
+                                            before.tick,
+                                            owner_label(&owner)
+                                        ),
+                                        0,
+                                    );
+                                    cache.cast(part, start, target, g, pose, pose)?.is_some()
+                                } {
+                                    source = false;
+                                    break;
+                                }
                             }
                         }
                     }
@@ -2651,7 +3107,7 @@ pub(crate) fn resolve(
                                 &shapes[&id],
                                 start,
                                 target,
-                                &g,
+                                g,
                                 pose,
                                 pose,
                                 &mut cache.contact_workspace,
@@ -2679,6 +3135,14 @@ pub(crate) fn resolve(
                         break;
                     }
                 }
+            }
+            if let Some(frontier) = static_frontier {
+                cache
+                    .contact_workspace
+                    .executor
+                    .as_mut()
+                    .unwrap()
+                    .finish(frontier);
             }
         }
         if targets == pass_targets {
@@ -3002,6 +3466,7 @@ pub(crate) fn deposit_allowed(
     parcel: u64,
     cache: &mut CollisionCache,
 ) -> Result<bool, MorphError> {
+    cache.discard_deposit_geometry();
     #[cfg(feature = "allocation-attribution")]
     let _allocation_scope = crate::profiling::enter(7);
 
@@ -3054,6 +3519,7 @@ pub(crate) fn deposit_allowed(
         position,
         deposited_tick: book.tick,
     });
+    let mut candidate_chunks = Vec::new();
     let end = f.nodes.len().saturating_sub(2) / CHUNK_EDGES;
     for chunk in end.saturating_sub(1)..=end {
         let (origin, g) = if f.nodes.len() == 1 {
@@ -3076,6 +3542,16 @@ pub(crate) fn deposit_allowed(
             translation: origin.absolute()?,
             ..RigidPose::identity()
         };
+        if cache.geometry_reuse
+            && let Some(key) = pipe_key(f.id, &f, chunk, world.tick)
+        {
+            cache.geometry_reuse_profile.candidate_builds += 1;
+            candidate_chunks.push((key, origin, g.clone()));
+        }
+        #[cfg(feature = "collision-fixture")]
+        if let Some(key) = pipe_key(f.id, &f, chunk, world.tick) {
+            fixtures::geometry_record("preflight", world.tick, key, &g, true, None);
+        }
         for (&id, body) in &world.instances {
             let other = cache.body(world, id)?;
             let rigid = world.body_pose(id)?;
@@ -3144,6 +3620,13 @@ pub(crate) fn deposit_allowed(
                 return Ok(false);
             }
         }
+    }
+    if cache.geometry_reuse {
+        cache.pending_geometry = Some(DepositGeometry {
+            parcel,
+            organism: book.organism_id,
+            chunks: candidate_chunks,
+        });
     }
     Ok(true)
 }
@@ -3900,6 +4383,131 @@ mod tests {
             cached.vertices == cold.vertices,
             "cache reused last tick's radii across youngest-node age zero"
         );
+    }
+    #[test]
+    fn paid_geometry_handoff_matches_cold_mesh_and_refuses_mutation_or_unpaid_input() {
+        use crate::emission::{EmissionStatus, EmitRequest, SECRETION_CHANNEL};
+        let world = ShipRuntime::habitat_simulation(AnatomySpec::bare(77), 77, 8)
+            .unwrap()
+            .snapshot();
+        let mut book = world.instances[&1].book.clone();
+        let rules = world.config.construction.as_ref().unwrap();
+        let nozzle = *book.registered.first().unwrap();
+        let mut assembly = crate::filament::Assembly::default();
+        for z in [0, 100_000] {
+            let position = [10 * SCALE, 0, z];
+            let EmissionStatus::Admitted { parcel_id, .. } = book.try_emit(EmitRequest {
+                nozzle_id: nozzle,
+                origin: position,
+                direction: [0, 0, SCALE],
+                quantity: 1,
+                launch_speed: 0,
+                channel: SECRETION_CHANNEL,
+            }) else {
+                panic!("paid fixture")
+            };
+            assembly
+                .deposit(
+                    &mut book,
+                    rules,
+                    parcel_id,
+                    Position::from_absolute(position).unwrap(),
+                )
+                .unwrap();
+            book.step().unwrap();
+        }
+        assembly.validate(&book, rules).unwrap();
+        let binding = *book.bound.last().unwrap();
+        let id = binding.filament;
+        let tick = book.tick;
+        let (origin, surface) = filament_chunk_at(&assembly.filaments[&id], 0, tick).unwrap();
+        let g = geometry(&[surface], 1.).unwrap();
+        let key = pipe_key(id, &assembly.filaments[&id], 0, tick).unwrap();
+        for mutation in 0..10 {
+            let mut actual = assembly.clone();
+            let mut paid = book.clone();
+            let mut time = tick;
+            let mut cache = CollisionCache::default();
+            cache.configure_geometry_reuse(true);
+            cache.pending_geometry = Some(DepositGeometry {
+                parcel: binding.parcel.id,
+                organism: book.organism_id,
+                chunks: vec![(key, origin, g.clone())],
+            });
+            match mutation {
+                0 => {}
+                1 => {
+                    actual.filaments.get_mut(&id).unwrap().nodes[0].position =
+                        origin.offset([1, 0, 0]).unwrap()
+                }
+                2 => {
+                    actual
+                        .filaments
+                        .get_mut(&id)
+                        .unwrap()
+                        .section
+                        .as_mut()
+                        .unwrap()
+                        .inner_radius += 1
+                }
+                3 => {
+                    actual
+                        .filaments
+                        .get_mut(&id)
+                        .unwrap()
+                        .section
+                        .as_mut()
+                        .unwrap()
+                        .end_sealed = true
+                }
+                4 => actual.filaments.get_mut(&id).unwrap().nozzle += 1,
+                5 => time += 1,
+                6 => actual.filaments.get_mut(&id).unwrap().nodes[0].deposited_tick += 1,
+                7 => {
+                    paid.bound.clear();
+                }
+                8 => cache.discard_deposit_geometry(),
+                9 => actual
+                    .filaments
+                    .get_mut(&id)
+                    .unwrap()
+                    .nodes
+                    .pop()
+                    .map(|_| ())
+                    .unwrap(),
+                _ => unreachable!(),
+            }
+            cache.admit_deposit_geometry(
+                &actual,
+                &paid,
+                time,
+                (id, binding.node, binding.parcel.id),
+            );
+            if mutation == 0 {
+                assert_eq!(cache.geometry_reuse_profile.promoted, 1);
+                let (_, warm) = cache.pipe_in(&actual, time, id, 0).unwrap();
+                let (_, cold) = CollisionCache::default()
+                    .pipe_in(&actual, time, id, 0)
+                    .unwrap();
+                let bits = |g: &Geometry| {
+                    g.shape
+                        .as_trimesh()
+                        .unwrap()
+                        .vertices()
+                        .iter()
+                        .map(|p| p.to_array().map(f32::to_bits))
+                        .collect::<Vec<_>>()
+                };
+                assert_eq!(bits(&warm), bits(&cold));
+                assert_eq!(
+                    warm.shape.as_trimesh().unwrap().indices(),
+                    cold.shape.as_trimesh().unwrap().indices()
+                );
+                assert_eq!(cache.geometry_reuse_profile.consumed, 1);
+            } else {
+                assert!(cache.pipes.is_empty(), "mutation {mutation} was promoted");
+            }
+        }
     }
     #[test]
     fn paid_self_deposit_cannot_cross_the_trunk() {

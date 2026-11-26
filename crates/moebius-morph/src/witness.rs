@@ -163,6 +163,7 @@ impl Worker {
         paused: bool,
     ) -> Result<Self, MorphError> {
         require(publish_every > 0, "publication interval must be positive")?;
+        let execution_policy = world.collision_execution_policy();
         let initial = world.snapshot();
         let latest = Arc::new(Mutex::new(Some(Arc::new(initial.clone()))));
         let slot = latest.clone();
@@ -218,6 +219,7 @@ impl Worker {
                                         world.digest()?,
                                     ));
                                     world = ShipRuntime::restore(initial.clone())?;
+                                    world.configure_collision_execution(execution_policy)?;
                                     left = ticks;
                                     single = 0;
                                     tick_ns.clear();

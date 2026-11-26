@@ -17,6 +17,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut abundance = None;
     let mut wall_seconds = None;
     let mut resume = None;
+    let mut execution = moebius_morph::collision::ExecutionPolicy::default();
+    let mut geometry_reuse = false;
     #[cfg(feature = "history-v2-prototype")]
     let mut history_root = None;
     #[cfg(feature = "collision-fixture")]
@@ -26,9 +28,32 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     if args.iter().any(|s| s == "--capture-recovery") {
         moebius_morph::collision::fixtures::capture_recovery();
     }
+    #[cfg(feature = "collision-fixture")]
+    if args.iter().any(|s| s == "--capture-geometry") {
+        moebius_morph::collision::fixtures::capture_geometry();
+    }
     let mut index = 0;
     while index < args.len() {
         match args[index].as_str() {
+            #[cfg(feature = "collision-fixture")]
+            "--capture-geometry" => {}
+            "--geometry-reuse" => geometry_reuse = true,
+            "--collision-workers" => {
+                index += 1;
+                execution.workers = args.get(index).ok_or("workers required")?.parse()?;
+            }
+            "--parallel-graft" => execution.graft = true,
+            "--parallel-recovery" => execution.recovery = true,
+            "--parallel-static" => execution.static_queries = true,
+            "--frontier-limit" => {
+                index += 1;
+                execution.frontier_limit =
+                    args.get(index).ok_or("frontier limit required")?.parse()?;
+            }
+            "--frontier-minimum" => {
+                index += 1;
+                execution.minimum_frontier = args.get(index).ok_or("minimum required")?.parse()?;
+            }
             #[cfg(feature = "collision-fixture")]
             "--capture-recovery" => {}
             "--diagnostic-collisions-off" => diagnostic_collisions_off = true,
@@ -122,6 +147,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     } else {
         ShipRuntime::habitat_colony(spec, seed, steps, founders, abundance)?
     };
+    w.configure_collision_execution(execution)?;
+    w.configure_geometry_reuse(geometry_reuse)?;
     #[cfg(feature = "history-v2-prototype")]
     if let Some(root) = &history_root
         && !w.state().segmented_history()
@@ -311,6 +338,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         serde_json::to_vec_pretty(&moebius_morph::collision::fixtures::take_recovery())?,
     )?;
     let mut replay = restore_probe(&out.join("initial.json"), &args)?;
+    #[cfg(feature = "collision-fixture")]
+    fs::write(
+        out.join("geometry-construction.json"),
+        serde_json::to_vec_pretty(&moebius_morph::collision::fixtures::take_geometry())?,
+    )?;
+    replay.configure_collision_execution(execution)?;
+    replay.configure_geometry_reuse(geometry_reuse)?;
     replay.advance(final_state.tick - initial_tick)?;
     let vm_hwm_kb_after_replay = proc_kib("VmHWM:");
     let vm_rss_kb = proc_kib("VmRSS:");
@@ -451,6 +485,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     {
         report["query_trace_scope"] = serde_json::json!("forward_only; replay excluded");
     }
+    report["execution_policy"] = serde_json::to_value(execution)?;
+    report["execution_profile"] = serde_json::to_value(w.collision_execution_profile())?;
+    report["geometry_reuse"] = serde_json::to_value(w.geometry_reuse_profile())?;
     fs::write(out.join("report.json"), serde_json::to_vec_pretty(&report)?)?;
     println!("{}", serde_json::to_string_pretty(&report)?);
     Ok(())

@@ -6,6 +6,60 @@ use std::cell::RefCell;
 pub mod batch;
 
 #[derive(Serialize)]
+pub struct GeometryRecord {
+    stage: String,
+    tick: u64,
+    key: PipeCacheKey,
+    geometry_blake3: String,
+    vertices: usize,
+    triangles: usize,
+    constructor_requested_bytes: Option<u64>,
+    paid_binding: Option<(u64, u64, u64)>,
+}
+thread_local! {
+    static GEOMETRY_RECORDS: RefCell<Option<Vec<GeometryRecord>>> = const { RefCell::new(None) };
+    static GEOMETRY_BYTES: Cell<Option<u64>> = const { Cell::new(None) };
+}
+pub fn capture_geometry() {
+    GEOMETRY_RECORDS.with(|r| *r.borrow_mut() = Some(Vec::new()));
+}
+pub fn take_geometry() -> Vec<GeometryRecord> {
+    GEOMETRY_RECORDS.with(|r| r.borrow_mut().take().unwrap_or_default())
+}
+#[cfg(feature = "allocation-attribution")]
+pub(super) fn geometry_bytes(bytes: u64) {
+    GEOMETRY_BYTES.with(|r| r.set(Some(bytes)));
+}
+pub(super) fn geometry_record(
+    stage: &str,
+    tick: u64,
+    key: PipeCacheKey,
+    g: &Geometry,
+    built: bool,
+    paid: Option<(u64, u64, u64)>,
+) {
+    GEOMETRY_RECORDS.with(|records| {
+        if let Some(rows) = &mut *records.borrow_mut() {
+            assert!(rows.len() < 8192, "geometry diagnostic budget exceeded");
+            rows.push(GeometryRecord {
+                stage: stage.into(),
+                tick,
+                key,
+                geometry_blake3: geometry_hash(g),
+                vertices: g.vertices.len(),
+                triangles: g.shape.as_trimesh().map_or(0, |s| s.num_triangles()),
+                constructor_requested_bytes: if built {
+                    GEOMETRY_BYTES.with(Cell::get)
+                } else {
+                    Some(0)
+                },
+                paid_binding: paid,
+            });
+        }
+    });
+}
+
+#[derive(Serialize)]
 pub struct RecoveryRecord {
     pair: Option<(u64, u64, PhysicalTarget)>,
     geometry_blake3: [String; 2],

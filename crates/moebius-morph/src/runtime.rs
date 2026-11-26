@@ -865,6 +865,30 @@ impl ShipRuntime {
     pub fn collision_profile(&self) -> crate::collision::CollisionProfile {
         self.collision_cache.profile()
     }
+    /// Execution policy is derived runtime machinery, never serialized world law.
+    pub fn configure_collision_execution(
+        &mut self,
+        policy: crate::collision::ExecutionPolicy,
+    ) -> Result<(), MorphError> {
+        self.collision_cache.configure_execution(policy)
+    }
+    pub fn collision_execution_profile(&self) -> crate::collision::ExecutionProfile {
+        self.collision_cache.execution_profile()
+    }
+    pub fn collision_execution_policy(&self) -> crate::collision::ExecutionPolicy {
+        self.collision_cache.execution_policy()
+    }
+    pub fn configure_geometry_reuse(&mut self, enabled: bool) -> Result<(), MorphError> {
+        require(
+            cfg!(feature = "experimental-geometry-reuse") || !enabled,
+            "unqualified geometry reuse requires explicit experimental feature",
+        )?;
+        self.collision_cache.configure_geometry_reuse(enabled);
+        Ok(())
+    }
+    pub fn geometry_reuse_profile(&self) -> crate::collision::GeometryReuseProfile {
+        self.collision_cache.geometry_reuse_profile()
+    }
     /// Append pipe geometry that no habitat agent owns.
     /// Collision will see it. The material books are not changed.
     /// Habitat validation rejects this shape, so it can be added only after
@@ -1196,6 +1220,12 @@ impl ShipRuntime {
                             );
                     match result {
                         Ok((filament, node, quantity)) => {
+                            self.collision_cache.admit_deposit_geometry(
+                                next.assembly.as_ref().unwrap(),
+                                &i.book,
+                                tick,
+                                (filament, node, parcel),
+                            );
                             next.events.push(Event::Deposited {
                                 at: tick,
                                 organism: i.id,
@@ -1209,12 +1239,15 @@ impl ShipRuntime {
                                 break;
                             }
                         }
-                        Err(e) => next.events.push(Event::AssemblyRejected {
-                            at: tick,
-                            organism: i.id,
-                            parcel: Some(parcel),
-                            reason: e.to_string(),
-                        }),
+                        Err(e) => {
+                            self.collision_cache.discard_deposit_geometry();
+                            next.events.push(Event::AssemblyRejected {
+                                at: tick,
+                                organism: i.id,
+                                parcel: Some(parcel),
+                                reason: e.to_string(),
+                            });
+                        }
                     }
                 }
                 i.position = Position::from_absolute(

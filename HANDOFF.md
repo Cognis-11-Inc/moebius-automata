@@ -1,3 +1,59 @@
+# ACTIVE VI implementation — 2026-11-26T19:29:52.184680+00:00, Codex
+
+Runtime-changing scope authorized by PERFORMANCE_STABILIZATION_VI_DIRECTIVE.md.
+Repo /home/cognis/Cognis_Lab/Möbius Automata, main, HEAD9a5b85dec006694c544568a73582b1f3df9ee30a,
+entry clean and remote equal; current DIRTY authorized VI implementation/docs.
+MORPH-005 PARTIAL, no006/biology or changed physics/history/population/coordinates.
+
+Implemented persistent bounded collision_execution.rs executor owned by
+CollisionCache::ContactWorkspace. Runtime graft/fixed recovery/body-static call
+sites preserve sequential admission. Keys bind tick/pass/body/target/component,
+immutable shape incarnation/radius, allfourposes and sampled contact parameterbits;
+receipts add generation/worker/health and canonical ordinal. Full mismatch or
+failedworker means canonicalfallback. Actual boundedqueue saturation and failure
+recovery tested. Canonical memos preserved; initial static version lost memo reuse,
+was repaired and remeasured, yet still regresses. Graft/static now require explicit
+experimental-collision-frontiers feature; unprofitable paid geometry handoff
+requires experimental-geometry-reuse. Default/reference remains sequential.
+Fourworker recovery/minfrontier4 is candidate for final qualification, not yet a
+production-default or full performance result. World snapshot/history law unchanged.
+
+Geometry handoff: pending <=2chunks, promote onlyafter Assembly::deposit success,
+paid binding/node and complete pipekey agreement; no admission/ledger right.
+Congested attribution found0matchingpreflight/pipe geometry duplicatepairs and
+0consumedhandoffs; no C qualification or false combined D. Vertex/index and mutation
+negative tests pass; latergeometry key/horizoninvalidations retained. No unsupported
+Parryrefit or simplified geometry. Source files collision.rs/collision_execution.rs,
+collision_fixtures.rs/runtime.rs/witness.rs, existing headless recorders, nativeCLI
+and Cargo experimentalfeatures. QUERY_FRONTIER_AUTHORITY_VI.md specifies boundary.
+
+Evidence workingroot /home/cognis/moebius-vi-20261126. Frozen per-stage captured
+sources/binaries and failed variants retained. Current final-ordinary/final-history/
+final-allocation/final-native builds captured final source. Prior V both archives
+and709members independently verified on mounted Mermogon UUID D0A02EEBA02ED82C.
+Five executor tests (including exact events/rollback) and geometry negative test
+PASS; fullworkspace Clippy/fmt/9Python PASS. Key equality honestred101/green0;
+geometry-key equality honestred101/green0, source restored. Initial compile,
+type, Clippy and rejected timing stages remain recorded. No tests weakened/skipped.
+
+Initial source pilots: recovery8 congested56.258->42.125ms; graft8 regresses
+endurance90.036->95.086ms. Repaired recovery4 pilot39.607 vs56.796congested,
+89.393 vs90.072endurance; narrow timing is not generalenduranceclaim. Final-source
+qualification and CPU/RSS/native/fullmatrix still PENDING. Main VI evidence sealed/restore verified on Mermogon:1142files/2923424862bytes,
+archive3feae41a451a8c617a32ef3ef200e11bf2a23b363b3814afdd2364c1f481c422,
+receipt PERFORMANCE_STABILIZATION_VI_STORAGE.json. Authorized local sourcecheckpoint,
+clean fullsuite then final qualification are next; preserve all failures and sourceidentities. Preliminary timing stages are
+not clean-source certification. New v2 endurance must use authenticated legacy
+initialworld and explicit new-source backing, never bypass oldsource fingerprint.
+
+Safe first commands: git status --short; read VI report/spec and this header;
+verify final build source manifests. Complete archive/sourcecheckpoint/fullclean
+regression, final matched countscaling, native1vs4 competition and qualified
+fullmatrix. Seal supplemental final data, update report/Atlas/HANDOFF, commit/push
+and verifyremote. No fullmatrix after an inconclusive or regressing candidate.
+
+---
+
 # V outgoing — 2026-11-26T18:19:30.365411+00:00, Codex
 
 PARTIAL PERFORMANCE STABILIZATION. No006 or biological expansion. Repository

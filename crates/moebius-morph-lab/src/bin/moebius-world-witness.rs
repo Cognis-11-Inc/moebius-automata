@@ -34,6 +34,13 @@ use std::{
 };
 #[derive(Parser)]
 struct Args {
+    /// Explicit numerical worker budget; contact admission stays sequential.
+    #[arg(long, default_value_t = 1)]
+    collision_workers: usize,
+    #[arg(long)]
+    parallel_recovery: bool,
+    #[arg(long)]
+    parallel_static: bool,
     #[arg(long, default_value_t = 3600)]
     ticks: u64,
     #[arg(long, default_value_t = 16)]
@@ -214,6 +221,14 @@ fn main() {
     if recording && !args.first_simulation {
         world.sow_generic_food().unwrap();
     }
+    world
+        .configure_collision_execution(moebius_morph::collision::ExecutionPolicy {
+            workers: args.collision_workers,
+            recovery: args.parallel_recovery,
+            static_queries: args.parallel_static,
+            ..Default::default()
+        })
+        .expect("valid collision worker policy");
     let initial = world.snapshot();
     let snapshot = Arc::new(initial.clone());
     let worker = if recording || args.first_simulation {
@@ -272,6 +287,9 @@ fn main() {
                 "reason": "witness closed before recording telemetry was stored; saved world state is the retained evidence",
             })
         });
+        report["collision_workers"] = serde_json::json!(args.collision_workers);
+        report["parallel_recovery"] = serde_json::json!(args.parallel_recovery);
+        report["parallel_static"] = serde_json::json!(args.parallel_static);
         let complete = final_state.tick >= args.ticks
             && report.get("status").and_then(|value| value.as_str()) != Some("EARLY_CLOSE");
         report["status"] = serde_json::json!(if complete { "PASS" } else { "EARLY_CLOSE" });

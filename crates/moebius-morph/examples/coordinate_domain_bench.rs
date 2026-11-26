@@ -81,6 +81,18 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     std::fs::create_dir(output)?;
     let restore_started = Instant::now();
     let mut world = ShipRuntime::restore(initial)?;
+    world.configure_geometry_reuse(args.iter().any(|s| s == "--geometry-reuse"))?;
+    let mut execution = moebius_morph::collision::ExecutionPolicy::default();
+    if let Some(pair) = args.windows(2).find(|s| s[0] == "--collision-workers") {
+        execution.workers = pair[1].parse()?;
+    }
+    execution.graft = args.iter().any(|s| s == "--parallel-graft");
+    execution.recovery = args.iter().any(|s| s == "--parallel-recovery");
+    world.configure_collision_execution(execution)?;
+    #[cfg(feature = "collision-fixture")]
+    if args.iter().any(|s| s == "--capture-geometry") {
+        moebius_morph::collision::fixtures::capture_geometry();
+    }
     let restore_ns = restore_started.elapsed().as_nanos();
     world.tick()?; // Identical cache warmup in every process, counted separately.
     let start_tick = world.state().tick;
@@ -175,7 +187,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         "contact_ns":p.contact_ns-profile.contact_ns,"instances":state.instances.len(),
         "agents":state.habitat.as_ref().unwrap().agents.len(),"nodes":state.assembly.as_ref().unwrap().nodes(),
         "material_gap":state.condensate_gap(),"index_chunks":index.chunks.len(),"index_build_ns":index_ns,
+        "geometry_reuse":world.geometry_reuse_profile(),"execution_profile":world.collision_execution_profile(),
         "visibility":visibility,"positions":positions,"vm_hwm_kib":rss(),"digest":world.digest()?});
+    #[cfg(feature = "collision-fixture")]
+    std::fs::write(
+        output.join("geometry-construction.json"),
+        serde_json::to_vec_pretty(&moebius_morph::collision::fixtures::take_geometry())?,
+    )?;
     std::fs::write(
         output.join("report.json"),
         serde_json::to_vec_pretty(&report)?,
