@@ -1,0 +1,17 @@
+{
+  "status": "ARCHIVED_RESTORE_VERIFIED",
+  "purpose": "Checkpoint validation attempt (FAIL, preserved) and focused test-harness repair",
+  "verified_utc": "2026-11-26T05:40:57.450535+00:00",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "volume_label": "Mermogon",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-iv-checkpoint-attempt-v1/evidence.tar.gz",
+  "archive_sha256": "44faade550f89148f8ddc1863f302e50f1af15b064711e8a6c589825f79dc883",
+  "archive_bytes": 1039914,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-iv-checkpoint-attempt-v1/MANIFEST.json",
+  "manifest_sha256": "ae82ab64af3b4261409bd4e2ae7a01f519e0755b50743756a281a787d31db775",
+  "member_count": 22,
+  "member_bytes": 18327927,
+  "all_restored_hashes_match": true,
+  "base_archive_sha256": "170973a557b1bb7e5bc94e58e04d05d0dc9cd3e85be3262b871d88f0d3f79cf1",
+  "clean_checkpoint": "8748f66c0d667b9bae90ae42e6842faf050241cd"
+}

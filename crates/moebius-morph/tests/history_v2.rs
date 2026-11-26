@@ -177,10 +177,18 @@ fn os_write_exhaustion_and_unpublished_segment_recovery() {
         serde_json::to_vec(&before).unwrap(),
     )
     .unwrap();
-    let status=std::process::Command::new("python3")
+    let output=std::process::Command::new("python3")
         .args(["-c","import os,resource,signal,sys; signal.signal(signal.SIGXFSZ,signal.SIG_IGN); resource.setrlimit(resource.RLIMIT_FSIZE,(1024,1024)); os.execv(sys.argv[1],[sys.argv[1],'--exact','limited_file_child','--nocapture'])"])
-        .arg(std::env::current_exe().unwrap()).env("MOEBIUS_HISTORY_LIMITED_CHILD",&backing).status().unwrap();
-    assert!(status.success());
+        .arg(std::env::current_exe().unwrap()).env("MOEBIUS_HISTORY_LIMITED_CHILD",&backing).output().unwrap();
+    // Pipes keep libtest stdout/stderr outside the file-size fault domain.
+    assert!(
+        output.status.success(),
+        "child {:?}: {} {}",
+        output.status,
+        String::from_utf8_lossy(&output.stdout),
+        String::from_utf8_lossy(&output.stderr)
+    );
+    assert!(String::from_utf8_lossy(&output.stdout).contains("1 passed"));
     assert_eq!(before, w.snapshot());
     // Committed segment bytes exist, while the only published checkpoint is old.
     // Restoring that checkpoint ignores orphans, and exact replay reuses them.

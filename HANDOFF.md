@@ -1,3 +1,23 @@
+# IV first clean suite FAILED; test-only repair — 2026-11-26 UTC
+
+Codex. Implementation8748f66c0d667b9bae90ae42e6842faf050241cd had clean before/
+after full-suite status but exited101 in new OS file-limit child test. Child
+inherited large stdout/stderr log and its RLIMIT_FSIZE prevented harness output.
+Explicit2048byte log reproduces red. Switch child Command.status to output pipes,
+keep all original EFBIG/atomicity/restart assertions; five all-feature history tests
+now pass with prefilled large log. Clippy/fmt rerun for this test-only repair.
+No runtime or matrix numerical source change. Current tree dirty test/docs/receipt.
+
+Failure and red/green logs plus exact restored3600->3601 runtime evidence sealed
+in performance-stabilization-iv-checkpoint-attempt-v1; all files restored/hashes
+verified, Mermogon UUID checked. Receipt IV_ATTEMPT_STORAGE.json. Main IV v1 remains
+unchanged. Next commit this test-only correction, record clean new HEAD/status,
+rerun entire workspace all-target/all-feature suite from beginning, preserve both
+attempts. Then seal final validation supplement, docs receipt commit and push.
+No performance completion/006 claim. All measured targets/limits below remain.
+
+---
+
 # IV evidence sealed, checkpoint imminent — 2026-11-26 UTC
 
 Codex. PARTIAL, targets failed; no006. HEAD0a6390950ecb75f5b866e17f77ce54b5d7115075

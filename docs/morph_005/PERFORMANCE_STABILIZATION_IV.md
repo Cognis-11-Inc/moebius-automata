@@ -276,3 +276,17 @@ classification, exclusions and restoration. Cargo caches are regenerable; binari
 source, failures and actual history remain retained. No raw evidence is added toGit.
 Clean-commit broad validation and its separate supplement are pending at this
 checkpoint; focused checks alone are not called release certification.
+
+## First clean-suite failure and correction
+
+The full command at clean8748f66c0d667b9bae90ae42e6842faf050241cd FAILED: the
+new OS write-limit test inherited the already-large suite log as stdout/stderr.
+The child's1024byte RLIMIT_FSIZE therefore prevented libtest output, before its
+assertions could be reported. A deliberately prefilled2048byte log reproduces
+the failure even with history-v2-prototype alone. Capturing child output through
+pipes restores all five all-feature history tests with that same large-log setup,
+keeping the EFBIG/state rollback/restart assertions intact. Only the test harness
+changed; no guard was disabled and no numerical runtime path changed. Failed full
+suite, red reproduction and restored green are retained in the checkpoint-attempt
+archive, independently restore/hash-verified. A full clean suite rerun from the
+new committed state is required; the first attempt is not reclassified as PASS.
