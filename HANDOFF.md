@@ -1,3 +1,58 @@
+# IV outgoing — 2026-11-26 UTC, Codex
+
+PARTIAL PERFORMANCE STABILIZATION. No006 or biology. Repo
+/home/cognis/Cognis_Lab/Möbius Automata, main. Runtime/test checkpoint
+ ecdc8625b5d605997a6e3a559b36903f78231d33.
+At this write HEAD is that checkpoint; only final documentation/receipt changes
+are uncommitted. They will be committed and pushed after diff/archive verification.
+No runtime changes after the clean certificate. Final publication SHA is obtained
+from git log/remote, not invented inside a self-referencing committed handoff.
+
+DONE: all authorized IV deliverables and prototype investigation; all9legacy
+matrix cases preserve EVERY row/full world. Actual rendered720 matches independent
+headless initial/final. Opt-in history3600 completes/replays gap0,137432records,
+3288resident/725271bytes,131segments; complete65505legacy payload prefix exact.
+Restored archive checkpoint3600->3601 exact. V1 cap65536 unchanged. Source-bound
+prototype,16384 provenance limits, no automatic v2 source migration; restore with
+retained final-history binary. Actual full disk/power cut NOT RUN; EFBIG and
+controlled crash-window/corruption tests pass. No unlimited persistence claim.
+
+PASS clean ecdc862: cargo test --offline --workspace --all-targets --all-features,
+253top-level tests/0failed/0ignored,112.449s, clean before/after. Strict Clippy all
+features,fmt and9Python integrity tests pass. First clean8748f66 failed due to child
+stdout inheriting file-size-limited large log.2048byte log reproduces red; pipes
+restore green with same guards. Preserved failed attempt, no skipped/weakened test.
+
+Archive receipts docs/morph_005/PERFORMANCE_STABILIZATION_IV{,_ATTEMPT,_VALIDATION}_STORAGE.json:
+main v1 hash170973a557b1bb7e5bc94e58e04d05d0dc9cd3e85be3262b871d88f0d3f79cf1,
+1499files/832130951bytes, full per-file restore verification; failed attempt hash
+44faade550f89148f8ddc1863f302e50f1af15b064711e8a6c589825f79dc883; clean validation
+hash14f61896914cac7fd227aa095961cfd906d1264a9c321dd264577be05f026105, all members
+restore/hash verified. Mermogon UUID D0A02EEBA02ED82C verified each operation.
+Archive wrapper restore-dir collision corrected by independent new restore dir,
+without changing sealed bytes. II/III preserved. Raw working cache remains
+/home/cognis/moebius-iv-20261126T035335Z; source/binary identities retained there
+and in archives. No bulky raw data inGit. Atlas navigation updated, UUID verified.
+
+Targets FAIL: fresh420 mean11.083ms/p9933.823; congested43.190/p9998.328;
+endurance53.730/p99108.044,193.428sforward/400.468swithreplay. Allocation reduction
+91.026%,not95%. Rendered authority22.093/p9969.648ms despite frame16.673mean.
+Residual local linear casting, contact recovery, wet remeshing and occupied-state
+work dominate. Actual extent experiments unsupported; coordinate magnitude and
+empty volume are not established causes. No coordinate redesign. Global process
+presentation clearance cache eviction and whole-engine memory stability unresolved.
+
+Read PERFORMANCE_STABILIZATION_IV.md/RESULTS/VALIDATION plus proposal for exact
+scope and limits. Frozen matrix source precedes only query-trace const initializer
+and integration-test harness changes; publication continuations exact. CLI resume
+labels may be defaults; authenticated snapshot config is the actual input authority.
+Safe first action on reentry: git status --short; git log -3 --oneline; inspect
+validation certificate and verify remote publication. Continue performance work
+only in canonical ShipRuntime paths with exact geometry/contact/state equivalence;
+prefer bounded exact local cast/remesh work, not biology or arbitrary world redesign.
+
+---
+
 # IV first clean suite FAILED; test-only repair — 2026-11-26 UTC
 
 Codex. Implementation8748f66c0d667b9bae90ae42e6842faf050241cd had clean before/

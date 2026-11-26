@@ -290,3 +290,29 @@ changed; no guard was disabled and no numerical runtime path changed. Failed ful
 suite, red reproduction and restored green are retained in the checkpoint-attempt
 archive, independently restore/hash-verified. A full clean suite rerun from the
 new committed state is required; the first attempt is not reclassified as PASS.
+
+## Final clean-source validation and publication
+
+PASS at clean `ecdc8625b5d605997a6e3a559b36903f78231d33`, before/after status
+empty: `cargo test --offline --workspace --all-targets --all-features` —253top-level
+tests,0failed,0ignored;112.449s. The nested write-limit helper is not double-counted.
+Strict all-feature Clippy, formatting and9Python integrity tests pass. The first
+clean failure remains preserved separately; no serious test was skipped or weakened.
+Certificates: PERFORMANCE_STABILIZATION_IV_VALIDATION.json and its independent
+restore-verified VALIDATION_STORAGE receipt. Main benchmark archive remains sealed.
+Restored3600 checkpoint continued3601 with exact full-state/intermediate equality.
+
+The validation archive wrapper initially encountered the attempt's existing local
+restore directory. The newly sealed archive was left unchanged, extracted into a
+new directory and all member hashes independently verified; receipt records this.
+
+Recorder limitation: with --resume, descriptive CLI seed/founder fields may retain
+parser defaults. Effective numerical configuration is the authenticated initial
+snapshot's config/habitat, which all state comparisons preserve; case labels here
+come from those explicit input worlds. No default CLI label was used as evidence
+of an effective simulation parameter.
+
+**PARTIAL:** performance gates still fail. Complete3600/history retention and exact
+regressions do not establish acceptable cost, unlimited provenance, cross-source
+v2 migration, physical disk-full/power-loss behavior or whole-engine memory
+stability. No006/biology. These remaining limitations are not waived by green tests.

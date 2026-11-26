@@ -151,3 +151,12 @@ loader are separate from bounded historical resident storage; no global bounded
 memory claim is made. Ordinary ticks do not read the whole archive; restoration,
 full validation and sealed duplicate-command checks do. Storage exhaustion fails
 before visible state mutation; orphan immutable segments remain reusable evidence.
+
+Final validation:3600 ticks completed,137432 events retained,3288resident, exact
+replay/gap0 and first65505 legacy event payloads exact. Archived checkpoint restored
+and continued3601 exactly. OS EFBIG, corrupt/missing/swapped segment and simulated
+unpublished-segment recovery tests pass;253test clean workspace at ecdc862 passes.
+First broad attempt failed in child-output harness, repaired without weakening
+assertions; failure and red/green logs retained. Runtime remains opt-in, source-
+bound, with explicit finite provenance ceilings and no automatic source migration.
+Actual full-disk/power-cut tests are NOT RUN. Performance193.43sforward exceeds180s.

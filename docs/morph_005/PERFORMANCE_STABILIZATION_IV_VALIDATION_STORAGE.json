@@ -1,0 +1,18 @@
+{
+  "status": "ARCHIVED_RESTORE_VERIFIED",
+  "purpose": "Clean committed full-workspace validation (PASS); supplements preserve previous archives unchanged",
+  "verified_utc": "2026-11-26T17:26:17.361994+00:00",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "volume_label": "Mermogon",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-iv-validation-v1/evidence.tar.gz",
+  "archive_sha256": "14f61896914cac7fd227aa095961cfd906d1264a9c321dd264577be05f026105",
+  "archive_bytes": 18686,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-iv-validation-v1/MANIFEST.json",
+  "manifest_sha256": "bab9d4da8334751cbfd3f8c1a67319740d2c4869eb466ef853701d06512afffb",
+  "member_count": 11,
+  "member_bytes": 59239,
+  "all_restored_hashes_match": true,
+  "base_archive_sha256": "170973a557b1bb7e5bc94e58e04d05d0dc9cd3e85be3262b871d88f0d3f79cf1",
+  "clean_checkpoint": "ecdc8625b5d605997a6e3a559b36903f78231d33",
+  "restore_note": "Initial wrapper encountered existing restore directory from failed-suite archive. Sealed archive unchanged; independently extracted into new restore-validation-final and verified all members."
+}
