@@ -1,3 +1,72 @@
+# V outgoing — 2026-11-26T18:19:30.365411+00:00, Codex
+
+PARTIAL PERFORMANCE STABILIZATION. No006 or biological expansion. Repository
+/home/cognis/Cognis_Lab/Möbius Automata, main. Clean runtime/test source checkpoint
+eea57b210be520ddb2d25a160dc9252e6a475bd0. PASS full workspace all-target/all-feature suite254/0/0 in
+120.058s, empty git status before/after. Strict Clippy,fmt,9Python
+integrity and25focused collision tests pass; new guard has preserved honest-red
+101/restored-green0. No skipped test, engine performance completion or hosted CI.
+
+At this outgoing write HEAD is the source checkpoint, with only final HANDOFF,
+PERFORMANCE_STABILIZATION_V.md and V_VALIDATION/V_VALIDATION_STORAGE JSON updates
+uncommitted; these are the authorized final metadata publication commit. Obtain
+publication SHA and remote state from actual Git, not self-referential text.
+No runtime/source edit after clean certification. Verify final source manifest
+against VALIDATED_SOURCE_MANIFEST in the validation archive if rehydrating.
+
+DONE investigation files: collision_batch.rs, collision_fixtures.rs,
+collision_fixture --batch and habitat_probe --capture-recovery; feature-gated
+observer only, no parallel ShipRuntime admission. docs/morph_005 contains V report,
+authoritative dependency map, geometry/remeshing audit, history compatibility
+proposal, original directive and compact worker/allocation/recovery/causal JSON.
+Atlas navigation updated, separate volume UUID8CA451CDA451BA82 verified,45notes/
+197links PASS. Older handoff entries below retain the session's chronology.
+
+VERIFIED results:133920 exact scaling query results at1/2/4/8/16/32workers;
+endurance isolated370-query mean73.636->13.768ms at8workers(5.35x throughput),
+NOT a tick gain. Single-query spikes do not scale; capture spans23body/target
+recipes and42consecutive groups.28tick labelled recovery continuations match all
+intermediate rows/full worlds and independent replay. Retained ordinaryIV
+congested30 matches old matrix, CPU/wall0.990 with one observed thread. Allocation
+722-724 totals23606814requestedbytes,14682192geometry; reduction91.0254%, below95.
+Recovery is compute-heavy with little allocation.1000rounds/370000queries exact;
+RSS growth/final58800KiB spike preserved, no engine lifetime-memory claim.
+
+V main evidence698files/320524766bytes, archive SHA256
+acb2200ddee07e68568f641cf514b9415e036a6f22b44300ae5770716d02dedc;
+validation11files/59118bytes, SHA256
+2703bc48f2029bc60aa967a3267f973509c9edb753ad19a141106982a67870bb.
+Both archives on Mermogon verified UUID D0A02EEBA02ED82C at each operation; every
+restored file size/hash matches. Restored main binary also reproduced1110exact
+query results. Receipts V_STORAGE/V_VALIDATION_STORAGE JSON. Working root
+/home/cognis/moebius-v-20261126, restores /home/cognis/moebius-v-research-restored-20261126
+and /home/cognis/moebius-v-validation-restored-20261126. All priorIV archives,
+failures, historical binaries and working copies retained; no bulky raw Git data.
+
+OPEN: no runtime-parallel candidate qualified, so new full performance matrix
+NOT RUN. No native worker scaling, per-worker allocation count assay, alternative
+geometry experiment, incremental remesh optimization, history migration or
+population-factorial study. Presentation slack globalmap still unbounded across
+changing anatomy; not measured/fixed. V1 unchanged; v2 source-bound finite prototype
+and IV3600 continuity retained under old binary/source. All engine timing/tail/
+allocation/endurance gates remain open. No arbitrary fingerprint bypass or new
+physical representation authority. See report for measured/proposed boundaries.
+
+Next authorized engineering dependency: bounded exact query frontier/prefetch
+within canonical resolve with all-pose and geometry-revision receipts, canonical
+ordered admission/fallback, lazy error equivalence and measured discarded work;
+or exact wet-mesh allocation reuse motivated by current attribution. Do NOT turn
+whole capturedtick into one admission wave. Establish isolated benefit, stale/
+mutation falsification and every-tick/full-state equivalence before ordinary
+release/native timing and finalmatrix. No new authority decision is requested
+for these existing authorized exact lanes; physical/history replacements still
+require the separate approval boundary. Safe first commands:git status --short;
+git log -3 --oneline; read PERFORMANCE_STABILIZATION_V.md and validation/storage
+receipts. Final publication commit/push and remote-ref verification are next in
+this session; later reentry must inspect actual Git rather than infer publication.
+
+---
+
 # Stabilization V investigation checkpoint — 2026-11-26T18:14:46.835380+00:00, Codex
 
 PARTIAL. MORPH-005 engine targets remain unmet; no006/biology. Entry and current

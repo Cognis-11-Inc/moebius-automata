@@ -83,6 +83,8 @@ Measured with one captured release executable/source archive, 1/2/4/8/16/32 work
 two processes per cell in ascending then descending worker order, 30 rounds each.
 First round is separated; warm means use 58 rounds. The empirical P99 below has
 only 58 observations per cell and is not a stable-tail guarantee.
+The reported quantile uses the lower order statistic at floor(0.99*(n-1)).
+Pool construction is outside round timers and included in process CPU/wall.
 
 | Workers | Eight single query mean ms | Fresh single query mean ms | Endurance 370 queries mean ms | Endurance empirical P99 ms | Endurance relative throughput |
 |---:|---:|---:|---:|---:|---:|
@@ -256,9 +258,23 @@ scope-lifetime compile failure and missing `/usr/bin/time` runner failure are
 preserved; the final runner uses `wait4` and `/proc`, with exact CPU/RSS scope.
 
 Clean-source broad validation is recorded separately in
-PERFORMANCE_STABILIZATION_V_VALIDATION.json when completed. The source checkpoint,
+PERFORMANCE_STABILIZATION_V_VALIDATION.json. The source checkpoint,
 before/after status, command, result and archive receipt are the authority; this
 paragraph does not substitute for that gate.
+
+Final certificate: **PASS** at clean
+`eea57b210be520ddb2d25a160dc9252e6a475bd0`, empty status before/after,
+`cargo test --offline --workspace --all-targets --all-features`: 254 passed,
+zero failed/ignored, 120.058 seconds. Subsequent publication changes are
+documentation/receipts only. No hosted CI or performance certification is implied.
+The two V archives retain 709 files / 320583884 uncompressed bytes with every
+restored size/hash checked. The restored main-archive executable additionally
+reproduced 1110 exact query results. Main archive SHA256
+`acb2200ddee07e68568f641cf514b9415e036a6f22b44300ae5770716d02dedc`;
+validation supplement SHA256
+`2703bc48f2029bc60aa967a3267f973509c9edb753ad19a141106982a67870bb`.
+All previous archives and working copies remain retained. Atlas navigation passes
+45-note/197-link validation on its verified separate volume.
 
 Working evidence: `/home/cognis/moebius-v-20261126`, a working copy. Authoritative
 external evidence and restore instructions: PERFORMANCE_STABILIZATION_V_STORAGE.json

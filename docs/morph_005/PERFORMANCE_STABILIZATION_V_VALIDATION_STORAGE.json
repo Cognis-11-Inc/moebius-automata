@@ -1,0 +1,25 @@
+{
+  "status": "ARCHIVED_RESTORE_VERIFIED",
+  "purpose": "Clean committed V regression validation and restored-archive execution supplement",
+  "verified_utc": "2026-11-26T18:18:48.159830+00:00",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "source": "/dev/sdb2",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon",
+    "fstype": "ntfs3"
+  },
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-v-validation-v1/evidence.tar.gz",
+  "archive_sha256": "2703bc48f2029bc60aa967a3267f973509c9edb753ad19a141106982a67870bb",
+  "archive_bytes": 21218,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-v-validation-v1/MANIFEST.json",
+  "manifest_sha256": "82ae6025279695c54271138fc20e5c73ae58f8c7d1266ce247e7b78eaa6925e8",
+  "member_count": 11,
+  "member_bytes": 59118,
+  "classification": "small raw validation logs/source manifest/receipts; authoritative validation summary retained in Git",
+  "all_restored_hashes_match": true,
+  "clean_checkpoint": "eea57b210be520ddb2d25a160dc9252e6a475bd0",
+  "base_archive_sha256": "acb2200ddee07e68568f641cf514b9415e036a6f22b44300ae5770716d02dedc",
+  "restore_working_copy": "/home/cognis/moebius-v-validation-restored-20261126"
+}

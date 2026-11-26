@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "head": "eea57b210be520ddb2d25a160dc9252e6a475bd0",
+  "branch": "main",
+  "before_status_short": "",
+  "after_status_short": "",
+  "after_head": "eea57b210be520ddb2d25a160dc9252e6a475bd0",
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--workspace",
+    "--all-targets",
+    "--all-features"
+  ],
+  "started_utc": "2026-11-26T18:16:24.046793+00:00",
+  "elapsed_seconds": 120.05796808504965,
+  "exit_code": 0,
+  "top_level_passed": 254,
+  "top_level_failed": 0,
+  "ignored": 0,
+  "rustc_verbose": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.1\nLLVM version: 23.1.1\n",
+  "scope": "clean-source regression certificate; not whole-engine performance or native qualification",
+  "archive_receipt": "PERFORMANCE_STABILIZATION_V_VALIDATION_STORAGE.json",
+  "strict_clippy": "PASS: cargo clippy --offline --workspace --all-targets --all-features -- -D warnings",
+  "formatting": "PASS: cargo fmt --all -- --check",
+  "python_integrity_tests": 9,
+  "atlas_validation": {
+    "status": "PASS",
+    "notes": 45,
+    "internal_links": 197
+  },
+  "restored_execution": {
+    "status": "PASS",
+    "queries": 1110,
+    "source": "restored main evidence archive executable"
+  }
+}
