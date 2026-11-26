@@ -4,7 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
-import shutil
+from benchmark_integrity import build_capture, verify_artifact
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -15,13 +15,9 @@ def main():
     parser.add_argument("--protocol", type=Path, default=ROOT / "docs/morph_005/SIMULATION_0001_EXPERIMENT.json")
     args = parser.parse_args()
     plan = json.loads(args.protocol.read_text())
-    binary = ROOT / "target/release/examples/habitat_probe"
-    if not binary.is_file():
-        raise SystemExit("Build first: cargo build --release --offline -p moebius-morph --example habitat_probe")
     args.output.mkdir(parents=True, exist_ok=False)
-    captured = args.output / "habitat_probe.binary"
-    shutil.copy2(binary, captured)
-    binary = captured.resolve()
+    artifact = args.output / "isolated-build"
+    binary = build_capture(ROOT, artifact)
     receipt = {
         "protocol": plan,
         "binary_sha256": hashlib.sha256(binary.read_bytes()).hexdigest(),
@@ -42,11 +38,13 @@ def main():
         out = args.output / name
         command = [str(binary), str(out), str(ticks), "--founders", str(founders), "--seed", str(seed),
                    "--abundance", str(plan["abundance"]), "--wall-seconds", str(wall)]
+        verify_artifact(artifact, ROOT)
         print(f"START {name}", flush=True)
         with (args.output / f"{name}.log").open("w") as log:
             result = subprocess.run(command, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=False)
         report_path = out / "report.json"
         report = json.loads(report_path.read_text()) if report_path.is_file() else None
+        verify_artifact(artifact, ROOT)
         row = {"name": name, "command": command, "exit_code": result.returncode, "report": report,
                "expected_refusal": phase == "refusal"}
         receipt["cases"].append(row)

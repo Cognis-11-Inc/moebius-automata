@@ -229,6 +229,9 @@ fn toward(from: Position, to: Position, step: i64) -> Result<Position, MorphErro
 pub(crate) fn prepare(
     world: &mut WorldSnapshot,
 ) -> Result<BTreeMap<u64, ConstructorState>, MorphError> {
+    #[cfg(feature = "allocation-attribution")]
+    let _allocation_scope = crate::profiling::enter(3);
+
     let mut habitat = world
         .habitat
         .clone()
@@ -456,6 +459,9 @@ pub(crate) fn finish(
     world: &mut WorldSnapshot,
     cache: &mut crate::collision::CollisionCache,
 ) -> Result<(), MorphError> {
+    #[cfg(feature = "allocation-attribution")]
+    let _allocation_scope = crate::profiling::enter(12);
+
     let mut h = world.habitat.clone().unwrap();
     // Reproduction transfers paid reserve; newborns inherit anatomy and active policy.
     let parents = h.agents.keys().copied().collect::<Vec<_>>();
@@ -720,7 +726,7 @@ pub(crate) fn validate(world: &WorldSnapshot) -> Result<(), MorphError> {
         )?;
         if let Some(parent) = a.parent {
             require(
-                world.events.iter().any(
+                world.sealed_birth(parent,id) || world.events.iter().any(
                     |e| matches!(e,Event::Reproduced{parent:p,child,..}if *p==parent&&*child==id),
                 ),
                 "offspring lacks paid provenance",

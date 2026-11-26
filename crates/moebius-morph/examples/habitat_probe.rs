@@ -6,6 +6,10 @@ use std::{
     path::PathBuf,
 };
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    if std::env::args().nth(1).as_deref() == Some("--build-identity") {
+        println!("{}", moebius_morph::BENCHMARK_BUILD_IDENTITY);
+        return Ok(());
+    }
     let args = std::env::args().skip(1).collect::<Vec<_>>();
     let mut diagnostic_collisions_off = false;
     let mut founders = 1usize;
@@ -13,6 +17,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut abundance = None;
     let mut wall_seconds = None;
     let mut resume = None;
+    #[cfg(feature = "history-v2-prototype")]
+    let mut history_root = None;
+    #[cfg(feature = "collision-fixture")]
+    let mut capture_requests = None;
     let mut positional = Vec::new();
     let mut index = 0;
     while index < args.len() {
@@ -25,6 +33,20 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             "--seed" => {
                 index += 1;
                 seed = args.get(index).ok_or("--seed needs a value")?.parse()?;
+            }
+            #[cfg(feature = "collision-fixture")]
+            "--capture-collisions" => {
+                index += 1;
+                capture_requests = Some(PathBuf::from(
+                    args.get(index).ok_or("capture requests required")?,
+                ));
+            }
+            #[cfg(feature = "history-v2-prototype")]
+            "--history-v2" => {
+                index += 1;
+                history_root = Some(PathBuf::from(
+                    args.get(index).ok_or("--history-v2 needs backing path")?,
+                ));
             }
             "--resume" => {
                 index += 1;
@@ -88,20 +110,31 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let start = std::time::Instant::now();
     let steps = ticks.clamp(1, 16384) as usize;
     let mut w = if let Some(path) = &resume {
-        ShipRuntime::restore(WorldSnapshot::load(path)?)?
+        restore_probe(path, &args)?
     } else if founders == 1 && abundance.is_none() {
         ShipRuntime::habitat_simulation(spec, seed, steps)?
     } else {
         ShipRuntime::habitat_colony(spec, seed, steps, founders, abundance)?
     };
+    #[cfg(feature = "history-v2-prototype")]
+    if let Some(root) = &history_root
+        && !w.state().segmented_history()
+    {
+        w.enable_history_v2(root, moebius_morph::history::Policy::default())?;
+    }
     if diagnostic_collisions_off {
         w.diagnostic_disable_collisions()?;
+    }
+    #[cfg(feature = "collision-fixture")]
+    if let Some(path) = capture_requests {
+        moebius_morph::collision::fixtures::request(serde_json::from_slice(&fs::read(path)?)?);
     }
     let initial_tick = w.state().tick;
     let mut simulation_ns = 0u128;
     let mut tick_ns = Vec::new();
+    let mut collision_ticks = Vec::new();
     let mut samples = Vec::new();
-    w.snapshot().save(&out.join("initial.json"))?;
+    save_probe(&w, &out.join("initial.json"))?;
     let mut trace = BufWriter::new(fs::File::create(out.join("ticks.jsonl"))?);
     let mut movements = 0u64;
     let mut meals = 0u64;
@@ -128,6 +161,46 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let elapsed_ns = tick_started.elapsed().as_nanos();
         simulation_ns += elapsed_ns;
         tick_ns.push(elapsed_ns);
+        let profile_after = w.collision_profile();
+        let delta = |after: u128, before: u128| {
+            u64::try_from(after.saturating_sub(before)).unwrap_or(u64::MAX)
+        };
+        let count = |after: u64, before: u64| after.saturating_sub(before);
+        collision_ticks.push(serde_json::json!({
+            "tick": w.state().tick,
+            "wall_ns": delta(elapsed_ns, 0),
+            "resolve_ns": delta(profile_after.resolve_ns, profile_before.resolve_ns),
+            "query_ns": delta(profile_after.query_ns, profile_before.query_ns),
+            "distance_ns": delta(profile_after.distance_ns, profile_before.distance_ns),
+            "contact_ns": delta(profile_after.contact_ns, profile_before.contact_ns),
+            "pipe_geometry_ns": delta(profile_after.pipe_geometry_ns, profile_before.pipe_geometry_ns),
+            "body_geometry_ns": delta(profile_after.body_geometry_ns, profile_before.body_geometry_ns),
+            "queries": count(profile_after.queries, profile_before.queries),
+            "distance_queries": count(profile_after.distance_queries, profile_before.distance_queries),
+            "distance_within": count(profile_after.distance_within, profile_before.distance_within),
+            "distance_clear": count(profile_after.distance_clear, profile_before.distance_clear),
+            "interval_rejects": count(profile_after.interval_rejects, profile_before.interval_rejects),
+            "mesh_interval_rejects": count(profile_after.mesh_interval_rejects, profile_before.mesh_interval_rejects),
+            "linear_casts": count(profile_after.linear_casts, profile_before.linear_casts),
+            "linear_cast_ns": delta(profile_after.linear_cast_ns, profile_before.linear_cast_ns),
+            "linear_nodes": count(profile_after.linear_nodes,profile_before.linear_nodes),
+            "linear_node_rejects": count(profile_after.linear_node_rejects,profile_before.linear_node_rejects),
+            "linear_leaf_dispatches": count(profile_after.linear_leaf_dispatches,profile_before.linear_leaf_dispatches),
+            "cast_cache_hits": count(profile_after.cast_cache_hits, profile_before.cast_cache_hits),
+            "pipe_builds": count(profile_after.pipe_builds, profile_before.pipe_builds),
+            "pipe_hits": count(profile_after.pipe_hits, profile_before.pipe_hits),
+            "pipe_candidates": count(profile_after.pipe_candidates, profile_before.pipe_candidates),
+            "pipe_rejects": count(profile_after.pipe_rejects, profile_before.pipe_rejects),
+            "triangles_examined": count(profile_after.triangles_examined, profile_before.triangles_examined),
+            "distance_bounded": count(profile_after.distance_bounded, profile_before.distance_bounded),
+            "distance_exact": count(profile_after.distance_exact, profile_before.distance_exact),
+            "pipe_horizon_rejects": count(profile_after.pipe_horizon_rejects, profile_before.pipe_horizon_rejects),
+            "pipe_horizon_candidates": count(profile_after.pipe_horizon_candidates, profile_before.pipe_horizon_candidates),
+            "pipe_horizon_indexed": profile_after.pipe_horizon_indexed,
+            "pipe_horizon_rebuilds": count(profile_after.pipe_horizon_rebuilds, profile_before.pipe_horizon_rebuilds),
+            "pipe_horizon_ns": delta(profile_after.pipe_horizon_ns, profile_before.pipe_horizon_ns),
+            "pipe_bounds_computed": count(profile_after.pipe_bounds_computed, profile_before.pipe_bounds_computed),
+        }));
         if w.state().tick.is_multiple_of(60) {
             let profile = w.collision_profile();
             samples.push(serde_json::json!({
@@ -220,9 +293,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
     trace.flush()?;
     let final_state = w.snapshot();
-    final_state.save(&out.join("final.json"))?;
+    save_probe(&w, &out.join("final.json"))?;
     let vm_hwm_kb_before_replay = proc_kib("VmHWM:");
-    let mut replay = ShipRuntime::restore(WorldSnapshot::load(&out.join("initial.json"))?)?;
+    #[cfg(feature = "collision-fixture")]
+    let _captured = moebius_morph::collision::fixtures::write_captures(&out.join("fixtures"))?;
+    #[cfg(feature = "query-trace")]
+    let forward_query_trace = moebius_morph::collision::take_query_trace();
+    let mut replay = restore_probe(&out.join("initial.json"), &args)?;
     replay.advance(final_state.tick - initial_tick)?;
     let vm_hwm_kb_after_replay = proc_kib("VmHWM:");
     let vm_rss_kb = proc_kib("VmRSS:");
@@ -258,6 +335,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         "contact_ns": profile.contact_ns,
         "cast_cache_hits": profile.cast_cache_hits,
         "linear_casts": profile.linear_casts,
+        "linear_cast_ns": profile.linear_cast_ns,
+        "linear_nodes": profile.linear_nodes,
+        "linear_node_rejects": profile.linear_node_rejects,
+        "linear_leaf_dispatches": profile.linear_leaf_dispatches,
         "mesh_interval_rejects": profile.mesh_interval_rejects,
         "body_builds": profile.body_builds,
         "body_hits": profile.body_hits,
@@ -267,6 +348,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         "pipe_candidates": profile.pipe_candidates,
         "pipe_rejects": profile.pipe_rejects,
         "pipe_geometry_ns": profile.pipe_geometry_ns,
+        "triangles_examined": profile.triangles_examined,
+        "distance_bounded": profile.distance_bounded,
+        "distance_exact": profile.distance_exact,
+        "pipe_horizon_rejects": profile.pipe_horizon_rejects,
+        "pipe_horizon_candidates": profile.pipe_horizon_candidates,
+        "pipe_horizon_indexed": profile.pipe_horizon_indexed,
+        "pipe_horizon_rebuilds": profile.pipe_horizon_rebuilds,
+        "pipe_horizon_ns": profile.pipe_horizon_ns,
+        "pipe_bounds_computed": profile.pipe_bounds_computed,
     });
     let mut report = serde_json::json!({
         "status": status,
@@ -279,7 +369,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         "founders": founders,
         "seed": seed,
         "abundance": abundance,
-        "births": final_state.events.iter().filter(|event| matches!(event, Event::Reproduced { .. })).count(),
+        "births": final_state.total_births(),
+        "history_total_events": final_state.total_events(),
+        "history_resident_events": final_state.events.len(),
+        "history_v2": final_state.segmented_history(),
         "agent_count": final_state.habitat.as_ref().unwrap().agents.len(),
         "sac_count": final_state.instances.values().filter(|i| i.definition == BLOOD_SAC).count(),
         "rooted_sacs": final_state.habitat.as_ref().unwrap().sacs.len(),
@@ -334,6 +427,19 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         out.join("tick-times-ns.json"),
         serde_json::to_vec(&tick_ns)?,
     )?;
+    fs::write(
+        out.join("collision-ticks.json"),
+        serde_json::to_vec(&collision_ticks)?,
+    )?;
+    #[cfg(feature = "query-trace")]
+    fs::write(
+        out.join("query-trace.json"),
+        serde_json::to_vec_pretty(&forward_query_trace)?,
+    )?;
+    #[cfg(feature = "query-trace")]
+    {
+        report["query_trace_scope"] = serde_json::json!("forward_only; replay excluded");
+    }
     fs::write(out.join("report.json"), serde_json::to_vec_pretty(&report)?)?;
     println!("{}", serde_json::to_string_pretty(&report)?);
     Ok(())
@@ -368,4 +474,29 @@ fn proc_kib(prefix: &str) -> Option<u64> {
         let rest = line.strip_prefix(prefix)?;
         rest.split_whitespace().next()?.parse().ok()
     })
+}
+
+fn save_probe(runtime: &ShipRuntime, path: &std::path::Path) -> Result<(), MorphError> {
+    #[cfg(feature = "history-v2-prototype")]
+    if runtime.state().segmented_history() {
+        return runtime.save_checkpoint_v2(path);
+    }
+    runtime.snapshot().save(path)
+}
+fn restore_probe(
+    path: &std::path::Path,
+    args: &[String],
+) -> Result<ShipRuntime, Box<dyn std::error::Error>> {
+    #[cfg(feature = "history-v2-prototype")]
+    if let Some(index) = args.iter().position(|s| s == "--history-v2") {
+        let snapshot: WorldSnapshot = serde_json::from_slice(&fs::read(path)?)?;
+        if snapshot.segmented_history() {
+            return Ok(ShipRuntime::restore_with_history(
+                snapshot,
+                std::path::Path::new(args.get(index + 1).ok_or("missing history backing")?),
+            )?);
+        }
+    }
+    let _ = args;
+    Ok(ShipRuntime::restore(WorldSnapshot::load(path)?)?)
 }

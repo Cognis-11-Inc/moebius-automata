@@ -7,6 +7,7 @@ use crate::{
     runtime::*,
     *,
 };
+use parry3d::query::epa::EPA;
 use parry3d::query::gjk::{self, CsoPoint, GJKResult, VoronoiSimplex};
 use parry3d::{
     bounding_volume::{Aabb, BoundingVolume},
@@ -23,10 +24,15 @@ use parry3d::{
 };
 use serde::{Deserialize, Serialize};
 use std::{
+    cell::Cell,
     collections::{BTreeMap, BTreeSet},
     sync::{Arc, Mutex, OnceLock},
     time::Instant,
 };
+
+#[cfg(feature = "collision-fixture")]
+#[path = "collision_fixtures.rs"]
+pub mod fixtures;
 
 /// Tight sample admitted into the cached hit volume. The witness writhe uses the
 /// same anatomy generator at a larger bend and a traveling phase.
@@ -129,7 +135,7 @@ pub fn presentation_slack(spec: &AnatomySpec) -> Result<f32, MorphError> {
 }
 
 /// Counters for one runtime. They are not world state and do not enter digests.
-#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize)]
 pub struct CollisionProfile {
     pub resolve_calls: u64,
     pub resolve_ns: u128,
@@ -140,10 +146,21 @@ pub struct CollisionProfile {
     /// Distance-predicate searches; queries also counts bound-only visits.
     /// A search can inspect multiple leaves or finish on a certified bound.
     pub distance_queries: u64,
+    /// Searches whose certified distance was inside the Lipschitz limit.
+    pub distance_within: u64,
+    /// Searches certified outside that limit. The interval was discarded.
+    pub distance_clear: u64,
     pub distance_ns: u128,
     pub contact_ns: u128,
     pub cast_cache_hits: u64,
+    pub contact_cache_hits: u64,
+    pub contact_cache_misses: u64,
     pub linear_casts: u64,
+    /// Complete library cast_shapes call, excluded from distance_ns.
+    pub linear_cast_ns: u128,
+    pub linear_nodes: u64,
+    pub linear_node_rejects: u64,
+    pub linear_leaf_dispatches: u64,
     pub mesh_interval_rejects: u64,
     pub body_builds: u64,
     pub body_hits: u64,
@@ -156,6 +173,25 @@ pub struct CollisionProfile {
     pub pipe_candidates: u64,
     /// Chunks rejected by the sample sphere before a mesh build or a Parry query.
     pub pipe_rejects: u64,
+    /// Leaf triangles admitted by a mesh or compound BVH during distance searches.
+    pub triangles_examined: u64,
+    /// Distance searches answered by a separating plane or a certified GJK bound.
+    pub distance_bounded: u64,
+    /// Calls to the exact distance kernel. A bounded leaf does not increment this.
+    pub distance_exact: u64,
+    pub distance_nodes: u64,
+    pub distance_node_rejects: u64,
+    /// Chunks excluded by the collision horizon before the sample-sphere test.
+    pub pipe_horizon_rejects: u64,
+    /// Chunks whose horizon cell still required the authoritative sample sphere.
+    pub pipe_horizon_candidates: u64,
+    /// Live horizon spheres after the latest synchronization. Not a cumulative counter.
+    pub pipe_horizon_indexed: u64,
+    pub pipe_horizon_rebuilds: u64,
+    pub pipe_horizon_ns: u128,
+    /// Sample-sphere bounds computed while rebuilding the horizon.
+    pub pipe_bounds_computed: u64,
+    pub pipe_filament_stamps: u64,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
@@ -204,19 +240,24 @@ struct Geometry {
     outlets: Vec<(u64, [f32; 3])>,
     /// Euclidean room between this hull and a presentation vertex, in metres.
     /// Solids are grown by this amount. Pipes and prey keep the tight hull.
-    writhe_slack: f32,
+    writhe_slack: OnceLock<f32>,
 }
 /// Filament, chunk, and digest of the geometry inputs including wet mesh time.
 type PipeCacheKey = (u64, usize, [u8; 32]);
 #[derive(Default)]
 pub struct CollisionCache {
+    contact_workspace: ContactWorkspace,
     definitions: BTreeMap<(u64, u64, [u8; 32]), Arc<Geometry>>,
     specifications: BTreeMap<u64, (AnatomySpec, [u8; 32])>,
     /// Age stays in the key until the newest sample in the chunk is dry.
     /// Nodes past the one-neighbor lookahead do not.
-    pipes: BTreeMap<PipeCacheKey, (Position, Geometry)>,
+    pipes: BTreeMap<(u64, usize), ([u8; 32], Position, Geometry)>,
     profile: CollisionProfile,
     casts: BTreeMap<CastKey, CastReceipt>,
+    /// Collision-owned conservative pipe horizon. It is not serialized, not a
+    /// witness index, and not a second geometric authority: a miss falls
+    /// through to `pipe_separated` and the hollow trimesh.
+    horizon: PipeHorizon,
 }
 type Hit = Option<(f32, [i64; 3], Position)>;
 type CastKey = (usize, u32, usize, u32, [i64; 24]);
@@ -254,9 +295,28 @@ impl CollisionCache {
         );
         if let Some(receipt) = self.casts.get(&key) {
             self.profile.cast_cache_hits += 1;
+            #[cfg(feature = "query-trace")]
+            query_trace::note_cache_hit();
             return Ok(receipt.hit);
         }
-        let hit = cast(a, from, to, b, bfrom, bto, &mut self.profile)?;
+        #[cfg(feature = "query-trace")]
+        query_trace::note_cast(query_trace::pose_fingerprint(&poses));
+        #[cfg(feature = "query-trace")]
+        let cast_started = Instant::now();
+        let cast_result = cast(
+            a,
+            from,
+            to,
+            b,
+            bfrom,
+            bto,
+            (&mut self.profile, &mut self.contact_workspace),
+        );
+        #[cfg(feature = "query-trace")]
+        query_trace::note_phase("cast", cast_started.elapsed().as_nanos());
+        let hit = cast_result?;
+        #[cfg(feature = "query-trace")]
+        query_trace::clear_label();
         if self.casts.len() < 8192 {
             self.casts.insert(
                 key,
@@ -269,7 +329,11 @@ impl CollisionCache {
         Ok(hit)
     }
     pub fn profile(&self) -> CollisionProfile {
-        self.profile
+        CollisionProfile {
+            contact_cache_hits: self.contact_workspace.hits,
+            contact_cache_misses: self.contact_workspace.misses,
+            ..self.profile
+        }
     }
 }
 fn vec(p: [i64; 3]) -> Vector {
@@ -300,6 +364,9 @@ fn motion(
     ))
 }
 fn geometry(surfaces: &[Surface], scale: f32) -> Result<Geometry, MorphError> {
+    #[cfg(feature = "allocation-attribution")]
+    let _allocation_scope = crate::profiling::enter(14);
+
     let mut vertices = Vec::new();
     let mut indices = Vec::new();
     for surface in surfaces {
@@ -328,7 +395,7 @@ fn geometry(surfaces: &[Surface], scale: f32) -> Result<Geometry, MorphError> {
         vertices: Arc::new(vertices),
         parts: vec![],
         outlets: vec![],
-        writhe_slack: 0.,
+        writhe_slack: OnceLock::from(0.),
     })
 }
 impl CollisionCache {
@@ -418,7 +485,7 @@ impl CollisionCache {
                     vertices: Arc::new(points),
                     parts: vec![],
                     outlets: vec![],
-                    writhe_slack: 0.,
+                    writhe_slack: OnceLock::from(0.),
                 },
             ));
         }
@@ -428,10 +495,12 @@ impl CollisionCache {
                 .map(|(_, part)| (Iso::IDENTITY, SharedShape(part.shape.clone())))
                 .collect(),
         );
+        // Only solid collision consumes presentation clearance. Deferral keeps
+        // the exact value and ties its lifetime to the immutable body geometry.
         let writhe_slack = if body.definition == BLOOD_SAC {
-            0.
+            OnceLock::from(0.)
         } else {
-            presentation_slack(spec)?
+            OnceLock::new()
         };
         let g = Geometry {
             shape: Arc::new(shape),
@@ -479,27 +548,269 @@ impl CollisionCache {
                     vertices: Arc::new(vec![Vector::ZERO]),
                     parts: vec![],
                     outlets: vec![],
-                    writhe_slack: 0.,
+                    writhe_slack: OnceLock::from(0.),
                 },
             ));
         }
         let Some(key) = pipe_key(id, f, chunk, tick) else {
             return Err(MorphError("pipe chunk has no cached sweep".into()));
         };
-        if let Some(g) = self.pipes.get(&key) {
+        if let Some((hash, origin, geometry)) = self.pipes.get(&(id, chunk))
+            && *hash == key.2
+        {
             self.profile.pipe_hits += 1;
-            return Ok(g.clone());
+            return Ok((*origin, geometry.clone()));
         }
         let built = Instant::now();
         self.profile.pipe_builds += 1;
         let (origin, surface) = filament_chunk_at(f, chunk, tick)?;
         let g = geometry(&[surface], 1.)?;
         self.profile.pipe_geometry_ns += built.elapsed().as_nanos();
-        self.pipes
-            .retain(|(filament, c, _), _| *filament != id || *c != chunk);
-        self.pipes.insert(key, (origin, g.clone()));
+        self.pipes.insert((id, chunk), (key.2, origin, g.clone()));
         Ok((origin, g))
     }
+
+    /// Refresh the horizon when pipe positions, sections, or membership change.
+    /// Wet aging is not a membership change: a bound captured at a younger tick
+    /// stays a superset while radius only dries. An unknown or rewound tick
+    /// rebuilds. Failure clears the horizon so the next query cannot reject
+    /// with a stale sphere.
+    fn sync_pipe_horizon(
+        &mut self,
+        assembly: &crate::filament::Assembly,
+        tick: u64,
+    ) -> Result<(), MorphError> {
+        let started = Instant::now();
+        let (owner, revision) = assembly.filaments.revision();
+        let unchanged = self
+            .horizon
+            .input_revision
+            .as_ref()
+            .is_some_and(|(saved, seen)| Arc::ptr_eq(owner, saved) && *seen == revision);
+        if self.horizon.ready && unchanged && tick >= self.horizon.built_tick {
+            self.horizon.confirmed_tick = tick;
+            self.profile.pipe_horizon_indexed = self.horizon.spheres.len() as u64;
+            self.profile.pipe_horizon_ns += started.elapsed().as_nanos();
+            return Ok(());
+        }
+        if let Err(error) = self.update_pipe_horizon(assembly, tick) {
+            self.horizon = PipeHorizon::default();
+            self.profile.pipe_horizon_ns += started.elapsed().as_nanos();
+            return Err(error);
+        }
+        self.horizon.input_revision = Some((owner.clone(), revision));
+        self.profile.pipe_horizon_ns += started.elapsed().as_nanos();
+        Ok(())
+    }
+
+    /// Reindex only filaments whose nodes, section, or membership changed.
+    /// A later tick with the same stamps keeps the younger, larger bound.
+    /// A rewind drops the horizon and builds it again at the earlier tick.
+    fn update_pipe_horizon(
+        &mut self,
+        assembly: &crate::filament::Assembly,
+        tick: u64,
+    ) -> Result<(), MorphError> {
+        if self.horizon.ready && tick < self.horizon.built_tick {
+            self.horizon = PipeHorizon::default();
+        }
+        let mut live = BTreeSet::new();
+        let mut changed = false;
+        for filament in assembly.filaments.values() {
+            if filament.nodes.is_empty() {
+                continue;
+            }
+            live.insert(filament.id);
+            self.profile.pipe_filament_stamps += 1;
+            let stamp = pipe_filament_stamp(filament)?;
+            if self.horizon.ready && self.horizon.filament_stamps.get(&filament.id) == Some(&stamp)
+            {
+                continue;
+            }
+            self.reindex_filament(filament, tick)?;
+            self.horizon.filament_stamps.insert(filament.id, stamp);
+            changed = true;
+        }
+        let stale = self
+            .horizon
+            .filament_stamps
+            .keys()
+            .copied()
+            .filter(|id| !live.contains(id))
+            .collect::<Vec<_>>();
+        for id in stale {
+            self.forget_filament(id);
+            changed = true;
+        }
+        self.pipes
+            .retain(|key, _| self.horizon.spheres.contains_key(key));
+        self.horizon.confirmed_tick = tick;
+        self.horizon.built_tick = tick;
+        self.horizon.ready = true;
+        if changed {
+            self.profile.pipe_horizon_rebuilds += 1;
+        }
+        self.profile.pipe_horizon_indexed = self.horizon.spheres.len() as u64;
+        Ok(())
+    }
+
+    fn forget_filament(&mut self, id: u64) {
+        self.horizon.spheres.retain(|key, _| key.0 != id);
+        self.horizon.always_chunks.retain(|key| key.0 != id);
+        self.horizon.filament_stamps.remove(&id);
+        for chunks in self.horizon.cells.values_mut() {
+            chunks.retain(|key| key.0 != id);
+        }
+        self.horizon.cells.retain(|_, chunks| !chunks.is_empty());
+    }
+
+    fn reindex_filament(
+        &mut self,
+        filament: &crate::filament::Filament,
+        tick: u64,
+    ) -> Result<(), MorphError> {
+        self.forget_filament(filament.id);
+        let chunks = filament
+            .nodes
+            .len()
+            .saturating_sub(1)
+            .div_ceil(CHUNK_EDGES)
+            .max(1);
+        for chunk in 0..chunks {
+            let start = (chunk * CHUNK_EDGES).min(filament.nodes.len() - 1);
+            let origin = filament.nodes[start].position.absolute()?;
+            let bound = chunk_mesh_radius_bound(filament, chunk, tick)?;
+            self.profile.pipe_bounds_computed += 1;
+            let radius = meters_to_abs(bound + HORIZON_PAD_M);
+            let mut sphere = ChunkSphere {
+                origin,
+                radius,
+                always: false,
+            };
+            match cover_cells(origin, radius) {
+                Some(cells) => {
+                    for cell in cells {
+                        self.horizon
+                            .cells
+                            .entry(cell)
+                            .or_default()
+                            .insert((filament.id, chunk));
+                    }
+                }
+                None => {
+                    sphere.always = true;
+                    self.horizon.always_chunks.push((filament.id, chunk));
+                }
+            }
+            self.horizon.spheres.insert((filament.id, chunk), sphere);
+        }
+        Ok(())
+    }
+
+    /// `true` only when the cached sphere cannot meet the query ball.
+    /// Missing spheres and oversized chunks return `false` and keep the
+    /// authoritative sample-sphere path. Production walks `interacting_chunks`.
+    /// This predicate remains the honest-red oracle for that walk.
+    #[cfg_attr(not(test), allow(dead_code))]
+    fn pipe_beyond_horizon(
+        &mut self,
+        filament: u64,
+        chunk: usize,
+        at: Position,
+        reach: f32,
+    ) -> Result<bool, MorphError> {
+        let Some(sphere) = self.horizon.spheres.get(&(filament, chunk)).copied() else {
+            return Ok(false);
+        };
+        if sphere.always || !self.horizon.ready {
+            self.profile.pipe_horizon_candidates += 1;
+            return Ok(false);
+        }
+        let center = at.absolute()?;
+        let reach_abs = meters_to_abs(reach + HORIZON_PAD_M);
+        let limit = sphere.radius.saturating_add(reach_abs);
+        let mut gap = 0i128;
+        for (axis, &component) in center.iter().enumerate() {
+            let delta = i128::from(component) - i128::from(sphere.origin[axis]);
+            gap += delta * delta;
+        }
+        let sphere_near = gap <= i128::from(limit) * i128::from(limit);
+        let Some(cells) = cover_cells(center, reach_abs) else {
+            self.profile.pipe_horizon_candidates += 1;
+            return Ok(false);
+        };
+        let cell_near = cells.iter().any(|cell| {
+            self.horizon
+                .cells
+                .get(cell)
+                .is_some_and(|chunks| chunks.contains(&(filament, chunk)))
+        });
+        // Either certificate is enough to keep the chunk. Reject only when both
+        // the cell index and the absolute sphere say the pair cannot meet.
+        let near = cell_near || sphere_near;
+        if near {
+            self.profile.pipe_horizon_candidates += 1;
+            Ok(false)
+        } else {
+            self.profile.pipe_horizon_rejects += 1;
+            Ok(true)
+        }
+    }
+
+    /// Chunks that might meet the query, in filament-id then chunk order.
+    /// The walk visits the candidate set rather than every distant chunk.
+    /// An unready horizon or an enormous query returns every live chunk.
+    fn interacting_chunks(
+        &mut self,
+        assembly: &crate::filament::Assembly,
+        tick: u64,
+        at: Position,
+        reach: f32,
+    ) -> Result<Vec<(u64, usize)>, MorphError> {
+        self.sync_pipe_horizon(assembly, tick)?;
+        if !self.horizon.ready {
+            let all = all_pipe_chunks(assembly);
+            self.profile.pipe_horizon_candidates += all.len() as u64;
+            return Ok(all);
+        }
+        let center = at.absolute()?;
+        let reach_abs = meters_to_abs(reach + HORIZON_PAD_M);
+        let Some(cells) = cover_cells(center, reach_abs) else {
+            let all = all_pipe_chunks(assembly);
+            self.profile.pipe_horizon_candidates += all.len() as u64;
+            return Ok(all);
+        };
+        let mut near = BTreeSet::new();
+        for cell in &cells {
+            if let Some(chunks) = self.horizon.cells.get(cell) {
+                near.extend(chunks.iter().copied());
+            }
+        }
+        near.extend(self.horizon.always_chunks.iter().copied());
+        let indexed = self.horizon.spheres.len();
+        self.profile.pipe_horizon_candidates += near.len() as u64;
+        self.profile.pipe_horizon_rejects += indexed.saturating_sub(near.len()) as u64;
+        Ok(near.into_iter().collect())
+    }
+}
+
+fn all_pipe_chunks(assembly: &crate::filament::Assembly) -> Vec<(u64, usize)> {
+    let mut chunks = Vec::new();
+    for filament in assembly.filaments.values() {
+        if filament.nodes.is_empty() {
+            continue;
+        }
+        let count = filament
+            .nodes
+            .len()
+            .saturating_sub(1)
+            .div_ceil(CHUNK_EDGES)
+            .max(1);
+        for chunk in 0..count {
+            chunks.push((filament.id, chunk));
+        }
+    }
+    chunks
 }
 
 fn pipe_key(
@@ -684,12 +995,113 @@ fn pipe_separated(
     cache.profile.pipe_rejects += 1;
     Ok(true)
 }
+
+/// Cell size for the collision horizon. Occupied chunks are inserted into the
+/// cells their conservative spheres cover. Empty habitat volume is not allocated.
+const PIPE_CELL: i64 = 8 * SCALE;
+/// Wider than `pipe_separated`'s 0.003 m gate, on both the stored bound and the
+/// query reach, so f32 conversion cannot hide a sample-sphere candidate.
+const HORIZON_PAD_M: f32 = 0.005;
+
+#[derive(Clone, Copy)]
+struct ChunkSphere {
+    /// Read by the honest-red sphere predicate. The production walk uses cells.
+    #[cfg_attr(not(test), allow(dead_code))]
+    origin: [i64; 3],
+    #[cfg_attr(not(test), allow(dead_code))]
+    radius: i64,
+    #[cfg_attr(not(test), allow(dead_code))]
+    always: bool,
+}
+
+#[derive(Default)]
+struct PipeHorizon {
+    input_revision: Option<(Arc<std::sync::atomic::AtomicU64>, u64)>,
+    confirmed_tick: u64,
+    built_tick: u64,
+    ready: bool,
+    spheres: BTreeMap<(u64, usize), ChunkSphere>,
+    cells: BTreeMap<[i64; 3], BTreeSet<(u64, usize)>>,
+    /// Chunks too large for the cell cap. Every query keeps them.
+    always_chunks: Vec<(u64, usize)>,
+    /// Per-filament geometry stamp. An unchanged filament keeps its spheres.
+    filament_stamps: BTreeMap<u64, [u8; 32]>,
+}
+
+fn meters_to_abs(meters: f32) -> i64 {
+    let units = f64::from(meters.max(0.)) * SCALE as f64;
+    if !units.is_finite() || units >= (i64::MAX / 4) as f64 {
+        return i64::MAX / 4;
+    }
+    units.ceil() as i64 + 1
+}
+
+/// `None` means the sphere covers too many cells to index. Callers then keep
+/// the authoritative test instead of allocating a volume-sized grid.
+fn cover_cells(origin: [i64; 3], radius: i64) -> Option<Vec<[i64; 3]>> {
+    let min = origin.map(|v| v.saturating_sub(radius).div_euclid(PIPE_CELL));
+    let max = origin.map(|v| v.saturating_add(radius).div_euclid(PIPE_CELL));
+    let mut count = 1i64;
+    for axis in 0..3 {
+        let span = max[axis].saturating_sub(min[axis]).saturating_add(1);
+        if span <= 0 || span > 64 {
+            return None;
+        }
+        count = count.saturating_mul(span);
+        if count > 512 {
+            return None;
+        }
+    }
+    let mut cells = Vec::with_capacity(count as usize);
+    for x in min[0]..=max[0] {
+        for y in min[1]..=max[1] {
+            for z in min[2]..=max[2] {
+                cells.push([x, y, z]);
+            }
+        }
+    }
+    Some(cells)
+}
+
+fn pipe_filament_stamp(filament: &crate::filament::Filament) -> Result<[u8; 32], MorphError> {
+    let mut hash = blake3::Hasher::new();
+    hash.update(b"pipe-horizon-input-v2");
+    for v in [
+        filament.id,
+        filament.created_tick,
+        filament.nozzle,
+        filament.quantity,
+    ] {
+        hash.update(&v.to_le_bytes());
+    }
+    if let Some(section) = &filament.section {
+        hash.update(&[
+            1,
+            u8::from(section.start_sealed),
+            u8::from(section.end_sealed),
+        ]);
+        hash.update(&section.outer_radius.to_le_bytes());
+        hash.update(&section.inner_radius.to_le_bytes());
+    } else {
+        hash.update(&[0]);
+    }
+    for node in &filament.nodes {
+        hash.update(&node.id.to_le_bytes());
+        hash.update(&node.deposited_tick.to_le_bytes());
+        for v in node.position.absolute()? {
+            hash.update(&v.to_le_bytes());
+        }
+    }
+    Ok(*hash.finalize().as_bytes())
+}
+
 fn near(a: RigidPose, b: RigidPose, ra: f32, rb: f32, da: f32, db: f32) -> bool {
     let d = vec(std::array::from_fn(|k| a.translation[k] - b.translation[k]));
     d.length() <= ra + rb + da + db + 0.003
 }
 struct QueryNanos<'a> {
     profile: &'a mut CollisionProfile,
+    workspace: &'a mut ContactWorkspace,
     started: Instant,
     visits: u64,
 }
@@ -699,22 +1111,102 @@ impl Drop for QueryNanos<'_> {
         self.profile.query_ns += self.started.elapsed().as_nanos();
     }
 }
+struct DistanceCounts {
+    triangles: Cell<u64>,
+    bounded: Cell<u64>,
+    exact: Cell<u64>,
+    nodes: Cell<u64>,
+    node_rejects: Cell<u64>,
+    #[cfg(feature = "kernel-attribution")]
+    plane_ns: Cell<u128>,
+    #[cfg(feature = "kernel-attribution")]
+    bounded_gjk_ns: Cell<u128>,
+    #[cfg(feature = "kernel-attribution")]
+    exact_ns: Cell<u128>,
+    #[cfg(feature = "kernel-attribution")]
+    support_calls: Cell<u64>,
+    #[cfg(feature = "kernel-attribution")]
+    gjk_calls: Cell<u64>,
+    #[cfg(feature = "kernel-attribution")]
+    gjk_steps: Cell<u64>,
+    #[cfg(feature = "kernel-attribution")]
+    gjk_max_steps: Cell<u64>,
+    #[cfg(feature = "kernel-attribution")]
+    gjk_100_steps: Cell<u64>,
+    #[cfg(feature = "kernel-attribution")]
+    exact_steps: Cell<u64>,
+}
+impl DistanceCounts {
+    fn new() -> Self {
+        Self {
+            triangles: Cell::new(0),
+            bounded: Cell::new(0),
+            exact: Cell::new(0),
+            nodes: Cell::new(0),
+            node_rejects: Cell::new(0),
+            #[cfg(feature = "kernel-attribution")]
+            plane_ns: Cell::new(0),
+            #[cfg(feature = "kernel-attribution")]
+            bounded_gjk_ns: Cell::new(0),
+            #[cfg(feature = "kernel-attribution")]
+            exact_ns: Cell::new(0),
+            #[cfg(feature = "kernel-attribution")]
+            support_calls: Cell::new(0),
+            #[cfg(feature = "kernel-attribution")]
+            gjk_calls: Cell::new(0),
+            #[cfg(feature = "kernel-attribution")]
+            gjk_steps: Cell::new(0),
+            #[cfg(feature = "kernel-attribution")]
+            gjk_max_steps: Cell::new(0),
+            #[cfg(feature = "kernel-attribution")]
+            gjk_100_steps: Cell::new(0),
+            #[cfg(feature = "kernel-attribution")]
+            exact_steps: Cell::new(0),
+        }
+    }
+    fn bump(field: &Cell<u64>) {
+        field.set(field.get() + 1);
+    }
+}
 /// Test interval clearance with original Parry leaf kernels. One leaf within
 /// the bound proves the predicate for the union: stop then instead of finding
 /// the globally nearest triangle/component. Expanded BVH bounds cover roundoff;
 /// no physical shape is replaced or approximated.
 fn within_distance(
+    supports: &SupportCache,
     relative: &Iso,
     a: &dyn Shape,
     b: &dyn Shape,
     limit: f32,
     roundoff: f32,
+    counts: &DistanceCounts,
 ) -> Result<bool, query::Unsupported> {
     let (composite, relative, other) = if let Some(c) = a.as_composite_shape() {
         (c, *relative, b)
     } else if let Some(c) = b.as_composite_shape() {
         (c, relative.inverse(), a)
     } else {
+        if a.as_triangle().is_some() || b.as_triangle().is_some() {
+            DistanceCounts::bump(&counts.triangles);
+        }
+        #[cfg(feature = "kernel-attribution")]
+        let plane_started = Instant::now();
+        let plane_clear = if let (Some(index), Some(triangle)) = (supports.get(a), b.as_triangle())
+        {
+            index.separates_triangle(relative, triangle, limit, roundoff)
+        } else if let (Some(index), Some(triangle)) = (supports.get(b), a.as_triangle()) {
+            index.separates_triangle(&relative.inverse(), triangle, limit, roundoff)
+        } else {
+            false
+        };
+        #[cfg(feature = "kernel-attribution")]
+        counts
+            .plane_ns
+            .set(counts.plane_ns.get() + plane_started.elapsed().as_nanos());
+        if plane_clear {
+            DistanceCounts::bump(&counts.bounded);
+            return Ok(false);
+        }
         // Ask GJK for proximity without solving exact witnesses first. Accept
         // only certified lower/upper bounds outside a roundoff band; otherwise
         // preserve the original distance kernel, including uncertain failures.
@@ -723,6 +1215,24 @@ fn within_distance(
             && !(a.as_cuboid().is_some() && b.as_cuboid().is_some())
             && let (Some(sa), Some(sb)) = (a.as_support_map(), b.as_support_map())
         {
+            let indexed_a = IndexedSupport {
+                inner: sa,
+                index: supports.get(a),
+                points: a.as_convex_polyhedron().map_or(0, |p| p.points().len()),
+                #[cfg(feature = "kernel-attribution")]
+                diagnostic_calls: Some(&counts.support_calls),
+            };
+            let indexed_b = IndexedSupport {
+                inner: sb,
+                index: supports.get(b),
+                points: b.as_convex_polyhedron().map_or(0, |p| p.points().len()),
+                #[cfg(feature = "kernel-attribution")]
+                diagnostic_calls: Some(&counts.support_calls),
+            };
+            let (sa, sb): (
+                &dyn parry3d::shape::SupportMap,
+                &dyn parry3d::shape::SupportMap,
+            ) = (&indexed_a, &indexed_b);
             let dir = -relative.translation;
             let dir = if dir.length_squared() > parry3d::math::DEFAULT_EPSILON.powi(2) {
                 dir.normalize()
@@ -731,13 +1241,39 @@ fn within_distance(
             };
             let mut simplex = VoronoiSimplex::new();
             simplex.reset(CsoPoint::from_shapes(relative, sa, sb, dir));
-            match gjk::closest_points(relative, sa, sb, limit + roundoff, false, &mut simplex) {
-                GJKResult::Intersection => return Ok(true),
+            #[cfg(feature = "kernel-attribution")]
+            let bounded_started = Instant::now();
+            #[cfg(feature = "kernel-attribution")]
+            let support_before = counts.support_calls.get();
+            let bounded_result =
+                gjk::closest_points(relative, sa, sb, limit + roundoff, false, &mut simplex);
+            #[cfg(feature = "kernel-attribution")]
+            counts
+                .bounded_gjk_ns
+                .set(counts.bounded_gjk_ns.get() + bounded_started.elapsed().as_nanos());
+            #[cfg(feature = "kernel-attribution")]
+            {
+                let steps = (counts.support_calls.get() - support_before) / 2;
+                counts.gjk_calls.set(counts.gjk_calls.get() + 1);
+                counts.gjk_steps.set(counts.gjk_steps.get() + steps);
+                counts
+                    .gjk_max_steps
+                    .set(counts.gjk_max_steps.get().max(steps));
+                if steps == 100 {
+                    counts.gjk_100_steps.set(counts.gjk_100_steps.get() + 1);
+                }
+            }
+            match bounded_result {
+                GJKResult::Intersection => {
+                    DistanceCounts::bump(&counts.bounded);
+                    return Ok(true);
+                }
                 GJKResult::NoIntersection(axis) => {
                     // NoIntersection also represents the iteration limit in
                     // Parry; a real separating support plane is required.
                     let support = CsoPoint::from_shapes(relative, sa, sb, axis);
                     if -axis.dot(support.point) > limit + roundoff {
+                        DistanceCounts::bump(&counts.bounded);
                         return Ok(false);
                     }
                 }
@@ -754,38 +1290,88 @@ fn within_distance(
                             q += simplex.point(i).orig2 * simplex.proj_coord(i);
                         }
                         if (p - q).length() + roundoff < limit {
+                            DistanceCounts::bump(&counts.bounded);
                             return Ok(true);
                         }
                     }
                 }
                 _ => {}
             }
+            if !(a.as_segment().is_some() && b.as_segment().is_some()) {
+                DistanceCounts::bump(&counts.exact);
+                #[cfg(feature = "kernel-attribution")]
+                let exact_started = Instant::now();
+                #[cfg(feature = "kernel-attribution")]
+                let exact_support_before = counts.support_calls.get();
+                let result =
+                    query::details::distance_support_map_support_map(relative, sa, sb) <= limit;
+                #[cfg(feature = "kernel-attribution")]
+                counts
+                    .exact_ns
+                    .set(counts.exact_ns.get() + exact_started.elapsed().as_nanos());
+                #[cfg(feature = "kernel-attribution")]
+                counts.exact_steps.set(
+                    counts.exact_steps.get()
+                        + (counts.support_calls.get() - exact_support_before) / 2,
+                );
+                return Ok(result);
+            }
         }
-        return DefaultQueryDispatcher
+        DistanceCounts::bump(&counts.exact);
+        #[cfg(feature = "kernel-attribution")]
+        let exact_started = Instant::now();
+        let result = DefaultQueryDispatcher
             .distance(relative, a, b)
             .map(|d| d <= limit);
+        #[cfg(feature = "kernel-attribution")]
+        counts
+            .exact_ns
+            .set(counts.exact_ns.get() + exact_started.elapsed().as_nanos());
+        return result;
     };
     let bounds = other.compute_aabb(&relative);
     let shift = -bounds.center();
     let margin = bounds.half_extents();
+    let projection_planes = supports.get(other).and_then(|index| {
+        index.projection_planes(&relative, &composite.bvh().root_aabb(), limit, roundoff)
+    });
     Ok(composite
         .bvh()
         .find_best(
             limit + roundoff,
             |node, _| {
-                Aabb {
+                DistanceCounts::bump(&counts.nodes);
+                let bound = Aabb {
                     mins: node.mins() + shift - margin,
                     maxs: node.maxs() + shift + margin,
                 }
-                .distance_to_origin()
+                .distance_to_origin();
+                if bound <= limit + roundoff
+                    && projection_planes
+                        .as_ref()
+                        .is_some_and(|planes| planes.excludes(node.mins(), node.maxs()))
+                {
+                    DistanceCounts::bump(&counts.node_rejects);
+                    f32::MAX
+                } else {
+                    bound
+                }
             },
             |part, _| {
                 composite
                     .map_untyped_part_at(part, |pose, shape, _| {
-                        within_distance(&pose.inv_mul(&relative), shape, other, limit, roundoff)
-                            .ok()
-                            .filter(|near| *near)
-                            .map(|_| 0f32)
+                        within_distance(
+                            supports,
+                            &pose.inv_mul(&relative),
+                            shape,
+                            other,
+                            limit,
+                            roundoff,
+                            counts,
+                        )
+                        .ok()
+                        .filter(|near| *near)
+                        .map(|_| 0f32)
                     })
                     .flatten()
             },
@@ -800,10 +1386,12 @@ fn cast(
     b: &Geometry,
     bfrom: RigidPose,
     bto: RigidPose,
-    profile: &mut CollisionProfile,
+    context: (&mut CollisionProfile, &mut ContactWorkspace),
 ) -> Result<Option<(f32, [i64; 3], Position)>, MorphError> {
+    let (profile, workspace) = context;
     let mut charge = QueryNanos {
         profile,
+        workspace,
         started: Instant::now(),
         visits: 0,
     };
@@ -821,16 +1409,15 @@ fn cast(
     // actual contact once, rather than rediscover it by ~17 identical distance
     // evaluations while bisecting toward zero. The hollow geometry is unchanged.
     let contact_started = Instant::now();
-    let initial = query::contact(
-        &m1.start,
-        a.shape.as_ref(),
-        &m2.start,
-        b.shape.as_ref(),
-        skin,
-    )
-    .ok()
-    .flatten();
-    charge.profile.contact_ns += contact_started.elapsed().as_nanos();
+    let initial = cached_world_contact(charge.workspace, &m1.start, a, &m2.start, b, skin)
+        .ok()
+        .flatten();
+    let initial_contact_ns = contact_started.elapsed().as_nanos();
+    charge.profile.contact_ns += initial_contact_ns;
+    #[cfg(feature = "query-trace")]
+    query_trace::note_phase("initial_contact", initial_contact_ns);
+    #[cfg(feature = "collision-fixture")]
+    fixtures::sample(|| fixtures::phase("initial_contact", initial_contact_ns, initial.is_some()));
     charge.visits += 1;
     if let Some(c) = initial {
         let point = origin.offset(
@@ -857,13 +1444,40 @@ fn cast(
             stop_at_penetration: true,
             compute_impact_geometry_on_penetration: true,
         };
-        let result = DefaultQueryDispatcher.cast_shapes(
+        let linear_started = Instant::now();
+        let dispatcher = FilteredLinearDispatcher::new(&charge.workspace.supports);
+        let result = dispatcher.cast_shapes(
             &m1.start.inv_mul(&m2.start),
             local_delta,
             a.shape.as_ref(),
             b.shape.as_ref(),
             options,
         );
+        let linear_ns = linear_started.elapsed().as_nanos();
+        charge.profile.linear_cast_ns += linear_ns;
+        charge.profile.linear_nodes += dispatcher.nodes.load(std::sync::atomic::Ordering::Relaxed);
+        charge.profile.linear_node_rejects += dispatcher
+            .rejects
+            .load(std::sync::atomic::Ordering::Relaxed);
+        charge.profile.linear_leaf_dispatches +=
+            dispatcher.leaves.load(std::sync::atomic::Ordering::Relaxed);
+        #[cfg(feature = "query-trace")]
+        query_trace::note_phase("linear", linear_ns);
+        #[cfg(feature = "collision-fixture")]
+        fixtures::sample(|| fixtures::Sample {
+            phase: "linear_cast".into(),
+            work: None,
+            lo_bits: 0,
+            hi_bits: 1f32.to_bits(),
+            mid_bits: 0,
+            limit_bits: skin.to_bits(),
+            roundoff_bits: 0,
+            within: result.as_ref().is_ok_and(Option::is_some),
+            triangles: 0,
+            bounded: 0,
+            exact: 0,
+            ns: linear_ns,
+        });
         charge.profile.linear_casts += 1;
         charge.visits += 1;
         match result {
@@ -892,6 +1506,8 @@ fn cast(
     }
     let mut pending = vec![(0f32, 1f32)];
     while let Some((lo, hi)) = pending.pop() {
+        #[cfg(feature = "collision-fixture")]
+        let bounds_started = Instant::now();
         charge.visits += 1;
         let mid = (lo + hi) * 0.5;
         let pa = m1.position_at_time(mid);
@@ -913,6 +1529,10 @@ fn cast(
         let roundoff = (magnitude * 16. * f32::EPSILON).max(0.001);
         if gap.length() > speed * (hi - lo) * 0.5 + skin + roundoff {
             charge.profile.interval_rejects += 1;
+            #[cfg(feature = "collision-fixture")]
+            fixtures::sample(|| {
+                fixtures::phase("aabb_reject", bounds_started.elapsed().as_nanos(), false)
+            });
             continue;
         }
         // Reuse the hollow mesh's own BVH. Every compound component must be
@@ -937,35 +1557,106 @@ fn cast(
             };
             if clear {
                 charge.profile.mesh_interval_rejects += 1;
+                #[cfg(feature = "collision-fixture")]
+                fixtures::sample(|| {
+                    fixtures::phase(
+                        "mesh_bvh_reject",
+                        bounds_started.elapsed().as_nanos(),
+                        false,
+                    )
+                });
                 continue;
             }
         }
+        #[cfg(feature = "collision-fixture")]
+        fixtures::sample(|| {
+            fixtures::phase("interval_bounds", bounds_started.elapsed().as_nanos(), true)
+        });
         charge.profile.distance_queries += 1;
         let distance_started = Instant::now();
+        let counts = DistanceCounts::new();
+        let limit = speed * (hi - lo) * 0.5 + skin;
         let within = within_distance(
+            &charge.workspace.supports,
             &pa.inv_mul(&pb),
             a.shape.as_ref(),
             b.shape.as_ref(),
-            speed * (hi - lo) * 0.5 + skin,
+            limit,
             roundoff,
+            &counts,
         )
         .map_err(|_| MorphError("unsupported physical distance query; movement refused".into()))?;
-        charge.profile.distance_ns += distance_started.elapsed().as_nanos();
+        let distance_ns = distance_started.elapsed().as_nanos();
+        charge.profile.distance_ns += distance_ns;
+        #[cfg(feature = "query-trace")]
+        query_trace::note_phase("distance", distance_ns);
+        #[cfg(feature = "collision-fixture")]
+        fixtures::sample(|| fixtures::Sample {
+            phase: "distance".into(),
+            work: None,
+            lo_bits: lo.to_bits(),
+            hi_bits: hi.to_bits(),
+            mid_bits: mid.to_bits(),
+            limit_bits: limit.to_bits(),
+            roundoff_bits: roundoff.to_bits(),
+            within,
+            triangles: counts.triangles.get(),
+            bounded: counts.bounded.get(),
+            exact: counts.exact.get(),
+            ns: distance_ns,
+        });
+        charge.profile.triangles_examined += counts.triangles.get();
+        charge.profile.distance_bounded += counts.bounded.get();
+        charge.profile.distance_exact += counts.exact.get();
+        #[cfg(feature = "kernel-attribution")]
+        fixtures::sample(|| fixtures::phase("leaf_planes", counts.plane_ns.get(), within));
+        #[cfg(feature = "kernel-attribution")]
+        fixtures::sample(|| fixtures::phase("bounded_gjk", counts.bounded_gjk_ns.get(), within));
+        #[cfg(feature = "kernel-attribution")]
+        fixtures::sample(|| fixtures::phase("exact_distance", counts.exact_ns.get(), within));
+        #[cfg(feature = "kernel-attribution")]
+        fixtures::sample(|| {
+            let mut sample = fixtures::phase("kernel_work", 0, within);
+            sample.work = Some(fixtures::KernelWork {
+                support_calls: counts.support_calls.get(),
+                bounded_gjk_calls: counts.gjk_calls.get(),
+                bounded_gjk_support_steps: counts.gjk_steps.get(),
+                bounded_gjk_max_steps: counts.gjk_max_steps.get(),
+                bounded_gjk_100_step_calls: counts.gjk_100_steps.get(),
+                exact_support_pairs: counts.exact_steps.get(),
+            });
+            sample
+        });
+        charge.profile.distance_nodes += counts.nodes.get();
+        charge.profile.distance_node_rejects += counts.node_rejects.get();
+        #[cfg(feature = "query-trace")]
+        query_trace::note_distance(
+            limit.to_bits(),
+            mid.to_bits(),
+            within,
+            counts.triangles.get(),
+            counts.bounded.get(),
+            counts.exact.get(),
+        );
         if !within {
+            charge.profile.distance_clear += 1;
             continue;
         }
+        charge.profile.distance_within += 1;
         if hi - lo <= 0.00001 || speed == 0. || charge.visits >= 512 {
             let contact_started = Instant::now();
-            let closest = query::contact(
-                &pa,
-                a.shape.as_ref(),
-                &pb,
-                b.shape.as_ref(),
-                skin + speed * (hi - lo),
-            )
-            .ok()
-            .flatten();
-            charge.profile.contact_ns += contact_started.elapsed().as_nanos();
+            let closest =
+                cached_world_contact(charge.workspace, &pa, a, &pb, b, skin + speed * (hi - lo))
+                    .ok()
+                    .flatten();
+            let terminal_contact_ns = contact_started.elapsed().as_nanos();
+            charge.profile.contact_ns += terminal_contact_ns;
+            #[cfg(feature = "query-trace")]
+            query_trace::note_phase("terminal_contact", terminal_contact_ns);
+            #[cfg(feature = "collision-fixture")]
+            fixtures::sample(|| {
+                fixtures::phase("terminal_contact", terminal_contact_ns, closest.is_some())
+            });
             let (normal, point) = if let Some(c) = closest {
                 (c.normal1, c.point1)
             } else {
@@ -1042,6 +1733,440 @@ fn along_surface(start: RigidPose, aim: RigidPose, normal: [i64; 3]) -> RigidPos
 /// Existing overlap is not permission to tunnel. Accept a translation away only
 /// when four intermediate/endpoint contacts do not deepen the initial overlap.
 /// Tangential progress is allowed so a pre-existing wedged state can unwind. Every other obstacle is still swept normally.
+// Adapted from Parry 0.27.0, Apache-2.0; see licenses/Parry-NOTICE.md.
+// Same contact dispatch, leaf arithmetic, BVH order and strict tie rule.
+// EPA::closest_points resets all logical workspace; only capacities persist.
+fn reusable_contact(
+    epa: &mut EPA,
+    supports: &SupportCache,
+    relative: &Iso,
+    a: &dyn Shape,
+    b: &dyn Shape,
+    prediction: f32,
+) -> Result<Option<query::Contact>, query::Unsupported> {
+    if a.as_ball().is_some()
+        || b.as_ball().is_some()
+        || a.as_shape::<parry3d::shape::HalfSpace>().is_some()
+        || b.as_shape::<parry3d::shape::HalfSpace>().is_some()
+    {
+        // Composite balls must still traverse through this dispatcher.
+        if a.as_composite_shape().is_none() && b.as_composite_shape().is_none() {
+            return DefaultQueryDispatcher.contact(relative, a, b, prediction);
+        }
+    }
+    if let (Some(sa), Some(sb)) = (a.as_support_map(), b.as_support_map()) {
+        if a.as_ball().is_some() || b.as_ball().is_some() {
+            return DefaultQueryDispatcher.contact(relative, a, b, prediction);
+        }
+        // Same certified plane as the distance predicate. A rejection is farther
+        // than `prediction`; penetration and borderline gaps still use GJK/EPA.
+        const CONTACT_ROUNDOFF: f32 = 0.001;
+        if let (Some(index), Some(triangle)) = (supports.get(a), b.as_triangle()) {
+            if index.separates_triangle(relative, triangle, prediction, CONTACT_ROUNDOFF) {
+                return Ok(None);
+            }
+        } else if let (Some(index), Some(triangle)) = (supports.get(b), a.as_triangle())
+            && index.separates_triangle(&relative.inverse(), triangle, prediction, CONTACT_ROUNDOFF)
+        {
+            return Ok(None);
+        }
+        #[cfg(feature = "allocation-attribution")]
+        crate::profiling::work(2, 1);
+        let indexed_a = IndexedSupport {
+            inner: sa,
+            index: supports.get(a),
+            points: a.as_convex_polyhedron().map_or(0, |p| p.points().len()),
+            #[cfg(feature = "kernel-attribution")]
+            diagnostic_calls: None,
+        };
+        let indexed_b = IndexedSupport {
+            inner: sb,
+            index: supports.get(b),
+            points: b.as_convex_polyhedron().map_or(0, |p| p.points().len()),
+            #[cfg(feature = "kernel-attribution")]
+            diagnostic_calls: None,
+        };
+        let (sa, sb): (
+            &dyn parry3d::shape::SupportMap,
+            &dyn parry3d::shape::SupportMap,
+        ) = (&indexed_a, &indexed_b);
+        let dir = relative.translation.try_normalize().unwrap_or(Vector::X);
+        let mut simplex = VoronoiSimplex::new();
+        simplex.reset(CsoPoint::from_shapes(relative, sa, sb, dir));
+        let mut points = gjk::closest_points(relative, sa, sb, prediction, true, &mut simplex);
+        if points == GJKResult::Intersection {
+            #[cfg(feature = "kernel-attribution")]
+            fixtures::note_contact_epa();
+            #[cfg(feature = "allocation-attribution")]
+            crate::profiling::work(3, 1);
+            points = epa
+                .closest_points(relative, sa, sb, &simplex)
+                .map_or(GJKResult::NoIntersection(Vector::X), |(p, q, n)| {
+                    GJKResult::ClosestPoints(p, q, n)
+                });
+        }
+        return Ok(match points {
+            GJKResult::ClosestPoints(p, q, n) => Some(query::Contact::new(
+                p,
+                relative.inverse_transform_point(q),
+                n,
+                relative.rotation.inverse() * -n,
+                (q - p).dot(n),
+            )),
+            GJKResult::NoIntersection(_) => None,
+            _ => unreachable!("same exact-contact GJK contract as Parry"),
+        });
+    }
+    let (composite, pose, other, flipped) = if let Some(c) = a.as_composite_shape() {
+        (c, *relative, b, false)
+    } else if let Some(c) = b.as_composite_shape() {
+        (c, relative.inverse(), a, true)
+    } else {
+        return DefaultQueryDispatcher.contact(relative, a, b, prediction);
+    };
+    let bounds = other.compute_aabb(&pose).loosened(prediction);
+    let mut result: Option<query::Contact> = None;
+    for part in composite.bvh().intersect_aabb(&bounds) {
+        composite.map_part_at(part, &mut |part_pose, shape, _| {
+            if let Ok(Some(mut c)) = reusable_contact(
+                epa,
+                supports,
+                &part_pose.inv_mul(&pose),
+                shape,
+                other,
+                prediction,
+            ) && result.is_none_or(|best| c.dist < best.dist)
+            {
+                if let Some(p) = part_pose {
+                    c.transform1_by_mut(p)
+                }
+                result = Some(c);
+            }
+        });
+    }
+    Ok(if flipped {
+        result.map(|c| c.flipped())
+    } else {
+        result
+    })
+}
+// Persistent indices retain original immutable shape allocations. Bounded entries
+// fall back to the original linear support scan when the cache is full.
+#[derive(Default)]
+struct SupportCache {
+    shapes: BTreeMap<usize, Arc<dyn Shape>>,
+    indices: BTreeMap<usize, crate::support_index::SupportIndex>,
+}
+impl SupportCache {
+    fn register(&mut self, shape: &Arc<dyn Shape>) {
+        if shape.as_convex_polyhedron().is_none() && shape.as_compound().is_none() {
+            return; // Meshes/capsules have no indexed convex vertices to retain.
+        }
+        let key = Arc::as_ptr(shape) as *const () as usize;
+        if self.shapes.contains_key(&key) || self.shapes.len() >= 8192 {
+            return;
+        }
+        self.shapes.insert(key, shape.clone());
+        if let Some(hull) = shape.as_convex_polyhedron() {
+            if hull.points().len() > 24 && hull.points().iter().all(|p| p.is_finite()) {
+                self.indices.insert(
+                    key,
+                    crate::support_index::SupportIndex::new(hull.points())
+                        .with_normals(hull.faces().iter().map(|f| f.normal)),
+                );
+            }
+        } else if let Some(compound) = shape.as_compound() {
+            for (_, child) in compound.shapes() {
+                self.register(&child.0);
+            }
+        }
+    }
+    fn get(&self, shape: &dyn Shape) -> Option<&crate::support_index::SupportIndex> {
+        self.indices
+            .get(&(shape as *const dyn Shape as *const () as usize))
+    }
+}
+struct IndexedSupport<'a> {
+    inner: &'a dyn parry3d::shape::SupportMap,
+    index: Option<&'a crate::support_index::SupportIndex>,
+    #[cfg_attr(not(feature = "allocation-attribution"), allow(dead_code))]
+    points: usize,
+    #[cfg(feature = "kernel-attribution")]
+    diagnostic_calls: Option<&'a Cell<u64>>,
+}
+impl parry3d::shape::SupportMap for IndexedSupport<'_> {
+    fn local_support_point(&self, d: Vector) -> Vector {
+        #[cfg(feature = "kernel-attribution")]
+        if let Some(calls) = self.diagnostic_calls {
+            calls.set(calls.get() + 1);
+        }
+
+        #[cfg(feature = "allocation-attribution")]
+        {
+            crate::profiling::work(0, 1);
+            crate::profiling::work(1, self.points as u64);
+            if self.index.is_none() {
+                crate::profiling::work(4, self.points as u64);
+            }
+        }
+        self.index
+            .map_or_else(|| self.inner.local_support_point(d), |i| i.point(d))
+    }
+}
+
+struct FilteredLinearDispatcher<'a> {
+    supports: &'a SupportCache,
+    filter_nodes: bool,
+    nodes: std::sync::atomic::AtomicU64,
+    rejects: std::sync::atomic::AtomicU64,
+    leaves: std::sync::atomic::AtomicU64,
+}
+impl QueryDispatcher for FilteredLinearDispatcher<'_> {
+    fn intersection_test(
+        &self,
+        p: &Iso,
+        a: &dyn Shape,
+        b: &dyn Shape,
+    ) -> Result<bool, query::Unsupported> {
+        DefaultQueryDispatcher.intersection_test(p, a, b)
+    }
+    fn distance(&self, p: &Iso, a: &dyn Shape, b: &dyn Shape) -> Result<f32, query::Unsupported> {
+        DefaultQueryDispatcher.distance(p, a, b)
+    }
+    fn contact(
+        &self,
+        p: &Iso,
+        a: &dyn Shape,
+        b: &dyn Shape,
+        prediction: f32,
+    ) -> Result<Option<query::Contact>, query::Unsupported> {
+        DefaultQueryDispatcher.contact(p, a, b, prediction)
+    }
+    fn closest_points(
+        &self,
+        p: &Iso,
+        a: &dyn Shape,
+        b: &dyn Shape,
+        max: f32,
+    ) -> Result<query::ClosestPoints, query::Unsupported> {
+        DefaultQueryDispatcher.closest_points(p, a, b, max)
+    }
+    fn cast_shapes(
+        &self,
+        p: &Iso,
+        velocity: Vector,
+        a: &dyn Shape,
+        b: &dyn Shape,
+        options: ShapeCastOptions,
+    ) -> Result<Option<query::ShapeCastHit>, query::Unsupported> {
+        if a.as_composite_shape().is_none() && b.as_composite_shape().is_none() {
+            self.leaves
+                .fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+        }
+        if (a.as_ball().is_some() && b.as_ball().is_some())
+            || a.as_shape::<parry3d::shape::HalfSpace>().is_some()
+            || b.as_shape::<parry3d::shape::HalfSpace>().is_some()
+            || a.as_heightfield().is_some()
+            || b.as_heightfield().is_some()
+            || a.as_voxels().is_some()
+            || b.as_voxels().is_some()
+        {
+            return DefaultQueryDispatcher.cast_shapes(p, velocity, a, b, options);
+        }
+        if a.as_support_map().is_some() && b.as_support_map().is_some() {
+            return DefaultQueryDispatcher.cast_shapes(p, velocity, a, b, options);
+        }
+        if let Some(composite) = a.as_composite_shape() {
+            return Ok(self.composite_cast(p, velocity, composite, b, options));
+        }
+        if let Some(composite) = b.as_composite_shape() {
+            return Ok(self
+                .composite_cast(
+                    &p.inverse(),
+                    -(p.rotation.inverse() * velocity),
+                    composite,
+                    a,
+                    options,
+                )
+                .map(|h| h.swapped()));
+        }
+        DefaultQueryDispatcher.cast_shapes(p, velocity, a, b, options)
+    }
+    fn cast_shapes_nonlinear(
+        &self,
+        m1: &NonlinearRigidMotion,
+        a: &dyn Shape,
+        m2: &NonlinearRigidMotion,
+        b: &dyn Shape,
+        start: f32,
+        end: f32,
+        stop: bool,
+    ) -> Result<Option<query::ShapeCastHit>, query::Unsupported> {
+        DefaultQueryDispatcher.cast_shapes_nonlinear(m1, a, m2, b, start, end, stop)
+    }
+}
+
+impl<'a> FilteredLinearDispatcher<'a> {
+    fn new(supports: &'a SupportCache) -> Self {
+        Self {
+            supports,
+            filter_nodes: true,
+            nodes: Default::default(),
+            rejects: Default::default(),
+            leaves: Default::default(),
+        }
+    }
+    // Adapted from Parry 0.27 CompositeShapeRef::cast_shape (Apache-2.0).
+    // The same SAH tree, ray-AABB costs, part transforms and leaf dispatcher
+    // remain. The extra certificate only removes impossible swept subtrees.
+    fn composite_cast<C: TypedCompositeShape + ?Sized>(
+        &self,
+        p: &Iso,
+        velocity: Vector,
+        composite: &C,
+        other: &dyn Shape,
+        options: ShapeCastOptions,
+    ) -> Option<query::ShapeCastHit> {
+        use parry3d::query::{Ray, RayCast};
+        let aabb = other.compute_aabb(p);
+        let ray = Ray::new(Vector::ZERO, velocity);
+        let shift = -aabb.center();
+        let margin = aabb.half_extents() + Vector::splat(options.target_distance);
+        let planes = if self.filter_nodes {
+            self.supports
+                .get(other)
+                .and_then(|index| {
+                    index.projection_planes(
+                        p,
+                        &composite.bvh().root_aabb(),
+                        options.target_distance,
+                        0.001,
+                    )
+                })
+                .map(|planes| planes.swept(velocity, options.max_time_of_impact))
+        } else {
+            None
+        };
+        composite
+            .bvh()
+            .find_best(
+                options.max_time_of_impact,
+                |node, best| {
+                    self.nodes
+                        .fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+                    let bounds = Aabb {
+                        mins: node.mins() + shift - margin,
+                        maxs: node.maxs() + shift + margin,
+                    };
+                    let cost = bounds.cast_local_ray(&ray, best, true).unwrap_or(f32::MAX);
+                    if self.filter_nodes
+                        && cost < best
+                        && planes
+                            .as_ref()
+                            .is_some_and(|p| p.excludes(node.mins(), node.maxs()))
+                    {
+                        self.rejects
+                            .fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+                        f32::MAX
+                    } else {
+                        cost
+                    }
+                },
+                |part, _| {
+                    composite.map_untyped_part_at(part, |pose, shape, _| {
+                        if let Some(pose) = pose {
+                            self.cast_shapes(
+                                &pose.inv_mul(p),
+                                pose.rotation.inverse() * velocity,
+                                shape,
+                                other,
+                                options,
+                            )
+                            .ok()?
+                            .map(|hit| hit.transform1_by(pose))
+                        } else {
+                            self.cast_shapes(p, velocity, shape, other, options).ok()?
+                        }
+                    })?
+                },
+            )
+            .map(|(_, hit)| hit)
+    }
+}
+
+// Exact query memo: only identical relative-transform bits and immutable shape
+// allocations share an answer. Receipts retain both shapes to prevent address
+// reuse. Cleared each resolve; the entry cap limits storage only, never work.
+type ContactKey = (usize, usize, [u32; 8]);
+struct ContactReceipt {
+    _shapes: [Arc<dyn Shape>; 2],
+    contact: Option<query::Contact>,
+}
+#[derive(Default)]
+struct ContactWorkspace {
+    epa: Option<EPA>,
+    contacts: BTreeMap<ContactKey, ContactReceipt>,
+    hits: u64,
+    misses: u64,
+    supports: SupportCache,
+}
+fn cached_world_contact(
+    workspace: &mut ContactWorkspace,
+    pa: &Iso,
+    a: &Geometry,
+    pb: &Iso,
+    b: &Geometry,
+    prediction: f32,
+) -> Result<Option<query::Contact>, query::Unsupported> {
+    let relative = pa.inv_mul(pb);
+    let t = relative.translation.to_array().map(f32::to_bits);
+    let q = relative.rotation.to_array().map(f32::to_bits);
+    let key = (
+        Arc::as_ptr(&a.shape) as *const () as usize,
+        Arc::as_ptr(&b.shape) as *const () as usize,
+        [
+            t[0],
+            t[1],
+            t[2],
+            q[0],
+            q[1],
+            q[2],
+            q[3],
+            prediction.to_bits(),
+        ],
+    );
+    let mut contact = if let Some(receipt) = workspace.contacts.get(&key) {
+        workspace.hits += 1;
+        receipt.contact
+    } else {
+        workspace.misses += 1;
+        workspace.supports.register(&a.shape);
+        workspace.supports.register(&b.shape);
+        let contact = reusable_contact(
+            workspace.epa.get_or_insert_with(EPA::new),
+            &workspace.supports,
+            &relative,
+            a.shape.as_ref(),
+            b.shape.as_ref(),
+            prediction,
+        )?;
+        if workspace.contacts.len() < 8192 {
+            workspace.contacts.insert(
+                key,
+                ContactReceipt {
+                    _shapes: [a.shape.clone(), b.shape.clone()],
+                    contact,
+                },
+            );
+        }
+        contact
+    };
+    if let Some(c) = &mut contact {
+        c.transform_by_mut(pa, pb);
+    }
+    Ok(contact)
+}
+
 fn nondeepening_recovery(
     a: &Geometry,
     from: RigidPose,
@@ -1049,7 +2174,11 @@ fn nondeepening_recovery(
     b: &Geometry,
     bfrom: RigidPose,
     bto: RigidPose,
+    workspace: &mut ContactWorkspace,
 ) -> Result<bool, MorphError> {
+    #[cfg(feature = "allocation-attribution")]
+    let _allocation_scope = crate::profiling::enter(5);
+
     if from == to && bfrom == bto {
         return Ok(false);
     }
@@ -1062,12 +2191,13 @@ fn nondeepening_recovery(
     let origin = Position::from_absolute(from.translation)?;
     let am = motion(from, to, origin)?;
     let bm = motion(bfrom, bto, origin)?;
-    let contact_at = |t| {
-        query::contact(
+    let mut contact_at = |t| {
+        cached_world_contact(
+            workspace,
             &am.position_at_time(t),
-            a.shape.as_ref(),
+            a,
             &bm.position_at_time(t),
-            b.shape.as_ref(),
+            b,
             0.001,
         )
         .map_err(|_| MorphError("unsupported overlap recovery query".into()))
@@ -1133,11 +2263,15 @@ pub(crate) fn resolve(
     plans: &mut BTreeMap<u64, ConstructorState>,
     cache: &mut CollisionCache,
 ) -> Result<(), MorphError> {
+    #[cfg(feature = "allocation-attribution")]
+    let _allocation_scope = crate::profiling::enter(4);
+
     if !next.habitat.as_ref().is_some_and(|h| h.rules.collisions) {
         return Ok(());
     }
     let started = Instant::now();
     cache.casts.clear();
+    cache.contact_workspace.contacts.clear();
     require(
         next.config.environment == crate::emission::Environment::suspended(),
         "unsupported force field in collision mode",
@@ -1199,6 +2333,8 @@ pub(crate) fn resolve(
                 if !near(pa, pb, shapes[&a].radius, shapes[&b].radius, da, db) {
                     continue;
                 }
+                #[cfg(feature = "query-trace")]
+                query_trace::set_pair(&format!("t{}:body:{a}:body:{b}", before.tick), 0);
                 if let Some(hit) = cache.cast(&shapes[&a], pa, ta, &shapes[&b], pb, tb)? {
                     let prey = |id: u64| before.instances[&id].definition == BLOOD_SAC;
                     let hunter = |id: u64| hunters.contains(&id);
@@ -1222,7 +2358,15 @@ pub(crate) fn resolve(
                     }
                     if response == ContactResponse::Blocked {
                         if hit.0 <= 0.00001
-                            && nondeepening_recovery(&shapes[&a], pa, ta, &shapes[&b], pb, tb)?
+                            && nondeepening_recovery(
+                                &shapes[&a],
+                                pa,
+                                ta,
+                                &shapes[&b],
+                                pb,
+                                tb,
+                                &mut cache.contact_workspace,
+                            )?
                         {
                             continue;
                         }
@@ -1271,8 +2415,18 @@ pub(crate) fn resolve(
                 let min = solid.min.absolute()?;
                 let max = solid.max.absolute()?;
                 let center = std::array::from_fn(|k| min[k] + (max[k] - min[k]) / 2);
-                let half = vec(std::array::from_fn(|k| (max[k] - min[k]) / 2))
-                    + Vector::splat(shapes[&id].writhe_slack);
+                let geometry = &shapes[&id];
+                let clearance = if let Some(value) = geometry.writhe_slack.get() {
+                    *value
+                } else {
+                    let value = presentation_slack(
+                        &before.config.definitions[&before.instances[&id].definition],
+                    )?;
+                    let _ = geometry.writhe_slack.set(value);
+                    value
+                };
+                let half =
+                    vec(std::array::from_fn(|k| (max[k] - min[k]) / 2)) + Vector::splat(clearance);
                 let pose = RigidPose {
                     translation: center,
                     ..RigidPose::identity()
@@ -1286,39 +2440,34 @@ pub(crate) fn resolve(
                         vertices: Arc::new(vec![Vector::ZERO]),
                         parts: vec![],
                         outlets: vec![],
-                        writhe_slack: 0.,
+                        writhe_slack: OnceLock::from(0.),
                     },
                 ));
             }
             if let Some(assembly) = &before.assembly {
-                for f in assembly.filaments.values() {
-                    for chunk in 0..f.nodes.len().saturating_sub(1).div_ceil(CHUNK_EDGES).max(1) {
-                        // Reject distant chunks before building their hollow mesh.
-                        // Content/time cache keys make cache fills observational.
-                        let at = Position::from_absolute(start.translation)?;
-                        if pipe_separated(
-                            cache,
-                            f,
-                            chunk,
-                            before.tick,
-                            at,
-                            shapes[&id].radius + delta,
-                        )? {
-                            continue;
-                        }
-                        let (origin, g) = cache.pipe(before, f.id, chunk)?;
-                        static_shapes.push((
-                            PhysicalTarget::Pipe {
-                                filament: f.id,
-                                chunk,
-                            },
-                            RigidPose {
-                                translation: origin.absolute()?,
-                                ..RigidPose::identity()
-                            },
-                            g,
-                        ));
+                // The horizon visits local cells. The sample sphere and the
+                // hollow trimesh remain the contact authority.
+                let at = Position::from_absolute(start.translation)?;
+                let reach = shapes[&id].radius + delta;
+                for (filament_id, chunk) in
+                    cache.interacting_chunks(assembly, before.tick, at, reach)?
+                {
+                    let f = &assembly.filaments[&filament_id];
+                    if pipe_separated(cache, f, chunk, before.tick, at, reach)? {
+                        continue;
                     }
+                    let (origin, g) = cache.pipe(before, f.id, chunk)?;
+                    static_shapes.push((
+                        PhysicalTarget::Pipe {
+                            filament: f.id,
+                            chunk,
+                        },
+                        RigidPose {
+                            translation: origin.absolute()?,
+                            ..RigidPose::identity()
+                        },
+                        g,
+                    ));
                 }
             }
             if let Some(h) = &before.habitat {
@@ -1359,7 +2508,7 @@ pub(crate) fn resolve(
                         vertices: Arc::new(vec![Vector::ZERO]),
                         parts: vec![],
                         outlets: vec![],
-                        writhe_slack: 0.,
+                        writhe_slack: OnceLock::from(0.),
                     };
                     static_shapes.push((
                         PhysicalTarget::Parcel {
@@ -1383,7 +2532,22 @@ pub(crate) fn resolve(
                 if !near(start, pose, shapes[&id].radius, g.radius, delta, 0.) {
                     continue;
                 }
-                if let Some(hit) = cache.cast(&shapes[&id], start, target, &g, pose, pose)? {
+                #[cfg(feature = "query-trace")]
+                trace_static_pair(before.tick, id, &owner, before.assembly.as_ref());
+                #[cfg(feature = "collision-fixture")]
+                let pending_fixture = fixtures::begin(
+                    before,
+                    id,
+                    &owner,
+                    [start, target, pose, pose],
+                    [&shapes[&id], &g],
+                );
+                let cast_result = cache.cast(&shapes[&id], start, target, &g, pose, pose);
+                #[cfg(feature = "collision-fixture")]
+                if let Some(pending) = pending_fixture {
+                    fixtures::finish(pending, &cast_result);
+                }
+                if let Some(hit) = cast_result? {
                     let source_nozzle = match &owner {
                         PhysicalTarget::Pipe { filament, .. } => {
                             let f = &before.assembly.as_ref().unwrap().filaments[filament];
@@ -1421,9 +2585,18 @@ pub(crate) fn resolve(
                     let mut source = source_nozzle.is_some();
                     if let Some(nozzle) = source_nozzle {
                         for (component, part) in &shapes[&id].parts {
-                            if *component != nozzle
-                                && cache.cast(part, start, target, &g, pose, pose)?.is_some()
-                            {
+                            if *component != nozzle && {
+                                #[cfg(feature = "query-trace")]
+                                query_trace::set_pair(
+                                    &format!(
+                                        "t{}:body:{id}:part:{component}:{}",
+                                        before.tick,
+                                        owner_label(&owner)
+                                    ),
+                                    0,
+                                );
+                                cache.cast(part, start, target, &g, pose, pose)?.is_some()
+                            } {
                                 source = false;
                                 break;
                             }
@@ -1461,7 +2634,15 @@ pub(crate) fn resolve(
                     }
                     if !source {
                         if hit.0 <= 0.00001
-                            && nondeepening_recovery(&shapes[&id], start, target, &g, pose, pose)?
+                            && nondeepening_recovery(
+                                &shapes[&id],
+                                start,
+                                target,
+                                &g,
+                                pose,
+                                pose,
+                                &mut cache.contact_workspace,
+                            )?
                         {
                             continue;
                         }
@@ -1563,7 +2744,7 @@ pub fn swept_ball_against_surface(
         vertices: Arc::new(vec![Vector::ZERO]),
         parts: vec![],
         outlets: vec![],
-        writhe_slack: 0.,
+        writhe_slack: OnceLock::from(0.),
     };
     let b = geometry(std::slice::from_ref(surface), 1.)?;
     let p = |v: [f32; 3]| RigidPose {
@@ -1578,12 +2759,14 @@ pub fn swept_ball_against_surface(
         &b,
         RigidPose::identity(),
         RigidPose::identity(),
-        &mut profile,
+        (&mut profile, &mut ContactWorkspace::default()),
     )?
     .is_some())
 }
 
 fn overlaps(a: &Geometry, pa: RigidPose, b: &Geometry, pb: RigidPose) -> Result<bool, MorphError> {
+    #[cfg(feature = "allocation-attribution")]
+    let _allocation_scope = crate::profiling::enter(16);
     if !near(pa, pb, a.radius, b.radius, 0., 0.) {
         return Ok(false);
     }
@@ -1607,6 +2790,8 @@ fn overlaps(a: &Geometry, pa: RigidPose, b: &Geometry, pb: RigidPose) -> Result<
     }
     // Surface-only intersection tests miss complete containment. Oriented closed
     // canonical component surfaces also supply the occupied-side point test.
+    #[cfg(feature = "allocation-attribution")]
+    let _containment_scope = crate::profiling::enter(17);
     Ok(a.vertices.iter().any(|v| {
         let p = aa * (*v);
         babb.contains_local_point(p) && b.shape.contains_point(&bb, p)
@@ -1622,6 +2807,9 @@ fn clear_shape(
     skip: Option<u64>,
     cache: &mut CollisionCache,
 ) -> Result<bool, MorphError> {
+    #[cfg(feature = "allocation-attribution")]
+    let _allocation_scope = crate::profiling::enter(15);
+
     for id in world
         .instances
         .keys()
@@ -1644,7 +2832,7 @@ fn clear_shape(
             vertices: Arc::new(vec![Vector::ZERO]),
             parts: vec![],
             outlets: vec![],
-            writhe_slack: 0.,
+            writhe_slack: OnceLock::from(0.),
         };
         if overlaps(
             g,
@@ -1659,24 +2847,23 @@ fn clear_shape(
         }
     }
     if let Some(a) = &world.assembly {
-        for f in a.filaments.values() {
-            for chunk in 0..f.nodes.len().saturating_sub(1).div_ceil(CHUNK_EDGES).max(1) {
-                let at = Position::from_absolute(pose.translation)?;
-                if pipe_separated(cache, f, chunk, world.tick, at, g.radius)? {
-                    continue;
-                }
-                let (origin, other) = cache.pipe(world, f.id, chunk)?;
-                if overlaps(
-                    g,
-                    pose,
-                    &other,
-                    RigidPose {
-                        translation: origin.absolute()?,
-                        ..RigidPose::identity()
-                    },
-                )? {
-                    return Ok(false);
-                }
+        let at = Position::from_absolute(pose.translation)?;
+        for (filament_id, chunk) in cache.interacting_chunks(a, world.tick, at, g.radius)? {
+            let f = &a.filaments[&filament_id];
+            if pipe_separated(cache, f, chunk, world.tick, at, g.radius)? {
+                continue;
+            }
+            let (origin, other) = cache.pipe(world, f.id, chunk)?;
+            if overlaps(
+                g,
+                pose,
+                &other,
+                RigidPose {
+                    translation: origin.absolute()?,
+                    ..RigidPose::identity()
+                },
+            )? {
+                return Ok(false);
             }
         }
     }
@@ -1691,6 +2878,9 @@ pub(crate) fn spawn_pose(
     skip: Option<u64>,
     cache: &mut CollisionCache,
 ) -> Result<Option<RigidPose>, MorphError> {
+    #[cfg(feature = "allocation-attribution")]
+    let _allocation_scope = crate::profiling::enter(6);
+
     let source = world
         .instances
         .values()
@@ -1770,14 +2960,23 @@ pub fn swept_surface_against_box(
         vertices: Arc::new(vec![Vector::ZERO]),
         parts: vec![],
         outlets: vec![],
-        writhe_slack: 0.,
+        writhe_slack: OnceLock::from(0.),
     };
     let pose = RigidPose {
         translation: center,
         ..RigidPose::identity()
     };
     let mut profile = CollisionProfile::default();
-    Ok(cast(&a, from, to, &b, pose, pose, &mut profile)?.is_some())
+    Ok(cast(
+        &a,
+        from,
+        to,
+        &b,
+        pose,
+        pose,
+        (&mut profile, &mut ContactWorkspace::default()),
+    )?
+    .is_some())
 }
 
 /// Preflight a material-backed candidate before binding. The canonical emitter
@@ -1790,6 +2989,9 @@ pub(crate) fn deposit_allowed(
     parcel: u64,
     cache: &mut CollisionCache,
 ) -> Result<bool, MorphError> {
+    #[cfg(feature = "allocation-attribution")]
+    let _allocation_scope = crate::profiling::enter(7);
+
     if !world.habitat.as_ref().is_some_and(|h| h.rules.collisions) {
         return Ok(true);
     }
@@ -1850,7 +3052,7 @@ pub(crate) fn deposit_allowed(
                     vertices: Arc::new(vec![Vector::ZERO]),
                     parts: vec![],
                     outlets: vec![],
-                    writhe_slack: 0.,
+                    writhe_slack: OnceLock::from(0.),
                 },
             )
         } else {
@@ -1881,33 +3083,27 @@ pub(crate) fn deposit_allowed(
             }
             let _ = body;
         }
-        for other in assembly
-            .filaments
-            .values()
-            .filter(|other| other.id != f.id && other.organism != book.organism_id)
-        {
-            for c in 0..other
-                .nodes
-                .len()
-                .saturating_sub(1)
-                .div_ceil(CHUNK_EDGES)
-                .max(1)
-            {
-                if pipe_separated(cache, other, c, world.tick, origin, g.radius)? {
-                    continue;
-                }
-                let (anchor, shape) = cache.pipe_in(assembly, world.tick, other.id, c)?;
-                if overlaps(
-                    &g,
-                    pose,
-                    &shape,
-                    RigidPose {
-                        translation: anchor.absolute()?,
-                        ..RigidPose::identity()
-                    },
-                )? {
-                    return Ok(false);
-                }
+        for (other_id, c) in cache.interacting_chunks(assembly, world.tick, origin, g.radius)? {
+            let other = &assembly.filaments[&other_id];
+            // Own-pipe braiding stays permitted. Another nozzle of the same
+            // organism is not an obstruction for this deposit.
+            if other.id == f.id || other.organism == book.organism_id {
+                continue;
+            }
+            if pipe_separated(cache, other, c, world.tick, origin, g.radius)? {
+                continue;
+            }
+            let (anchor, shape) = cache.pipe_in(assembly, world.tick, other.id, c)?;
+            if overlaps(
+                &g,
+                pose,
+                &shape,
+                RigidPose {
+                    translation: anchor.absolute()?,
+                    ..RigidPose::identity()
+                },
+            )? {
+                return Ok(false);
             }
         }
         for obstacle in &world.solids {
@@ -1921,7 +3117,7 @@ pub(crate) fn deposit_allowed(
                 vertices: Arc::new(vec![Vector::ZERO]),
                 parts: vec![],
                 outlets: vec![],
-                writhe_slack: 0.,
+                writhe_slack: OnceLock::from(0.),
             };
             if overlaps(
                 &g,
@@ -1947,6 +3143,9 @@ pub(crate) fn emission_obstacle(
     origin: [i64; 3],
     cache: &mut CollisionCache,
 ) -> Result<Option<PhysicalTarget>, MorphError> {
+    #[cfg(feature = "allocation-attribution")]
+    let _allocation_scope = crate::profiling::enter(8);
+
     if !world.habitat.as_ref().is_some_and(|h| h.rules.collisions) {
         return Ok(None);
     }
@@ -1956,7 +3155,7 @@ pub(crate) fn emission_obstacle(
         vertices: Arc::new(vec![Vector::ZERO]),
         parts: vec![],
         outlets: vec![],
-        writhe_slack: 0.,
+        writhe_slack: OnceLock::from(0.),
     };
     let pose = RigidPose {
         translation: origin,
@@ -1978,30 +3177,29 @@ pub(crate) fn emission_obstacle(
             return Ok(Some(PhysicalTarget::Organism { id }));
         }
     }
-    for f in assembly.filaments.values() {
+    let at = Position::from_absolute(origin)?;
+    for (filament_id, chunk) in cache.interacting_chunks(assembly, world.tick, at, g.radius)? {
+        let f = &assembly.filaments[&filament_id];
         if f.organism == organism && f.nozzle == nozzle {
             continue;
         }
-        for chunk in 0..f.nodes.len().saturating_sub(1).div_ceil(CHUNK_EDGES).max(1) {
-            let at = Position::from_absolute(origin)?;
-            if pipe_separated(cache, f, chunk, world.tick, at, g.radius)? {
-                continue;
-            }
-            let (anchor, other) = cache.pipe_in(assembly, world.tick, f.id, chunk)?;
-            if overlaps(
-                &g,
-                pose,
-                &other,
-                RigidPose {
-                    translation: anchor.absolute()?,
-                    ..RigidPose::identity()
-                },
-            )? {
-                return Ok(Some(PhysicalTarget::Pipe {
-                    filament: f.id,
-                    chunk,
-                }));
-            }
+        if pipe_separated(cache, f, chunk, world.tick, at, g.radius)? {
+            continue;
+        }
+        let (anchor, other) = cache.pipe_in(assembly, world.tick, f.id, chunk)?;
+        if overlaps(
+            &g,
+            pose,
+            &other,
+            RigidPose {
+                translation: anchor.absolute()?,
+                ..RigidPose::identity()
+            },
+        )? {
+            return Ok(Some(PhysicalTarget::Pipe {
+                filament: f.id,
+                chunk,
+            }));
         }
     }
     for obstacle in &world.solids {
@@ -2015,7 +3213,7 @@ pub(crate) fn emission_obstacle(
             vertices: Arc::new(vec![Vector::ZERO]),
             parts: vec![],
             outlets: vec![],
-            writhe_slack: 0.,
+            writhe_slack: OnceLock::from(0.),
         };
         if overlaps(
             &g,
@@ -2050,7 +3248,7 @@ fn root_geometry(
         vertices: Arc::new(vec![start, end]),
         parts: vec![],
         outlets: vec![],
-        writhe_slack: 0.,
+        writhe_slack: OnceLock::from(0.),
     })
 }
 /// Physical root growth happens after admitted body motion. The host-pipe base
@@ -2060,6 +3258,9 @@ pub(crate) fn admit_roots(
     next: &mut WorldSnapshot,
     cache: &mut CollisionCache,
 ) -> Result<(), MorphError> {
+    #[cfg(feature = "allocation-attribution")]
+    let _allocation_scope = crate::profiling::enter(9);
+
     if !next.habitat.as_ref().is_some_and(|h| h.rules.collisions) {
         return Ok(());
     }
@@ -2130,7 +3331,7 @@ pub(crate) fn admit_roots(
                     vertices: Arc::new(vec![Vector::ZERO]),
                     parts: vec![],
                     outlets: vec![],
-                    writhe_slack: 0.,
+                    writhe_slack: OnceLock::from(0.),
                 };
                 if overlaps(
                     &g,
@@ -2149,33 +3350,31 @@ pub(crate) fn admit_roots(
         if blocker.is_none()
             && let Some(assembly) = &next.assembly
         {
-            for f in assembly.filaments.values() {
-                for chunk in 0..f.nodes.len().saturating_sub(1).div_ceil(CHUNK_EDGES).max(1) {
-                    if pipe_separated(cache, f, chunk, next.tick, anchor, g.radius)? {
-                        continue;
-                    }
-                    let (origin, other) = cache.pipe(next, f.id, chunk)?;
-                    if overlaps(
-                        if f.id == attachment.filament {
-                            &graft
-                        } else {
-                            &g
-                        },
-                        pose,
-                        &other,
-                        RigidPose {
-                            translation: origin.absolute()?,
-                            ..RigidPose::identity()
-                        },
-                    )? {
-                        blocker = Some(PhysicalTarget::Pipe {
-                            filament: f.id,
-                            chunk,
-                        });
-                        break;
-                    }
+            for (filament_id, chunk) in
+                cache.interacting_chunks(assembly, next.tick, anchor, g.radius)?
+            {
+                let f = &assembly.filaments[&filament_id];
+                if pipe_separated(cache, f, chunk, next.tick, anchor, g.radius)? {
+                    continue;
                 }
-                if blocker.is_some() {
+                let (origin, other) = cache.pipe(next, f.id, chunk)?;
+                if overlaps(
+                    if f.id == attachment.filament {
+                        &graft
+                    } else {
+                        &g
+                    },
+                    pose,
+                    &other,
+                    RigidPose {
+                        translation: origin.absolute()?,
+                        ..RigidPose::identity()
+                    },
+                )? {
+                    blocker = Some(PhysicalTarget::Pipe {
+                        filament: f.id,
+                        chunk,
+                    });
                     break;
                 }
             }
@@ -2225,10 +3424,358 @@ pub(crate) fn admit_roots(
     Ok(())
 }
 
+#[cfg(feature = "query-trace")]
+fn owner_label(owner: &PhysicalTarget) -> String {
+    match owner {
+        PhysicalTarget::Pipe { filament, chunk } => format!("pipe:{filament}:{chunk}"),
+        PhysicalTarget::Organism { id } => format!("body:{id}"),
+        PhysicalTarget::Solid { id } => format!("solid:{id}"),
+        PhysicalTarget::Root { sac } => format!("root:{sac}"),
+        PhysicalTarget::Parcel { organism, parcel } => format!("parcel:{organism}:{parcel}"),
+    }
+}
+
+#[cfg(feature = "query-trace")]
+fn trace_static_pair(
+    tick: u64,
+    body: u64,
+    owner: &PhysicalTarget,
+    assembly: Option<&crate::filament::Assembly>,
+) {
+    match owner {
+        PhysicalTarget::Pipe { filament, chunk } => {
+            let revision = assembly
+                .and_then(|a| a.filaments.get(filament))
+                .and_then(|f| pipe_key(*filament, f, *chunk, tick))
+                .map(|key| u64::from_le_bytes(key.2[..8].try_into().unwrap()))
+                .unwrap_or(0);
+            query_trace::set_pair(
+                &format!("t{tick}:body:{body}:{}", owner_label(owner)),
+                revision,
+            );
+        }
+        _ => query_trace::set_pair(&format!("t{tick}:body:{body}:{}", owner_label(owner)), 0),
+    }
+}
+
+#[cfg(feature = "query-trace")]
+mod query_trace {
+    use serde::Serialize;
+    use std::cell::RefCell;
+    use std::collections::{BTreeMap, BTreeSet};
+
+    thread_local! {
+        static ACTIVE: RefCell<Active> = RefCell::new(Active::default());
+        static PAIRS: RefCell<BTreeMap<String, PairStat>> = const { RefCell::new(BTreeMap::new()) };
+    }
+
+    #[derive(Default)]
+    struct Active {
+        label: String,
+        revision: u64,
+        pose: u64,
+    }
+
+    #[derive(Clone, Debug, Default, Serialize)]
+    pub struct PairStat {
+        pub casts: u64,
+        pub cast_ns: u128,
+        pub linear_ns: u128,
+        pub initial_contact_ns: u128,
+        pub terminal_contact_ns: u128,
+        pub distance_ns: u128,
+        pub cache_hits: u64,
+        pub distance_queries: u64,
+        pub within: u64,
+        pub clear: u64,
+        pub triangles: u64,
+        pub max_triangles: u64,
+        pub bounded: u64,
+        pub exact: u64,
+        pub revisions: BTreeSet<u64>,
+        pub limits: BTreeSet<u32>,
+        pub sample_keys: BTreeSet<u64>,
+    }
+
+    pub fn pose_fingerprint(poses: &[i64; 24]) -> u64 {
+        let mut hash = 0x9e3779b97f4a7c15u64;
+        for value in poses {
+            hash = hash
+                .wrapping_mul(0x517cc1b727220a95)
+                .wrapping_add(*value as u64);
+        }
+        hash
+    }
+
+    pub fn set_pair(label: &str, revision: u64) {
+        ACTIVE.with(|active| {
+            let mut active = active.borrow_mut();
+            active.label = label.to_string();
+            active.revision = revision;
+        });
+    }
+
+    pub fn clear_label() {
+        ACTIVE.with(|active| *active.borrow_mut() = Active::default());
+    }
+
+    fn with_pair(update: impl FnOnce(&mut PairStat, &Active)) {
+        ACTIVE.with(|active| {
+            let active = active.borrow();
+            let label = if active.label.is_empty() {
+                "unlabeled".to_string()
+            } else {
+                active.label.clone()
+            };
+            PAIRS.with(|pairs| {
+                let mut pairs = pairs.borrow_mut();
+                let stat = pairs.entry(label).or_default();
+                update(stat, &active);
+            });
+        });
+    }
+
+    pub fn note_cache_hit() {
+        with_pair(|stat, active| {
+            stat.cache_hits += 1;
+            stat.revisions.insert(active.revision);
+        });
+    }
+
+    pub fn note_cast(pose: u64) {
+        ACTIVE.with(|active| active.borrow_mut().pose = pose);
+        with_pair(|stat, active| {
+            stat.casts += 1;
+            stat.revisions.insert(active.revision);
+        });
+    }
+
+    pub fn note_phase(phase: &str, ns: u128) {
+        with_pair(|stat, _| match phase {
+            "cast" => stat.cast_ns += ns,
+            "linear" => stat.linear_ns += ns,
+            "distance" => stat.distance_ns += ns,
+            "initial_contact" => stat.initial_contact_ns += ns,
+            "terminal_contact" => stat.terminal_contact_ns += ns,
+            _ => unreachable!("observer phase"),
+        });
+    }
+
+    pub fn note_distance(
+        limit: u32,
+        mid: u32,
+        within: bool,
+        triangles: u64,
+        bounded: u64,
+        exact: u64,
+    ) {
+        with_pair(|stat, active| {
+            stat.distance_queries += 1;
+            if within {
+                stat.within += 1;
+            } else {
+                stat.clear += 1;
+            }
+            stat.triangles += triangles;
+            stat.max_triangles = stat.max_triangles.max(triangles);
+            stat.bounded += bounded;
+            stat.exact += exact;
+            stat.limits.insert(limit);
+            stat.revisions.insert(active.revision);
+            let sample = active.pose.wrapping_mul(0x9e3779b97f4a7c15)
+                ^ (u64::from(limit) << 32 | u64::from(mid));
+            stat.sample_keys.insert(sample);
+        });
+    }
+
+    pub fn take() -> BTreeMap<String, PairStat> {
+        PAIRS.with(|pairs| std::mem::take(&mut *pairs.borrow_mut()))
+    }
+}
+
+#[cfg(feature = "query-trace")]
+pub fn take_query_trace() -> BTreeMap<String, query_trace::PairStat> {
+    query_trace::take()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
     use crate::filament::{Assembly, Filament, Node, PipeSection};
+
+    #[test]
+    fn filtered_linear_casts_preserve_reference_witnesses_and_primitive_dispatch() {
+        let world = ShipRuntime::habitat_simulation(AnatomySpec::bare(77), 77, 8)
+            .unwrap()
+            .snapshot();
+        let mut cache = CollisionCache::default();
+        let body = cache.body(&world, 1).unwrap();
+        let mut assembly = Assembly::default();
+        assembly.filaments.insert(1, straight(7, 60000));
+        let (_, pipe) = cache.pipe_in(&assembly, 40, 1, 0).unwrap();
+        let shapes: Vec<Arc<dyn Shape>> = vec![
+            body.shape.clone(),
+            pipe.shape,
+            Arc::new(Ball::new(0.025)),
+            Arc::new(Capsule::new_y(0.3, 0.025)),
+            Arc::new(Cuboid::new(Vector::new(0.015, 0.4, 0.015))),
+        ];
+        let mut supports = SupportCache::default();
+        for shape in &shapes {
+            supports.register(shape);
+        }
+        assert!(!supports.indices.is_empty());
+        let dispatcher = FilteredLinearDispatcher::new(&supports);
+        let bits = |hit: Option<query::ShapeCastHit>| {
+            hit.map(|hit| {
+                let mut values = vec![hit.time_of_impact.to_bits()];
+                for v in [hit.normal1, hit.normal2, hit.witness1, hit.witness2] {
+                    values.extend(v.to_array().map(f32::to_bits));
+                }
+                (values, format!("{:?}", hit.status))
+            })
+        };
+        for &(a, b) in &[
+            (0, 1),
+            (1, 0),
+            (0, 2),
+            (2, 0),
+            (0, 3),
+            (3, 0),
+            (0, 4),
+            (0, 0),
+        ] {
+            for step in -7..=7 {
+                let pose = Iso::from_parts(
+                    Vector::new(step as f32 * 0.13, 0.03, 0.02),
+                    Rot3::from_rotation_y(step as f32 * 0.17),
+                );
+                for velocity in [Vector::new(0.3, 0.01, -0.1), Vector::new(-3., 1., 2.)] {
+                    let options = ShapeCastOptions {
+                        max_time_of_impact: 1.,
+                        target_distance: 0.0001,
+                        stop_at_penetration: true,
+                        compute_impact_geometry_on_penetration: true,
+                    };
+                    let reference = DefaultQueryDispatcher
+                        .cast_shapes(
+                            &pose,
+                            velocity,
+                            shapes[a].as_ref(),
+                            shapes[b].as_ref(),
+                            options,
+                        )
+                        .unwrap();
+                    let indexed = dispatcher
+                        .cast_shapes(
+                            &pose,
+                            velocity,
+                            shapes[a].as_ref(),
+                            shapes[b].as_ref(),
+                            options,
+                        )
+                        .unwrap();
+                    assert_eq!(bits(indexed), bits(reference), "pair {a}/{b}, step {step}");
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn reused_contact_workspace_matches_fresh_dispatch_bit_for_bit() {
+        let world = ShipRuntime::habitat_simulation(AnatomySpec::bare(77), 77, 8)
+            .unwrap()
+            .snapshot();
+        let mut cache = CollisionCache::default();
+        let body = cache.body(&world, 1).unwrap();
+        let mut assembly = Assembly::default();
+        assembly.filaments.insert(1, straight(7, 60_000));
+        let (_, pipe) = cache.pipe_in(&assembly, 40, 1, 0).unwrap();
+        let shapes: Vec<Arc<dyn Shape>> = vec![
+            body.shape.clone(),
+            pipe.shape,
+            Arc::new(Cuboid::new(Vector::new(0.3, 0.2, 0.4))),
+            Arc::new(Capsule::new_y(0.3, 0.1)),
+            Arc::new(Ball::new(0.2)),
+        ];
+        let bits = |c: Option<query::Contact>| {
+            c.map(|c| {
+                let mut result = Vec::new();
+                for v in [c.point1, c.point2, c.normal1, c.normal2] {
+                    result.extend(v.to_array().map(f32::to_bits));
+                }
+                result.push(c.dist.to_bits());
+                result
+            })
+        };
+        let mut workspace = ContactWorkspace::default();
+        let geometry = shapes
+            .iter()
+            .map(|shape| Geometry {
+                shape: shape.clone(),
+                radius: 10.,
+                vertices: Arc::new(vec![]),
+                parts: vec![],
+                outlets: vec![],
+                writhe_slack: OnceLock::from(0.),
+            })
+            .collect::<Vec<_>>();
+        for reverse in [false, true] {
+            for i in 0..shapes.len() {
+                for j in 0..shapes.len() {
+                    for step in -6..=6 {
+                        let k = if reverse { -step } else { step };
+                        let pose = Iso::from_parts(
+                            Vector::new(k as f32 * 0.13, (k % 3) as f32 * 0.07, 0.03),
+                            Rot3::from_rotation_y(k as f32 * 0.17),
+                        );
+                        for prediction in [0., 0.002, 0.1] {
+                            let expected = query::contact(
+                                &Iso::IDENTITY,
+                                shapes[i].as_ref(),
+                                &pose,
+                                shapes[j].as_ref(),
+                                prediction,
+                            )
+                            .unwrap();
+                            let actual = cached_world_contact(
+                                &mut workspace,
+                                &Iso::IDENTITY,
+                                &geometry[i],
+                                &pose,
+                                &geometry[j],
+                                prediction,
+                            )
+                            .unwrap();
+                            assert_eq!(
+                                bits(actual),
+                                bits(expected),
+                                "pair {i}/{j}, step {k}, prediction {prediction}"
+                            );
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn support_index_does_not_retain_changing_meshes_or_capsules() {
+        let mut cache = CollisionCache::default();
+        let mut assembly = Assembly::default();
+        assembly.filaments.insert(1, straight(7, 60_000));
+        let (_, geometry) = cache.pipe_in(&assembly, 40, 1, 0).unwrap();
+        let weak = Arc::downgrade(&geometry.shape);
+        let mut supports = SupportCache::default();
+        supports.register(&geometry.shape);
+        let capsule: Arc<dyn Shape> = Arc::new(Capsule::new_y(0.3, 0.1));
+        supports.register(&capsule);
+        assert!(supports.shapes.is_empty());
+        assert!(supports.indices.is_empty());
+        drop(geometry);
+        drop(cache);
+        assert!(weak.upgrade().is_none());
+    }
 
     #[test]
     fn dense_eight_founder_proximity_handles_tetrahedron_simplexes() {
@@ -2275,11 +3822,13 @@ mod tests {
                     .unwrap();
                 for ceiling in [0.0001, 0.01, 0.1, 0.5, 2., 10.] {
                     let within = within_distance(
+                        &SupportCache::default(),
                         &relative,
                         body.shape.as_ref(),
                         other.as_ref(),
                         ceiling,
                         0.001,
+                        &DistanceCounts::new(),
                     )
                     .unwrap();
                     assert_eq!(
@@ -2381,7 +3930,7 @@ mod tests {
             vertices: Arc::new(vec![Vector::ZERO]),
             parts: vec![],
             outlets: vec![],
-            writhe_slack: 0.,
+            writhe_slack: OnceLock::from(0.),
         };
         let b = Geometry {
             shape: Arc::new(Cuboid::new(Vector::new(0.001, 1., 1.))),
@@ -2389,7 +3938,7 @@ mod tests {
             vertices: Arc::new(vec![Vector::ZERO]),
             parts: vec![],
             outlets: vec![],
-            writhe_slack: 0.,
+            writhe_slack: OnceLock::from(0.),
         };
         for (sin, cos) in [(0, SCALE), (SCALE, 0), (0, -SCALE)] {
             let from = RigidPose {
@@ -2405,9 +3954,17 @@ mod tests {
             let p = RigidPose::identity();
             let mut profile = CollisionProfile::default();
             assert!(
-                cast(&a, from, to, &b, p, p, &mut profile)
-                    .unwrap()
-                    .is_some(),
+                cast(
+                    &a,
+                    from,
+                    to,
+                    &b,
+                    p,
+                    p,
+                    (&mut profile, &mut ContactWorkspace::default())
+                )
+                .unwrap()
+                .is_some(),
                 "rotation changed world-space velocity"
             );
             let moving = RigidPose {
@@ -2415,9 +3972,17 @@ mod tests {
                 ..p
             };
             assert!(
-                cast(&a, from, to, &b, p, moving, &mut profile)
-                    .unwrap()
-                    .is_none(),
+                cast(
+                    &a,
+                    from,
+                    to,
+                    &b,
+                    p,
+                    moving,
+                    (&mut profile, &mut ContactWorkspace::default())
+                )
+                .unwrap()
+                .is_none(),
                 "equal velocities invented a collision"
             );
         }
@@ -2430,7 +3995,7 @@ mod tests {
             vertices: Arc::new(vec![Vector::ZERO]),
             parts: vec![],
             outlets: vec![],
-            writhe_slack: 0.,
+            writhe_slack: OnceLock::from(0.),
         };
         let a = ball(0.1);
         let b = ball(0.1);
@@ -2447,14 +4012,45 @@ mod tests {
             translation: [40_000, 0, 0],
             ..from
         };
-        assert!(nondeepening_recovery(&a, from, away, &b, obstacle, obstacle).unwrap());
-        assert!(!nondeepening_recovery(&a, from, into, &b, obstacle, obstacle).unwrap());
+        assert!(
+            nondeepening_recovery(
+                &a,
+                from,
+                away,
+                &b,
+                obstacle,
+                obstacle,
+                &mut ContactWorkspace::default()
+            )
+            .unwrap()
+        );
+        assert!(
+            !nondeepening_recovery(
+                &a,
+                from,
+                into,
+                &b,
+                obstacle,
+                obstacle,
+                &mut ContactWorkspace::default()
+            )
+            .unwrap()
+        );
         let far = RigidPose {
             translation: [500_000, 0, 0],
             ..from
         };
         assert!(
-            !nondeepening_recovery(&a, from, into, &b, far, far).unwrap(),
+            !nondeepening_recovery(
+                &a,
+                from,
+                into,
+                &b,
+                far,
+                far,
+                &mut ContactWorkspace::default()
+            )
+            .unwrap(),
             "separated start must use the continuous sweep"
         );
     }
@@ -2536,7 +4132,7 @@ mod tests {
             vertices: Arc::new(vec![Vector::ZERO]),
             parts: vec![],
             outlets: vec![],
-            writhe_slack: 0.,
+            writhe_slack: OnceLock::from(0.),
         };
         let a = make(0.1);
         let b = make(0.3);
@@ -2553,8 +4149,19 @@ mod tests {
                     ..from
                 };
                 let p = RigidPose::identity();
-                let expected =
-                    cast(&a, from, to, &b, p, p, &mut CollisionProfile::default()).unwrap();
+                let expected = cast(
+                    &a,
+                    from,
+                    to,
+                    &b,
+                    p,
+                    p,
+                    (
+                        &mut CollisionProfile::default(),
+                        &mut ContactWorkspace::default(),
+                    ),
+                )
+                .unwrap();
                 assert_eq!(memo.cast(&a, from, to, &b, p, p).unwrap(), expected);
                 let visits = memo.profile.queries;
                 assert_eq!(memo.cast(&a, from, to, &b, p, p).unwrap(), expected);
@@ -2689,5 +4296,274 @@ mod tests {
             "dry geometry rebuilt after the radius had stopped"
         );
         assert_eq!(cache.profile.pipe_hits, 2);
+    }
+
+    #[test]
+    fn drying_does_not_increase_the_chunk_radius_bound() {
+        let filament = straight(20, 400_000);
+        let mut previous = f32::MAX;
+        for tick in [0u64, 1, 17, 96, 192, 400, 10_000] {
+            let bound = chunk_mesh_radius_bound(&filament, 0, tick).unwrap();
+            assert!(
+                bound <= previous + 1e-4,
+                "bound grew from {previous} to {bound} at tick {tick}"
+            );
+            previous = bound;
+        }
+    }
+
+    #[test]
+    fn pipe_horizon_keeps_every_sample_sphere_candidate() {
+        let mut filament = straight(24, 500_000);
+        filament.nodes[3].position =
+            Position::from_absolute([1_500_000, -400_000, 900_000]).unwrap();
+        filament.nodes[8].position =
+            Position::from_absolute([-800_000, 1_200_000, 3_000_000]).unwrap();
+        filament.section.as_mut().unwrap().end_sealed = true;
+        let mut assembly = Assembly::default();
+        assembly.filaments.insert(filament.id, filament.clone());
+        let mut cache = CollisionCache::default();
+        for tick in [0u64, 40, 192] {
+            cache.sync_pipe_horizon(&assembly, tick).unwrap();
+            for reach in [0.0, 0.25, 1.5, 6.0] {
+                for step in 0..12 {
+                    let at = Position::from_absolute([
+                        (step as i64 - 4) * 2_000_000,
+                        (step as i64 % 5 - 2) * 1_500_000,
+                        step as i64 * 1_000_000,
+                    ])
+                    .unwrap();
+                    for chunk in 0..2 {
+                        let separated = pipe_separated(
+                            &mut CollisionCache::default(),
+                            &filament,
+                            chunk,
+                            tick,
+                            at,
+                            reach,
+                        )
+                        .unwrap();
+                        let beyond = cache
+                            .pipe_beyond_horizon(filament.id, chunk, at, reach)
+                            .unwrap();
+                        assert!(
+                            !beyond || separated,
+                            "horizon dropped a sample-sphere candidate at tick {tick} chunk {chunk} reach {reach}"
+                        );
+                    }
+                }
+            }
+        }
+        let far = Position::from_absolute([0, -400 * SCALE, 0]).unwrap();
+        assert!(pipe_separated(&mut CollisionCache::default(), &filament, 0, 0, far, 1.).unwrap());
+        assert!(cache.pipe_beyond_horizon(filament.id, 0, far, 1.).unwrap());
+        assert!(cache.profile.pipe_horizon_rejects >= 1);
+    }
+
+    #[test]
+    fn collapsed_horizon_radius_misses_a_wall_vertex() {
+        let filament = straight(8, 300_000);
+        let mut assembly = Assembly::default();
+        assembly.filaments.insert(filament.id, filament.clone());
+        let mut cache = CollisionCache::default();
+        cache.sync_pipe_horizon(&assembly, 0).unwrap();
+        let (origin, surface) = filament_chunk_at(&filament, 0, 0).unwrap();
+        let vertex = surface.positions[surface.positions.len() / 2];
+        let at = origin
+            .offset(vertex.map(|v| (v * SCALE as f32).round() as i64))
+            .unwrap();
+        assert!(!pipe_separated(&mut CollisionCache::default(), &filament, 0, 0, at, 0.).unwrap());
+        assert!(!cache.pipe_beyond_horizon(filament.id, 0, at, 0.).unwrap());
+        let sphere = cache.horizon.spheres.get_mut(&(filament.id, 0)).unwrap();
+        sphere.radius = 0;
+        sphere.always = false;
+        cache.horizon.cells.clear();
+        assert!(
+            cache.pipe_beyond_horizon(filament.id, 0, at, 0.).unwrap(),
+            "a zeroed horizon radius must be detectable as a missed wall"
+        );
+        assert!(!pipe_separated(&mut CollisionCache::default(), &filament, 0, 0, at, 0.).unwrap());
+    }
+
+    #[test]
+    fn appended_and_removed_pipes_refresh_the_horizon_without_retaining_stale_geometry() {
+        let mut filament = straight(18, 200_000);
+        let mut assembly = Assembly::default();
+        assembly.filaments.insert(filament.id, filament.clone());
+        let mut cache = CollisionCache::default();
+        cache.sync_pipe_horizon(&assembly, 0).unwrap();
+        cache.pipe_in(&assembly, 0, filament.id, 0).unwrap();
+        assert_eq!(cache.profile.pipe_horizon_rebuilds, 1);
+        assert_eq!(cache.pipes.len(), 1);
+        filament.nodes.push(Node {
+            deposited_tick: 0,
+            id: 19,
+            parcel: 19,
+            position: Position::from_absolute([0, 0, 40 * SCALE]).unwrap(),
+        });
+        assembly.filaments.insert(filament.id, filament.clone());
+        cache.sync_pipe_horizon(&assembly, 0).unwrap();
+        assert_eq!(cache.profile.pipe_horizon_rebuilds, 2);
+        let far_chunk = filament.nodes.len().saturating_sub(1).div_ceil(CHUNK_EDGES) - 1;
+        let at = filament.nodes.last().unwrap().position;
+        assert!(
+            !cache
+                .pipe_beyond_horizon(filament.id, far_chunk, at, 0.2)
+                .unwrap()
+        );
+        assembly.filaments.clear();
+        cache.sync_pipe_horizon(&assembly, 1).unwrap();
+        assert!(
+            cache.pipes.is_empty(),
+            "removed filament geometry remained cached"
+        );
+        assert_eq!(cache.profile.pipe_horizon_indexed, 0);
+        let before = cache.profile.pipe_bounds_computed;
+        cache.sync_pipe_horizon(&assembly, 2).unwrap();
+        assert_eq!(
+            cache.profile.pipe_bounds_computed, before,
+            "an unchanged empty assembly recomputed bounds"
+        );
+    }
+
+    #[test]
+    fn distant_chunks_do_not_allocate_cells_across_the_empty_span() {
+        let mut assembly = Assembly::default();
+        let local = straight(8, 200_000);
+        let mut distant = straight(8, 200_000);
+        distant.id = 2;
+        let shift = 100 * 80 * SCALE;
+        for node in &mut distant.nodes {
+            node.position = node.position.offset([shift, 0, 0]).unwrap();
+        }
+        assembly.filaments.insert(local.id, local);
+        assembly.filaments.insert(distant.id, distant);
+        let mut cache = CollisionCache::default();
+        cache.sync_pipe_horizon(&assembly, 0).unwrap();
+        let cells = cache.horizon.cells.keys().copied().collect::<Vec<_>>();
+        assert!(cells.len() < 64, "horizon allocated {} cells", cells.len());
+        let xs = cells.iter().map(|cell| cell[0]).collect::<BTreeSet<_>>();
+        assert!(
+            xs.len() >= 2,
+            "local and distant chunks collapsed into one region"
+        );
+        let span = xs.last().unwrap() - xs.first().unwrap();
+        assert!(span > 50, "100x offset did not separate horizon cells");
+        let at = Position::from_absolute([0, 0, 0]).unwrap();
+        let bounds_before = cache.profile.pipe_bounds_computed;
+        assert!(cache.pipe_beyond_horizon(2, 0, at, 2.).unwrap());
+        assert_eq!(cache.profile.pipe_bounds_computed, bounds_before);
+    }
+
+    #[test]
+    fn interacting_chunks_match_the_per_chunk_horizon_and_omit_distant_pipes() {
+        let mut assembly = Assembly::default();
+        let local = straight(20, 200_000);
+        let mut distant = straight(8, 200_000);
+        distant.id = 2;
+        let shift = 100 * 80 * SCALE;
+        for node in &mut distant.nodes {
+            node.position = node.position.offset([shift, 0, 0]).unwrap();
+        }
+        assembly.filaments.insert(local.id, local.clone());
+        assembly.filaments.insert(distant.id, distant);
+        let mut cache = CollisionCache::default();
+        let at = local.nodes[0].position;
+        let got = cache.interacting_chunks(&assembly, 0, at, 1.5).unwrap();
+        assert!(
+            got.iter().any(|(id, _)| *id == local.id),
+            "local chunk missing from the horizon"
+        );
+        assert!(
+            got.iter().all(|(id, _)| *id != 2),
+            "distant filament entered the local candidate set: {got:?}"
+        );
+        let mut expected = Vec::new();
+        for f in assembly.filaments.values() {
+            if f.nodes.is_empty() {
+                continue;
+            }
+            let count = f.nodes.len().saturating_sub(1).div_ceil(CHUNK_EDGES).max(1);
+            for chunk in 0..count {
+                if !cache.pipe_beyond_horizon(f.id, chunk, at, 1.5).unwrap() {
+                    expected.push((f.id, chunk));
+                }
+            }
+        }
+        assert_eq!(got, expected);
+        let bounds = cache.profile.pipe_bounds_computed;
+        let again = cache.interacting_chunks(&assembly, 0, at, 1.5).unwrap();
+        assert_eq!(again, got);
+        assert_eq!(
+            cache.profile.pipe_bounds_computed, bounds,
+            "a repeated query rebuilt chunk bounds"
+        );
+        let wide = cache.interacting_chunks(&assembly, 0, at, 20_000.).unwrap();
+        assert!(
+            wide.iter().any(|(id, _)| *id == 2),
+            "an enormous query dropped distant geometry"
+        );
+        let scans = cache.profile.pipe_filament_stamps;
+        let unchanged = assembly.clone();
+        cache.interacting_chunks(&unchanged, 1, at, 1.5).unwrap();
+        assert_eq!(
+            cache.profile.pipe_filament_stamps, scans,
+            "an unchanged immutable clone rescanned all filament nodes"
+        );
+        let mut moved = assembly.clone();
+        moved.filaments.get_mut(&local.id).unwrap().nodes[3].position =
+            Position::from_absolute([0, 40 * SCALE, 0]).unwrap();
+        cache.sync_pipe_horizon(&moved, 0).unwrap();
+        assert_eq!(
+            cache.profile.pipe_horizon_rebuilds, 2,
+            "same-tick middle-node edits must invalidate the interaction horizon immediately"
+        );
+        let new_position = moved.filaments[&local.id].nodes[3].position;
+        assert!(
+            cache
+                .interacting_chunks(&moved, 0, new_position, 0.25)
+                .unwrap()
+                .contains(&(local.id, 0)),
+            "the relocated physical chunk was missed"
+        );
+        cache.sync_pipe_horizon(&moved, 1).unwrap();
+        assert_eq!(
+            cache.profile.pipe_horizon_rebuilds, 2,
+            "unchanged later ticks must retain the conservative younger bound"
+        );
+    }
+
+    #[test]
+    fn a_local_edit_does_not_recompute_unchanged_distant_bounds() {
+        let mut assembly = Assembly::default();
+        let mut local = straight(8, 200_000);
+        let mut distant = straight(8, 200_000);
+        distant.id = 2;
+        let shift = 100 * 80 * SCALE;
+        for node in &mut distant.nodes {
+            node.position = node.position.offset([shift, 0, 0]).unwrap();
+        }
+        assembly.filaments.insert(local.id, local.clone());
+        assembly.filaments.insert(distant.id, distant);
+        let mut cache = CollisionCache::default();
+        cache.sync_pipe_horizon(&assembly, 0).unwrap();
+        let bounds = cache.profile.pipe_bounds_computed;
+        assert_eq!(bounds, 2);
+        local.nodes.push(Node {
+            deposited_tick: 0,
+            id: 9,
+            parcel: 9,
+            position: Position::from_absolute([0, 0, 8 * 200_000]).unwrap(),
+        });
+        assembly.filaments.insert(local.id, local);
+        cache.sync_pipe_horizon(&assembly, 0).unwrap();
+        assert_eq!(
+            cache.profile.pipe_bounds_computed,
+            bounds + 1,
+            "a local edit recomputed distant chunk bounds"
+        );
+        let at = Position::from_absolute([0, 0, 0]).unwrap();
+        let near = cache.interacting_chunks(&assembly, 0, at, 1.).unwrap();
+        assert!(near.iter().all(|(id, _)| *id != 2));
     }
 }

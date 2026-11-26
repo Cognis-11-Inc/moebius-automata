@@ -1,0 +1,31 @@
+{
+  "status": "ARCHIVED_RESTORE_VERIFIED",
+  "purpose": "IV raw fixtures, successful and failed experiments, captured binaries/sources, history backing, rendered recording and reproducibility metadata",
+  "verified_utc": "2026-11-26T05:35:48.434742+00:00",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "volume_label": "Mermogon",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "source": "/dev/sdb2",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon",
+    "fstype": "ntfs3"
+  },
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-iv-v1/evidence.tar.gz",
+  "archive_sha256": "170973a557b1bb7e5bc94e58e04d05d0dc9cd3e85be3262b871d88f0d3f79cf1",
+  "archive_bytes": 117067387,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-iv-v1/MANIFEST.json",
+  "manifest_sha256": "7e74c8311eff828d16cbca70cd8f5805e7a8f2d11388bb76a23e6c6812255aa2",
+  "member_count": 1499,
+  "member_bytes": 832130951,
+  "restored_all_members_and_hashes": true,
+  "restore_working_copy": "/home/cognis/moebius-iv-20261126T035335Z/restore-IV",
+  "exclusions": {
+    "Cargo target/native-seed": "regenerable build cache; copied executables/source/build logs retained",
+    "baseline-worktree": "comparison overlay; entry archive/patch/untracked and per-build sources retained",
+    "restored-iii": "separately sealed III archive backlink in REPRODUCE.md; all104 members restored/hash-verified this run",
+    "restore-IV": "verification copy produced after sealing"
+  },
+  "previous_III_archive_sha256": "db2ae3d3fe36b82e8f9afe228bff7d005de299881b4f7fa23b49c8287f576368",
+  "clean_commit_validation": "pending separate immutable supplement; no broad result implied"
+}

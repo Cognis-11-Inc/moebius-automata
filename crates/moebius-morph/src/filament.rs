@@ -169,13 +169,71 @@ pub struct Filament {
     pub quantity: u64,
     pub nodes: Vec<Node>,
 }
+/// Canonical filament collection with an owned mutation receipt for derived
+/// collision caches. Serialization/equality remain exactly the underlying map.
+/// Every mutable borrow changes the receipt, including edits of middle nodes.
+#[derive(Debug, Default, Serialize, Deserialize)]
+#[serde(transparent)]
+pub struct FilamentMap {
+    map: BTreeMap<u64, Filament>,
+    #[serde(skip)]
+    revision: std::sync::Arc<std::sync::atomic::AtomicU64>,
+}
+impl Clone for FilamentMap {
+    fn clone(&self) -> Self {
+        Self {
+            map: self.map.clone(),
+            revision: self.revision.clone(),
+        }
+    }
+}
+impl PartialEq for FilamentMap {
+    fn eq(&self, other: &Self) -> bool {
+        self.map == other.map
+    }
+}
+impl Eq for FilamentMap {}
+impl std::ops::Deref for FilamentMap {
+    type Target = BTreeMap<u64, Filament>;
+    fn deref(&self) -> &Self::Target {
+        &self.map
+    }
+}
+impl std::ops::DerefMut for FilamentMap {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        let value = self.revision.load(std::sync::atomic::Ordering::Relaxed);
+        if value == u64::MAX || std::sync::Arc::strong_count(&self.revision) > 1 {
+            self.revision = std::sync::Arc::new(std::sync::atomic::AtomicU64::new(0));
+        } else {
+            self.revision
+                .store(value + 1, std::sync::atomic::Ordering::Relaxed);
+        }
+        &mut self.map
+    }
+}
+impl<'a> IntoIterator for &'a FilamentMap {
+    type Item = (&'a u64, &'a Filament);
+    type IntoIter = std::collections::btree_map::Iter<'a, u64, Filament>;
+    fn into_iter(self) -> Self::IntoIter {
+        self.map.iter()
+    }
+}
+impl FilamentMap {
+    pub(crate) fn revision(&self) -> (&std::sync::Arc<std::sync::atomic::AtomicU64>, u64) {
+        (
+            &self.revision,
+            self.revision.load(std::sync::atomic::Ordering::Relaxed),
+        )
+    }
+}
+
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Assembly {
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub junctions: Vec<Junction>,
     pub next_id: u64,
-    pub filaments: BTreeMap<u64, Filament>,
+    pub filaments: FilamentMap,
     pub active: Option<u64>,
 }
 fn is_zero_tick(value: &u64) -> bool {
@@ -192,7 +250,7 @@ impl Default for Assembly {
         Self {
             junctions: vec![],
             next_id: 1,
-            filaments: BTreeMap::new(),
+            filaments: FilamentMap::default(),
             active: None,
         }
     }
@@ -968,4 +1026,38 @@ pub fn filament_chunk_at(
     }
     mesh.normals();
     Ok((origin, mesh))
+}
+
+#[cfg(test)]
+mod revision_tests {
+    use super::*;
+    #[test]
+    fn derived_revision_is_not_serialized_and_divergent_clones_detach() {
+        let a = FilamentMap::default();
+        let mut b = a.clone();
+        assert!(std::sync::Arc::ptr_eq(a.revision().0, b.revision().0));
+        b.clear();
+        assert!(!std::sync::Arc::ptr_eq(a.revision().0, b.revision().0));
+        assert_eq!(a, b);
+        assert_eq!(
+            serde_json::to_vec(&a).unwrap(),
+            serde_json::to_vec(&a.map).unwrap()
+        );
+        let restored: FilamentMap =
+            serde_json::from_slice(&serde_json::to_vec(&b).unwrap()).unwrap();
+        assert_eq!(restored, b);
+        assert!(!std::sync::Arc::ptr_eq(
+            restored.revision().0,
+            b.revision().0
+        ));
+    }
+    #[test]
+    fn revision_overflow_changes_owner_instead_of_reusing_a_receipt() {
+        let mut map = FilamentMap::default();
+        let saved = map.revision().0.clone();
+        map.revision
+            .store(u64::MAX, std::sync::atomic::Ordering::Relaxed);
+        map.clear();
+        assert!(!std::sync::Arc::ptr_eq(&saved, map.revision().0));
+    }
 }

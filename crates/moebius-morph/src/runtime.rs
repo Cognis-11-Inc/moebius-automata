@@ -216,6 +216,9 @@ pub struct WorldSnapshot {
     pub instances: BTreeMap<u64, Instance>,
     pub pending: Vec<Intervention>,
     pub events: Vec<Event>,
+    #[cfg(feature = "history-v2-prototype")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub history: Option<crate::history::State>,
 }
 /// No mutable state reference is exposed to observers or renderers.
 pub struct ShipRuntime {
@@ -223,8 +226,10 @@ pub struct ShipRuntime {
     outputs: BTreeMap<u64, Vec<PlacedNozzle>>,
     animator: Option<CompiledAnatomy>,
     collision_cache: crate::collision::CollisionCache,
+    #[cfg(feature = "history-v2-prototype")]
+    history_store: Option<std::sync::Arc<crate::history::Store>>,
 }
-pub(crate) fn exposure(c: &WorldConfig, p: Position) -> Result<u64, MorphError> {
+pub fn exposure(c: &WorldConfig, p: Position) -> Result<u64, MorphError> {
     let mut total = c.ambient_light;
     for port in &c.ports {
         let d = p.relative(port.position)?;
@@ -298,6 +303,8 @@ fn initial_snapshot(
         instances: map,
         pending: vec![],
         events: vec![],
+        #[cfg(feature = "history-v2-prototype")]
+        history: None,
     })
 }
 /// Bound work only after local capture eligibility. Old paid parcels remain in
@@ -418,6 +425,23 @@ impl ShipRuntime {
         Self::restore(initial_snapshot(config, instances)?)
     }
     pub fn restore(state: WorldSnapshot) -> Result<Self, MorphError> {
+        #[cfg(feature = "history-v2-prototype")]
+        require(
+            state.history.is_none(),
+            "segmented history requires an explicit backing store",
+        )?;
+        Self::restore_inner(
+            state,
+            #[cfg(feature = "history-v2-prototype")]
+            None,
+        )
+    }
+    fn restore_inner(
+        state: WorldSnapshot,
+        #[cfg(feature = "history-v2-prototype")] history_store: Option<
+            std::sync::Arc<crate::history::Store>,
+        >,
+    ) -> Result<Self, MorphError> {
         let out = outputs(&state.config)?;
         let animator = if let Some(r) = &state.config.construction {
             r.validate()?;
@@ -433,6 +457,8 @@ impl ShipRuntime {
         };
         let result = Self {
             collision_cache: crate::collision::CollisionCache::default(),
+            #[cfg(feature = "history-v2-prototype")]
+            history_store,
             animator,
             state,
             outputs: out,
@@ -696,9 +722,17 @@ impl ShipRuntime {
                 .any(|e| matches!(e,Event::Accepted{command:c,..} if c.sequence==command.sequence)),
             "duplicate intervention sequence",
         )?;
+        #[cfg(feature = "history-v2-prototype")]
+        if let (Some(history), Some(store)) = (&self.state.history, &self.history_store) {
+            require(
+                !store.accepted_sequence(history, command.sequence)?,
+                "duplicate intervention sequence",
+            )?;
+        }
         if let Some(r) = &self.state.config.construction {
             require(
-                self.state.events.len() + self.state.pending.len() + 2 < r.max_events
+                (self.state.segmented_history()
+                    || self.state.events.len() + self.state.pending.len() + 2 < r.max_events)
                     && self.state.pending.len() < 256,
                 "intervention/history budget",
             )?;
@@ -739,17 +773,136 @@ impl ShipRuntime {
             }
             _ => {}
         }
-        self.state.events.push(Event::Accepted {
+        let accepted = Event::Accepted {
             at: self.state.tick,
             command: command.clone(),
-        });
+        };
+        #[cfg(feature = "history-v2-prototype")]
+        if let Some(store) = &self.history_store {
+            let mut history = self
+                .state
+                .history
+                .clone()
+                .ok_or_else(|| MorphError("missing history state".into()))?;
+            let mut delta = vec![accepted];
+            store.append(&mut history, &mut self.state.events, &mut delta)?;
+            self.state.history = Some(history);
+        } else {
+            self.state.events.push(accepted);
+        }
+        #[cfg(not(feature = "history-v2-prototype"))]
+        self.state.events.push(accepted);
         self.state.pending.push(command);
         self.state.pending.sort_by_key(|c| (c.tick, c.sequence));
         Ok(())
     }
+    #[cfg(feature = "history-v2-prototype")]
+    pub fn enable_history_v2(
+        &mut self,
+        root: &Path,
+        policy: crate::history::Policy,
+    ) -> Result<(), MorphError> {
+        self.validate()?;
+        require(
+            self.state.history.is_none() && self.history_store.is_none(),
+            "history already segmented",
+        )?;
+        if let Some(r) = &self.state.config.construction {
+            require(
+                policy.resident_events <= r.max_events,
+                "resident policy exceeds legacy event allocation allowance",
+            )?;
+        }
+        let store = if root.exists() {
+            let store = crate::history::Store::open(root)?;
+            store.compatible(&self.state, &policy)?;
+            store
+        } else {
+            crate::history::Store::create(root, &self.state, policy)?
+        };
+        let mut history = store.initial(&self.state.events)?;
+        let mut delta = vec![];
+        store.append(&mut history, &mut self.state.events, &mut delta)?;
+        self.state.history = Some(history);
+        self.history_store = Some(std::sync::Arc::new(store));
+        Ok(())
+    }
+    #[cfg(feature = "history-v2-prototype")]
+    pub fn restore_with_history(state: WorldSnapshot, root: &Path) -> Result<Self, MorphError> {
+        require(
+            state.history.is_some(),
+            "checkpoint has no segmented history",
+        )?;
+        Self::restore_inner(
+            state,
+            Some(std::sync::Arc::new(crate::history::Store::open(root)?)),
+        )
+    }
+    #[cfg(feature = "history-v2-prototype")]
+    pub fn save_checkpoint_v2(&self, path: &Path) -> Result<(), MorphError> {
+        require(
+            self.state.history.is_some() && self.history_store.is_some(),
+            "not a segmented runtime",
+        )?;
+        self.validate()?;
+        crate::write_atomic(
+            path,
+            &serde_json::to_string_pretty(&self.state).map_err(|e| MorphError(e.to_string()))?,
+        )?;
+        if let Some(parent) = path.parent() {
+            std::fs::File::open(parent)
+                .and_then(|f| f.sync_all())
+                .map_err(|e| MorphError(e.to_string()))?;
+        }
+        Ok(())
+    }
+    #[cfg(feature = "history-v2-prototype")]
+    pub fn history_store(&self) -> Option<&crate::history::Store> {
+        self.history_store.as_deref()
+    }
+
     /// Query counters for the last ticks. Not part of the world digest.
     pub fn collision_profile(&self) -> crate::collision::CollisionProfile {
         self.collision_cache.profile()
+    }
+    /// Append pipe geometry that no habitat agent owns.
+    /// Collision will see it. The material books are not changed.
+    /// Habitat validation rejects this shape, so it can be added only after
+    /// `restore`. Chew ignores another organism's filament. This is a
+    /// measurement seam, not a deposit and not a second collision authority.
+    #[cfg(feature = "spatial-scale")]
+    pub fn splice_measurement_filament(
+        &mut self,
+        filament: crate::filament::Filament,
+    ) -> Result<(), MorphError> {
+        require(
+            filament.organism > 0 && !filament.nodes.is_empty(),
+            "measurement filament needs an organism and nodes",
+        )?;
+        require(
+            self.state
+                .habitat
+                .as_ref()
+                .is_some_and(|habitat| !habitat.agents.contains_key(&filament.organism)),
+            "measurement filament must stay outside the habitat ledger",
+        )?;
+        let rules =
+            self.state.config.construction.as_ref().ok_or_else(|| {
+                MorphError("measurement splice requires construction rules".into())
+            })?;
+        let assembly = self
+            .state
+            .assembly
+            .as_mut()
+            .ok_or_else(|| MorphError("assembly missing".into()))?;
+        require(
+            !assembly.filaments.contains_key(&filament.id)
+                && assembly.filaments.len() < rules.max_filaments
+                && assembly.nodes() + filament.nodes.len() <= rules.max_nodes,
+            "measurement filament exceeds the structural budget",
+        )?;
+        assembly.filaments.insert(filament.id, filament);
+        Ok(())
     }
     /// Diagnostic only. Turns habitat collision mode off for this runtime.
     /// Sac offsets, birth placement, spawn checks, and `collision::resolve`
@@ -764,22 +917,31 @@ impl ShipRuntime {
         Ok(())
     }
     pub fn tick(&mut self) -> Result<(), MorphError> {
+        #[cfg(feature = "allocation-attribution")]
+        let _allocation_scope = crate::profiling::enter(1);
+
         // Existing events are immutable during a tick. Copy the mutable state,
         // record this tick separately, and append only after every fallible gate.
         // Work no longer grows with the entire retained causal event history.
-        let mut next = WorldSnapshot {
-            solids: self.state.solids.clone(),
-            habitat: self.state.habitat.clone(),
-            steering: self.state.steering,
-            assembly: self.state.assembly.clone(),
-            food: self.state.food.clone(),
-            condensate: self.state.condensate.clone(),
-            version: self.state.version,
-            tick: self.state.tick,
-            config: self.state.config.clone(),
-            instances: self.state.instances.clone(),
-            pending: self.state.pending.clone(),
-            events: Vec::new(),
+        let mut next = {
+            #[cfg(feature = "allocation-attribution")]
+            let _scope = crate::profiling::enter(2);
+            WorldSnapshot {
+                solids: self.state.solids.clone(),
+                habitat: self.state.habitat.clone(),
+                steering: self.state.steering,
+                assembly: self.state.assembly.clone(),
+                food: self.state.food.clone(),
+                condensate: self.state.condensate.clone(),
+                version: self.state.version,
+                tick: self.state.tick,
+                config: self.state.config.clone(),
+                instances: self.state.instances.clone(),
+                pending: self.state.pending.clone(),
+                events: Vec::new(),
+                #[cfg(feature = "history-v2-prototype")]
+                history: self.state.history.clone(),
+            }
         };
         let tick = next.tick;
         let count = next.pending.partition_point(|c| c.tick == tick);
@@ -1147,7 +1309,8 @@ impl ShipRuntime {
             .ok_or_else(|| MorphError("world tick overflow".into()))?;
         if let Some(r) = &next.config.construction {
             require(
-                self.state.events.len().saturating_add(next.events.len()) <= r.max_events,
+                self.state.segmented_history()
+                    || self.state.events.len().saturating_add(next.events.len()) <= r.max_events,
                 "HistoryBudget: no authoritative ticks discarded",
             )?;
         }
@@ -1162,9 +1325,24 @@ impl ShipRuntime {
                 "first-simulation condensate balance failed",
             )?;
         }
-        let mut history = std::mem::take(&mut self.state.events);
-        history.append(&mut next.events);
-        next.events = history;
+        {
+            #[cfg(feature = "allocation-attribution")]
+            let _scope = crate::profiling::enter(13);
+            let mut history = std::mem::take(&mut self.state.events);
+            #[cfg(feature = "history-v2-prototype")]
+            if let Some(store) = &self.history_store {
+                let metadata = next.history.as_mut().expect("validated segmented runtime");
+                if let Err(error) = store.append(metadata, &mut history, &mut next.events) {
+                    self.state.events = history;
+                    return Err(error);
+                }
+            } else {
+                history.append(&mut next.events);
+            }
+            #[cfg(not(feature = "history-v2-prototype"))]
+            history.append(&mut next.events);
+            next.events = history;
+        }
         self.state = next;
         Ok(())
     }
@@ -1176,6 +1354,16 @@ impl ShipRuntime {
     }
     pub fn validate(&self) -> Result<(), MorphError> {
         let s = &self.state;
+        #[cfg(feature = "history-v2-prototype")]
+        match (&s.history, &self.history_store) {
+            (Some(history), Some(store)) => store.verify(history, &s.events)?,
+            (None, None) => {}
+            _ => {
+                return Err(MorphError(
+                    "history state/backing ownership mismatch".into(),
+                ));
+            }
+        }
         require(
             ((s.version == 1 && s.config.construction.is_none())
                 || (s.version == 2 && s.config.construction.is_some()))
@@ -1267,6 +1455,9 @@ impl ShipRuntime {
                     })
                     .try_fold(0u64, |sum, q| sum.checked_add(q))
                     .ok_or_else(|| MorphError("intake event overflow".into()))?;
+                let eaten = eaten
+                    .checked_add(s.sealed_intake(r.organism))
+                    .ok_or_else(|| MorphError("prefix intake overflow".into()))?;
                 require(
                     eaten == i.book.external_input,
                     "constructor intake provenance mismatch",
@@ -1304,213 +1495,250 @@ impl ShipRuntime {
         if let Some(food) = &s.food {
             food.validate()?;
         }
-        let mut accepted = BTreeMap::new();
-        let mut applied = BTreeSet::new();
-        let mut births = BTreeSet::new();
-        let mut deposits = BTreeSet::new();
-        let chewed: BTreeMap<(u64, u64), u64> = s
-            .events
-            .iter()
-            .filter_map(|e| match e {
-                Event::Chewed {
-                    organism,
-                    parcel,
-                    quantity,
-                    ..
-                } => Some(((*organism, *parcel), *quantity)),
-                _ => None,
-            })
-            .collect();
-        for e in &s.events {
-            match e {
-                Event::Contact { observation } => {
-                    require(
-                        observation.at < s.tick
-                            && s.instances.contains_key(&observation.organism)
-                            && observation.toi_millionths <= 1_000_000,
-                        "invalid contact observation",
-                    )?;
-                    observation.point.absolute()?;
+        #[cfg(feature = "history-v2-prototype")]
+        if let (Some(history), Some(store)) = (&s.history, &self.history_store) {
+            return validate_event_history(s, history.policy.provenance_entries, |consume| {
+                store.visit(history, &mut *consume)?;
+                for event in &s.events {
+                    consume(event)?;
                 }
-                Event::Reproduced {
-                    at,
-                    parent,
-                    child,
-                    quantity,
-                } => {
-                    require(
-                        *at < s.tick
-                            && *quantity > 0
-                            && s.instances.contains_key(parent)
-                            && s.instances
-                                .get(child)
-                                .is_some_and(|i| i.book.initial == *quantity),
-                        "invalid reproductive transfer",
-                    )?;
-                }
-                Event::Deposited {
-                    at,
-                    organism,
-                    parcel,
-                    filament,
-                    node,
-                    quantity,
-                } => {
-                    let i = s
-                        .instances
-                        .get(organism)
-                        .ok_or_else(|| MorphError("deposition source missing".into()))?;
-                    let key = (*organism, *parcel);
-                    if let Some(reclaimed) = chewed.get(&key) {
-                        require(
-                            deposits.insert(key)
-                                && *at < s.tick
-                                && *reclaimed == *quantity
-                                && i.book.bound.iter().all(|b| b.parcel.id != *parcel),
-                            "invalid chewed deposition",
-                        )?;
-                    } else {
-                        require(
-                            deposits.insert(key)
-                                && *at < s.tick
-                                && i.book.bound.iter().any(|b| {
-                                    b.parcel.id == *parcel
-                                        && b.filament == *filament
-                                        && b.node == *node
-                                        && b.parcel.quantity == *quantity
-                                        && b.bound_tick == at + 1
-                                }),
-                            "invalid deposition event",
-                        )?;
-                    }
-                }
-                Event::Chewed {
-                    at,
-                    organism,
-                    parcel,
-                    quantity,
-                    ..
-                } => require(
+                Ok(())
+            });
+        }
+        validate_event_history(s, usize::MAX, |consume| {
+            for event in &s.events {
+                consume(event)?;
+            }
+            Ok(())
+        })
+    }
+}
+/// The exact legacy checks, using two streaming passes. V2 imposes an explicit
+/// workspace ceiling; excess provenance refuses validation instead of omission.
+fn validate_event_history(
+    s: &WorldSnapshot,
+    limit: usize,
+    mut visit: impl FnMut(&mut dyn FnMut(&Event) -> Result<(), MorphError>) -> Result<(), MorphError>,
+) -> Result<(), MorphError> {
+    let mut accepted = BTreeMap::new();
+    let mut applied = BTreeSet::new();
+    let mut births = BTreeSet::new();
+    let mut deposits = BTreeSet::new();
+    let mut chewed = BTreeMap::new();
+    visit(&mut |e| {
+        if let Event::Chewed {
+            organism,
+            parcel,
+            quantity,
+            ..
+        } = e
+        {
+            chewed.insert((*organism, *parcel), *quantity);
+            require(
+                chewed.len() <= limit,
+                "history validation provenance budget",
+            )?;
+        }
+        Ok(())
+    })?;
+    visit(&mut |e| {
+        match e {
+            Event::Contact { observation } => {
+                require(
+                    observation.at < s.tick
+                        && s.instances.contains_key(&observation.organism)
+                        && observation.toi_millionths <= 1_000_000,
+                    "invalid contact observation",
+                )?;
+                observation.point.absolute()?;
+            }
+            Event::Reproduced {
+                at,
+                parent,
+                child,
+                quantity,
+            } => {
+                require(
                     *at < s.tick
                         && *quantity > 0
-                        && s.instances.contains_key(organism)
-                        && chewed.get(&(*organism, *parcel)) == Some(quantity),
-                    "invalid chew event",
-                )?,
-                Event::Fed {
-                    at,
-                    organism,
-                    source,
-                    quantity,
-                    mouth,
-                } => {
+                        && s.instances.contains_key(parent)
+                        && s.instances
+                            .get(child)
+                            .is_some_and(|i| i.book.initial == *quantity),
+                    "invalid reproductive transfer",
+                )?;
+            }
+            Event::Deposited {
+                at,
+                organism,
+                parcel,
+                filament,
+                node,
+                quantity,
+            } => {
+                let i = s
+                    .instances
+                    .get(organism)
+                    .ok_or_else(|| MorphError("deposition source missing".into()))?;
+                let key = (*organism, *parcel);
+                if let Some(reclaimed) = chewed.get(&key) {
                     require(
-                        *at < s.tick
-                            && *quantity > 0
-                            && *organism != *source
-                            && s.instances.contains_key(organism)
-                            && s.instances
-                                .get(source)
-                                .is_some_and(|i| i.definition == BLOOD_SAC),
-                        "invalid feeding event",
-                    )?;
-                    mouth.absolute()?;
-                }
-                Event::FoodBurst { at, seeds, .. } => {
-                    require(*at < s.tick && *seeds > 0, "invalid food burst")?
-                }
-                Event::AssemblyRejected { at, organism, .. }
-                | Event::EmissionRejected { at, organism, .. } => require(
-                    *at < s.tick && s.instances.contains_key(organism),
-                    "invalid rejection event",
-                )?,
-                Event::Accepted { at, command } => {
-                    validate_command(command, *at)?;
-                    require(
-                        *at <= s.tick && accepted.insert(command.sequence, command).is_none(),
-                        "invalid admission event",
-                    )?;
-                }
-                Event::Applied { at, sequence } => {
-                    let c = accepted
-                        .get(sequence)
-                        .ok_or_else(|| MorphError("application without admission".into()))?;
-                    require(
-                        *at == c.tick && *at < s.tick && applied.insert(*sequence),
-                        "invalid application event",
-                    )?;
-                }
-                Event::Emitted {
-                    at,
-                    organism,
-                    nozzle,
-                    parcel,
-                    quantity,
-                } => {
-                    let i = s
-                        .instances
-                        .get(organism)
-                        .ok_or_else(|| MorphError("event organism missing".into()))?;
-                    let reclaimed = chewed.contains_key(&(*organism, *parcel));
-                    require(
-                        births.insert((*organism, *parcel))
+                        deposits.insert(key)
                             && *at < s.tick
-                            && *quantity > 0
-                            && (reclaimed
-                                || i.book
-                                    .parcels
-                                    .iter()
-                                    .chain(i.book.bound.iter().map(|b| &b.parcel))
-                                    .any(|p| {
-                                        p.id == *parcel
-                                            && p.nozzle_id == *nozzle
-                                            && p.quantity == *quantity
-                                            && p.created_tick == *at
-                                    })),
-                        "invalid emission event",
+                            && *reclaimed == *quantity
+                            && i.book.bound.iter().all(|b| b.parcel.id != *parcel),
+                        "invalid chewed deposition",
+                    )?;
+                } else {
+                    require(
+                        deposits.insert(key)
+                            && *at < s.tick
+                            && i.book.bound.iter().any(|b| {
+                                b.parcel.id == *parcel
+                                    && b.filament == *filament
+                                    && b.node == *node
+                                    && b.parcel.quantity == *quantity
+                                    && b.bound_tick == at + 1
+                            }),
+                        "invalid deposition event",
                     )?;
                 }
             }
+            Event::Chewed {
+                at,
+                organism,
+                parcel,
+                quantity,
+                ..
+            } => require(
+                *at < s.tick
+                    && *quantity > 0
+                    && s.instances.contains_key(organism)
+                    && chewed.get(&(*organism, *parcel)) == Some(quantity),
+                "invalid chew event",
+            )?,
+            Event::Fed {
+                at,
+                organism,
+                source,
+                quantity,
+                mouth,
+            } => {
+                require(
+                    *at < s.tick
+                        && *quantity > 0
+                        && *organism != *source
+                        && s.instances.contains_key(organism)
+                        && s.instances
+                            .get(source)
+                            .is_some_and(|i| i.definition == BLOOD_SAC),
+                    "invalid feeding event",
+                )?;
+                mouth.absolute()?;
+            }
+            Event::FoodBurst { at, seeds, .. } => {
+                require(*at < s.tick && *seeds > 0, "invalid food burst")?
+            }
+            Event::AssemblyRejected { at, organism, .. }
+            | Event::EmissionRejected { at, organism, .. } => require(
+                *at < s.tick && s.instances.contains_key(organism),
+                "invalid rejection event",
+            )?,
+            Event::Accepted { at, command } => {
+                validate_command(command, *at)?;
+                require(
+                    *at <= s.tick && accepted.insert(command.sequence, command.clone()).is_none(),
+                    "invalid admission event",
+                )?;
+            }
+            Event::Applied { at, sequence } => {
+                let c = accepted
+                    .get(sequence)
+                    .ok_or_else(|| MorphError("application without admission".into()))?;
+                require(
+                    *at == c.tick && *at < s.tick && applied.insert(*sequence),
+                    "invalid application event",
+                )?;
+            }
+            Event::Emitted {
+                at,
+                organism,
+                nozzle,
+                parcel,
+                quantity,
+            } => {
+                let i = s
+                    .instances
+                    .get(organism)
+                    .ok_or_else(|| MorphError("event organism missing".into()))?;
+                let reclaimed = chewed.contains_key(&(*organism, *parcel));
+                require(
+                    births.insert((*organism, *parcel))
+                        && *at < s.tick
+                        && *quantity > 0
+                        && (reclaimed
+                            || i.book
+                                .parcels
+                                .iter()
+                                .chain(i.book.bound.iter().map(|b| &b.parcel))
+                                .any(|p| {
+                                    p.id == *parcel
+                                        && p.nozzle_id == *nozzle
+                                        && p.quantity == *quantity
+                                        && p.created_tick == *at
+                                })),
+                    "invalid emission event",
+                )?;
+            }
         }
-        let carried = s
-            .instances
-            .values()
-            .map(|i| i.book.parcels.len() + i.book.bound.len())
-            .sum::<usize>();
         require(
-            births.len() == carried + chewed.len(),
-            "material birth history mismatch",
-        )?;
-        require(
-            deposits.len()
-                == s.instances
-                    .values()
-                    .map(|i| i.book.bound.len())
-                    .sum::<usize>()
-                    + chewed.len(),
-            "missing/duplicate deposition history",
-        )?;
-        let mut pending = BTreeSet::new();
-        let mut previous = None;
-        for c in &s.pending {
-            validate_command(c, s.tick)?;
-            let key = (c.tick, c.sequence);
-            require(
-                previous.is_none_or(|p| p < key)
-                    && pending.insert(c.sequence)
-                    && accepted.get(&c.sequence) == Some(&c)
-                    && !applied.contains(&c.sequence),
-                "invalid pending intervention",
-            )?;
-            previous = Some(key);
-        }
-        require(
-            accepted.len() == pending.len() + applied.len(),
-            "lost intervention history",
+            accepted.len() <= limit
+                && applied.len() <= limit
+                && births.len() <= limit
+                && deposits.len() <= limit,
+            "history validation provenance budget",
         )?;
         Ok(())
+    })?;
+    let carried = s
+        .instances
+        .values()
+        .map(|i| i.book.parcels.len() + i.book.bound.len())
+        .sum::<usize>();
+    require(
+        births.len() == carried + chewed.len(),
+        "material birth history mismatch",
+    )?;
+    require(
+        deposits.len()
+            == s.instances
+                .values()
+                .map(|i| i.book.bound.len())
+                .sum::<usize>()
+                + chewed.len(),
+        "missing/duplicate deposition history",
+    )?;
+    let mut pending = BTreeSet::new();
+    let mut previous = None;
+    for c in &s.pending {
+        validate_command(c, s.tick)?;
+        let key = (c.tick, c.sequence);
+        require(
+            previous.is_none_or(|p| p < key)
+                && pending.insert(c.sequence)
+                && accepted.get(&c.sequence) == Some(c)
+                && !applied.contains(&c.sequence),
+            "invalid pending intervention",
+        )?;
+        previous = Some(key);
     }
+    require(
+        accepted.len() == pending.len() + applied.len(),
+        "lost intervention history",
+    )?;
+    Ok(())
 }
+
 fn birth(world: &mut WorldSnapshot) -> Result<(), MorphError> {
     if world.instances.len() >= 36 {
         return Ok(());
@@ -2045,6 +2273,69 @@ impl WorldSnapshot {
             gap += i128::from(organism.book.sinks);
         }
         gap
+    }
+    pub fn segmented_history(&self) -> bool {
+        #[cfg(feature = "history-v2-prototype")]
+        {
+            self.history.is_some()
+        }
+        #[cfg(not(feature = "history-v2-prototype"))]
+        {
+            false
+        }
+    }
+    pub fn total_events(&self) -> u64 {
+        #[cfg(not(feature = "history-v2-prototype"))]
+        let prefix = 0u64;
+        #[cfg(feature = "history-v2-prototype")]
+        let prefix = self.history.as_ref().map_or(0, |h| h.prefix.events);
+        prefix + self.events.len() as u64
+    }
+    pub fn total_births(&self) -> u64 {
+        #[cfg(not(feature = "history-v2-prototype"))]
+        let prefix = 0u64;
+        #[cfg(feature = "history-v2-prototype")]
+        let prefix = self
+            .history
+            .as_ref()
+            .map_or(0, |h| h.prefix.summary.birth_count);
+        prefix
+            + self
+                .events
+                .iter()
+                .filter(|e| matches!(e, Event::Reproduced { .. }))
+                .count() as u64
+    }
+    fn sealed_intake(&self, organism: u64) -> u64 {
+        #[cfg(feature = "history-v2-prototype")]
+        {
+            self.history
+                .as_ref()
+                .and_then(|h| h.prefix.summary.fed.get(&organism).copied())
+                .unwrap_or(0)
+        }
+        #[cfg(not(feature = "history-v2-prototype"))]
+        {
+            let _ = organism;
+            0
+        }
+    }
+    pub(crate) fn sealed_birth(&self, parent: u64, child: u64) -> bool {
+        #[cfg(feature = "history-v2-prototype")]
+        {
+            self.history.as_ref().is_some_and(|h| {
+                h.prefix
+                    .summary
+                    .births
+                    .iter()
+                    .any(|p| p.parent == parent && p.child == child)
+            })
+        }
+        #[cfg(not(feature = "history-v2-prototype"))]
+        {
+            let _ = (parent, child);
+            false
+        }
     }
     pub fn digest(&self) -> Result<String, MorphError> {
         Ok(

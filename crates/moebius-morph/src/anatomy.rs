@@ -428,6 +428,9 @@ impl CompiledAnatomy {
     /// Numerical nozzle frames from the same attachment triangles and normals
     /// as the full posed anatomy, without constructing visible component meshes.
     pub fn output_frames(&self, p: Pose) -> Result<Vec<OutputFrame>, MorphError> {
+        #[cfg(feature = "allocation-attribution")]
+        let _allocation_scope = crate::profiling::enter(10);
+
         require(
             p.phase.is_finite()
                 && p.phase.abs() < 100000.

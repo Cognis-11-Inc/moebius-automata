@@ -72,3 +72,15 @@ pub(crate) fn write_atomic(path: &Path, data: &str) -> Result<(), MorphError> {
     }
     result.map_err(|e| MorphError(e.to_string()))
 }
+
+/// Compile-time source/toolchain identity for evidence recorders; never world state.
+pub const BENCHMARK_BUILD_IDENTITY: &str =
+    include_str!(concat!(env!("OUT_DIR"), "/benchmark-identity.json"));
+
+#[cfg(feature = "allocation-attribution")]
+pub mod profiling;
+
+mod support_index;
+
+#[cfg(feature = "history-v2-prototype")]
+pub mod history;

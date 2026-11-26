@@ -19,6 +19,11 @@ unsafe impl GlobalAlloc for Counted {
     unsafe fn alloc(&self, layout: Layout) -> *mut u8 {
         let p = unsafe { System.alloc(layout) };
         if !p.is_null() {
+            #[cfg(feature = "allocation-attribution")]
+            {
+                moebius_morph::profiling::allocation(2, layout.size());
+                moebius_morph::profiling::sample_stack();
+            }
             ALLOCS.fetch_add(1, Relaxed);
             BYTES.fetch_add(layout.size(), Relaxed);
             let live = LIVE.fetch_add(layout.size(), Relaxed) + layout.size();
@@ -26,7 +31,25 @@ unsafe impl GlobalAlloc for Counted {
         }
         p
     }
+    unsafe fn realloc(&self, p: *mut u8, old: Layout, new: usize) -> *mut u8 {
+        let result = unsafe { System.realloc(p, old, new) };
+        if !result.is_null() {
+            #[cfg(feature = "allocation-attribution")]
+            moebius_morph::profiling::allocation(3, new);
+            ALLOCS.fetch_add(1, Relaxed);
+            BYTES.fetch_add(new, Relaxed);
+            let live = if new >= old.size() {
+                LIVE.fetch_add(new - old.size(), Relaxed) + new - old.size()
+            } else {
+                LIVE.fetch_sub(old.size() - new, Relaxed) - (old.size() - new)
+            };
+            PEAK.fetch_max(live, Relaxed);
+        }
+        result
+    }
     unsafe fn dealloc(&self, p: *mut u8, layout: Layout) {
+        #[cfg(feature = "allocation-attribution")]
+        moebius_morph::profiling::allocation(4, layout.size());
         LIVE.fetch_sub(layout.size(), Relaxed);
         unsafe { System.dealloc(p, layout) };
     }
@@ -47,6 +70,10 @@ fn rss() -> Option<u64> {
         })
 }
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    if std::env::args().nth(1).as_deref() == Some("--build-identity") {
+        println!("{}", moebius_morph::BENCHMARK_BUILD_IDENTITY);
+        return Ok(());
+    }
     let args = std::env::args().skip(1).collect::<Vec<_>>();
     let initial = WorldSnapshot::load(Path::new(args.first().ok_or("snapshot required")?))?;
     let ticks: usize = args.get(1).ok_or("tick count required")?.parse()?;
@@ -60,20 +87,38 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let profile = world.collision_profile();
     let mut rows = Vec::with_capacity(ticks);
     for _ in 0..ticks {
+        let before_profile = world.collision_profile();
         let live = LIVE.load(Relaxed);
         PEAK.store(live, Relaxed);
         let allocations = ALLOCS.load(Relaxed);
         let bytes = BYTES.load(Relaxed);
+        #[cfg(feature = "allocation-attribution")]
+        moebius_morph::profiling::reset();
         let start = Instant::now();
         world.tick()?;
         let ns = start.elapsed().as_nanos();
+        #[cfg(feature = "allocation-attribution")]
+        let attribution = moebius_morph::profiling::snapshot();
         let allocated = ALLOCS.load(Relaxed) - allocations;
         let requested = BYTES.load(Relaxed) - bytes;
         let peak = PEAK.load(Relaxed);
         let digest = world.digest()?;
+        #[cfg(feature = "allocation-attribution")]
+        std::fs::write(
+            output.join(format!("attribution-{}.json", world.state().tick)),
+            serde_json::to_vec_pretty(
+                &json!({"labels":moebius_morph::profiling::LABELS,"columns":["calls","exclusive_ns","alloc","realloc","dealloc","requested_bytes","freed_bytes"],"values":attribution,"work_labels":moebius_morph::profiling::WORK_LABELS,"work":moebius_morph::profiling::work_snapshot()}),
+            )?,
+        )?;
+        let after_profile = world.collision_profile();
         rows.push(
             json!({"tick":world.state().tick,"ns":ns,"allocations":allocated,
-            "allocated_bytes":requested,"peak_live_bytes":peak,"digest":digest}),
+            "allocated_bytes":requested,"peak_live_bytes":peak,"digest":digest,
+                "queries":after_profile.queries-before_profile.queries,
+                "body_builds":after_profile.body_builds-before_profile.body_builds,
+                "pipe_builds":after_profile.pipe_builds-before_profile.pipe_builds,
+                "contact_hits":after_profile.contact_cache_hits-before_profile.contact_cache_hits,
+                "contact_misses":after_profile.contact_cache_misses-before_profile.contact_cache_misses}),
         );
     }
     world.validate()?;
@@ -123,6 +168,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             "compiler.rs":blake3::hash(include_bytes!("../src/compiler.rs")).to_hex().to_string()
         },
         "start_tick":start_tick,"ticks":ticks,"restore_ns":restore_ns,"tick_rows":rows,
+        "contact_cache_hits":p.contact_cache_hits-profile.contact_cache_hits,"contact_cache_misses":p.contact_cache_misses-profile.contact_cache_misses,
         "queries":p.queries-profile.queries,"distance_queries":p.distance_queries-profile.distance_queries,
         "pipe_builds":p.pipe_builds-profile.pipe_builds,"body_builds":p.body_builds-profile.body_builds,
         "resolve_ns":p.resolve_ns-profile.resolve_ns,"distance_ns":p.distance_ns-profile.distance_ns,

@@ -535,6 +535,9 @@ impl MaterialBook {
     /// Integrate every parcel one tick, then advance `tick`.
     /// A parcel admitted at the current tick is not moved until a later step.
     pub fn step(&mut self) -> Result<(), MorphError> {
+        #[cfg(feature = "allocation-attribution")]
+        let _allocation_scope = crate::profiling::enter(11);
+
         self.environment.validate()?;
         let mut next = Vec::with_capacity(self.parcels.len());
         for parcel in &self.parcels {

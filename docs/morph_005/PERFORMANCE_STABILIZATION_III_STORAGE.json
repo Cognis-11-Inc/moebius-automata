@@ -1,0 +1,29 @@
+{
+  "status": "ARCHIVED_RESTORE_VERIFIED",
+  "purpose": "MORPH-005 performance stabilization III measurements",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "volume_label": "Mermogon",
+  "volume_source_at_verification": "/dev/sdb2",
+  "mount": "/run/media/cognis/Mermogon",
+  "fstype": "ntfs3",
+  "verified_utc": "2026-11-26T03:42:52Z",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25/performance-stabilization-iii-v1/evidence.tar.gz",
+  "archive_sha256": "db2ae3d3fe36b82e8f9afe228bff7d005de299881b4f7fa23b49c8287f576368",
+  "archive_bytes": 6463840,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25/performance-stabilization-iii-v1/MANIFEST.json",
+  "manifest_sha256": "3cecd46505a06ac48b68e1fc3bbfe15012e004804a0eb5e9079f29880f3e55b5",
+  "manifest_bytes": 18828,
+  "member_count": 104,
+  "member_bytes": 99779760,
+  "all_restored_hashes_match": true,
+  "readability": {
+    "json": 83,
+    "text": 7,
+    "binary": 14,
+    "failures": 0
+  },
+  "git_head": "0a6390950ecb75f5b866e17f77ce54b5d7115075",
+  "git_dirty": true,
+  "timing_binary_sha256": "d317ccfb5093070ad6eb932216ec85abbaf3f0374ff7b3226629ed557cc80f85",
+  "does_not_overwrite": "performance-stabilization-ii-v1"
+}

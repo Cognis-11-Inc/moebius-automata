@@ -1,3 +1,381 @@
+# IV evidence sealed, checkpoint imminent — 2026-11-26 UTC
+
+Codex. PARTIAL, targets failed; no006. HEAD0a6390950ecb75f5b866e17f77ce54b5d7115075
+still dirty before authorized whole-worktree checkpoint. Mermogon UUID verified,
+IV v1 sealed archive170973a557b1bb7e5bc94e58e04d05d0dc9cd3e85be3262b871d88f0d3f79cf1;
+1499files/832130951bytes restored and every hash verified. II/III archive+manifest
+hashes rechecked. Receipt docs/morph_005/PERFORMANCE_STABILIZATION_IV_STORAGE.json.
+All three publication continuations exact after sole diagnostic const-init delta.
+Current Clippyallfeatures/fmt/Python9/history5 green; full suite NOT RUN at clean
+checkpoint yet. Atlas PASS45notes/197links; before/after retained in IV archive.
+Extra runtime archive restoration3600->3601 matches original exactly; raw outputs
+pending separate validation supplement (not inside sealed v1). Never repack v1.
+
+Next: git diff/staged review and authorized checkpoint; record clean HEAD/status;
+cargo test --offline --workspace --all-targets --all-features, then record result,
+seal supplement for new restore/broad evidence, update report/HANDOFF, docs receipt
+commit and push with remote-ref verification. Runtime/source changes require fresh
+clean certification if defects emerge. Do not claim performance resolved.
+
+---
+
+# ACTIVE IV matrix complete, publication gates pending — 2026-11-26 UTC
+
+Codex. PARTIAL performance stabilization. Main HEAD remains
+0a6390950ecb75f5b866e17f77ce54b5d7115075 dirty; no IV commit/push yet.
+All final legacy matrix rows and full worlds exactly match archived III. Nine
+cases: populations1/2/4/8/16, fresh420, eight120, congested30, headless720.
+V2 endurance3600 PASS execution/replay/materialgap0:137432 retained events,
+3288resident/725271payloadbytes;131segments, complete first65505legacy event
+payloads and first1863 trace rows exact. Legacy cap65536 unchanged. Performance
+FAIL:53.730msmean,108.044p99,193.428sforward/400.468sincludingreplay. Explicit
+provenance ceiling16384 and no automatic v2 source migration remain limits.
+
+Actual rendered720 PASS, independent initial/final worlds exactly match headless.
+Authority22.093msmean/69.648p99; frame16.673mean/17.645p99/max59.693ms.
+Frame280 inspected; no physical mouse acceptance. Wrapper expected wrong report
+name; retained error and independently verified render-report.json without rerun.
+NATIVE_VERIFIED_RECEIPT.json records correction. Congested allocation3ticks:
+263041278->23606126bytes,91.026% not95%; matched tick digests and II manifest hash.
+Raw source/builds/reports under /home/cognis/moebius-iv-20261126T035335Z.
+
+Five history fault tests pass (includes child helper); real OS RLIMIT_FSIZE yields
+EFBIG before commit, state unchanged, partial file retained, retry and simulated
+unpublished-segment checkpoint recovery exact. Swapped/corrupt/missing segments
+refuse. Physical full disk/power-cut NOT RUN. Nine Python integrity tests pass.
+35focused collision/habitat/first-sim and9runtime pass. Strict all-features Clippy
+passes after const diagnostic thread-local fix. This is the sole collision.rs
+post-matrix change; integration fault tests also added. PUBLICATION_SOURCE_DELTA
+verifies exact substitution; publication ordinary/history builds captured; three
+publication exact continuations pending/running (inspect logs). Frozen matrix
+retains original source identities. Archived v2 history must restore with retained
+final-history binary; source-binding intentionally refuses later source identity.
+
+Atlas45notes/197links PASS; before/after notes retained. Reports/RESULTS summarize
+all failures. Spatial1/10/100 translations1.174/1.129/1.143ms, identical328searches
+and3355triangles; actual configured extent experiments unsupported (no field).
+96distantchunks1.616ms, same distance work. Local wet meshes remain expensive.
+
+Next finish publication continuations; classify/seal/hash/restore all IV evidence
+on verified Mermogon UUID D0A02EEBA02ED82C; save storage receipt. Authorised whole-
+worktree checkpoint, clean-state broad all-features workspace suite, immutable
+validation supplement and report/HANDOFF updates, docs receipt commit, push/remote
+verification. No006. Do not claim performance solved. No timing/build jobs should
+remain after publication-continuations.log PASS. Preserve all failed experiments.
+
+---
+
+# ACTIVE IV history prototype — 2026-11-26 UTC
+
+Codex; PARTIAL, no smoothness or completion claim. Main HEAD remains
+0a6390950ecb75f5b866e17f77ce54b5d7115075, dirty and uncommitted.
+Operator explicitly authorized the v2 history prototype and required validation.
+New feature history-v2-prototype, src/history.rs and tests/history_v2.rs:
+explicit migration retains LEGACY-ORIGIN.json and its digest; immutable chained
+segments; bounded resident count/bytes and explicit provenance workspace; source
+identity binding; streaming exact legacy history checks in two passes; portable
+copy and explicit backing restore; IO failure rolls back visible tick state.
+512 paired ticks retain every event and exact physical state. Three history tests
+and nine runtime tests pass. Original failed compile log retained. Missing/corrupt
+segments and duplicate sealed command IDs refuse; missing segments directory leaves
+failed tick state/pending commands unchanged, restored backing retry passes.
+LIMIT: prototype has an explicit lifetime provenance-event ceiling (default16384
+per Accepted/Emitted/Deposited/Chewed kind); not indefinitely unlimited history.
+Contact/Fed records may stream beyond resident limits. No v1 cap raised.
+
+Shared event validator extracted without weakening original checks, using owned
+bounded command values. Full habitat/endurance validation remains pending.
+Last-separating-face hint and precomputed support subtree bounds reduce measured
+work; exact isolated results retained. FilamentMap now owns mutation revision
+receipts (serde-transparent) so same-tick middle edits invalidate horizon; unchanged
+clones are O(1). Honest-red middle edit and projection certificate logs retained.
+Cold body clearance now deferred until a solid query actually needs it; exact
+clearance remains tied to immutable geometry, focused solids tests run below.
+
+Strict precommit Clippy with collision-fixture,kernel-attribution,history-v2-prototype,
+spatial-scale passed after correcting collapsible_if. Focused collision/first-
+simulation/habitat suite is still running (debug habitat tests slow); inspect
+final-collision-focused.log before claiming complete. Final isolated ordinary,
+history, spatial and counted-allocation builds being captured under
+/home/cognis/moebius-iv-20261126T035335Z/final-*; final-builds.log.
+Do not edit source while captured build runs. Next GateD combined exact continuations
+then qualified final matrix, v2 full3600 and native720. III sealed archive unchanged.
+No IV external archive/checkpoint/clean broad suite/push yet. Preserve all raw
+failures and source archives; update reports/Atlas and HANDOFF before publication.
+
+---
+
+# ACTIVE IV progress — 2026-11-25 local / 2026-11-26 UTC
+
+Codex; PARTIAL, targets unmet. HEAD0a6390950ecb75f5b866e17f77ce54b5d7115075
+still dirty/uncommitted. IV working raw on system disk:
+/home/cognis/moebius-iv-20261126T035335Z; marker /tmp/moebius-current-stabilization-iv.
+Original Grok III entry source preserved in entry-source.tar.gz,entry-dirty.patch,
+entry-untracked and ENTRY.json. baseline-worktree now has a documented comparison
+overlay; it is not the pristine entry. Per-build source.tar.gz/binary/build receipts
+retain every current candidate. III archive restored/all104hashes verified; untouched.
+
+IMPORTANT user approved v2 history prototype and required validation via async
+question. Proposal docs/morph_005/HISTORICAL_CONTINUITY_PROPOSAL.md; keep v1
+unchanged, no raised cap or discarded events, explicit migration/version2 identity.
+History runtime implementation remains pending. No006 or sensory implementation.
+
+Implemented IV: feature-only collision_fixtures.rs recipe capture/replay; example
+collision_fixture and habitat_probe capture requests; authentic fingerprints,
+original hit bits and per-sample traces. Complete linear_cast_ns and node/leaf
+counters. query_trace now collected before replay (forward-only). Isolated captures
+reproduce402 and513 distinct searches exactly and match archived prefix rows32/34.
+Endurance fixture extraction through1668 matches archived contacts/nodes/attachments;
+370 casts captured from1667, full prefix snapshot saved once. PeakRSS57MiB.
+
+Accepted candidate so far: fixed14-plane exclusion over original convex hull
+vertices for distance BVH nodes and swept linear-cast subtrees; same original
+Parry leaf kernels/order/transforms, no geometry/tolerance/search changes.
+Projection/swept-vertex tests and linear-witness comparisons pass. Ordinary matched
+45tick eight/fresh plus8tick endurance continuations preserve ALL rows and full
+snapshots. Eight/fresh means remain~23.8/~14.6ms; endurance~117.6ms incl cold.
+No smoothness claim. See PERFORMANCE_STABILIZATION_IV.md for screen results.
+
+REJECTED support-index extension into linear casts: exact but no reliable gain,
+two fixtures regress; code removed; isolated-indexed-cast source/binary/results kept.
+Earlier all-face node walk and centroid support precheck remain rejected; not revived.
+Kernel attribution on fresh shows no100-step GJK cases,max13; expensive planes/
+support mapping persist. Detailed timers are separate diagnostic feature, not
+ordinary timing evidence.
+
+Benchmark integrity now checks active dependency features/profiles from captured
+source archives as well as executable/compiler/source identities;9 Python tests
+pass. New fixture pairing checks input/repeat/trace identity and exact sample
+booleans. Latest exec82700 completed all ordinary continuations; no timed job
+should remain. No IV Mermogon archive or commit yet. Broad clean suite/Clippy/fmt,
+honest-red certificate, final qualified matrix/native,Atlas pending. Next:
+inspect current source/diff and receipts, finish local query work and approved
+history prototype; archive/hash/restore; authorized checkpoint and clean broad
+certification/push. Keep full-matrix runs behind isolated/causal/equivalence gates.
+
+---
+
+# ACTIVE IV entry — 2026-11-25 America/Toronto / 2026-11-26 UTC
+
+Codex. PARTIAL. Operator adopts PERFORMANCE STABILIZATION IV; preserve III
+horizon, no006/biology, isolated gates before another complete matrix. Main
+HEAD0a6390950ecb75f5b866e17f77ce54b5d7115075 dirty. No new commit/push.
+III archive freshly restore-verified104members/99779760bytes, archiveSHA matches
+sealed db2ae3d3fe36b82e8f9afe228bff7d005de299881b4f7fa23b49c8287f576368;
+Mermogon mount UUID D0A02EEBA02ED82C verified. Source entry preserved under
+/home/cognis/moebius-iv-20261126T035335Z (system disk, not tmpfs), including
+entry patch/untracked/source archive and baseline-worktree with III overlay.
+
+IV working report/directive in docs/morph_005/PERFORMANCE_STABILIZATION_IV*.md.
+Archive verifies endurance tick1863/events65505/cap65536, replay true/gap0 and
+HistoryBudget failure. Prior239debugtests/Clippy are inherited, not IV-certified.
+Next implement observer capture of authentic body/pipe endpoint fixtures through
+existing canonical constructors/cast, complete linear cast timing and selected
+query traces; reproduce tick32/body12/pipe6chunk0 and tick34/body8/pipe2chunk1,
+then isolate expensive endurance linear casts. History work is assessment and
+concrete proposal first; do not alter its authoritative model without approval.
+No IV numerical optimization yet. Safe first inspect current collision.rs,
+query_trace and fixture instrumentation diff; preserve all prior negative trials.
+
+---
+
+# ACTIVE update — MORPH-005 III spatial locality, 2026-11-26
+
+Grok. **PARTIAL.** Biology suspended. MORPH-006 not started. No commit and no
+push: timing gates failed. Main HEAD `0a6390950ecb75f5b866e17f77ce54b5d7115075`,
+dirty. The older note below that says II evidence is only on tmpfs is historical.
+II was archived before this work and was not repacked.
+
+Timing binary `target/release/examples/habitat_probe` sha256
+`d317ccfb5093070ad6eb932216ec85abbaf3f0374ff7b3226629ed557cc80f85`, schema 1,
+release, features empty, rustc 1.99.1. After that build, `pipe_beyond_horizon`
+(test oracle only) lost a range-index loop so Clippy `-D warnings` passes, and
+`spatial_scale` gained `required-features`. The binary was not rebuilt. Its
+embedded `collision.rs` blake3 is
+`e67d2545def7b61a505aa9f1a5124c9d2e900d6f4480b13004367c0ab81279ce`.
+
+Code: `CollisionCache` refreshes a pipe horizon per filament.
+`interacting_chunks` is what `resolve`, `clear_shape`, `deposit_allowed`,
+`emission_obstacle`, and `admit_roots` walk. Distant chunks are omitted.
+Unready, enormous, or failed updates return every chunk. Hollow meshes stay
+authoritative. `StructuralIndex` stays presentation-only.
+
+Exactness: eight-founder 120 and fresh 420 digests match the contact-plane
+finals. Population 1/2/4/8/16 at 120 ticks match the matrix2 candidate digests.
+Replay equal and material gap 0 on every finished row, including the 1863
+committed endurance ticks.
+
+Spikes, feature-off: eight tick 32 is 77.367 ms and 873 searches, 402 of them
+one cast of body 12 against pipe 6 chunk 0. Fresh tick 34 is 102.812 ms and
+524 searches, 513 of them body 8 against pipe 2 chunk 1. Horizon rejects on
+that fresh tick are 0. Query-trace totals are doubled because the file is
+taken after replay; halving and using prefix `t(N-1)` matches all 45 profile
+rows.
+
+Matrix means: one founder 0.452 ms; two 7.321; four 8.445; fresh eight 17.286;
+eight-founder resume 19.039; fresh 420 16.313; native 720 27.060; sixteen
+49.595; congested steady 49.952 (cold 295.854); endurance steady 61.893.
+Endurance committed 1863/3600 ticks in 115.3 s, then
+`HistoryBudget: no authoritative ticks discarded` at `max_events` 65536
+(65505 events saved). P99 stays far above 8 ms except for the single founder.
+Thirty-two founders were not run: `habitat_colony` refuses a count outside
+1..=16.
+
+`cargo test --workspace --offline -- --test-threads=8`: 239 passed, 0 failed,
+0 ignored, 32 suites, debug. `cargo clippy --workspace --offline --all-targets
+-- -D warnings` passed. Spatial-scale example clippy with that feature passed.
+Not a clean-commit release certification.
+
+Archive, restore-verified 2026-11-26T03:42:52Z, UUID `D0A02EEBA02ED82C`:
+`/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25/performance-stabilization-iii-v1/evidence.tar.gz`
+sha256 `db2ae3d3fe36b82e8f9afe228bff7d005de299881b4f7fa23b49c8287f576368`.
+II archive sha256 is unchanged. Atlas vault UUID `8CA451CDA451BA82`, checker
+PASS, 45 notes. Sealed atlas tarball was not rewritten.
+
+Reports: `docs/morph_005/PERFORMANCE_STABILIZATION_III.md`,
+`SPATIAL_LOCALITY_AUDIT.md`, `QUERY_MULTIPLICITY.md`,
+`SENSORY_ARCHITECTURE.md` (contract only, not implemented),
+`PERFORMANCE_STABILIZATION_III_STORAGE.json`.
+
+Bottleneck: local hollow-mesh work. Short spikes are bisection of one close
+chunk. The long-run mean is mostly the cast timer, including linear
+`cast_shapes` when angular velocity is zero, plus pipe remesh and contact.
+Horizon time on that run is 0.10 ms/tick. Distant geometry did not move
+distance-search counts.
+
+Next: do not start MORPH-006. A later slice can attack linear mesh casts and
+the close-pair bisection only with exact contact equality. Do not raise
+`max_events` to manufacture a 3600-tick pass. Safe first command:
+`git status --short`, then read `docs/morph_005/PERFORMANCE_STABILIZATION_III.md`.
+
+---
+
+# ACTIVE update — MORPH-005 II spike composition, 2026-11-25
+
+Grok. Main HEAD 0a6390950ecb75f5b866e17f77ce54b5d7115075, dirty, no commit or
+push. Biology suspended. Targets unmet.
+
+Ordinary release composition, 45 ticks, final snapshots byte-identical before
+and after the new counters. Eight-founder tick 32 is 77.73 ms wall and 66.56 ms
+of distance: 873 searches, 442 inside the Lipschitz limit, 431 clear, 15 pipe
+builds at 6.55 ms. Tick 1 is the body-geometry build, 187.01 ms, not distance.
+Fresh tick 34 is 104.16 ms wall and 98.41 ms distance across 524 searches and
+3 pipe builds. A centroid support precheck stayed exact and slowed those spikes
+to 160.41 ms and 146.35 ms; it was reverted. `cargo test -p moebius-morph
+--offline --lib` — 21 passed, debug, rustc 1.99.1.
+
+Probe rows: `/tmp/moebius-stabilization-ii-20261125T232446Z/split2-population-8/collision-ticks.json`
+and `split2-fresh420`. Still tmpfs, not archived. Report section is in
+`docs/morph_005/PERFORMANCE_STABILIZATION_II.md`.
+
+Next: cut the repeated mesh-distance search without another per-triangle tree
+walk. The 14–16 fixed directions or a certified time advance need a measured
+win and exact snapshots before they stay. Matrix, archive, full suite, commit,
+and push remain pending. Safe first command: `git diff --stat`.
+
+---
+
+# ACTIVE update — MORPH-005 II planes, 2026-11-25
+
+Grok, resumed Codex session 01a210b3-f3a5-7ac0-9987-0b6dd83391d4. Reader skipped
+209 foreign instruction/reasoning records. Main HEAD 0a6390950ecb75f5b866e17f77ce54b5d7115075,
+dirty, no new commit or push. Biology remains suspended. Targets remain unmet.
+
+Verified ordinary release pairs, exact replay and exact saved rows. Distance
+face planes: eight founders 120 ticks 77.715 -> 20.924 ms mean, max 1016.212 ->
+188.101 ms. Fresh 420 ticks 32.976 -> 18.197 ms mean. Contact-path planes, second
+pair: eight founders 21.149 -> 19.399 ms mean, p99 84.984 -> 76.638 ms; fresh
+420 18.318 -> 16.463 ms mean. Tick budget is 16.667 ms. Steady means after tick 1
+are 17.955 and 16.055 ms. Tick 32 is still 76.638 ms. Pipe remesh remains about
+5.3 ms/tick. `cargo test -p moebius-morph --offline --lib` — 21 passed, debug,
+rustc 1.99.1. Full suite, Clippy, archive, and push were not run.
+
+Evidence is tmpfs only:
+`/tmp/moebius-stabilization-ii-20261125T232446Z/` (`planes-*`, `contactplane-*`,
+`ordinary-planes-current`, `ordinary-contact-planes`). Not on Mermogon. Report:
+`docs/morph_005/PERFORMANCE_STABILIZATION_II.md`.
+
+Next: per-tick composition of ordinary ticks 32 and 34; then matched pop 1/2/4/16,
+congested, native 720, and long 3600 against `ordinary-contact-planes`. Archive
+only after the Mermogon UUID check. Commit and push stay pending those gates.
+Safe first command: `git status --short`, then read the new report section.
+
+---
+
+# ACTIVE update — MORPH-005 II, 2026-11-25
+
+Codex; main0a63909 still dirty, no new commit/push. Matrix2 currently running
+ordinary-index-fixed vs ordinary-baseline in isolated captured builds; driver
+/tmp/moebius-ii-matrix2.py, log/raw under
+/tmp/moebius-stabilization-ii-20261125T232446Z. Do not run CPU-heavy checks during
+these timings. Exact short comparisons passed across recovery EPA reuse,
+all-contact EPA reuse, identical-query memo and conservative hull support index.
+Baseline263041278 -> all-contact23393966 requested bytes /3ticks (91.1% less).
+Contact memo further reduces time; index further reduces15-21% in instrumented
+3tick samples. No ordinary full-matrix result yet, targets remain unachieved.
+
+New support_index.rs indexes the SAME hull points; conservative outward bounds,
+original f32 dot and earliest-index tie select the identical support point. Unit
+1200point/12003direction-scale cases and27 focused tests pass; latest indexed
+warm contact test passes. Feature-gated counters observe66-97million potential
+convex vertex dot scans per congested tick,16858-26560 GJK contact leaf calls and
+5641-8275 EPA calls. Hidden solver loop iteration counts remain unavailable;
+support/call counts must not be mislabeled iterations.
+
+First ordinary-index long run was deliberately terminated143 after discovering
+support registry retained unindexed changing pipe meshes (observed processRSS
+537768KiB). Failure/log/partialoutputs retained; not performance evidence. Fixed
+registry admits only convex hulls/compounds; mesh/capsule nonretention regression
+passes. Corrected ordinary-index-fixed captured independently, matrix2 restarts
+from initial worlds. Regenerable Cargo target caches classified in
+BUILD_CACHE_CLASSIFICATION.json and removed; binaries/build logs/identities and
+all experimental evidence preserved. New cache bounded8192entries, fallback
+retains authoritative queries. No raw current archive yet. Apache2 Parry source
+adaptation notice/license in licenses/.
+
+Next inspect matrix2.log/status; complete P0 and scaling/locality/cache audit,
+ordinary complete420/congested/population/native720/3600 matched evidence and
+additional fixedstructure/history experiments. Required archive,Atlas,HANDOFF,
+focused/static/cleancommit/fullsuite/push gates remain pending. Biological
+expansion suspended; smoothness/scalability not established.
+
+---
+
+# ACTIVE MORPH-005 Stabilization II — 2026-11-25
+
+Codex; runtime-changing authorized phase, PARTIAL / targets unmet. Main HEAD
+0a6390950ecb75f5b866e17f77ce54b5d7115075, current work dirty and uncommitted.
+Entry verified numerical crates/Cargo sources identical to clean-tested cdc3acd.
+New directive and working report: docs/morph_005/PERFORMANCE_STABILIZATION_II*.md.
+
+Implemented WIP: isolated build/source/executable identity and matched-run gates in
+python/benchmark_integrity.py, build.rs and recorder examples; feature-gated scope
+allocation/time observer; reusable EPA workspace in canonical collision cache.
+Five Python integrity tests and focused 17 library +8 collision tests passed on
+recovery-only candidate. Expanded cast reuse initially failed compilation at one
+missed call site; fixed, retest pending. No new full-suite certification or push.
+
+Isolated same-instrumentation congested continuation,3 ticks after warmup:
+baseline263041278 requested bytes; recovery-only79252446, exact final and every
+tick digest. Timing improvement small; no smoothness claim. Recovery scope itself
+accounts for about184MB of baseline requests; sampled stacks reach fresh EPA.
+Revised realloc instrumentation differs from older wrapper: historical totals
+must not be mixed. Samples and quantitative runs are separate.
+
+Raw work retained /tmp/moebius-stabilization-ii-20261125T232446Z; isolated-baseline
+and isolated-recovery build receipts/binaries and matched-* outputs there. Baseline
+observer worktree /tmp/moebius-ii-baseline-0a. No current raw archive yet. Existing
+sealed Mermogon archives below remain authoritative for prior phase.
+
+Next: focused tests of expanded reusable contacts; explicit warmed/cold exact
+contact regression; independently captured build and matched benchmark. Complete
+attribution, locality/cache work and full required matrix remain pending. Then
+verify Mermogon UUID, archive/hash/restore, Atlas, report; authorized clean commit,
+full suite, push and remote verification. Biology remains suspended. First command:
+tail -60 /tmp/moebius-ii-shared-contact-test.log; git status --short.
+
+---
+
 # Performance stabilization measured and source certified — 2026-11-25
 
 Codex. **PARTIAL / PERFORMANCE UNACCEPTABLE.** Operator holds back additional

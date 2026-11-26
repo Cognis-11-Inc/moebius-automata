@@ -1,0 +1,90 @@
+{
+  "status": "ARCHIVED_RESTORE_VERIFIED",
+  "purpose": "MORPH-005 performance stabilization II raw benchmark evidence and candidate source identity, preserved before stabilization III modifications",
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "volume_label": "Mermogon",
+  "volume_source_at_verification": "/dev/sdb2",
+  "mount": "/run/media/cognis/Mermogon",
+  "fstype": "ntfs3",
+  "verified_utc": "2026-11-26T02:27:01Z",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25/performance-stabilization-ii-v1/evidence.tar.gz",
+  "archive_sha256": "62e46ca7e8976fa0246fa9b628545abd6dd13ac7254815a67bf6f740db7ba8b0",
+  "archive_bytes": 40626097,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-25/performance-stabilization-ii-v1/MANIFEST.json",
+  "manifest_sha256": "b7b4911e5812d1ce05cd36e1013edf7751144fc8f2778d0b0d9931025699086d",
+  "manifest_bytes": 104130,
+  "member_count": 618,
+  "member_bytes": 219123593,
+  "tar_members": 618,
+  "bad_members": 0,
+  "all_restored_hashes_match": true,
+  "readability": {
+    "json_parsed": 451,
+    "utf8_text": 107,
+    "binary_opened": 60,
+    "failures": 0
+  },
+  "restore_directory": "/tmp/moebius-ii-v1-restore-20261126",
+  "restore_directory_removed": true,
+  "git_head": "0a6390950ecb75f5b866e17f77ce54b5d7115075",
+  "git_branch": "main",
+  "git_dirty": true,
+  "excluded_cargo_target_caches": true,
+  "excluded_note": "Path components named target were regenerable Cargo caches, 3.383 GB / 9038 files, and were not archived.",
+  "source_diff": "receipts/SOURCE_DIFF.patch inside the archive",
+  "executable_identity": {
+    "spike_composition": {
+      "build": "ordinary-split2",
+      "executable": "habitat_probe",
+      "sha256": "561c3e7fdd18cb5e3436ca008580a6cf1779c073773fa0412961f974a67247f5",
+      "profile": "release",
+      "features": {},
+      "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+      "command": [
+        "cargo",
+        "build",
+        "--release",
+        "--offline",
+        "--locked",
+        "-p",
+        "moebius-morph",
+        "--example",
+        "habitat_probe"
+      ]
+    },
+    "contact_planes": {
+      "build": "ordinary-contact-planes",
+      "sha256": "a7d13faa6dfda05923444ee95aaa28405e066c72ab440bb7e0ab0087bdbf7c2d"
+    },
+    "reverted_support_axis": {
+      "build": "ordinary-axis",
+      "sha256": "e92e4869476759c349b1bc80519fb6291e6c6d4f4007f03a65a2ac08ee6e0a71",
+      "result": "exact finals, slower spikes, code reverted and not repeated"
+    }
+  },
+  "hotspot_reconciliation": {
+    "source": "evidence/split2-population-8/collision-ticks.json and evidence/split2-fresh420/collision-ticks.json",
+    "eight_founder_tick_32": {
+      "wall_ns": 77727062,
+      "distance_ns": 66557279,
+      "distance_queries": 873,
+      "distance_within": 442,
+      "distance_clear": 431,
+      "pipe_builds": 15,
+      "pipe_geometry_ns": 6511431
+    },
+    "fresh_colony_tick_34": {
+      "wall_ns": 104161822,
+      "distance_ns": 98409797,
+      "distance_queries": 524,
+      "distance_within": 264,
+      "distance_clear": 260,
+      "pipe_builds": 3,
+      "pipe_geometry_ns": 1074603
+    },
+    "cold_start_tick_1_body_geometry_ns": {
+      "eight_founder": 186269616,
+      "fresh_colony": 186048542
+    }
+  }
+}

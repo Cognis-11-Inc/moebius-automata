@@ -119,8 +119,8 @@
     },
     {
       "path": "07_EXPERIMENTS/MORPH_005.md",
-      "bytes": 2219,
-      "sha256": "865f06f920bf9a31c693a48807b28824869263117a57e24bda254e62d75945c9"
+      "bytes": 3417,
+      "sha256": "1865ccf14ab16cb2f01203f02100395bc563cbee11a7f63fb4a2525e30fd8778"
     },
     {
       "path": "08_ARCHITECTURE/ANATOMY_SPEC_V2.md",
@@ -189,8 +189,8 @@
     },
     {
       "path": "09_EVIDENCE/MORPH_005_LIMITS.md",
-      "bytes": 1395,
-      "sha256": "258ff57cce4b806c6c1176a736eed33418a1a338aab77121dac7488a49b0a202"
+      "bytes": 2593,
+      "sha256": "9998641a722cf0aa407bac9b5457aef38bbdc049d1ce6dfb9023cf1d55248e7f"
     },
     {
       "path": "90_INBOX/INDEX.md",
@@ -234,9 +234,15 @@
     },
     {
       "path": "07_EXPERIMENTS/SIMULATION_0001.md",
-      "sha256": "0f4155874da18f04fc00fbba358863e685729278d124bf0228c82d5416297714"
+      "sha256": "7b87406a06576c7d003ea764da285fda66493393a730ba75c2e8c2e5811d717c"
     }
   ],
   "snapshot_note": "Rehashed after the clean MORPH-003 suite on a8cb705. Six edited notes cite that implementation commit. Ship design canon is unchanged.",
-  "latest_update": "SIMULATION-0001 causal continuation: trapped native colony, expected-red slide defect, immutable codex-stall-diagnosis-v1 evidence. PARTIAL; no response repair or new clean-commit certification."
+  "latest_update": "SIMULATION-0001 spatial locality III is PARTIAL. Horizon evidence is on Mermogon as performance-stabilization-iii-v1. No commit. Sealed atlas tarball unchanged.",
+  "stabilization_iv": {
+    "status": "PARTIAL",
+    "verified_date_utc": "2026-11-26",
+    "report": "docs/morph_005/PERFORMANCE_STABILIZATION_IV.md",
+    "role": "navigation only; repository and restore-verified Mermogon evidence authoritative"
+  }
 }

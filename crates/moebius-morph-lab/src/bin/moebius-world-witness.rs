@@ -168,6 +168,10 @@ enum Command {
 #[derive(Component)]
 struct Control(Command);
 fn main() {
+    if std::env::args().nth(1).as_deref() == Some("--build-identity") {
+        println!("{}", moebius_morph::BENCHMARK_BUILD_IDENTITY);
+        return;
+    }
     let args = Args::parse();
     assert!(
         (1..=16).contains(&args.mesh_budget)
@@ -2014,12 +2018,7 @@ fn draw(
     {
         let agents = habitat.agents.len();
         let peak = d.peak_population.max(agents);
-        let births = d
-            .snapshot
-            .events
-            .iter()
-            .filter(|event| matches!(event, moebius_morph::runtime::Event::Reproduced { .. }))
-            .count();
+        let births = d.snapshot.total_births();
         let stored: u64 = d
             .snapshot
             .instances

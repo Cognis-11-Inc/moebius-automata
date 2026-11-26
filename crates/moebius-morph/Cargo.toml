@@ -13,3 +13,28 @@ serde_json = "1"
 blake3 = "1"
 
 parry3d = { version = "=0.27.0", default-features = false, features = ["required-features", "std", "alloc", "enhanced-determinism"] }
+
+[build-dependencies]
+blake3 = "1"
+serde_json = "1"
+
+[features]
+allocation-attribution = []
+query-trace = []
+# Authentic query recipe capture / isolated canonical-query harness only.
+collision-fixture = []
+# Per-leaf timers are diagnostic and excluded from ordinary timing builds.
+kernel-attribution = ["collision-fixture"]
+# Explicitly selected history encoding; legacy full-log worlds stay unchanged.
+history-v2-prototype = []
+# Measurement splice used only by examples/spatial_scale.rs.
+# Feature-off runtimes have no method and no extra work.
+spatial-scale = []
+
+[[example]]
+name = "spatial_scale"
+required-features = ["spatial-scale"]
+
+[[example]]
+name = "collision_fixture"
+required-features = ["collision-fixture"]
