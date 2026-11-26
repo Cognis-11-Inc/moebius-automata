@@ -2,6 +2,75 @@
 use super::*;
 use std::cell::RefCell;
 
+#[path = "collision_batch.rs"]
+pub mod batch;
+
+#[derive(Serialize)]
+pub struct RecoveryRecord {
+    pair: Option<(u64, u64, PhysicalTarget)>,
+    geometry_blake3: [String; 2],
+    poses: [RigidPose; 4],
+    samples: Vec<(u32, Option<u32>, u128)>,
+    elapsed_ns: u128,
+}
+thread_local! {
+    static RECOVERY: RefCell<Option<Vec<RecoveryRecord>>> = const { RefCell::new(None) };
+    static RECOVERY_PAIR: RefCell<Option<(u64, u64, PhysicalTarget)>> = const { RefCell::new(None) };
+}
+pub(super) fn recovery_pair(tick: u64, body: u64, owner: PhysicalTarget) {
+    if RECOVERY.with(|r| r.borrow().is_some()) {
+        RECOVERY_PAIR.with(|r| *r.borrow_mut() = Some((tick, body, owner)));
+    }
+}
+/// Explicit diagnostic selection; feature availability alone does not record.
+pub fn capture_recovery() {
+    RECOVERY.with(|r| *r.borrow_mut() = Some(Vec::new()));
+}
+pub fn take_recovery() -> Vec<RecoveryRecord> {
+    RECOVERY.with(|r| r.borrow_mut().take().unwrap_or_default())
+}
+pub(super) struct RecoveryCapture {
+    record: Option<RecoveryRecord>,
+    started: Instant,
+}
+impl RecoveryCapture {
+    pub(super) fn new(a: &Geometry, b: &Geometry, poses: [RigidPose; 4]) -> Self {
+        let enabled = RECOVERY.with(|r| r.borrow().is_some());
+        let record = enabled.then(|| RecoveryRecord {
+            pair: RECOVERY_PAIR.with(|r| r.borrow().clone()),
+            geometry_blake3: [geometry_hash(a), geometry_hash(b)],
+            poses,
+            samples: Vec::new(),
+            elapsed_ns: 0,
+        });
+        Self {
+            record,
+            started: Instant::now(),
+        }
+    }
+    pub(super) fn sample(&mut self, t: f32, depth: Option<f32>, ns: u128) {
+        if let Some(record) = &mut self.record {
+            record
+                .samples
+                .push((t.to_bits(), depth.map(f32::to_bits), ns));
+        }
+    }
+}
+impl Drop for RecoveryCapture {
+    fn drop(&mut self) {
+        if let Some(mut record) = self.record.take() {
+            record.elapsed_ns = self.started.elapsed().as_nanos();
+            RECOVERY.with(|r| {
+                if let Some(rows) = &mut *r.borrow_mut() {
+                    // Explicit bounded diagnostic refusal, never silent truncation.
+                    assert!(rows.len() < 8192, "recovery diagnostic budget exceeded");
+                    rows.push(record);
+                }
+            });
+        }
+    }
+}
+
 fn geometry_hash(g: &Geometry) -> String {
     fn update(g: &Geometry, h: &mut blake3::Hasher) {
         h.update(&g.radius.to_bits().to_le_bytes());

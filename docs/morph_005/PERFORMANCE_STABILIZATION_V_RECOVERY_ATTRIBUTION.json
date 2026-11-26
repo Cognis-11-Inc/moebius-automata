@@ -1,0 +1,422 @@
+[
+  {
+    "scene": "eight",
+    "ticks": 8,
+    "calls": 0,
+    "distinct_exact_geometry_pose_recipes": 0,
+    "repeated_recipes": 0,
+    "samples": 0,
+    "sample_count_histogram": {},
+    "sample_elapsed_ms": 0.0,
+    "per_tick_body_calls": [],
+    "target_pairs": [],
+    "all_intermediate_rows_and_final_exact_to_reference": true
+  },
+  {
+    "scene": "fresh",
+    "ticks": 8,
+    "calls": 0,
+    "distinct_exact_geometry_pose_recipes": 0,
+    "repeated_recipes": 0,
+    "samples": 0,
+    "sample_count_histogram": {},
+    "sample_elapsed_ms": 0.0,
+    "per_tick_body_calls": [],
+    "target_pairs": [],
+    "all_intermediate_rows_and_final_exact_to_reference": true
+  },
+  {
+    "scene": "endurance",
+    "ticks": 8,
+    "calls": 34,
+    "distinct_exact_geometry_pose_recipes": 24,
+    "repeated_recipes": 10,
+    "samples": 113,
+    "sample_count_histogram": {
+      "1": 13,
+      "5": 20,
+      "0": 1
+    },
+    "sample_elapsed_ms": 24.83737,
+    "per_tick_body_calls": [
+      {
+        "tick": 1667,
+        "body": 1,
+        "calls": 1
+      },
+      {
+        "tick": 1667,
+        "body": 54,
+        "calls": 1
+      },
+      {
+        "tick": 1668,
+        "body": 1,
+        "calls": 4
+      },
+      {
+        "tick": 1668,
+        "body": 54,
+        "calls": 1
+      },
+      {
+        "tick": 1669,
+        "body": 54,
+        "calls": 1
+      },
+      {
+        "tick": 1670,
+        "body": 1,
+        "calls": 2
+      },
+      {
+        "tick": 1670,
+        "body": 54,
+        "calls": 1
+      },
+      {
+        "tick": 1671,
+        "body": 1,
+        "calls": 2
+      },
+      {
+        "tick": 1671,
+        "body": 54,
+        "calls": 1
+      },
+      {
+        "tick": 1672,
+        "body": 1,
+        "calls": 2
+      },
+      {
+        "tick": 1672,
+        "body": 52,
+        "calls": 3
+      },
+      {
+        "tick": 1672,
+        "body": 54,
+        "calls": 3
+      },
+      {
+        "tick": 1673,
+        "body": 1,
+        "calls": 2
+      },
+      {
+        "tick": 1673,
+        "body": 54,
+        "calls": 3
+      },
+      {
+        "tick": 1674,
+        "body": 1,
+        "calls": 5
+      },
+      {
+        "tick": 1674,
+        "body": 54,
+        "calls": 2
+      }
+    ],
+    "target_pairs": [
+      {
+        "pair": [
+          54,
+          {
+            "chunk": 2,
+            "filament": 16,
+            "kind": "Pipe"
+          }
+        ],
+        "calls": 13,
+        "distinct_recipes": 9
+      },
+      {
+        "pair": [
+          1,
+          {
+            "chunk": 3,
+            "filament": 22,
+            "kind": "Pipe"
+          }
+        ],
+        "calls": 12,
+        "distinct_recipes": 7
+      },
+      {
+        "pair": [
+          1,
+          {
+            "chunk": 0,
+            "filament": 22,
+            "kind": "Pipe"
+          }
+        ],
+        "calls": 6,
+        "distinct_recipes": 6
+      },
+      {
+        "pair": [
+          52,
+          {
+            "id": 53,
+            "kind": "Organism"
+          }
+        ],
+        "calls": 3,
+        "distinct_recipes": 2
+      }
+    ],
+    "all_intermediate_rows_and_final_exact_to_reference": true
+  },
+  {
+    "scene": "congested",
+    "ticks": 4,
+    "calls": 69,
+    "distinct_exact_geometry_pose_recipes": 39,
+    "repeated_recipes": 30,
+    "samples": 303,
+    "sample_count_histogram": {
+      "5": 57,
+      "1": 9,
+      "3": 3
+    },
+    "sample_elapsed_ms": 151.413034,
+    "per_tick_body_calls": [
+      {
+        "tick": 720,
+        "body": 1,
+        "calls": 10
+      },
+      {
+        "tick": 720,
+        "body": 8,
+        "calls": 4
+      },
+      {
+        "tick": 720,
+        "body": 18,
+        "calls": 2
+      },
+      {
+        "tick": 720,
+        "body": 20,
+        "calls": 6
+      },
+      {
+        "tick": 721,
+        "body": 1,
+        "calls": 18
+      },
+      {
+        "tick": 721,
+        "body": 8,
+        "calls": 2
+      },
+      {
+        "tick": 721,
+        "body": 18,
+        "calls": 3
+      },
+      {
+        "tick": 721,
+        "body": 20,
+        "calls": 6
+      },
+      {
+        "tick": 722,
+        "body": 1,
+        "calls": 6
+      },
+      {
+        "tick": 722,
+        "body": 8,
+        "calls": 2
+      },
+      {
+        "tick": 722,
+        "body": 16,
+        "calls": 1
+      },
+      {
+        "tick": 722,
+        "body": 18,
+        "calls": 3
+      },
+      {
+        "tick": 723,
+        "body": 8,
+        "calls": 2
+      },
+      {
+        "tick": 723,
+        "body": 16,
+        "calls": 1
+      },
+      {
+        "tick": 723,
+        "body": 18,
+        "calls": 3
+      }
+    ],
+    "target_pairs": [
+      {
+        "pair": [
+          18,
+          {
+            "chunk": 2,
+            "filament": 6,
+            "kind": "Pipe"
+          }
+        ],
+        "calls": 11,
+        "distinct_recipes": 8
+      },
+      {
+        "pair": [
+          1,
+          {
+            "chunk": 0,
+            "filament": 7,
+            "kind": "Pipe"
+          }
+        ],
+        "calls": 8,
+        "distinct_recipes": 3
+      },
+      {
+        "pair": [
+          1,
+          {
+            "chunk": 0,
+            "filament": 8,
+            "kind": "Pipe"
+          }
+        ],
+        "calls": 8,
+        "distinct_recipes": 3
+      },
+      {
+        "pair": [
+          8,
+          {
+            "chunk": 0,
+            "filament": 11,
+            "kind": "Pipe"
+          }
+        ],
+        "calls": 8,
+        "distinct_recipes": 8
+      },
+      {
+        "pair": [
+          1,
+          {
+            "id": 18,
+            "kind": "Organism"
+          }
+        ],
+        "calls": 5,
+        "distinct_recipes": 4
+      },
+      {
+        "pair": [
+          1,
+          {
+            "chunk": 0,
+            "filament": 9,
+            "kind": "Pipe"
+          }
+        ],
+        "calls": 5,
+        "distinct_recipes": 2
+      },
+      {
+        "pair": [
+          1,
+          {
+            "chunk": 0,
+            "filament": 10,
+            "kind": "Pipe"
+          }
+        ],
+        "calls": 5,
+        "distinct_recipes": 2
+      },
+      {
+        "pair": [
+          20,
+          {
+            "kind": "Parcel",
+            "organism": 1,
+            "parcel": 134
+          }
+        ],
+        "calls": 5,
+        "distinct_recipes": 2
+      },
+      {
+        "pair": [
+          20,
+          {
+            "kind": "Parcel",
+            "organism": 1,
+            "parcel": 135
+          }
+        ],
+        "calls": 5,
+        "distinct_recipes": 2
+      },
+      {
+        "pair": [
+          1,
+          {
+            "chunk": 0,
+            "filament": 12,
+            "kind": "Pipe"
+          }
+        ],
+        "calls": 3,
+        "distinct_recipes": 1
+      },
+      {
+        "pair": [
+          8,
+          {
+            "chunk": 0,
+            "filament": 3,
+            "kind": "Pipe"
+          }
+        ],
+        "calls": 2,
+        "distinct_recipes": 2
+      },
+      {
+        "pair": [
+          20,
+          {
+            "kind": "Parcel",
+            "organism": 1,
+            "parcel": 136
+          }
+        ],
+        "calls": 2,
+        "distinct_recipes": 1
+      },
+      {
+        "pair": [
+          16,
+          {
+            "id": 38,
+            "kind": "Organism"
+          }
+        ],
+        "calls": 2,
+        "distinct_recipes": 1
+      }
+    ],
+    "all_intermediate_rows_and_final_exact_to_reference": true
+  }
+]

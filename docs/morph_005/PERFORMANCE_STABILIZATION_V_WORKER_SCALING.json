@@ -1,0 +1,388 @@
+{
+  "status": "PASS_ISOLATED_EXACT_THROUGHPUT_ONLY",
+  "runtime_admission": "NOT IMPLEMENTED",
+  "rows": [
+    {
+      "scene": "eight",
+      "workers": 1,
+      "queries": 1,
+      "warm_rounds": 58,
+      "mean_ms": 17.875713086206897,
+      "p99_observed_ms": 19.6927,
+      "max_ms": 19.841279,
+      "first_round_ms": [
+        19.66543,
+        17.60555
+      ],
+      "max_rss_kib": 21956,
+      "process_cpu_to_wall": [
+        0.991065067403683,
+        0.9861752282319642
+      ],
+      "mean_query_elapsed_occupancy": 0.9990126678215593,
+      "mean_nonquery_or_imbalance_ms": 0.017842258620689656,
+      "relative_throughput": 1.0
+    },
+    {
+      "scene": "eight",
+      "workers": 2,
+      "queries": 1,
+      "warm_rounds": 58,
+      "mean_ms": 16.894036551724138,
+      "p99_observed_ms": 17.171894,
+      "max_ms": 17.447021,
+      "first_round_ms": [
+        19.159135,
+        17.986877
+      ],
+      "max_rss_kib": 21956,
+      "process_cpu_to_wall": [
+        0.9992174030547033,
+        0.9821695633478214
+      ],
+      "mean_query_elapsed_occupancy": 0.49919024165562004,
+      "mean_nonquery_or_imbalance_ms": 0.02741548275862069,
+      "relative_throughput": 1.058107873241376
+    },
+    {
+      "scene": "eight",
+      "workers": 4,
+      "queries": 1,
+      "warm_rounds": 58,
+      "mean_ms": 16.962919706896553,
+      "p99_observed_ms": 17.279243,
+      "max_ms": 17.524351,
+      "first_round_ms": [
+        18.361592,
+        17.839598
+      ],
+      "max_rss_kib": 21956,
+      "process_cpu_to_wall": [
+        0.9865860438533552,
+        0.9671759682712049
+      ],
+      "mean_query_elapsed_occupancy": 0.24960809168422382,
+      "mean_nonquery_or_imbalance_ms": 0.026584241379310345,
+      "relative_throughput": 1.0538111006290523
+    },
+    {
+      "scene": "eight",
+      "workers": 8,
+      "queries": 1,
+      "warm_rounds": 58,
+      "mean_ms": 16.78756082758621,
+      "p99_observed_ms": 16.974056,
+      "max_ms": 17.454872,
+      "first_round_ms": [
+        18.026926,
+        18.406173
+      ],
+      "max_rss_kib": 21956,
+      "process_cpu_to_wall": [
+        0.9869445575120542,
+        0.9805694244334076
+      ],
+      "mean_query_elapsed_occupancy": 0.12478896516996,
+      "mean_nonquery_or_imbalance_ms": 0.028362310344827585,
+      "relative_throughput": 1.0648189614796557
+    },
+    {
+      "scene": "eight",
+      "workers": 16,
+      "queries": 1,
+      "warm_rounds": 58,
+      "mean_ms": 16.881065103448275,
+      "p99_observed_ms": 17.765408,
+      "max_ms": 17.773379,
+      "first_round_ms": [
+        18.038885,
+        18.398563
+      ],
+      "max_rss_kib": 21956,
+      "process_cpu_to_wall": [
+        0.9969622279399786,
+        0.983083605809717
+      ],
+      "mean_query_elapsed_occupancy": 0.062399250889537114,
+      "mean_nonquery_or_imbalance_ms": 0.02721637931034483,
+      "relative_throughput": 1.058920925703642
+    },
+    {
+      "scene": "eight",
+      "workers": 32,
+      "queries": 1,
+      "warm_rounds": 58,
+      "mean_ms": 16.78578803448276,
+      "p99_observed_ms": 17.290733,
+      "max_ms": 17.650329,
+      "first_round_ms": [
+        18.580491,
+        18.088116
+      ],
+      "max_rss_kib": 21956,
+      "process_cpu_to_wall": [
+        0.9848607116932871,
+        1.0202203502493574
+      ],
+      "mean_query_elapsed_occupancy": 0.031195254206221823,
+      "mean_nonquery_or_imbalance_ms": 0.029418637931034483,
+      "relative_throughput": 1.0649314199300695
+    },
+    {
+      "scene": "fresh",
+      "workers": 1,
+      "queries": 1,
+      "warm_rounds": 58,
+      "mean_ms": 60.185867068965514,
+      "p99_observed_ms": 62.228942,
+      "max_ms": 62.495871,
+      "first_round_ms": [
+        61.382354,
+        61.146492
+      ],
+      "max_rss_kib": 21956,
+      "process_cpu_to_wall": [
+        0.9965657497143869,
+        0.9965193621908306
+      ],
+      "mean_query_elapsed_occupancy": 0.9995899783129799,
+      "mean_nonquery_or_imbalance_ms": 0.02467698275862069,
+      "relative_throughput": 1.0
+    },
+    {
+      "scene": "fresh",
+      "workers": 2,
+      "queries": 1,
+      "warm_rounds": 58,
+      "mean_ms": 60.51164193103448,
+      "p99_observed_ms": 62.822236,
+      "max_ms": 67.661773,
+      "first_round_ms": [
+        60.851291,
+        62.33201
+      ],
+      "max_rss_kib": 21956,
+      "process_cpu_to_wall": [
+        0.9952092439503634,
+        0.9943638154924872
+      ],
+      "mean_query_elapsed_occupancy": 0.4997646774794918,
+      "mean_nonquery_or_imbalance_ms": 0.02849201724137931,
+      "relative_throughput": 0.9946163275086758
+    },
+    {
+      "scene": "fresh",
+      "workers": 4,
+      "queries": 1,
+      "warm_rounds": 58,
+      "mean_ms": 61.418807655172415,
+      "p99_observed_ms": 62.870495,
+      "max_ms": 63.202351,
+      "first_round_ms": [
+        62.575906,
+        62.765015
+      ],
+      "max_rss_kib": 21956,
+      "process_cpu_to_wall": [
+        0.9915841357602663,
+        0.9921180432464517
+      ],
+      "mean_query_elapsed_occupancy": 0.24988657837831132,
+      "mean_nonquery_or_imbalance_ms": 0.027864758620689656,
+      "relative_throughput": 0.9799256834628071
+    },
+    {
+      "scene": "fresh",
+      "workers": 8,
+      "queries": 1,
+      "warm_rounds": 58,
+      "mean_ms": 60.14923224137931,
+      "p99_observed_ms": 60.95321,
+      "max_ms": 62.601438,
+      "first_round_ms": [
+        61.470398,
+        62.435156
+      ],
+      "max_rss_kib": 21956,
+      "process_cpu_to_wall": [
+        0.990898455993298,
+        0.9991422340803785
+      ],
+      "mean_query_elapsed_occupancy": 0.12493367998927603,
+      "mean_nonquery_or_imbalance_ms": 0.03192844827586207,
+      "relative_throughput": 1.000609065589386
+    },
+    {
+      "scene": "fresh",
+      "workers": 16,
+      "queries": 1,
+      "warm_rounds": 58,
+      "mean_ms": 60.69572796551724,
+      "p99_observed_ms": 61.318486,
+      "max_ms": 61.484243,
+      "first_round_ms": [
+        60.626797,
+        61.648392
+      ],
+      "max_rss_kib": 21956,
+      "process_cpu_to_wall": [
+        0.9977532187646441,
+        1.0010359974387812
+      ],
+      "mean_query_elapsed_occupancy": 0.06247170550958542,
+      "mean_nonquery_or_imbalance_ms": 0.02746412068965517,
+      "relative_throughput": 0.9915997235119843
+    },
+    {
+      "scene": "fresh",
+      "workers": 32,
+      "queries": 1,
+      "warm_rounds": 58,
+      "mean_ms": 60.557625413793104,
+      "p99_observed_ms": 62.639941,
+      "max_ms": 62.689902,
+      "first_round_ms": [
+        62.032025,
+        61.765539
+      ],
+      "max_rss_kib": 21956,
+      "process_cpu_to_wall": [
+        0.9971829383487171,
+        0.9959296659081971
+      ],
+      "mean_query_elapsed_occupancy": 0.031234717668490754,
+      "mean_nonquery_or_imbalance_ms": 0.029664896551724138,
+      "relative_throughput": 0.9938610812050943
+    },
+    {
+      "scene": "endurance",
+      "workers": 1,
+      "queries": 370,
+      "warm_rounds": 58,
+      "mean_ms": 73.63587168965518,
+      "p99_observed_ms": 75.066922,
+      "max_ms": 78.80489,
+      "first_round_ms": [
+        75.592446,
+        74.219919
+      ],
+      "max_rss_kib": 58884,
+      "process_cpu_to_wall": [
+        0.9932041238108756,
+        0.9939311911960462
+      ],
+      "mean_query_elapsed_occupancy": 0.9993145539744791,
+      "mean_nonquery_or_imbalance_ms": 0.05050210344827586,
+      "relative_throughput": 1.0
+    },
+    {
+      "scene": "endurance",
+      "workers": 2,
+      "queries": 370,
+      "warm_rounds": 58,
+      "mean_ms": 38.63767948275862,
+      "p99_observed_ms": 40.551075,
+      "max_ms": 40.711077,
+      "first_round_ms": [
+        39.916701,
+        39.730226
+      ],
+      "max_rss_kib": 57412,
+      "process_cpu_to_wall": [
+        1.7279724534182874,
+        1.7089084813822468
+      ],
+      "mean_query_elapsed_occupancy": 0.9689944721249523,
+      "mean_nonquery_or_imbalance_ms": 0.04268953448275862,
+      "relative_throughput": 1.9058047138289937
+    },
+    {
+      "scene": "endurance",
+      "workers": 4,
+      "queries": 370,
+      "warm_rounds": 58,
+      "mean_ms": 20.109886568965518,
+      "p99_observed_ms": 21.677741,
+      "max_ms": 23.01715,
+      "first_round_ms": [
+        20.354952,
+        20.834399
+      ],
+      "max_rss_kib": 58400,
+      "process_cpu_to_wall": [
+        2.755559599133262,
+        2.738512084627
+      ],
+      "mean_query_elapsed_occupancy": 0.9452629052250968,
+      "mean_nonquery_or_imbalance_ms": 0.03633122413793104,
+      "relative_throughput": 3.661675138600402
+    },
+    {
+      "scene": "endurance",
+      "workers": 8,
+      "queries": 370,
+      "warm_rounds": 58,
+      "mean_ms": 13.76823675862069,
+      "p99_observed_ms": 17.476737,
+      "max_ms": 17.651627,
+      "first_round_ms": [
+        12.912157,
+        16.08833
+      ],
+      "max_rss_kib": 58620,
+      "process_cpu_to_wall": [
+        3.7276702886723445,
+        3.7027146837640963
+      ],
+      "mean_query_elapsed_occupancy": 0.75344183995314,
+      "mean_nonquery_or_imbalance_ms": 0.04383598275862069,
+      "relative_throughput": 5.3482426966219645
+    },
+    {
+      "scene": "endurance",
+      "workers": 16,
+      "queries": 370,
+      "warm_rounds": 58,
+      "mean_ms": 14.030063206896552,
+      "p99_observed_ms": 16.697045,
+      "max_ms": 16.964773,
+      "first_round_ms": [
+        12.808098,
+        15.216707
+      ],
+      "max_rss_kib": 58840,
+      "process_cpu_to_wall": [
+        3.9027364791231802,
+        3.9949080267800974
+      ],
+      "mean_query_elapsed_occupancy": 0.40014876909464686,
+      "mean_nonquery_or_imbalance_ms": 0.04046717241379311,
+      "relative_throughput": 5.248434779214613
+    },
+    {
+      "scene": "endurance",
+      "workers": 32,
+      "queries": 370,
+      "warm_rounds": 58,
+      "mean_ms": 13.845172534482758,
+      "p99_observed_ms": 18.725347,
+      "max_ms": 20.324333,
+      "first_round_ms": [
+        16.427177,
+        13.004497
+      ],
+      "max_rss_kib": 61072,
+      "process_cpu_to_wall": [
+        4.2647252534291,
+        4.0838487090660776
+      ],
+      "mean_query_elapsed_occupancy": 0.21966817477386297,
+      "mean_nonquery_or_imbalance_ms": 0.04890705172413793,
+      "relative_throughput": 5.318523225785581
+    }
+  ],
+  "repeats": 2,
+  "rounds_per_process": 30,
+  "first_round_excluded_from_warm": true,
+  "p99_limit": "58 warm observations per cell; empirical quantile only, no stable-tail inference"
+}

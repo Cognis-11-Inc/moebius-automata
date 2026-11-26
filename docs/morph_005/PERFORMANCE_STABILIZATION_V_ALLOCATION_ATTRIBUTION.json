@@ -1,0 +1,157 @@
+{
+  "scope": "congested measured ticks 722-724 after separate warmup tick721",
+  "requested_bytes": 23606814,
+  "original_baseline_bytes": 263041278,
+  "reduction_percent": 91.02543365836293,
+  "scope_attributed_bytes": 23606814,
+  "scopes": [
+    {
+      "scope": "outside",
+      "calls": 0,
+      "exclusive_ns": 0,
+      "allocation_requests": 0,
+      "requested_bytes": 0,
+      "freed_bytes": 0
+    },
+    {
+      "scope": "tick",
+      "calls": 3,
+      "exclusive_ns": 158339,
+      "allocation_requests": 652,
+      "requested_bytes": 4966776,
+      "freed_bytes": 5346810
+    },
+    {
+      "scope": "state_clone",
+      "calls": 3,
+      "exclusive_ns": 26108,
+      "allocation_requests": 192,
+      "requested_bytes": 418959,
+      "freed_bytes": 0
+    },
+    {
+      "scope": "policy",
+      "calls": 3,
+      "exclusive_ns": 429397,
+      "allocation_requests": 252,
+      "requested_bytes": 76536,
+      "freed_bytes": 64296
+    },
+    {
+      "scope": "resolve",
+      "calls": 3,
+      "exclusive_ns": 35757627,
+      "allocation_requests": 4640,
+      "requested_bytes": 2314506,
+      "freed_bytes": 3530370
+    },
+    {
+      "scope": "recovery",
+      "calls": 47,
+      "exclusive_ns": 99556875,
+      "allocation_requests": 12,
+      "requested_bytes": 18240,
+      "freed_bytes": 0
+    },
+    {
+      "scope": "placement",
+      "calls": 0,
+      "exclusive_ns": 0,
+      "allocation_requests": 0,
+      "requested_bytes": 0,
+      "freed_bytes": 0
+    },
+    {
+      "scope": "deposit_admission",
+      "calls": 9,
+      "exclusive_ns": 166698,
+      "allocation_requests": 387,
+      "requested_bytes": 1044081,
+      "freed_bytes": 2282049
+    },
+    {
+      "scope": "emission_admission",
+      "calls": 0,
+      "exclusive_ns": 0,
+      "allocation_requests": 0,
+      "requested_bytes": 0,
+      "freed_bytes": 0
+    },
+    {
+      "scope": "root_admission",
+      "calls": 6,
+      "exclusive_ns": 2129865,
+      "allocation_requests": 330,
+      "requested_bytes": 37920,
+      "freed_bytes": 34464
+    },
+    {
+      "scope": "nozzle_frames",
+      "calls": 9,
+      "exclusive_ns": 53179,
+      "allocation_requests": 63,
+      "requested_bytes": 25596,
+      "freed_bytes": 24786
+    },
+    {
+      "scope": "book_step",
+      "calls": 123,
+      "exclusive_ns": 4190,
+      "allocation_requests": 9,
+      "requested_bytes": 3744,
+      "freed_bytes": 3744
+    },
+    {
+      "scope": "finish",
+      "calls": 3,
+      "exclusive_ns": 4230,
+      "allocation_requests": 24,
+      "requested_bytes": 18264,
+      "freed_bytes": 20184
+    },
+    {
+      "scope": "event_commit",
+      "calls": 3,
+      "exclusive_ns": 10400,
+      "allocation_requests": 0,
+      "requested_bytes": 0,
+      "freed_bytes": 15360
+    },
+    {
+      "scope": "geometry",
+      "calls": 18,
+      "exclusive_ns": 7952995,
+      "allocation_requests": 984,
+      "requested_bytes": 14682192,
+      "freed_bytes": 7803888
+    },
+    {
+      "scope": "clearance",
+      "calls": 0,
+      "exclusive_ns": 0,
+      "allocation_requests": 0,
+      "requested_bytes": 0,
+      "freed_bytes": 0
+    },
+    {
+      "scope": "overlap",
+      "calls": 1419,
+      "exclusive_ns": 1109611,
+      "allocation_requests": 0,
+      "requested_bytes": 0,
+      "freed_bytes": 0
+    },
+    {
+      "scope": "containment",
+      "calls": 12,
+      "exclusive_ns": 57570,
+      "allocation_requests": 0,
+      "requested_bytes": 0,
+      "freed_bytes": 0
+    }
+  ],
+  "exact_digests_to_IV": true,
+  "new_runtime_optimization": false,
+  "peak_live_requested_bytes": 9519125,
+  "process_peak_rss_kib": 32412
+}

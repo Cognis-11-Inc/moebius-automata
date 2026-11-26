@@ -22,9 +22,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     #[cfg(feature = "collision-fixture")]
     let mut capture_requests = None;
     let mut positional = Vec::new();
+    #[cfg(feature = "collision-fixture")]
+    if args.iter().any(|s| s == "--capture-recovery") {
+        moebius_morph::collision::fixtures::capture_recovery();
+    }
     let mut index = 0;
     while index < args.len() {
         match args[index].as_str() {
+            #[cfg(feature = "collision-fixture")]
+            "--capture-recovery" => {}
             "--diagnostic-collisions-off" => diagnostic_collisions_off = true,
             "--founders" => {
                 index += 1;
@@ -299,6 +305,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let _captured = moebius_morph::collision::fixtures::write_captures(&out.join("fixtures"))?;
     #[cfg(feature = "query-trace")]
     let forward_query_trace = moebius_morph::collision::take_query_trace();
+    #[cfg(feature = "collision-fixture")]
+    fs::write(
+        out.join("recovery.json"),
+        serde_json::to_vec_pretty(&moebius_morph::collision::fixtures::take_recovery())?,
+    )?;
     let mut replay = restore_probe(&out.join("initial.json"), &args)?;
     replay.advance(final_state.tick - initial_tick)?;
     let vm_hwm_kb_after_replay = proc_kib("VmHWM:");

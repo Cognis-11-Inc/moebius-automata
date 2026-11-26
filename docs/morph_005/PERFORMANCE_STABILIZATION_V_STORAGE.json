@@ -1,0 +1,41 @@
+{
+  "status": "ARCHIVED_RESTORE_VERIFIED",
+  "purpose": "Stabilization V isolated deterministic parallel feasibility, allocation/recovery attribution, rejected inferences, failures, source/binary provenance and Atlas snapshots",
+  "run": "moebius-v-20261126",
+  "archive_version": "performance-stabilization-v-research-v1",
+  "verified_utc": "2026-11-26T18:15:18.917712+00:00",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "source": "/dev/sdb2",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon",
+    "fstype": "ntfs3"
+  },
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-v-research-v1/evidence.tar.gz",
+  "archive_sha256": "acb2200ddee07e68568f641cf514b9415e036a6f22b44300ae5770716d02dedc",
+  "archive_bytes": 20587105,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-v-research-v1/MANIFEST.json",
+  "manifest_sha256": "1d388c9f97ab50379b4bc47c06363d14b811f69652ae65f494b480a7b017c467",
+  "member_count": 698,
+  "member_bytes": 320524766,
+  "classification": {
+    "diagnostic experiments, raw rows, logs and reproducibility": {
+      "files": 307,
+      "bytes": 267470538
+    },
+    "build executables and source provenance": {
+      "files": 16,
+      "bytes": 19471109
+    },
+    "authenticated input worlds and recipes": {
+      "files": 375,
+      "bytes": 33583119
+    }
+  },
+  "all_restored_hashes_match": true,
+  "restore_working_copy": "/home/cognis/moebius-v-research-restored-20261126",
+  "working_root": "/home/cognis/moebius-v-20261126",
+  "prior_IV_archives": "all three preserved and1532member hashes verified; see IV_ARCHIVE_RECHECK.json",
+  "clean_source_certification": "separate validation supplement required"
+}

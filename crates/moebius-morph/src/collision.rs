@@ -2176,6 +2176,8 @@ fn nondeepening_recovery(
     bto: RigidPose,
     workspace: &mut ContactWorkspace,
 ) -> Result<bool, MorphError> {
+    #[cfg(feature = "collision-fixture")]
+    let mut recovery_trace = fixtures::RecoveryCapture::new(a, b, [from, to, bfrom, bto]);
     #[cfg(feature = "allocation-attribution")]
     let _allocation_scope = crate::profiling::enter(5);
 
@@ -2192,7 +2194,9 @@ fn nondeepening_recovery(
     let am = motion(from, to, origin)?;
     let bm = motion(bfrom, bto, origin)?;
     let mut contact_at = |t| {
-        cached_world_contact(
+        #[cfg(feature = "collision-fixture")]
+        let started = Instant::now();
+        let result = cached_world_contact(
             workspace,
             &am.position_at_time(t),
             a,
@@ -2200,7 +2204,12 @@ fn nondeepening_recovery(
             b,
             0.001,
         )
-        .map_err(|_| MorphError("unsupported overlap recovery query".into()))
+        .map_err(|_| MorphError("unsupported overlap recovery query".into()));
+        #[cfg(feature = "collision-fixture")]
+        if let Ok(contact) = &result {
+            recovery_trace.sample(t, contact.map(|c| c.dist), started.elapsed().as_nanos());
+        }
+        result
     };
     let Some(first) = contact_at(0.)? else {
         return Ok(false);
@@ -2335,6 +2344,8 @@ pub(crate) fn resolve(
                 }
                 #[cfg(feature = "query-trace")]
                 query_trace::set_pair(&format!("t{}:body:{a}:body:{b}", before.tick), 0);
+                #[cfg(feature = "collision-fixture")]
+                fixtures::recovery_pair(before.tick, a, PhysicalTarget::Organism { id: b });
                 if let Some(hit) = cache.cast(&shapes[&a], pa, ta, &shapes[&b], pb, tb)? {
                     let prey = |id: u64| before.instances[&id].definition == BLOOD_SAC;
                     let hunter = |id: u64| hunters.contains(&id);
@@ -2534,6 +2545,8 @@ pub(crate) fn resolve(
                 }
                 #[cfg(feature = "query-trace")]
                 trace_static_pair(before.tick, id, &owner, before.assembly.as_ref());
+                #[cfg(feature = "collision-fixture")]
+                fixtures::recovery_pair(before.tick, id, owner.clone());
                 #[cfg(feature = "collision-fixture")]
                 let pending_fixture = fixtures::begin(
                     before,

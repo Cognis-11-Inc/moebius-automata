@@ -1,3 +1,58 @@
+# Stabilization V investigation checkpoint — 2026-11-26T18:14:46.835380+00:00, Codex
+
+PARTIAL. MORPH-005 engine targets remain unmet; no006/biology. Entry and current
+precommit HEAD4e3eea6bae6b344351d4fbf5527e1b9b4435b087, main; current tree DIRTY
+with authorized V source/diagnostic/docs changes, no pre-existing user dirt.
+
+Implemented isolated collision_fixtures::batch::Batch in collision_batch.rs,
+collision_fixture --batch, explicit bounded recovery observer in
+collision_fixtures.rs/collision.rs and habitat_probe --capture-recovery. All under
+existing collision-fixture feature; no parallel ShipRuntime admission or changed
+geometry/history authority. New report docs/morph_005/PERFORMANCE_STABILIZATION_V.md,
+dependency map, physical audit, history proposal, directive and compact measured
+JSON. External Atlas navigation updated; verified UUID8CA451CDA451BA82 and link/
+snapshot audit PASS. Its old historical narratives remain labelled history.
+
+Exact isolated query scaling1/2/4/8/16/32 workers:133920 results across36processes;
+endurance370-query mean73.636->13.768ms at8workers(5.35x throughput), no engine
+gain claim. Single expensive fresh/eight queries do not scale.370queries span
+23body/target recipes/42consecutive groups, so whole-batch runtime admission is
+not proven. Ordinary retainedIV congested30 continuation matches every row/full
+world; CPU/wall0.990 with one observed thread. Recovery28ticks across4scenes equals
+independent retained ordinary runtime in every intermediate row/full final world;
+endurance34calls/113samples/24recipes, congested4ticks69calls/303samples/39recipes.
+
+Allocation722-724 warmup separate:23606814requestedbytes,14682192geometry,
+91.0254%reduction vs original263041278, still below95%;688byte difference from IV
+ordinary-counted result retained.8worker1000round memory test370000exact queries,
+13.588s; RSS2..12s42892..43012KiB, final58800spike retained, no whole-engine stable
+memory claim. Presentation slack globalmap still has no eviction; not fixed or
+measured under changing definitions. No alternative collider, remesh optimization,
+history migration, population-factorial experiment, native scaling result or
+qualified new full benchmark matrix.
+
+Focused25collision tests PASS. New exact-hit guard honest-red FAIL101, restored
+PASS0. Strictworkspacealltarget/allfeature Clippy, fmt and9Python integrity PASS.
+Initial scope-lifetime compile failure and absent/usr/bin/time driver failure
+preserved. Main evidence working root /home/cognis/moebius-v-20261126; main evidence sealed on verified Mermogon UUID D0A02EEBA02ED82C,
+archiveacb2200ddee07e68568f641cf514b9415e036a6f22b44300ae5770716d02dedc, 698files/320524766bytes,
+all restored sizes/hashes verified. Receipt PERFORMANCE_STABILIZATION_V_STORAGE.json.
+IV all3archive/manifest hashes and1532members rechecked unchanged.
+Clean committed broad suite is PENDING; authorized local checkpoint/publication
+will follow diff/archive review. No claim of a V clean-source certificate yet.
+
+Next sequence: seal/restore/hash V main evidence; review stagedpaths/diff;
+authorized checkpoint commit, recordcleanHEAD/status, run
+cargo test --offline --workspace --all-targets --all-features; preserve any failure,
+seal separate validation supplement, finalize receipts/handoff and push withremote
+refverification. Runtime changes would require requalification. Engineering next:
+use dependency map and retained fixtures for a bounded exact query frontier with
+pose/revision checks and canonical fallback, or measured exact wetgeometry reuse;
+no whole-tick unordered result admission. Safe first inspection:git status --short
+and docs/morph_005/PERFORMANCE_STABILIZATION_V.md plus validation/storage receipts.
+
+---
+
 # IV outgoing — 2026-11-26 UTC, Codex
 
 PARTIAL PERFORMANCE STABILIZATION. No006 or biology. Repo

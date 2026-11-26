@@ -119,8 +119,8 @@
     },
     {
       "path": "07_EXPERIMENTS/MORPH_005.md",
-      "bytes": 3861,
-      "sha256": "000320d6b4b7f2dc8283e563477e720670d223e264ac659ae046cf9217320021"
+      "bytes": 5234,
+      "sha256": "97e5c2fbf6ef56be5dc94a0ea84c47e1001234d323c5aa062c300b32dec54b8b"
     },
     {
       "path": "08_ARCHITECTURE/ANATOMY_SPEC_V2.md",
@@ -189,8 +189,8 @@
     },
     {
       "path": "09_EVIDENCE/MORPH_005_LIMITS.md",
-      "bytes": 3037,
-      "sha256": "ecf4d79c7bcae076d31a3c3e938d263384f28536171f9e12b4b10c7693d924e2"
+      "bytes": 4410,
+      "sha256": "c1474e6262652537b4d56ebc44d90e50c94768671e819241973420bf2e0797ce"
     },
     {
       "path": "90_INBOX/INDEX.md",
@@ -245,5 +245,12 @@
     "report": "docs/morph_005/PERFORMANCE_STABILIZATION_IV.md",
     "role": "navigation only; repository and restore-verified Mermogon evidence authoritative",
     "clean_validation_checkpoint": "ecdc8625b5d605997a6e3a559b36903f78231d33"
+  },
+  "stabilization_v": {
+    "date": "2026-11-26",
+    "status": "PARTIAL_ISOLATED_RESEARCH",
+    "report": "docs/morph_005/PERFORMANCE_STABILIZATION_V.md",
+    "source_entry": "4e3eea6bae6b344351d4fbf5527e1b9b4435b087",
+    "authority": "navigation only; source and identified evidence retain authority"
   }
 }
