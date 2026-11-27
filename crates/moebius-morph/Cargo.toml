@@ -19,6 +19,8 @@ blake3 = "1"
 serde_json = "1"
 
 [features]
+# Independent HABITAT-001 physical chamber; no ShipRuntime integration.
+habitat-experiment = []
 # Rejected/unqualified VI lanes remain reproducible but are not runtime defaults.
 experimental-collision-frontiers = []
 experimental-geometry-reuse = []
@@ -45,3 +47,7 @@ required-features = ["collision-fixture"]
 [[example]]
 name = "morphology_research"
 required-features = ["collision-fixture"]
+
+[[example]]
+name = "habitat_environment"
+required-features = ["habitat-experiment"]

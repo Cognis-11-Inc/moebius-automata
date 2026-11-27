@@ -1,0 +1,98 @@
+{
+  "date_local": "2026-11-27",
+  "purpose": "Select a bounded isothermal carrier, conservative scalar transport and inert-body drag closure before biological integration.",
+  "queries": [
+    "site.openlb.net user guide lattice Boltzmann BGK viscosity relaxation time D3Q19 pdf",
+    "site.ocw.mit.edu Stokes drag sphere settling velocity buoyancy Reynolds",
+    "site.clawpack.org riemann book advection finite volume conservation upwind",
+    "site.openlb.net tau 0.5 viscosity",
+    "Qian 1992 Lattice BGK 17 479"
+  ],
+  "sources": [
+    {
+      "title": "OpenLB User Guide, release0.4",
+      "author": "Jonas Latt",
+      "year": 2008,
+      "url": "https://www.openlb.net/wp-content/uploads/2011/12/olb_ug-0.4r3.pdf",
+      "access": "Selected full-text sections1,2.1 and2.4 inspected; not every page",
+      "CONSULTED": true,
+      "IMPLEMENTED": "Own D3Q19 BGK equilibrium/streaming and halfway bounceback; SI/lattice conversion principles, no OpenLB code copied",
+      "VALIDATED": "PENDING local equilibrium/mass/shear/convergence experiments"
+    },
+    {
+      "title": "OpenLB User Guide, release1.7",
+      "authors": "Adrian Kummerlaender et al.",
+      "year": 2024,
+      "url": "https://www.openlb.net/wp-content/uploads/2024/06/olb_ug-1.7r0.pdf",
+      "access": "Front matter/contents inspected. Subsequent section/find fetches timed out; not represented as full methods inspection",
+      "CONSULTED": true,
+      "IMPLEMENTED": false,
+      "VALIDATED": false
+    },
+    {
+      "title": "Lattice BGK Models for Navier-Stokes Equation",
+      "authors": "Y.H. Qian, D. d'Humieres, P. Lallemand",
+      "year": 1992,
+      "journal": "EPL17(6),479-484",
+      "doi": "10.1209/0295-5075/17/6/001",
+      "url": "https://doi.org/10.1209/0295-5075/17/6/001",
+      "access": "Publisher metadata/abstract inspected, full paper not read",
+      "CONSULTED": true,
+      "IMPLEMENTED": "Method family provenance only; not a copied implementation or local validation",
+      "VALIDATED": false
+    },
+    {
+      "title": "OpenLB UnitConverter documentation",
+      "url": "https://openlb.net/DoxyGen/html/d6/d92/classolb_1_1UnitConverter.html",
+      "access": "Primary API documentation opened; viscosity/density conversions and lattice relaxation interface inspected",
+      "CONSULTED": true,
+      "IMPLEMENTED": "tau=0.5+3*nu*dt/h^2 for D3Q19; independent SI density/dynamic viscosity inputs",
+      "VALIDATED": "PENDING shear decay"
+    },
+    {
+      "title": "Flow Past a Sphere II, chapter3",
+      "author": "John Southard, MIT OCW12.090",
+      "year": 2006,
+      "url": "https://ocw.mit.edu/courses/12-090-introduction-to-fluid-motions-sediment-transport-and-current-generated-sedimentary-structures-fall-2006/7841d9b1681d6748fa2f5cbc6d6f1cb2_ch3.pdf",
+      "access": "Selected full-text low-Re flow/Stokes sections, especially equation3.3 inspected",
+      "CONSULTED": true,
+      "IMPLEMENTED": "6*pi*mu*r Stokes linear resistance, restricted to Re_p<=0.1; reduced-mass exact pair update is local authored numerical composition",
+      "VALIDATED": "PENDING drag/buoyancy/momentum experiments"
+    },
+    {
+      "title": "Six-Degree-of-Freedom Sensor Fish Design: Governing Equations and Motion Modeling, PNNL-14779",
+      "url": "https://www.pnnl.gov/main/publications/external/technical_reports/PNNl-14779.pdf",
+      "access": "Selected terminal-settling equations4.9-4.13; full report not read",
+      "CONSULTED": true,
+      "IMPLEMENTED": "Terminal-slip reference from gravity/buoyancy/Stokes balance",
+      "VALIDATED": "PENDING particulate settling",
+      "authors": "Z. Deng, M.C. Richmond, C.S. Simmons, T.J. Carlson",
+      "year": 2004
+    },
+    {
+      "title": "Riemann Problems and Jupyter Solutions, Advection / Approximate Solvers",
+      "authors": "Clawpack Riemann-book authors",
+      "url": "https://www.clawpack.org/riemann_book/html/Approximate_solvers.html",
+      "additional_url": "https://www.clawpack.org/riemann_book/html/Advection.html",
+      "access": "HTML conservation/flux-difference/first-order-upwind discussion inspected",
+      "CONSULTED": true,
+      "IMPLEMENTED": "Own conservative face-paired upwind and centred diffusive scalar transport; not a Clawpack dependency",
+      "VALIDATED": "PENDING inventory/advection/diffusion/dense-sparse comparison"
+    }
+  ],
+  "authored_assumptions": [
+    "Isothermal artificial-compressibility carrier, not a calibrated dense-gas thermodynamic EOS",
+    "Subtracted carrier hydrostatic background; sphere buoyancy is a prescribed pressure-support boundary term, not resolved traction",
+    "Nearest-cell unresolved sphere coupling, no added mass/lubrication/Basset term",
+    "One-way dilute statistical species terminal slip, not species momentum conservation",
+    "Finite initialized sealed inventory with wall adsorption",
+    "No chemistry/thermal convection/organism controller"
+  ],
+  "affected": [
+    "crates/moebius-morph/src/primordial/",
+    "crates/moebius-morph/examples/habitat_environment.rs",
+    "crates/moebius-morph-lab/src/bin/habitat-witness.rs",
+    "docs/habitat_001/"
+  ],
+  "status_note": "CONSULTED/IMPLEMENTED/VALIDATED remain separate. Local evidence determines local claims; no paper certifies implementation. Preserve timed-out source access and all nulls."
+}

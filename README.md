@@ -368,3 +368,19 @@ biology. Reset starts a fresh recorded experiment; a completed finite run pauses
 
 Read [MORPH_005_RESULTS.md](MORPH_005_RESULTS.md) for exact tests, metrics,
 physical limits, failed trials and external evidence restoration.
+
+## HABITAT-001 — experimental primordial medium
+
+The HABITAT track establishes a bounded physical environment independently of
+organisms. Conventional MORPH-005 stabilization is paused; MORPH-005 remains
+PARTIAL and MORPH-006 stays suspended. Canonical ship physics is unchanged.
+
+```sh
+cargo run --offline --release -p moebius-morph-lab --features habitat-experiment --bin habitat-witness
+cargo run --offline --release -p moebius-morph --features habitat-experiment --example habitat_environment -- suite NEW_OUTPUT
+```
+
+This is an isolated isothermal carrier/concentration/inert-sphere experiment,
+with explicit approximation and conservation boundaries. Read the
+[HABITAT-001 results and reproduction guide](docs/habitat_001/HABITAT-001_RESULTS.md)
+before interpreting it as an atmosphere or integrating it into a ship.

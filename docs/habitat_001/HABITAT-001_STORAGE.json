@@ -1,0 +1,41 @@
+{
+  "status": "ARCHIVED_RESTORE_VERIFIED",
+  "purpose": "HABITAT-001 isolated implementation, preregistered model/reuse, source/executable versions, prequalification E01-E12, native before/after view, failed attempts and falsification evidence",
+  "run": "habitat-001-20261127",
+  "archive_version": "habitat-001-implementation-v1",
+  "verified_utc": "2026-11-27T06:09:37.313779+00:00",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "source": "/dev/sdb2",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon",
+    "fstype": "ntfs3"
+  },
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-001/2026-11-27/habitat-001-implementation-v1/evidence.tar.gz",
+  "archive_sha256": "3c58e8dc9568402acd5cc2ee3da4e9df80ed0d20a9bb9387cb4a3ff3698a1908",
+  "archive_bytes": 183187006,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-001/2026-11-27/habitat-001-implementation-v1/MANIFEST.json",
+  "manifest_sha256": "d9fc065f911f0a44bffcdd1807304a7cc57eb38561575f80bc34dc3badba8a1c",
+  "member_count": 303,
+  "member_bytes": 861617777,
+  "classification": {
+    "protocols, model/source identities, failures, honest-red and reproducibility": {
+      "files": 85,
+      "bytes": 26302299
+    },
+    "source/executable captures and build provenance": {
+      "files": 36,
+      "bytes": 754547580
+    },
+    "prequalification experimental snapshots/traces/captures": {
+      "files": 182,
+      "bytes": 80767898
+    }
+  },
+  "all_restored_hashes_match": true,
+  "restore_working_copy": "/home/cognis/habitat-001-implementation-restored-20261127",
+  "working_root": "/home/cognis/habitat-001-20261127",
+  "source_entry": "966948a2de26575606808aeac7d3f9aaf1807f8a",
+  "restore_instructions": "Extract to a new directory and verify every own-manifest size/hash. Use each checkpoint only with its matching captured executable/build identity. Old UI/source versions are retained intentionally. Plotting software and Cargo targets are caches; rebuild plotting from plot-requirements.txt. Clean-source tests and final experiments require the separate qualification supplement."
+}

@@ -1,0 +1,101 @@
+{
+  "status": "PASS_FOCUSED_EXPERIMENTAL",
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "-p",
+    "moebius-morph",
+    "--lib",
+    "--features",
+    "habitat-experiment",
+    "primordial"
+  ],
+  "passed": 11,
+  "failed": 0,
+  "ignored": 0,
+  "honest_red": [
+    {
+      "guard": "reaction",
+      "test": "exact_pair_drag_matches_reduced_mass_reference_and_reaction",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "-p",
+        "moebius-morph",
+        "--lib",
+        "--features",
+        "habitat-experiment",
+        "exact_pair_drag_matches_reduced_mass_reference_and_reaction"
+      ],
+      "red_exit": 101,
+      "green_exit": 0,
+      "restored_source_sha256": "81bae9afe5fa6e3e9a71b72b084a0c9d99faba4c5be7000018c5bba5be84d8a0"
+    },
+    {
+      "guard": "source",
+      "test": "bit_checkpoint_replays_and_rejects_source_and_payload_mutation",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "-p",
+        "moebius-morph",
+        "--lib",
+        "--features",
+        "habitat-experiment",
+        "bit_checkpoint_replays_and_rejects_source_and_payload_mutation"
+      ],
+      "red_exit": 101,
+      "green_exit": 0,
+      "restored_source_sha256": "81bae9afe5fa6e3e9a71b72b084a0c9d99faba4c5be7000018c5bba5be84d8a0"
+    },
+    {
+      "guard": "atomic",
+      "test": "cfl_failure_is_atomic_and_no_inventory_is_clipped",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "-p",
+        "moebius-morph",
+        "--lib",
+        "--features",
+        "habitat-experiment",
+        "cfl_failure_is_atomic_and_no_inventory_is_clipped"
+      ],
+      "red_exit": 101,
+      "green_exit": 0,
+      "restored_source_sha256": "81bae9afe5fa6e3e9a71b72b084a0c9d99faba4c5be7000018c5bba5be84d8a0"
+    }
+  ],
+  "strict_clippy": {
+    "command": [
+      "cargo",
+      "clippy",
+      "--offline",
+      "--workspace",
+      "--all-targets",
+      "--all-features",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "status": "PASS",
+    "log": "clippy-certified.log"
+  },
+  "formatting": {
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "status": "PASS"
+  },
+  "python_integrity_tests": 9,
+  "scope": "source captured by ordinary-certified/counted-certified/native-certified build receipts; clean workspace suite pending",
+  "kernel_source_sha256": "81bae9afe5fa6e3e9a71b72b084a0c9d99faba4c5be7000018c5bba5be84d8a0"
+}

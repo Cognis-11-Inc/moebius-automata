@@ -84,3 +84,7 @@ mod support_index;
 
 #[cfg(feature = "history-v2-prototype")]
 pub mod history;
+
+/// Isolated environmental physics experiment, never ship admission.
+#[cfg(feature = "habitat-experiment")]
+pub mod primordial;

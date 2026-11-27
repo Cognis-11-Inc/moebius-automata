@@ -94,8 +94,8 @@
     },
     {
       "path": "07_EXPERIMENTS/INDEX.md",
-      "bytes": 1022,
-      "sha256": "05ae53cadea30cbd5b2524872594eea5af87a50cc7e5c7eb6c4082cf7d95b2c4"
+      "bytes": 1148,
+      "sha256": "9827639045f7d726e2e54ecb975f5ff11678eff15451394169cc84c4d05b91bb"
     },
     {
       "path": "07_EXPERIMENTS/MORPH_001.md",
@@ -174,8 +174,8 @@
     },
     {
       "path": "09_EVIDENCE/INDEX.md",
-      "bytes": 617,
-      "sha256": "516a7c054ac98979a71408c4a50996be142a7762345b0e83fd340292fec1c5ef"
+      "bytes": 747,
+      "sha256": "d94b76e8523b20abb61c09bbc1982a1cf4e1a917221fa6b0f367a2aeb4f57ef9"
     },
     {
       "path": "09_EVIDENCE/MORPH_004_DONORS.md",
@@ -235,10 +235,20 @@
     {
       "path": "07_EXPERIMENTS/SIMULATION_0001.md",
       "sha256": "7b87406a06576c7d003ea764da285fda66493393a730ba75c2e8c2e5811d717c"
+    },
+    {
+      "path": "07_EXPERIMENTS/HABITAT_001.md",
+      "bytes": 1304,
+      "sha256": "8bd0696a93d047d6e4b0e5d9fcc23d02139fef63a21a20338fe66bffa6aaa512"
+    },
+    {
+      "path": "09_EVIDENCE/HABITAT_001_LIMITS.md",
+      "bytes": 1041,
+      "sha256": "e3a2b148199a6c185156a52d09a08eaf16eecf6f7d749b180c2f7a275f379f30"
     }
   ],
   "snapshot_note": "Rehashed after the clean MORPH-003 suite on a8cb705. Six edited notes cite that implementation commit. Ship design canon is unchanged.",
-  "latest_update": "VII PARTIAL research; no canonical optimization or anatomy adoption. See stabilization_vii.",
+  "latest_update": "HABITAT-001 isolated environmental foundation; MORPH-005 conventional stabilization paused, still PARTIAL.",
   "stabilization_iv": {
     "status": "PARTIAL",
     "verified_date_utc": "2026-11-26",
@@ -267,5 +277,12 @@
     "report": "docs/morph_005/PERFORMANCE_STABILIZATION_VII.md",
     "authority": "navigation only; source/certificates/restore-verified evidence authoritative",
     "clean_validation_checkpoint": "847b7001d395fdb51184e9cfe8824fb461778573"
+  },
+  "habitat_001": {
+    "status": "PARTIAL_EXPERIMENTAL_NO_CANONICAL_INTEGRATION",
+    "date_local": "2026-11-27",
+    "entry": "966948a2de26575606808aeac7d3f9aaf1807f8a",
+    "report": "docs/habitat_001/HABITAT-001_RESULTS.md",
+    "authority": "navigation only; source and immutable evidence authoritative"
   }
 }

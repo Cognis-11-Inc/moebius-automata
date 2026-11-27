@@ -1,3 +1,53 @@
+# HABITAT-001 implementation checkpoint — 2026-11-27 America/Toronto, Codex
+
+New authorized HABITAT track. Conventional MORPH-005 stabilization paused; it
+remains PARTIAL, with gates/evidence preserved. MORPH-006 stays suspended.
+Repo /home/cognis/Cognis_Lab/Möbius Automata, main; entry966948a2de26575606808aeac7d3f9aaf1807f8a
+was clean and remote-equal. Current tree is dirty with isolated HABITAT source,
+protocols/reports and publication metadata. No ship runtime/collision/habitat/
+emission/anatomy/filament law file changed. VII source/archive3290 members verified.
+
+Implemented gated primordial::{Chamber,Config,State}, transport and experiments;
+headless habitat_environment, standalone Bevy habitat-witness. Reuse Position,
+TICK_NANOS, atomic persistence, source identity and BLAKE3. Independent finite SI
+carrier/species/sphere initialization, no transfer from MaterialBook/quanta, no
+second ship/replay owner. D3Q19 weakly compressible/isothermal reference, pair
+Stokes drag with opposite finite-cell impulse, externally accounted hydrostatic
+buoyancy closure, sealed walls, passive terminal-slip species/diffusion, exact
+float-bit checkpoint/replay. Dense/sparse scalar paths share ordered fluxes;
+carrier remains dense. No thermal/chemical/actuation/canonical integration.
+
+Eleven focused tests PASS; reaction/source/atomicity honest-red each101/restored0.
+Strict all-feature Clippy/format pass after retained parser/style failures.
+Preliminary E01–E12 ordinary/counting suites and native capture completed;
+16³ demo mean1.082ms/P991.110ms, native physical digest matches headless.
+Sparse/dense physical digests exact in18 factorial pairs. Coarse8³ shear has
+~6percent error/timestep sensitivity; no general convergence/production claim.
+Actual first GUI had font/HUD problems; original and corrected captures kept.
+Added a separate second-disturbance control before final qualification.
+
+Source/binary versions, all raw results, failures, plots environment requirements,
+positive/negative checkpoint artifacts in /home/cognis/habitat-001-20261127.
+Main evidence sealed/restored on verified Mermogon UUID D0A02EEBA02ED82C:
+303 files/861617777 member bytes, archive SHA256
+3c58e8dc9568402acd5cc2ee3da4e9df80ed0d20a9bb9387cb4a3ff3698a1908.
+HABITAT-001_STORAGE.json records all hashes/restore instructions. No raw bulk in Git.
+Then authorized local commit -> clean recorded workspace suite -> final E01–E12
+ordinary/counting/native runs without competing builds/tests -> independent
+analysis/plots -> immutable qualification supplement -> final docs/HANDOFF/Atlas,
+commit/push, verify clean/remote. No broad certification against a dirty tree.
+
+Docs: docs/habitat_001/{HABITAT-001_RESULTS,HABITAT_ENVIRONMENT_ARCHITECTURE,
+ENVIRONMENTAL_PHYSICS_CONTRACT,ENVIRONMENTAL_REUSE_AUDIT}.md and directive.
+Research provenance: docs/research/2026-11-27-habitat-001.json; full/partial access,
+source timeout, authored assumptions, CONSULTED/IMPLEMENTED/VALIDATED separate.
+Known non-claims: full gas thermodynamics, gravity stratification, real resolved
+sphere hydrodynamics/torques, tracer momentum backreaction, sparse carrier,
+changing-anatomy integration or user acceptance. Safe first command: git status
+--short; read this HABITAT report/contract/storage and actual Git history.
+
+---
+
 # VII outgoing validated checkpoint — 2026-11-26 America/Toronto, Codex
 
 PARTIAL. Source commit847b7001d395fdb51184e9cfe8824fb461778573 on main in
