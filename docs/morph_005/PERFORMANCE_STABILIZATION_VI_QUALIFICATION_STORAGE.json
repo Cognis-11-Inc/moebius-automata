@@ -1,0 +1,37 @@
+{
+  "status": "ARCHIVED_RESTORE_VERIFIED",
+  "purpose": "VI final qualification supplement; global rollout rejected, congestion-only opt-in benefit; failures and unresolved outlier retained",
+  "run": "moebius-vi-20261126",
+  "archive_version": "performance-stabilization-vi-qualification-v1",
+  "verified_utc": "2026-11-27T03:23:22.591952+00:00",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "source": "/dev/sdb2",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon",
+    "fstype": "ntfs3"
+  },
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "clean_source_checkpoint": "c989033decd4d466a8d0a0a279975bb73344f810",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-vi-qualification-v1/evidence.tar.gz",
+  "archive_sha256": "96fa27e2ede64398a1d22744e91dc8a0f5054022f9ad5ca0a37d76b2d2b9dc0c",
+  "archive_bytes": 44731446,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-vi-qualification-v1/MANIFEST.json",
+  "manifest_sha256": "2ff7780827af7596f03ae476768a837337b69de172a8b20ddfbf89c7dee4c21e",
+  "member_count": 884,
+  "member_bytes": 814059965,
+  "classification": {
+    "final matrix, ordered events, raw traces, native images, RSS, diagnostic failures, clean certificate and reproducibility": {
+      "files": 884,
+      "bytes": 814059965
+    }
+  },
+  "all_restored_hashes_match": true,
+  "restore_working_copy": "/home/cognis/moebius-vi-qualification-restored-20261126",
+  "working_root": "/home/cognis/moebius-vi-20261126",
+  "base_archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-vi-implementation-v1/evidence.tar.gz",
+  "base_archive_sha256": "3feae41a451a8c617a32ef3ef200e11bf2a23b363b3814afdd2364c1f481c422",
+  "base_manifest_sha256": "50636aea89aab3bd92cac76094a2f67154962d551d9abf98a1c328dc81625ee3",
+  "base_verified_this_operation": true,
+  "restore_instructions": "Extract implementation archive and this supplement into a new directory in that order. Verify each manifest separately against its own restore; changed paths in supplement supersede only working views, never immutable base evidence. Original source/binary required for source-bound v2 replay."
+}

@@ -56,8 +56,8 @@ consume depths and nondeepening comparisons in original order. Existing exact
 contact memo hits bypass worker computation. Validated raw relative contacts are
 memoized at the caller, then transformed exactly once as in the canonical query.
 This prevents speculative work from replacing cheap memo hits with recomputation.
-Four-worker recovery is the candidate advancing to full qualification; it is
-explicit opt-in, with a sequential reference still available.
+Four-worker recovery completed qualification with a scoped congestion gain and
+a full endurance regression. It remains explicit opt-in; sequential is default.
 
 Body-static: bounded per-body windows bind the current target, with exact stale
 fallback after slides. Existing cast memo hits bypass dispatch; only consumed,
@@ -92,3 +92,5 @@ attribution found no matching preflight/pipe construction pairs and no consumed
 handoffs there. This unprofitable lane requires `experimental-geometry-reuse`;
 it does not authorize an alternative mesh, ledger mutation or private-library
 refit. Canonical hollow geometry, orientation and pseudo-normal construction stay.
+
+Final ruling: full-matrix correctness passes; universal four-worker adoption is rejected after endurance regresses193.275->197.616s. The congestion gain remains scoped and opt-in. See VI_RESULTS.json for actual counts, overheads and failed gates.

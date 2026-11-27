@@ -1,0 +1,18 @@
+[
+  {
+    "guard": "receipts",
+    "test": "receipts_reject_all_changed_inputs_order_and_worker_tokens",
+    "mutation": "&& receipt.key == *key -> && true",
+    "red_exit": 101,
+    "green_exit": 0,
+    "restored_sha256": "e3bbb8b45d25237d7d1c41d6eb513c4759b47d7cbd1a171aae267d6bfc8cf4c5"
+  },
+  {
+    "guard": "geometry",
+    "test": "paid_geometry_handoff_matches_cold_mesh_and_refuses_mutation_or_unpaid_input",
+    "mutation": "== Some(key)\n                && self.promoted_geometry.len() < 128 -> != None\n                && self.promoted_geometry.len() < 128",
+    "red_exit": 101,
+    "green_exit": 0,
+    "restored_sha256": "e3c1b753768eb5b7248ee2e5f32342124dd41693d985e47ec4bdc11c7d421059"
+  }
+]

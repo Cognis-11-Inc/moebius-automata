@@ -1,6 +1,6 @@
 # MORPH-005 — Performance Stabilization VI
 
-2026-11-26 America/Toronto, Codex. **PARTIAL — runtime implementation checkpoint.**
+2026-11-26 America/Toronto, Codex. **PARTIAL — validated opt-in runtime implementation; engine gates remain failed.**
 Entry/published reference: `9a5b85dec006694c544568a73582b1f3df9ee30a`, clean main,
 remote ref verified equal. V's clean source certificate at `eea57b2` was reconciled;
 both V archive/manifest hashes and all 709 members were independently rechecked
@@ -98,12 +98,17 @@ previous segments remain intact. No history migration or biological work occurre
 
 ## Qualification status
 
-At this implementation checkpoint, clean-commit full regression, final-source
-matched continuations/worker scaling, ordinary allocation probe, native renderer
-competition and the full benchmark matrix are PENDING. The release candidate is
-explicit four-worker recovery with minimum frontier four; every performance,
-memory and fidelity target must be reported independently after those gates.
-MORPH-005 is not complete. MORPH-006 remains suspended.
+Clean source `c989033decd4d466a8d0a0a279975bb73344f810` passed
+`cargo test --offline --workspace --all-targets --all-features`: **260 passed,
+zero failed/ignored, 135.297 seconds**, with empty before/after Git status. Clippy,
+formatting and nine integrity tests also pass. The complete benchmark matrix ran
+against that same clean source, with no compilation/tests competing for CPU.
+
+The full result rejects four-worker recovery as a universal production default.
+It remains an explicit opt-in profile with a demonstrated congestion benefit and
+exact fidelity; sequential execution remains the default. Graft, body-static and
+geometry handoff remain gated experimental lanes. No combined geometry D was
+qualified. MORPH-005 remains PARTIAL and MORPH-006 stays suspended.
 
 Working evidence is `/home/cognis/moebius-vi-20261126`. Published storage and
 validation receipts identify authoritative immutable Mermogon archives; the cache
@@ -111,3 +116,129 @@ is a working copy. Raw worlds, per-tick traces, sources/binaries, failed variant
 diagnostic records and restore proofs belong in those archives. This report and
 compact results/provenance stay in Git. Final qualification is recorded below
 when actually executed; publication does not waive any failed target.
+
+## Final full matrix and scoped acceptance
+
+All nine legacy cases preserve **every established intermediate JSONL row and
+complete final world** against retained III/IV evidence. Both new-source 3600
+runs preserve every row/full final world against each other; all **137432 ordered
+event payloads match IV**. Only the source-bound history metadata differs from
+IV, and its old segments/executable remain immutable. No unrecorded per-tick field
+is represented as an independently saved full snapshot.
+
+| Case | Mean ms | P99 ms | Max ms | Cold first tick ms | Steady mean ms |
+|---|---:|---:|---:|---:|---:|
+| pop-1-120 | 0.488 | 4.004 | 8.685 | 8.685 | 0.419 |
+| pop-2-120 | 4.909 | 31.215 | 69.164 | 7.909 | 4.883 |
+| pop-4-120 | 7.499 | 20.351 | 22.362 | 7.204 | 7.502 |
+| pop-8-120 | 13.848 | 47.553 | 48.999 | 7.666 | 13.900 |
+| pop-16-120 | 39.006 | 81.379 | 97.991 | 9.189 | 39.257 |
+| fresh-420 | 10.945 | 33.736 | 67.266 | 7.831 | 10.952 |
+| eight-120 | 13.949 | 46.275 | 49.095 | 7.744 | 14.001 |
+| congested-30 | 32.106 | 79.747 | 79.747 | 72.791 | 30.704 |
+| native-720 | 21.420 | 71.017 | 101.607 | 7.968 | 21.439 |
+| endurance-v2-3600 | 54.893 | 103.930 | 415.012 | 7.320 | 54.907 |
+
+Current matched congested controls: mean **43.146 -> 31.458 ms**; the independent
+full-matrix candidate case is32.106 ms. Native720 authority mean22.100 ->22.087 ms,
+P9971.387 ->70.373 ms. Render frame means16.680 ->16.670 ms, frame P9917.391 ->
+17.673 ms, maxima49.636 ->41.646 ms. These are one paired native record, not a
+universal renderer guarantee. Native worker activity was not separately counted;
+the exact same headless input dispatches136 recovery jobs, so the active native
+count is an inference from the same configured source path and inputs. Original
+PNGs were inspected/compared:99.968% pixels identical in final captures, including
+unchanged anatomy pixels. No GPU timestamp or physical mouse acceptance is claimed.
+
+Final-source congested worker sweep (two processes/count):
+
+| Workers | Mean of process means ms |
+|---:|---:|
+| 1 | 42.974 |
+| 2 | 37.496 |
+| 4 | 31.951 |
+| 8 | 32.191 |
+| 16 | 32.182 |
+| 32 | 32.875 |
+
+Four is the smallest measured worker budget at the performance plateau. The
+ordinary process CPU/wall ratio rose0.992 ->1.513 (includes preparation, forward,
+replay and observer work); sampled thread count rose1 ->5. In the congested
+sweep288 jobs were dispatched,249 consumed,39 unnecessary,0stale/failed; every
+worker count preserves full final worlds and every row. More workers do not
+create more than four independent sample locations.
+
+**Full endurance regressed:** sequential193.275 s versus parallel197.616 s of
+summed authoritative tick time, both exceeding180 s. Parallel P99103.930 ms is
+below sequential107.172 ms, but its max415.012 ms exceeds sequential156.265 ms.
+This failure is not hidden behind the scoped congestion result. Of15440 worker
+queries,10603 were consumed and4837 unnecessary (31.3%); elapsed worker work is
+not partitioned by discard reason, so counts must not be interpreted as equal
+CPU-cost fractions. Queue/descriptor bounds hold; a universal performance gain
+is not established.
+
+The415ms tick881 has58.717ms in resolve, versus sequential58.441ms resolve and
+70.068ms total. It coincides with immutable history segment20 sealing. Cold
+880->881 strace reproductions preserve exact rows/finals but do not reproduce the
+415ms pause. **Original syscall-level cause remains UNRESOLVED**; seal coincidence
+is not proof of fsync causation. Across the whole run about4.09s of the4.34s
+regression is inside resolve, so this outside-resolve outlier does not explain
+away the overall regression. Diagnostic strace timings are not release results.
+The initial diagnostic off-by-one prefix check and incomplete nested event-clock
+classification are preserved with corrected analyses; no numerical divergence
+was observed in their shared rows.
+
+Allocation warmup is separate from measured ticks722–724: sequential23613550,
+parallel24015638 requested bytes. Parallel adds1.70% and reduces the original
+263041278 baseline by only**90.870%**, below95%. Requested volume is cumulative,
+not retained bytes or RSS. This cost is included in the decision against global
+rollout; no geometry reduction was achieved or claimed.
+
+Sampled forward RSS ranged13424–74944KiB for A and14540–76052KiB for B; replay
+peaks are115184/116540KiB with two live runtimes. B has five threads forward and
+nine during replay because the original pool remains idle while the replay owns
+its own pool. This is not uncontrolled nested execution or a demonstrated leak.
+Worker support-entry counts are retained separately from bytes; unrestricted
+whole-engine/changing-anatomy memory stability remains INDETERMINATE.
+
+`fallback_ns` includes canonical fall-through casts outside the selected frontier;
+it is not exclusively stale-receipt recovery overhead. Worker elapsed/dispatch
+and enclosing resolve timers overlap and must not be added as independent costs.
+Pool startup is outside the existing tick timers; first-tick/cold-cache and full
+process timing scopes remain separate.
+
+| Aggregate gate | Result |
+|---|---|
+| Provisional mean <=5ms; preferred <=2ms across all cases | FAIL / FAIL |
+| P99 <=8ms; approximately16.667ms authoritative budget across cases | FAIL / FAIL |
+| Requested allocation reduction >=95% | FAIL |
+|3600 authoritative forward ticks within180s | FAIL |
+| Exact applicable rows, final states, event payloads and replay | PASS in tested matrix |
+| Material conservation; no new missed contact relative to reference | PASS in tested cases |
+| Geometry invalidation and critical admission guard falsification | PASS focused/regression |
+| Bounded descriptor/port ownership | PASS |
+| Whole-engine lifetime memory stability | INDETERMINATE |
+
+## Publication and next boundary
+
+Implementation evidence: PERFORMANCE_STABILIZATION_VI_STORAGE.json. Final matrix,
+strace, native/RSS evidence, clean certificate and restored runtime proof are in
+PERFORMANCE_STABILIZATION_VI_QUALIFICATION_STORAGE.json. Both archives are immutable
+on verified Mermogon; restore manifests/hashes and retained source/executables
+supply reproducibility. Validation certificate is PERFORMANCE_STABILIZATION_VI_VALIDATION.json; detailed
+results and per-case gates are PERFORMANCE_STABILIZATION_VI_RESULTS.json. Final publication changes are
+metadata only; no runtime/source edit follows the clean certificate. No hosted
+CI result is claimed.
+
+Next engineering would need a separately qualified way to reduce single-query
+linear/contact cost or avoid expensive unused work. Current per-body static
+frontiers and paid-mesh handoff do not solve that bottleneck. This report does
+not authorize altered geometry, history migration, lowered query limits or biology.
+
+
+Final qualification archive: 884 members / 814059965 uncompressed bytes,
+44731446 archive bytes; SHA256
+`96fa27e2ede64398a1d22744e91dc8a0f5054022f9ad5ca0a37d76b2d2b9dc0c`.
+All restored member hashes match. The original 1142-member implementation archive
+remains unchanged. Atlas verification passes: 45 notes, 197 links, zero errors.
+The archive contains the pre-publication report snapshot; this Git report and
+final storage receipt supply completed publication metadata.

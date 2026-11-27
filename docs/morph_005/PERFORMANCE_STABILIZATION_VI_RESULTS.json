@@ -1,0 +1,1155 @@
+{
+  "status": "PARTIAL_ENGINE_PERFORMANCE_GATES_FAILED",
+  "clean_source_checkpoint": "c989033decd4d466a8d0a0a279975bb73344f810",
+  "policy": {
+    "workers": 4,
+    "recovery": true,
+    "minimum_frontier": 4,
+    "default_runtime": "sequential",
+    "graft_and_static": "experimental-collision-frontiers only; rejected",
+    "geometry_reuse": "experimental-geometry-reuse only; not qualified",
+    "scope": "opt-in congestion profile; not a universal production default"
+  },
+  "cases": [
+    {
+      "case": "pop-1-120",
+      "output": "/home/cognis/moebius-vi-20261126/full-matrix/pop-1-120",
+      "ticks": 120,
+      "exact_all_rows_and_final": true,
+      "tick_ms": {
+        "count": 120,
+        "max_ms": 8.685214,
+        "mean_ms": 0.4876453,
+        "p50_ms": 0.303399,
+        "p95_ms": 1.337436,
+        "p99_ms": 4.004358
+      },
+      "cold_first_tick_ms": 8.685214,
+      "steady_mean_ms": 0.4187581680672269,
+      "authoritative_forward_seconds": 0.058517436,
+      "material_gap": 0,
+      "replay_equal": true,
+      "digest": "62de18f878a8893089845cf87595df7fb4b7326673d3a79bf64697d4bb46c5cd",
+      "execution_profile": {
+        "capacity_bypass": 0,
+        "consumed": 0,
+        "dispatch_wait_ns": 0,
+        "dispatched": 0,
+        "eligible": 0,
+        "failures": 0,
+        "fallback_ns": 5171415,
+        "frontier_sizes": {},
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 0,
+        "unnecessary": 0,
+        "worker_query_ns": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "worker_support_entries_max": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "peak_rss_before_replay_kib": 9220,
+      "peak_rss_after_replay_kib": 9980,
+      "gates": {
+        "mean_le_5ms": "PASS",
+        "mean_le_2ms": "PASS",
+        "p99_le_8ms": "PASS",
+        "mean_le_16_667ms": "PASS"
+      }
+    },
+    {
+      "case": "pop-2-120",
+      "output": "/home/cognis/moebius-vi-20261126/full-matrix/pop-2-120",
+      "ticks": 120,
+      "exact_all_rows_and_final": true,
+      "tick_ms": {
+        "count": 120,
+        "max_ms": 69.164342,
+        "mean_ms": 4.908524758333334,
+        "p50_ms": 2.121234,
+        "p95_ms": 16.69213,
+        "p99_ms": 31.214556
+      },
+      "cold_first_tick_ms": 7.909006,
+      "steady_mean_ms": 4.8833106302521,
+      "authoritative_forward_seconds": 0.589022971,
+      "material_gap": 0,
+      "replay_equal": true,
+      "digest": "ae5fbc3e3770b6b982196983c84c13c8bd10ab325bb41e7df989f4ee4db636e8",
+      "execution_profile": {
+        "capacity_bypass": 0,
+        "consumed": 66,
+        "dispatch_wait_ns": 36838072,
+        "dispatched": 68,
+        "eligible": 68,
+        "failures": 0,
+        "fallback_ns": 263459315,
+        "frontier_sizes": {
+          "0": 1,
+          "4": 17
+        },
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 1192989,
+        "unnecessary": 2,
+        "worker_query_ns": [
+          32573723,
+          30448818,
+          31580868,
+          33164840
+        ],
+        "worker_support_entries_max": [
+          13,
+          13,
+          13,
+          13
+        ]
+      },
+      "peak_rss_before_replay_kib": 11404,
+      "peak_rss_after_replay_kib": 14064,
+      "gates": {
+        "mean_le_5ms": "PASS",
+        "mean_le_2ms": "FAIL",
+        "p99_le_8ms": "FAIL",
+        "mean_le_16_667ms": "PASS"
+      }
+    },
+    {
+      "case": "pop-4-120",
+      "output": "/home/cognis/moebius-vi-20261126/full-matrix/pop-4-120",
+      "ticks": 120,
+      "exact_all_rows_and_final": true,
+      "tick_ms": {
+        "count": 120,
+        "max_ms": 22.361962,
+        "mean_ms": 7.499183833333333,
+        "p50_ms": 5.879002,
+        "p95_ms": 16.391351,
+        "p99_ms": 20.350749
+      },
+      "cold_first_tick_ms": 7.204169,
+      "steady_mean_ms": 7.501662949579832,
+      "authoritative_forward_seconds": 0.89990206,
+      "material_gap": 0,
+      "replay_equal": true,
+      "digest": "0e1ae855869b17bafb7d4caab55169eb8196e39b4d7010f311cc29b97175fb9f",
+      "execution_profile": {
+        "capacity_bypass": 0,
+        "consumed": 55,
+        "dispatch_wait_ns": 33916139,
+        "dispatched": 156,
+        "eligible": 156,
+        "failures": 0,
+        "fallback_ns": 144866201,
+        "frontier_sizes": {
+          "0": 2,
+          "4": 39
+        },
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 2455863,
+        "unnecessary": 101,
+        "worker_query_ns": [
+          26991132,
+          26126075,
+          27375220,
+          25678985
+        ],
+        "worker_support_entries_max": [
+          13,
+          13,
+          13,
+          13
+        ]
+      },
+      "peak_rss_before_replay_kib": 13032,
+      "peak_rss_after_replay_kib": 15960,
+      "gates": {
+        "mean_le_5ms": "FAIL",
+        "mean_le_2ms": "FAIL",
+        "p99_le_8ms": "FAIL",
+        "mean_le_16_667ms": "PASS"
+      }
+    },
+    {
+      "case": "pop-8-120",
+      "output": "/home/cognis/moebius-vi-20261126/full-matrix/pop-8-120",
+      "ticks": 120,
+      "exact_all_rows_and_final": true,
+      "tick_ms": {
+        "count": 120,
+        "max_ms": 48.999333,
+        "mean_ms": 13.84758425,
+        "p50_ms": 10.985857,
+        "p95_ms": 33.34028,
+        "p99_ms": 47.552998
+      },
+      "cold_first_tick_ms": 7.665588,
+      "steady_mean_ms": 13.899533798319329,
+      "authoritative_forward_seconds": 1.66171011,
+      "material_gap": 0,
+      "replay_equal": true,
+      "digest": "74c7be43784e5e7deed4152d9e8172cdb622ba44b93bacc75efc85089b6d21fa",
+      "execution_profile": {
+        "capacity_bypass": 0,
+        "consumed": 0,
+        "dispatch_wait_ns": 0,
+        "dispatched": 0,
+        "eligible": 0,
+        "failures": 0,
+        "fallback_ns": 475474751,
+        "frontier_sizes": {},
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 0,
+        "unnecessary": 0,
+        "worker_query_ns": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "worker_support_entries_max": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "peak_rss_before_replay_kib": 16716,
+      "peak_rss_after_replay_kib": 20448,
+      "gates": {
+        "mean_le_5ms": "FAIL",
+        "mean_le_2ms": "FAIL",
+        "p99_le_8ms": "FAIL",
+        "mean_le_16_667ms": "PASS"
+      }
+    },
+    {
+      "case": "pop-16-120",
+      "output": "/home/cognis/moebius-vi-20261126/full-matrix/pop-16-120",
+      "ticks": 120,
+      "exact_all_rows_and_final": true,
+      "tick_ms": {
+        "count": 120,
+        "max_ms": 97.990557,
+        "mean_ms": 39.00614131666667,
+        "p50_ms": 39.323363,
+        "p95_ms": 63.72924,
+        "p99_ms": 81.378518
+      },
+      "cold_first_tick_ms": 9.188763,
+      "steady_mean_ms": 39.2567075210084,
+      "authoritative_forward_seconds": 4.680736958,
+      "material_gap": 0,
+      "replay_equal": true,
+      "digest": "2535a6b3c28f58c227cd5d8997a23123e8592e1b127422240c28e8eb01d7609e",
+      "execution_profile": {
+        "capacity_bypass": 0,
+        "consumed": 67,
+        "dispatch_wait_ns": 81162270,
+        "dispatched": 116,
+        "eligible": 116,
+        "failures": 0,
+        "fallback_ns": 1831799431,
+        "frontier_sizes": {
+          "0": 12,
+          "4": 29
+        },
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 1521756,
+        "unnecessary": 49,
+        "worker_query_ns": [
+          53286843,
+          49957852,
+          68831556,
+          70588153
+        ],
+        "worker_support_entries_max": [
+          13,
+          13,
+          13,
+          13
+        ]
+      },
+      "peak_rss_before_replay_kib": 24180,
+      "peak_rss_after_replay_kib": 31208,
+      "gates": {
+        "mean_le_5ms": "FAIL",
+        "mean_le_2ms": "FAIL",
+        "p99_le_8ms": "FAIL",
+        "mean_le_16_667ms": "FAIL"
+      }
+    },
+    {
+      "case": "fresh-420",
+      "output": "/home/cognis/moebius-vi-20261126/full-matrix/fresh-420",
+      "ticks": 420,
+      "exact_all_rows_and_final": true,
+      "tick_ms": {
+        "count": 420,
+        "max_ms": 67.266111,
+        "mean_ms": 10.944661183333334,
+        "p50_ms": 9.551001,
+        "p95_ms": 27.084711,
+        "p99_ms": 33.73623
+      },
+      "cold_first_tick_ms": 7.830807,
+      "steady_mean_ms": 10.952092816229117,
+      "authoritative_forward_seconds": 4.596757697,
+      "material_gap": 0,
+      "replay_equal": true,
+      "digest": "b6ec37d812a7242661edd1a3e6c30e85a539155798ce48b788e695cace09cddf",
+      "execution_profile": {
+        "capacity_bypass": 0,
+        "consumed": 126,
+        "dispatch_wait_ns": 38709274,
+        "dispatched": 128,
+        "eligible": 128,
+        "failures": 0,
+        "fallback_ns": 1593800580,
+        "frontier_sizes": {
+          "0": 16,
+          "4": 32
+        },
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 1769418,
+        "unnecessary": 2,
+        "worker_query_ns": [
+          34329586,
+          32989419,
+          31512034,
+          30938196
+        ],
+        "worker_support_entries_max": [
+          13,
+          13,
+          13,
+          13
+        ]
+      },
+      "peak_rss_before_replay_kib": 23808,
+      "peak_rss_after_replay_kib": 25748,
+      "gates": {
+        "mean_le_5ms": "FAIL",
+        "mean_le_2ms": "FAIL",
+        "p99_le_8ms": "FAIL",
+        "mean_le_16_667ms": "PASS"
+      }
+    },
+    {
+      "case": "eight-120",
+      "output": "/home/cognis/moebius-vi-20261126/full-matrix/eight-120",
+      "ticks": 120,
+      "exact_all_rows_and_final": true,
+      "tick_ms": {
+        "count": 120,
+        "max_ms": 49.094616,
+        "mean_ms": 13.949061466666667,
+        "p50_ms": 10.846259,
+        "p95_ms": 33.778322,
+        "p99_ms": 46.275006
+      },
+      "cold_first_tick_ms": 7.743657,
+      "steady_mean_ms": 14.001207722689076,
+      "authoritative_forward_seconds": 1.673887376,
+      "material_gap": 0,
+      "replay_equal": true,
+      "digest": "74c7be43784e5e7deed4152d9e8172cdb622ba44b93bacc75efc85089b6d21fa",
+      "execution_profile": {
+        "capacity_bypass": 0,
+        "consumed": 0,
+        "dispatch_wait_ns": 0,
+        "dispatched": 0,
+        "eligible": 0,
+        "failures": 0,
+        "fallback_ns": 478625822,
+        "frontier_sizes": {},
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 0,
+        "unnecessary": 0,
+        "worker_query_ns": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "worker_support_entries_max": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "peak_rss_before_replay_kib": 16156,
+      "peak_rss_after_replay_kib": 20536,
+      "gates": {
+        "mean_le_5ms": "FAIL",
+        "mean_le_2ms": "FAIL",
+        "p99_le_8ms": "FAIL",
+        "mean_le_16_667ms": "PASS"
+      }
+    },
+    {
+      "case": "congested-30",
+      "output": "/home/cognis/moebius-vi-20261126/full-matrix/congested-30",
+      "ticks": 30,
+      "exact_all_rows_and_final": true,
+      "tick_ms": {
+        "count": 30,
+        "max_ms": 79.747148,
+        "mean_ms": 32.1064815,
+        "p50_ms": 30.104992,
+        "p95_ms": 72.791398,
+        "p99_ms": 79.747148
+      },
+      "cold_first_tick_ms": 72.791398,
+      "steady_mean_ms": 30.703553344827586,
+      "authoritative_forward_seconds": 0.963194445,
+      "material_gap": 0,
+      "replay_equal": true,
+      "digest": "ac3e5851441242c74e8c35d03cb2b5f1341a32d4a53774f57ca3ff0fbac0f8e7",
+      "execution_profile": {
+        "capacity_bypass": 0,
+        "consumed": 249,
+        "dispatch_wait_ns": 216073614,
+        "dispatched": 288,
+        "eligible": 288,
+        "failures": 0,
+        "fallback_ns": 373410211,
+        "frontier_sizes": {
+          "0": 23,
+          "4": 72
+        },
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 2375795,
+        "unnecessary": 39,
+        "worker_query_ns": [
+          203840447,
+          196157916,
+          192124430,
+          190691162
+        ],
+        "worker_support_entries_max": [
+          20,
+          20,
+          20,
+          20
+        ]
+      },
+      "peak_rss_before_replay_kib": 31060,
+      "peak_rss_after_replay_kib": 32404,
+      "gates": {
+        "mean_le_5ms": "FAIL",
+        "mean_le_2ms": "FAIL",
+        "p99_le_8ms": "FAIL",
+        "mean_le_16_667ms": "FAIL"
+      }
+    },
+    {
+      "case": "native-720",
+      "output": "/home/cognis/moebius-vi-20261126/native-recovery-attribution",
+      "ticks": 720,
+      "exact_all_rows_and_final": true,
+      "tick_ms": {
+        "count": 720,
+        "max_ms": 101.607167,
+        "mean_ms": 21.420198445833332,
+        "p50_ms": 17.032127,
+        "p95_ms": 55.154963,
+        "p99_ms": 71.017456
+      },
+      "cold_first_tick_ms": 7.968355,
+      "steady_mean_ms": 21.43890754659249,
+      "authoritative_forward_seconds": 15.422542881,
+      "material_gap": 0,
+      "replay_equal": true,
+      "digest": "4deec9cea642c2b9074ce21d539d6ff204077cccce8b04e118c7b0c21cb0f184",
+      "execution_profile": {
+        "capacity_bypass": 0,
+        "consumed": 134,
+        "dispatch_wait_ns": 41436028,
+        "dispatched": 136,
+        "eligible": 136,
+        "failures": 0,
+        "fallback_ns": 8301133730,
+        "frontier_sizes": {
+          "0": 18,
+          "4": 34
+        },
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 1785461,
+        "unnecessary": 2,
+        "worker_query_ns": [
+          35636945,
+          34360800,
+          35287028,
+          35134537
+        ],
+        "worker_support_entries_max": [
+          13,
+          13,
+          13,
+          13
+        ]
+      },
+      "peak_rss_before_replay_kib": 40840,
+      "peak_rss_after_replay_kib": 42412,
+      "gates": {
+        "mean_le_5ms": "FAIL",
+        "mean_le_2ms": "FAIL",
+        "p99_le_8ms": "FAIL",
+        "mean_le_16_667ms": "FAIL"
+      }
+    },
+    {
+      "case": "endurance-v2-3600",
+      "output": "/home/cognis/moebius-vi-20261126/full-matrix/endurance-B",
+      "ticks": 3600,
+      "exact_all_rows_and_final_to_same_source_A": true,
+      "exact_nonhistory_fields_to_IV": true,
+      "tick_ms": {
+        "count": 3600,
+        "max_ms": 415.012467,
+        "mean_ms": 54.89346629916666,
+        "p50_ms": 58.964525,
+        "p95_ms": 87.748527,
+        "p99_ms": 103.930071
+      },
+      "cold_first_tick_ms": 7.319535,
+      "steady_mean_ms": 54.90668495193109,
+      "authoritative_forward_seconds": 197.616478677,
+      "material_gap": 0,
+      "replay_equal": true,
+      "digest": "73d91f288409557b4bd7dbe8d0ac40321768279337eb70bea45160a64e26ac61",
+      "execution_profile": {
+        "capacity_bypass": 0,
+        "consumed": 10603,
+        "dispatch_wait_ns": 13012795919,
+        "dispatched": 15440,
+        "eligible": 15440,
+        "failures": 0,
+        "fallback_ns": 82994822182,
+        "frontier_sizes": {
+          "0": 133,
+          "4": 3860
+        },
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 251562578,
+        "unnecessary": 4837,
+        "worker_query_ns": [
+          5684058175,
+          7342542254,
+          9001627826,
+          10942989936
+        ],
+        "worker_support_entries_max": [
+          13,
+          13,
+          13,
+          13
+        ]
+      },
+      "peak_rss_before_replay_kib": 81036,
+      "peak_rss_after_replay_kib": 116540,
+      "gates": {
+        "mean_le_5ms": "FAIL",
+        "mean_le_2ms": "FAIL",
+        "p99_le_8ms": "FAIL",
+        "mean_le_16_667ms": "FAIL"
+      }
+    }
+  ],
+  "allocation": {
+    "A": {
+      "requested_bytes": 23613550,
+      "allocation_requests": 7548,
+      "peak_live_requested_bytes": 9524362,
+      "peak_rss_kib": 31636,
+      "digests": [
+        "db2b2837d7dc116e75f9856bc188f09ff29bfb0de1e3d5f7c8531461ce76f155",
+        "e86bc3e0c04923cfab066879295e2ca93cd4b1cec451a30b8e33ba03b784aacf",
+        "5e54d7620965c6f69a038bcb1a28c107daf154c709b343963b8e8e9a8245d063"
+      ]
+    },
+    "B": {
+      "requested_bytes": 24015638,
+      "allocation_requests": 8169,
+      "peak_live_requested_bytes": 10192149,
+      "peak_rss_kib": 31544,
+      "digests": [
+        "db2b2837d7dc116e75f9856bc188f09ff29bfb0de1e3d5f7c8531461ce76f155",
+        "e86bc3e0c04923cfab066879295e2ca93cd4b1cec451a30b8e33ba03b784aacf",
+        "5e54d7620965c6f69a038bcb1a28c107daf154c709b343963b8e8e9a8245d063"
+      ]
+    },
+    "original_baseline_bytes": 263041278,
+    "B_reduction_percent": 90.87001166410087,
+    "B_vs_A_requested_increase_percent": 1.7027850534968358
+  },
+  "worker_scaling": [
+    {
+      "workers": 1,
+      "mean_of_process_means_ms": 42.973507983333334,
+      "mean_of_process_p99_ms": 97.911821,
+      "peak_rss_kib": 30276,
+      "exact_all_rows_and_full_finals": true,
+      "profile": {
+        "capacity_bypass": 0,
+        "consumed": 0,
+        "dispatch_wait_ns": 0,
+        "dispatched": 0,
+        "eligible": 0,
+        "failures": 0,
+        "fallback_ns": 0,
+        "frontier_sizes": {},
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 0,
+        "unnecessary": 0,
+        "worker_query_ns": [],
+        "worker_support_entries_max": []
+      }
+    },
+    {
+      "workers": 2,
+      "mean_of_process_means_ms": 37.49573035,
+      "mean_of_process_p99_ms": 82.17524449999999,
+      "peak_rss_kib": 30632,
+      "exact_all_rows_and_full_finals": true,
+      "profile": {
+        "capacity_bypass": 0,
+        "consumed": 249,
+        "dispatch_wait_ns": 388462200,
+        "dispatched": 288,
+        "eligible": 288,
+        "failures": 0,
+        "fallback_ns": 368911527,
+        "frontier_sizes": {
+          "0": 23,
+          "4": 72
+        },
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 2279120,
+        "unnecessary": 39,
+        "worker_query_ns": [
+          381290030,
+          379508201
+        ],
+        "worker_support_entries_max": [
+          20,
+          20
+        ]
+      }
+    },
+    {
+      "workers": 4,
+      "mean_of_process_means_ms": 31.950683483333332,
+      "mean_of_process_p99_ms": 78.88422550000001,
+      "peak_rss_kib": 31088,
+      "exact_all_rows_and_full_finals": true,
+      "profile": {
+        "capacity_bypass": 0,
+        "consumed": 249,
+        "dispatch_wait_ns": 220366306,
+        "dispatched": 288,
+        "eligible": 288,
+        "failures": 0,
+        "fallback_ns": 369389339,
+        "frontier_sizes": {
+          "0": 23,
+          "4": 72
+        },
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 2583269,
+        "unnecessary": 39,
+        "worker_query_ns": [
+          199961690,
+          208622928,
+          201443989,
+          186906342
+        ],
+        "worker_support_entries_max": [
+          20,
+          20,
+          20,
+          20
+        ]
+      }
+    },
+    {
+      "workers": 8,
+      "mean_of_process_means_ms": 32.1912089,
+      "mean_of_process_p99_ms": 79.58523,
+      "peak_rss_kib": 33160,
+      "exact_all_rows_and_full_finals": true,
+      "profile": {
+        "capacity_bypass": 0,
+        "consumed": 249,
+        "dispatch_wait_ns": 227654520,
+        "dispatched": 288,
+        "eligible": 288,
+        "failures": 0,
+        "fallback_ns": 368154800,
+        "frontier_sizes": {
+          "0": 23,
+          "4": 72
+        },
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 4092499,
+        "unnecessary": 39,
+        "worker_query_ns": [
+          191983610,
+          151861752,
+          154972422,
+          53407788,
+          78003112,
+          42501560,
+          67784483,
+          63678582
+        ],
+        "worker_support_entries_max": [
+          20,
+          20,
+          20,
+          20,
+          20,
+          20,
+          20,
+          20
+        ]
+      }
+    },
+    {
+      "workers": 16,
+      "mean_of_process_means_ms": 32.18202291666667,
+      "mean_of_process_p99_ms": 79.12104,
+      "peak_rss_kib": 32788,
+      "exact_all_rows_and_full_finals": true,
+      "profile": {
+        "capacity_bypass": 0,
+        "consumed": 249,
+        "dispatch_wait_ns": 227674874,
+        "dispatched": 288,
+        "eligible": 288,
+        "failures": 0,
+        "fallback_ns": 369406998,
+        "frontier_sizes": {
+          "0": 23,
+          "4": 72
+        },
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 2147790,
+        "unnecessary": 39,
+        "worker_query_ns": [
+          199478182,
+          182499044,
+          161741690,
+          155235292,
+          56282827,
+          12764876,
+          9379218,
+          5454239,
+          15144607,
+          931800,
+          0,
+          0,
+          0,
+          0,
+          6047159,
+          8131967
+        ],
+        "worker_support_entries_max": [
+          20,
+          20,
+          20,
+          20,
+          20,
+          20,
+          20,
+          20,
+          13,
+          20,
+          0,
+          0,
+          0,
+          0,
+          13,
+          13
+        ]
+      }
+    },
+    {
+      "workers": 32,
+      "mean_of_process_means_ms": 32.87482318333333,
+      "mean_of_process_p99_ms": 78.07054550000001,
+      "peak_rss_kib": 33324,
+      "exact_all_rows_and_full_finals": true,
+      "profile": {
+        "capacity_bypass": 0,
+        "consumed": 249,
+        "dispatch_wait_ns": 248567914,
+        "dispatched": 288,
+        "eligible": 288,
+        "failures": 0,
+        "fallback_ns": 371177551,
+        "frontier_sizes": {
+          "0": 23,
+          "4": 72
+        },
+        "recalculated": 0,
+        "stale": 0,
+        "synchronization_upper_ns": 2718080,
+        "unnecessary": 39,
+        "worker_query_ns": [
+          138419309,
+          98538029,
+          150860027,
+          42129267,
+          46855088,
+          45202758,
+          83576744,
+          7143868,
+          42719326,
+          0,
+          55660286,
+          0,
+          21926454,
+          71754448,
+          16425235,
+          588680,
+          7030687,
+          1547980,
+          0,
+          0,
+          0,
+          4625508,
+          5375678,
+          0,
+          0,
+          0,
+          0,
+          7652028,
+          0,
+          0,
+          0,
+          0
+        ],
+        "worker_support_entries_max": [
+          20,
+          20,
+          20,
+          20,
+          20,
+          20,
+          13,
+          13,
+          13,
+          0,
+          20,
+          0,
+          13,
+          20,
+          20,
+          13,
+          13,
+          13,
+          0,
+          0,
+          0,
+          13,
+          13,
+          0,
+          0,
+          0,
+          0,
+          13,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  ],
+  "native": [
+    {
+      "workers": 1,
+      "authority_tick_ms": {
+        "count": 720,
+        "max_ms": 97.963043,
+        "mean_ms": 22.100223772222222,
+        "p50_ms": 17.869815,
+        "p95_ms": 56.353394,
+        "p99_ms": 71.386971
+      },
+      "publish_ms": {
+        "count": 720,
+        "max_ms": 0.348199,
+        "mean_ms": 0.09556165694444445,
+        "p50_ms": 0.09264,
+        "p95_ms": 0.19799,
+        "p99_ms": 0.2735
+      },
+      "frame_interval_ms": {
+        "count": 1678,
+        "max_ms": 49.635558,
+        "mean_ms": 16.680247220500597,
+        "p50_ms": 16.673395,
+        "p95_ms": 16.991315,
+        "p99_ms": 17.390676
+      },
+      "draw_cpu_ms": {
+        "count": 1678,
+        "max_ms": 18.814814,
+        "mean_ms": 6.0729877848629314,
+        "p50_ms": 5.465199,
+        "p95_ms": 12.744286,
+        "p99_ms": 14.043417
+      },
+      "peak_rss_kib_before_replay": 388496,
+      "exact_initial_and_final": true,
+      "executor_count_scope": "not directly recorded in native; same-input headless case dispatched136 jobs; native active count is inferred",
+      "gpu_timestamps": "unavailable"
+    },
+    {
+      "workers": 4,
+      "authority_tick_ms": {
+        "count": 720,
+        "max_ms": 97.902281,
+        "mean_ms": 22.086579784722225,
+        "p50_ms": 17.577115,
+        "p95_ms": 56.614723,
+        "p99_ms": 70.373169
+      },
+      "publish_ms": {
+        "count": 720,
+        "max_ms": 0.48601,
+        "mean_ms": 0.0914130486111111,
+        "p50_ms": 0.09164,
+        "p95_ms": 0.193459,
+        "p99_ms": 0.26309
+      },
+      "frame_interval_ms": {
+        "count": 1686,
+        "max_ms": 41.646489,
+        "mean_ms": 16.669829587188612,
+        "p50_ms": 16.674696,
+        "p95_ms": 16.985485,
+        "p99_ms": 17.672825
+      },
+      "draw_cpu_ms": {
+        "count": 1686,
+        "max_ms": 19.326184,
+        "mean_ms": 5.978425834519572,
+        "p50_ms": 5.401438,
+        "p95_ms": 12.305046,
+        "p99_ms": 13.698996
+      },
+      "peak_rss_kib_before_replay": 357976,
+      "exact_initial_and_final": true,
+      "executor_count_scope": "not directly recorded in native; same-input headless case dispatched136 jobs; native active count is inferred",
+      "gpu_timestamps": "unavailable"
+    }
+  ],
+  "memory": {
+    "A": {
+      "forward": {
+        "samples": 207,
+        "rss_min_kib": 13424,
+        "rss_max_kib": 74944,
+        "threads_max": 1,
+        "first_rss_kib": 13424,
+        "last_rss_kib": 74944
+      },
+      "replay_or_export": {
+        "samples": 192,
+        "rss_min_kib": 75812,
+        "rss_max_kib": 115184,
+        "threads_max": 1,
+        "first_rss_kib": 75812,
+        "last_rss_kib": 115184
+      }
+    },
+    "B": {
+      "forward": {
+        "samples": 211,
+        "rss_min_kib": 14540,
+        "rss_max_kib": 76052,
+        "threads_max": 5,
+        "first_rss_kib": 14540,
+        "last_rss_kib": 76052
+      },
+      "replay_or_export": {
+        "samples": 195,
+        "rss_min_kib": 77044,
+        "rss_max_kib": 116540,
+        "threads_max": 9,
+        "first_rss_kib": 77044,
+        "last_rss_kib": 116540
+      }
+    }
+  },
+  "endurance_A_seconds": 193.274656749,
+  "endurance_B_seconds": 197.616478677,
+  "event_equivalence": {
+    "same_source_A_B_exact_all_rows_final_and_events": true,
+    "old_IV_complete_ordered_payloads_equal": true,
+    "events": 137432,
+    "old_history_metadata_retained_and_not_relabelled": true
+  },
+  "validation": {
+    "status": "PASS",
+    "head": "c989033decd4d466a8d0a0a279975bb73344f810",
+    "branch": "main",
+    "before_status_short": "",
+    "after_status_short": "",
+    "after_head": "c989033decd4d466a8d0a0a279975bb73344f810",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--workspace",
+      "--all-targets",
+      "--all-features"
+    ],
+    "started_utc": "2026-11-26T19:31:25.007355+00:00",
+    "elapsed_seconds": 135.29697430098895,
+    "exit_code": 0,
+    "top_level_passed": 260,
+    "top_level_failed": 0,
+    "ignored": 0,
+    "rustc_verbose": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.1\nLLVM version: 23.1.1\n",
+    "scope": "clean-source regression certificate; not whole-engine performance or native qualification"
+  },
+  "gates": {
+    "provisional_mean_le5ms_all_cases": "FAIL",
+    "preferred_mean_le2ms_all_cases": "FAIL",
+    "p99_le8ms_all_cases": "FAIL",
+    "authoritative_tick_16_667ms_mean_all_cases": "FAIL",
+    "allocation_reduction_ge95percent": "FAIL",
+    "endurance_3600_forward_tick_sum_le180s": "FAIL",
+    "exact_established_rows_full_finals_events_and_replay": "PASS",
+    "material_conservation_tested_cases": "PASS",
+    "no_new_missed_admissible_contacts_relative_to_canonical_tested_cases": "PASS",
+    "geometry_invalidation_focused_and_regression": "PASS",
+    "bounded_descriptor_and_queue_ownership": "PASS",
+    "whole_engine_memory_stability": "INDETERMINATE"
+  },
+  "measurement_limits": [
+    "One paired native720 record; headless/native performance kept separate.",
+    "OS CPU includes forward/replay/prepare/observer work; worker query elapsed is not OS CPU.",
+    "Useful/stale/unnecessary query counts are exact; elapsed work is not partitioned by discard reason.",
+    "Sampled memory includes occupied-state growth and two runtimes during replay; no unlimited lifetime or changing-anatomy claim.",
+    "Pool startup is outside existing tick timers; first-tick and full process timings retain their separate scope.",
+    "Inherited IV timings are historical; current causal comparisons use same-source controls.",
+    "fallback_ns includes all canonical fall-through casts when an executor exists, not only stale receipt recomputation."
+  ],
+  "global_rollout": {
+    "status": "REJECTED",
+    "reason": "Full endurance forward tick sum regressed193.274656749->197.616478677seconds; latency benefit is workload-specific. Default remains sequential."
+  },
+  "endurance_regression_percent": 2.2464517599110723,
+  "residual_attribution": {
+    "timers_seconds": {
+      "A": {
+        "wall_ns": 193.274656749,
+        "resolve_ns": 172.699571574,
+        "query_ns": 91.298483456,
+        "linear_cast_ns": 59.74420867,
+        "distance_ns": 8.156500618,
+        "contact_ns": 22.339547629,
+        "pipe_geometry_ns": 14.582467264,
+        "outside_resolve_seconds": 20.575085174999998
+      },
+      "B": {
+        "wall_ns": 197.616478677,
+        "resolve_ns": 176.786412698,
+        "query_ns": 91.966761048,
+        "linear_cast_ns": 60.023948345,
+        "distance_ns": 8.195807019,
+        "contact_ns": 22.684891068,
+        "pipe_geometry_ns": 14.699766673,
+        "outside_resolve_seconds": 20.83006597900001
+      }
+    },
+    "spike": {
+      "world_tick": 881,
+      "A_wall_ms": 70.067922,
+      "B_wall_ms": 415.012467,
+      "A_resolve_ms": 58.441455,
+      "B_resolve_ms": 58.717486
+    },
+    "predicted_seals_near881": [
+      {
+        "world_tick_after_step": 881,
+        "sealed_ordinal": 20,
+        "events_total": 24592
+      }
+    ],
+    "limits": "Seal schedule derived from all ordered payloads and resident4096/segment1024 policy; no original syscall-duration capture. Schedule correlation is not causal proof.",
+    "event_clock_correction": "Initial exploratory classification omitted nested Contact.observation.at; preserved initial file superseded. All137432 event clocks now read, monotonicity checked."
+  },
+  "spike_diagnostic": {
+    "original_tick881_wall_ms": 415.012467,
+    "original_tick881_resolve_ms": 58.717486,
+    "same_tick_history_seal_ordinal": 20,
+    "reproductions": [
+      {
+        "workers": 1,
+        "repeat": 0,
+        "history_fsync_ms": [
+          2.242,
+          3.034
+        ],
+        "tick_ms": 108.493919
+      },
+      {
+        "workers": 4,
+        "repeat": 0,
+        "history_fsync_ms": [
+          3.164,
+          2.911
+        ],
+        "tick_ms": 100.56091
+      },
+      {
+        "workers": 1,
+        "repeat": 1,
+        "history_fsync_ms": [
+          2.3739999999999997,
+          2.863
+        ],
+        "tick_ms": 98.467672
+      },
+      {
+        "workers": 4,
+        "repeat": 1,
+        "history_fsync_ms": [
+          2.749,
+          2.7
+        ],
+        "tick_ms": 98.310063
+      }
+    ],
+    "conclusion": "415ms not reproduced; original syscall duration absent; cause UNRESOLVED. Outside-resolve location and seal coincidence are verified, not proof of fsync causation. Cold strace probes are not release timings."
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "head": "c989033decd4d466a8d0a0a279975bb73344f810",
+  "branch": "main",
+  "before_status_short": "",
+  "after_status_short": "",
+  "after_head": "c989033decd4d466a8d0a0a279975bb73344f810",
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--workspace",
+    "--all-targets",
+    "--all-features"
+  ],
+  "started_utc": "2026-11-26T19:31:25.007355+00:00",
+  "elapsed_seconds": 135.29697430098895,
+  "exit_code": 0,
+  "top_level_passed": 260,
+  "top_level_failed": 0,
+  "ignored": 0,
+  "rustc_verbose": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.1\nLLVM version: 23.1.1\n",
+  "scope": "clean-source regression certificate; not whole-engine performance or native qualification",
+  "strict_clippy": "PASS: cargo clippy --offline --workspace --all-targets --all-features -- -D warnings",
+  "formatting": "PASS: cargo fmt --all -- --check",
+  "python_integrity_tests": 9,
+  "qualification_receipt": "PERFORMANCE_STABILIZATION_VI_QUALIFICATION_STORAGE.json"
+}

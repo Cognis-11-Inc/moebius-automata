@@ -1,3 +1,71 @@
+# VI outgoing — 2026-11-26 America/Toronto, Codex
+
+**PARTIAL MORPH-005.** Repository: /home/cognis/Cognis_Lab/Möbius Automata,
+branch main. Clean source/test checkpoint: c989033decd4d466a8d0a0a279975bb73344f810.
+The outgoing metadata is uncommitted at this writing; final publication commit
+and remote state must be read from Git. No runtime change follows this certificate.
+All 260 workspace/all-target/all-feature tests passed in 135.297 seconds, with
+empty status before/after. Strict Clippy, formatting and 9 Python integrity tests
+passed. Atlas validation: 45 notes, 197 links, zero errors.
+
+Implemented bounded persistent numerical workers in collision_execution.rs,
+canonical recovery/graft/body-static call sites, complete ordered receipt checks,
+canonical fallback, finite queues and shutdown. Explicit Witness Reset retains
+execution policy. Workers cannot mutate or admit world/events/material.
+Sequential remains the default. Four-worker recovery is opt-in: matched congestion
+mean 43.146 -> 31.458 ms; full endurance 193.275 -> 197.616 seconds regresses and
+fails 180 seconds. Universal rollout is REJECTED. Graft/static require
+experimental-collision-frontiers; unprofitable transactional geometry handoff
+requires experimental-geometry-reuse. No qualified combined geometry lane.
+
+Every intermediate row and final world in all nine legacy cases remains exact.
+Paired 3600-tick A/B rows/full states match; all 137432 ordered event payloads
+match IV. Material gap is zero. New-source v2 history uses lawful source backing;
+old-source checkpoints still require their retained executable. No migration or
+fingerprint bypass. Native one/four-worker 720-tick final worlds match headless;
+frame means 16.680 -> 16.670 ms, frame P99 17.391 -> 17.673 ms. Authority means
+22.100 -> 22.087 ms. Native job count was not directly recorded; activity is
+inferred from the same configured path and 136 jobs in matched headless input.
+Final PNGs are 99.968 percent pixel-identical. No GPU timestamp or mouse claim.
+
+Requested allocations: A 23613550 -> B 24015638 bytes, 90.870 percent reduction
+against original 263041278 bytes; FAIL 95 percent. No geometry benefit qualified.
+Congested exact preflight/pipe duplicate pairs: zero. Cold-mesh, invalidation,
+paid-proof negatives, actual queue saturation, worker panic/disconnection and
+HistoryBudget rollback are covered. Two honest-red mutations fail (exit 101),
+restored guards pass. Endurance B tick 881 reaches 415.012 ms, resolve 58.717 ms;
+seal ordinal 20 coincides. Four cold strace probes give 98..109 ms and do not
+reproduce 415 ms: original cause UNRESOLVED. Overall 4.09 of 4.34 seconds regression
+is inside resolve, so that outside pause does not explain the aggregate regression.
+Failures and nulls remain preserved. Whole-engine lifetime memory is INDETERMINATE;
+bounded descriptor/port ownership passes. Engine timing/allocation gates fail.
+
+Immutable Mermogon archives, verified UUID D0A02EEBA02ED82C:
+- Implementation: 1142 files, 2923424862 member bytes; SHA256
+  3feae41a451a8c617a32ef3ef200e11bf2a23b363b3814afdd2364c1f481c422.
+- Qualification: 884 files, 814059965 member bytes; SHA256
+  96fa27e2ede64398a1d22744e91dc8a0f5054022f9ad5ca0a37d76b2d2b9dc0c.
+
+Both archives have per-file hashes and independent restored-copy verification.
+The main archive binary also executed a matched congested tick with replay/gap0.
+Exact locations/manifests/restore instructions are in
+PERFORMANCE_STABILIZATION_VI_STORAGE.json and
+PERFORMANCE_STABILIZATION_VI_QUALIFICATION_STORAGE.json. Raw working copy:
+/home/cognis/moebius-vi-20261126. Prior V archives/all 709 members were verified;
+old and rejected evidence is retained. No bulky raw evidence is added to Git.
+
+Report: docs/morph_005/PERFORMANCE_STABILIZATION_VI.md; related RESULTS,
+VALIDATION and HONEST_RED JSON identify exact evidence. Atlas navigation changes
+are metadata only. Next immediate action: review/stage metadata, authorized commit
+and push, then verify clean status and remote equality. Safe reentry: git status
+--short; git log -3; read the VI report and storage/validation receipts.
+Next engineering needs independently measured reductions in exact single-query
+cost or unused work. Per-body static windows and paid-mesh handoff did not qualify.
+No MORPH-006, biology, changed law/geometry/tolerance/history authority is granted.
+No hosted CI result is claimed.
+
+---
+
 # ACTIVE VI implementation — 2026-11-26T19:29:52.184680+00:00, Codex
 
 Runtime-changing scope authorized by PERFORMANCE_STABILIZATION_VI_DIRECTIVE.md.
