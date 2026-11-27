@@ -1,0 +1,37 @@
+{
+  "status": "ARCHIVED_RESTORE_VERIFIED",
+  "purpose": "VII clean-source validation and restored-executable proof supplement",
+  "run": "moebius-vii-20261126",
+  "archive_version": "performance-stabilization-vii-validation-v1",
+  "verified_utc": "2026-11-27T04:16:24.979594+00:00",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "source": "/dev/sdb2",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon",
+    "fstype": "ntfs3"
+  },
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "clean_source_checkpoint": "847b7001d395fdb51184e9cfe8824fb461778573",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-vii-validation-v1/evidence.tar.gz",
+  "archive_sha256": "0d5daf30e50c118c3aaa1de6cca0956931631c40a6eaf35a31a307306fd9b638",
+  "archive_bytes": 161798,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-vii-validation-v1/MANIFEST.json",
+  "manifest_sha256": "13dba732e8a9e3b73ceca6148e294341e3343958f2d91200c81ef321ea7ca4ac",
+  "member_count": 30,
+  "member_bytes": 1120345,
+  "classification": {
+    "clean-source regression certificate/log, source manifest, restored executable proof and publication metadata": {
+      "files": 30,
+      "bytes": 1120345
+    }
+  },
+  "all_restored_hashes_match": true,
+  "restore_working_copy": "/home/cognis/moebius-vii-validation-restored-20261126",
+  "working_root": "/home/cognis/moebius-vii-20261126",
+  "base_archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-vii-research-v1/evidence.tar.gz",
+  "base_archive_sha256": "9d39b388dcc967e9e97559c66c96b3f40f274e1e828fc3303ca8c48766fe712b",
+  "base_manifest_sha256": "4285b087a6e2bbde1d9d180cde2d96c526b60bd3d7ce6e2edfc247af74617635",
+  "base_verified_this_operation": true,
+  "restore_instructions": "Extract each archive to a new directory and verify its own manifest; overlay supplement onto a disposable base working view if desired, preserving both immutable versions. Final Git report and receipts supply publication metadata."
+}

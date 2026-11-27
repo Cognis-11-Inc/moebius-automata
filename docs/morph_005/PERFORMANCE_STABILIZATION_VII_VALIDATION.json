@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "head": "847b7001d395fdb51184e9cfe8824fb461778573",
+  "branch": "main",
+  "before_status_short": "",
+  "after_status_short": "",
+  "after_head": "847b7001d395fdb51184e9cfe8824fb461778573",
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--workspace",
+    "--all-targets",
+    "--all-features"
+  ],
+  "started_utc": "2026-11-27T04:13:13.400150+00:00",
+  "elapsed_seconds": 130.4709589460399,
+  "exit_code": 0,
+  "top_level_passed": 263,
+  "top_level_failed": 0,
+  "ignored": 0,
+  "rustc_verbose": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.1\nLLVM version: 23.1.1\n",
+  "scope": "clean-source workspace regression; not full performance matrix or canonical adoption",
+  "strict_clippy": "PASS: cargo clippy --offline --workspace --all-targets --all-features -- -D warnings",
+  "formatting": "PASS: cargo fmt --all -- --check",
+  "python_integrity_tests": 9,
+  "validation_storage": "PERFORMANCE_STABILIZATION_VII_VALIDATION_STORAGE.json"
+}

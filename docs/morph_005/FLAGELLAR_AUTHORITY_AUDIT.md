@@ -37,3 +37,11 @@ Main/origin/main are the only visible branches; stash empty. IV/V dependency and
 physical-geometry archaeology reused. No remote unpublished history, user's exact
 edited creature/save, fluid solver, GPU trace or all historical prototypes audited.
 No conflicting canonical owner found; research tools remain feature-gated observers.
+
+Additional counterpart check: spec.rs/compiler.rs retain v1 WormSpec/CompiledWorm
+flagellar mesh generation; AnatomySpec::migrate converts those authored appendages
+to v2 components. They do not supply a ship flagellar force solver. Separate
+moebius-core neural/body tests (torque_has_rates_limits_and_no_vacuum_com_thrust,
+a_hard_bend_lunges_in_a_medium_and_vacuum_stays_put) exercise nursery Body::step,
+not ShipRuntime habitat physics. No adapter or shared articulation authority was
+found; these paths were not conflated with the active ship model.

@@ -118,18 +118,58 @@ mirror produces honest-red exit101; restoring it passes. Strict workspace all-ta
 all-feature Clippy, formatting and nine Python integrity tests pass after a retained
 Clippy correction. Initial compile error, storage/clock/constructor harness errors,
 preliminary confounded matrices and rejected candidates remain in the archive.
-No serious test is disabled or weakened. Clean-source full-suite validation is
-pending the authorized research commit and will have a separate certificate.
+No serious test is disabled or weakened. Clean-source full-suite validation PASS at
+`847b7001d395fdb51184e9cfe8824fb461778573`:263 tests,zero failed/ignored,
+130.471 seconds, empty status before/after. Exact command:
+`cargo test --offline --workspace --all-targets --all-features`.
+PERFORMANCE_STABILIZATION_VII_VALIDATION.json records the certificate. Subsequent
+publication edits are metadata only. No hosted CI result is claimed.
 
 Authoritative bulky evidence: PERFORMANCE_STABILIZATION_VII_STORAGE.json on
 verified Mermogon, immutable version and per-file restoration checks. Git retains
 source, protocol, reports, compact analyses and storage/validation receipts.
 Raw working copy: /home/cognis/moebius-vii-20261126. Atlas is navigation only.
-Next dependency: source commit -> clean broad regression -> validation supplement
-archive/restore -> final metadata publication/remote verification. No runtime or
+The main restored executable independently reproduces all twelve escape trials.
+The validation supplement receipt is PERFORMANCE_STABILIZATION_VII_VALIDATION_STORAGE.json.
+The supplement is sealed and restored:30 files/1120345 member bytes,
+SHA256 `0d5daf30e50c118c3aaa1de6cca0956931631c40a6eaf35a31a307306fd9b638`.
+Both archives have matching per-file restoration hashes. Final publication changes
+are metadata only, with Git/remote identity checked after the authorized push.
+Next engineering is the explicitly open research above. No runtime or
 biological adoption is authorized by publishing this PARTIAL checkpoint.
 
 Research archive sealed/restored:3260 members,891646728 uncompressed bytes,
 196985616 archive bytes, SHA256
 `9d39b388dcc967e9e97559c66c96b3f40f274e1e828fc3303ca8c48766fe712b`.
 All restored member hashes match; source and failed attempts remain intact.
+
+Timing scope correction: the matched escape prechecks are included in recorded
+step wall time but excluded from resolve_ns. Post-step component diagnostics are
+outside both. These ordinary tool timings are not a new full-engine performance
+certificate. Source audit also checked legacy CompiledWorm/WormSpec flagellar
+meshes and moebius-core nursery actuator tests: those are separate consumers,
+not propulsion or articulation in ShipRuntime::habitat.
+
+## Reproduction
+
+Restore each archive into a new directory and verify its own manifest. The main
+archive contains the following retained executables and complete experimental
+inputs; no build cache is required. With `vii_restore` pointing to that verified
+main restore, use fresh output paths:
+
+```sh
+"$vii_restore/ordinary-final/morphology_research.binary" behaviour NEW_ORDINARY 24
+"$vii_restore/counted-final/morphology_research.binary" behaviour NEW_COUNTED 24
+"$vii_restore/escape-final/morphology_research.binary" escape-routes \
+  "$vii_restore/behaviour-final/original-escape-matched/resolver-state-0.json" NEW_ROUTES.json
+```
+
+For `components`, `procedural` and `economy`, restore the separately retained V
+archive identified by PERFORMANCE_STABILIZATION_V_STORAGE.json. Its `inputs/`
+contains the authenticated original worlds/recipes; FIXTURE_AUTHENTICATION.json
+in VII binds every file hash. The example's explicit subcommands accept those
+world/fixture paths. The early run_research.py is a retained failed driver, not
+the final replay command. Each old/corrected executable has its own build.json,
+source.tar.gz and embedded `--build-identity`; do not mix their timings or replace
+the old source-bound history executable with a rebuilt binary. A rebuilt research
+run needs its own source/executable/configuration receipt and new output directory.

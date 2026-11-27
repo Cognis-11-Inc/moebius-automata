@@ -1,3 +1,60 @@
+# VII outgoing validated checkpoint — 2026-11-26 America/Toronto, Codex
+
+PARTIAL. Source commit847b7001d395fdb51184e9cfe8824fb461778573 on main in
+/home/cognis/Cognis_Lab/Möbius Automata passed clean broad regression:
+cargo test --offline --workspace --all-targets --all-features,263 passed,
+zero failed/ignored,130.471s; status empty before/after. Strict Clippy, formatting,
+9 Python integrity tests pass. Current outgoing dirt is final validation/report/
+Atlas/HANDOFF metadata only. Publication SHA/remote state must be obtained from
+actual Git after authorized metadata commit/push. No source edit after certification.
+
+Completed feature-gated research paths: collision_research_vii.rs and the
+morphology_research example, plus fixture export/Cargo registration. Canonical
+collision/runtime/habitat/anatomy/filament unchanged; sequential remains default.
+Seven variants ×12 encounters ×2 families,24steps, two repeats in both ordinary/
+counted builds: every physical row/full final matches, zero material gap; natural
+finals validate. Matched fixed-time resolver outputs are not full-runtime snapshots.
+Three of12 bounded intervention routes reach clear contact from the frozen state;
+H4 not supported there, no generic mechanical-interlocking claim. H1/H2/H3/H5/H6
+indeterminate, H7 two-type criterion not supported. Actual user-save episode remains
+unresolved. No spontaneous-disengagement, general ecology or new controller claim.
+
+Intra-query candidate rejected (80/120 exact mismatches); changed procedural scalar
+model rejected (116 missed/1624 extra contacts in14000 static sphere probes).
+Adaptive depth filters are offline calibration/held-out counts only. Geometry
+surface/collider allocation measured; no exact runtime optimization qualified.
+Full performance matrix NOT RUN per gate; original VI failures remain. No new
+native, whole-engine memory, history migration, biology or MORPH-006 claim.
+
+Main research archive:3260 files/891646728 member bytes; SHA256
+9d39b388dcc967e9e97559c66c96b3f40f274e1e828fc3303ca8c48766fe712b.
+Mermogon UUID D0A02EEBA02ED82C was verified on sealing; all restored file hashes
+match. Restored main binary independently reproduces all12 escape trials exactly.
+Storage/restore authority: docs/morph_005/PERFORMANCE_STABILIZATION_VII_STORAGE.json.
+Validation supplement receipt: PERFORMANCE_STABILIZATION_VII_VALIDATION_STORAGE.json
+is sealed and restore-verified:30 files/1120345 member bytes, SHA256
+0d5daf30e50c118c3aaa1de6cca0956931631c40a6eaf35a31a307306fd9b638.
+Raw working root:
+/home/cognis/moebius-vii-20261126. Previous sources, failed builds/harness attempts,
+confounded preliminary matrices and all rejected results retained; no bulky raw Git
+additions. VI archives/all2026 members and V fixture hashes verified at entry.
+
+Primary report: docs/morph_005/PERFORMANCE_STABILIZATION_VII.md and linked audit,
+behaviour/construction, query/procedural/adaptive/allocation reports/compact tables.
+Known missing seams: user-edited save, winning-component/recovery counters in new
+behaviour matrix, configuration-space completeness, opportunity-matched secretion,
+continuous alternative-model TOI/normal/junction fidelity, general recovery policy.
+No canonical representation/anatomy adoption without separate Operator approval.
+
+Both immutable archives are complete; all per-file restored hashes match.
+Next immediate at this writing: diff/stage review, authorized metadata commit/push
+and verify remote equality/clean status. Safe reentry:
+git status --short; git log -3; read VII report/VALIDATION/STORAGE receipts. Next
+engineering follows the open hypotheses, not repeated full-matrix certification
+of rejected prototypes. No hosted CI result claimed.
+
+---
+
 # VII research checkpoint — 2026-11-26 America/Toronto, Codex
 
 PARTIAL, authorized controlled anatomy/procedural research; no canonical biology,

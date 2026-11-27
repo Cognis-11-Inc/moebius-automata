@@ -119,8 +119,8 @@
     },
     {
       "path": "07_EXPERIMENTS/MORPH_005.md",
-      "bytes": 7563,
-      "sha256": "fbbc6930f0e0ba64c146a329515d4980d212915bc0e12102d6d2c9250311c9f1"
+      "bytes": 7796,
+      "sha256": "9cb9ce50f05e5c4fdf90fc818b4e53e7056f2e7045a61a76b3dd0046ce01b8b8"
     },
     {
       "path": "08_ARCHITECTURE/ANATOMY_SPEC_V2.md",
@@ -189,8 +189,8 @@
     },
     {
       "path": "09_EVIDENCE/MORPH_005_LIMITS.md",
-      "bytes": 6739,
-      "sha256": "d10b8598f96786944215d8913e6dbfb7479e88d92918c04aceba78cc05c47170"
+      "bytes": 6972,
+      "sha256": "c73c9cf086d5b5be2b1ce7a774fff20da648efa292ff6fe353c011ebbd4b47fa"
     },
     {
       "path": "90_INBOX/INDEX.md",
@@ -265,6 +265,7 @@
     "date_local": "2026-11-26",
     "entry": "7de3fa72d296d9574d6bdeaf514e6a229f6af687",
     "report": "docs/morph_005/PERFORMANCE_STABILIZATION_VII.md",
-    "authority": "navigation only; source/certificates/restore-verified evidence authoritative"
+    "authority": "navigation only; source/certificates/restore-verified evidence authoritative",
+    "clean_validation_checkpoint": "847b7001d395fdb51184e9cfe8824fb461778573"
   }
 }
