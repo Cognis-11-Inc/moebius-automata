@@ -1,0 +1,30 @@
+{
+  "H1": {
+    "verdict": "INDETERMINATE",
+    "basis": "Static morphology changes sustained contact and freezing, but only the escape scenario reduces persistent contact while retaining encounters; the preregistered two-type criterion is not met. Tail/parallel variants can eliminate the encounter rather than improve disengagement. Mechanical interlocking is not established."
+  },
+  "H2": {
+    "verdict": "INDETERMINATE",
+    "basis": "No physical articulated-motion factor exists. Tick animation does not change the collider; authored Shape.phase changes a frozen geometry input."
+  },
+  "H3": {
+    "verdict": "INDETERMINATE",
+    "basis": "Convexification and a fixed sample differ from visible anatomy, but no independently specified intended-envelope tolerance was provided. Visible difference alone does not establish disproportionate physical anatomy."
+  },
+  "H4": {
+    "verdict": "NOT SUPPORTED",
+    "basis": "In the reproduced frozen state the simultaneous path deepens another contact after initial improvement; unilateral steps are admitted, and three bounded trajectory trials reach clear contact. This is a finite counterexample to imprisonment in this state, not a proof that the solver has no other defect."
+  },
+  "H5": {
+    "verdict": "INDETERMINATE",
+    "basis": "Natural long-appendage escape has19 deposits versus43 reference and47 without/short flagella. Steering, accepted motion and emission opportunities differ. Matched family has no secretion phase; it cannot isolate a direct causal secretion penalty. Structure cases also exhaust reserves."
+  },
+  "H6": {
+    "verdict": "INDETERMINATE",
+    "basis": "Contact-normalized resolve work does not show the preregistered >=20percent increase in two matched interacting scenario types. Larger total work alone is insufficient; diagnostic and ordinary timing scopes differ."
+  },
+  "H7": {
+    "verdict": "NOT SUPPORTED",
+    "basis": "Short variants retain contact and reduce freeze in the escape case only; fewer than two scenario types satisfy the preregistered retained-interaction criterion. This does not rule out useful anatomical development."
+  }
+}

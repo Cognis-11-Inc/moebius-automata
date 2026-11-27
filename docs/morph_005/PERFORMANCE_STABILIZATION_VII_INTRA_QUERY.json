@@ -1,0 +1,162 @@
+{
+  "status": "REJECTED_EXACTNESS",
+  "rows": [
+    {
+      "scene": "eight",
+      "workers": 1,
+      "samples": 10,
+      "exact_samples": 0,
+      "candidate_mean_ms": 20.629183100000002,
+      "canonical_cold_query_mean_ms": 19.6374215,
+      "candidate_first_ms": [
+        20.595042,
+        20.782173
+      ],
+      "candidate_steady_ms": 20.614327
+    },
+    {
+      "scene": "eight",
+      "workers": 2,
+      "samples": 10,
+      "exact_samples": 0,
+      "candidate_mean_ms": 12.1985501,
+      "canonical_cold_query_mean_ms": 19.555246,
+      "candidate_first_ms": [
+        12.007777,
+        11.855256
+      ],
+      "candidate_steady_ms": 12.2653085
+    },
+    {
+      "scene": "eight",
+      "workers": 4,
+      "samples": 10,
+      "exact_samples": 0,
+      "candidate_mean_ms": 7.6977995,
+      "canonical_cold_query_mean_ms": 18.4851715,
+      "candidate_first_ms": [
+        8.365076,
+        7.811634
+      ],
+      "candidate_steady_ms": 7.600160625
+    },
+    {
+      "scene": "eight",
+      "workers": 8,
+      "samples": 10,
+      "exact_samples": 0,
+      "candidate_mean_ms": 7.4571462,
+      "canonical_cold_query_mean_ms": 17.444395,
+      "candidate_first_ms": [
+        7.902923,
+        7.547613
+      ],
+      "candidate_steady_ms": 7.39011575
+    },
+    {
+      "scene": "fresh",
+      "workers": 1,
+      "samples": 10,
+      "exact_samples": 0,
+      "candidate_mean_ms": 57.2140485,
+      "canonical_cold_query_mean_ms": 62.2180515,
+      "candidate_first_ms": [
+        56.782323,
+        57.315593
+      ],
+      "candidate_steady_ms": 57.255321125
+    },
+    {
+      "scene": "fresh",
+      "workers": 2,
+      "samples": 10,
+      "exact_samples": 0,
+      "candidate_mean_ms": 57.026599299999994,
+      "canonical_cold_query_mean_ms": 62.211906,
+      "candidate_first_ms": [
+        57.322313,
+        57.312634
+      ],
+      "candidate_steady_ms": 56.95388075
+    },
+    {
+      "scene": "fresh",
+      "workers": 4,
+      "samples": 10,
+      "exact_samples": 0,
+      "candidate_mean_ms": 57.2069994,
+      "canonical_cold_query_mean_ms": 62.565402,
+      "candidate_first_ms": [
+        57.590594,
+        58.520645
+      ],
+      "candidate_steady_ms": 56.994844375
+    },
+    {
+      "scene": "fresh",
+      "workers": 8,
+      "samples": 10,
+      "exact_samples": 0,
+      "candidate_mean_ms": 57.3766015,
+      "canonical_cold_query_mean_ms": 62.377701,
+      "candidate_first_ms": [
+        58.112954,
+        58.712694
+      ],
+      "candidate_steady_ms": 57.117545875
+    },
+    {
+      "scene": "endurance",
+      "workers": 1,
+      "samples": 10,
+      "exact_samples": 10,
+      "candidate_mean_ms": 0.3217141,
+      "canonical_cold_query_mean_ms": 0.329545,
+      "candidate_first_ms": [
+        0.33623,
+        0.33619
+      ],
+      "candidate_steady_ms": 0.318090125
+    },
+    {
+      "scene": "endurance",
+      "workers": 2,
+      "samples": 10,
+      "exact_samples": 10,
+      "candidate_mean_ms": 0.087918,
+      "canonical_cold_query_mean_ms": 0.33417,
+      "candidate_first_ms": [
+        0.35013,
+        0.23496
+      ],
+      "candidate_steady_ms": 0.03676125
+    },
+    {
+      "scene": "endurance",
+      "workers": 4,
+      "samples": 10,
+      "exact_samples": 10,
+      "candidate_mean_ms": 0.177969,
+      "canonical_cold_query_mean_ms": 0.37405,
+      "candidate_first_ms": [
+        0.29251,
+        0.38966
+      ],
+      "candidate_steady_ms": 0.13719
+    },
+    {
+      "scene": "endurance",
+      "workers": 8,
+      "samples": 10,
+      "exact_samples": 10,
+      "candidate_mean_ms": 0.18478920000000001,
+      "canonical_cold_query_mean_ms": 0.329525,
+      "candidate_first_ms": [
+        0.24052,
+        0.41843
+      ],
+      "candidate_steady_ms": 0.14861775
+    }
+  ],
+  "ruling": "Whole-component decomposition changes canonical TOI/normal/point selection on eight/fresh. No runtime integration or full matrix. Canonical one-query observation is cold; candidate has five rounds/persistent workspace. Timing is not a matched speedup certificate."
+}

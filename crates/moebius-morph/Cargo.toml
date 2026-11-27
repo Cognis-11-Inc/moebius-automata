@@ -41,3 +41,7 @@ required-features = ["spatial-scale"]
 [[example]]
 name = "collision_fixture"
 required-features = ["collision-fixture"]
+
+[[example]]
+name = "morphology_research"
+required-features = ["collision-fixture"]

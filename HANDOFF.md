@@ -1,3 +1,53 @@
+# VII research checkpoint — 2026-11-26 America/Toronto, Codex
+
+PARTIAL, authorized controlled anatomy/procedural research; no canonical biology,
+physical representation, sensory change, history migration or MORPH-006.
+Repo /home/cognis/Cognis_Lab/Möbius Automata, main, entry/remote verified clean
+7de3fa72d296d9574d6bdeaf514e6a229f6af687. Current tree is dirty with explicit VII
+research source, reports/receipts and Atlas metadata only; not yet committed.
+Canonical collision/runtime/habitat/anatomy/filament files remain unchanged.
+
+New feature-gated collision::fixtures::research_vii and morphology_research example
+reuse canonical factories/resolver and VI bounded executor. No research result has
+a runtime admission consumer. Canonical default is sequential. No flagella disabled
+globally; variants modify experimental definitions only, preserving nozzle/storage.
+
+Completed168 final cases (7 variants ×12 encounters ×2 families),24steps, repeated
+in ordinary/counting executables. Every physical row/full final matches; zero
+material gap; natural finals validate. Matched output is fixed-time resolver
+state, not a full-runtime snapshot. Original simultaneous outward route freezes
+10steps; short/no flagella0. Canonical guard rejects renewed contact deepening;
+unilateral/vertical routes reach separation. H4 NOT SUPPORTED in that state;
+H1/H2/H3/H5/H6 INDETERMINATE, H7 two-type criterion NOT SUPPORTED. User's exact
+save/anatomy not supplied, no claim to reproduce the exact in-situ event.
+
+Component decomposition:80/120 exact-hit mismatches, REJECTED. Procedural scalar
+hollow model:116 false negatives/1624 false positives in14000 static sphere queries,
+REJECTED for adoption. Adaptive recovery only offline calibration/held-out counts;
+no timing qualification. Geometry allocation measured surface/collider stages;
+no exact optimization qualified. Full performance matrix NOT RUN under Gate G;
+VI failures stand. No new native/GPU/whole-engine memory claim.
+
+Three focused tests pass; constructor-mirror omission honest-red101/restored0.
+Strict all-target/all-feature Clippy passes after retained style failure; format
+and9 Python integrity tests pass. Full clean-source suite pending research commit.
+Raw /home/cognis/moebius-vii-20261126 includes all source/binary identities, initial
+worlds, rows, states, SVG/PNG diagnostic and rejected/failed attempts. VI archives/
+all2026 members rehashed; V archive and input hashes verified on Mermogon UUID
+D0A02EEBA02ED82C. New immutable VII research archive is sealed and restored:3260 files/891646728
+member bytes, SHA2569d39b388dcc967e9e97559c66c96b3f40f274e1e828fc3303ca8c48766fe712b.
+See PERFORMANCE_STABILIZATION_VII_STORAGE.json; no raw bulk belongs in Git. Atlas45notes/197links PASS
+on independently verified volume8CA451CDA451BA82.
+
+Next: seal/restore research evidence -> diff/stage review -> authorized source
+commit -> record clean HEAD/status and cargo test --offline --workspace --all-targets
+--all-features -> validation supplement archive/restore -> final metadata commit/
+push and remote/clean verification. See docs/morph_005/PERFORMANCE_STABILIZATION_VII.md
+and linked reports/protocol for remaining measurement limits. Safe reentry:
+git status --short; git log -3; read VII report/storage/validation receipts.
+
+---
+
 # VI outgoing — 2026-11-26 America/Toronto, Codex
 
 **PARTIAL MORPH-005.** Repository: /home/cognis/Cognis_Lab/Möbius Automata,

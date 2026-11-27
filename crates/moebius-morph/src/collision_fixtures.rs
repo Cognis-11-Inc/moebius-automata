@@ -5,6 +5,9 @@ use std::cell::RefCell;
 #[path = "collision_batch.rs"]
 pub mod batch;
 
+#[path = "collision_research_vii.rs"]
+pub mod research_vii;
+
 #[derive(Serialize)]
 pub struct GeometryRecord {
     stage: String,

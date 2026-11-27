@@ -1,0 +1,95 @@
+{
+  "honest_red": {
+    "mutation": "omit experimental constructor steering mirror update",
+    "red_exit": 101,
+    "green_exit": 0,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "-p",
+      "moebius-morph",
+      "--lib",
+      "--features",
+      "collision-fixture",
+      "relocating_an_experimental_pose_preserves_constructor_consistency"
+    ],
+    "restored_sha256": "9330050dd6f26cde8d5cd215bfb25f7ccc65a0cfe59cd080fbc241fe3b5ab352"
+  },
+  "checks": [
+    {
+      "label": "focused",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "-p",
+        "moebius-morph",
+        "--lib",
+        "--features",
+        "collision-fixture",
+        "research_vii"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "clippy",
+      "command": [
+        "cargo",
+        "clippy",
+        "--offline",
+        "--workspace",
+        "--all-targets",
+        "--all-features",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit": 101
+    },
+    {
+      "label": "format",
+      "command": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "integrity",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "python",
+        "-p",
+        "test_benchmark_integrity.py"
+      ],
+      "exit": 0
+    }
+  ],
+  "corrections": [
+    {
+      "label": "strict Clippy after collapsible-if repair",
+      "command": [
+        "cargo",
+        "clippy",
+        "--offline",
+        "--workspace",
+        "--all-targets",
+        "--all-features",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit": 0,
+      "log": "clippy-final.log"
+    }
+  ],
+  "scope": "focused research correctness; broad clean-source validation pending"
+}

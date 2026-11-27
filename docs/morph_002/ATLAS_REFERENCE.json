@@ -119,8 +119,8 @@
     },
     {
       "path": "07_EXPERIMENTS/MORPH_005.md",
-      "bytes": 6304,
-      "sha256": "a17a762a9012b9bce3ab675d799e640a417d569e4971f674e725dffa34245c3d"
+      "bytes": 7563,
+      "sha256": "fbbc6930f0e0ba64c146a329515d4980d212915bc0e12102d6d2c9250311c9f1"
     },
     {
       "path": "08_ARCHITECTURE/ANATOMY_SPEC_V2.md",
@@ -189,8 +189,8 @@
     },
     {
       "path": "09_EVIDENCE/MORPH_005_LIMITS.md",
-      "bytes": 5480,
-      "sha256": "9748ce3a40ab688c618a679c3490573964dded7987ffff68ed58facc3803dd5c"
+      "bytes": 6739,
+      "sha256": "d10b8598f96786944215d8913e6dbfb7479e88d92918c04aceba78cc05c47170"
     },
     {
       "path": "90_INBOX/INDEX.md",
@@ -238,7 +238,7 @@
     }
   ],
   "snapshot_note": "Rehashed after the clean MORPH-003 suite on a8cb705. Six edited notes cite that implementation commit. Ship design canon is unchanged.",
-  "latest_update": "VI PARTIAL: opt-in congestion gain; endurance regression, sequential default. See stabilization_vi.",
+  "latest_update": "VII PARTIAL research; no canonical optimization or anatomy adoption. See stabilization_vii.",
   "stabilization_iv": {
     "status": "PARTIAL",
     "verified_date_utc": "2026-11-26",
@@ -259,5 +259,12 @@
     "clean_validation_checkpoint": "c989033decd4d466a8d0a0a279975bb73344f810",
     "report": "docs/morph_005/PERFORMANCE_STABILIZATION_VI.md",
     "authority": "navigation only; source and restore-verified evidence authoritative"
+  },
+  "stabilization_vii": {
+    "status": "PARTIAL_ISOLATED_RESEARCH_NO_CANONICAL_ADOPTION",
+    "date_local": "2026-11-26",
+    "entry": "7de3fa72d296d9574d6bdeaf514e6a229f6af687",
+    "report": "docs/morph_005/PERFORMANCE_STABILIZATION_VII.md",
+    "authority": "navigation only; source/certificates/restore-verified evidence authoritative"
   }
 }

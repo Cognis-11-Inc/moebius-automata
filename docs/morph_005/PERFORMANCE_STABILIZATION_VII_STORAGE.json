@@ -1,0 +1,41 @@
+{
+  "status": "ARCHIVED_RESTORE_VERIFIED",
+  "purpose": "VII controlled anatomy/contact/secretion research, rejected intra-query and procedural prototypes, offline adaptive assessment, geometry allocation, failures and deterministic replay evidence",
+  "run": "moebius-vii-20261126",
+  "archive_version": "performance-stabilization-vii-research-v1",
+  "verified_utc": "2026-11-27T04:12:11.694651+00:00",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "source": "/dev/sdb2",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon",
+    "fstype": "ntfs3"
+  },
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-vii-research-v1/evidence.tar.gz",
+  "archive_sha256": "9d39b388dcc967e9e97559c66c96b3f40f274e1e828fc3303ca8c48766fe712b",
+  "archive_bytes": 196985616,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/SIMULATION-0001/2026-11-26/performance-stabilization-vii-research-v1/MANIFEST.json",
+  "manifest_sha256": "4285b087a6e2bbde1d9d180cde2d96c526b60bd3d7ce6e2edfc247af74617635",
+  "member_count": 3260,
+  "member_bytes": 891646728,
+  "classification": {
+    "protocols/analysis/rejected candidates/failures/validation/provenance": {
+      "files": 142,
+      "bytes": 9821477
+    },
+    "full experimental worlds/rows/physical states and diagnostic images": {
+      "files": 3082,
+      "bytes": 835110436
+    },
+    "source/executables and exact build provenance": {
+      "files": 36,
+      "bytes": 46714815
+    }
+  },
+  "all_restored_hashes_match": true,
+  "restore_working_copy": "/home/cognis/moebius-vii-research-restored-20261126",
+  "working_root": "/home/cognis/moebius-vii-20261126",
+  "source_entry": "7de3fa72d296d9574d6bdeaf514e6a229f6af687",
+  "restore_instructions": "Extract into a new directory; check every manifest file size/SHA256 and captured build identity before running. Runtime input worlds are v1; matched resolver-state files are not claimed as full-runtime checkpoints. Retain previous source-bound history binaries unchanged. Clean-source test evidence will be a separate immutable validation supplement."
+}

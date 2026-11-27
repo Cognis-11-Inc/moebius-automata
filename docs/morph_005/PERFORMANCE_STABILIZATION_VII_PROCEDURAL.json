@@ -1,0 +1,342 @@
+[
+  {
+    "canonical_bounds": [
+      [
+        -0.16941413283348083,
+        -0.18950273096561432,
+        0.0
+      ],
+      [
+        0.16941413283348083,
+        0.18950273096561432,
+        1.0
+      ]
+    ],
+    "case": "straight-open-age0",
+    "exact_build_live_delta": 110178,
+    "exact_build_ns": 172650,
+    "exact_build_requested_bytes": 323770,
+    "exact_mesh_triangles": 520,
+    "exact_mesh_vertices": 260,
+    "exact_query_ns": 40649235,
+    "false_negative": 0,
+    "false_positive": 258,
+    "junctions": "neighbour shape recipe only; no union/load-bearing model",
+    "max_distance_error_m": 0.04239891469478607,
+    "normal_deviation": "NOT SUPPORTED by scalar-distance prototype",
+    "procedural_build_live_delta": 128,
+    "procedural_build_ns": 370,
+    "procedural_build_requested_bytes": 128,
+    "procedural_query_ns": 90400,
+    "procedural_segments": 4,
+    "queries": 1400,
+    "runtime_integration": false,
+    "toi_deviation": "NOT RUN: static sphere probes only"
+  },
+  {
+    "canonical_bounds": [
+      [
+        -0.11858991533517838,
+        -0.1326519250869751,
+        0.0
+      ],
+      [
+        0.11858990788459778,
+        0.1326519250869751,
+        1.0
+      ]
+    ],
+    "case": "straight-open-age256",
+    "exact_build_live_delta": 110178,
+    "exact_build_ns": 211430,
+    "exact_build_requested_bytes": 323770,
+    "exact_mesh_triangles": 520,
+    "exact_mesh_vertices": 260,
+    "exact_query_ns": 39055683,
+    "false_negative": 4,
+    "false_positive": 12,
+    "junctions": "neighbour shape recipe only; no union/load-bearing model",
+    "max_distance_error_m": 0.017299111932516098,
+    "normal_deviation": "NOT SUPPORTED by scalar-distance prototype",
+    "procedural_build_live_delta": 128,
+    "procedural_build_ns": 360,
+    "procedural_build_requested_bytes": 128,
+    "procedural_query_ns": 87350,
+    "procedural_segments": 4,
+    "queries": 1400,
+    "runtime_integration": false,
+    "toi_deviation": "NOT RUN: static sphere probes only"
+  },
+  {
+    "canonical_bounds": [
+      [
+        -0.38938021659851074,
+        -0.18950273096561432,
+        -0.10970263928174973
+      ],
+      [
+        0.4267590641975403,
+        0.18950273096561432,
+        1.1093006134033203
+      ]
+    ],
+    "case": "curved-open-age0",
+    "exact_build_live_delta": 110178,
+    "exact_build_ns": 424490,
+    "exact_build_requested_bytes": 323770,
+    "exact_mesh_triangles": 520,
+    "exact_mesh_vertices": 260,
+    "exact_query_ns": 41114224,
+    "false_negative": 31,
+    "false_positive": 249,
+    "junctions": "neighbour shape recipe only; no union/load-bearing model",
+    "max_distance_error_m": 0.0550568588078022,
+    "normal_deviation": "NOT SUPPORTED by scalar-distance prototype",
+    "procedural_build_live_delta": 128,
+    "procedural_build_ns": 790,
+    "procedural_build_requested_bytes": 128,
+    "procedural_query_ns": 98900,
+    "procedural_segments": 4,
+    "queries": 1400,
+    "runtime_integration": false,
+    "toi_deviation": "NOT RUN: static sphere probes only"
+  },
+  {
+    "canonical_bounds": [
+      [
+        -0.352500855922699,
+        -0.1326519250869751,
+        -0.07679185271263123
+      ],
+      [
+        0.3800855576992035,
+        0.1326519250869751,
+        1.0765104293823242
+      ]
+    ],
+    "case": "curved-open-age256",
+    "exact_build_live_delta": 110178,
+    "exact_build_ns": 169930,
+    "exact_build_requested_bytes": 323770,
+    "exact_mesh_triangles": 520,
+    "exact_mesh_vertices": 260,
+    "exact_query_ns": 40127884,
+    "false_negative": 21,
+    "false_positive": 125,
+    "junctions": "neighbour shape recipe only; no union/load-bearing model",
+    "max_distance_error_m": 0.04724621772766113,
+    "normal_deviation": "NOT SUPPORTED by scalar-distance prototype",
+    "procedural_build_live_delta": 128,
+    "procedural_build_ns": 270,
+    "procedural_build_requested_bytes": 128,
+    "procedural_query_ns": 93290,
+    "procedural_segments": 4,
+    "queries": 1400,
+    "runtime_integration": false,
+    "toi_deviation": "NOT RUN: static sphere probes only"
+  },
+  {
+    "canonical_bounds": [
+      [
+        -0.16941413283348083,
+        -0.18950273096561432,
+        0.0
+      ],
+      [
+        0.16941413283348083,
+        0.18950273096561432,
+        1.0
+      ]
+    ],
+    "case": "sealed-age0",
+    "exact_build_live_delta": 110370,
+    "exact_build_ns": 158800,
+    "exact_build_requested_bytes": 323962,
+    "exact_mesh_triangles": 520,
+    "exact_mesh_vertices": 264,
+    "exact_query_ns": 40124153,
+    "false_negative": 0,
+    "false_positive": 260,
+    "junctions": "neighbour shape recipe only; no union/load-bearing model",
+    "max_distance_error_m": 0.08002883195877075,
+    "normal_deviation": "NOT SUPPORTED by scalar-distance prototype",
+    "procedural_build_live_delta": 128,
+    "procedural_build_ns": 240,
+    "procedural_build_requested_bytes": 128,
+    "procedural_query_ns": 90250,
+    "procedural_segments": 4,
+    "queries": 1400,
+    "runtime_integration": false,
+    "toi_deviation": "NOT RUN: static sphere probes only"
+  },
+  {
+    "canonical_bounds": [
+      [
+        -0.11858991533517838,
+        -0.1326519250869751,
+        0.0
+      ],
+      [
+        0.11858990788459778,
+        0.1326519250869751,
+        1.0
+      ]
+    ],
+    "case": "sealed-age256",
+    "exact_build_live_delta": 110370,
+    "exact_build_ns": 158990,
+    "exact_build_requested_bytes": 323962,
+    "exact_mesh_triangles": 520,
+    "exact_mesh_vertices": 264,
+    "exact_query_ns": 39447343,
+    "false_negative": 4,
+    "false_positive": 12,
+    "junctions": "neighbour shape recipe only; no union/load-bearing model",
+    "max_distance_error_m": 0.07600730657577515,
+    "normal_deviation": "NOT SUPPORTED by scalar-distance prototype",
+    "procedural_build_live_delta": 128,
+    "procedural_build_ns": 250,
+    "procedural_build_requested_bytes": 128,
+    "procedural_query_ns": 86510,
+    "procedural_segments": 4,
+    "queries": 1400,
+    "runtime_integration": false,
+    "toi_deviation": "NOT RUN: static sphere probes only"
+  },
+  {
+    "canonical_bounds": [
+      [
+        -0.16214390099048615,
+        -0.18137040734291077,
+        0.0
+      ],
+      [
+        0.16214388608932495,
+        0.18137040734291077,
+        1.0
+      ]
+    ],
+    "case": "age-gradient-age0",
+    "exact_build_live_delta": 110178,
+    "exact_build_ns": 160290,
+    "exact_build_requested_bytes": 323770,
+    "exact_mesh_triangles": 520,
+    "exact_mesh_vertices": 260,
+    "exact_query_ns": 40095083,
+    "false_negative": 0,
+    "false_positive": 322,
+    "junctions": "neighbour shape recipe only; no union/load-bearing model",
+    "max_distance_error_m": 0.045931126922369,
+    "normal_deviation": "NOT SUPPORTED by scalar-distance prototype",
+    "procedural_build_live_delta": 128,
+    "procedural_build_ns": 290,
+    "procedural_build_requested_bytes": 128,
+    "procedural_query_ns": 90250,
+    "procedural_segments": 4,
+    "queries": 1400,
+    "runtime_integration": false,
+    "toi_deviation": "NOT RUN: static sphere probes only"
+  },
+  {
+    "canonical_bounds": [
+      [
+        -0.11858991533517838,
+        -0.1326519250869751,
+        0.0
+      ],
+      [
+        0.11858990788459778,
+        0.1326519250869751,
+        1.0
+      ]
+    ],
+    "case": "age-gradient-age256",
+    "exact_build_live_delta": 110178,
+    "exact_build_ns": 158601,
+    "exact_build_requested_bytes": 323770,
+    "exact_mesh_triangles": 520,
+    "exact_mesh_vertices": 260,
+    "exact_query_ns": 39141743,
+    "false_negative": 4,
+    "false_positive": 12,
+    "junctions": "neighbour shape recipe only; no union/load-bearing model",
+    "max_distance_error_m": 0.017299111932516098,
+    "normal_deviation": "NOT SUPPORTED by scalar-distance prototype",
+    "procedural_build_live_delta": 128,
+    "procedural_build_ns": 290,
+    "procedural_build_requested_bytes": 128,
+    "procedural_query_ns": 89330,
+    "procedural_segments": 4,
+    "queries": 1400,
+    "runtime_integration": false,
+    "toi_deviation": "NOT RUN: static sphere probes only"
+  },
+  {
+    "canonical_bounds": [
+      [
+        -0.38938021659851074,
+        -0.18950273096561432,
+        -0.10970263928174973
+      ],
+      [
+        0.4267590641975403,
+        0.18950273096561432,
+        1.1093006134033203
+      ]
+    ],
+    "case": "junction-neighbour-age0",
+    "exact_build_live_delta": 110178,
+    "exact_build_ns": 170090,
+    "exact_build_requested_bytes": 323770,
+    "exact_mesh_triangles": 520,
+    "exact_mesh_vertices": 260,
+    "exact_query_ns": 41064674,
+    "false_negative": 31,
+    "false_positive": 249,
+    "junctions": "neighbour shape recipe only; no union/load-bearing model",
+    "max_distance_error_m": 0.0550568588078022,
+    "normal_deviation": "NOT SUPPORTED by scalar-distance prototype",
+    "procedural_build_live_delta": 128,
+    "procedural_build_ns": 290,
+    "procedural_build_requested_bytes": 128,
+    "procedural_query_ns": 98680,
+    "procedural_segments": 4,
+    "queries": 1400,
+    "runtime_integration": false,
+    "toi_deviation": "NOT RUN: static sphere probes only"
+  },
+  {
+    "canonical_bounds": [
+      [
+        -0.352500855922699,
+        -0.1326519250869751,
+        -0.07679185271263123
+      ],
+      [
+        0.3800855576992035,
+        0.1326519250869751,
+        1.0765104293823242
+      ]
+    ],
+    "case": "junction-neighbour-age256",
+    "exact_build_live_delta": 110178,
+    "exact_build_ns": 174120,
+    "exact_build_requested_bytes": 323770,
+    "exact_mesh_triangles": 520,
+    "exact_mesh_vertices": 260,
+    "exact_query_ns": 39913313,
+    "false_negative": 21,
+    "false_positive": 125,
+    "junctions": "neighbour shape recipe only; no union/load-bearing model",
+    "max_distance_error_m": 0.04724621772766113,
+    "normal_deviation": "NOT SUPPORTED by scalar-distance prototype",
+    "procedural_build_live_delta": 128,
+    "procedural_build_ns": 250,
+    "procedural_build_requested_bytes": 128,
+    "procedural_query_ns": 92190,
+    "procedural_segments": 4,
+    "queries": 1400,
+    "runtime_integration": false,
+    "toi_deviation": "NOT RUN: static sphere probes only"
+  }
+]
