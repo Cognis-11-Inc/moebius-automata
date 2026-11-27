@@ -21,3 +21,7 @@ are hypotheses until the paired phase/occupancy records are analyzed.
 
 Final numerical attribution and crossover tables: HABITAT-002_RESULTS.json and
 HABITAT-002_SCALING.json after clean-source qualification. Failure/nulls retained.
+
+## Final measured status
+
+Final: support27 initially/81 after first step reaches4095/4096 by32. Ordinary transport0.191673ms dense versus1.558349ms tree-sparse for matched cloud control. Intrusive tree discovery/apply are materially more expensive; leaf timings include recorder overhead and do not isolate ordinary allocator/cache costs. See ATTRIBUTION.json and RESULTS.md.

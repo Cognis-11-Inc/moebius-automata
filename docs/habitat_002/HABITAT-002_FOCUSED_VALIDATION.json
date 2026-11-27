@@ -119,6 +119,6 @@
     "passed": 9,
     "status": "PASS"
   },
-  "broad_suite": "PENDING clean source commit",
+  "broad_suite": "PASS283, clean source 0d2bd8990860e6f1fee6166fa4c7bdc42958551f",
   "raw_evidence": "HABITAT-002_STORAGE.json"
 }

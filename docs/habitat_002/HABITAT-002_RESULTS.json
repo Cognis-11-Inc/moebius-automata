@@ -1,0 +1,994 @@
+{
+  "status": "PARTIAL_EXPERIMENTAL",
+  "source_commit": "0d2bd8990860e6f1fee6166fa4c7bdc42958551f",
+  "completed_cpu_cases": 168,
+  "failed_runs": [],
+  "independent_equivalent_comparisons": 133,
+  "physical_groups": 35,
+  "all_compared_tick_digests_and_decoded_initial_final_states_exact": true,
+  "original001_reference_decoded_initial_final_exact": true,
+  "acceleration": [
+    {
+      "lane": "Reference",
+      "mean_ms": 1.1736040166666666,
+      "p99_ms": 1.225429,
+      "steady_mean_ms": 1.1684987833333333,
+      "cold_ms": 1.330409,
+      "mean_speedup_vs_current_reference": 1.0,
+      "requested_bytes_per_tick": 3114001,
+      "requested_reduction_fraction": 0.0,
+      "reference_budget": true,
+      "registered_improvement": false,
+      "mean_speedup_vs_fresh_original001": 1.0277105746101953
+    },
+    {
+      "lane": "ReferenceSparse",
+      "mean_ms": 5.960298233333333,
+      "p99_ms": 6.625027,
+      "steady_mean_ms": 5.863560283333333,
+      "cold_ms": 5.970727,
+      "mean_speedup_vs_current_reference": 0.1969035727278233,
+      "requested_bytes_per_tick": 3551213.8,
+      "requested_reduction_fraction": -0.140402267051295,
+      "reference_budget": false,
+      "registered_improvement": false,
+      "mean_speedup_vs_fresh_original001": 0.20235988387091167
+    },
+    {
+      "lane": "Buffered",
+      "mean_ms": 0.89406325,
+      "p99_ms": 0.921569,
+      "steady_mean_ms": 0.89266955,
+      "cold_ms": 1.213669,
+      "mean_speedup_vs_current_reference": 1.3126633005737196,
+      "requested_bytes_per_tick": 543763.6,
+      "requested_reduction_fraction": 0.8253810451570183,
+      "reference_budget": true,
+      "registered_improvement": true,
+      "mean_speedup_vs_fresh_original001": 1.349037954902333
+    },
+    {
+      "lane": "Blocks",
+      "mean_ms": 2.6905662666666665,
+      "p99_ms": 2.918949,
+      "steady_mean_ms": 2.7179769166666667,
+      "cold_ms": 3.055699,
+      "mean_speedup_vs_current_reference": 0.4361921990944459,
+      "requested_bytes_per_tick": 1414242.5333333334,
+      "requested_reduction_fraction": 0.5458439052096216,
+      "reference_budget": false,
+      "registered_improvement": true,
+      "mean_speedup_vs_fresh_original001": 0.44827933557183774
+    },
+    {
+      "lane": "ImplicitCarrier",
+      "mean_ms": 2.2574223,
+      "p99_ms": 2.292829,
+      "steady_mean_ms": 2.2533049666666667,
+      "cold_ms": 2.628339,
+      "mean_speedup_vs_current_reference": 0.5198867826665248,
+      "requested_bytes_per_tick": 1794095.3333333333,
+      "requested_reduction_fraction": 0.4238616707787398,
+      "reference_budget": false,
+      "registered_improvement": false,
+      "mean_speedup_vs_fresh_original001": 0.53429314414646
+    },
+    {
+      "lane": "InPlace",
+      "mean_ms": 1.1853476083333334,
+      "p99_ms": 1.231229,
+      "steady_mean_ms": 1.18279585,
+      "cold_ms": 1.520979,
+      "mean_speedup_vs_current_reference": 0.9900927022722229,
+      "requested_bytes_per_tick": 539223.8666666667,
+      "requested_reduction_fraction": 0.8268388909744516,
+      "reference_budget": true,
+      "registered_improvement": true,
+      "mean_speedup_vs_fresh_original001": 1.0175287399695474
+    }
+  ],
+  "occupancy_crossover": [
+    {
+      "requested_initial_fraction": 0,
+      "observed_final_fraction": 0.0,
+      "fastest_lane": "Blocks",
+      "fastest_edge": 16,
+      "best_block_edge": 16,
+      "best_block_steady_ms": 0.599171,
+      "buffered_steady_ms": 0.693271125,
+      "block_speedup_vs_buffered": 1.1570505331533067,
+      "claim": "Empirical tested points only, no interpolated production crossover. Positive diffusion changes occupancy over time."
+    },
+    {
+      "requested_initial_fraction": 0.01,
+      "observed_final_fraction": 0.999755859375,
+      "fastest_lane": "Buffered",
+      "fastest_edge": 4,
+      "best_block_edge": 16,
+      "best_block_steady_ms": 1.36061675,
+      "buffered_steady_ms": 0.726536125,
+      "block_speedup_vs_buffered": 0.5339755849690958,
+      "claim": "Empirical tested points only, no interpolated production crossover. Positive diffusion changes occupancy over time."
+    },
+    {
+      "requested_initial_fraction": 0.1,
+      "observed_final_fraction": 1.0,
+      "fastest_lane": "Buffered",
+      "fastest_edge": 4,
+      "best_block_edge": 16,
+      "best_block_steady_ms": 1.400254875,
+      "buffered_steady_ms": 0.7283601875,
+      "block_speedup_vs_buffered": 0.5201625793304238,
+      "claim": "Empirical tested points only, no interpolated production crossover. Positive diffusion changes occupancy over time."
+    },
+    {
+      "requested_initial_fraction": 0.5,
+      "observed_final_fraction": 1.0,
+      "fastest_lane": "Buffered",
+      "fastest_edge": 4,
+      "best_block_edge": 16,
+      "best_block_steady_ms": 1.4392530625,
+      "buffered_steady_ms": 0.7367174375,
+      "block_speedup_vs_buffered": 0.5118748444559936,
+      "claim": "Empirical tested points only, no interpolated production crossover. Positive diffusion changes occupancy over time."
+    },
+    {
+      "requested_initial_fraction": 1,
+      "observed_final_fraction": 1.0,
+      "fastest_lane": "Buffered",
+      "fastest_edge": 4,
+      "best_block_edge": 16,
+      "best_block_steady_ms": 1.395548875,
+      "buffered_steady_ms": 0.8414385625,
+      "block_speedup_vs_buffered": 0.6029445314124166,
+      "claim": "Empirical tested points only, no interpolated production crossover. Positive diffusion changes occupancy over time."
+    }
+  ],
+  "conservation_maxima": {
+    "max_carrier_residual_kg": 3.9250380723387934e-11,
+    "max_species_residual_kg": 1.0339757656912846e-23,
+    "max_momentum_residual_kg_m_s": 9.980788972872403e-14
+  },
+  "gpu": [
+    {
+      "status": "PASS_TOLERANCE_CARRIER_ONLY",
+      "backend": {
+        "device": "NVIDIA GeForce RTX 5060 Ti",
+        "driver": "620.73.04",
+        "global_memory_bytes": 16715481088,
+        "double_fp_config": 63,
+        "api": "OpenCL",
+        "precision": "FP64",
+        "build_options": "-cl-std=CL1.2",
+        "FP_CONTRACT": "OFF",
+        "kernel_sha256": "c02cc8370aabade99a83e406738dfcff60db66932eed36d0b44cd27931f8e0bc",
+        "runner_sha256": "e30ab33b1114f3f2d1c641800eeef3c985c13a35dac82445513023962019c301",
+        "build_log": "\n",
+        "numerical_config": {
+          "boundary": "Sealed",
+          "cells": 8,
+          "density_kg_m3": 20.0,
+          "gravity_m_s2": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "length_m": 0.8,
+          "origin": {
+            "local": [
+              0,
+              0,
+              0
+            ],
+            "region": [
+              0,
+              0,
+              0
+            ]
+          },
+          "scalar_backend": "Dense",
+          "substeps": 1,
+          "viscosity_pa_s": 0.1,
+          "wall_restitution": 0.0
+        },
+        "dt_s": 0.016666667,
+        "tau": 0.5250000005
+      },
+      "n": 8,
+      "ticks": 120,
+      "same_backend_replay_exact": true,
+      "restored_continuation_exact": true,
+      "changed_backend_identity_refused": true,
+      "cross_backend_population_bits_exact": true,
+      "max_population_abs_error": 0.0,
+      "max_velocity_abs_error_m_s": 0.0,
+      "mass_residual_kg": 4.263256414560601e-14,
+      "upload_ns": 258990,
+      "checkpoint_download_ns": 35920,
+      "allocated_device_bytes": 235520,
+      "scope": "Detached carrier collide/stream/local validation only. CPU fields, spheres, ordered wall impulse and full Chamber transactional commit NOT GPU-integrated. No authoritative full-environment GPU timing or adoption claim. Device-resident f/post/output; local status buffer read each tick; global inventory checked at final qualification only.",
+      "label": "gpu-8",
+      "kernel_collide_stream_ms": {
+        "n": 120,
+        "mean": 0.04928693333333333,
+        "median": 0.049216,
+        "p95": 0.051296,
+        "p99": 0.052768,
+        "max": 0.059168
+      },
+      "kernel_validation_ms": {
+        "n": 120,
+        "mean": 0.015917333333333332,
+        "median": 0.015904,
+        "p95": 0.015936,
+        "p99": 0.015936,
+        "max": 0.015968
+      },
+      "enqueue_ms": {
+        "n": 120,
+        "mean": 0.026174483333333335,
+        "median": 0.0251,
+        "p95": 0.02778,
+        "p99": 0.03595,
+        "max": 0.112469
+      },
+      "synchronize_and_status_ms": {
+        "n": 120,
+        "mean": 0.04761696666666667,
+        "median": 0.047105,
+        "p95": 0.05069,
+        "p99": 0.05257,
+        "max": 0.05916
+      },
+      "carrier_host_wall_ms": {
+        "n": 120,
+        "mean": 0.0898252,
+        "median": 0.08815500000000001,
+        "p95": 0.09536,
+        "p99": 0.10191,
+        "max": 0.193639
+      },
+      "collide_stream_mlups": 10.388148853516281
+    },
+    {
+      "status": "PASS_TOLERANCE_CARRIER_ONLY",
+      "backend": {
+        "device": "NVIDIA GeForce RTX 5060 Ti",
+        "driver": "620.73.04",
+        "global_memory_bytes": 16715481088,
+        "double_fp_config": 63,
+        "api": "OpenCL",
+        "precision": "FP64",
+        "build_options": "-cl-std=CL1.2",
+        "FP_CONTRACT": "OFF",
+        "kernel_sha256": "c02cc8370aabade99a83e406738dfcff60db66932eed36d0b44cd27931f8e0bc",
+        "runner_sha256": "e30ab33b1114f3f2d1c641800eeef3c985c13a35dac82445513023962019c301",
+        "build_log": "\n",
+        "numerical_config": {
+          "boundary": "Sealed",
+          "cells": 16,
+          "density_kg_m3": 20.0,
+          "gravity_m_s2": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "length_m": 0.8,
+          "origin": {
+            "local": [
+              0,
+              0,
+              0
+            ],
+            "region": [
+              0,
+              0,
+              0
+            ]
+          },
+          "scalar_backend": "Dense",
+          "substeps": 1,
+          "viscosity_pa_s": 0.1,
+          "wall_restitution": 0.0
+        },
+        "dt_s": 0.016666667,
+        "tau": 0.600000002
+      },
+      "n": 16,
+      "ticks": 120,
+      "same_backend_replay_exact": true,
+      "restored_continuation_exact": true,
+      "changed_backend_identity_refused": true,
+      "cross_backend_population_bits_exact": true,
+      "max_population_abs_error": 0.0,
+      "max_velocity_abs_error_m_s": 0.0,
+      "mass_residual_kg": -1.8829382497642655e-13,
+      "upload_ns": 143720,
+      "checkpoint_download_ns": 397600,
+      "allocated_device_bytes": 1884160,
+      "scope": "Detached carrier collide/stream/local validation only. CPU fields, spheres, ordered wall impulse and full Chamber transactional commit NOT GPU-integrated. No authoritative full-environment GPU timing or adoption claim. Device-resident f/post/output; local status buffer read each tick; global inventory checked at final qualification only.",
+      "label": "gpu-16",
+      "kernel_collide_stream_ms": {
+        "n": 120,
+        "mean": 0.051343466666666664,
+        "median": 0.050384,
+        "p95": 0.060864,
+        "p99": 0.061728,
+        "max": 0.062208
+      },
+      "kernel_validation_ms": {
+        "n": 120,
+        "mean": 0.015922133333333335,
+        "median": 0.015936,
+        "p95": 0.015936,
+        "p99": 0.015936,
+        "max": 0.015968
+      },
+      "enqueue_ms": {
+        "n": 120,
+        "mean": 0.025138741666666665,
+        "median": 0.02493,
+        "p95": 0.02574,
+        "p99": 0.02646,
+        "max": 0.04265
+      },
+      "synchronize_and_status_ms": {
+        "n": 120,
+        "mean": 0.05191365,
+        "median": 0.050815,
+        "p95": 0.0614,
+        "p99": 0.06254,
+        "max": 0.06418
+      },
+      "carrier_host_wall_ms": {
+        "n": 120,
+        "mean": 0.13241844166666666,
+        "median": 0.1303195,
+        "p95": 0.141729,
+        "p99": 0.14538,
+        "max": 0.1624
+      },
+      "collide_stream_mlups": 79.7764597118491
+    },
+    {
+      "status": "PASS_TOLERANCE_CARRIER_ONLY",
+      "backend": {
+        "device": "NVIDIA GeForce RTX 5060 Ti",
+        "driver": "620.73.04",
+        "global_memory_bytes": 16715481088,
+        "double_fp_config": 63,
+        "api": "OpenCL",
+        "precision": "FP64",
+        "build_options": "-cl-std=CL1.2",
+        "FP_CONTRACT": "OFF",
+        "kernel_sha256": "c02cc8370aabade99a83e406738dfcff60db66932eed36d0b44cd27931f8e0bc",
+        "runner_sha256": "e30ab33b1114f3f2d1c641800eeef3c985c13a35dac82445513023962019c301",
+        "build_log": "\n",
+        "numerical_config": {
+          "boundary": "Sealed",
+          "cells": 24,
+          "density_kg_m3": 20.0,
+          "gravity_m_s2": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "length_m": 0.8,
+          "origin": {
+            "local": [
+              0,
+              0,
+              0
+            ],
+            "region": [
+              0,
+              0,
+              0
+            ]
+          },
+          "scalar_backend": "Dense",
+          "substeps": 1,
+          "viscosity_pa_s": 0.1,
+          "wall_restitution": 0.0
+        },
+        "dt_s": 0.016666667,
+        "tau": 0.7250000045
+      },
+      "n": 24,
+      "ticks": 120,
+      "same_backend_replay_exact": true,
+      "restored_continuation_exact": true,
+      "changed_backend_identity_refused": true,
+      "cross_backend_population_bits_exact": true,
+      "max_population_abs_error": 0.0,
+      "max_velocity_abs_error_m_s": 0.0,
+      "mass_residual_kg": -7.354117315117037e-13,
+      "upload_ns": 270480,
+      "checkpoint_download_ns": 1623959,
+      "allocated_device_bytes": 6359040,
+      "scope": "Detached carrier collide/stream/local validation only. CPU fields, spheres, ordered wall impulse and full Chamber transactional commit NOT GPU-integrated. No authoritative full-environment GPU timing or adoption claim. Device-resident f/post/output; local status buffer read each tick; global inventory checked at final qualification only.",
+      "label": "gpu-24",
+      "kernel_collide_stream_ms": {
+        "n": 120,
+        "mean": 0.09819733333333333,
+        "median": 0.0948,
+        "p95": 0.118816,
+        "p99": 0.119296,
+        "max": 0.119584
+      },
+      "kernel_validation_ms": {
+        "n": 120,
+        "mean": 0.028246666666666666,
+        "median": 0.028224,
+        "p95": 0.028224,
+        "p99": 0.028224,
+        "max": 0.031008
+      },
+      "enqueue_ms": {
+        "n": 120,
+        "mean": 0.027946975,
+        "median": 0.02505,
+        "p95": 0.0269,
+        "p99": 0.029089,
+        "max": 0.22387
+      },
+      "synchronize_and_status_ms": {
+        "n": 120,
+        "mean": 0.118670725,
+        "median": 0.11617,
+        "p95": 0.14059,
+        "p99": 0.14163,
+        "max": 0.14276
+      },
+      "carrier_host_wall_ms": {
+        "n": 120,
+        "mean": 0.30951076666666666,
+        "median": 0.30343,
+        "p95": 0.33188,
+        "p99": 0.33554,
+        "max": 0.51703
+      },
+      "collide_stream_mlups": 140.77775363893113
+    },
+    {
+      "status": "PASS_TOLERANCE_CARRIER_ONLY",
+      "backend": {
+        "device": "NVIDIA GeForce RTX 5060 Ti",
+        "driver": "620.73.04",
+        "global_memory_bytes": 16715481088,
+        "double_fp_config": 63,
+        "api": "OpenCL",
+        "precision": "FP64",
+        "build_options": "-cl-std=CL1.2",
+        "FP_CONTRACT": "OFF",
+        "kernel_sha256": "c02cc8370aabade99a83e406738dfcff60db66932eed36d0b44cd27931f8e0bc",
+        "runner_sha256": "e30ab33b1114f3f2d1c641800eeef3c985c13a35dac82445513023962019c301",
+        "build_log": "\n",
+        "numerical_config": {
+          "boundary": "Sealed",
+          "cells": 32,
+          "density_kg_m3": 20.0,
+          "gravity_m_s2": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "length_m": 0.8,
+          "origin": {
+            "local": [
+              0,
+              0,
+              0
+            ],
+            "region": [
+              0,
+              0,
+              0
+            ]
+          },
+          "scalar_backend": "Dense",
+          "substeps": 1,
+          "viscosity_pa_s": 0.1,
+          "wall_restitution": 0.0
+        },
+        "dt_s": 0.016666667,
+        "tau": 0.9000000079999999
+      },
+      "n": 32,
+      "ticks": 120,
+      "same_backend_replay_exact": true,
+      "restored_continuation_exact": true,
+      "changed_backend_identity_refused": true,
+      "cross_backend_population_bits_exact": true,
+      "max_population_abs_error": 0.0,
+      "max_velocity_abs_error_m_s": 0.0,
+      "mass_residual_kg": 4.7837289685048745e-12,
+      "upload_ns": 477019,
+      "checkpoint_download_ns": 2107198,
+      "allocated_device_bytes": 15073280,
+      "scope": "Detached carrier collide/stream/local validation only. CPU fields, spheres, ordered wall impulse and full Chamber transactional commit NOT GPU-integrated. No authoritative full-environment GPU timing or adoption claim. Device-resident f/post/output; local status buffer read each tick; global inventory checked at final qualification only.",
+      "label": "gpu-32",
+      "kernel_collide_stream_ms": {
+        "n": 120,
+        "mean": 0.2014,
+        "median": 0.193088,
+        "p95": 0.239936,
+        "p99": 0.24048,
+        "max": 0.2432
+      },
+      "kernel_validation_ms": {
+        "n": 120,
+        "mean": 0.0548432,
+        "median": 0.054848,
+        "p95": 0.054848,
+        "p99": 0.054848,
+        "max": 0.054848
+      },
+      "enqueue_ms": {
+        "n": 120,
+        "mean": 0.0283704,
+        "median": 0.02527,
+        "p95": 0.03199,
+        "p99": 0.03438,
+        "max": 0.20045
+      },
+      "synchronize_and_status_ms": {
+        "n": 120,
+        "mean": 0.25867339166666664,
+        "median": 0.25085500000000005,
+        "p95": 0.29909,
+        "p99": 0.30017,
+        "max": 0.300309
+      },
+      "carrier_host_wall_ms": {
+        "n": 120,
+        "mean": 0.6590089333333333,
+        "median": 0.6485295,
+        "p95": 0.69693,
+        "p99": 0.7004,
+        "max": 0.820239
+      },
+      "collide_stream_mlups": 162.70109235352533
+    },
+    {
+      "status": "PASS_TOLERANCE_CARRIER_ONLY",
+      "backend": {
+        "device": "NVIDIA GeForce RTX 5060 Ti",
+        "driver": "620.73.04",
+        "global_memory_bytes": 16715481088,
+        "double_fp_config": 63,
+        "api": "OpenCL",
+        "precision": "FP64",
+        "build_options": "-cl-std=CL1.2",
+        "FP_CONTRACT": "OFF",
+        "kernel_sha256": "c02cc8370aabade99a83e406738dfcff60db66932eed36d0b44cd27931f8e0bc",
+        "runner_sha256": "e30ab33b1114f3f2d1c641800eeef3c985c13a35dac82445513023962019c301",
+        "build_log": "\n",
+        "numerical_config": {
+          "boundary": "Sealed",
+          "cells": 32,
+          "density_kg_m3": 20.0,
+          "gravity_m_s2": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "length_m": 0.8,
+          "origin": {
+            "local": [
+              0,
+              0,
+              0
+            ],
+            "region": [
+              0,
+              0,
+              0
+            ]
+          },
+          "scalar_backend": "Dense",
+          "substeps": 1,
+          "viscosity_pa_s": 0.1,
+          "wall_restitution": 0.0
+        },
+        "dt_s": 0.016666667,
+        "tau": 0.9000000079999999
+      },
+      "n": 32,
+      "ticks": 120,
+      "same_backend_replay_exact": true,
+      "restored_continuation_exact": true,
+      "changed_backend_identity_refused": true,
+      "cross_backend_population_bits_exact": true,
+      "max_population_abs_error": 0.0,
+      "max_velocity_abs_error_m_s": 0.0,
+      "mass_residual_kg": 4.7837289685048745e-12,
+      "upload_ns": 469430,
+      "checkpoint_download_ns": 2360748,
+      "allocated_device_bytes": 15073280,
+      "scope": "Detached carrier collide/stream/local validation only. CPU fields, spheres, ordered wall impulse and full Chamber transactional commit NOT GPU-integrated. No authoritative full-environment GPU timing or adoption claim. Device-resident f/post/output; local status buffer read each tick; global inventory checked at final qualification only.",
+      "label": "gpu-32-with-render",
+      "kernel_collide_stream_ms": {
+        "n": 120,
+        "mean": 0.20124506666666667,
+        "median": 0.19312,
+        "p95": 0.239584,
+        "p99": 0.24,
+        "max": 0.240032
+      },
+      "kernel_validation_ms": {
+        "n": 120,
+        "mean": 0.05484293333333334,
+        "median": 0.054848,
+        "p95": 0.054848,
+        "p99": 0.054848,
+        "max": 0.05488
+      },
+      "enqueue_ms": {
+        "n": 120,
+        "mean": 0.027842233333333334,
+        "median": 0.025265000000000003,
+        "p95": 0.02648,
+        "p99": 0.03036,
+        "max": 0.19996
+      },
+      "synchronize_and_status_ms": {
+        "n": 120,
+        "mean": 0.25793398333333334,
+        "median": 0.25029999999999997,
+        "p95": 0.29904,
+        "p99": 0.299909,
+        "max": 0.30397
+      },
+      "carrier_host_wall_ms": {
+        "n": 120,
+        "mean": 0.6581896,
+        "median": 0.6479900000000001,
+        "p95": 0.698469,
+        "p99": 0.71059,
+        "max": 0.81798
+      },
+      "collide_stream_mlups": 162.8263516853084,
+      "contention_evidence": "INVALID: silent-log wait ended after renderer exit; carrier-only data retained"
+    },
+    {
+      "status": "PASS_TOLERANCE_CARRIER_ONLY",
+      "backend": {
+        "device": "NVIDIA GeForce RTX 5060 Ti",
+        "driver": "620.73.04",
+        "global_memory_bytes": 16715481088,
+        "double_fp_config": 63,
+        "api": "OpenCL",
+        "precision": "FP64",
+        "build_options": "-cl-std=CL1.2",
+        "FP_CONTRACT": "OFF",
+        "kernel_sha256": "c02cc8370aabade99a83e406738dfcff60db66932eed36d0b44cd27931f8e0bc",
+        "runner_sha256": "e30ab33b1114f3f2d1c641800eeef3c985c13a35dac82445513023962019c301",
+        "build_log": "\n",
+        "numerical_config": {
+          "boundary": "Sealed",
+          "cells": 32,
+          "density_kg_m3": 20.0,
+          "gravity_m_s2": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "length_m": 0.8,
+          "origin": {
+            "local": [
+              0,
+              0,
+              0
+            ],
+            "region": [
+              0,
+              0,
+              0
+            ]
+          },
+          "scalar_backend": "Dense",
+          "substeps": 1,
+          "viscosity_pa_s": 0.1,
+          "wall_restitution": 0.0
+        },
+        "dt_s": 0.016666667,
+        "tau": 0.9000000079999999
+      },
+      "n": 32,
+      "ticks": 120,
+      "same_backend_replay_exact": true,
+      "restored_continuation_exact": true,
+      "changed_backend_identity_refused": true,
+      "cross_backend_population_bits_exact": true,
+      "max_population_abs_error": 0.0,
+      "max_velocity_abs_error_m_s": 0.0,
+      "mass_residual_kg": 4.7837289685048745e-12,
+      "upload_ns": 472699,
+      "checkpoint_download_ns": 2847528,
+      "allocated_device_bytes": 15073280,
+      "scope": "Detached carrier collide/stream/local validation only. CPU fields, spheres, ordered wall impulse and full Chamber transactional commit NOT GPU-integrated. No authoritative full-environment GPU timing or adoption claim. Device-resident f/post/output; local status buffer read each tick; global inventory checked at final qualification only.",
+      "label": "gpu-32-verified-overlap",
+      "kernel_collide_stream_ms": {
+        "n": 120,
+        "mean": 0.20145786666666668,
+        "median": 0.19323200000000001,
+        "p95": 0.239552,
+        "p99": 0.239968,
+        "max": 0.2432
+      },
+      "kernel_validation_ms": {
+        "n": 120,
+        "mean": 0.054844000000000004,
+        "median": 0.054848,
+        "p95": 0.054848,
+        "p99": 0.054848,
+        "max": 0.054848
+      },
+      "enqueue_ms": {
+        "n": 120,
+        "mean": 0.029537575,
+        "median": 0.025294999999999998,
+        "p95": 0.03444,
+        "p99": 0.05279,
+        "max": 0.246519
+      },
+      "synchronize_and_status_ms": {
+        "n": 120,
+        "mean": 0.25811925,
+        "median": 0.25102,
+        "p95": 0.29884,
+        "p99": 0.30051,
+        "max": 0.30326
+      },
+      "carrier_host_wall_ms": {
+        "n": 120,
+        "mean": 0.670664825,
+        "median": 0.6506845,
+        "p95": 0.763799,
+        "p99": 0.86467,
+        "max": 0.90929
+      },
+      "collide_stream_mlups": 162.65435816521435
+    }
+  ],
+  "native": [
+    {
+      "lane": "Buffered",
+      "scenario": "demo",
+      "full_checkpoint_equal_headless": true,
+      "physical_digest": "7344a55da53734dbeb5f5d11be9a02b9a512d03c4486f706b9b98ed47e140d54",
+      "update_ms": {
+        "n": 120,
+        "mean": 0.957758875,
+        "median": 0.933329,
+        "p95": 1.15814,
+        "p99": 1.20816,
+        "max": 1.798909
+      },
+      "draw_cpu_ms": {
+        "n": 139,
+        "mean": 0.30893788489208635,
+        "median": 0.30239,
+        "p95": 0.36998,
+        "p99": 0.39134,
+        "max": 0.49968
+      },
+      "frame_ms_excluding_initial_zero": {
+        "n": 138,
+        "mean": 16.607929289855072,
+        "median": 16.6630265,
+        "p95": 17.338911,
+        "p99": 27.192737,
+        "max": 42.369419
+      },
+      "adapter": [],
+      "scope": "ordinary native observer; frame times include update/render/wait, no GPU timestamps or human mouse acceptance"
+    },
+    {
+      "lane": "Blocks",
+      "scenario": "cloud",
+      "full_checkpoint_equal_headless": true,
+      "physical_digest": "5eb954b416d17564aba7607b15a026e8716cff722d3ac3cf525b5731de8de4de",
+      "update_ms": {
+        "n": 120,
+        "mean": 1.74373255,
+        "median": 1.8256535,
+        "p95": 2.113049,
+        "p99": 2.213529,
+        "max": 2.271299
+      },
+      "draw_cpu_ms": {
+        "n": 139,
+        "mean": 0.48824643165467624,
+        "median": 0.49186,
+        "p95": 0.63021,
+        "p99": 0.762289,
+        "max": 0.799769
+      },
+      "frame_ms_excluding_initial_zero": {
+        "n": 138,
+        "mean": 16.86164763768116,
+        "median": 16.658807,
+        "p95": 17.157961999999998,
+        "p99": 23.782969,
+        "max": 94.87733499999999
+      },
+      "adapter": [],
+      "scope": "ordinary native observer; frame times include update/render/wait, no GPU timestamps or human mouse acceptance"
+    },
+    {
+      "lane": "ImplicitCarrier",
+      "scenario": "two-clouds",
+      "full_checkpoint_equal_headless": true,
+      "physical_digest": "c10d4f3e8fc596a250d9222fe1e65d60e4778b1733ba376ba51474f8c7d2d004",
+      "update_ms": {
+        "n": 120,
+        "mean": 2.7652641416666666,
+        "median": 2.751449,
+        "p95": 3.093178,
+        "p99": 3.260838,
+        "max": 3.488658
+      },
+      "draw_cpu_ms": {
+        "n": 139,
+        "mean": 0.36793905755395684,
+        "median": 0.36091,
+        "p95": 0.44227,
+        "p99": 0.51977,
+        "max": 0.61888
+      },
+      "frame_ms_excluding_initial_zero": {
+        "n": 138,
+        "mean": 16.902853847826087,
+        "median": 16.683006499999998,
+        "p95": 17.165322,
+        "p99": 22.723858999999997,
+        "max": 98.69188299999999
+      },
+      "adapter": [],
+      "scope": "ordinary native observer; frame times include update/render/wait, no GPU timestamps or human mouse acceptance"
+    },
+    {
+      "lane": "InPlace",
+      "scenario": "demo",
+      "full_checkpoint_equal_headless": true,
+      "physical_digest": "7344a55da53734dbeb5f5d11be9a02b9a512d03c4486f706b9b98ed47e140d54",
+      "update_ms": {
+        "n": 120,
+        "mean": 1.3044381916666667,
+        "median": 1.2983099999999999,
+        "p95": 1.460489,
+        "p99": 1.799629,
+        "max": 2.030329
+      },
+      "draw_cpu_ms": {
+        "n": 139,
+        "mean": 0.3170712158273381,
+        "median": 0.30767,
+        "p95": 0.37067,
+        "p99": 0.39764,
+        "max": 0.46291
+      },
+      "frame_ms_excluding_initial_zero": {
+        "n": 138,
+        "mean": 16.452122173913043,
+        "median": 16.659886,
+        "p95": 17.061631000000002,
+        "p99": 23.810669,
+        "max": 40.463190000000004
+      },
+      "adapter": [],
+      "scope": "ordinary native observer; frame times include update/render/wait, no GPU timestamps or human mouse acceptance"
+    }
+  ],
+  "multiresolution": {
+    "status": "SCALAR_INTERFACE_ONLY",
+    "ticks": 240,
+    "time_s": 4.0000000799999995,
+    "fine_cells": 80,
+    "mixed_cells": 60,
+    "max_mass_drift": 2.220446049250313e-16,
+    "l1_mass_error_against_uniform_fine": 0.08390380438342411,
+    "fine_elapsed_ns": 4516778,
+    "mixed_elapsed_ns": 3577348,
+    "restriction_mass": 1.0,
+    "prolonged_mass": 1.0,
+    "lost_subcell_detail_l1": 0.5,
+    "scope": "Shared conservative scalar flux across one coarse/fine interface; no D3Q19 remapping, carrier viscosity, acoustic reflection/transmission, temporal subcycling or adopted backend. Timing is Python probe, not environmental performance."
+  },
+  "limits": [
+    "D encodes/decodes dense State and preserves ordered wall work; not production sparse residency",
+    "C retains dense carrier/scratch and BlockMass clone allocations",
+    "E is detached carrier only, no authoritative complete environmental GPU tick or adoption",
+    "G scalar-only interface, no pressure wave/viscosity/subcycling qualification",
+    "Real allocator OOM and hardware cache counters not injected/measured",
+    "Short single-host windows and finite sustained runs, not unlimited lifetime"
+  ],
+  "original001_fresh_repeat": {
+    "status": "PASS",
+    "command": [
+      "/home/cognis/habitat-001-implementation-restored-20261127/ordinary-certified/habitat_environment.binary",
+      "demo",
+      "/home/cognis/habitat-002-20261127/original001-repeat",
+      "120",
+      "16"
+    ],
+    "exit_code": 0,
+    "elapsed_s": 0.7028496039565653,
+    "binary_sha256": "a157cdbc1586db5638377c9d4a81be1dabe77485c1ad2e59f8113c8f60cce88b",
+    "inherited_source_commit": "8498c22894c269e31ad8d53d63116b9b3ecafa5b",
+    "inherited_archive_receipt": "docs/habitat_001/HABITAT-001_STORAGE.json",
+    "mean_update_ms": 1.2061252583333333,
+    "scope": "Fresh repeat of original001 executable/harness; compare separately from current Reference refactored optional attribution path",
+    "update_ms": {
+      "n": 120,
+      "mean": 1.2061252583333333,
+      "median": 1.195979,
+      "p95": 1.213149,
+      "p99": 1.278429,
+      "max": 1.725229
+    },
+    "current_reference_full_encoded_state_exact": true
+  },
+  "protocol_failures": [
+    {
+      "case": "gpu-32-with-render",
+      "failure": "NO ACTUAL PROCESS OVERLAP: Bevy adapter log absent; wait ended when rendering process exited",
+      "retained": true,
+      "correction": "gpu-32-verified-overlap with19 process/device samples, renderer alive through compute completion; actual Bevy AMD Vulkan adapter log and drm-pdev verified"
+    }
+  ],
+  "verified_render_overlap": {
+    "status": "PROCESSES_OVERLAPPED_VERIFIED",
+    "samples": 19,
+    "renderer_alive_at_gpu_end": true,
+    "render_device": "AMD Radeon610M/RADV, PCI0000:10:00.0, Bevy AdapterInfo and amdgpu DRM fdinfo",
+    "compute_device": "NVIDIA GeForce RTX 5060 Ti",
+    "scope": "Verified cross-device concurrent rendering/compute, not same-NVIDIA-GPU render contention",
+    "full_checkpoint_equal_headless": true,
+    "native_update_ms": {
+      "n": 360,
+      "mean": 0.9529653055555556,
+      "median": 0.9342995000000001,
+      "p95": 1.164079,
+      "p99": 1.429089,
+      "max": 1.933099
+    },
+    "frame_ms_excluding_initial_zero": {
+      "n": 378,
+      "mean": 16.74185141798942,
+      "median": 16.684372,
+      "p95": 17.006211,
+      "p99": 17.467471,
+      "max": 106.613428
+    },
+    "draw_cpu_ms": {
+      "n": 379,
+      "mean": 0.30466021635883905,
+      "median": 0.30076,
+      "p95": 0.370399,
+      "p99": 0.403049,
+      "max": 0.49512
+    }
+  },
+  "gpu_program_capture": {
+    "status": "CAPTURED",
+    "sha256": "4fe8a1c1724dfbfb5ac299990bb84b9068355ac954eb1679ffe4ccd6e33c9755",
+    "bytes": 21534,
+    "backend": {
+      "device": "NVIDIA GeForce RTX 5060 Ti",
+      "driver": "620.73.04",
+      "global_memory_bytes": 16715481088,
+      "double_fp_config": 63,
+      "api": "OpenCL",
+      "precision": "FP64",
+      "build_options": "-cl-std=CL1.2",
+      "FP_CONTRACT": "OFF",
+      "kernel_sha256": "c02cc8370aabade99a83e406738dfcff60db66932eed36d0b44cd27931f8e0bc",
+      "runner_sha256": "e30ab33b1114f3f2d1c641800eeef3c985c13a35dac82445513023962019c301",
+      "build_log": "\n"
+    },
+    "scope": "Fresh compiled program capture from the identical kernel source/options/device/driver; qualified run fingerprints also retain runner/kernel hash. No assertion that every earlier runtime compiler instance emitted byte-identical binary."
+  }
+}

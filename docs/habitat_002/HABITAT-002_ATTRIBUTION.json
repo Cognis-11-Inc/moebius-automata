@@ -1,0 +1,948 @@
+[
+  {
+    "case": "occupancy-0.01-Reference-e4-w1-ordinary",
+    "tick": 1,
+    "support": 81,
+    "faces": 11520,
+    "leaf_ns": {
+      "cell_lookup": 413940,
+      "delta_accumulation_and_entry_insertion": 10460,
+      "neighbour_calculation": 238050,
+      "outgoing_accumulation_and_entry_insertion": 8160
+    },
+    "calls": {
+      "cell_lookup": 23040,
+      "delta_accumulation_and_entry_insertion": 612,
+      "neighbour_calculation": 12288,
+      "outgoing_accumulation_and_entry_insertion": 486
+    },
+    "phases": [
+      {
+        "exclusive_remainder_ns": 40710,
+        "gross_ns": 40710,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "carrier_velocity_extraction"
+      },
+      {
+        "exclusive_remainder_ns": 9980,
+        "gross_ns": 9980,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "face_discovery_and_list"
+      },
+      {
+        "exclusive_remainder_ns": 1570,
+        "gross_ns": 1570,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "temporary_delta_and_outgoing_allocation"
+      },
+      {
+        "exclusive_remainder_ns": 1517659,
+        "gross_ns": 2188269,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 670610,
+        "name": "face_flux"
+      },
+      {
+        "exclusive_remainder_ns": 2270,
+        "gross_ns": 2270,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "wall_exchange"
+      },
+      {
+        "exclusive_remainder_ns": 2480,
+        "gross_ns": 2480,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "outgoing_CFL_validation"
+      },
+      {
+        "exclusive_remainder_ns": 2010,
+        "gross_ns": 2010,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "material_apply"
+      }
+    ],
+    "interpretation": "Intrusive timers include recorder overhead; gross overlaps its nested leaves. Original transport on the selected representation; candidate w.transport phases not individually partitioned."
+  },
+  {
+    "case": "occupancy-0.01-Reference-e4-w1-ordinary",
+    "tick": 2,
+    "support": 171,
+    "faces": 11520,
+    "leaf_ns": {
+      "cell_lookup": 381019,
+      "delta_accumulation_and_entry_insertion": 20030,
+      "neighbour_calculation": 237600,
+      "outgoing_accumulation_and_entry_insertion": 17340
+    },
+    "calls": {
+      "cell_lookup": 23040,
+      "delta_accumulation_and_entry_insertion": 1194,
+      "neighbour_calculation": 12288,
+      "outgoing_accumulation_and_entry_insertion": 1026
+    },
+    "phases": [
+      {
+        "exclusive_remainder_ns": 42400,
+        "gross_ns": 42400,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "carrier_velocity_extraction"
+      },
+      {
+        "exclusive_remainder_ns": 10100,
+        "gross_ns": 10100,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "face_discovery_and_list"
+      },
+      {
+        "exclusive_remainder_ns": 580,
+        "gross_ns": 580,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "temporary_delta_and_outgoing_allocation"
+      },
+      {
+        "exclusive_remainder_ns": 1552420,
+        "gross_ns": 2207949,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 655529,
+        "name": "face_flux"
+      },
+      {
+        "exclusive_remainder_ns": 4210,
+        "gross_ns": 4670,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 460,
+        "name": "wall_exchange"
+      },
+      {
+        "exclusive_remainder_ns": 2470,
+        "gross_ns": 2470,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "outgoing_CFL_validation"
+      },
+      {
+        "exclusive_remainder_ns": 2190,
+        "gross_ns": 2190,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "material_apply"
+      }
+    ],
+    "interpretation": "Intrusive timers include recorder overhead; gross overlaps its nested leaves. Original transport on the selected representation; candidate w.transport phases not individually partitioned."
+  },
+  {
+    "case": "occupancy-0.01-Reference-e4-w1-ordinary",
+    "tick": 4,
+    "support": 401,
+    "faces": 11520,
+    "leaf_ns": {
+      "cell_lookup": 381570,
+      "delta_accumulation_and_entry_insertion": 42810,
+      "neighbour_calculation": 238330,
+      "outgoing_accumulation_and_entry_insertion": 40370
+    },
+    "calls": {
+      "cell_lookup": 23040,
+      "delta_accumulation_and_entry_insertion": 2574,
+      "neighbour_calculation": 12288,
+      "outgoing_accumulation_and_entry_insertion": 2406
+    },
+    "phases": [
+      {
+        "exclusive_remainder_ns": 41430,
+        "gross_ns": 41430,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "carrier_velocity_extraction"
+      },
+      {
+        "exclusive_remainder_ns": 9610,
+        "gross_ns": 9610,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "face_discovery_and_list"
+      },
+      {
+        "exclusive_remainder_ns": 690,
+        "gross_ns": 690,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "temporary_delta_and_outgoing_allocation"
+      },
+      {
+        "exclusive_remainder_ns": 1697229,
+        "gross_ns": 2398489,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 701260,
+        "name": "face_flux"
+      },
+      {
+        "exclusive_remainder_ns": 9310,
+        "gross_ns": 11130,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 1820,
+        "name": "wall_exchange"
+      },
+      {
+        "exclusive_remainder_ns": 2490,
+        "gross_ns": 2490,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "outgoing_CFL_validation"
+      },
+      {
+        "exclusive_remainder_ns": 2420,
+        "gross_ns": 2420,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "material_apply"
+      }
+    ],
+    "interpretation": "Intrusive timers include recorder overhead; gross overlaps its nested leaves. Original transport on the selected representation; candidate w.transport phases not individually partitioned."
+  },
+  {
+    "case": "occupancy-0.01-Reference-e4-w1-ordinary",
+    "tick": 16,
+    "support": 2914,
+    "faces": 11520,
+    "leaf_ns": {
+      "cell_lookup": 383450,
+      "delta_accumulation_and_entry_insertion": 287130,
+      "neighbour_calculation": 240270,
+      "outgoing_accumulation_and_entry_insertion": 295230
+    },
+    "calls": {
+      "cell_lookup": 23040,
+      "delta_accumulation_and_entry_insertion": 17100,
+      "neighbour_calculation": 12288,
+      "outgoing_accumulation_and_entry_insertion": 17484
+    },
+    "phases": [
+      {
+        "exclusive_remainder_ns": 41700,
+        "gross_ns": 41700,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "carrier_velocity_extraction"
+      },
+      {
+        "exclusive_remainder_ns": 9540,
+        "gross_ns": 9540,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "face_discovery_and_list"
+      },
+      {
+        "exclusive_remainder_ns": 610,
+        "gross_ns": 610,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "temporary_delta_and_outgoing_allocation"
+      },
+      {
+        "exclusive_remainder_ns": 3024608,
+        "gross_ns": 4215598,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 1190990,
+        "name": "face_flux"
+      },
+      {
+        "exclusive_remainder_ns": 55710,
+        "gross_ns": 70800,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 15090,
+        "name": "wall_exchange"
+      },
+      {
+        "exclusive_remainder_ns": 2470,
+        "gross_ns": 2470,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "outgoing_CFL_validation"
+      },
+      {
+        "exclusive_remainder_ns": 4890,
+        "gross_ns": 4890,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "material_apply"
+      }
+    ],
+    "interpretation": "Intrusive timers include recorder overhead; gross overlaps its nested leaves. Original transport on the selected representation; candidate w.transport phases not individually partitioned."
+  },
+  {
+    "case": "occupancy-0.01-ReferenceSparse-e4-w1-ordinary",
+    "tick": 1,
+    "support": 81,
+    "faces": 108,
+    "leaf_ns": {
+      "cell_lookup": 33160,
+      "delta_accumulation_and_entry_insertion": 28020,
+      "entry_insertion": 12360,
+      "neighbour_calculation": 13100,
+      "ordered_set_insert": 21500,
+      "outgoing_accumulation_and_entry_insertion": 18530
+    },
+    "calls": {
+      "cell_lookup": 612,
+      "delta_accumulation_and_entry_insertion": 612,
+      "entry_insertion": 171,
+      "neighbour_calculation": 549,
+      "ordered_set_insert": 486,
+      "outgoing_accumulation_and_entry_insertion": 486
+    },
+    "phases": [
+      {
+        "exclusive_remainder_ns": 41720,
+        "gross_ns": 41720,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "carrier_velocity_extraction"
+      },
+      {
+        "exclusive_remainder_ns": 37590,
+        "gross_ns": 63890,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 26300,
+        "name": "face_discovery_and_list"
+      },
+      {
+        "exclusive_remainder_ns": 40,
+        "gross_ns": 40,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "temporary_delta_and_outgoing_allocation"
+      },
+      {
+        "exclusive_remainder_ns": 129560,
+        "gross_ns": 217570,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 88010,
+        "name": "face_flux"
+      },
+      {
+        "exclusive_remainder_ns": 1670,
+        "gross_ns": 1670,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "wall_exchange"
+      },
+      {
+        "exclusive_remainder_ns": 430,
+        "gross_ns": 430,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "outgoing_CFL_validation"
+      },
+      {
+        "exclusive_remainder_ns": 18750,
+        "gross_ns": 31110,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 12360,
+        "name": "material_apply"
+      }
+    ],
+    "interpretation": "Intrusive timers include recorder overhead; gross overlaps its nested leaves. Original transport on the selected representation; candidate w.transport phases not individually partitioned."
+  },
+  {
+    "case": "occupancy-0.01-ReferenceSparse-e4-w1-ordinary",
+    "tick": 2,
+    "support": 171,
+    "faces": 306,
+    "leaf_ns": {
+      "cell_lookup": 27550,
+      "delta_accumulation_and_entry_insertion": 35010,
+      "entry_insertion": 9940,
+      "neighbour_calculation": 20660,
+      "ordered_set_insert": 42960,
+      "outgoing_accumulation_and_entry_insertion": 27150
+    },
+    "calls": {
+      "cell_lookup": 1194,
+      "delta_accumulation_and_entry_insertion": 1194,
+      "entry_insertion": 278,
+      "neighbour_calculation": 1110,
+      "ordered_set_insert": 999,
+      "outgoing_accumulation_and_entry_insertion": 1026
+    },
+    "phases": [
+      {
+        "exclusive_remainder_ns": 39940,
+        "gross_ns": 39940,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "carrier_velocity_extraction"
+      },
+      {
+        "exclusive_remainder_ns": 64979,
+        "gross_ns": 117589,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 52610,
+        "name": "face_discovery_and_list"
+      },
+      {
+        "exclusive_remainder_ns": 40,
+        "gross_ns": 40,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "temporary_delta_and_outgoing_allocation"
+      },
+      {
+        "exclusive_remainder_ns": 185940,
+        "gross_ns": 286230,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 100290,
+        "name": "face_flux"
+      },
+      {
+        "exclusive_remainder_ns": 2850,
+        "gross_ns": 3280,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 430,
+        "name": "wall_exchange"
+      },
+      {
+        "exclusive_remainder_ns": 300,
+        "gross_ns": 300,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "outgoing_CFL_validation"
+      },
+      {
+        "exclusive_remainder_ns": 16040,
+        "gross_ns": 25980,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 9940,
+        "name": "material_apply"
+      }
+    ],
+    "interpretation": "Intrusive timers include recorder overhead; gross overlaps its nested leaves. Original transport on the selected representation; candidate w.transport phases not individually partitioned."
+  },
+  {
+    "case": "occupancy-0.01-ReferenceSparse-e4-w1-ordinary",
+    "tick": 4,
+    "support": 401,
+    "faces": 924,
+    "leaf_ns": {
+      "cell_lookup": 63160,
+      "delta_accumulation_and_entry_insertion": 77440,
+      "entry_insertion": 18670,
+      "neighbour_calculation": 48840,
+      "ordered_set_insert": 96150,
+      "outgoing_accumulation_and_entry_insertion": 67750
+    },
+    "calls": {
+      "cell_lookup": 2574,
+      "delta_accumulation_and_entry_insertion": 2574,
+      "entry_insertion": 536,
+      "neighbour_calculation": 2490,
+      "ordered_set_insert": 2295,
+      "outgoing_accumulation_and_entry_insertion": 2406
+    },
+    "phases": [
+      {
+        "exclusive_remainder_ns": 40880,
+        "gross_ns": 40880,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "carrier_velocity_extraction"
+      },
+      {
+        "exclusive_remainder_ns": 153960,
+        "gross_ns": 273900,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 119940,
+        "name": "face_discovery_and_list"
+      },
+      {
+        "exclusive_remainder_ns": 20,
+        "gross_ns": 20,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "temporary_delta_and_outgoing_allocation"
+      },
+      {
+        "exclusive_remainder_ns": 389959,
+        "gross_ns": 621549,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 231590,
+        "name": "face_flux"
+      },
+      {
+        "exclusive_remainder_ns": 8550,
+        "gross_ns": 10360,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 1810,
+        "name": "wall_exchange"
+      },
+      {
+        "exclusive_remainder_ns": 550,
+        "gross_ns": 550,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "outgoing_CFL_validation"
+      },
+      {
+        "exclusive_remainder_ns": 31170,
+        "gross_ns": 49840,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 18670,
+        "name": "material_apply"
+      }
+    ],
+    "interpretation": "Intrusive timers include recorder overhead; gross overlaps its nested leaves. Original transport on the selected representation; candidate w.transport phases not individually partitioned."
+  },
+  {
+    "case": "occupancy-0.01-ReferenceSparse-e4-w1-ordinary",
+    "tick": 16,
+    "support": 2914,
+    "faces": 7995,
+    "leaf_ns": {
+      "cell_lookup": 465260,
+      "delta_accumulation_and_entry_insertion": 521840,
+      "entry_insertion": 98200,
+      "neighbour_calculation": 342230,
+      "ordered_set_insert": 724079,
+      "outgoing_accumulation_and_entry_insertion": 522820
+    },
+    "calls": {
+      "cell_lookup": 17100,
+      "delta_accumulation_and_entry_insertion": 17100,
+      "entry_insertion": 3103,
+      "neighbour_calculation": 17529,
+      "ordered_set_insert": 16824,
+      "outgoing_accumulation_and_entry_insertion": 17484
+    },
+    "phases": [
+      {
+        "exclusive_remainder_ns": 42740,
+        "gross_ns": 42740,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "carrier_velocity_extraction"
+      },
+      {
+        "exclusive_remainder_ns": 1116720,
+        "gross_ns": 2011669,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 894949,
+        "name": "face_discovery_and_list"
+      },
+      {
+        "exclusive_remainder_ns": 20,
+        "gross_ns": 20,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "temporary_delta_and_outgoing_allocation"
+      },
+      {
+        "exclusive_remainder_ns": 2665288,
+        "gross_ns": 4331618,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 1666330,
+        "name": "face_flux"
+      },
+      {
+        "exclusive_remainder_ns": 63510,
+        "gross_ns": 78460,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 14950,
+        "name": "wall_exchange"
+      },
+      {
+        "exclusive_remainder_ns": 3580,
+        "gross_ns": 3580,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "outgoing_CFL_validation"
+      },
+      {
+        "exclusive_remainder_ns": 180420,
+        "gross_ns": 278620,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 98200,
+        "name": "material_apply"
+      }
+    ],
+    "interpretation": "Intrusive timers include recorder overhead; gross overlaps its nested leaves. Original transport on the selected representation; candidate w.transport phases not individually partitioned."
+  },
+  {
+    "case": "diffusion-0.0001-ReferenceSparse-e4-w1-ordinary",
+    "tick": 1,
+    "support": 81,
+    "faces": 108,
+    "leaf_ns": {
+      "cell_lookup": 14360,
+      "delta_accumulation_and_entry_insertion": 19040,
+      "entry_insertion": 6780,
+      "neighbour_calculation": 10710,
+      "ordered_set_insert": 21590,
+      "outgoing_accumulation_and_entry_insertion": 12880
+    },
+    "calls": {
+      "cell_lookup": 612,
+      "delta_accumulation_and_entry_insertion": 612,
+      "entry_insertion": 171,
+      "neighbour_calculation": 549,
+      "ordered_set_insert": 486,
+      "outgoing_accumulation_and_entry_insertion": 486
+    },
+    "phases": [
+      {
+        "exclusive_remainder_ns": 41570,
+        "gross_ns": 41570,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "carrier_velocity_extraction"
+      },
+      {
+        "exclusive_remainder_ns": 34000,
+        "gross_ns": 60320,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 26320,
+        "name": "face_discovery_and_list"
+      },
+      {
+        "exclusive_remainder_ns": 40,
+        "gross_ns": 40,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "temporary_delta_and_outgoing_allocation"
+      },
+      {
+        "exclusive_remainder_ns": 91050,
+        "gross_ns": 143310,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 52260,
+        "name": "face_flux"
+      },
+      {
+        "exclusive_remainder_ns": 780,
+        "gross_ns": 780,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "wall_exchange"
+      },
+      {
+        "exclusive_remainder_ns": 190,
+        "gross_ns": 190,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "outgoing_CFL_validation"
+      },
+      {
+        "exclusive_remainder_ns": 10400,
+        "gross_ns": 17180,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 6780,
+        "name": "material_apply"
+      }
+    ],
+    "interpretation": "Intrusive timers include recorder overhead; gross overlaps its nested leaves. Original transport on the selected representation; candidate w.transport phases not individually partitioned."
+  },
+  {
+    "case": "diffusion-0.0001-ReferenceSparse-e4-w1-ordinary",
+    "tick": 2,
+    "support": 171,
+    "faces": 306,
+    "leaf_ns": {
+      "cell_lookup": 28940,
+      "delta_accumulation_and_entry_insertion": 36210,
+      "entry_insertion": 10300,
+      "neighbour_calculation": 21769,
+      "ordered_set_insert": 41610,
+      "outgoing_accumulation_and_entry_insertion": 28320
+    },
+    "calls": {
+      "cell_lookup": 1194,
+      "delta_accumulation_and_entry_insertion": 1194,
+      "entry_insertion": 278,
+      "neighbour_calculation": 1110,
+      "ordered_set_insert": 999,
+      "outgoing_accumulation_and_entry_insertion": 1026
+    },
+    "phases": [
+      {
+        "exclusive_remainder_ns": 41780,
+        "gross_ns": 41780,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "carrier_velocity_extraction"
+      },
+      {
+        "exclusive_remainder_ns": 66950,
+        "gross_ns": 118609,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 51659,
+        "name": "face_discovery_and_list"
+      },
+      {
+        "exclusive_remainder_ns": 40,
+        "gross_ns": 40,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "temporary_delta_and_outgoing_allocation"
+      },
+      {
+        "exclusive_remainder_ns": 183040,
+        "gross_ns": 287780,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 104740,
+        "name": "face_flux"
+      },
+      {
+        "exclusive_remainder_ns": 2970,
+        "gross_ns": 3420,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 450,
+        "name": "wall_exchange"
+      },
+      {
+        "exclusive_remainder_ns": 340,
+        "gross_ns": 340,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "outgoing_CFL_validation"
+      },
+      {
+        "exclusive_remainder_ns": 16460,
+        "gross_ns": 26760,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 10300,
+        "name": "material_apply"
+      }
+    ],
+    "interpretation": "Intrusive timers include recorder overhead; gross overlaps its nested leaves. Original transport on the selected representation; candidate w.transport phases not individually partitioned."
+  },
+  {
+    "case": "diffusion-0.0001-ReferenceSparse-e4-w1-ordinary",
+    "tick": 4,
+    "support": 401,
+    "faces": 924,
+    "leaf_ns": {
+      "cell_lookup": 63360,
+      "delta_accumulation_and_entry_insertion": 76290,
+      "entry_insertion": 18340,
+      "neighbour_calculation": 48680,
+      "ordered_set_insert": 95910,
+      "outgoing_accumulation_and_entry_insertion": 67240
+    },
+    "calls": {
+      "cell_lookup": 2574,
+      "delta_accumulation_and_entry_insertion": 2574,
+      "entry_insertion": 536,
+      "neighbour_calculation": 2490,
+      "ordered_set_insert": 2295,
+      "outgoing_accumulation_and_entry_insertion": 2406
+    },
+    "phases": [
+      {
+        "exclusive_remainder_ns": 41520,
+        "gross_ns": 41520,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "carrier_velocity_extraction"
+      },
+      {
+        "exclusive_remainder_ns": 151640,
+        "gross_ns": 271150,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 119510,
+        "name": "face_discovery_and_list"
+      },
+      {
+        "exclusive_remainder_ns": 40,
+        "gross_ns": 40,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "temporary_delta_and_outgoing_allocation"
+      },
+      {
+        "exclusive_remainder_ns": 387660,
+        "gross_ns": 617790,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 230130,
+        "name": "face_flux"
+      },
+      {
+        "exclusive_remainder_ns": 8590,
+        "gross_ns": 10430,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 1840,
+        "name": "wall_exchange"
+      },
+      {
+        "exclusive_remainder_ns": 590,
+        "gross_ns": 590,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "outgoing_CFL_validation"
+      },
+      {
+        "exclusive_remainder_ns": 30210,
+        "gross_ns": 48550,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 18340,
+        "name": "material_apply"
+      }
+    ],
+    "interpretation": "Intrusive timers include recorder overhead; gross overlaps its nested leaves. Original transport on the selected representation; candidate w.transport phases not individually partitioned."
+  },
+  {
+    "case": "diffusion-0.0001-ReferenceSparse-e4-w1-ordinary",
+    "tick": 16,
+    "support": 2914,
+    "faces": 7995,
+    "leaf_ns": {
+      "cell_lookup": 466300,
+      "delta_accumulation_and_entry_insertion": 522129,
+      "entry_insertion": 97499,
+      "neighbour_calculation": 347580,
+      "ordered_set_insert": 716960,
+      "outgoing_accumulation_and_entry_insertion": 525430
+    },
+    "calls": {
+      "cell_lookup": 17100,
+      "delta_accumulation_and_entry_insertion": 17100,
+      "entry_insertion": 3103,
+      "neighbour_calculation": 17529,
+      "ordered_set_insert": 16824,
+      "outgoing_accumulation_and_entry_insertion": 17484
+    },
+    "phases": [
+      {
+        "exclusive_remainder_ns": 41960,
+        "gross_ns": 41960,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "carrier_velocity_extraction"
+      },
+      {
+        "exclusive_remainder_ns": 1126809,
+        "gross_ns": 2014449,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 887640,
+        "name": "face_discovery_and_list"
+      },
+      {
+        "exclusive_remainder_ns": 50,
+        "gross_ns": 50,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "temporary_delta_and_outgoing_allocation"
+      },
+      {
+        "exclusive_remainder_ns": 2719140,
+        "gross_ns": 4394929,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 1675789,
+        "name": "face_flux"
+      },
+      {
+        "exclusive_remainder_ns": 63960,
+        "gross_ns": 78930,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 14970,
+        "name": "wall_exchange"
+      },
+      {
+        "exclusive_remainder_ns": 3770,
+        "gross_ns": 3770,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "outgoing_CFL_validation"
+      },
+      {
+        "exclusive_remainder_ns": 174830,
+        "gross_ns": 272329,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 97499,
+        "name": "material_apply"
+      }
+    ],
+    "interpretation": "Intrusive timers include recorder overhead; gross overlaps its nested leaves. Original transport on the selected representation; candidate w.transport phases not individually partitioned."
+  },
+  {
+    "case": "diffusion-0.0001-ReferenceSparse-e4-w1-ordinary",
+    "tick": 64,
+    "support": 4096,
+    "faces": 11520,
+    "leaf_ns": {
+      "cell_lookup": 643869,
+      "delta_accumulation_and_entry_insertion": 722290,
+      "entry_insertion": 122230,
+      "neighbour_calculation": 503370,
+      "ordered_set_insert": 1128250,
+      "outgoing_accumulation_and_entry_insertion": 740379
+    },
+    "calls": {
+      "cell_lookup": 23040,
+      "delta_accumulation_and_entry_insertion": 23040,
+      "entry_insertion": 4096,
+      "neighbour_calculation": 24576,
+      "ordered_set_insert": 23808,
+      "outgoing_accumulation_and_entry_insertion": 24576
+    },
+    "phases": [
+      {
+        "exclusive_remainder_ns": 41940,
+        "gross_ns": 41940,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "carrier_velocity_extraction"
+      },
+      {
+        "exclusive_remainder_ns": 1702819,
+        "gross_ns": 3093519,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 1390700,
+        "name": "face_discovery_and_list"
+      },
+      {
+        "exclusive_remainder_ns": 50,
+        "gross_ns": 50,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "temporary_delta_and_outgoing_allocation"
+      },
+      {
+        "exclusive_remainder_ns": 3682259,
+        "gross_ns": 6003897,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 2321638,
+        "name": "face_flux"
+      },
+      {
+        "exclusive_remainder_ns": 100900,
+        "gross_ns": 126720,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 25820,
+        "name": "wall_exchange"
+      },
+      {
+        "exclusive_remainder_ns": 5550,
+        "gross_ns": 5550,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 0,
+        "name": "outgoing_CFL_validation"
+      },
+      {
+        "exclusive_remainder_ns": 230610,
+        "gross_ns": 352840,
+        "interpretation": "remainder includes instrumentation gaps; do not add gross phases to their nested leaves",
+        "leaf_ns": 122230,
+        "name": "material_apply"
+      }
+    ],
+    "interpretation": "Intrusive timers include recorder overhead; gross overlaps its nested leaves. Original transport on the selected representation; candidate w.transport phases not individually partitioned."
+  }
+]

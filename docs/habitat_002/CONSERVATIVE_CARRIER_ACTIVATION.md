@@ -30,3 +30,7 @@ CANNOT qualify production sparse residency or domain-independent whole-tick cost
 It is a falsifiable exact carrier-kernel experiment within Chamber, not a second
 owner. Replacing dense State and ordered diagnostics with lawful sparse authority
 is a remaining architectural seam; publication does not silently adopt it.
+
+## Final measured status
+
+Final D matches all compared physical bits but full-demo mean2.257422ms and dense encode/decode/diagnostic/wall-mask scans prevent sparse-atmosphere qualification. Largest fixed-h1.6m chamber retains121/512 encoded blocks; full update6.7712ms. This adapter is rejected as the production scalability solution.

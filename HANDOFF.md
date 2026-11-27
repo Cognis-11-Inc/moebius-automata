@@ -1,3 +1,81 @@
+# HABITAT-002 outgoing checkpoint — 2026-11-27T18:21:23.433896-05:00, Codex
+
+PARTIAL. Repo /home/cognis/Cognis_Lab/Möbius Automata, main, clean numerical source
+`0d2bd8990860e6f1fee6166fa4c7bdc42958551f`. At this write HEAD is that SHA and current changes are
+report/provenance/figure/Atlas-reference/HANDOFF metadata only. Publication commit
+will contain this record; actual final local/remote SHA must be verified in Git.
+MORPH005 remains PARTIAL and paused,006 suspended; canonical ship physics unchanged.
+
+Implemented primordial::scalable::Workspace and explicit Chamber::step_candidate:
+B reusable tentative State/buffers/packed neighbors; C Mass::Blocks4/8/16/32;
+D implicit-background carrier encode/evolve/decode adapter; F own exact in-place
+cycle permutation. A original step retained.002 CPU checkpoint adapter records
+source/CPU/f64/lane/workers; old load refuses candidate schema/identity. Source
+files primordial/{mod,transport,blocks,scalable,scalable_tests}.rs, example
+habitat_scaling.rs, shared examples/support/habitat_alloc.rs, updated original
+allocator import/Cargo target and lab habitat-witness.rs. Detached Python OpenCL
+FP64 and scalar-only coarse/fine probes are NOT new environmental authorities.
+
+Clean cargo test --offline --workspace --all-targets --all-features:283PASS,
+0fail/ignored.20 focused tests,4 honest-red/restored assertions, strict all-feature
+Clippy/format,9 Python integrity tests pass.168 CPU cases with exact internal
+per-tick replay;133 independent tick-digest/decoded-endpoint comparisons/35groups
+pass. Original001 restored executable fresh repeat is physically identical to the
+current reference. B mean0.894063ms/P990.921569ms,82.538percent fewer requested
+bytes than current A; fresh original mean1.206125ms, current A1.173604ms (historical
+0011.077040ms retained separately). C demo2.690566ms and D2.257422ms fail2ms mean.
+F1.185348ms has allocation/buffer benefit, not a latency speedup. Workers2/4/8
+show no acceleration. Six2048tick/34.133334016s runs completed; exact scalar support
+expands81→4096 with no tiny-tail culling. Largest fixed-h domain1.6m vs0.4m is64x
+volume, real enlargement, but full dense interface cost still grows with volume.
+Residual maxima: carrier3.925e-11kg, scalar1.034e-23kg, accounted momentum9.981e-14kg*m/s.
+
+OpenCL RTX5060Ti reports15.57GiB/FP64 and executes despite NVML driver mismatch.
+At8/16/24/32³ final120-step carrier populations equal CPU bits; repeated final
+execution and restored+3step continuation exact.32³ collide+stream0.201400ms,
+host/local-validation0.659009ms; full GPU atmosphere/update/VRAM telemetry NOT
+qualified. Own GPU program fingerprint archived. G scalar interface conserves
+mass to2.220e-16 but L1 error0.083904 against unit inventory; not LBM multiresolution.
+
+Four120tick native checkpoints reproduce headlessly. First log-wait render/GPU
+contention protocol FAILED to overlap (silent logs); retained as invalid contention
+evidence. Corrected360tick run with19 process/device samples verifies overlap,
+actual AMD Vulkan render PCI0000:10:00.0 versus NVIDIA OpenCL compute, and complete
+headless checkpoint equality. Same-GPU contention NOT RUN. Actual block/implicit
+Witness captures inspected; spatial density color mode/live GPU authority
+telemetry and human control/aesthetic acceptance not established.
+
+Reports/compact tables/figure/validation in docs/habitat_002; donor licenses and
+queries also docs/research/2026-11-27-habitat-002.json. Atlas49notes/209links PASS,
+new07_EXPERIMENTS/HABITAT_002 and09_EVIDENCE/HABITAT_002_LIMITS are navigation only.
+Raw /home/cognis/habitat-002-20261127. Implementation storage receipt:
+HABITAT-002_STORAGE.json,148files/388342313memberbytes, SHA256
+9ebaaf8e2b494f548fbb329eadae12afaed7a7dd096c40a9087b388bc1268bbc,
+restore hashes verified. Final qualification receipt HABITAT-002_QUALIFICATION_STORAGE.json
+records exact final counts/hashes/restoration on verified Mermogon UUID
+D0A02EEBA02ED82C. Original001 archives and every working/versioned copy retained;
+no bulky raw evidence enters Git. Qualification1142files/1361703438memberbytes, archive SHA256
+6da69364615b2f2539e3b8353d054981319015a14bc8d34815d667b49d76a50e.
+Restored B/C/D/F binaries reproduce four full120-tick checkpoints; restored GPU
+script reproduces archived payload and continuation; wrong CPU lane refuses.
+Verification recipe/results are retained in that receipt. Publication docs/receipts supersede pre-seal archived doc snapshots.
+
+Unresolved: D still owns dense authoritative State, encode/decode, ordered wall
+scan, sampling and validation; C retains dense scratch/carrier and clone overhead.
+Global sparse storage/sampling/diagnostic contract remains the next dependency.
+E lacks scalar/body/ordered-wall/global-inventory transactional GPU integration;
+G lacks stress/viscosity/subcycling/acoustic-interface proof. Real Rust allocator
+OOM and cache hardware counters not tested. Finite sustained runs do not prove
+unlimited lifetime. No canonical adoption or integration implied by publication.
+
+Next actions: verify final Git/remote state and storage receipts; then use this
+negative/positive evidence to scope the sparse-authority or whole-GPU dependency.
+Canonical integration still needs separate Operator authorization. Safe first
+command: git status --short; git log -3 --oneline; read002 RESULTS.md/VALIDATION.json.
+Hosted CI uninspected. Prior checkpoints preserved below.
+
+---
+
 # HABITAT-002 implementation checkpoint — 2026-11-27 America/Toronto, Codex
 
 PARTIAL, final clean-source qualification pending. Repo /home/cognis/Cognis_Lab/Möbius

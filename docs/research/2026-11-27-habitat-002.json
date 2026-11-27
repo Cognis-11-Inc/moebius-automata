@@ -30,7 +30,8 @@
       "affected": [
         "primordial/blocks.rs",
         "primordial/scalable.rs"
-      ]
+      ],
+      "local_validation": "Bounded independently authored candidates tested; source-specific transfer and limits in per-lane reports. No external implementation adopted."
     },
     {
       "title": "Atmospherics",
@@ -66,7 +67,8 @@
       "affected": [
         "primordial/scalable.rs",
         "CONSERVATIVE_CARRIER_ACTIVATION.md"
-      ]
+      ],
+      "local_validation": "Bounded independently authored candidates tested; source-specific transfer and limits in per-lane reports. No external implementation adopted."
     },
     {
       "title": "NVIDIA Flow1.0.1 and Flow SDK documentation105.1.1",
@@ -127,7 +129,8 @@
       ],
       "affected": [
         "primordial/blocks.rs"
-      ]
+      ],
+      "local_validation": "Bounded independently authored candidates tested; source-specific transfer and limits in per-lane reports. No external implementation adopted."
     },
     {
       "title": "FluidX3D (licensing and method provenance only)",
@@ -177,7 +180,8 @@
       "affected": [
         "primordial/scalable.rs::Workspace::in_place",
         "primordial/scalable_tests.rs"
-      ]
+      ],
+      "local_validation": "Bounded independently authored candidates tested; source-specific transfer and limits in per-lane reports. No external implementation adopted."
     },
     {
       "title": "A new GPU implementation for lattice-Boltzmann simulations on sparse geometries",
@@ -196,7 +200,8 @@
       "affected": [
         "primordial/blocks.rs",
         "habitat_scaling.rs"
-      ]
+      ],
+      "local_validation": "Bounded independently authored candidates tested; source-specific transfer and limits in per-lane reports. No external implementation adopted."
     },
     {
       "title": "Oxygen Not Included \u2014 official Klei game page",
@@ -237,8 +242,11 @@
       "transfer": "Installed OpenCL FP64 carrier probe, explicit strict compile options and event timings",
       "affected": [
         "python/habitat_002_gpu.py"
-      ]
+      ],
+      "local_validation": "Bounded independently authored candidates tested; source-specific transfer and limits in per-lane reports. No external implementation adopted."
     }
   ],
-  "status_note": "No external solver code imported. CONSULTED is not VALIDATED. Local outcome receipts are added only after clean-source execution; proprietary internals/access gaps remain unresolved."
+  "status_note": "No external solver code imported. CONSULTED is not VALIDATED. Local outcome receipts are added only after clean-source execution; proprietary internals/access gaps remain unresolved. Final CPU equivalence, GPU final-state and scalar-interface results are separately recorded; global sparse and full-GPU adoption remain unqualified.",
+  "validated_source_commit": "0d2bd8990860e6f1fee6166fa4c7bdc42958551f",
+  "local_evidence": "docs/habitat_002/HABITAT-002_RESULTS.json; local guarded/equivalence experiments, not donor validation"
 }

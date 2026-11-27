@@ -21,3 +21,7 @@ source-bound within Chamber's checkpoint adapter. No material ledger was added.
 Report occupancy, padding waste, support expansion, allocation/retirement and
 crossover. Diffusion can populate exact nonzero tails throughout a finite chamber;
 there is no threshold. The fastest block size is an outcome, not a preset choice.
+
+## Final measured status
+
+Final C matches exact CPU states at edges4/8/16/32. Full demo2.690566ms mean fails2ms mean budget. Nonempty occupancy controls saturate and favor B; an empty scalar control favors C but does not establish a production block size or domain-independent complexity.

@@ -1,0 +1,154 @@
+{
+  "status": "ARCHIVED_RESTORE_VERIFIED",
+  "purpose": "HABITAT002 clean-source final experiments, independent analyses, failed and corrected contention protocol, standalone plots, restoration and Atlas/publication evidence; immutable delta supplement",
+  "run": "habitat-002-20261127",
+  "archive_version": "habitat-002-qualification-v1",
+  "verified_utc": "2026-11-27T23:23:25.434392+00:00",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "source": "/dev/sdb2",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon",
+    "fstype": "ntfs3"
+  },
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "source_commit": "0d2bd8990860e6f1fee6166fa4c7bdc42958551f",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-002/2026-11-27/habitat-002-qualification-v1/evidence.tar.gz",
+  "archive_sha256": "6da69364615b2f2539e3b8353d054981319015a14bc8d34815d667b49d76a50e",
+  "archive_bytes": 165682420,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-002/2026-11-27/habitat-002-qualification-v1/MANIFEST.json",
+  "manifest_sha256": "d67e28861e6601ec820ae77a4dbc16617115e1f97c82aa0bd12ea77031302c73",
+  "member_count": 1142,
+  "member_bytes": 1361703438,
+  "classification": {
+    "clean-source receipts/analysis/plots/protocol correction/Atlas/publication provenance": {
+      "files": 62,
+      "bytes": 2069280
+    },
+    "final controlled tick traces/checkpoints/native/GPU/scalar probe raw evidence": {
+      "files": 1080,
+      "bytes": 1359634158
+    }
+  },
+  "all_restored_hashes_match": true,
+  "base_archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-002/2026-11-27/habitat-002-implementation-v1/evidence.tar.gz",
+  "base_archive_sha256": "9ebaaf8e2b494f548fbb329eadae12afaed7a7dd096c40a9087b388bc1268bbc",
+  "base_rehashed_this_operation": true,
+  "restore_working_copy": "/home/cognis/habitat-002-qualification-restored-20261127",
+  "working_root": "/home/cognis/habitat-002-20261127",
+  "restore_instructions": "Restore implementation-v1 and qualification-v1 to separate new directories; verify archive/manifest and every member size/hash. Supplement is a delta: certified Rust executables/source and matching Python GPU/multiresolution source are in implementation-v1; final data/analysis/plots/protocol-correction evidence here. Overlay only in a third working copy if needed; never overwrite archives. Use matching CPU source/lane/worker and GPU source/device/driver/kernel/numerical identity; do not bypass refusals. Final publication metadata in Git supersedes pre-seal documentation snapshots. See HABITAT-002_REPRODUCE.md. No original evidence removed.",
+  "restored_execution": {
+    "status": "PASS",
+    "binary_sha256": "a6cf46154867962e6f2376fb2e6f2436f0fd208c4e4eff58baeff3bdf202c4e6",
+    "cpu": [
+      {
+        "lane": "Buffered",
+        "command": [
+          "/home/cognis/habitat-002-implementation-restored-20261127/ordinary-certified/habitat_scaling.binary",
+          "replay",
+          "/home/cognis/habitat-002-qualification-restored-20261127/demo-reference-Buffered-e4-w1-ordinary/initial.json",
+          "/home/cognis/habitat-002-restored-Buffered-final.json",
+          "120",
+          "Buffered",
+          "1"
+        ],
+        "exit_code": 0,
+        "full_checkpoint_equal": true,
+        "digest": "7344a55da53734dbeb5f5d11be9a02b9a512d03c4486f706b9b98ed47e140d54",
+        "output_sha256": "2cc2d6b00fc3bf1a3f1bddad4fe42e5876fd2784a1799681e45bbb6accfa9972",
+        "working_output": "/home/cognis/habitat-002-restored-Buffered-final.json"
+      },
+      {
+        "lane": "Blocks",
+        "command": [
+          "/home/cognis/habitat-002-implementation-restored-20261127/ordinary-certified/habitat_scaling.binary",
+          "replay",
+          "/home/cognis/habitat-002-qualification-restored-20261127/demo-reference-Blocks-e4-w1-ordinary/initial.json",
+          "/home/cognis/habitat-002-restored-Blocks-final.json",
+          "120",
+          "Blocks",
+          "1"
+        ],
+        "exit_code": 0,
+        "full_checkpoint_equal": true,
+        "digest": "01c3980a4b795945b7d54e39d8cbbd92c75e4f6b8235c77d56c0ec129713d46a",
+        "output_sha256": "2c89d55d5148160b81ecb9f639d434eb84f9342f3ec01f50d17bfca92ebf4b2d",
+        "working_output": "/home/cognis/habitat-002-restored-Blocks-final.json"
+      },
+      {
+        "lane": "ImplicitCarrier",
+        "command": [
+          "/home/cognis/habitat-002-implementation-restored-20261127/ordinary-certified/habitat_scaling.binary",
+          "replay",
+          "/home/cognis/habitat-002-qualification-restored-20261127/demo-reference-ImplicitCarrier-e4-w1-ordinary/initial.json",
+          "/home/cognis/habitat-002-restored-ImplicitCarrier-final.json",
+          "120",
+          "ImplicitCarrier",
+          "1"
+        ],
+        "exit_code": 0,
+        "full_checkpoint_equal": true,
+        "digest": "7344a55da53734dbeb5f5d11be9a02b9a512d03c4486f706b9b98ed47e140d54",
+        "output_sha256": "36c9848ecd4cf2afe701f0c4e98792ba446259df5866143cc2d4ab5f1100f953",
+        "working_output": "/home/cognis/habitat-002-restored-ImplicitCarrier-final.json"
+      },
+      {
+        "lane": "InPlace",
+        "command": [
+          "/home/cognis/habitat-002-implementation-restored-20261127/ordinary-certified/habitat_scaling.binary",
+          "replay",
+          "/home/cognis/habitat-002-qualification-restored-20261127/demo-reference-InPlace-e4-w1-ordinary/initial.json",
+          "/home/cognis/habitat-002-restored-InPlace-final.json",
+          "120",
+          "InPlace",
+          "1"
+        ],
+        "exit_code": 0,
+        "full_checkpoint_equal": true,
+        "digest": "7344a55da53734dbeb5f5d11be9a02b9a512d03c4486f706b9b98ed47e140d54",
+        "output_sha256": "c9967ff19a51c97d992c30cc9dc3450e61d7a7b3fb9be405b3de977d11525563",
+        "working_output": "/home/cognis/habitat-002-restored-InPlace-final.json"
+      }
+    ],
+    "wrong_lane_refusal": {
+      "command": [
+        "/home/cognis/habitat-002-implementation-restored-20261127/ordinary-certified/habitat_scaling.binary",
+        "replay",
+        "/home/cognis/habitat-002-qualification-restored-20261127/demo-reference-Buffered-e4-w1-ordinary/initial.json",
+        "/home/cognis/habitat-002-refused-lane-final.json",
+        "1",
+        "Reference",
+        "1"
+      ],
+      "exit_code": 1,
+      "stderr": "Error: MorphError(\"H002 checkpoint execution identity mismatch\")\n",
+      "no_output_created": true
+    },
+    "gpu": {
+      "status": "PASS_TOLERANCE_CARRIER_ONLY",
+      "source": "/home/cognis/habitat-002-implementation-restored-20261127/implementation-docs/habitat_002_gpu.py",
+      "runner_sha256": "e30ab33b1114f3f2d1c641800eeef3c985c13a35dac82445513023962019c301",
+      "payload_sha256": "f883000b219cb9910f4731c75f2ac6bf9dbf0007bb39bf7821792283993f9033",
+      "archived_gpu_payload_exact": true,
+      "same_backend_final_repeat_exact": true,
+      "restored_continuation_exact": true,
+      "backend_identity_refusal_enforced": true,
+      "working_output": "/home/cognis/habitat-002-restored-gpu-proof"
+    },
+    "scope": "Post-transfer execution verification, not additional performance qualification. CPU numerical checkpoints/GPU payload duplicate the already archived final evidence exactly; new working outputs retained. Source/backend/lane/worker guards preserved.",
+    "verification_recipe": {
+      "script_sha256": "7d72e096f9ba71f2109492f4c0804989f7fe47accf3d2f76bde2d9177bb00ed5",
+      "script_text": "from pathlib import Path\nimport json,subprocess,hashlib,importlib.util\nrepo=Path.cwd();p=repo/'docs/habitat_002/HABITAT-002_QUALIFICATION_STORAGE.json';receipt=json.loads(p.read_text());base=Path('/home/cognis/habitat-002-implementation-restored-20261127');q=Path(receipt['restore_working_copy']);binary=base/'ordinary-certified/habitat_scaling.binary'\ndef sha(path):\n with Path(path).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()\nrecords=[]\nfor lane in ['Buffered','Blocks','ImplicitCarrier','InPlace']:\n folder=q/f'demo-reference-{lane}-e4-w1-ordinary';out=Path('/home/cognis')/f'habitat-002-restored-{lane}-final.json';assert not out.exists();cmd=[str(binary),'replay',str(folder/'initial.json'),str(out),'120',lane,'1'];r=subprocess.run(cmd,capture_output=True,text=True);assert r.returncode==0,r.stderr;expected=json.loads((folder/'final.json').read_text());actual=json.loads(out.read_text());assert actual==expected\n records.append({'lane':lane,'command':cmd,'exit_code':r.returncode,'full_checkpoint_equal':True,'digest':actual['digest'],'output_sha256':sha(out),'working_output':str(out)})\nwrong=Path('/home/cognis/habitat-002-refused-lane-final.json');assert not wrong.exists();cmd=[str(binary),'replay',str(q/'demo-reference-Buffered-e4-w1-ordinary/initial.json'),str(wrong),'1','Reference','1'];r=subprocess.run(cmd,capture_output=True,text=True);assert r.returncode!=0 and not wrong.exists() and 'execution identity mismatch' in r.stderr\nsource=base/'implementation-docs/habitat_002_gpu.py';spec=importlib.util.spec_from_file_location('restored_habitat_gpu',source);gpu=importlib.util.module_from_spec(spec);spec.loader.exec_module(gpu);gpu_out=Path('/home/cognis/habitat-002-restored-gpu-proof');assert not gpu_out.exists();case=q/'gpu-reference-8-Reference-e4-w1-ordinary';g=gpu.run(case/'initial.json',case/'final.json',base/'ordinary-certified/build.json',gpu_out);assert g['status']=='PASS_TOLERANCE_CARRIER_ONLY';assert sha(gpu_out/'carrier.f64le')==sha(q/'gpu-8/carrier.f64le')\nreceipt['restored_execution']={'status':'PASS','binary_sha256':sha(binary),'cpu':records,'wrong_lane_refusal':{'command':cmd,'exit_code':r.returncode,'stderr':r.stderr,'no_output_created':True},'gpu':{'status':g['status'],'source':str(source),'runner_sha256':sha(source),'payload_sha256':sha(gpu_out/'carrier.f64le'),'archived_gpu_payload_exact':True,'same_backend_final_repeat_exact':g['same_backend_replay_exact'],'restored_continuation_exact':g['restored_continuation_exact'],'backend_identity_refusal_enforced':g['changed_backend_identity_refused'],'working_output':str(gpu_out)},'scope':'Post-transfer execution verification, not additional performance qualification. CPU numerical checkpoints/GPU payload duplicate the already archived final evidence exactly; new working outputs retained. Source/backend/lane/worker guards preserved.'};p.write_text(json.dumps(receipt,indent=2)+'\\n');print(json.dumps({'cpu_restored_lanes':len(records),'gpu_restored_payload_exact':True,'archive':receipt['archive'],'archive_sha256':receipt['archive_sha256'],'member_count':receipt['member_count'],'member_bytes':receipt['member_bytes']},indent=2))\n",
+      "stdout": "{\n  \"cpu_restored_lanes\": 4,\n  \"gpu_restored_payload_exact\": true,\n  \"archive\": \"/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-002/2026-11-27/habitat-002-qualification-v1/evidence.tar.gz\",\n  \"archive_sha256\": \"6da69364615b2f2539e3b8353d054981319015a14bc8d34815d667b49d76a50e\",\n  \"member_count\": 1142,\n  \"member_bytes\": 1361703438\n}\n",
+      "note": "Authoritative compact replay-verification source/result retained in Git; new working numerical outputs equal existing archived payloads/checkpoints."
+    }
+  },
+  "publication_figure": {
+    "path": "docs/habitat_002/HABITAT-002_RESULTS.svg",
+    "raw_archived_svg": "plots/habitat-002-results.svg",
+    "raw_sha256": "3d58257af3a64e1f336d37719df44739675db71cf364ab774c91f24d92228c50",
+    "publication_sha256": "b0cc97f7695710774f4919cc26fb4c50cdc9a83a896cc17bf5ec4ec04f481fd7",
+    "normalization": "Trailing SVG formatting spaces stripped; parsed XML structure/attributes/text are equal under whitespace normalization. Archived original retained unchanged.",
+    "failed_initial_whitespace_check_retained": "/home/cognis/habitat-002-publication-whitespace.log"
+  }
+}

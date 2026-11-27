@@ -94,8 +94,8 @@
     },
     {
       "path": "07_EXPERIMENTS/INDEX.md",
-      "bytes": 1148,
-      "sha256": "9827639045f7d726e2e54ecb975f5ff11678eff15451394169cc84c4d05b91bb"
+      "bytes": 1274,
+      "sha256": "978f81069a5365f726ac49d5242baa89d05ea8df9b08b2293b6cf7d4a42913b8"
     },
     {
       "path": "07_EXPERIMENTS/MORPH_001.md",
@@ -174,8 +174,8 @@
     },
     {
       "path": "09_EVIDENCE/INDEX.md",
-      "bytes": 747,
-      "sha256": "d94b76e8523b20abb61c09bbc1982a1cf4e1a917221fa6b0f367a2aeb4f57ef9"
+      "bytes": 877,
+      "sha256": "3c7b6cae8a850a7322cfc52de9f0d34d1c18b382594ce98956310edebf59bcbb"
     },
     {
       "path": "09_EVIDENCE/MORPH_004_DONORS.md",
@@ -245,10 +245,20 @@
       "path": "09_EVIDENCE/HABITAT_001_LIMITS.md",
       "bytes": 1423,
       "sha256": "189d75fe6734575b39aab67c2bbbe91d6ada601e174674613ef5ab6212305104"
+    },
+    {
+      "path": "07_EXPERIMENTS/HABITAT_002.md",
+      "bytes": 1127,
+      "sha256": "b718a51a48ba63a158775f6b64952f2aa68dce825ffa23e0c1273ba7d3cc846c"
+    },
+    {
+      "path": "09_EVIDENCE/HABITAT_002_LIMITS.md",
+      "bytes": 1171,
+      "sha256": "fc76ebda4033e231aeb01510c6110d9de47a5628321338e45731414ea1d49c33"
     }
   ],
   "snapshot_note": "Rehashed after the clean MORPH-003 suite on a8cb705. Six edited notes cite that implementation commit. Ship design canon is unchanged.",
-  "latest_update": "HABITAT-001 isolated environmental foundation; MORPH-005 conventional stabilization paused, still PARTIAL.",
+  "latest_update": "HABITAT-002 bounded computational research; global sparse authority and GPU full-tick adoption unresolved.",
   "stabilization_iv": {
     "status": "PARTIAL",
     "verified_date_utc": "2026-11-26",
@@ -286,5 +296,12 @@
     "authority": "navigation only; source and immutable evidence authoritative",
     "source_revision": "8498c22894c269e31ad8d53d63116b9b3ecafa5b",
     "validation": "274 clean-source tests, final E01-E12 ordinary/counting/native and18 exact dense/sparse pairs"
+  },
+  "habitat_002": {
+    "status": "PARTIAL_EXPERIMENTAL_NO_CANONICAL_INTEGRATION",
+    "source_revision": "0d2bd8990860e6f1fee6166fa4c7bdc42958551f",
+    "report": "docs/habitat_002/HABITAT-002_RESULTS.md",
+    "date_local": "2026-11-27",
+    "authority": "navigation only; source and immutable Mermogon evidence authoritative"
   }
 }

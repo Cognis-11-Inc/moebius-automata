@@ -27,3 +27,7 @@ are not integrated. Final inventory/equivalence is checked in the experiment,
 not used as a per-tick authoritative GPU commit. No complete-GPU-tick acceleration
 or adoption claim. Rendering contention is measured on the actually enumerated
 render device; cross-device contention is not same-GPU competition evidence.
+
+## Final measured status
+
+Final8/16/24/32³120-step final population bits equal CPU, repeated final execution and restored+3-step continuation exact.32³ collide+stream event mean0.201400ms; host/local-validation envelope0.659009ms. No complete environmental GPU update measured. Initial silent-log overlap protocol failed; corrected19-sample process overlap confirms AMD Vulkan render and NVIDIA compute are distinct devices. Same-GPU contention remains NOT RUN.

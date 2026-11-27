@@ -22,3 +22,7 @@ step, not a persistent pool; overhead must be measured and may reject this lane.
 Full-state clone was replaced by staged copying/swapping, not removed from the
 transaction contract: two physical-state-sized owners still exist. No memory
 saving is claimed until measured allocator/retained-state results support it.
+
+## Final measured status
+
+Final B demo mean0.894063ms/P990.921569ms,82.538percent fewer requested bytes than current A.16³/32³ worker controls show no multicore speedup; scoped-thread candidate remains available for reproduction. Accepted bounded single-worker candidate only.

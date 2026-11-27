@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "head": "0d2bd8990860e6f1fee6166fa4c7bdc42958551f",
+  "before_status_short": "",
+  "after_status_short": "",
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--workspace",
+    "--all-targets",
+    "--all-features"
+  ],
+  "started_utc": "2026-11-27T23:04:41.286488+00:00",
+  "elapsed_s": 136.12434585101437,
+  "exit_code": 0,
+  "passed": 283,
+  "failed": 0,
+  "ignored": 0,
+  "experiments": {
+    "head": "0d2bd8990860e6f1fee6166fa4c7bdc42958551f",
+    "before_status_short": "",
+    "after_status_short": "",
+    "source_manifest_unchanged": true,
+    "runs": 183,
+    "failed_runs": [],
+    "scope": "clean-source final controlled cases; all failures retained; pending independent physical/statistical analysis"
+  },
+  "postqualification": {
+    "head": "0d2bd8990860e6f1fee6166fa4c7bdc42958551f",
+    "status_short": "",
+    "source_manifest_unchanged": true,
+    "extra_evidence": [
+      "ORIGINAL_REFERENCE_REPEAT.json",
+      "VERIFIED_RENDER_OVERLAP.json",
+      "GPU_PROGRAM_CAPTURE.json"
+    ],
+    "protocol_correction": "Original log-wait contention run had no overlap; retained and replaced by verified concurrent-process test with explicit adapter log/DRM evidence"
+  },
+  "focused": "HABITAT-002_FOCUSED_VALIDATION.json",
+  "qualification_storage": "HABITAT-002_QUALIFICATION_STORAGE.json",
+  "scope": "Clean-source regression and controlled experiments at recorded source; subsequent publication edits are metadata/report/figure/Atlas only. No canonical or full-GPU adoption."
+}

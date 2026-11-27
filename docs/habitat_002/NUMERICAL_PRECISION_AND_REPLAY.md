@@ -26,3 +26,7 @@ FluidX3D or published appendix code. A naive forward overwrite counterexample is
 retained as a rejected algorithm. Unlike Esoteric schemes, decoded orientation is
 fixed after every admitted substep; visited flags and a single carry value replace
 one streaming array. Committed plus tentative state still exist for rollback.
+
+## Final measured status
+
+Final133 equivalent CPU comparisons/35 input groups pass all tick digests and decoded endpoints. Four native120-tick and corrected360-tick native/headless full checkpoints equal. All168 CPU runs replay every tick. GPU exact endpoint observations do not certify per-tick cross-backend or future driver portability. Four honest-red/restored checks recorded separately.

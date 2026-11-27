@@ -20,3 +20,7 @@ attenuation or hydrodynamic saving result is claimed from the scalar probe.
 Do not substitute it for B/C/D/E/F. Final scalar mass/L1/timing results are retained
 separately and cannot certify atmospheric multiresolution. There is no Witness-
 dependent refinement or approximate activation threshold in any adopted candidate.
+
+## Final measured status
+
+Final scalar probe mass drift2.220446e-16; L1 error0.0839038 versus unit inventory. The detail-loss counterexample is0.5 L1. No post-hoc threshold or multiresolution LBM acceptance.
