@@ -51,3 +51,7 @@ required-features = ["collision-fixture"]
 [[example]]
 name = "habitat_environment"
 required-features = ["habitat-experiment"]
+
+[[example]]
+name = "habitat_scaling"
+required-features = ["habitat-experiment"]

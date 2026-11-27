@@ -1,0 +1,124 @@
+{
+  "status": "PASS_FOCUSED_EXPERIMENTAL",
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "-p",
+    "moebius-morph",
+    "--lib",
+    "--features",
+    "habitat-experiment",
+    "primordial"
+  ],
+  "passed": 20,
+  "failed": 0,
+  "ignored": 0,
+  "honest_red": [
+    {
+      "guard": "capacity",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "-p",
+        "moebius-morph",
+        "--lib",
+        "--features",
+        "habitat-experiment",
+        "reused_scratch_refusal_preserves_commit_and_can_recover"
+      ],
+      "red_exit": 101,
+      "green_exit": 0,
+      "source_sha256_restored": "d3bad59fe57761a8eae9568cf58e4590209c7f20669ff1501c6c7bdffd85fb3c"
+    },
+    {
+      "guard": "halo",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "-p",
+        "moebius-morph",
+        "--lib",
+        "--features",
+        "habitat-experiment",
+        "implicit_background_preserves_roundoff_and_diagonal_activation"
+      ],
+      "red_exit": 101,
+      "green_exit": 0,
+      "source_sha256_restored": "d3bad59fe57761a8eae9568cf58e4590209c7f20669ff1501c6c7bdffd85fb3c"
+    },
+    {
+      "guard": "tail",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "-p",
+        "moebius-morph",
+        "--lib",
+        "--features",
+        "habitat-experiment",
+        "blocks_retire_only_exact_zero_and_preserve_subnormal_tail"
+      ],
+      "red_exit": 101,
+      "green_exit": 0,
+      "source_sha256_restored": "6c87ffa6bef704526e2ef7707c40f05829f993f43f66988fb1e019588d918c15"
+    },
+    {
+      "guard": "backend-execution-identity",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "-p",
+        "moebius-morph",
+        "--lib",
+        "--features",
+        "habitat-experiment",
+        "block_checkpoint_and_workspace_continuation_are_source_bound"
+      ],
+      "red_exit": 101,
+      "green_exit": 0,
+      "source_sha256_restored": "d9963de4f0ffcc22e017ed6aa62942222e4c14846e34ced4ef898ebebdadb14f"
+    }
+  ],
+  "clippy": {
+    "command": [
+      "cargo",
+      "clippy",
+      "--offline",
+      "--workspace",
+      "--all-targets",
+      "--all-features",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "status": "PASS",
+    "log": "clippy-final-certified.log"
+  },
+  "formatting": {
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "status": "PASS"
+  },
+  "python_integrity": {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "python/test_benchmark_integrity.py"
+    ],
+    "passed": 9,
+    "status": "PASS"
+  },
+  "broad_suite": "PENDING clean source commit",
+  "raw_evidence": "HABITAT-002_STORAGE.json"
+}

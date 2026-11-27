@@ -5,6 +5,10 @@ use bevy::{
 };
 use clap::Parser;
 use moebius_morph::primordial::{Chamber, Config, StepProfile, experiments, norm};
+use moebius_morph::primordial::{
+    Mass,
+    scalable::{self, Lane, Workspace},
+};
 use std::{path::PathBuf, time::Instant};
 #[derive(Parser)]
 struct Args {
@@ -14,10 +18,20 @@ struct Args {
     ticks: usize,
     #[arg(long, default_value_t = 16)]
     cells: usize,
+    #[arg(long, default_value = "Reference")]
+    lane: String,
+    #[arg(long, default_value_t = 4)]
+    block_edge: usize,
+    #[arg(long, default_value = "demo")]
+    scenario: String,
 }
 #[derive(Resource)]
 struct Authority {
     world: Chamber,
+    lane: Lane,
+    workspace: Workspace,
+    block_edge: usize,
+    scenario: String,
     playing: bool,
     single: bool,
     accumulator: f64,
@@ -69,18 +83,28 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     if let Some(path) = &args.record {
         std::fs::create_dir(path)?;
     }
-    let world = experiments::demo(Config {
-        cells: args.cells,
-        ..Default::default()
-    })?;
+    let lane: Lane = serde_json::from_str(&format!("\"{}\"", args.lane))?;
+    let world = new_world(
+        Config {
+            cells: args.cells,
+            ..Default::default()
+        },
+        &args.scenario,
+        lane,
+        args.block_edge,
+    )?;
     let initial_digest = world.digest()?;
     if let Some(path) = &args.record {
-        world.save(&path.join("initial.json"))?;
+        world.save_candidate(&path.join("initial.json"), lane, 1)?;
     }
     App::new()
         .insert_resource(ClearColor(Color::srgb(0.007, 0.012, 0.021)))
         .insert_resource(Authority {
             world,
+            lane,
+            workspace: Workspace::default(),
+            block_edge: args.block_edge,
+            scenario: args.scenario,
             playing: true,
             single: false,
             accumulator: 0.,
@@ -103,7 +127,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         })
         .add_plugins(DefaultPlugins.set(WindowPlugin {
             primary_window: Some(Window {
-                title: "HABITAT-001 | The Primordial Medium | experimental".into(),
+                title: "HABITAT-002 | Experimental computational lanes".into(),
                 resolution: (1280, 900).into(),
                 ..default()
             }),
@@ -126,7 +150,7 @@ fn setup(mut commands: Commands) {
         ObserverCamera,
     ));
     commands.spawn((
-        Text::new("HABITAT-001"),
+        Text::new("HABITAT-002"),
         TextFont {
             font_size: FontSize::Px(14.),
             ..default()
@@ -204,6 +228,7 @@ fn controls(
     }
 }
 fn advance(mut authority: ResMut<Authority>, mut pending: ResMut<Pending>, time: Res<Time>) {
+    let authority = &mut *authority;
     for action in pending.0.drain(..) {
         match action {
             Action::Toggle => authority.playing = !authority.playing,
@@ -249,9 +274,15 @@ fn advance(mut authority: ResMut<Authority>, mut pending: ResMut<Pending>, time:
                     }
                     _ => {}
                 }
-                match experiments::demo(config) {
+                match new_world(
+                    config,
+                    &authority.scenario,
+                    authority.lane,
+                    authority.block_edge,
+                ) {
                     Ok(world) => {
                         authority.world = world;
+                        authority.workspace = Workspace::default();
                         authority.error = None;
                         authority.accumulator = 0.;
                         authority.profiles.clear();
@@ -279,7 +310,10 @@ fn advance(mut authority: ResMut<Authority>, mut pending: ResMut<Pending>, time:
             && authority.accumulator >= moebius_morph::runtime::TICK_NANOS as f64 / 1e9
             && steps < 4)
     {
-        match authority.world.step() {
+        match authority
+            .world
+            .step_candidate(authority.lane, &mut authority.workspace)
+        {
             Ok(profile) => {
                 if authority.profiles.len() < 16384 {
                     authority.profiles.push(profile);
@@ -330,6 +364,48 @@ fn draw(
         }
     }
     let n = state.config.cells;
+    let mut block_keys = std::collections::BTreeSet::new();
+    if authority.lane == Lane::Blocks {
+        for f in &state.fields {
+            if let Mass::Blocks(b) = &f.mass {
+                for &k in b.blocks.keys() {
+                    block_keys.insert(k);
+                }
+            }
+        }
+    } else if authority.lane == Lane::ImplicitCarrier {
+        block_keys.extend(authority.workspace.carrier_blocks());
+    }
+    let edge = if authority.lane == Lane::Blocks {
+        authority.block_edge
+    } else {
+        4
+    };
+    let nb = n.div_ceil(edge);
+    for &key in block_keys.iter().take(512) {
+        let base = [
+            key % nb * edge,
+            key / nb % nb * edge,
+            key / (nb * nb) * edge,
+        ];
+        let h = state.config.h() as f32;
+        for axis in 0..3 {
+            for a in [0, edge] {
+                for b in [0, edge] {
+                    let mut p = base;
+                    p[(axis + 1) % 3] += a;
+                    p[(axis + 2) % 3] += b;
+                    let mut q = p;
+                    q[axis] += edge;
+                    gizmos.line(
+                        Vec3::from_array(p.map(|v| v.min(n) as f32 * h)),
+                        Vec3::from_array(q.map(|v| v.min(n) as f32 * h)),
+                        Color::srgba(0.15, 0.55, 0.45, 0.25),
+                    );
+                }
+            }
+        }
+    }
     let field = &state.fields[view.species % state.fields.len()];
     let peak = field
         .mass
@@ -386,8 +462,11 @@ fn draw(
         .profiles
         .last()
         .map_or(0., |p| p.total_ns as f64 / 1e6);
+    let activity = &authority.workspace.activity;
     let text = format!(
-        "HABITAT-001\nTHE PRIMORDIAL MEDIUM\nExperimental sealed chamber\n\nChamber: {:.2} m / {}^3 cells\nTick: {} / dt {:.6} s\nDensity: {:.3} kg/m^3\nViscosity: {:.3} Pa*s\nGravity: [{:.4}, {:.4}, {:.4}]\nAcceleration units: m/s^2\n|g|: {:.4} m/s^2\n\nMaterial: {}\nSuspended: {:.3e} kg\nWall stock: {:.3e} kg\nCarrier residual: {:.3e} kg\nMomentum residual: {:.3e} kg*m/s\nLattice Mach: {:.4}\nLast update: {:.3} ms\n\nSpace: pause / play\nN: step / R: repeat initial state\nD: density / V: viscosity\nG: gravity direction / B: strength\nParameter changes start a NEW RUN\nC: concentration / F: flow arrows\nArrows: orbit / PgUp-PgDn: zoom\n\nCyan/violet: concentration samples\nWhite/orange: physical test spheres\nGreen: flow arrows (gain 5 s)\nRed: gravity arrow (gain 40 s^2)\n\nIsothermal dynamic-pressure model\nNo temperature or chemistry solver\nNo organisms or prescribed thrust\nNo canonical ship integration\n{}",
+        "HABITAT-002\nCOMPUTATIONAL EXPERIMENT\nLane: {:?} / {}\nUniform resolution; CPU owner\nGPU timing/memory: N/A\n\nChamber {:.2} m / {}^3 cells\nTick {} / dt {:.6} s\nDensity {:.3} kg/m^3\nViscosity {:.3} Pa*s\nGravity [{:.4}, {:.4}, {:.4}] m/s^2\n\n{}: suspended {:.3e} kg\nWall stock {:.3e} kg\nCarrier residual {:.3e} kg\nMomentum residual {:.3e} kg*m/s\nLattice Mach {:.4}\nUpdate {:.3} ms\n\nScalar/carrier blocks: {} / {}\nImplicit carrier cells: {} (D kernel)\nScalar occupied {} / {} slots\nScratch {} KiB; block events +{} -{}\nDecoded authoritative State stays dense\n\nSpace pause; N step; R reset\nD density; V viscosity\nG gravity direction; B strength\nC species; F flow arrows\nArrows orbit; PgUp/PgDn zoom\nParameter change starts NEW RUN\n\nCyan/violet: concentration samples\nWhite/orange: physical spheres\nGreen grid: allocated blocks\nFlow gain 5s; gravity gain 40s^2\nNo canonical ship integration\n{}",
+        authority.lane,
+        authority.scenario,
         length,
         n,
         state.tick,
@@ -397,7 +476,6 @@ fn draw(
         g[0],
         g[1],
         g[2],
-        norm(g),
         field.species.material,
         field.mass.total(),
         field.wall_kg.iter().sum::<f64>(),
@@ -405,6 +483,18 @@ fn draw(
         norm(diag.momentum_residual),
         diag.max_mach,
         step,
+        activity.scalar_blocks,
+        activity.active_carrier_blocks,
+        activity.implicit_carrier_cells,
+        state
+            .fields
+            .iter()
+            .map(|f| f.mass.nonzero().len())
+            .sum::<usize>(),
+        state.fields.iter().map(|f| f.mass.stored()).sum::<usize>(),
+        activity.scratch_bytes / 1024,
+        activity.activated,
+        activity.retired,
         authority.error.as_deref().unwrap_or("")
     );
     for mut hud in &mut hud {
@@ -437,7 +527,10 @@ fn record(
     authority.completed_frames += 1;
     let path = authority.record.as_ref().unwrap().clone();
     if authority.completed_frames == 1 {
-        if let Err(e) = authority.world.save(&path.join("final.json")) {
+        if let Err(e) = authority
+            .world
+            .save_candidate(&path.join("final.json"), authority.lane, 1)
+        {
             eprintln!("{e}");
             exit.write(AppExit::error());
             return;
@@ -447,7 +540,7 @@ fn record(
             .observe(save_to_disk(path.join("chamber.png")));
     }
     if authority.completed_frames == 20 {
-        let report = serde_json::json!({"status":"RECORDED","initial_digest":authority.initial_digest,"final_digest":authority.world.digest().unwrap(),"ticks":authority.world.state().tick,"step_profiles":authority.profiles,"frame_ms":authority.frames_ms,"draw_cpu_ns":timings.draw_ns,"diagnostics":authority.world.state().diagnostics(),"build_identity":serde_json::from_str::<serde_json::Value>(moebius_morph::BENCHMARK_BUILD_IDENTITY).unwrap(),"scope":"ordinary native observer; frame times include update/render/wait, no GPU timestamps or human mouse acceptance"});
+        let report = serde_json::json!({"status":"RECORDED","initial_digest":authority.initial_digest,"final_digest":authority.world.digest().unwrap(),"ticks":authority.world.state().tick,"lane":authority.lane,"scenario":authority.scenario,"block_edge":authority.block_edge,"activity":authority.workspace.activity,"physical_digest":authority.world.physical_digest().unwrap(),"step_profiles":authority.profiles,"frame_ms":authority.frames_ms,"draw_cpu_ns":timings.draw_ns,"diagnostics":authority.world.state().diagnostics(),"build_identity":serde_json::from_str::<serde_json::Value>(moebius_morph::BENCHMARK_BUILD_IDENTITY).unwrap(),"scope":"ordinary native observer; frame times include update/render/wait, no GPU timestamps or human mouse acceptance"});
         if let Err(e) = std::fs::write(
             path.join("report.json"),
             serde_json::to_vec_pretty(&report).unwrap(),
@@ -458,4 +551,26 @@ fn record(
         }
         exit.write(AppExit::Success);
     }
+}
+
+fn new_world(
+    config: Config,
+    scenario: &str,
+    lane: Lane,
+    edge: usize,
+) -> Result<Chamber, moebius_morph::MorphError> {
+    let mut world = match scenario {
+        "demo" => experiments::demo(config)?,
+        "cloud" => scalable::cloud(config, 0.01, 1, 0, 0.0001, 1, 0.002)?,
+        "two-clouds" => scalable::cloud(config, 0.01, 2, 0, 0.0001, 1, 0.002)?,
+        _ => {
+            return Err(moebius_morph::MorphError(
+                "Unknown experimental scenario".into(),
+            ));
+        }
+    };
+    if lane == Lane::Blocks {
+        world.use_blocks(edge)?;
+    }
+    Ok(world)
 }

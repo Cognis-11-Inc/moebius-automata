@@ -1,0 +1,244 @@
+{
+  "date_local": "2026-11-27",
+  "recorded_utc": "2026-11-27T22:56:23.211967+00:00",
+  "purpose": "Document required donors before implementation; identify transferable storage/scheduling principles without external code import",
+  "queries": [
+    "Noita Petri Purho chunk dirty rectangles multithreading official GDC developer interview",
+    "tgstation Atmospherics active turfs excited groups deactivation archived_cycle",
+    "NVIDIA Flow sparse blocks allocation indirection official documentation",
+    "FluidX3D LICENSE README only; Lehmann2022 DOI10.3390/computation10060092",
+    "arxiv1611.02445v2 tiled GPU sparse geometry occupancy",
+    "site.klei.com Oxygen Not Included gas simulation technical",
+    "site.rocketwerkz.com Stationeers atmospheric simulation technical",
+    "Khronos clBuildProgram clGetEventProfilingInfo"
+  ],
+  "sources": [
+    {
+      "title": "Exploring the Tech and Design of 'Noita'",
+      "authors": "Petri Purho, Nolla Games",
+      "date": "GDC2019; official video2020-01-02",
+      "url": "https://www.gdcvault.com/play/1025695/Exploring-the-Tech-and-Design/",
+      "additional_url": "https://80.lv/articles/noita-a-game-based-on-falling-sand-simulation",
+      "access": "GDC session metadata, not video frames; selected developer interview sections (Daria Loginova,2019-04-05) on chunk scheduling inspected",
+      "license": "Copyrighted talk/interview; no code reuse authorization inferred",
+      "mechanism": "Dirty rectangles within chunks and separated update rounds coordinate cross-chunk work. Their bottom-up cellular particle semantics differ from ordered3D face fluxes and D3Q19 propagation.",
+      "transfer": "Bounded blocks and stencil-derived communication investigated independently; checkerboard update order not transferred",
+      "status": [
+        "CONSULTED",
+        "PROPOSED"
+      ],
+      "affected": [
+        "primordial/blocks.rs",
+        "primordial/scalable.rs"
+      ]
+    },
+    {
+      "title": "Atmospherics",
+      "authors": "tgstation contributors, original rundown duncathan (document attribution)",
+      "date": "Living document; pinned revision date in repository record",
+      "url": "https://raw.githubusercontent.com/tgstation/tgstation/fa3f011f22f5d78a998cb2c891b69f1baa5ddfdd/code/modules/atmospherics/Atmospherics.md",
+      "license": "Repository AGPL-3.0; no code or document text incorporated",
+      "mechanism": "Active tiles, archived old mixtures, excited-group equalization and sleeping/reactivation manage work. Regional equalization is a gameplay scheme, not our flux law; velocity alone cannot justify dropping nonequilibrium populations.",
+      "transfer": "Proposed exact all-population/background retirement; no excited-group redistribution or thresholds",
+      "status": [
+        "CONSULTED",
+        "PROPOSED"
+      ],
+      "repository": {
+        "repository": "tgstation/tgstation",
+        "revision": "fa3f011f22f5d78a998cb2c891b69f1baa5ddfdd",
+        "date": "2026-11-27T21:35:05Z",
+        "files": [
+          {
+            "path": "code/modules/atmospherics/Atmospherics.md",
+            "url": "https://raw.githubusercontent.com/tgstation/tgstation/fa3f011f22f5d78a998cb2c891b69f1baa5ddfdd/code/modules/atmospherics/Atmospherics.md",
+            "bytes": 49939,
+            "sha256": "1c3db12167a68aa2675c3deb2d66fc61367e71e74a2eb3ed8256a527d9ea12e3"
+          },
+          {
+            "path": "LICENSE",
+            "url": "https://raw.githubusercontent.com/tgstation/tgstation/fa3f011f22f5d78a998cb2c891b69f1baa5ddfdd/LICENSE",
+            "bytes": 34520,
+            "sha256": "76a97c878c9c7a8321bb395c2b44d3fe2f8d81314d219b20138ed0e2dddd5182"
+          }
+        ]
+      },
+      "affected": [
+        "primordial/scalable.rs",
+        "CONSERVATIVE_CARRIER_ACTIVATION.md"
+      ]
+    },
+    {
+      "title": "NVIDIA Flow1.0.1 and Flow SDK documentation105.1.1",
+      "authors": "NVIDIA Corporation",
+      "date": "Repository revisions recorded separately; documentation version105.1.1",
+      "url": "https://nvidia-omniverse.github.io/PhysX/flow/index.html",
+      "additional_urls": [
+        "https://github.com/NVIDIAGameWorks/Flow",
+        "https://github.com/NVIDIA-Omniverse/PhysX"
+      ],
+      "access": "README/licenses at pinned revisions; selected official overview/sparse/context documentation; guide.html fetch failed",
+      "license": "Legacy Flow Nvidia Source Code License (1-Way Commercial); current PhysX root BSD-3-Clause. No import; no blanket relicensing inference for legacy components",
+      "mechanism": "GPU voxel blocks, bounded block pool, indirection and resource lifetime/versioning. Emitter/feedback allocation for effects is not proof of conservative atmospheric activation.",
+      "transfer": "Bounded independently authored block addressing only, no shader/library import",
+      "status": [
+        "CONSULTED",
+        "PROPOSED"
+      ],
+      "repositories": [
+        {
+          "repository": "NVIDIAGameWorks/Flow",
+          "revision": "5f7db82d72bb7427ea09d14b50aaed276e553632",
+          "date": "2025-03-31T14:20:27Z",
+          "files": [
+            {
+              "path": "README.md",
+              "url": "https://raw.githubusercontent.com/NVIDIAGameWorks/Flow/5f7db82d72bb7427ea09d14b50aaed276e553632/README.md",
+              "bytes": 1160,
+              "sha256": "d213ba1550b7e7d935bd2a12b2173faf7eb4551422fafe3fe0c99b2aff6d315e"
+            },
+            {
+              "path": "LICENSE.txt",
+              "url": "https://raw.githubusercontent.com/NVIDIAGameWorks/Flow/5f7db82d72bb7427ea09d14b50aaed276e553632/LICENSE.txt",
+              "bytes": 3645,
+              "sha256": "d198cb39c3f78dd78dcc4be9ad9b486f2635d3279371bc562cee9f54ff005f7a"
+            }
+          ]
+        },
+        {
+          "repository": "NVIDIA-Omniverse/PhysX",
+          "revision": "7d6f6ac8b83e1610bdf715f1f2f1d6b718aee586",
+          "date": "2026-11-13T12:52:01Z",
+          "files": [
+            {
+              "path": "flow/README.md",
+              "url": "https://raw.githubusercontent.com/NVIDIA-Omniverse/PhysX/7d6f6ac8b83e1610bdf715f1f2f1d6b718aee586/flow/README.md",
+              "bytes": 1777,
+              "sha256": "6fc321f3588008e1bd6f8c869c85565973285073dd8905913af19d0532d7e12f"
+            },
+            {
+              "path": "LICENSE.md",
+              "url": "https://raw.githubusercontent.com/NVIDIA-Omniverse/PhysX/7d6f6ac8b83e1610bdf715f1f2f1d6b718aee586/LICENSE.md",
+              "bytes": 1517,
+              "sha256": "eb3e67b17b48c56ef26d8bf6634c0837503fefc28a916f98d4f02272eda50011"
+            }
+          ]
+        }
+      ],
+      "affected": [
+        "primordial/blocks.rs"
+      ]
+    },
+    {
+      "title": "FluidX3D (licensing and method provenance only)",
+      "authors": "Moritz Lehmann",
+      "date": "Pinned repository revision; license copyright2022-2026",
+      "url": "https://github.com/ProjectPhysX/FluidX3D",
+      "license": "Restrictive noncommercial/custom license; implementation copying, translation, adaptation and incorporation prohibited by directive. LICENSE.md and README only were fetched, no solver implementation inspected or imported",
+      "access": "README and license; numerical theory from separately published article below",
+      "status": [
+        "CONSULTED"
+      ],
+      "repository": {
+        "repository": "ProjectPhysX/FluidX3D",
+        "revision": "0497562903289dfbe384451d7984943138cda1e1",
+        "date": "2026-11-26T20:11:53Z",
+        "files": [
+          {
+            "path": "README.md",
+            "url": "https://raw.githubusercontent.com/ProjectPhysX/FluidX3D/0497562903289dfbe384451d7984943138cda1e1/README.md",
+            "bytes": 175416,
+            "sha256": "4cc8677241f4cfb8159e6f99c38e0a8478a36926aab95b88976996d2e4a4abc7"
+          },
+          {
+            "path": "LICENSE.md",
+            "url": "https://raw.githubusercontent.com/ProjectPhysX/FluidX3D/0497562903289dfbe384451d7984943138cda1e1/LICENSE.md",
+            "bytes": 2910,
+            "sha256": "a75453c33276490ca5417d88f3b0281223698b863fde1068332c31c8635efe67"
+          }
+        ]
+      },
+      "transfer": "NO IMPLEMENTATION REUSE"
+    },
+    {
+      "title": "Esoteric Pull and Esoteric Push: Two Simple In-Place Streaming Schemes for the Lattice Boltzmann Method on GPUs",
+      "authors": "Moritz Lehmann",
+      "date": "2022-06-02",
+      "url": "https://doi.org/10.3390/computation10060092",
+      "publication": "Computation10(6),92",
+      "access": "Selected publisher method sections and license footer inspected; implementation appendices not used",
+      "license": "Paper CC-BY4.0, distinct from restrictive repository implementation",
+      "mechanism": "Split streaming and representation parity can reduce population copies; checkpoint orientation and interrupted steps matter.",
+      "transfer": "Independent cycle-permutation candidate F derived from existing push mapping; NOT an Esoteric Pull implementation or port. No mixed precision.",
+      "status": [
+        "CONSULTED",
+        "IMPLEMENTED"
+      ],
+      "affected": [
+        "primordial/scalable.rs::Workspace::in_place",
+        "primordial/scalable_tests.rs"
+      ]
+    },
+    {
+      "title": "A new GPU implementation for lattice-Boltzmann simulations on sparse geometries",
+      "authors": "Tadeusz Tomczak; Roman G. Szafran",
+      "date": "2016-11-08 v1;2017-10-07 v2",
+      "url": "https://arxiv.org/abs/1611.02445v2",
+      "pdf": "https://arxiv.org/pdf/1611.02445v2",
+      "access": "Metadata and selected full-PDF sections on tiles, occupancy, contiguous populations and addressing; not every benchmark reconstructed",
+      "license": "arXiv nonexclusive distribution license; no source code imported",
+      "mechanism": "Small contiguous3D tiles trade occupancy waste for addressing/memory locality in static sparse geometry. Static excluded solid nodes are not dormant fluid; dynamic halos and exact background updates remain local proof obligations.",
+      "transfer": "Independent block sizes4/8/16/32 and fragmentation tests; no copied mapping or GPU-performance claim from publication",
+      "status": [
+        "CONSULTED",
+        "IMPLEMENTED"
+      ],
+      "affected": [
+        "primordial/blocks.rs",
+        "habitat_scaling.rs"
+      ]
+    },
+    {
+      "title": "Oxygen Not Included \u2014 official Klei game page",
+      "authors": "Klei Entertainment",
+      "url": "https://www.klei.com/games/oxygen-not-included",
+      "access": "Official product page and targeted technical-source search; no authoritative solver-internals source established",
+      "license": "Proprietary game; no import",
+      "status": [
+        "CONSULTED",
+        "UNRESOLVED"
+      ],
+      "transfer": "None; gameplay is not implementation evidence"
+    },
+    {
+      "title": "Stationeers \u2014 RocketWerkz official store/news",
+      "authors": "RocketWerkz",
+      "url": "https://rocketwerkz.itch.io/stationeers",
+      "additional_url": "https://store.steampowered.com/news/app/544550",
+      "access": "Publisher product metadata; news view exposed no technical article; no authoritative internal architecture found in this search",
+      "license": "Proprietary game; no import",
+      "status": [
+        "CONSULTED",
+        "UNRESOLVED"
+      ],
+      "transfer": "None; no reconstruction from gameplay"
+    },
+    {
+      "title": "OpenCL API reference: clBuildProgram / clGetEventProfilingInfo",
+      "authors": "Khronos Group",
+      "url": "https://registry.khronos.org/OpenCL/specs/unified/refpages/man/html/clBuildProgram.html",
+      "additional_url": "https://registry.khronos.org/OpenCL/specs/unified/refpages/man/html/clGetEventProfilingInfo.html",
+      "access": "Primary API signatures, build options, profiling timestamps",
+      "license": "Documentation CC-BY4.0; API declarations used via ctypes, no solver code",
+      "status": [
+        "CONSULTED",
+        "IMPLEMENTED"
+      ],
+      "transfer": "Installed OpenCL FP64 carrier probe, explicit strict compile options and event timings",
+      "affected": [
+        "python/habitat_002_gpu.py"
+      ]
+    }
+  ],
+  "status_note": "No external solver code imported. CONSULTED is not VALIDATED. Local outcome receipts are added only after clean-source execution; proprietary internals/access gaps remain unresolved."
+}

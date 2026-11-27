@@ -1,3 +1,53 @@
+# HABITAT-002 implementation checkpoint — 2026-11-27 America/Toronto, Codex
+
+PARTIAL, final clean-source qualification pending. Repo /home/cognis/Cognis_Lab/Möbius
+Automata, main, entry d7e14530325652be172564f3d00bb8bff1358608 clean/remote-equal;
+current dirty tree is authorized isolated002 source/protocol/docs.001 numerical
+sources matched clean8498c22/274-test receipt on entry. Both001 archives and530
+members rehashed on verified Mermogon; prior evidence unchanged. Sparse regression
+and reference numbers reconciled against retained records.
+
+Implemented explicit Chamber CPU lanes B reusable staging/buffers/address table,
+C BlockMass4/8/16/32, D implicit background carrier encode/evolve/decode adapter,
+F in-place cycle permutation, source/backend/lane/worker-bound002 checkpoint
+adapter. A remains original step. Source: primordial/{mod,transport,blocks,
+scalable,scalable_tests}.rs, example habitat_scaling and shared allocator monitor;
+existing habitat-witness extended with lane/scenario/block telemetry. No canonical
+ship/emission/collision/habitat/nursery law changes. Detached Python OpenCL FP64
+carrier and scalar-only multiresolution probes are not environmental owners.
+
+20 focused tests PASS, four assertion-failing honest-red/restored tests cover
+rollback, activation halo, minimum subnormal retention and execution identity.
+Pilots: six CPU lanes physically exact; small GPU final populations exact to CPU,
+same-device repeat/restored continuation pass; actual block Witness inspected.
+These are pilot/focused evidence, not a clean full-suite or performance certificate.
+OpenCL reports RTX5060Ti15.57GiB/FP64 and works despite NVML driver mismatch;
+Vulkan render enumerates AMD610M. No machine/driver repair attempted.
+
+Raw root /home/cognis/habitat-002-20261127; donor pinned docs/licenses, API probes,
+source/executable versions, failed checks/red tests and pilot snapshots retained.
+Implementation archive sealed/restored: 148files/388342313memberbytes,
+SHA256 9ebaaf8e2b494f548fbb329eadae12afaed7a7dd096c40a9087b388bc1268bbc.
+Implementation archive receipt and later qualification supplement reside under
+`docs/habitat_002/`; Mermogon UUID D0A02EEBA02ED82C must be reverified per operation.
+Provenance `docs/research/2026-11-27-habitat-002.json`. No external solver code imported;
+FluidX3D implementation never inspected/imported. Official docs/interview/paper
+access limits preserved. Expected outputs and preregistration in HABITAT-002_PROTOCOL.md.
+
+Next: final focused/static checks and source capture; classify/hash/restore archive;
+authorized local source commit -> clean workspace full suite -> final independent
+lanes/scaling/sustained/GPU/native experiments -> analysis -> Atlas/HANDOFF/report,
+immutable qualification archive -> metadata commit/push/remote verification.
+Known limits: D retains dense authoritative State/sampling/validation and wall-order
+work; C retains dense scratch/carrier. No scalable atmosphere residency claim.
+GPU lacks scalar/body/ordered-wall/global-inventory transactional integration.
+G is scalar-interface only, no multiresolution D3Q19 qualification. Real allocator
+OOM not recoverable/injected; explicit capacity/backend guards tested instead.
+MORPH005 PARTIAL,006 suspended. Safe first command: git status --short then read002
+protocol/results/checkpoint receipts; do not infer final gates from this handoff.
+
+---
+
 # HABITAT-001 outgoing checkpoint — 2026-11-27 America/Toronto, Codex
 
 DONE: isolated experimental foundation. Repo /home/cognis/Cognis_Lab/Möbius Automata,

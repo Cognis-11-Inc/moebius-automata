@@ -1,0 +1,41 @@
+{
+  "status": "ARCHIVED_RESTORE_VERIFIED",
+  "purpose": "HABITAT002 implementation, source/binary identities, donor research, API probes, focused/honest-red evidence and pilots; final clean qualification pending",
+  "run": "habitat-002-20261127",
+  "archive_version": "habitat-002-implementation-v1",
+  "verified_utc": "2026-11-27T23:02:36.438784+00:00",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "source": "/dev/sdb2",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon",
+    "fstype": "ntfs3"
+  },
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-002/2026-11-27/habitat-002-implementation-v1/evidence.tar.gz",
+  "archive_sha256": "9ebaaf8e2b494f548fbb329eadae12afaed7a7dd096c40a9087b388bc1268bbc",
+  "archive_bytes": 88094146,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-002/2026-11-27/habitat-002-implementation-v1/MANIFEST.json",
+  "manifest_sha256": "60bc1c593633b45b58da2e0ab9a50c6abfa660ac85db52699cabea659532f460",
+  "member_count": 148,
+  "member_bytes": 388342313,
+  "classification": {
+    "protocols/research/licensing/hardware/failed checks/falsification/provenance": {
+      "files": 92,
+      "bytes": 867327
+    },
+    "captured source/executables/build provenance": {
+      "files": 18,
+      "bytes": 378783344
+    },
+    "pilot experiments/native snapshots": {
+      "files": 38,
+      "bytes": 8691642
+    }
+  },
+  "all_restored_hashes_match": true,
+  "restore_working_copy": "/home/cognis/habitat-002-implementation-restored-20261127",
+  "working_root": "/home/cognis/habitat-002-20261127",
+  "source_entry": "d7e14530325652be172564f3d00bb8bff1358608",
+  "restore_instructions": "Extract into a new directory; verify archive/manifest and every member size/hash. Keep original and certified binary/source versions distinct. Use only matching source/backend/lane/worker checkpoints. Python GPU/multiresolution sources are captured in implementation-docs (plus pilot GPU source version separately); cargo source archives contain Rust/config. Final controlled runs require qualification supplement. Cache targets/bytecode/plotting install excluded. No immutable version overwritten."
+}

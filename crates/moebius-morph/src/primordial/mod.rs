@@ -12,7 +12,10 @@ use std::{
     path::Path,
     time::Instant,
 };
+mod blocks;
 pub mod experiments;
+pub mod scalable;
+pub use blocks::BlockMass;
 mod transport;
 
 pub type V = [f64; 3];
@@ -93,6 +96,7 @@ pub enum Boundary {
 pub enum ScalarBackend {
     Dense,
     SparseActiveFaces,
+    DenseBlocks { edge: usize },
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -170,6 +174,9 @@ impl Config {
                 "H001 BGK relaxation stability envelope",
             )?;
         }
+        if let ScalarBackend::DenseBlocks { edge } = self.scalar_backend {
+            require([4, 8, 16, 32].contains(&edge), "H002 block edge")?;
+        }
         Ok(())
     }
     pub fn coordinates(&self, i: usize) -> [usize; 3] {
@@ -236,12 +243,14 @@ impl Species {
 pub enum Mass {
     Dense(Vec<f64>),
     Sparse(BTreeMap<usize, f64>),
+    Blocks(BlockMass),
 }
 impl Mass {
     pub fn get(&self, i: usize) -> f64 {
         match self {
             Self::Dense(v) => v[i],
             Self::Sparse(v) => v.get(&i).copied().unwrap_or(0.),
+            Self::Blocks(v) => v.get(i),
         }
     }
     pub fn nonzero(&self) -> Vec<(usize, f64)> {
@@ -252,12 +261,14 @@ impl Mass {
                 .filter_map(|(i, &v)| (v != 0.).then_some((i, v)))
                 .collect(),
             Self::Sparse(v) => v.iter().map(|(&i, &v)| (i, v)).collect(),
+            Self::Blocks(v) => v.nonzero(),
         }
     }
     pub fn total(&self) -> f64 {
         match self {
             Self::Dense(v) => v.iter().sum(),
             Self::Sparse(v) => v.values().sum(),
+            Self::Blocks(v) => v.nonzero().iter().map(|(_, v)| v).sum(),
         }
     }
     pub(super) fn accumulate(&mut self, i: usize, delta: f64) {
@@ -267,18 +278,25 @@ impl Mass {
         match self {
             Self::Dense(v) => v[i] += delta,
             Self::Sparse(v) => *v.entry(i).or_default() += delta,
+            Self::Blocks(v) => v.add(i, delta),
         }
     }
     pub(super) fn coefficients_valid(&self) -> bool {
         match self {
             Self::Dense(v) => v.iter().all(|v| v.is_finite() && *v <= 0.9),
             Self::Sparse(v) => v.values().all(|v| v.is_finite() && *v <= 0.9),
+            Self::Blocks(v) => v
+                .blocks
+                .values()
+                .flatten()
+                .all(|v| v.is_finite() && *v <= 0.9),
         }
     }
     pub fn stored(&self) -> usize {
         match self {
             Self::Dense(v) => v.len(),
             Self::Sparse(v) => v.len(),
+            Self::Blocks(v) => v.blocks.len() * v.edge.pow(3),
         }
     }
 }
@@ -504,6 +522,10 @@ impl State {
                     v.len() == self.config.count() && v.iter().all(|v| v.is_finite() && *v >= 0.),
                     "H001 dense concentration",
                 )?,
+                Mass::Blocks(v) => require(
+                    v.cells == self.config.cells && v.validate(),
+                    "H002 block concentration",
+                )?,
                 Mass::Sparse(v) => require(
                     v.iter()
                         .all(|(i, v)| *i < self.config.count() && v.is_finite() && *v > 0.),
@@ -619,6 +641,13 @@ impl Chamber {
         let initial_kg = masses.iter().sum();
         let mass = match self.state.config.scalar_backend {
             ScalarBackend::Dense => Mass::Dense(masses),
+            ScalarBackend::DenseBlocks { edge } => {
+                let mut block = BlockMass::new(self.state.config.cells, edge);
+                for (i, v) in masses.into_iter().enumerate() {
+                    block.add(i, v);
+                }
+                Mass::Blocks(block)
+            }
             ScalarBackend::SparseActiveFaces => Mass::Sparse(
                 masses
                     .into_iter()
@@ -698,13 +727,23 @@ impl Chamber {
         Ok(())
     }
     pub fn digest(&self) -> Result<String, MorphError> {
+        self.digest_impl(false)
+    }
+    pub fn physical_digest(&self) -> Result<String, MorphError> {
+        self.digest_impl(true)
+    }
+    fn digest_impl(&self, normalized: bool) -> Result<String, MorphError> {
         let state = &self.state;
         let fields = state
             .fields
             .iter()
             .map(|f| (&f.species, f.initial_kg, f.wall_kg))
             .collect::<Vec<_>>();
-        let metadata = serde_json::json!({"schema":"H001-physical-bits-v1","config":state.config,"tick":state.tick,"sealed":state.sealed,"spheres":state.spheres,"impulses":state.impulses,"carrier_initial":state.carrier_initial_kg,"initial_momentum":state.initial_momentum,"fields":fields,"populations":state.populations.len()});
+        let mut config = state.config.clone();
+        if normalized {
+            config.scalar_backend = ScalarBackend::Dense;
+        }
+        let metadata = serde_json::json!({"schema":"H001-physical-bits-v1","config":config,"tick":state.tick,"sealed":state.sealed,"spheres":state.spheres,"impulses":state.impulses,"carrier_initial":state.carrier_initial_kg,"initial_momentum":state.initial_momentum,"fields":fields,"populations":state.populations.len()});
         let mut hash = blake3::Hasher::new();
         hash.update(&serde_json::to_vec(&encode_bits(metadata)).map_err(error)?);
         for cell in &state.populations {
@@ -720,23 +759,67 @@ impl Chamber {
         Ok(hash.finalize().to_hex().to_string())
     }
     pub fn save(&self, path: &Path) -> Result<(), MorphError> {
+        self.save_execution(path, None)
+    }
+    pub fn save_candidate(
+        &self,
+        path: &Path,
+        lane: scalable::Lane,
+        workers: usize,
+    ) -> Result<(), MorphError> {
+        self.save_execution(path, Some((lane, workers.max(1))))
+    }
+    fn save_execution(
+        &self,
+        path: &Path,
+        execution: Option<(scalable::Lane, usize)>,
+    ) -> Result<(), MorphError> {
         self.state.validate()?;
         require(
             self.state.sealed,
             "H001 checkpoint requires sealed initialization",
         )?;
-        let data = serde_json::json!({"schema":"HABITAT-001/f64-bits-v1","source_identity":crate::BENCHMARK_BUILD_IDENTITY,"digest":self.digest()?,"state":encode_bits(serde_json::to_value(&self.state).map_err(error)?)});
+        let schema = if execution.is_some() {
+            "HABITAT-002/cpu-f64-bits-v1"
+        } else {
+            "HABITAT-001/f64-bits-v1"
+        };
+        let execution=execution.map(|(lane,workers)|serde_json::json!({"backend":"CPU","precision":"f64","lane":lane,"workers":workers}));
+        let data = serde_json::json!({"schema":schema,"execution":execution,"source_identity":crate::BENCHMARK_BUILD_IDENTITY,"digest":self.digest()?,"state":encode_bits(serde_json::to_value(&self.state).map_err(error)?)});
         crate::write_atomic(path, &serde_json::to_string(&data).map_err(error)?)
     }
     pub fn load(path: &Path) -> Result<Self, MorphError> {
+        Self::load_execution(path, None)
+    }
+    pub fn load_candidate(
+        path: &Path,
+        lane: scalable::Lane,
+        workers: usize,
+    ) -> Result<Self, MorphError> {
+        Self::load_execution(path, Some((lane, workers.max(1))))
+    }
+    fn load_execution(
+        path: &Path,
+        execution: Option<(scalable::Lane, usize)>,
+    ) -> Result<Self, MorphError> {
         require(
             std::fs::metadata(path).map_err(error)?.len() <= 64 * 1024 * 1024,
             "H001 checkpoint byte budget",
         )?;
         let mut value: serde_json::Value =
             serde_json::from_slice(&std::fs::read(path).map_err(error)?).map_err(error)?;
+        let schema = if execution.is_some() {
+            "HABITAT-002/cpu-f64-bits-v1"
+        } else {
+            "HABITAT-001/f64-bits-v1"
+        };
+        let expected_execution=execution.map(|(lane,workers)|serde_json::json!({"backend":"CPU","precision":"f64","lane":lane,"workers":workers})).unwrap_or(serde_json::Value::Null);
         require(
-            value["schema"] == "HABITAT-001/f64-bits-v1"
+            value["execution"] == expected_execution,
+            "H002 checkpoint execution identity mismatch",
+        )?;
+        require(
+            value["schema"] == schema
                 && value["source_identity"] == crate::BENCHMARK_BUILD_IDENTITY,
             "H001 snapshot schema/source mismatch",
         )?;

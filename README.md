@@ -384,3 +384,17 @@ This is an isolated isothermal carrier/concentration/inert-sphere experiment,
 with explicit approximation and conservation boundaries. Read the
 [HABITAT-001 results and reproduction guide](docs/habitat_001/HABITAT-001_RESULTS.md)
 before interpreting it as an atmosphere or integrating it into a ship.
+
+HABITAT-002 computational experiments remain isolated from canonical ship physics.
+See [the protocol](docs/habitat_002/HABITAT-002_PROTOCOL.md) and
+[results](docs/habitat_002/HABITAT-002_RESULTS.md). Run a selected CPU lane with:
+
+```sh
+cargo run --release --offline -p moebius-morph --example habitat_scaling --features habitat-experiment -- NEW_OUTPUT Buffered 16 4 -1 120 .8 .0001 1 0 1
+cargo run --release --offline -p moebius-morph-lab --bin habitat-witness --features habitat-experiment -- --lane Blocks --scenario cloud --block-edge 4
+```
+
+Reference, Buffered, Blocks, ImplicitCarrier and InPlace are explicit CPU selections;
+ReferenceSparse selects the original scalar-tree control in the headless harness.
+OpenCL and multiresolution scripts are detached research probes, not adopted
+Chamber backends. GPU/full-atmosphere and production-scale claims remain separate.
