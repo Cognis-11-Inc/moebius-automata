@@ -1,0 +1,974 @@
+[
+  {
+    "backend": "Dense",
+    "factor": "resolution",
+    "value": 8,
+    "cells": 8,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.11395,
+      "p99_floor": 0.11548,
+      "max": 0.11549
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.001213125,
+      "coupling_ns": 1.6875e-05,
+      "carrier_ns": 0.05463625,
+      "transport_ns": 0.0233,
+      "validation_ns": 0.03460125
+    },
+    "sampling_ns_each": 15.44,
+    "counted_requested_bytes_16_ticks": 4358384,
+    "counted_live_bytes": 532978,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 512
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "resolution",
+    "value": 8,
+    "cells": 8,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.2980144375,
+      "p99_floor": 0.37479,
+      "max": 0.3795
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.002315625,
+      "coupling_ns": 1.9375e-05,
+      "carrier_ns": 0.055105625,
+      "transport_ns": 0.2036481875,
+      "validation_ns": 0.035673750000000004
+    },
+    "sampling_ns_each": 15.424,
+    "counted_requested_bytes_16_ticks": 4324016,
+    "counted_live_bytes": 558752,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 512
+  },
+  {
+    "backend": "Dense",
+    "factor": "resolution",
+    "value": 12,
+    "cells": 12,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.382503875,
+      "p99_floor": 0.39665,
+      "max": 0.39838
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.004266875,
+      "coupling_ns": 2e-05,
+      "carrier_ns": 0.1890406875,
+      "transport_ns": 0.07205375,
+      "validation_ns": 0.11692068750000001
+    },
+    "sampling_ns_each": 14.262,
+    "counted_requested_bytes_16_ticks": 15399920,
+    "counted_live_bytes": 757978,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 1728
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "resolution",
+    "value": 12,
+    "cells": 12,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.9786858125,
+      "p99_floor": 1.397951,
+      "max": 1.42189
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.00756625,
+      "coupling_ns": 2.1875e-05,
+      "carrier_ns": 0.189800625,
+      "transport_ns": 0.6557970625,
+      "validation_ns": 0.12204
+    },
+    "sampling_ns_each": 14.267,
+    "counted_requested_bytes_16_ticks": 13686976,
+    "counted_live_bytes": 808264,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 1724
+  },
+  {
+    "backend": "Dense",
+    "factor": "resolution",
+    "value": 16,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.9090120625,
+      "p99_floor": 0.92844,
+      "max": 0.93448
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.0128025,
+      "coupling_ns": 2e-05,
+      "carrier_ns": 0.4571813125,
+      "transport_ns": 0.1622225,
+      "validation_ns": 0.276562
+    },
+    "sampling_ns_each": 15.357,
+    "counted_requested_bytes_16_ticks": 34234352,
+    "counted_live_bytes": 1167170,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 4096
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "resolution",
+    "value": 16,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 2.091677875,
+      "p99_floor": 3.162011,
+      "max": 3.229001
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.017733125,
+      "coupling_ns": 3.0625e-05,
+      "carrier_ns": 0.48055325,
+      "transport_ns": 1.2957914375,
+      "validation_ns": 0.2905406875
+    },
+    "sampling_ns_each": 14.204,
+    "counted_requested_bytes_16_ticks": 30421728,
+    "counted_live_bytes": 1262960,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 3916
+  },
+  {
+    "backend": "Dense",
+    "factor": "resolution",
+    "value": 24,
+    "cells": 24,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 3.0360618125,
+      "p99_floor": 3.110731,
+      "max": 3.11179
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.0341075,
+      "coupling_ns": 2.125e-05,
+      "carrier_ns": 1.563639125,
+      "transport_ns": 0.5100056875,
+      "validation_ns": 0.928052
+    },
+    "sampling_ns_each": 14.315,
+    "counted_requested_bytes_16_ticks": 118339568,
+    "counted_live_bytes": 2754090,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 13824
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "resolution",
+    "value": 24,
+    "cells": 24,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 5.551999875,
+      "p99_floor": 8.821052,
+      "max": 9.289862
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.046990625,
+      "coupling_ns": 2.9375000000000003e-05,
+      "carrier_ns": 1.5646216875,
+      "transport_ns": 3.0060849375,
+      "validation_ns": 0.921841375
+    },
+    "sampling_ns_each": 14.426,
+    "counted_requested_bytes_16_ticks": 92347184,
+    "counted_live_bytes": 2959224,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 10252
+  },
+  {
+    "backend": "Dense",
+    "factor": "resolution",
+    "value": 32,
+    "cells": 32,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 7.2555245,
+      "p99_floor": 7.424612,
+      "max": 7.462902
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.089203125,
+      "coupling_ns": 2.1875000000000003e-05,
+      "carrier_ns": 3.7851895,
+      "transport_ns": 1.1719845,
+      "validation_ns": 2.208816125
+    },
+    "sampling_ns_each": 15.987,
+    "counted_requested_bytes_16_ticks": 261969904,
+    "counted_live_bytes": 5815442,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 32768
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "resolution",
+    "value": 32,
+    "cells": 32,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 11.2349734375,
+      "p99_floor": 16.869512,
+      "max": 17.768434
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.1083656875,
+      "coupling_ns": 2.5625000000000003e-05,
+      "carrier_ns": 3.7835506875,
+      "transport_ns": 5.151171,
+      "validation_ns": 2.1685323125
+    },
+    "sampling_ns_each": 15.482,
+    "counted_requested_bytes_16_ticks": 204760112,
+    "counted_live_bytes": 6110144,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 17760
+  },
+  {
+    "backend": "Dense",
+    "factor": "active-regions",
+    "value": 0,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 0,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.8691626875,
+      "p99_floor": 0.87936,
+      "max": 0.8868
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.010508125,
+      "coupling_ns": 1.8750000000000002e-05,
+      "carrier_ns": 0.45517325000000003,
+      "transport_ns": 0.128283125,
+      "validation_ns": 0.27494881250000003
+    },
+    "sampling_ns_each": 14.128,
+    "counted_requested_bytes_16_ticks": 31465456,
+    "counted_live_bytes": 1258450,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 4096
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "active-regions",
+    "value": 0,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 0,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.7679351249999999,
+      "p99_floor": 0.77653,
+      "max": 0.77889
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.009138125,
+      "coupling_ns": 2.1875000000000003e-05,
+      "carrier_ns": 0.4542500625,
+      "transport_ns": 0.041821250000000004,
+      "validation_ns": 0.2625125625
+    },
+    "sampling_ns_each": 14.19,
+    "counted_requested_bytes_16_ticks": 21505008,
+    "counted_live_bytes": 1240836,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 0
+  },
+  {
+    "backend": "Dense",
+    "factor": "active-regions",
+    "value": 1,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.8800364375,
+      "p99_floor": 0.89672,
+      "max": 0.90055
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.01022375,
+      "coupling_ns": 1.6250000000000002e-05,
+      "carrier_ns": 0.4545445,
+      "transport_ns": 0.1395750625,
+      "validation_ns": 0.27545375
+    },
+    "sampling_ns_each": 14.192,
+    "counted_requested_bytes_16_ticks": 32543344,
+    "counted_live_bytes": 1288770,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 4096
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "active-regions",
+    "value": 1,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 1.2341971875,
+      "p99_floor": 1.96314,
+      "max": 2.120581
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.012023125,
+      "coupling_ns": 2.25e-05,
+      "carrier_ns": 0.455332,
+      "transport_ns": 0.4952376875,
+      "validation_ns": 0.269064375
+    },
+    "sampling_ns_each": 14.258,
+    "counted_requested_bytes_16_ticks": 24782080,
+    "counted_live_bytes": 1334036,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 2262
+  },
+  {
+    "backend": "Dense",
+    "factor": "active-regions",
+    "value": 4,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 4,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.88880825,
+      "p99_floor": 0.90839,
+      "max": 0.91718
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.009639375,
+      "coupling_ns": 1.9375e-05,
+      "carrier_ns": 0.45444131249999997,
+      "transport_ns": 0.149961875,
+      "validation_ns": 0.2745256875
+    },
+    "sampling_ns_each": 15.286,
+    "counted_requested_bytes_16_ticks": 33620080,
+    "counted_live_bytes": 1319090,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 4096
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "active-regions",
+    "value": 4,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 4,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 1.7218485000000001,
+      "p99_floor": 2.80223,
+      "max": 2.942371
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.01485875,
+      "coupling_ns": 2.4375000000000003e-05,
+      "carrier_ns": 0.4574465,
+      "transport_ns": 0.97017325,
+      "validation_ns": 0.273693125
+    },
+    "sampling_ns_each": 15.334,
+    "counted_requested_bytes_16_ticks": 28172816,
+    "counted_live_bytes": 1397572,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 3512
+  },
+  {
+    "backend": "Dense",
+    "factor": "active-regions",
+    "value": 16,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 16,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.9081189375000001,
+      "p99_floor": 0.92982,
+      "max": 0.93752
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.009891875,
+      "coupling_ns": 1.9375e-05,
+      "carrier_ns": 0.455807625,
+      "transport_ns": 0.165850625,
+      "validation_ns": 0.2763081875
+    },
+    "sampling_ns_each": 14.334,
+    "counted_requested_bytes_16_ticks": 34585072,
+    "counted_live_bytes": 1349410,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 4096
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "active-regions",
+    "value": 16,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 16,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 2.4886079375,
+      "p99_floor": 3.399991,
+      "max": 3.40706
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.0197625,
+      "coupling_ns": 2.75e-05,
+      "carrier_ns": 0.4565738125,
+      "transport_ns": 1.722876,
+      "validation_ns": 0.28154125
+    },
+    "sampling_ns_each": 14.267,
+    "counted_requested_bytes_16_ticks": 33416720,
+    "counted_live_bytes": 1444820,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 4096
+  },
+  {
+    "backend": "Dense",
+    "factor": "species-count",
+    "value": 0,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 0,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.7291614375,
+      "p99_floor": 0.741071,
+      "max": 0.74338
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.0090375,
+      "coupling_ns": 1.8125e-05,
+      "carrier_ns": 0.4561995,
+      "transport_ns": 1.6875e-05,
+      "validation_ns": 0.2637025625
+    },
+    "sampling_ns_each": 14.191,
+    "counted_requested_bytes_16_ticks": 19926080,
+    "counted_live_bytes": 1347287,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 0
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "species-count",
+    "value": 0,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 0,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.7271464375,
+      "p99_floor": 0.73512,
+      "max": 0.73766
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.009125,
+      "coupling_ns": 1.7500000000000002e-05,
+      "carrier_ns": 0.45530325,
+      "transport_ns": 1.6250000000000002e-05,
+      "validation_ns": 0.2624806875
+    },
+    "sampling_ns_each": 15.284,
+    "counted_requested_bytes_16_ticks": 19926080,
+    "counted_live_bytes": 1362408,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 0
+  },
+  {
+    "backend": "Dense",
+    "factor": "species-count",
+    "value": 1,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.878658875,
+      "p99_floor": 0.89928,
+      "max": 0.9007
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.009640625,
+      "coupling_ns": 1.6875e-05,
+      "carrier_ns": 0.4543050625,
+      "transport_ns": 0.13927,
+      "validation_ns": 0.2752050625
+    },
+    "sampling_ns_each": 14.578,
+    "counted_requested_bytes_16_ticks": 32543344,
+    "counted_live_bytes": 1410464,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 4096
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "species-count",
+    "value": 1,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 1.232779625,
+      "p99_floor": 1.95182,
+      "max": 2.1195
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.013171875,
+      "coupling_ns": 2.375e-05,
+      "carrier_ns": 0.4541019375,
+      "transport_ns": 0.4949125,
+      "validation_ns": 0.2680620625
+    },
+    "sampling_ns_each": 14.195,
+    "counted_requested_bytes_16_ticks": 24782080,
+    "counted_live_bytes": 1455729,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 2262
+  },
+  {
+    "backend": "Dense",
+    "factor": "species-count",
+    "value": 2,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 2,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.9867064375,
+      "p99_floor": 1.01436,
+      "max": 1.02373
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.010255624999999999,
+      "coupling_ns": 2.125e-05,
+      "carrier_ns": 0.455225625,
+      "transport_ns": 0.233870125,
+      "validation_ns": 0.2870819375
+    },
+    "sampling_ns_each": 14.231,
+    "counted_requested_bytes_16_ticks": 43584416,
+    "counted_live_bytes": 1473705,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 8192
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "species-count",
+    "value": 2,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 2,
+    "update_ms": {
+      "n": 16,
+      "mean": 1.6929059375,
+      "p99_floor": 3.1364,
+      "max": 3.484711
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.014432500000000001,
+      "coupling_ns": 2.5e-05,
+      "carrier_ns": 0.4548631875,
+      "transport_ns": 0.9461708125,
+      "validation_ns": 0.2728513125
+    },
+    "sampling_ns_each": 14.264,
+    "counted_requested_bytes_16_ticks": 28061888,
+    "counted_live_bytes": 1549114,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 4524
+  },
+  {
+    "backend": "Dense",
+    "factor": "species-count",
+    "value": 4,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 4,
+    "update_ms": {
+      "n": 16,
+      "mean": 1.203323375,
+      "p99_floor": 1.26982,
+      "max": 1.271371
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.011456875,
+      "coupling_ns": 1.5625e-05,
+      "carrier_ns": 0.4558475625,
+      "transport_ns": 0.422891875,
+      "validation_ns": 0.3126814375
+    },
+    "sampling_ns_each": 14.277,
+    "counted_requested_bytes_16_ticks": 65666560,
+    "counted_live_bytes": 1569933,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 16384
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "species-count",
+    "value": 4,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 4,
+    "update_ms": {
+      "n": 16,
+      "mean": 2.593726125,
+      "p99_floor": 5.488281,
+      "max": 6.174172
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.019125,
+      "coupling_ns": 2.4375000000000003e-05,
+      "carrier_ns": 0.4550294375,
+      "transport_ns": 1.8292829375,
+      "validation_ns": 0.2820525
+    },
+    "sampling_ns_each": 14.202,
+    "counted_requested_bytes_16_ticks": 34621504,
+    "counted_live_bytes": 1705630,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 9048
+  },
+  {
+    "backend": "Dense",
+    "factor": "explicit-objects",
+    "value": 0,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.8773176875,
+      "p99_floor": 0.89245,
+      "max": 0.89713
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.00964375,
+      "coupling_ns": 1.9375e-05,
+      "carrier_ns": 0.454546375,
+      "transport_ns": 0.1385400625,
+      "validation_ns": 0.27433625
+    },
+    "sampling_ns_each": 14.193,
+    "counted_requested_bytes_16_ticks": 32543344,
+    "counted_live_bytes": 1501642,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 4096
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "explicit-objects",
+    "value": 0,
+    "cells": 16,
+    "explicit_objects": 0,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 1.23126525,
+      "p99_floor": 1.97324,
+      "max": 2.12341
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.012984375,
+      "coupling_ns": 2.6875000000000003e-05,
+      "carrier_ns": 0.454893125,
+      "transport_ns": 0.4930664375,
+      "validation_ns": 0.2677650625
+    },
+    "sampling_ns_each": 14.195,
+    "counted_requested_bytes_16_ticks": 24782080,
+    "counted_live_bytes": 1546910,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 2262
+  },
+  {
+    "backend": "Dense",
+    "factor": "explicit-objects",
+    "value": 1,
+    "cells": 16,
+    "explicit_objects": 1,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.8778101875,
+      "p99_floor": 0.89092,
+      "max": 0.900661
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.009641875,
+      "coupling_ns": 0.000228125,
+      "carrier_ns": 0.453621375,
+      "transport_ns": 0.139465,
+      "validation_ns": 0.2746119375
+    },
+    "sampling_ns_each": 14.194,
+    "counted_requested_bytes_16_ticks": 32547824,
+    "counted_live_bytes": 1532038,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 4096
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "explicit-objects",
+    "value": 1,
+    "cells": 16,
+    "explicit_objects": 1,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 1.23156025,
+      "p99_floor": 1.964111,
+      "max": 2.10927
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.011914375,
+      "coupling_ns": 0.000155,
+      "carrier_ns": 0.453947625,
+      "transport_ns": 0.493826375,
+      "validation_ns": 0.269210625
+    },
+    "sampling_ns_each": 14.192,
+    "counted_requested_bytes_16_ticks": 24786560,
+    "counted_live_bytes": 1577306,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 2262
+  },
+  {
+    "backend": "Dense",
+    "factor": "explicit-objects",
+    "value": 16,
+    "cells": 16,
+    "explicit_objects": 16,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.8803314375,
+      "p99_floor": 0.894361,
+      "max": 0.90437
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.0096925,
+      "coupling_ns": 0.001690625,
+      "carrier_ns": 0.4535238125,
+      "transport_ns": 0.138815625,
+      "validation_ns": 0.276373875
+    },
+    "sampling_ns_each": 14.191,
+    "counted_requested_bytes_16_ticks": 32574832,
+    "counted_live_bytes": 1563442,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 4096
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "explicit-objects",
+    "value": 16,
+    "cells": 16,
+    "explicit_objects": 16,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 1.2352320625,
+      "p99_floor": 1.960861,
+      "max": 2.11
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.011906375,
+      "coupling_ns": 0.00170125,
+      "carrier_ns": 0.45428006249999997,
+      "transport_ns": 0.4938031875,
+      "validation_ns": 0.2710130625
+    },
+    "sampling_ns_each": 14.193,
+    "counted_requested_bytes_16_ticks": 24813568,
+    "counted_live_bytes": 1608710,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 2262
+  },
+  {
+    "backend": "Dense",
+    "factor": "explicit-objects",
+    "value": 64,
+    "cells": 16,
+    "explicit_objects": 64,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.8919414375,
+      "p99_floor": 0.90432,
+      "max": 0.90746
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.009739375,
+      "coupling_ns": 0.00659625,
+      "carrier_ns": 0.454746375,
+      "transport_ns": 0.138693125,
+      "validation_ns": 0.2819306875
+    },
+    "sampling_ns_each": 14.192,
+    "counted_requested_bytes_16_ticks": 32653424,
+    "counted_live_bytes": 1597222,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 4096
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "explicit-objects",
+    "value": 64,
+    "cells": 16,
+    "explicit_objects": 64,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 1.245124625,
+      "p99_floor": 1.96427,
+      "max": 2.124981
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.011985625,
+      "coupling_ns": 0.006609375,
+      "carrier_ns": 0.4554033125,
+      "transport_ns": 0.4931756875,
+      "validation_ns": 0.275463125
+    },
+    "sampling_ns_each": 14.196,
+    "counted_requested_bytes_16_ticks": 24892160,
+    "counted_live_bytes": 1643514,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 2262
+  },
+  {
+    "backend": "Dense",
+    "factor": "explicit-objects",
+    "value": 256,
+    "cells": 16,
+    "explicit_objects": 256,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 0.9352395,
+      "p99_floor": 0.94832,
+      "max": 0.9505
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.01003625,
+      "coupling_ns": 0.026120625,
+      "carrier_ns": 0.4541806875,
+      "transport_ns": 0.139588125,
+      "validation_ns": 0.3050788125
+    },
+    "sampling_ns_each": 14.554,
+    "counted_requested_bytes_16_ticks": 32996464,
+    "counted_live_bytes": 1642394,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 4096
+  },
+  {
+    "backend": "SparseActiveFaces",
+    "factor": "explicit-objects",
+    "value": 256,
+    "cells": 16,
+    "explicit_objects": 256,
+    "nominal_active_regions": 1,
+    "species_count": 1,
+    "update_ms": {
+      "n": 16,
+      "mean": 1.2897765,
+      "p99_floor": 2.021651,
+      "max": 2.16441
+    },
+    "components_mean_ms": {
+      "clone_ns": 0.012181875,
+      "coupling_ns": 0.026425,
+      "carrier_ns": 0.45460325,
+      "transport_ns": 0.49490325,
+      "validation_ns": 0.2989225
+    },
+    "sampling_ns_each": 14.194,
+    "counted_requested_bytes_16_ticks": 25235200,
+    "counted_live_bytes": 1687662,
+    "counted_peak_live_bytes": 123768189,
+    "stored_scalar_cells": 2262
+  }
+]

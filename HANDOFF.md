@@ -1,3 +1,56 @@
+# HABITAT-001 outgoing checkpoint — 2026-11-27 America/Toronto, Codex
+
+DONE: isolated experimental foundation. Repo /home/cognis/Cognis_Lab/Möbius Automata,
+main, source `8498c22894c269e31ad8d53d63116b9b3ecafa5b`. Source and experiment qualification were clean before/after.
+Current uncommitted changes are final reports/receipts/provenance/Atlas/handoff only;
+publication commit/push and remote verification follow. This paragraph describes
+the prepublication state; actual final Git SHA/status must be read from Git.
+
+Implemented primordial::Chamber/Config/State, transport/experiments/tests, example
+habitat_environment and Bevy habitat-witness behind habitat-experiment. Finite
+D3Q19 isothermal carrier, statistical concentrations/wall inventories, inert spheres,
+uniform gravity, finite-cell two-way Stokes drag, prescribed hydrostatic support,
+source-bound bit checkpoints. Canonical force-free guard, material/collision/
+movement/history laws unchanged. MORPH-005 PARTIAL and paused; MORPH-006 suspended.
+
+Clean-source cargo test --offline --workspace --all-targets --all-features:274 PASS,
+0fail/ignored,155.778s. Eleven focused tests,3 honest-red/restored checks, strict
+workspace Clippy/format and9 Python tests PASS. Final16 ordinary +16 counted cases
+have exact every-tick internal replay; independent full-state/observation comparisons
+PASS; native/headless initial/final states identical. All18 dense/sparse pairs exact.
+Reference16³ mean1.077040ms/P991.095660ms; native mean1.246968ms/P991.812580ms.
+Residual maxima: carrier2.594e-13kg, species2.118e-21kg, momentum1.241e-13kg*m/s.
+Spatial refinement trends pass; fixed-grid time refinement is nonmonotonic and
+coarse8³ shear~6percent error. Sparse scalar nonempty controls are slower; carrier
+dense. No production/thermal/chemistry/locomotion/canonical adoption claim.
+
+Reports: docs/habitat_001/HABITAT-001_RESULTS.md, RESULTS.json, SCALING.json,
+VALIDATION.json; contract/reuse/architecture/directive in same directory.
+Source paths: crates/moebius-morph/src/primordial/, examples/habitat_environment.rs,
+crates/moebius-morph-lab/src/bin/habitat-witness.rs and feature/export manifests.
+Research provenance: docs/research/2026-11-27-habitat-001.json. Full raw working root
+/home/cognis/habitat-001-20261127. Main archive SHA256
+3c58e8dc9568402acd5cc2ee3da4e9df80ed0d20a9bb9387cb4a3ff3698a1908,
+303files/861617777memberbytes, restore hashes verified; see HABITAT-001_STORAGE.json.
+Qualification supplement:227files/89619901memberbytes, archive SHA256
+b8db989946e774a5b5da34e2c966a1d18be34e436e982d9bb4d34422f67f46ab.
+HABITAT-001_QUALIFICATION_STORAGE.json gives manifest/hash/restoration and verified
+Mermogon volume identity. Executed restored certified binary against restored
+final demo initial state:120ticks reproduce the full checkpoint exactly. No raw evidence
+removed. Restored matching source replay succeeds; newer-source load refuses as
+expected. Atlas notes07_EXPERIMENTS/HABITAT_001 and09_EVIDENCE/HABITAT_001_LIMITS
+updated with navigation-only authority; validator result in qualification evidence.
+
+Limits: no gas EOS calibration/temperature, hydrostatic approximation, one-way
+tracer momentum, unresolved nearest-cell spheres, no precise body contact or torque,
+no sparse carrier/ship-scale production proof. Renderer inspected; human controls/
+aesthetic acceptance untested. Hosted CI not inspected. Next authorized dependency
+is separately scoped refinement; integration/actuation require Operator authorization.
+Safe first inspection: git status --short then this report/validation/storage;
+verify actual local/remote HEAD. Preserve prior checkpoints below.
+
+---
+
 # HABITAT-001 implementation checkpoint — 2026-11-27 America/Toronto, Codex
 
 New authorized HABITAT track. Conventional MORPH-005 stabilization paused; it

@@ -96,6 +96,6 @@
     "status": "PASS"
   },
   "python_integrity_tests": 9,
-  "scope": "source captured by ordinary-certified/counted-certified/native-certified build receipts; clean workspace suite pending",
+  "scope": "Focused tests, honest-red/restored guards and static checks on captured source; clean workspace qualification subsequently PASS at 8498c22894c269e31ad8d53d63116b9b3ecafa5b",
   "kernel_source_sha256": "81bae9afe5fa6e3e9a71b72b084a0c9d99faba4c5be7000018c5bba5be84d8a0"
 }

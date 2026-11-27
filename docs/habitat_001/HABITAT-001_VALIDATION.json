@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "head": "8498c22894c269e31ad8d53d63116b9b3ecafa5b",
+  "branch": "main",
+  "before_status_short": "",
+  "after_status_short": "",
+  "after_head": "8498c22894c269e31ad8d53d63116b9b3ecafa5b",
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--workspace",
+    "--all-targets",
+    "--all-features"
+  ],
+  "started_utc": "2026-11-27T06:13:01.196144+00:00",
+  "elapsed_seconds": 155.77823563001584,
+  "exit_code": 0,
+  "top_level_passed": 274,
+  "top_level_failed": 0,
+  "ignored": 0,
+  "rustc_verbose": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.1\nLLVM version: 23.1.1\n",
+  "scope": "clean-source workspace regression, not atmospheric model calibration or canonical integration",
+  "experiments": {
+    "status": "PASS",
+    "head": "8498c22894c269e31ad8d53d63116b9b3ecafa5b",
+    "before_status_short": "",
+    "after_status_short": "",
+    "source_manifest_unchanged": true,
+    "runs": [
+      {
+        "label": "final-ordinary-suite",
+        "command": [
+          "/home/cognis/habitat-001-20261127/ordinary-certified/habitat_environment.binary",
+          "suite",
+          "/home/cognis/habitat-001-20261127/final-ordinary-suite"
+        ],
+        "elapsed_s": 6.664880038006231,
+        "exit": 0
+      },
+      {
+        "label": "final-ordinary-demo",
+        "command": [
+          "/home/cognis/habitat-001-20261127/ordinary-certified/habitat_environment.binary",
+          "demo",
+          "/home/cognis/habitat-001-20261127/final-ordinary-demo",
+          "120",
+          "16"
+        ],
+        "elapsed_s": 0.6347349929856136,
+        "exit": 0
+      },
+      {
+        "label": "final-counted-suite",
+        "command": [
+          "/home/cognis/habitat-001-20261127/counted-certified/habitat_environment.binary",
+          "suite",
+          "/home/cognis/habitat-001-20261127/final-counted-suite"
+        ],
+        "elapsed_s": 6.805903419968672,
+        "exit": 0
+      },
+      {
+        "label": "final-counted-demo",
+        "command": [
+          "/home/cognis/habitat-001-20261127/counted-certified/habitat_environment.binary",
+          "demo",
+          "/home/cognis/habitat-001-20261127/final-counted-demo",
+          "120",
+          "16"
+        ],
+        "elapsed_s": 0.6653594829840586,
+        "exit": 0
+      },
+      {
+        "label": "final-native-record",
+        "command": [
+          "/home/cognis/habitat-001-20261127/native-certified/habitat-witness.binary",
+          "--record",
+          "/home/cognis/habitat-001-20261127/final-native-record",
+          "--ticks",
+          "120",
+          "--cells",
+          "16"
+        ],
+        "elapsed_s": 2.924711160012521,
+        "exit": 0
+      }
+    ],
+    "scope": "E01-E12 and demo/native executed after completed workspace suite, no competing controlled build/test"
+  },
+  "focused_validation": "HABITAT-001_FOCUSED_VALIDATION.json",
+  "raw_evidence": "HABITAT-001_QUALIFICATION_STORAGE.json",
+  "publication_scope": "Subsequent report/Atlas/receipt-only commit does not change certified Rust/Cargo sources."
+}

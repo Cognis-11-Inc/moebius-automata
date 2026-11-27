@@ -238,13 +238,13 @@
     },
     {
       "path": "07_EXPERIMENTS/HABITAT_001.md",
-      "bytes": 1304,
-      "sha256": "8bd0696a93d047d6e4b0e5d9fcc23d02139fef63a21a20338fe66bffa6aaa512"
+      "bytes": 1624,
+      "sha256": "3b41c3ec4f808670a174d8e63590e6ad1745fe30450f60d2922f0e910910d6fe"
     },
     {
       "path": "09_EVIDENCE/HABITAT_001_LIMITS.md",
-      "bytes": 1041,
-      "sha256": "e3a2b148199a6c185156a52d09a08eaf16eecf6f7d749b180c2f7a275f379f30"
+      "bytes": 1423,
+      "sha256": "189d75fe6734575b39aab67c2bbbe91d6ada601e174674613ef5ab6212305104"
     }
   ],
   "snapshot_note": "Rehashed after the clean MORPH-003 suite on a8cb705. Six edited notes cite that implementation commit. Ship design canon is unchanged.",
@@ -279,10 +279,12 @@
     "clean_validation_checkpoint": "847b7001d395fdb51184e9cfe8824fb461778573"
   },
   "habitat_001": {
-    "status": "PARTIAL_EXPERIMENTAL_NO_CANONICAL_INTEGRATION",
+    "status": "VALIDATED_BOUNDED_EXPERIMENTAL_NO_CANONICAL_INTEGRATION",
     "date_local": "2026-11-27",
     "entry": "966948a2de26575606808aeac7d3f9aaf1807f8a",
     "report": "docs/habitat_001/HABITAT-001_RESULTS.md",
-    "authority": "navigation only; source and immutable evidence authoritative"
+    "authority": "navigation only; source and immutable evidence authoritative",
+    "source_revision": "8498c22894c269e31ad8d53d63116b9b3ecafa5b",
+    "validation": "274 clean-source tests, final E01-E12 ordinary/counting/native and18 exact dense/sparse pairs"
   }
 }

@@ -1,0 +1,59 @@
+{
+  "status": "ARCHIVED_RESTORE_VERIFIED",
+  "purpose": "Clean-source HABITAT-001 final qualification and ordinary/counting/native experiments; immutable delta supplement to implementation-v1",
+  "run": "habitat-001-20261127",
+  "archive_version": "habitat-001-qualification-v1",
+  "verified_utc": "2026-11-27T06:22:57.227945+00:00",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "source": "/dev/sdb2",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon",
+    "fstype": "ntfs3"
+  },
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "source_commit": "8498c22894c269e31ad8d53d63116b9b3ecafa5b",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-001/2026-11-27/habitat-001-qualification-v1/evidence.tar.gz",
+  "archive_sha256": "b8db989946e774a5b5da34e2c966a1d18be34e436e982d9bb4d34422f67f46ab",
+  "archive_bytes": 12788331,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-001/2026-11-27/habitat-001-qualification-v1/MANIFEST.json",
+  "manifest_sha256": "69e71a993712259b43e023b47353e2d82f55e88670780bb9751d1e81cf2616f0",
+  "member_count": 227,
+  "member_bytes": 89619901,
+  "classification": {
+    "clean-source receipts, analyses/plots, failures, restored execution, Atlas and publication provenance": {
+      "files": 40,
+      "bytes": 3322137
+    },
+    "final headless/native initial-final snapshots and per-tick observations": {
+      "files": 187,
+      "bytes": 86297764
+    }
+  },
+  "all_restored_hashes_match": true,
+  "base_archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-001/2026-11-27/habitat-001-implementation-v1/evidence.tar.gz",
+  "base_archive_sha256": "3c58e8dc9568402acd5cc2ee3da4e9df80ed0d20a9bb9387cb4a3ff3698a1908",
+  "base_rehashed_this_operation": true,
+  "restore_working_copy": "/home/cognis/habitat-001-qualification-restored-20261127",
+  "working_root": "/home/cognis/habitat-001-20261127",
+  "restore_instructions": "Restore implementation-v1 and qualification-v1 into separate new directories. Verify both archive and manifest hashes, then every member size/hash. Supplement is a delta: certified executables/source captures are in implementation-v1; final datasets/clean-source logs/analysis/plots are here. Use matching captured executable identity for checkpoints; do not bypass source refusal. Overlay only in a separate third working directory if needed, never overwrite either immutable archive. Final publication reports/receipts in Git supersede pre-seal documentation snapshot; numerical source unchanged. Cargo targets and plot-env are excluded caches.",
+  "restored_execution": {
+    "status": "PASS",
+    "command": [
+      "/home/cognis/habitat-001-implementation-restored-20261127/ordinary-certified/habitat_environment.binary",
+      "replay",
+      "/home/cognis/habitat-001-qualification-restored-20261127/final-ordinary-demo/demo/initial.json",
+      "/home/cognis/habitat-001-qualified-restored-replay-final.json",
+      "120"
+    ],
+    "exit_code": 0,
+    "full_checkpoint_equal": true,
+    "final_digest": "7344a55da53734dbeb5f5d11be9a02b9a512d03c4486f706b9b98ed47e140d54",
+    "binary_sha256": "a157cdbc1586db5638377c9d4a81be1dabe77485c1ad2e59f8113c8f60cce88b",
+    "output_sha256": "13fbe05126b42428e56ab13800c47f5050551e38cceba65bd253a32dd9b55aa0",
+    "working_output": "/home/cognis/habitat-001-qualified-restored-replay-final.json",
+    "stdout": "7344a55da53734dbeb5f5d11be9a02b9a512d03c4486f706b9b98ed47e140d54\n",
+    "stderr": "",
+    "authority": "Execution verification receipt in Git; checkpoint reproducible from immutable matching executable plus initial state. Working output retained."
+  }
+}

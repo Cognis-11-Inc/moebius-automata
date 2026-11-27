@@ -17,7 +17,7 @@
       "access": "Selected full-text sections1,2.1 and2.4 inspected; not every page",
       "CONSULTED": true,
       "IMPLEMENTED": "Own D3Q19 BGK equilibrium/streaming and halfway bounceback; SI/lattice conversion principles, no OpenLB code copied",
-      "VALIDATED": "PENDING local equilibrium/mass/shear/convergence experiments"
+      "VALIDATED": "Bounded local validation: E01 mass/equilibrium, E08 shear dissipation, E10 spatial/time errors; coarse shear limits retained"
     },
     {
       "title": "OpenLB User Guide, release1.7",
@@ -47,7 +47,7 @@
       "access": "Primary API documentation opened; viscosity/density conversions and lattice relaxation interface inspected",
       "CONSULTED": true,
       "IMPLEMENTED": "tau=0.5+3*nu*dt/h^2 for D3Q19; independent SI density/dynamic viscosity inputs",
-      "VALIDATED": "PENDING shear decay"
+      "VALIDATED": "Bounded local validation: independent SI parameters and shear reference, E10; nominal effective viscosity only"
     },
     {
       "title": "Flow Past a Sphere II, chapter3",
@@ -57,7 +57,7 @@
       "access": "Selected full-text low-Re flow/Stokes sections, especially equation3.3 inspected",
       "CONSULTED": true,
       "IMPLEMENTED": "6*pi*mu*r Stokes linear resistance, restricted to Re_p<=0.1; reduced-mass exact pair update is local authored numerical composition",
-      "VALIDATED": "PENDING drag/buoyancy/momentum experiments"
+      "VALIDATED": "Bounded local validation: focused exact finite-pair drag/reaction; E04/E05/E09; no resolved sphere traction"
     },
     {
       "title": "Six-Degree-of-Freedom Sensor Fish Design: Governing Equations and Motion Modeling, PNNL-14779",
@@ -65,7 +65,7 @@
       "access": "Selected terminal-settling equations4.9-4.13; full report not read",
       "CONSULTED": true,
       "IMPLEMENTED": "Terminal-slip reference from gravity/buoyancy/Stokes balance",
-      "VALIDATED": "PENDING particulate settling",
+      "VALIDATED": "Bounded local validation: E06 three statistical slip classes, finite suspended+wall inventories; one-way tracer momentum",
       "authors": "Z. Deng, M.C. Richmond, C.S. Simmons, T.J. Carlson",
       "year": 2004
     },
@@ -77,7 +77,7 @@
       "access": "HTML conservation/flux-difference/first-order-upwind discussion inspected",
       "CONSULTED": true,
       "IMPLEMENTED": "Own conservative face-paired upwind and centred diffusive scalar transport; not a Clawpack dependency",
-      "VALIDATED": "PENDING inventory/advection/diffusion/dense-sparse comparison"
+      "VALIDATED": "Bounded local validation: E06 inventories, E07 scalar spatial errors, E12 eighteen exact dense/sparse pairs; no sparse carrier"
     }
   ],
   "authored_assumptions": [
@@ -94,5 +94,7 @@
     "crates/moebius-morph-lab/src/bin/habitat-witness.rs",
     "docs/habitat_001/"
   ],
-  "status_note": "CONSULTED/IMPLEMENTED/VALIDATED remain separate. Local evidence determines local claims; no paper certifies implementation. Preserve timed-out source access and all nulls."
+  "status_note": "CONSULTED/IMPLEMENTED/VALIDATED remain separate. Local evidence determines local claims; no paper certifies implementation. Preserve timed-out source access and all nulls.",
+  "validated_source_commit": "8498c22894c269e31ad8d53d63116b9b3ecafa5b",
+  "local_evidence": "docs/habitat_001/HABITAT-001_RESULTS.json, HABITAT-001_VALIDATION.json and immutable storage receipts"
 }
