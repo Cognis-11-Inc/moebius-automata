@@ -1,0 +1,5 @@
+{
+  "status": "NOT RUN",
+  "dependency": "clean committed source broad-suite gate and final74-case plan",
+  "plan": "python/habitat_003_qualification.py"
+}

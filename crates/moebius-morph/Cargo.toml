@@ -55,3 +55,7 @@ required-features = ["habitat-experiment"]
 [[example]]
 name = "habitat_scaling"
 required-features = ["habitat-experiment"]
+
+[[example]]
+name = "habitat_scientific"
+required-features = ["habitat-experiment"]

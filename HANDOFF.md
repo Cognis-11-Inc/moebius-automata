@@ -1,3 +1,44 @@
+# HABITAT-003 implementation checkpoint — 2026-11-28T00:44:05.836572+00:00, Codex
+
+PARTIAL / IN PROGRESS. Repository /home/cognis/Cognis_Lab/Möbius Automata, main,
+HEAD9c5c103c0d668976d378c6e96a8aae52e485de62 at this write, dirty authorized003
+source/docs/Atlas-reference changes. No user work was present on entry. This record
+will be in the authorized source commit; inspect Git for its actual SHA.
+
+New scientific experimental owner in crates/moebius-morph/src/primordial/scientific/
+{mod,mesh,fv,lbm,experiments,tests}.rs; example habitat_scientific.rs and Cargo target.
+Integrated FV leaf inventories, exact partition guard, ratio2 remap, paired conservative
+face fluxes, fixed2:1 predictor/reflux subcycling and persisted provisional half-cycle.
+Physical indicators/hysteresis optional and versioned. Exploratory LBM interface fails
+nonuniform conservation; candidate retained, committed state unchanged. No donor code,
+new dependencies, canonical/biology changes or qualified new body closure.003 bodies
+are refused. Original001/002 owner and kernels unchanged except module declaration.
+
+10 focused Rust tests PASS; carrier and reflux honest-red mutations FAILED as expected
+then restored PASS. Strict full-workspace all-feature Clippy/fmt PASS.5 independent
+Python auditor integrity tests PASS. Broad suite and final74-case qualification NOT RUN
+at this checkpoint: first establish authorized clean source commit. Historical002
+baseline reproduced complete final state exactly, fresh mean0.97089935ms/P991.301043ms.
+Do not conflate old timings or old283-test receipt with new broad validation.
+
+Docs/research code in docs/habitat_003 and python/habitat_003_*.py.40 donor records,
+all evidence fields present but most equation-level details UNRESOLVED; two pinned
+source/license inspections, zero donor runtime reproductions. Permanent Atlas library
+v1 on verified8CA451CDA451BA82:90notes/290links PASS, prior versions retained. Atlas is
+navigation only. Raw /home/cognis/habitat-003-20261127; source/build capture and
+restore-verified Mermogon implementation receipt will be in HABITAT-003_STORAGE.json.
+FullGPU/new-ownerWitness/generalasync/movingrefinement qualification NOT RUN.
+MORPH005 remains PARTIAL/paused;006 suspended. No production winner established.
+
+Next: verify implementation archive, inspect git diff/staged paths, authorized source
+commit and clean check; run cargo test --offline --workspace --all-targets --all-features;
+then registered74 cases using ordinary/count-attribution capsules. Independently audit
+endpoints/replay/fine references, preserve failures, archive qualification on verified
+Mermogon, update results/HANDOFF/Atlas, commit metadata and push/verify remote. Safe
+first command: git status --short, then inspect docs/habitat_003/HABITAT-003_VALIDATION.json.
+
+--- Prior HABITAT-002 continuity retained ---
+
 # HABITAT-002 outgoing checkpoint — 2026-11-27T18:21:23.433896-05:00, Codex
 
 PARTIAL. Repo /home/cognis/Cognis_Lab/Möbius Automata, main, clean numerical source

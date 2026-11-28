@@ -1,0 +1,58 @@
+{
+  "status": "FOCUSED VERIFIED; final clean broad suite pending",
+  "focused": {
+    "command": "cargo test --offline -p moebius-morph --all-features --lib scientific",
+    "pass": 10,
+    "fail": 0,
+    "ignored": 0
+  },
+  "honest_red": [
+    {
+      "property": "carrier",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "-p",
+        "moebius-morph",
+        "--all-features",
+        "--lib",
+        "rejection_capacity_and_recovery",
+        "--",
+        "--nocapture"
+      ],
+      "mutant_failed": true,
+      "restored_pass": true,
+      "restored_sha256": "cac513fe5a7adce26495f0d9d4064b56081dfacbba694afc7fca087d48b61b50"
+    },
+    {
+      "property": "reflux",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "-p",
+        "moebius-morph",
+        "--all-features",
+        "--lib",
+        "scalar_and_momentum_interface_conserve",
+        "--",
+        "--nocapture"
+      ],
+      "mutant_failed": true,
+      "restored_pass": true,
+      "restored_sha256": "4bdafe671c13155754ec1db83f0ac0083f3fcbb285674e8b7053cb1a50c0a05c"
+    }
+  ],
+  "static": {
+    "fmt": "PASS",
+    "clippy": "PASS strict workspace all-targets all-features"
+  },
+  "python_integrity": {
+    "pass": 5,
+    "fail": 0
+  },
+  "broad": "PENDING authorized clean source commit",
+  "final_physical_qualification": "PENDING",
+  "raw_root": "/home/cognis/habitat-003-20261127"
+}

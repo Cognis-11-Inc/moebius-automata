@@ -1,0 +1,55 @@
+{
+  "status": "ARCHIVED_HASH_RESTORE_AND_EXECUTION_VERIFIED",
+  "phase": "implementation",
+  "verified_utc": "2026-11-28T00:44:56.950150+00:00",
+  "purpose": "HABITAT003 implementation, including retained failures, source and executables",
+  "run": "habitat-003-20261127",
+  "archive_version": "habitat-003-implementation-v1",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "source": "/dev/sdb2",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon",
+    "fstype": "ntfs3"
+  },
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-003/2026-11-27/habitat-003-implementation-v1/evidence.tar.gz",
+  "archive_sha256": "74c9032202cbeb0ef3536e64ff9f76c2fbfabd3445a2bb11fa5b98074fa2e32c",
+  "archive_bytes": 5988708,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-003/2026-11-27/habitat-003-implementation-v1/MANIFEST.json",
+  "manifest_sha256": "1c5584f1813c178abb5b8dc42de7365d46d6ed53b0a4f7d9ce94a99b90dfb002",
+  "member_count": 160,
+  "member_bytes": 15631925,
+  "classification": {
+    "research/reports/tests/continuity/Atlas snapshots": {
+      "files": 121,
+      "bytes": 8546907
+    },
+    "source/executables/provenance": {
+      "files": 7,
+      "bytes": 5747593
+    },
+    "raw physical traces/checkpoints/timing": {
+      "files": 32,
+      "bytes": 1337425
+    }
+  },
+  "all_restored_hashes_match": true,
+  "restore_working_copy": "/home/cognis/habitat-003-implementation-restored-20261127",
+  "working_root": "/home/cognis/habitat-003-20261127",
+  "source_head": "9c5c103c0d668976d378c6e96a8aae52e485de62",
+  "restore_execution": {
+    "command": [
+      "/home/cognis/habitat-003-implementation-restored-20261127/ordinary-certified/habitat_scientific.binary",
+      "replay",
+      "/home/cognis/habitat-003-implementation-restored-20261127/prearchive-proof/initial.json",
+      "/home/cognis/habitat-003-implementation-restored-20261127/restored-replay.json",
+      "20"
+    ],
+    "initial_sha256": "7bf40bdbbd13dec196857c36447f39eea715aa2bb35c081f67181a895761e53d",
+    "expected_final_sha256": "fe18d2bcc3aab024e4f1e4c20c2c14b946cb027f6b3be59547060b94722a1e4d",
+    "restored_final_sha256": "fe18d2bcc3aab024e4f1e4c20c2c14b946cb027f6b3be59547060b94722a1e4d",
+    "full_checkpoint_equal": true
+  },
+  "restore_instructions": "Reverify Mermogon UUID D0A02EEBA02ED82C, archive and manifest hashes. Extract into a new directory, verify every member size/hash, execute captured binary with matching backend/source/precision checkpoint. Keep all versions. Cargo caches/toolchain are external prerequisites, not archive members. Pilot source snapshot limitation is recorded separately."
+}

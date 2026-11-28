@@ -398,3 +398,10 @@ Reference, Buffered, Blocks, ImplicitCarrier and InPlace are explicit CPU select
 ReferenceSparse selects the original scalar-tree control in the headless harness.
 OpenCL and multiresolution scripts are detached research probes, not adopted
 Chamber backends. GPU/full-atmosphere and production-scale claims remain separate.
+
+HABITAT-003 adds explicitly selected native hierarchical FV and exploratory adaptive
+LBM research. It remains PARTIAL, independent of canonical physics and the legacy
+Witness owner. See [results and limitations](docs/habitat_003/HABITAT-003_RESULTS.md),
+[the scientific donor library](docs/habitat_003/SCIENTIFIC_DONOR_ATLAS.md) and
+[reproduction](docs/habitat_003/REPRODUCE.md). The failed LBM interface is retained;
+GPU environmental integration and new-owner visualization remain unqualified.

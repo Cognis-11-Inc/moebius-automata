@@ -1,0 +1,45 @@
+[
+  {
+    "repo": "AMReX-Codes/amrex",
+    "revision": "1dfb2b721f048acea54ee4693fb534d69a0aaa29",
+    "date": "2026-11-25T22:18:53Z",
+    "files": [
+      {
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/AMReX-Codes/amrex/1dfb2b721f048acea54ee4693fb534d69a0aaa29/LICENSE",
+        "bytes": 1649,
+        "sha256": "94c3bcb026d59a187b46116a41e1954035b95c2ab42bd69e318b6a55abc9e33e"
+      },
+      {
+        "path": "Src/AmrCore/AMReX_FluxRegister.cpp",
+        "url": "https://raw.githubusercontent.com/AMReX-Codes/amrex/1dfb2b721f048acea54ee4693fb534d69a0aaa29/Src/AmrCore/AMReX_FluxRegister.cpp",
+        "bytes": 34476,
+        "sha256": "af1930a0ed3b2b9850659612d7e2b8efdb89072eda1cb1cfb2f3cdca30647215"
+      }
+    ]
+  },
+  {
+    "repo": "PrincetonUniversity/athena",
+    "revision": "1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+    "date": "2026-11-12T17:29:36Z",
+    "files": [
+      {
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/PrincetonUniversity/athena/1395e2f543f4368d448cb1a2cf92ba1f910e3416/LICENSE",
+        "bytes": 1519,
+        "sha256": "31194975612df51ccb646ed5d43d3eeb5f7996e8a1725b409fb3e34f93059d32"
+      },
+      {
+        "path": "src/mesh/mesh_refinement.cpp",
+        "url": "https://raw.githubusercontent.com/PrincetonUniversity/athena/1395e2f543f4368d448cb1a2cf92ba1f910e3416/src/mesh/mesh_refinement.cpp",
+        "bytes": 67316,
+        "sha256": "89c17ed34ada9034856515edf30c8cd059b6e2b6cf7d5a3b41c59fe3d4a4a99d"
+      }
+    ]
+  },
+  {
+    "repo": "p4est/p4est",
+    "branch": "master",
+    "error": "HTTP Error 404: Not Found"
+  }
+]

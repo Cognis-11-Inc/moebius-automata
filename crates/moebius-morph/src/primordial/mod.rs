@@ -15,6 +15,7 @@ use std::{
 mod blocks;
 pub mod experiments;
 pub mod scalable;
+pub mod scientific;
 pub use blocks::BlockMass;
 mod transport;
 
