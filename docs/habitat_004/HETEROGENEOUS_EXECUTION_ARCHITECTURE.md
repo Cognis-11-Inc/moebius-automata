@@ -14,3 +14,7 @@ contribution reduction before state swap. Observer/render packets derive only fr
 committed state. Evaluate critical-path latency/accuracy and memory, not aggregate
 utilization or theoretical FLOP counts. No permanent tuning, driver changes or
 intentional exhaustion is authorized or performed.
+
+## Final measurements
+
+Current qualified observations are CPU scientific transactions and separate installed OpenCL arithmetic. No concurrent AMD rendering, CPU/NVIDIA physical partition or device authority bridge exists. Do not infer cooperation from device enumeration. E48/E49 remain NOT RUN.

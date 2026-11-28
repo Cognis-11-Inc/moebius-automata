@@ -1,3 +1,101 @@
+# HABITAT-004 outgoing qualification — 2026-11-28T04:42:58.960143+00:00, Codex
+
+**PARTIAL programme; bounded source/physical/hardware qualification completed.**
+Repo `/home/cognis/Cognis_Lab/Möbius Automata`, branch main, HEAD/source `d9834e609f220d25e85cb937f69b186dbb94c1a7` at this write.
+Current tree: authorized final reports/figures/Atlas-reference/HANDOFF DIRTY; source
+and Python unchanged since the clean source certification. Entry had no user dirt.
+Final qualification archive/restore gates PASS. Publication commit/push remain
+the next fail-closed gates;
+resolve final publication SHA from Git and the verified remote after those operations.
+No canonical ShipRuntime/biology integration. MORPH005 remains PARTIAL/paused,
+MORPH006 suspended. Old001–003 source/evidence/verdicts retained; old LBM unchanged.
+
+Implemented paths remain those recorded in the earlier checkpoint: scientific
+mod/fv/reconstruction/topology/tests and experiments/fidelity.rs, examples
+habitat_fidelity.rs/habitat_hardware.rs, Cargo targets and python/habitat_004_*.py.
+No further numerical edits after source commit. Schema native-f64-v2 refuses003;
+use matching old binaries. Derived face cache has no material authority.
+
+Validation: clean recorded `cargo test --offline --workspace --all-targets --all-features`
+304 PASS,0 failed/ignored; source and Git clean before/after. All121 registered cases
+and final CPU/GPU microbenchmarks then ran with tracked tree clean before/after.
+19 focused Rust tests,2 hardware tests,5 Python integrity tests PASS;4 honest-red
+mutants fail/restored pass; strict Clippy/fmt PASS. New current-v2 legacy replay
+matches003 complete encoded physical state after removal of3 new Config fields
+and zero manufactured_impulse, matching certified source identity. Eleven old
+complete checkpoints reproduce. No certification suite claimed on dirty metadata.
+
+All121 executions complete; independent partition/inventory audits, all endpoint
+restores/continuations, process replay and6 cached/rebuilt full-byte/every-tick pairs
+PASS. Max independent analytic disagreement1.77636e-12; initial quadrature discrepancy
+1.07768e-8 <1e-6. Maximum tick mass residual1.05871e-12kg; momentum component
+3.40838e-14kg*m/s; scalar7.20994e-18kg. These do not imply physical fidelity.
+
+Physical results: combined3D wave errors n8/12/16 .184551/.107745/.072996;
+n8 fails .15, n12/16 pass. Error improvement1.799/2.425/2.899x over reference.
+All combined shear/diffusion/diagonal/forced-vortex families meet bounded error/trend.
+Normal interface table:7 pass,4 fail,1 unresolved (narrow right lacks matched
+upstream coarse reference). n64 combined both directions pass; n32 combined
+both fail transmission. No revised thresholds, no generic oblique/moving proof.
+Dynamic2.5s:256 refinements,8 coarsenings,2248 final leaves versus512 static;
+scalar .026741 versus .021178 and19.9557 versus3.33142ms: negative accuracy/cost.
+Sustained5000cycles2.5s allocation-instrumented: steady requested heap range0,
+peak6598505bytes; not RSS/endurance ceiling. Actual isotropic1/8/27m³ equilibrium
+cost scaling at fixedh.125m; fixed fine-volume.125m³. No enormous-habitat claim.
+Cache paired ordinary savings3.35789x Constant/Euler and1.27795x Minmod/SSP2.
+Matched scalar subcycle12.7094 timed-transaction seconds/physical second versus
+fine cached mono1.67380 (recorder/IO/restore excluded):
+no temporal economy. Read-only non-additive profiling implicates reconstructing begin
+and encoding pending state repeatedly; no counter-based cache bottleneck claim.
+
+Hardware:7950X16cores32logical, host RAM32689651712bytes; explicit256-bit FP64/FP32,
+working sets32KiB–64MiB, worker1–32/affinity and installed NVIDIA OpenCL microkernels
+whole-array scalar-reference verified. GPU driver620.73.04; NVML fails18, perf absent.
+Separate host/build/transfer/kernel times. No full parallel/GPU FV, FP32 fluid lane,
+concurrent AMD renderer, freeVRAM/DIMM details, device peak or permanent tuning.
+Detached fastest worker count in this kernel8, not a scheduling recommendation.
+Original LBM rejected populations independently reproduced exactly; net unpaired
+interface transfer accounts defect. No repair/normalization; E58 NOT RUN.
+
+Final reports: docs/habitat_004/HABITAT-004_RESULTS.md, SCALING.json, VALIDATION.json,
+EXPERIMENT_MATRIX.json (all66), CANDIDATE_VERDICTS.json (17 axes x7), three staticSVG
+figures and all required dossiers. Figures inspected offline, not native captures.
+Atlas146notes/406links PASS on verified UUID8CA451CDA451BA82;49 independent donor
+records, D0–D3 only, no automatic D4/D5/D6. Navigation remains non-authoritative.
+
+Artifacts: working raw root /home/cognis/habitat-004-20261127, not authoritative
+external storage. Mermogon UUID D0A02EEBA02ED82C implementation-v1/v2 and supplemental
+archives hash/restore/execution verified; v2 full source/assets restored and selected
+numerical target rebuilt offline, exact checkpoint. Registry/toolchain external.
+Final qualification-v2 verified: 1407 members, 721193144 member
+bytes, archive 428473540 bytes; SHA256 `e09650b915a78eee8538b5ac0fe126b208a916e0b6e4f60f194852e3a4d22603`.
+Receipt `docs/habitat_004/HABITAT-004_QUALIFICATION_STORAGE.json`.
+All member hashes/restoration and matching20-step execution PASS; final qualified
+Oblique12 combined100-step checkpoint also reproduced exactly from restored bytes.
+Separate publication metadata receipt target there records final actual refs after push. No prior copies removed.
+Pre-seal snapshot pending fields are superseded by published Git receipts.
+
+Procedural failures retained: initial empty-sample reducer; natural minmod underflow
+red fixed; live-progress trailing-line read race; report inventory text/JSON selector;
+accidental old-LBM tail tried immutable directories and refused (no overwrite).
+Corrected independent confirmations passed. No commit/push followed a failed gate.
+Exact paths/logs and correction scopes in VALIDATION.json/raw archive.
+
+Remaining NOT RUN:3+levels/recursive balancing, alternative payload authority/layout,
+local topology rebuild, optimized/HOC subcycle, full physical worker/GPU/reduction/
+checkpoint path, new scientific body closure/native Witness and additional physical
+controls (spherical/interacting/oblique-interface/moving localized cloud/depth sweeps).
+No full ecology/learning/organism/thermal-model/production-readiness claim.
+
+Next authorized dependency order: final scoped/staged/whitespace/JSON/source/Atlas/archive checks; metadata commit;
+normal push and local/remote SHA/clean-tree verification, hosted CI separate.
+After publication, next research slice should isolate two-level transfer accuracy/
+cost loss with matched interventions/localized field before recursive key/partition/
+remap/balancing. Do not promote arithmetic microkernels into physical authority.
+Safe first inspection: `git status --short` and the final qualification receipt.
+
+--- Prior continuity retained ---
+
 # HABITAT-004 reference-v2 checkpoint — 2026-11-28T04:15:58.709276+00:00, Codex
 
 PARTIAL, authorized dirty004 source/docs; main HEAD e02b720 at this write. Review found

@@ -43,3 +43,5 @@ Version1 source/binaries and implementation archive remain retained after a refe
 correction before qualification. Full workspace source archive includes compile-time
 non-Rust inputs; selected numerical-target rebuild/restored execution is verified
 separately from the full-workspace suite on the live clean source.
+
+Final certified clean source: d9834e609f220d25e85cb937f69b186dbb94c1a7. Full suite304 passed, then121 cases and hardware probes ran with Git clean before/after. To reproduce from a restored capsule, create a new working root, copy the three selected build directories and BUILD_SELECTION.json into it, then run `python3 python/habitat_004_qualification.py run NEW_ROOT`. Do not overwrite the archived qualification directory. Run `analyze` on closed completed traces; a live writer may have an incomplete trailing line. Independent audits use Python stdlib; figures use the separately recorded Matplotlib environment. Final ordinary versus allocation-instrumented identities are explicit per case.

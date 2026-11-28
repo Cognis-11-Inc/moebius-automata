@@ -1,0 +1,98 @@
+{
+  "status": "ARCHIVED_HASH_RESTORE_EXECUTION_VERIFIED",
+  "phase": "qualification",
+  "run": "habitat-004-20261127",
+  "archive_version": "habitat-004-qualification-v2",
+  "verified_utc": "2026-11-28T04:43:11.690779+00:00",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "source": "/dev/sdb2",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon",
+    "fstype": "ntfs3"
+  },
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-004/2026-11-27/habitat-004-qualification-v2/evidence.tar.gz",
+  "archive_sha256": "e09650b915a78eee8538b5ac0fe126b208a916e0b6e4f60f194852e3a4d22603",
+  "archive_bytes": 428473540,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-004/2026-11-27/habitat-004-qualification-v2/MANIFEST.json",
+  "manifest_sha256": "f6caea53852a3e8e8fa1070c5f7b7fa7c03a122fb5797fa111a5f5952fdafaf9",
+  "member_count": 1407,
+  "member_bytes": 721193144,
+  "classification": {
+    "research/protocols/reports/failure/Atlas/reproduction metadata": {
+      "files": 379,
+      "bytes": 18477640
+    },
+    "raw runs/traces/checkpoints/profiling": {
+      "files": 1003,
+      "bytes": 289337818
+    },
+    "source/executables/build identity": {
+      "files": 25,
+      "bytes": 413377686
+    }
+  },
+  "all_restored_hashes_match": true,
+  "restore_working_copy": "/home/cognis/habitat-004-qualification-v2-restored-20261127",
+  "working_root": "/home/cognis/habitat-004-20261127",
+  "source_head": "d9834e609f220d25e85cb937f69b186dbb94c1a7",
+  "restore_execution": {
+    "command": [
+      "/home/cognis/habitat-004-qualification-v2-restored-20261127/ordinary-v2-certified/habitat_fidelity.binary",
+      "replay",
+      "/home/cognis/habitat-004-qualification-v2-restored-20261127/prearchive-proof-v2/initial.json",
+      "/home/cognis/habitat-004-qualification-v2-restored-20261127/restored-replay.json",
+      "20",
+      "cached"
+    ],
+    "expected_final_sha256": "d32c147a6f66eb8094aa31dea9f9891c13538c4a2564e7f1f7fda83ee51df88b",
+    "actual_final_sha256": "d32c147a6f66eb8094aa31dea9f9891c13538c4a2564e7f1f7fda83ee51df88b",
+    "complete_checkpoint_equal": true
+  },
+  "restore_instructions": "Reverify volume UUID D0A02EEBA02ED82C and archive/manifest SHA256; extract into a new directory; verify each member hash/size. Matching captured binary/checkpoint source/backend/schema required. Full workspace source capsule includes non-Rust compile inputs too; Cargo registry/toolchain external. Restore prior003 separately from ENTRY references for old-source baseline commands. Do not overwrite versions or discard prior copies.",
+  "final_case_restore_execution": {
+    "case": "Oblique-12-combined-uniform",
+    "command": [
+      "/home/cognis/habitat-004-qualification-v2-restored-20261127/ordinary-v2-certified/habitat_fidelity.binary",
+      "replay",
+      "/home/cognis/habitat-004-qualification-v2-restored-20261127/qualification/Oblique-12-combined-uniform/initial.json",
+      "/home/cognis/habitat-004-qualification-v2-restored-20261127/qualified-final-replay.json",
+      "100",
+      "cached"
+    ],
+    "complete_final_checkpoint_equal": true,
+    "checkpoint_sha256": "07e9f3a05b86b0a16ba4cc2d26d04658ce858e1f6ff2661a9a9a56c2daa35ac4",
+    "independent_restored_endpoint_audit": {
+      "leaves": 1728,
+      "faces_estimate_not_measured": null,
+      "full_finest_cells": 13824,
+      "volume_m3": 1.000000000000019,
+      "residual": [
+        -1.7763568394002505e-13,
+        -1.3681064405814646e-17,
+        -1.2392388479861953e-16,
+        2.2402750905455363e-17,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "total": [
+        19.999999999999922,
+        1.9999999998637652e-07,
+        1.999999998761337e-07,
+        2.0000000002246034e-07,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "physical_time_s": 0.05
+    },
+    "verified_utc": "2026-11-28T04:43:37.862935+00:00",
+    "scope": "After per-file full archive restoration, execute complete final-qualified case; no full suite on restored tree"
+  },
+  "publication_receipt_target": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-004/2026-11-27/habitat-004-publication-v1/RECEIPT.json",
+  "publication_receipt_scope": "Separate small immutable metadata version to be created after normal push/ref verification; not a member of this qualification archive."
+}

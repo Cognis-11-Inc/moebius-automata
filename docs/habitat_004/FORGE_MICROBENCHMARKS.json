@@ -1,7 +1,702 @@
 {
-  "status": "PENDING clean-source final hardware runs",
-  "preliminary_gpu": "FP32/FP64/copy arithmetic verified; final rerun planned",
-  "cpu_source": "crates/moebius-morph/examples/habitat_hardware.rs",
-  "gpu_source": "python/habitat_004_hardware_gpu.py",
-  "scope": "No environmental acceleration claim"
+  "status": "VERIFIED_DETACHED_MICROBENCHMARKS_ONLY",
+  "source": "d9834e609f220d25e85cb937f69b186dbb94c1a7",
+  "cpu_array_residency_bound": 201326592,
+  "arithmetic": [
+    {
+      "elements": 4096,
+      "bytes": 32768,
+      "mean_ns": {
+        "scalar-black-box": 96936.33333333333,
+        "portable": 24396.333333333332,
+        "avx2": 12076.666666666666
+      },
+      "scalar_blackbox_over_avx2": 8.02674579078112,
+      "portable_over_avx2": 2.0201214463152084,
+      "portable_GFLOPs_derived": 21.49044255284264,
+      "avx2_GFLOPs_derived": 43.41330389180238,
+      "all_scalar_bit_equal": true
+    },
+    {
+      "elements": 32768,
+      "bytes": 262144,
+      "mean_ns": {
+        "scalar-black-box": 791023,
+        "portable": 203905.66666666666,
+        "avx2": 151509.33333333334
+      },
+      "scalar_blackbox_over_avx2": 5.220952284567727,
+      "portable_over_avx2": 1.3458290798366657,
+      "portable_GFLOPs_derived": 20.569825589283933,
+      "avx2_GFLOPs_derived": 27.683469445226695,
+      "all_scalar_bit_equal": true
+    },
+    {
+      "elements": 524288,
+      "bytes": 4194304,
+      "mean_ns": {
+        "scalar-black-box": 3220962,
+        "portable": 810126.3333333334,
+        "avx2": 641977
+      },
+      "scalar_blackbox_over_avx2": 5.017254512233304,
+      "portable_over_avx2": 1.2619242330073093,
+      "portable_GFLOPs_derived": 20.70938236382062,
+      "avx2_GFLOPs_derived": 26.133671455519433,
+      "all_scalar_bit_equal": true
+    },
+    {
+      "elements": 8388608,
+      "bytes": 67108864,
+      "mean_ns": {
+        "scalar-black-box": 6725099,
+        "portable": 3458187.3333333335,
+        "avx2": 3546470
+      },
+      "scalar_blackbox_over_avx2": 1.8962796809221565,
+      "portable_over_avx2": 0.9751068903256854,
+      "portable_GFLOPs_derived": 9.702895987319753,
+      "avx2_GFLOPs_derived": 9.461360733348936,
+      "all_scalar_bit_equal": true
+    }
+  ],
+  "access": [
+    {
+      "elements": 4096,
+      "kind": "sequential",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 2097152,
+      "passes_per_window": 64,
+      "verified": true,
+      "windows_ns": [
+        149300,
+        145649,
+        145649
+      ],
+      "working_array_bytes": 32768
+    },
+    {
+      "elements": 4096,
+      "kind": "stride17",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 2097152,
+      "passes_per_window": 64,
+      "verified": true,
+      "windows_ns": [
+        145680,
+        145649,
+        145649
+      ],
+      "working_array_bytes": 32768
+    },
+    {
+      "elements": 4096,
+      "kind": "dependent-lcg",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 2097152,
+      "passes_per_window": 64,
+      "verified": true,
+      "windows_ns": [
+        251499,
+        243469,
+        243459
+      ],
+      "working_array_bytes": 32768
+    },
+    {
+      "elements": 4096,
+      "kind": "copy",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 4194304,
+      "passes_per_window": 64,
+      "verified": true,
+      "windows_ns": [
+        25220,
+        25160,
+        25159
+      ],
+      "working_array_bytes": 32768
+    },
+    {
+      "elements": 32768,
+      "kind": "sequential",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 16777216,
+      "passes_per_window": 64,
+      "verified": true,
+      "windows_ns": [
+        1215655,
+        1178444,
+        1166665
+      ],
+      "working_array_bytes": 262144
+    },
+    {
+      "elements": 32768,
+      "kind": "stride17",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 16777216,
+      "passes_per_window": 64,
+      "verified": true,
+      "windows_ns": [
+        1171905,
+        1187934,
+        1209395
+      ],
+      "working_array_bytes": 262144
+    },
+    {
+      "elements": 32768,
+      "kind": "dependent-lcg",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 16777216,
+      "passes_per_window": 64,
+      "verified": true,
+      "windows_ns": [
+        1954121,
+        1944641,
+        1918821
+      ],
+      "working_array_bytes": 262144
+    },
+    {
+      "elements": 32768,
+      "kind": "copy",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 33554432,
+      "passes_per_window": 64,
+      "verified": true,
+      "windows_ns": [
+        208979,
+        212219,
+        204309
+      ],
+      "working_array_bytes": 262144
+    },
+    {
+      "elements": 524288,
+      "kind": "sequential",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 67108864,
+      "passes_per_window": 16,
+      "verified": true,
+      "windows_ns": [
+        4717238,
+        4719908,
+        4700729
+      ],
+      "working_array_bytes": 4194304
+    },
+    {
+      "elements": 524288,
+      "kind": "stride17",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 67108864,
+      "passes_per_window": 16,
+      "verified": true,
+      "windows_ns": [
+        5814643,
+        5753763,
+        5871453
+      ],
+      "working_array_bytes": 4194304
+    },
+    {
+      "elements": 524288,
+      "kind": "dependent-lcg",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 67108864,
+      "passes_per_window": 16,
+      "verified": true,
+      "windows_ns": [
+        7866203,
+        7882104,
+        7778485
+      ],
+      "working_array_bytes": 4194304
+    },
+    {
+      "elements": 524288,
+      "kind": "copy",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 134217728,
+      "passes_per_window": 16,
+      "verified": true,
+      "windows_ns": [
+        1013675,
+        1021215,
+        1112304
+      ],
+      "working_array_bytes": 4194304
+    },
+    {
+      "elements": 8388608,
+      "kind": "sequential",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 134217728,
+      "passes_per_window": 2,
+      "verified": true,
+      "windows_ns": [
+        9397167,
+        9321047,
+        9303007
+      ],
+      "working_array_bytes": 67108864
+    },
+    {
+      "elements": 8388608,
+      "kind": "stride17",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 134217728,
+      "passes_per_window": 2,
+      "verified": true,
+      "windows_ns": [
+        46649095,
+        44926134,
+        46251687
+      ],
+      "working_array_bytes": 67108864
+    },
+    {
+      "elements": 8388608,
+      "kind": "dependent-lcg",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 134217728,
+      "passes_per_window": 2,
+      "verified": true,
+      "windows_ns": [
+        50634937,
+        49155944,
+        48010079
+      ],
+      "working_array_bytes": 67108864
+    },
+    {
+      "elements": 8388608,
+      "kind": "copy",
+      "limits": "nominal payload traffic, not measured DRAM traffic; address-generation/loop costs included",
+      "nominal_traffic_bytes": 268435456,
+      "passes_per_window": 2,
+      "verified": true,
+      "windows_ns": [
+        5911572,
+        5595764,
+        5779454
+      ],
+      "working_array_bytes": 67108864
+    }
+  ],
+  "workers": [
+    {
+      "elements_total": 4194304,
+      "exact_reference": true,
+      "passes_per_window": 16,
+      "persistent_threads": true,
+      "scope": "independent disjoint arithmetic kernel with channel scheduling, not full atmospheric transactions",
+      "setup_ns": 5728113,
+      "windows_ns": [
+        9219378,
+        7848914,
+        8977838
+      ],
+      "workers": 1
+    },
+    {
+      "elements_total": 4194304,
+      "exact_reference": true,
+      "passes_per_window": 16,
+      "persistent_threads": true,
+      "scope": "independent disjoint arithmetic kernel with channel scheduling, not full atmospheric transactions",
+      "setup_ns": 2123491,
+      "windows_ns": [
+        4331810,
+        4334200,
+        4212560
+      ],
+      "workers": 2
+    },
+    {
+      "elements_total": 4194304,
+      "exact_reference": true,
+      "passes_per_window": 16,
+      "persistent_threads": true,
+      "scope": "independent disjoint arithmetic kernel with channel scheduling, not full atmospheric transactions",
+      "setup_ns": 1682832,
+      "windows_ns": [
+        1782872,
+        1610932,
+        1691252
+      ],
+      "workers": 4
+    },
+    {
+      "elements_total": 4194304,
+      "exact_reference": true,
+      "passes_per_window": 16,
+      "persistent_threads": true,
+      "scope": "independent disjoint arithmetic kernel with channel scheduling, not full atmospheric transactions",
+      "setup_ns": 1542003,
+      "windows_ns": [
+        1419884,
+        839966,
+        841556
+      ],
+      "workers": 8
+    },
+    {
+      "elements_total": 4194304,
+      "exact_reference": true,
+      "passes_per_window": 16,
+      "persistent_threads": true,
+      "scope": "independent disjoint arithmetic kernel with channel scheduling, not full atmospheric transactions",
+      "setup_ns": 1416214,
+      "windows_ns": [
+        1638792,
+        1360324,
+        1279004
+      ],
+      "workers": 16
+    },
+    {
+      "elements_total": 4194304,
+      "exact_reference": true,
+      "passes_per_window": 16,
+      "persistent_threads": true,
+      "scope": "independent disjoint arithmetic kernel with channel scheduling, not full atmospheric transactions",
+      "setup_ns": 1270354,
+      "windows_ns": [
+        2358899,
+        1214804,
+        1232805
+      ],
+      "workers": 32
+    }
+  ],
+  "affinity": {
+    "physical8": {
+      "elements_total": 4194304,
+      "exact_reference": true,
+      "passes_per_window": 16,
+      "persistent_threads": true,
+      "scope": "independent disjoint arithmetic kernel with channel scheduling, not full atmospheric transactions",
+      "setup_ns": 1634873,
+      "windows_ns": [
+        2340669,
+        1843602,
+        1804661
+      ],
+      "workers": 8
+    },
+    "smt4pairs": {
+      "elements_total": 4194304,
+      "exact_reference": true,
+      "passes_per_window": 16,
+      "persistent_threads": true,
+      "scope": "independent disjoint arithmetic kernel with channel scheduling, not full atmospheric transactions",
+      "setup_ns": 2421769,
+      "windows_ns": [
+        2741988,
+        2709997,
+        2585008
+      ],
+      "workers": 8
+    }
+  },
+  "gpu": {
+    "backend": {
+      "device": "NVIDIA GeForce RTX 5060 Ti",
+      "driver": "620.73.04",
+      "global_memory_bytes": 16715481088,
+      "double_fp_config": 63,
+      "api": "OpenCL",
+      "precision": "separate FP32/FP64",
+      "build_options": "-cl-std=CL1.2",
+      "FP_CONTRACT": "OFF",
+      "kernel_sha256": "9d65408bee88bfff538234231638af3036ae30df9596856854bb26752a7a7126",
+      "runner_sha256": "383e19179bfb78d0c1fa586face72af58b6d0ffd90bb5c292b1de502f65eeb97",
+      "build_log": "\n",
+      "experiment": "HABITAT-004/detached-hardware-micro-v1",
+      "host_interface_sha256": "e30ab33b1114f3f2d1c641800eeef3c985c13a35dac82445513023962019c301"
+    },
+    "new_program_build_ns": 1109245,
+    "old_interface_program_setup_ns": 154755258,
+    "max_explicit_residency_bytes": 53084160,
+    "records": [
+      {
+        "kernel": "micro_f64",
+        "precision": "FP64",
+        "elements": 16384,
+        "payload_bytes": 131072,
+        "upload_host_ns": 271239,
+        "download_host_ns": 82330,
+        "exact_scalar_reference": true,
+        "kernel_mean_ns": 20736,
+        "host_dispatch_finish_mean_ns": 48049.666666666664,
+        "GFLOPs_derived_kernel_only": 101.1358024691358,
+        "GB_s_nominal_payload_kernel_only": 12.641975308641975
+      },
+      {
+        "kernel": "micro_f64",
+        "precision": "FP64",
+        "elements": 262144,
+        "payload_bytes": 2097152,
+        "upload_host_ns": 808716,
+        "download_host_ns": 815696,
+        "exact_scalar_reference": true,
+        "kernel_mean_ns": 204352,
+        "host_dispatch_finish_mean_ns": 235149,
+        "GFLOPs_derived_kernel_only": 164.1991857187598,
+        "GB_s_nominal_payload_kernel_only": 20.524898214844974
+      },
+      {
+        "kernel": "micro_f64",
+        "precision": "FP64",
+        "elements": 1048576,
+        "payload_bytes": 8388608,
+        "upload_host_ns": 1909601,
+        "download_host_ns": 2280769,
+        "exact_scalar_reference": true,
+        "kernel_mean_ns": 786741.3333333334,
+        "host_dispatch_finish_mean_ns": 817433,
+        "GFLOPs_derived_kernel_only": 170.59956343126754,
+        "GB_s_nominal_payload_kernel_only": 21.324945428908443
+      },
+      {
+        "kernel": "micro_f32",
+        "precision": "FP32",
+        "elements": 16384,
+        "payload_bytes": 65536,
+        "upload_host_ns": 52449,
+        "download_host_ns": 36050,
+        "exact_scalar_reference": true,
+        "kernel_mean_ns": 6112,
+        "host_dispatch_finish_mean_ns": 21440,
+        "GFLOPs_derived_kernel_only": 343.12041884816756,
+        "GB_s_nominal_payload_kernel_only": 21.445026178010473
+      },
+      {
+        "kernel": "micro_f32",
+        "precision": "FP32",
+        "elements": 262144,
+        "payload_bytes": 1048576,
+        "upload_host_ns": 360539,
+        "download_host_ns": 435568,
+        "exact_scalar_reference": true,
+        "kernel_mean_ns": 7968,
+        "host_dispatch_finish_mean_ns": 56263,
+        "GFLOPs_derived_kernel_only": 4211.14859437751,
+        "GB_s_nominal_payload_kernel_only": 263.19678714859435
+      },
+      {
+        "kernel": "micro_f32",
+        "precision": "FP32",
+        "elements": 1048576,
+        "payload_bytes": 4194304,
+        "upload_host_ns": 999155,
+        "download_host_ns": 1062745,
+        "exact_scalar_reference": true,
+        "kernel_mean_ns": 21408,
+        "host_dispatch_finish_mean_ns": 50569.666666666664,
+        "GFLOPs_derived_kernel_only": 6269.512705530643,
+        "GB_s_nominal_payload_kernel_only": 391.8445440956652
+      },
+      {
+        "kernel": "micro_copy",
+        "precision": "FP64",
+        "elements": 16384,
+        "payload_bytes": 131072,
+        "upload_host_ns": 38010,
+        "download_host_ns": 33970,
+        "exact_scalar_reference": true,
+        "kernel_mean_ns": 3573.3333333333335,
+        "host_dispatch_finish_mean_ns": 16810,
+        "GFLOPs_derived_kernel_only": 0.0,
+        "GB_s_nominal_payload_kernel_only": 73.36119402985074
+      },
+      {
+        "kernel": "micro_copy",
+        "precision": "FP64",
+        "elements": 262144,
+        "payload_bytes": 2097152,
+        "upload_host_ns": 301359,
+        "download_host_ns": 301018,
+        "exact_scalar_reference": true,
+        "kernel_mean_ns": 6069.333333333333,
+        "host_dispatch_finish_mean_ns": 33260,
+        "GFLOPs_derived_kernel_only": 0.0,
+        "GB_s_nominal_payload_kernel_only": 691.0650263620387
+      },
+      {
+        "kernel": "micro_copy",
+        "precision": "FP64",
+        "elements": 1048576,
+        "payload_bytes": 8388608,
+        "upload_host_ns": 1614473,
+        "download_host_ns": 1683202,
+        "exact_scalar_reference": true,
+        "kernel_mean_ns": 14581.333333333334,
+        "host_dispatch_finish_mean_ns": 43626.333333333336,
+        "GFLOPs_derived_kernel_only": 0.0,
+        "GB_s_nominal_payload_kernel_only": 1150.5954645208485
+      }
+    ]
+  },
+  "commands_and_thermal": [
+    {
+      "command": [
+        "/home/cognis/habitat-004-20261127/hardware-v2-certified/habitat_hardware.binary",
+        "/home/cognis/habitat-004-20261127/CPU_MICROBENCHMARKS.json"
+      ],
+      "started_utc": "2026-11-28T04:38:06.685595+00:00",
+      "finished_utc": "2026-11-28T04:38:07.690419+00:00",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "thermal_before_millidegC": {
+        "mt7921_phy0/temp1_input": "46000",
+        "spd5118/temp1_input": "36000",
+        "k10temp/temp3_input": "40375",
+        "k10temp/temp4_input": "38625",
+        "k10temp/temp1_input": "70500",
+        "amdgpu/temp1_input": "43000",
+        "r8169_0_c00:00/temp1_input": "39500",
+        "nvme/temp3_input": "31850",
+        "nvme/temp1_input": "31850",
+        "nvme/temp2_input": "41850"
+      },
+      "thermal_after_millidegC": {
+        "mt7921_phy0/temp1_input": "44000",
+        "spd5118/temp1_input": "36000",
+        "k10temp/temp3_input": "41750",
+        "k10temp/temp4_input": "46750",
+        "k10temp/temp1_input": "69625",
+        "amdgpu/temp1_input": "44000",
+        "r8169_0_c00:00/temp1_input": "39500",
+        "nvme/temp3_input": "31850",
+        "nvme/temp1_input": "31850",
+        "nvme/temp2_input": "40850"
+      }
+    },
+    {
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "/home/cognis/habitat-004-20261127/hardware-v2-certified/habitat_hardware.binary",
+        "/home/cognis/habitat-004-20261127/CPU_WORKERS_physical8.json",
+        "workers-only"
+      ],
+      "started_utc": "2026-11-28T04:38:07.725358+00:00",
+      "finished_utc": "2026-11-28T04:38:07.770207+00:00",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "thermal_before_millidegC": {
+        "mt7921_phy0/temp1_input": "44000",
+        "spd5118/temp1_input": "36000",
+        "k10temp/temp3_input": "41250",
+        "k10temp/temp4_input": "41375",
+        "k10temp/temp1_input": "69625",
+        "amdgpu/temp1_input": "44000",
+        "r8169_0_c00:00/temp1_input": "39500",
+        "nvme/temp3_input": "31850",
+        "nvme/temp1_input": "31850",
+        "nvme/temp2_input": "39850"
+      },
+      "thermal_after_millidegC": {
+        "mt7921_phy0/temp1_input": "44000",
+        "spd5118/temp1_input": "36000",
+        "k10temp/temp3_input": "62625",
+        "k10temp/temp4_input": "41000",
+        "k10temp/temp1_input": "69625",
+        "amdgpu/temp1_input": "44000",
+        "r8169_0_c00:00/temp1_input": "39500",
+        "nvme/temp3_input": "31850",
+        "nvme/temp1_input": "31850",
+        "nvme/temp2_input": "40850"
+      }
+    },
+    {
+      "command": [
+        "taskset",
+        "-c",
+        "0,16,1,17,2,18,3,19",
+        "/home/cognis/habitat-004-20261127/hardware-v2-certified/habitat_hardware.binary",
+        "/home/cognis/habitat-004-20261127/CPU_WORKERS_smt4pairs.json",
+        "workers-only"
+      ],
+      "started_utc": "2026-11-28T04:38:07.784401+00:00",
+      "finished_utc": "2026-11-28T04:38:07.839239+00:00",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "thermal_before_millidegC": {
+        "mt7921_phy0/temp1_input": "44000",
+        "spd5118/temp1_input": "36000",
+        "k10temp/temp3_input": "46125",
+        "k10temp/temp4_input": "44375",
+        "k10temp/temp1_input": "69500",
+        "amdgpu/temp1_input": "44000",
+        "r8169_0_c00:00/temp1_input": "39500",
+        "nvme/temp3_input": "31850",
+        "nvme/temp1_input": "31850",
+        "nvme/temp2_input": "39850"
+      },
+      "thermal_after_millidegC": {
+        "mt7921_phy0/temp1_input": "44000",
+        "spd5118/temp1_input": "36000",
+        "k10temp/temp3_input": "51125",
+        "k10temp/temp4_input": "40000",
+        "k10temp/temp1_input": "69750",
+        "amdgpu/temp1_input": "44000",
+        "r8169_0_c00:00/temp1_input": "39500",
+        "nvme/temp3_input": "31850",
+        "nvme/temp1_input": "31850",
+        "nvme/temp2_input": "39850"
+      }
+    },
+    {
+      "command": [
+        "python3",
+        "python/habitat_004_hardware_gpu.py",
+        "/home/cognis/habitat-004-20261127/gpu-micro-qualified"
+      ],
+      "started_utc": "2026-11-28T04:38:07.854257+00:00",
+      "finished_utc": "2026-11-28T04:38:08.136988+00:00",
+      "returncode": 0,
+      "stdout": "VERIFIED_MICROBENCHMARKS_ONLY\n",
+      "stderr": "",
+      "thermal_before_millidegC": {
+        "mt7921_phy0/temp1_input": "44000",
+        "spd5118/temp1_input": "36000",
+        "k10temp/temp3_input": "43250",
+        "k10temp/temp4_input": "40000",
+        "k10temp/temp1_input": "69750",
+        "amdgpu/temp1_input": "44000",
+        "r8169_0_c00:00/temp1_input": "39500",
+        "nvme/temp3_input": "31850",
+        "nvme/temp1_input": "31850",
+        "nvme/temp2_input": "40850"
+      },
+      "thermal_after_millidegC": {
+        "mt7921_phy0/temp1_input": "44000",
+        "spd5118/temp1_input": "36000",
+        "k10temp/temp3_input": "41000",
+        "k10temp/temp4_input": "40000",
+        "k10temp/temp1_input": "68875",
+        "amdgpu/temp1_input": "44000",
+        "r8169_0_c00:00/temp1_input": "39500",
+        "nvme/temp3_input": "31850",
+        "nvme/temp1_input": "31850",
+        "nvme/temp2_input": "43850"
+      }
+    }
+  ],
+  "limits": "Synthetic kernel characterization only. Scalar black_box inhibits vectorization and adds barriers. No atmospheric throughput, cache bottleneck, totalRSS, DRAM peak or permanent tuning claim. No full FV or body/scalar atmosphere transaction; no mixed precision; theoretical flops/payload traffic are derived, not whole-machine ceilings. NVML residency/thermal telemetry unavailable. No concurrent renderer qualified.",
+  "assembly": {
+    "ymm_vmul_pd_observed": true,
+    "ymm_vmul_ps_observed": true,
+    "xmm_mul_pd_observed": true,
+    "limits": "Whole executable disassembly; not per-symbol hot-path sampling, no hardware counters."
+  }
 }

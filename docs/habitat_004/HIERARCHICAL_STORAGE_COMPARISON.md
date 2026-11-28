@@ -14,3 +14,12 @@ are tested, including actual refine/coarsen invalidation and missing-neighbor re
 Three ordinary timing windows are registered for both first-order and higher-order
 cases. Independent hardware array/irregular-access microbenchmarks do not validate
 an atmospheric layout that was never implemented.
+
+## Final measured qualification
+
+| Scheme | Mean paired speed ratio | Each paired ratio | Cache bytes |
+|---|---|---|---|
+| Constant/Euler | 3.35789 | 3.37187, 3.34605, 3.35576 | 720896 |
+| Minmod/SSP2 | 1.27795 | 1.27687, 1.28562, 1.27135 | 720896 |
+
+Only derived face topology reuse was changed. Ordered-map versus packed payload, SoA, block-octree and recursive layouts remain NOT RUN; cache results do not rank those representations.

@@ -14,8 +14,8 @@
   "snapshot_members": [
     {
       "path": "00_HOME/INDEX.md",
-      "bytes": 2013,
-      "sha256": "0ec529317e1cd99d4bb9888b816654003490424547781803d986cbd0bfbf5286"
+      "bytes": 2185,
+      "sha256": "56eab87e73a60188f784ecf05b74f0aaf048ce2ea27dc296199d4c81213140ef"
     },
     {
       "path": "00_HOME/STATUS_GUIDE.md",
@@ -723,13 +723,23 @@
     },
     {
       "path": "11_FORGE_HARDWARE/v1/FORGE_HARDWARE_DOSSIER.md",
-      "bytes": 1016,
-      "sha256": "7d6b2643d8b031ebf7337983469fc87f45698c468bbe763677271e3309ad6392"
+      "bytes": 1447,
+      "sha256": "1dc585e6975ec620d9665868848fe07dd06e6a106d6a98cf6b4ab9cc9f059688"
     },
     {
       "path": "11_FORGE_HARDWARE/v1/FORGE_EXECUTION_BOUNDARIES.md",
       "bytes": 674,
       "sha256": "e154fb441a10952098f832e823a24c269cdde6445c9efb72688740fc452df1d6"
+    },
+    {
+      "path": "07_EXPERIMENTS/HABITAT_004_MULTISCALE_FIDELITY.md",
+      "bytes": 1201,
+      "sha256": "17468233833f601c381b81da23b6f63b5937f75e8c630c25876642353b3271ff"
+    },
+    {
+      "path": "09_EVIDENCE/HABITAT_004_LIMITS_AND_PROVENANCE.md",
+      "bytes": 1040,
+      "sha256": "d3f211f1f01eb69d3568477a28af2126fa218fc59ce7eaab62639cd89483ad08"
     }
   ],
   "snapshot_note": "Rehashed after the clean MORPH-003 suite on a8cb705. Six edited notes cite that implementation commit. Ship design canon is unchanged.",
@@ -787,11 +797,14 @@
     "source_revision": "5d69505236746f4e35d896824a83f217f1e4a5fb"
   },
   "habitat_004": {
-    "status": "PARTIAL implementation/research; final qualification pending",
+    "status": "PARTIAL final bounded qualification",
     "scientific_library": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCIENTIFIC_COMPUTATIONAL_METHODS_V2.md",
     "hardware_dossier": "11_FORGE_HARDWARE/v1/FORGE_HARDWARE_DOSSIER.md",
     "donor_records": 49,
     "report": "docs/habitat_004/HABITAT-004_RESULTS.md",
-    "authority": "Navigation only; source/Mermogon evidence govern measured claims"
+    "authority": "Navigation only; source/Mermogon evidence govern measured claims",
+    "source": "d9834e609f220d25e85cb937f69b186dbb94c1a7",
+    "experiment": "07_EXPERIMENTS/HABITAT_004_MULTISCALE_FIDELITY.md",
+    "limits": "09_EVIDENCE/HABITAT_004_LIMITS_AND_PROVENANCE.md"
   }
 }

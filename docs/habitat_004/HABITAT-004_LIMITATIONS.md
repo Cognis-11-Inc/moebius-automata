@@ -18,3 +18,7 @@ solver or machine ceiling. perf unavailable, NVML management failed; DIMM detail
 free VRAM and certain residency/thermal counters remain unresolved. No new runtime
 dependency/solver source import, permanent configuration change or hardware exhaustion.
 Exact provenance, Mermogon retention and reproduction scope are in STORAGE/REPRODUCE.
+
+## Final measured qualification
+
+Final121 runs,304 clean-suite tests and19 focused tests do not complete the directive. Coarsest acoustic failure, failed packet bounds and dynamic/endurance scalar distortion remain in RESULTS/SCALING. Native Witness, passive bodies, full environmental CPU parallelism/GPU and recursive ownership are NOT RUN. Requested-allocator heap is not RSS or device memory. Full selected source rebuild is verified; a full-workspace suite on restored external source was not run.

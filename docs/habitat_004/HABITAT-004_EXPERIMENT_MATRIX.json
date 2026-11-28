@@ -1,0 +1,398 @@
+[
+  {
+    "id": "E01",
+    "experiment": "Fixed-box 3D diffusion",
+    "status": "QUALIFIED",
+    "evidence_or_dependency": "Fixed-box scalar diffusion, all3 resolutions/both schemes within bounds."
+  },
+  {
+    "id": "E02",
+    "experiment": "Diagonal advection",
+    "status": "QUALIFIED",
+    "evidence_or_dependency": "Fixed-box diagonal scalar flow; bounded analytic errors."
+  },
+  {
+    "id": "E03",
+    "experiment": "Multiaxis shear decay",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Combined family within bounds; reference n8 fails."
+  },
+  {
+    "id": "E04",
+    "experiment": "Manufactured 3D solution",
+    "status": "QUALIFIED",
+    "evidence_or_dependency": "One explicitly forced manufactured3D flow, not universal3D validation."
+  },
+  {
+    "id": "E05",
+    "experiment": "Three-dimensional vortical flow",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Same forced vortex as E04; no independent unforced vortical control."
+  },
+  {
+    "id": "E06",
+    "experiment": "Spherical pressure disturbance",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: additional registered physical control/sweep"
+  },
+  {
+    "id": "E07",
+    "experiment": "Oblique pressure propagation",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Wavevector[1,1,1]; n12/16 combined pass, n8 and reference fail."
+  },
+  {
+    "id": "E08",
+    "experiment": "Interacting disturbances",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: additional registered physical control/sweep"
+  },
+  {
+    "id": "E09",
+    "experiment": "Weak-gravity equilibrium",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Weak-gravity hydrostatic density/speed measured; no new well-balanced claim."
+  },
+  {
+    "id": "E10",
+    "experiment": "Fixed-box spatial convergence",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Fixed-box3-resolution trends, mixed fidelity verdicts; not formal-order proof."
+  },
+  {
+    "id": "E11",
+    "experiment": "Temporal convergence",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Same-space4dt wave comparison; separate source/spatial error."
+  },
+  {
+    "id": "E12",
+    "experiment": "Grid-orientation sensitivity",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: additional registered physical control/sweep"
+  },
+  {
+    "id": "E13",
+    "experiment": "Localized coarse-to-fine transmission",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Localized normal packets; actual failed bounds retained."
+  },
+  {
+    "id": "E14",
+    "experiment": "Localized fine-to-coarse transmission",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Normal fine-to-coarse; actual failed bounds retained."
+  },
+  {
+    "id": "E15",
+    "experiment": "Oblique interface scattering",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: additional registered physical control/sweep"
+  },
+  {
+    "id": "E16",
+    "experiment": "Wavelength-dependent reflection",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Two widths only; narrow rightward missing upstream comparator."
+  },
+  {
+    "id": "E17",
+    "experiment": "Multiple-interface propagation",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Two-interface slab normal packets; not recursive/moving scattering."
+  },
+  {
+    "id": "E18",
+    "experiment": "Moving-interface transmission",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: additional registered physical control/sweep"
+  },
+  {
+    "id": "E19",
+    "experiment": "First-order versus higher-order FV",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Space/time ablations measured; coarse wave bound still fails."
+  },
+  {
+    "id": "E20",
+    "experiment": "Positivity and steep-gradient behaviour",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Three steep scalar schemes; extrema and budgets tested, arbitrary AMR positivity unresolved."
+  },
+  {
+    "id": "E21",
+    "experiment": "Three-level ownership",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: recursive ownership/layout"
+  },
+  {
+    "id": "E22",
+    "experiment": "Four-level ownership",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: recursive ownership/layout"
+  },
+  {
+    "id": "E23",
+    "experiment": "Conservative recursive remapping",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: recursive ownership/layout"
+  },
+  {
+    "id": "E24",
+    "experiment": "Refinement balancing",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: recursive ownership/layout"
+  },
+  {
+    "id": "E25",
+    "experiment": "Moving refinement region",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Two-level physical-indicator sinusoid; topology counts and error reported."
+  },
+  {
+    "id": "E26",
+    "experiment": "Multiple-region split and merge",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: recursive ownership/layout"
+  },
+  {
+    "id": "E27",
+    "experiment": "Topology invalidation falsification",
+    "status": "VERIFIED",
+    "evidence_or_dependency": "Stale-cache honest-red plus missing-owner refusal and restored PASS."
+  },
+  {
+    "id": "E28",
+    "experiment": "Checkpoint restoration across topology changes",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Dynamic endpoint restore/continuation exact; no recursive topology."
+  },
+  {
+    "id": "E29",
+    "experiment": "Capacity refusal and recovery",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Existing transactional capacity refusal regression tests, no new recursive recovery run."
+  },
+  {
+    "id": "E30",
+    "experiment": "Recursive hierarchy conservation",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: recursive ownership/layout"
+  },
+  {
+    "id": "E31",
+    "experiment": "Transaction stage attribution",
+    "status": "VERIFIED",
+    "evidence_or_dependency": "Same-model ordinary full transaction/stage timing; no counter-based bottleneck claim."
+  },
+  {
+    "id": "E32",
+    "experiment": "Persistent face topology",
+    "status": "QUALIFIED",
+    "evidence_or_dependency": "Six exact full-state/every-tick pairs, three repeats per order."
+  },
+  {
+    "id": "E33",
+    "experiment": "Local versus global topology rebuild",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: recursive ownership/layout"
+  },
+  {
+    "id": "E34",
+    "experiment": "Ordered map versus contiguous hierarchy",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: recursive ownership/layout"
+  },
+  {
+    "id": "E35",
+    "experiment": "Payload layout comparison",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: recursive ownership/layout"
+  },
+  {
+    "id": "E36",
+    "experiment": "Allocation and working-set scaling",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Allocation-instrumented sustained run/cache bytes/checkpoints; total RSS unresolved."
+  },
+  {
+    "id": "E37",
+    "experiment": "CPU scalar versus SIMD",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Detached scalar/portable/AVX2 arithmetic only."
+  },
+  {
+    "id": "E38",
+    "experiment": "Persistent worker scaling",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Persistent detached workers1\u201332, correctness checked."
+  },
+  {
+    "id": "E39",
+    "experiment": "CPU topology-aware scheduling",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Process-local8physical versus4SMTpairs microkernel only."
+  },
+  {
+    "id": "E40",
+    "experiment": "Memory-bandwidth characterization",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Bounded array access/traffic; not DRAM/cache peak measurement."
+  },
+  {
+    "id": "E41",
+    "experiment": "Subcycle stage attribution",
+    "status": "VERIFIED",
+    "evidence_or_dependency": "Separate non-additive clone/flux/reconstruction/encoding/finish attribution."
+  },
+  {
+    "id": "E42",
+    "experiment": "Optimized synchronized subcycling",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: full environmental device/parallel candidate"
+  },
+  {
+    "id": "E43",
+    "experiment": "Matched physical-duration comparison",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Matched-duration monorate/subcycle; no genuine economy established."
+  },
+  {
+    "id": "E44",
+    "experiment": "GPU uniform FV numerical equivalence",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: full environmental device/parallel candidate"
+  },
+  {
+    "id": "E45",
+    "experiment": "GPU complete transaction",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: full environmental device/parallel candidate"
+  },
+  {
+    "id": "E46",
+    "experiment": "Precision-lane comparison",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Detached exact FP32/FP64 GPU/SIMD; atmospheric precision lanes NOT RUN."
+  },
+  {
+    "id": "E47",
+    "experiment": "GPU checkpoint and replay",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: full environmental device/parallel candidate"
+  },
+  {
+    "id": "E48",
+    "experiment": "CPU/GPU workload partition",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: full environmental device/parallel candidate"
+  },
+  {
+    "id": "E49",
+    "experiment": "Concurrent AMD rendering",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: full environmental device/parallel candidate"
+  },
+  {
+    "id": "E50",
+    "experiment": "Static hierarchical GPU feasibility",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: full environmental device/parallel candidate"
+  },
+  {
+    "id": "E51",
+    "experiment": "Passive sphere coupling",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: qualified body/Witness adapter"
+  },
+  {
+    "id": "E52",
+    "experiment": "Sphere refinement-boundary crossing",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: qualified body/Witness adapter"
+  },
+  {
+    "id": "E53",
+    "experiment": "Multiple-body momentum exchange",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: qualified body/Witness adapter"
+  },
+  {
+    "id": "E54",
+    "experiment": "Headless versus stationary Witness",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: qualified body/Witness adapter"
+  },
+  {
+    "id": "E55",
+    "experiment": "Headless versus moving Witness",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: qualified body/Witness adapter"
+  },
+  {
+    "id": "E56",
+    "experiment": "Refused environmental transaction",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Focused rejected reconstruction/topology/source tests; full GPU refusal NOT RUN."
+  },
+  {
+    "id": "E57",
+    "experiment": "Pending-cycle checkpoint continuation",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Existing pending-state regression preserved; current subcycle endpoint/continuation exact."
+  },
+  {
+    "id": "E58",
+    "experiment": "Revised adaptive LBM conservation",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: revised integrated LBM exchange"
+  },
+  {
+    "id": "E59",
+    "experiment": "Fixed-resolution isotropic domain enlargement",
+    "status": "QUALIFIED",
+    "evidence_or_dependency": "Actual isotropic1/8/27m\u00b3 at fixedh, not coordinate reach."
+  },
+  {
+    "id": "E60",
+    "experiment": "Fixed fine-region volume in growing domains",
+    "status": "QUALIFIED",
+    "evidence_or_dependency": "Fixed physical fine cube while isotropic background grows."
+  },
+  {
+    "id": "E61",
+    "experiment": "Increasing hierarchy depth",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: recursive ownership/layout"
+  },
+  {
+    "id": "E62",
+    "experiment": "Increasing active-region count",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: recursive ownership/layout"
+  },
+  {
+    "id": "E63",
+    "experiment": "Increasing refined-volume fraction",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: recursive ownership/layout"
+  },
+  {
+    "id": "E64",
+    "experiment": "Increasing scalar-species count",
+    "status": "NOT RUN",
+    "evidence_or_dependency": "Unimplemented dependency: additional registered physical control/sweep"
+  },
+  {
+    "id": "E65",
+    "experiment": "Sustained physical-duration execution",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "5000 cycles/2.5 s 3D, scalar error .021178 passes .15; stable requested heap, no long-endurance/RSS claim."
+  },
+  {
+    "id": "E66",
+    "experiment": "Total memory and checkpoint scaling",
+    "status": "PARTIALLY QUALIFIED",
+    "evidence_or_dependency": "Leaf/face/cache/checkpoint/allocator data; full RSS/VRAM unresolved."
+  }
+]

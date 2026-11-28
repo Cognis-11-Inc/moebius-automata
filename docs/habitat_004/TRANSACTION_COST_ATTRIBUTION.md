@@ -19,3 +19,12 @@ digests/payloads are the required comparison. Deliberate invalidation bypass,
 negative reconstructed density and missing neighbor tests expose failure and
 preserve the old committed state. Final latency/variation follows measured windows,
 not anticipated speedups. Hardware counters were not collected: perf unavailable.
+
+## Final measured qualification
+
+| Scheme | Mean paired speed ratio | Each paired ratio | Cache bytes |
+|---|---|---|---|
+| Constant/Euler | 3.35789 | 3.37187, 3.34605, 3.35576 | 720896 |
+| Minmod/SSP2 | 1.27795 | 1.27687, 1.28562, 1.27135 | 720896 |
+
+All six cached/rebuilt pairs preserve full checkpoint bytes and every tick digest exactly. First-order/higher-order timings are separate; pairs contain100 steps and three runs per path, no outliers removed. Cache metadata included. Numerical SSP2 timing includes intermediate validation. Exact stage means are in SCALING.json; no hardware-counter bottleneck proof.

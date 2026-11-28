@@ -13,3 +13,7 @@ source/kernel/backend/precision and actual-payload checkpoints. Validate exact s
 backend replay, tolerance-qualified CPU comparison and injected device/reduction
 failure before static hierarchy. Dynamic recursive GPU topology stays conditional.
 Driver replacement, clocks/voltage changes and actual OOM tests are excluded.
+
+## Final measurements
+
+Detached arithmetic/copy executed on NVIDIA GeForce RTX 5060 Ti with reported driver 620.73.04; exact microkernel outputs do not implement admission, face fluxes, inventory reduction or checkpoints. E44/E45/E47/E48/E50 remain NOT RUN. No GPU speed multiplier is applied to CPU physical results.

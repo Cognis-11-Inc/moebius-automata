@@ -18,3 +18,7 @@ QMAXLEVEL29; historical constants19/18 are explicitly old. The inspected2D linea
 API uses uint64, but that does not establish a3D Morton-key capacity. A future local
 encoding needs its own bounds. Donor framework/source is not imported or executed;
 GPL2-or-later source headers and libsc dependency require separate import approval.
+
+## Final measured qualification
+
+Recursive ownership beyond two levels remains NOT IMPLEMENTED/NOT RUN. No alternate third owner or scalar-key extension was introduced. Two-level dynamic run/cache invalidation does not authorize recursive claims. Existing refinement/capacity/checkpoint unit contracts are regression evidence only, not E21–E24/E30 completion.
