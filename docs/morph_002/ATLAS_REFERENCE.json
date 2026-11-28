@@ -94,8 +94,8 @@
     },
     {
       "path": "07_EXPERIMENTS/INDEX.md",
-      "bytes": 1274,
-      "sha256": "978f81069a5365f726ac49d5242baa89d05ea8df9b08b2293b6cf7d4a42913b8"
+      "bytes": 1401,
+      "sha256": "83e6571eff32361aa28fd2becd06a95c51e70a4053c0c2cbbf44672a1f6be76b"
     },
     {
       "path": "07_EXPERIMENTS/MORPH_001.md",
@@ -174,8 +174,8 @@
     },
     {
       "path": "09_EVIDENCE/INDEX.md",
-      "bytes": 877,
-      "sha256": "3c7b6cae8a850a7322cfc52de9f0d34d1c18b382594ce98956310edebf59bcbb"
+      "bytes": 1008,
+      "sha256": "22cd95e598acd30f09f0756ad84f1872ae635e6f17d29b80e4fa57ab1ee66d35"
     },
     {
       "path": "09_EVIDENCE/MORPH_004_DONORS.md",
@@ -460,10 +460,20 @@
       "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v1/SCIENTIFIC_COMPUTATIONAL_METHODS.md",
       "bytes": 3524,
       "sha256": "b0af7ff9049d861b4d00a43b28575e648f4539b3b6954bdad4aa57c36332ee9f"
+    },
+    {
+      "path": "07_EXPERIMENTS/HABITAT_003.md",
+      "bytes": 885,
+      "sha256": "a7530617a0d6d1cc3725dee16bd06275ec7df86e230b5045bc7ce43fd2e2401b"
+    },
+    {
+      "path": "09_EVIDENCE/HABITAT_003_LIMITS.md",
+      "bytes": 1174,
+      "sha256": "26b78eae26dccd7bedb565fbb48b63322a809bf463d7abb611d47a884895f4d1"
     }
   ],
   "snapshot_note": "Rehashed after the clean MORPH-003 suite on a8cb705. Six edited notes cite that implementation commit. Ship design canon is unchanged.",
-  "latest_update": "HABITAT-002 bounded computational research; global sparse authority and GPU full-tick adoption unresolved.",
+  "latest_update": "HABITAT-003 native FV/hierarchy research and version1 Scientific Computational Methods library; no canonical integration",
   "stabilization_iv": {
     "status": "PARTIAL",
     "verified_date_utc": "2026-11-26",
@@ -510,9 +520,10 @@
     "authority": "navigation only; source and immutable Mermogon evidence authoritative"
   },
   "habitat_003": {
-    "status": "PARTIAL research library and experimental CPU implementation; qualification pending",
+    "status": "PARTIAL,293clean-source tests,73completed/1rejected CPU cases; numerical failures and NOT RUN retained",
     "library": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v1/SCIENTIFIC_COMPUTATIONAL_METHODS.md",
     "report": "docs/habitat_003/HABITAT-003_RESULTS.md",
-    "authority": "Navigation only; live source and Mermogon raw evidence remain authoritative"
+    "authority": "Navigation only; live source and Mermogon raw evidence remain authoritative",
+    "source_revision": "5d69505236746f4e35d896824a83f217f1e4a5fb"
   }
 }

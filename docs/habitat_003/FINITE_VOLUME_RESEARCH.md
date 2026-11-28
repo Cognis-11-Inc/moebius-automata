@@ -8,10 +8,12 @@ The material constants are authored controls inherited in scale from001; they
 are not laboratory measurements or a calibrated ship atmosphere.
 
 Uniform/refined equilibrium and nonuniform scalar/momentum conservation tests
-pass. Final controls compare analytical sinusoidal diffusion, advection phase,
+pass. Completed final controls compare analytical sinusoidal diffusion, advection phase,
 shear decay, linear acoustic waves, weak hydrostatic profiles and uniform-fine
 references. Refinement starts with constant prolongation of sampled coarse
-initial data. Error includes that initialization approximation. Same inventory
+initial data. This applies to the uniformly fine control too, not only partial refinement.
+Error includes that initialization approximation; fine references are not analytic
+truth. See measured RESULTS/SCALING for all successful and failed bounds. Same inventory
 budgets apply to all grids; numerical errors may fail their registered thresholds.
 
 Positive finite state and low-Mach/density validity are admission conditions,

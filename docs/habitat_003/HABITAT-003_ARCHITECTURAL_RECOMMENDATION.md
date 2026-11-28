@@ -1,4 +1,4 @@
-# Architectural recommendation — provisional
+# Architectural recommendation — bounded final evidence
 
 Keep the legacy001/002 numerical owner as its historical reference. Retain003 FV
 as an explicitly selected independent research competitor until physical convergence,
@@ -10,7 +10,10 @@ The authored adaptive-LBM interface failed its first nonuniform conservation tes
 retain the failed candidate and seek a separately preregistered conservative stress/
 flux treatment before extending it. Its failure is not a verdict on published LBM.
 Native extensive FV leaves offer a clear ownership and synchronization contract;
-actual fidelity and cost must be read in the final tables, including failures.
+actual fidelity and cost are recorded in the final tables, including failures.
+The293-test clean source and74-case plan support the bounded ownership contract.
+Three coarse-wave accuracy cases fail; the LBM interface is rejected; FV subcycling
+is slower than monorate. None establishes a production replacement.
 
 Next dependencies: inspect final error trends; add genuinely3D shear/wave controls
 and static/moving interface scattering; extract/reuse and independently qualify

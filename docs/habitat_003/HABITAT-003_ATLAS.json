@@ -1,0 +1,15 @@
+{
+  "library_version": 1,
+  "donor_records": 40,
+  "validation": {
+    "status": "PASS",
+    "atlas_path": "/run/media/cognis/Stable Diffusion Drive/MOEBIUS_AUTOMATA_Atlas",
+    "notes": 92,
+    "internal_links": 297,
+    "errors": [],
+    "volume_uuid": "8CA451CDA451BA82",
+    "role": "interpretive navigation; live repository and independently versioned evidence authoritative"
+  },
+  "authority": "interpretive navigation; source and Mermogon evidence authoritative",
+  "preservation": "Original49notes retained in ATLAS_ENTRY.json, subsequent pre/post snapshots in immutable archives; no previous version deleted"
+}

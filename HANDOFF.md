@@ -1,3 +1,86 @@
+# HABITAT-003 outgoing evidence checkpoint — 2026-11-28T00:58:05.686405+00:00, Codex
+
+PARTIAL. Repo /home/cognis/Cognis_Lab/Möbius Automata, main. Certified clean source
+`5d69505236746f4e35d896824a83f217f1e4a5fb`. HEAD is that SHA at this write; current Git changes are final report,
+figure, Atlas-reference and continuity metadata only. Publication metadata commit is pending at this write; final local/remote refs
+must be verified in Git. Existing001/002 and canonical source preserved.
+
+IMPLEMENTED within existing habitat-experiment boundary: native two-level leaf owner
+scientific::{Chamber,State,Payload}, mesh partition/face graph, conservative isothermal
+FV mass/momentum/scalars, gravity/free-slip walls, ratio2 conservative remap, optional
+physical jump/hysteresis, fixed2:1 predictor/reflux subcycling, serialized provisional
+half-cycle and source/backend-bound bit-preserving checkpoints. Files:
+crates/moebius-morph/src/primordial/scientific/{mod,mesh,fv,lbm,experiments,tests}.rs,
+example habitat_scientific.rs and Cargo target; python/habitat_003_qualification.py,
+habitat_003_donors.py and test_habitat_003_integrity.py. New003 bodies explicitly
+refused; no donor code/new runtime dependencies, ship/biology or driver changes.
+
+VALIDATED: cargo test --offline --workspace --all-targets --all-features on CLEAN
+recorded source above:293PASS,0fail/ignored;10 new focused tests;2 honest-red mutants
+(carrier guard, reflux) fail then restored pass; strict Clippy/fmt and5 independent
+Python auditor integrity tests pass. Initial copied-directive whitespace gate failed
+but shell sequence continued into b109cdb; follow-up5d69505 corrected before broad
+validation. Failure retained in VALIDATION, no history rewrite or test weakening.
+
+74 registered final CPU cases:73COMPLETED/1REJECTED. Adaptive-LBM nonuniform candidate
+fails first-step conservation; committed checkpoint remains exact. All74 saved committed
+endpoint partitions/inventories independently recomputed. One100-cycle repeat pair has
+full digest-trace/final-checkpoint byte equality. All saved endpoints restore; completed
+runs compare one additional monorate step. Every subcycle case restores/finishes its first
+pending half-cycle exactly. Integrator choice is an explicit reproduction command, not a
+synchronized-checkpoint lock. Six malformed source/backend/schema/mass/ownership/body
+checkpoints refuse with no output; original preserved. Raw every-tick diagnostics retained,
+not independent per-tick full payload snapshots. Source/binaries captured and verified.
+
+Physics: diffusion/shear/advection bounded controls pass; coarse n16 wave errors
+0.250029/0.222199/0.222386 exceed0.15; n32/n64 equivalents pass. Temporal shear error
+slightly increases with smallerdt: no temporal-order qualification. Uniform-fine initial
+fields are constant coarse prolongations, not newly sampled analytic fine solutions.
+Subcycle shear n32 mean2.946862ms vs mono0.536593ms: no temporal acceleration.
+Tube length1→16m at fixedfineh0.015625m has352→2272 native leaves vs diagnostic
+fullfine1024→16384; latency0.531081→5.434034ms. Maximum volume0.0625m³ is SMALLER
+than legacy demo0.512m³. No isotropic ship/unbounded sparse universe claim.
+5000cycle counted window=1physical second, steady requested live heap range0bytes
+after20ticks; totalRSS/VRAM and lifetime unmeasured. Max admitted trace residuals:
+carrier3.109e-15kg, scalar9.529e-21kg, accounted momentum1.753e-15kg*m/s.
+Fresh restored002 reference checkpoint matches exactly:0.97089935/1.301043ms
+mean/P99,120observations; historical0.894063/0.921569 remains separate.
+
+Docs/habitat_003 has required dossiers, full40-experiment matrix (21PASS/7PARTIAL/
+1FAIL/11NOTRUN),74-case compact tables,24 fine-reference comparisons and scientific
+figure inspected as rendered PNG.40 donor records retain nulls;2 selected source/license
+revisions inspected,0 donor executables reproduced. Original research query strings
+partly lost in compacted continuity, explicitly marked; sourceURLs/access limits retained.
+Permanent Scientific Computational Methods Atlas v1 plus result/limits notes on verified
+8CA451CDA451BA82:92notes/297links PASS; originals/pre/post snapshots retained.
+Atlas is navigation only. Failed SOFA/NEURON source access retained, not source reads.
+
+Raw working cache /home/cognis/habitat-003-20261127. Implementation archive verified
+Mermogon UUID D0A02EEBA02ED82C,160files/15631925memberbytes, SHA256
+74c9032202cbeb0ef3536e64ff9f76c2fbfabd3445a2bb11fa5b98074fa2e32c;
+all restored hashes and actual restored20-step full-checkpoint execution match.
+Final qualification archive VERIFIED:760files/95680257memberbytes; archive SHA256
+3e7ed729a2c63c2f958ace91ae44a90ae628ef941b96a55ec1b8bbae3dc5ec77.
+All restored member hashes match; restored20-step proof and final100-step replay
+control both match full checkpoint bytes. Exact paths/manifests/restore commands in
+HABITAT-003_QUALIFICATION_STORAGE.json. Pre-seal archived report snapshots may contain
+pending metadata; published Git reports/receipts supersede them without altering raw data. Source capsules and
+final executables complete; three smoke pilots retain executable/hash identity but
+lack complete pre-fix source snapshot, explicitly limited. No prior copy discarded.
+
+UNTESTED/next authorized dependencies: localized interface scattering; genuinely3D
+fixed-box controls; shared qualified body closure; moving physical refinement;
+new selected-owner Witness stationary/moving observation/captures; full residentGPU
+transaction/concurrent rendering; arbitrary local clocks and calibrated hybrid regimes.
+Gravity-driven scalar wall deposition and automatic gradient refinement have no new
+physical qualification. The minimal recorder expects valid protocol arguments;
+Diffusion/Advection error evaluation requires species0, and malformed CLI inputs
+are not qualified as graceful process refusals. Harden that harness boundary separately. MORPH005 PARTIAL/paused;006 suspended. No canonical adoption.
+Safe next inspection: git status --short, then docs/habitat_003/HABITAT-003_RESULTS.md
+and E08/E26–E40 dependencies. Preserve the rejected candidate and unchanged tolerance.
+
+--- Earlier implementation checkpoint and001/002 continuity retained ---
+
 # HABITAT-003 implementation checkpoint — 2026-11-28T00:44:05.836572+00:00, Codex
 
 PARTIAL / IN PROGRESS. Repository /home/cognis/Cognis_Lab/Möbius Automata, main,

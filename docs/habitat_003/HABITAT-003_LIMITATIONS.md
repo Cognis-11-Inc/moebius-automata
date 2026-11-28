@@ -22,3 +22,11 @@ The sinusoidal controls are one-dimensional fields in3D cells, not vortical/turb
 failures, source/binaries and restore receipts are retained on verified Mermogon;
 local build/trace caches are working copies. External Atlas is navigation, not
 runtime authority. See STORAGE for immutable versions and restoration limits.
+
+Specific implementation-only seams:003 gravity-driven scalar deposition/wall stocks
+have no new settling experiment; automatic gradient-triggered refinement has no
+moving-stimulus qualification. The focused indicator test checks quiet coarsening
+and hysteresis, not physical error control. Full synchronized-restore continuation
+compares one monorate step; pending proof restores/finishes the first half-cycle.
+Integrator selection is an explicit replay command, not locked by the synchronized
+checkpoint. These limits prevent stronger continuation/adaptivity claims.

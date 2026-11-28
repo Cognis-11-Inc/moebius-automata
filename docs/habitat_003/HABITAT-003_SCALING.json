@@ -1,5 +1,5940 @@
 {
-  "status": "NOT RUN",
-  "dependency": "clean committed source broad-suite gate and final74-case plan",
-  "plan": "python/habitat_003_qualification.py"
+  "schema": 1,
+  "uniform_fine_comparisons": [
+    {
+      "case": "diffusion-16-refined-mono",
+      "reference": "diffusion-16-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.029986143263407646,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "diffusion-16-refined-subcycle",
+      "reference": "diffusion-16-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.02998618995297149,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "diffusion-32-refined-mono",
+      "reference": "diffusion-32-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.025730498452015405,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "diffusion-32-refined-subcycle",
+      "reference": "diffusion-32-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.025730547648114818,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "diffusion-64-refined-mono",
+      "reference": "diffusion-64-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.013293817381084934,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "diffusion-64-refined-subcycle",
+      "reference": "diffusion-64-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.01329382319226774,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "advection-16-refined-mono",
+      "reference": "advection-16-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.04030655550791143,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "advection-16-refined-subcycle",
+      "reference": "advection-16-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.04030608923133113,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "advection-32-refined-mono",
+      "reference": "advection-32-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.026255159215929295,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "advection-32-refined-subcycle",
+      "reference": "advection-32-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.02625498156210553,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "advection-64-refined-mono",
+      "reference": "advection-64-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.01332425311070143,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "advection-64-refined-subcycle",
+      "reference": "advection-64-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.013324216928484935,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "shear-16-refined-mono",
+      "reference": "shear-16-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.03944419463839741,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "shear-16-refined-subcycle",
+      "reference": "shear-16-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.039444013038272864,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "shear-32-refined-mono",
+      "reference": "shear-32-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.019741490482560624,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "shear-32-refined-subcycle",
+      "reference": "shear-32-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.019741433034118912,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "shear-64-refined-mono",
+      "reference": "shear-64-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.009790942072416481,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "shear-64-refined-subcycle",
+      "reference": "shear-64-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.009790879660744139,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "wave-16-refined-mono",
+      "reference": "wave-16-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.0796993206826912,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "wave-16-refined-subcycle",
+      "reference": "wave-16-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.07979540618668896,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "wave-32-refined-mono",
+      "reference": "wave-32-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.04818789603330829,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "wave-32-refined-subcycle",
+      "reference": "wave-32-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.04826534187979412,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "wave-64-refined-mono",
+      "reference": "wave-64-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.026553598748190008,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    },
+    {
+      "case": "wave-64-refined-subcycle",
+      "reference": "wave-64-fine-mono",
+      "normalized_L1_against_uniform_fine": 0.026600701028779806,
+      "comparison": "Category II; piecewise constant diagnostic projection, no native finest shadow"
+    }
+  ],
+  "exactness": "same-source CPU replay Category I; refined/FV accuracy Category II; legacy LBM versus FV Category III; failed adaptive LBM Category IV",
+  "cases": [
+    {
+      "name": "diffusion-16-uniform-mono",
+      "configuration": {
+        "name": "diffusion-16-uniform-mono",
+        "scenario": "Diffusion",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 64,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          0.0,
+          0.0,
+          0.0,
+          1.5624999999999999e-06,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.0587911840678754e-21,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0,
+        "normalized_l1": 6.41553158166193e-05,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.119288306,
+        "p99_floor_ms": 0.15699
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.117582368135751e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "diffusion-16-refined-mono",
+      "configuration": {
+        "name": "diffusion-16-refined-mono",
+        "scenario": "Diffusion",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 176,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          1.6263032587282567e-19,
+          0.0,
+          0.0,
+          1.5625000000000011e-06,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          1.6263032587282567e-19,
+          0.0,
+          0.0,
+          2.117582368135751e-22,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -5.551115123125783e-17,
+        "max_speed_m_s": 8.326672684688674e-18,
+        "normalized_l1": 0.00521408824750398,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.260016526,
+        "p99_floor_ms": 0.33374
+      },
+      "maximum_trace_residual": [
+        0.0,
+        1.6263032587282567e-19,
+        0.0,
+        0.0,
+        5.717472393966527e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "diffusion-16-refined-subcycle",
+      "configuration": {
+        "name": "diffusion-16-refined-subcycle",
+        "scenario": "Diffusion",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 176,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          0.0,
+          0.0,
+          0.0,
+          1.5624999999999984e-06,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -2.541098841762901e-21,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -5.551115123125783e-17,
+        "max_speed_m_s": 0.0,
+        "normalized_l1": 0.005214583311451385,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 1.426491501,
+        "p99_floor_ms": 1.644324
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        6.988021814847978e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "diffusion-16-fine-mono",
+      "configuration": {
+        "name": "diffusion-16-fine-mono",
+        "scenario": "Diffusion",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "fine",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 512,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          0.0,
+          0.0,
+          0.0,
+          1.5625000000000037e-06,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          2.752857078576476e-21,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0,
+        "normalized_l1": 0.028056005746010176,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.589111194,
+        "p99_floor_ms": 0.696262
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        9.529120656610879e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "diffusion-32-uniform-mono",
+      "configuration": {
+        "name": "diffusion-32-uniform-mono",
+        "scenario": "Diffusion",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 128,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          0.0,
+          0.0,
+          0.0,
+          3.9062499999999997e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.0587911840678754e-22,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0,
+        "normalized_l1": 1.6007863015316685e-05,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.296331942,
+        "p99_floor_ms": 0.371231
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        6.88214269644119e-22,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "diffusion-32-refined-mono",
+      "configuration": {
+        "name": "diffusion-32-refined-mono",
+        "scenario": "Diffusion",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          4.0657581468206416e-20,
+          0.0,
+          0.0,
+          3.90625e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          4.0657581468206416e-20,
+          0.0,
+          0.0,
+          -5.293955920339377e-23,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 1.6653345369377347e-17,
+        "normalized_l1": 0.000658588729609944,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.536322236,
+        "p99_floor_ms": 0.631531
+      },
+      "maximum_trace_residual": [
+        0.0,
+        4.0657581468206416e-20,
+        0.0,
+        0.0,
+        2.541098841762901e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "diffusion-32-refined-subcycle",
+      "configuration": {
+        "name": "diffusion-32-refined-subcycle",
+        "scenario": "Diffusion",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          0.0,
+          0.0,
+          0.0,
+          3.9062499999999986e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -2.117582368135751e-22,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0,
+        "normalized_l1": 0.0006586495078980949,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 2.960417961,
+        "p99_floor_ms": 3.053348
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.1705219273391446e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "diffusion-32-fine-mono",
+      "configuration": {
+        "name": "diffusion-32-fine-mono",
+        "scenario": "Diffusion",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "fine",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 1024,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          0.0,
+          0.0,
+          0.0,
+          3.906249999999997e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -3.705769144237564e-22,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0,
+        "normalized_l1": 0.001402621234814869,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 1.199981409,
+        "p99_floor_ms": 1.339694
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        4.552802091491864e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "diffusion-64-uniform-mono",
+      "configuration": {
+        "name": "diffusion-64-uniform-mono",
+        "scenario": "Diffusion",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 256,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.01953125,
+          0.0,
+          0.0,
+          0.0,
+          9.765625000000006e-08,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          5.293955920339377e-23,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0,
+        "normalized_l1": 3.98619417648863e-06,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.606776251,
+        "p99_floor_ms": 0.631932
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.9116757561866574e-22,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "diffusion-64-refined-mono",
+      "configuration": {
+        "name": "diffusion-64-refined-mono",
+        "scenario": "Diffusion",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 704,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.01953125,
+          1.0164395367051604e-20,
+          0.0,
+          0.0,
+          9.765625000000006e-08,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          1.0164395367051604e-20,
+          0.0,
+          0.0,
+          5.293955920339377e-23,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 3.3306690738754695e-17,
+        "normalized_l1": 0.0001617973938145073,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 1.087842169,
+        "p99_floor_ms": 1.159593
+      },
+      "maximum_trace_residual": [
+        0.0,
+        1.0164395367051604e-20,
+        0.0,
+        0.0,
+        9.396771758602394e-22,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "diffusion-64-refined-subcycle",
+      "configuration": {
+        "name": "diffusion-64-refined-subcycle",
+        "scenario": "Diffusion",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 704,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.01953125,
+          0.0,
+          0.0,
+          0.0,
+          9.765625000000004e-08,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          3.970466940254533e-23,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -5.551115123125783e-17,
+        "max_speed_m_s": 0.0,
+        "normalized_l1": 0.00016179093992686841,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 5.954199358,
+        "p99_floor_ms": 6.798129
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        8.470329472543003e-22,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "diffusion-64-fine-mono",
+      "configuration": {
+        "name": "diffusion-64-fine-mono",
+        "scenario": "Diffusion",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "fine",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 2048,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.01953125,
+          0.0,
+          0.0,
+          0.0,
+          9.76562499999999e-08,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.0587911840678754e-22,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0,
+        "normalized_l1": 0.00018926698783046337,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 2.449872589,
+        "p99_floor_ms": 2.524557
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.1117307432712692e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "advection-16-uniform-mono",
+      "configuration": {
+        "name": "advection-16-uniform-mono",
+        "scenario": "Advection",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 64,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          0.015625,
+          0.0,
+          0.0,
+          1.5625000000000007e-06,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -2.117582368135751e-22,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -0.00025485177843959095,
+        "max_speed_m_s": 0.05,
+        "normalized_l1": 0.007553431762544179,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.108850474,
+        "p99_floor_ms": 0.192461
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.9058241313221758e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "advection-16-refined-mono",
+      "configuration": {
+        "name": "advection-16-refined-mono",
+        "scenario": "Advection",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 176,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          0.015625000000000007,
+          0.0,
+          0.0,
+          1.5624999999999971e-06,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          6.938893903907228e-18,
+          0.0,
+          0.0,
+          -3.8116482626443515e-21,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -0.00019841068878306833,
+        "max_speed_m_s": 0.05000000000000306,
+        "normalized_l1": 0.0074786628789581385,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.250135283,
+        "p99_floor_ms": 0.26922
+      },
+      "maximum_trace_residual": [
+        0.0,
+        3.469446951953614e-17,
+        0.0,
+        0.0,
+        5.293955920339377e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "advection-16-refined-subcycle",
+      "configuration": {
+        "name": "advection-16-refined-subcycle",
+        "scenario": "Advection",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 176,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          0.015625,
+          0.0,
+          0.0,
+          1.5624999999999988e-06,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -2.117582368135751e-21,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -0.00019845125098966188,
+        "max_speed_m_s": 0.05,
+        "normalized_l1": 0.007479350728320682,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 1.404988333,
+        "p99_floor_ms": 1.449964
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        5.717472393966527e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "advection-16-fine-mono",
+      "configuration": {
+        "name": "advection-16-fine-mono",
+        "scenario": "Advection",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "fine",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 512,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          0.015625,
+          0.0,
+          0.0,
+          1.5624999999999986e-06,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -2.329340604949326e-21,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -6.399220798258831e-05,
+        "max_speed_m_s": 0.05,
+        "normalized_l1": 0.016264799041389964,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.585070269,
+        "p99_floor_ms": 0.606702
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        7.411538288475128e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "advection-32-uniform-mono",
+      "configuration": {
+        "name": "advection-32-uniform-mono",
+        "scenario": "Advection",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 128,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          0.00390625,
+          0.0,
+          0.0,
+          3.90625e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -5.293955920339377e-23,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -6.39922079825328e-05,
+        "max_speed_m_s": 0.05,
+        "normalized_l1": 0.0038601666824994454,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.289390864,
+        "p99_floor_ms": 0.300281
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        4.764560328305439e-22,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "advection-32-refined-mono",
+      "configuration": {
+        "name": "advection-32-refined-mono",
+        "scenario": "Advection",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          0.00390625,
+          0.0,
+          0.0,
+          3.9062500000000034e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          2.6469779601696886e-22,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -4.8750702040301075e-05,
+        "max_speed_m_s": 0.05,
+        "normalized_l1": 0.0035913541145304244,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.533991618,
+        "p99_floor_ms": 0.545662
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.6940658945086007e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "advection-32-refined-subcycle",
+      "configuration": {
+        "name": "advection-32-refined-subcycle",
+        "scenario": "Advection",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          0.00390625,
+          0.0,
+          0.0,
+          3.9062500000000044e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          3.705769144237564e-22,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -4.8778771222834916e-05,
+        "max_speed_m_s": 0.05,
+        "normalized_l1": 0.0035913541274685415,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 2.899886011,
+        "p99_floor_ms": 2.977649
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.5881867761018131e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "advection-32-fine-mono",
+      "configuration": {
+        "name": "advection-32-fine-mono",
+        "scenario": "Advection",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "fine",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 1024,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          0.00390625,
+          0.0,
+          0.0,
+          3.906250000000018e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.7470054537119944e-21,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -1.594654650460825e-05,
+        "max_speed_m_s": 0.05,
+        "normalized_l1": 0.0027143136980001203,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 1.198828825,
+        "p99_floor_ms": 1.223403
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        3.017554874593445e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "advection-64-uniform-mono",
+      "configuration": {
+        "name": "advection-64-uniform-mono",
+        "scenario": "Advection",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 256,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.01953125,
+          0.0009765625,
+          0.0,
+          0.0,
+          9.765625e-08,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -1.5946546504275183e-05,
+        "max_speed_m_s": 0.05,
+        "normalized_l1": 0.001940100988717596,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.606108556,
+        "p99_floor_ms": 0.621941
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.117582368135751e-22,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "advection-64-refined-mono",
+      "configuration": {
+        "name": "advection-64-refined-mono",
+        "scenario": "Advection",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 704,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.01953125,
+          0.0009765625,
+          0.0,
+          0.0,
+          9.765624999999965e-08,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -3.5734202462290796e-22,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -1.1135911037518653e-05,
+        "max_speed_m_s": 0.05,
+        "normalized_l1": 0.0018729506309946404,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 1.082823346,
+        "p99_floor_ms": 1.111473
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        4.896909226313924e-22,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "advection-64-refined-subcycle",
+      "configuration": {
+        "name": "advection-64-refined-subcycle",
+        "scenario": "Advection",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 704,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.01953125,
+          0.0009765625,
+          0.0,
+          0.0,
+          9.765624999999989e-08,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.1911400820763599e-22,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -1.115847788663027e-05,
+        "max_speed_m_s": 0.05,
+        "normalized_l1": 0.0018729506305529104,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 5.870180339,
+        "p99_floor_ms": 6.146797
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        5.823351512373315e-22,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "advection-64-fine-mono",
+      "configuration": {
+        "name": "advection-64-fine-mono",
+        "scenario": "Advection",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "fine",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 2048,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.01953125,
+          0.0009765625,
+          0.0,
+          0.0,
+          9.765624999999979e-08,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -2.117582368135751e-22,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -3.921159504427507e-06,
+        "max_speed_m_s": 0.05,
+        "normalized_l1": 0.001160743434366525,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 2.45487544,
+        "p99_floor_ms": 2.654787
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        8.999725064576941e-22,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "shear-16-uniform-mono",
+      "configuration": {
+        "name": "shear-16-uniform-mono",
+        "scenario": "Shear",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 64,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          3.3881317890172014e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.009432950503483278,
+        "normalized_l1": 0.0004845921938781009,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.00961775292916825,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.108785205,
+        "p99_floor_ms": 0.14809
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        3.3881317890172014e-20,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "shear-16-refined-mono",
+      "configuration": {
+        "name": "shear-16-refined-mono",
+        "scenario": "Shear",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 176,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          1.6263032587282567e-19,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          1.6263032587282567e-19,
+          3.3881317890172014e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.009432023591297717,
+        "normalized_l1": 0.0041368270114670236,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.009614758327798099,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.248607454,
+        "p99_floor_ms": 0.26525
+      },
+      "maximum_trace_residual": [
+        0.0,
+        1.6263032587282567e-19,
+        9.012430558785756e-19,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "shear-16-refined-subcycle",
+      "configuration": {
+        "name": "shear-16-refined-subcycle",
+        "scenario": "Shear",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 176,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          0.0,
+          2.710505431213761e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          6.098637220230962e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.00943202400410308,
+        "normalized_l1": 0.004137635958082029,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.009614760085634264,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 1.404541927,
+        "p99_floor_ms": 1.440123
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        1.2807138162485021e-18,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "shear-16-fine-mono",
+      "configuration": {
+        "name": "shear-16-fine-mono",
+        "scenario": "Shear",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "fine",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 512,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          0.0,
+          1.3552527156068805e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          4.743384504624082e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.009520101963706973,
+        "normalized_l1": 0.0048259210082408945,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.009567822722322289,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.579380443,
+        "p99_floor_ms": 0.595892
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        5.149960319306146e-19,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "shear-32-uniform-mono",
+      "configuration": {
+        "name": "shear-32-uniform-mono",
+        "scenario": "Shear",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 128,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          5.929230630780102e-21,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.009567822722322438,
+        "normalized_l1": 0.00012103178185352425,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.009614117325047987,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.290994107,
+        "p99_floor_ms": 0.315541
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        1.9481757786848908e-20,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "shear-32-refined-mono",
+      "configuration": {
+        "name": "shear-32-refined-mono",
+        "scenario": "Shear",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          4.0657581468206416e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          4.0657581468206416e-20,
+          5.929230630780102e-21,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.009567557707376195,
+        "normalized_l1": 0.0010218706165191457,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.009613297246806617,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.536592758,
+        "p99_floor_ms": 0.561122
+      },
+      "maximum_trace_residual": [
+        0.0,
+        4.0657581468206416e-20,
+        1.0926725019580474e-19,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "shear-32-refined-subcycle",
+      "configuration": {
+        "name": "shear-32-refined-subcycle",
+        "scenario": "Shear",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          5.929230630780102e-21,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.009567557913335013,
+        "normalized_l1": 0.0010216917864427238,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.00961329891640918,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 2.946862047,
+        "p99_floor_ms": 3.24495
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        1.2112571145736495e-19,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "shear-32-fine-mono",
+      "configuration": {
+        "name": "shear-32-fine-mono",
+        "scenario": "Shear",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "fine",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 1024,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          0.0,
+          4.743384504624082e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          5.336307567702092e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.009590059142657514,
+        "normalized_l1": 0.0011282283736539019,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.009601624721813636,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 1.18701965,
+        "p99_floor_ms": 1.336163
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        1.2112571145736495e-19,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "shear-64-uniform-mono",
+      "configuration": {
+        "name": "shear-64-uniform-mono",
+        "scenario": "Shear",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 256,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.01953125,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          1.496866036475959e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.009601624721813562,
+        "normalized_l1": 2.9724010875169633e-05,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.009613204247338181,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.608990538,
+        "p99_floor_ms": 0.663162
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        2.005085804828539e-20,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "shear-64-refined-mono",
+      "configuration": {
+        "name": "shear-64-refined-mono",
+        "scenario": "Shear",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 704,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.01953125,
+          1.0164395367051604e-20,
+          1.3552527156068805e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          1.0164395367051604e-20,
+          2.8521187520828394e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.00960154814448666,
+        "normalized_l1": 0.00025718614371308924,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.009612994705770284,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 1.086797649,
+        "p99_floor_ms": 1.147293
+      },
+      "maximum_trace_residual": [
+        0.0,
+        1.0164395367051604e-20,
+        7.087283488354341e-20,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "shear-64-refined-subcycle",
+      "configuration": {
+        "name": "shear-64-refined-subcycle",
+        "scenario": "Shear",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 704,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.01953125,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          1.496866036475959e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.009601548235592117,
+        "normalized_l1": 0.00025699922127256017,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.00961299630192087,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 5.958929761,
+        "p99_floor_ms": 6.701579
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        9.967195509018962e-20,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "shear-64-fine-mono",
+      "configuration": {
+        "name": "shear-64-fine-mono",
+        "scenario": "Shear",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "fine",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 2048,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.01953125,
+          0.0,
+          4.235164736271502e-22,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          1.539217683838674e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.009607186091133002,
+        "normalized_l1": 0.0002826539531332649,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.009610080467698118,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 2.452399555,
+        "p99_floor_ms": 2.742338
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        6.634650257165324e-20,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "wave-16-uniform-mono",
+      "configuration": {
+        "name": "wave-16-uniform-mono",
+        "scenario": "Wave",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0001,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 64,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125000000000001,
+          5.412658773658666e-09,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          1.1102230246251565e-16,
+          1.2281977735187355e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.1,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.00022579053866101411,
+        "normalized_l1": null,
+        "normalized_wave_l2": 0.2500291304077239,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009804543338284276
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.108205006,
+        "p99_floor_ms": 0.13342
+      },
+      "maximum_trace_residual": [
+        2.220446049250313e-16,
+        1.2281977735187355e-20,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "wave-16-refined-mono",
+      "configuration": {
+        "name": "wave-16-refined-mono",
+        "scenario": "Wave",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0001,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 176,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.31250000000000017,
+          5.412658774011031e-09,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          1.6653345369377348e-16,
+          3.646476837929763e-19,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.1,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.00024149184566865471,
+        "normalized_l1": null,
+        "normalized_wave_l2": 0.22219890637785839,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009804543338284276
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.250531194,
+        "p99_floor_ms": 0.290881
+      },
+      "maximum_trace_residual": [
+        5.551115123125783e-16,
+        9.067487700357285e-19,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "wave-16-refined-subcycle",
+      "configuration": {
+        "name": "wave-16-refined-subcycle",
+        "scenario": "Wave",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0001,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 176,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3124999999999999,
+          5.412658773983926e-09,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          -1.1102230246251565e-16,
+          3.375426294808387e-19,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.1,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.00024137310414396588,
+        "normalized_l1": null,
+        "normalized_wave_l2": 0.22238646169586251,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009804543338284276
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 1.403334907,
+        "p99_floor_ms": 1.505255
+      },
+      "maximum_trace_residual": [
+        6.106226635438361e-16,
+        1.1235892045328294e-18,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "wave-16-fine-mono",
+      "configuration": {
+        "name": "wave-16-fine-mono",
+        "scenario": "Wave",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0001,
+        "ticks": 1000,
+        "refined": "fine",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 512,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.31249999999999933,
+          5.412658773658666e-09,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          -6.661338147750939e-16,
+          1.2281977735187355e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.1,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0002759364976678469,
+        "normalized_l1": null,
+        "normalized_wave_l2": 0.1442378374543462,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009804543338284276
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.580687738,
+        "p99_floor_ms": 0.624372
+      },
+      "maximum_trace_residual": [
+        1.27675647831893e-15,
+        1.2281977735187355e-20,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "wave-32-uniform-mono",
+      "configuration": {
+        "name": "wave-32-uniform-mono",
+        "scenario": "Wave",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0001,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 128,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.07812499999999997,
+          1.3531646933875614e-09,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          -2.7755575615628914e-17,
+          -2.5463927976832404e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.1,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.000277271488856218,
+        "normalized_l1": null,
+        "normalized_wave_l2": 0.14152177278904043,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009804543338284276
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.289049825,
+        "p99_floor_ms": 0.300721
+      },
+      "maximum_trace_residual": [
+        8.326672684688674e-17,
+        2.5463927976832404e-20,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "wave-32-refined-mono",
+      "configuration": {
+        "name": "wave-32-refined-mono",
+        "scenario": "Wave",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0001,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          1.353164693584073e-09,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          1.7104771578616527e-19,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.1,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0002883617721492636,
+        "normalized_l1": null,
+        "normalized_wave_l2": 0.1253026539388182,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009804543338284276
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.534846426,
+        "p99_floor_ms": 0.552192
+      },
+      "maximum_trace_residual": [
+        2.3592239273284576e-16,
+        2.930204601907845e-19,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "wave-32-refined-subcycle",
+      "configuration": {
+        "name": "wave-32-refined-subcycle",
+        "scenario": "Wave",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0001,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.07812500000000012,
+          1.353164692506647e-09,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          1.249000902703301e-16,
+          -9.063781931213048e-19,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.1,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0002882088663090772,
+        "normalized_l1": null,
+        "normalized_wave_l2": 0.12548987991233063,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009804543338284276
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 2.918128084,
+        "p99_floor_ms": 3.027379
+      },
+      "maximum_trace_residual": [
+        2.3592239273284576e-16,
+        9.470357745895112e-19,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "wave-32-fine-mono",
+      "configuration": {
+        "name": "wave-32-fine-mono",
+        "scenario": "Wave",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0001,
+        "ticks": 1000,
+        "refined": "fine",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 1024,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.07812500000000032,
+          1.3531646934146664e-09,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          3.191891195797325e-16,
+          1.641126335305207e-21,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.1,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.00030912573608859404,
+        "normalized_l1": null,
+        "normalized_wave_l2": 0.07855562146239063,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009804543338284276
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 1.188145133,
+        "p99_floor_ms": 1.245664
+      },
+      "maximum_trace_residual": [
+        3.885780586188048e-16,
+        1.641126335305207e-21,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "wave-64-uniform-mono",
+      "configuration": {
+        "name": "wave-64-uniform-mono",
+        "scenario": "Wave",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0001,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 256,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.019531249999999997,
+          3.3829117334689034e-10,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          -1.734723475976807e-17,
+          -6.157532479844738e-21,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.1,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0003094985782133552,
+        "normalized_l1": null,
+        "normalized_wave_l2": 0.07779870932621433,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009804543338284276
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.604845155,
+        "p99_floor_ms": 0.622592
+      },
+      "maximum_trace_residual": [
+        4.163336342344337e-17,
+        6.157532479844738e-21,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "wave-64-refined-mono",
+      "configuration": {
+        "name": "wave-64-refined-mono",
+        "scenario": "Wave",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0001,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 704,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.01953125000000003,
+          3.38291173389242e-10,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          1.734723475976807e-17,
+          3.619411488287028e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.1,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.00031532645419371237,
+        "normalized_l1": null,
+        "normalized_wave_l2": 0.06908888786914885,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009804543338284276
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 1.083652459,
+        "p99_floor_ms": 1.159743
+      },
+      "maximum_trace_residual": [
+        7.28583859910259e-17,
+        9.71804870851799e-20,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "wave-64-refined-subcycle",
+      "configuration": {
+        "name": "wave-64-refined-subcycle",
+        "scenario": "Wave",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0001,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 704,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.019531250000000024,
+          3.3829117337568946e-10,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          1.0408340855860843e-17,
+          2.2641587726801474e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.1,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0003151721903609892,
+        "normalized_l1": null,
+        "normalized_wave_l2": 0.06927058617423296,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009804543338284276
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 5.87781216,
+        "p99_floor_ms": 6.180587
+      },
+      "maximum_trace_residual": [
+        9.020562075079397e-17,
+        9.763709078330917e-20,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "wave-64-fine-mono",
+      "configuration": {
+        "name": "wave-64-fine-mono",
+        "scenario": "Wave",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0001,
+        "ticks": 1000,
+        "refined": "fine",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 2048,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.019531249999999983,
+          3.382911733401141e-10,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          -3.122502256758253e-17,
+          -1.293379605787914e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.1,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.00032653401266120267,
+        "normalized_l1": null,
+        "normalized_wave_l2": 0.04347131229194874,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009804543338284276
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 2.432669684,
+        "p99_floor_ms": 2.591197
+      },
+      "maximum_trace_residual": [
+        1.734723475976807e-16,
+        1.293379605787914e-20,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "hydrostatic-16",
+      "configuration": {
+        "name": "hydrostatic-16",
+        "scenario": "Hydrostatic",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 64,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.31250000000662265,
+          0.0,
+          -6.888629033554127e-06,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          -2.7755575615628914e-16,
+          1.2739375526704677e-17,
+          -2.1169809747432003e-16,
+          -5.686640394686471e-17,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 2.2043616003231892e-05,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.130100361,
+        "p99_floor_ms": 0.150131
+      },
+      "maximum_trace_residual": [
+        4.996003610813204e-16,
+        1.2766480581016815e-17,
+        2.746614445755212e-16,
+        9.437979911486316e-17,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "hydrostatic-32",
+      "configuration": {
+        "name": "hydrostatic-32",
+        "scenario": "Hydrostatic",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 128,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.07812500000041392,
+          0.0,
+          -8.420729158244026e-07,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          1.942890293094024e-16,
+          1.951563910473908e-18,
+          1.4907123421141564e-16,
+          -4.1692994542930073e-16,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 1.077853474040644e-05,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.322743262,
+        "p99_floor_ms": 0.335591
+      },
+      "maximum_trace_residual": [
+        4.3021142204224816e-16,
+        1.951563910473908e-18,
+        2.866700424269822e-16,
+        4.1692994542930073e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "hydrostatic-64",
+      "configuration": {
+        "name": "hydrostatic-64",
+        "scenario": "Hydrostatic",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 256,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0009765625,
+        "total": [
+          0.01953125000002594,
+          0.0,
+          -1.0080853146140626e-07,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          1.734723475976807e-17,
+          1.9481757786848908e-19,
+          -1.7532309473509665e-15,
+          2.306131902194558e-16,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 5.161397410475335e-06,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.666726606,
+        "p99_floor_ms": 0.691332
+      },
+      "maximum_trace_residual": [
+        1.3183898417423734e-16,
+        2.168404344971009e-19,
+        1.7532309473509665e-15,
+        3.1917895518436545e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "equilibrium-uniform-mono",
+      "configuration": {
+        "name": "equilibrium-uniform-mono",
+        "scenario": "Equilibrium",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 100,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 128,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.02,
+        "cycle": 100,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.00996059940722142
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 100,
+        "mean_ms": 0.29288197,
+        "p99_floor_ms": 0.395681
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "disturbance-uniform-mono",
+      "configuration": {
+        "name": "disturbance-uniform-mono",
+        "scenario": "Disturbance",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 128,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.07812583083774259,
+          0.003906291541887133,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          3.469446951953614e-18,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.05004521342119104,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.287849858,
+        "p99_floor_ms": 0.298101
+      },
+      "maximum_trace_residual": [
+        8.326672684688674e-17,
+        4.336808689942018e-18,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "interacting-uniform-mono",
+      "configuration": {
+        "name": "interacting-uniform-mono",
+        "scenario": "Interacting",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "uniform",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 128,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.07812666167548525,
+          0.003906333083774257,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          5.551115123125783e-17,
+          -3.469446951953614e-18,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.05003470406402886,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.286092599,
+        "p99_floor_ms": 0.296241
+      },
+      "maximum_trace_residual": [
+        1.1102230246251565e-16,
+        5.204170427930421e-18,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "equilibrium-refined-mono",
+      "configuration": {
+        "name": "equilibrium-refined-mono",
+        "scenario": "Equilibrium",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 100,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          4.0657581468206416e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          4.0657581468206416e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.02,
+        "cycle": 100,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 1.6653345369377347e-17,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.00996059940722142
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 100,
+        "mean_ms": 0.53740814,
+        "p99_floor_ms": 0.662592
+      },
+      "maximum_trace_residual": [
+        0.0,
+        4.0657581468206416e-20,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "disturbance-refined-mono",
+      "configuration": {
+        "name": "disturbance-refined-mono",
+        "scenario": "Disturbance",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.07812583083774255,
+          0.003906291541887133,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          -4.163336342344337e-17,
+          3.469446951953614e-18,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.05004918690907652,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.530373383,
+        "p99_floor_ms": 0.543191
+      },
+      "maximum_trace_residual": [
+        2.636779683484747e-16,
+        1.9081958235744878e-17,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "interacting-refined-mono",
+      "configuration": {
+        "name": "interacting-refined-mono",
+        "scenario": "Interacting",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.0781266616754852,
+          0.003906333083774259,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          -1.734723475976807e-18,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.05003724308334035,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 0.528656568,
+        "p99_floor_ms": 0.542181
+      },
+      "maximum_trace_residual": [
+        2.220446049250313e-16,
+        1.474514954580286e-17,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "equilibrium-refined-subcycle",
+      "configuration": {
+        "name": "equilibrium-refined-subcycle",
+        "scenario": "Equilibrium",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 100,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.02,
+        "cycle": 100,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.00996059940722142
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 100,
+        "mean_ms": 2.94155421,
+        "p99_floor_ms": 3.379399
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "disturbance-refined-subcycle",
+      "configuration": {
+        "name": "disturbance-refined-subcycle",
+        "scenario": "Disturbance",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.0781258308377426,
+          0.003906291541887137,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          1.3877787807814457e-17,
+          6.938893903907228e-18,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.05004907018250551,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 2.901610786,
+        "p99_floor_ms": 3.033149
+      },
+      "maximum_trace_residual": [
+        2.3592239273284576e-16,
+        1.734723475976807e-17,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "interacting-refined-subcycle",
+      "configuration": {
+        "name": "interacting-refined-subcycle",
+        "scenario": "Interacting",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 1000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.07812666167548517,
+          0.0039063330837742745,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          -2.7755575615628914e-17,
+          1.3877787807814457e-17,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 1000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.050037182709593564,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 1000,
+        "mean_ms": 2.893158775,
+        "p99_floor_ms": 2.961648
+      },
+      "maximum_trace_residual": [
+        2.0816681711721685e-16,
+        1.9949319973733282e-17,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "temporal-shear-0.0001",
+      "configuration": {
+        "name": "temporal-shear-0.0001",
+        "scenario": "Shear",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0001,
+        "ticks": 2000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          0.0,
+          5.082197683525802e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          5.675120746603812e-20,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 2000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.009567561288154596,
+        "normalized_l1": 0.0010218333366217897,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.009613301799351251,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 2000,
+        "mean_ms": 2.931007314,
+        "p99_floor_ms": 3.000208
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        1.5839516113655416e-19,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "temporal-shear-0.0004",
+      "configuration": {
+        "name": "temporal-shear-0.0004",
+        "scenario": "Shear",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0004,
+        "ticks": 500,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          5.929230630780102e-21,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.2,
+        "cycle": 500,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.009567551165102838,
+        "normalized_l1": 0.00102143529917907,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.009613293150946446,
+        "shear_exact_amplitude": 0.009612907007229459
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 500,
+        "mean_ms": 2.937023848,
+        "p99_floor_ms": 3.044178
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        1.2112571145736495e-19,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "domain-32",
+      "configuration": {
+        "name": "domain-32",
+        "scenario": "Disturbance",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 100,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": 0.03125,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.0781258308377427,
+          0.0039062915418871325,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          1.1102230246251565e-16,
+          2.6020852139652106e-18,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.02,
+        "cycle": 100,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.05011455831514461,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.00996059940722142
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 100,
+        "mean_ms": 0.5310811,
+        "p99_floor_ms": 0.549482
+      },
+      "maximum_trace_residual": [
+        1.6653345369377348e-16,
+        1.3877787807814457e-17,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "domain-64",
+      "configuration": {
+        "name": "domain-64",
+        "scenario": "Disturbance",
+        "model": "FiniteVolume",
+        "n": 64,
+        "dt": 0.0002,
+        "ticks": 100,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": 0.03125,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 480,
+        "root_cells": 256,
+        "full_finest_cells": 2048,
+        "volume_m3": 0.0078125,
+        "total": [
+          0.1562508308377427,
+          0.00781254154188712,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          5.551115123125783e-17,
+          -1.5612511283791264e-17,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.02,
+        "cycle": 100,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.05011455831514461,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.00996059940722142
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 100,
+        "mean_ms": 0.85296413,
+        "p99_floor_ms": 1.052313
+      },
+      "maximum_trace_residual": [
+        3.3306690738754696e-16,
+        2.7755575615628914e-17,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "domain-128",
+      "configuration": {
+        "name": "domain-128",
+        "scenario": "Disturbance",
+        "model": "FiniteVolume",
+        "n": 128,
+        "dt": 0.0002,
+        "ticks": 100,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": 0.03125,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 736,
+        "root_cells": 512,
+        "full_finest_cells": 4096,
+        "volume_m3": 0.015625,
+        "total": [
+          0.31250083083774266,
+          0.01562504154188713,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          6.938893903907228e-18,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.02,
+        "cycle": 100,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.05011455831514461,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.00996059940722142
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 100,
+        "mean_ms": 1.48666649,
+        "p99_floor_ms": 1.527974
+      },
+      "maximum_trace_residual": [
+        6.661338147750939e-16,
+        4.85722573273506e-17,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "domain-256",
+      "configuration": {
+        "name": "domain-256",
+        "scenario": "Disturbance",
+        "model": "FiniteVolume",
+        "n": 256,
+        "dt": 0.0002,
+        "ticks": 100,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": 0.03125,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 1248,
+        "root_cells": 1024,
+        "full_finest_cells": 8192,
+        "volume_m3": 0.03125,
+        "total": [
+          0.6250008308377424,
+          0.0312500415418871,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          -3.3306690738754696e-16,
+          -4.163336342344337e-17,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.02,
+        "cycle": 100,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.05011455831514461,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.00996059940722142
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 100,
+        "mean_ms": 2.76749385,
+        "p99_floor_ms": 2.825348
+      },
+      "maximum_trace_residual": [
+        1.5543122344752192e-15,
+        9.020562075079397e-17,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "domain-512",
+      "configuration": {
+        "name": "domain-512",
+        "scenario": "Disturbance",
+        "model": "FiniteVolume",
+        "n": 512,
+        "dt": 0.0002,
+        "ticks": 100,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": 0.03125,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 2272,
+        "root_cells": 2048,
+        "full_finest_cells": 16384,
+        "volume_m3": 0.0625,
+        "total": [
+          1.2500008308377435,
+          0.06250004154188717,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          4.440892098500626e-16,
+          4.163336342344337e-17,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.02,
+        "cycle": 100,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.05011455831514461,
+        "normalized_l1": null,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.00996059940722142
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 100,
+        "mean_ms": 5.43403412,
+        "p99_floor_ms": 5.550944
+      },
+      "maximum_trace_residual": [
+        3.1086244689504383e-15,
+        1.8041124150158794e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "species-1",
+      "configuration": {
+        "name": "species-1",
+        "scenario": "Diffusion",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 100,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 1,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          4.0657581468206416e-20,
+          0.0,
+          0.0,
+          3.9062499999999917e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          4.0657581468206416e-20,
+          0.0,
+          0.0,
+          -8.999725064576941e-22,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.02,
+        "cycle": 100,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 1.1102230246251565e-16,
+        "max_speed_m_s": 1.6653345369377347e-17,
+        "normalized_l1": 0.0034488629148052277,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.00996059940722142
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 100,
+        "mean_ms": 0.54603228,
+        "p99_floor_ms": 0.713942
+      },
+      "maximum_trace_residual": [
+        0.0,
+        4.0657581468206416e-20,
+        0.0,
+        0.0,
+        1.852884572118782e-21,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "species-2",
+      "configuration": {
+        "name": "species-2",
+        "scenario": "Diffusion",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 100,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 2,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          4.0657581468206416e-20,
+          0.0,
+          0.0,
+          3.9062499999999917e-07,
+          7.812499999999983e-07,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          4.0657581468206416e-20,
+          0.0,
+          0.0,
+          -8.999725064576941e-22,
+          -1.7999450129153882e-21,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.02,
+        "cycle": 100,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 1.1102230246251565e-16,
+        "max_speed_m_s": 1.6653345369377347e-17,
+        "normalized_l1": 0.0034488629148052277,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.00996059940722142
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 100,
+        "mean_ms": 0.53878489,
+        "p99_floor_ms": 0.553172
+      },
+      "maximum_trace_residual": [
+        0.0,
+        4.0657581468206416e-20,
+        0.0,
+        0.0,
+        1.852884572118782e-21,
+        3.705769144237564e-21,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "species-4",
+      "configuration": {
+        "name": "species-4",
+        "scenario": "Diffusion",
+        "model": "FiniteVolume",
+        "n": 32,
+        "dt": 0.0002,
+        "ticks": 100,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 4,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 352,
+        "root_cells": 128,
+        "full_finest_cells": 1024,
+        "volume_m3": 0.00390625,
+        "total": [
+          0.078125,
+          4.0657581468206416e-20,
+          0.0,
+          0.0,
+          3.9062499999999917e-07,
+          7.812499999999983e-07,
+          1.1718749999999993e-06,
+          1.5624999999999967e-06
+        ],
+        "residual": [
+          0.0,
+          4.0657581468206416e-20,
+          0.0,
+          0.0,
+          -8.999725064576941e-22,
+          -1.7999450129153882e-21,
+          -1.4823076576950256e-21,
+          -3.5998900258307764e-21
+        ],
+        "physical_time_s": 0.02,
+        "cycle": 100,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 1.1102230246251565e-16,
+        "max_speed_m_s": 1.6653345369377347e-17,
+        "normalized_l1": 0.0034488629148052277,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.00996059940722142
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 100,
+        "mean_ms": 0.54676968,
+        "p99_floor_ms": 0.570932
+      },
+      "maximum_trace_residual": [
+        0.0,
+        4.0657581468206416e-20,
+        0.0,
+        0.0,
+        1.852884572118782e-21,
+        3.705769144237564e-21,
+        3.5998900258307764e-21,
+        7.411538288475128e-21
+      ]
+    },
+    {
+      "name": "sustained",
+      "configuration": {
+        "name": "sustained",
+        "scenario": "Advection",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0002,
+        "ticks": 5000,
+        "refined": "refined",
+        "temporal": "subcycle",
+        "species": 1,
+        "h": null,
+        "build": "counted"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 176,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          0.015625,
+          0.0,
+          0.0,
+          1.5624999999999992e-06,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.6940658945086007e-21,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 1.0,
+        "cycle": 5000,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": -0.0008323178523979013,
+        "max_speed_m_s": 0.05,
+        "normalized_l1": 0.035365497866006554,
+        "normalized_wave_l2": null,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.0082086871741554
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": true,
+      "timing": {
+        "observations": 5000,
+        "mean_ms": 1.5735567304,
+        "p99_floor_ms": 1.618684
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        5.717472393966527e-21,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "allocation": {
+        "first_live_before": 71822,
+        "last_live_before": 74502,
+        "steady_live_before_range": 0,
+        "max_requested_per_transaction": 4796864,
+        "max_peak": 4164615
+      }
+    },
+    {
+      "name": "replay-control",
+      "configuration": {
+        "name": "replay-control",
+        "scenario": "Wave",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0001,
+        "ticks": 100,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 176,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          5.41265877346893e-09,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          -1.7745340244977592e-19,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.01,
+        "cycle": 100,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0003374278534511477,
+        "normalized_l1": null,
+        "normalized_wave_l2": 0.02848806336179548,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009980280260203828
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 100,
+        "mean_ms": 0.25227563,
+        "p99_floor_ms": 0.403271
+      },
+      "maximum_trace_residual": [
+        4.996003610813204e-16,
+        7.4665954300466575e-19,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "lbm-interface-failure",
+      "configuration": {
+        "name": "lbm-interface-failure",
+        "scenario": "Wave",
+        "model": "AdaptiveLbm",
+        "n": 16,
+        "dt": 0.001,
+        "ticks": 100,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "REJECTED",
+      "endpoint_audit": {
+        "leaves": 176,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          5.6381862232387364e-08,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          5.551115123125783e-17,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.0,
+        "cycle": 0,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": null,
+      "restore_exact": true,
+      "continuation_exact": null,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 0,
+        "mean_ms": null,
+        "p99_floor_ms": null
+      },
+      "maximum_trace_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rejection": {
+        "candidate_diagnostics": {
+          "kinetic_j": 9.382965394277049e-07,
+          "leaves": 176,
+          "max_speed": 0.003704276062248568,
+          "minimum_density": 19.99802333916674,
+          "physical_time": 0.001,
+          "refined_roots": 16,
+          "residual": [
+            1.1080826961551438e-07,
+            -5.5954055905241076e-06,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "total": [
+            0.31250011080826956,
+            -5.53902372829172e-06,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "committed_cycle": 0,
+        "digest_after": "a22d894620c0cc1d8b13e0c3df97bb7e72ecb3204ae36e366c70fba1fbd8d73b",
+        "digest_before": "a22d894620c0cc1d8b13e0c3df97bb7e72ecb3204ae36e366c70fba1fbd8d73b",
+        "message": "H003 carrier inventory"
+      }
+    },
+    {
+      "name": "replay-repeat",
+      "configuration": {
+        "name": "replay-repeat",
+        "scenario": "Wave",
+        "model": "FiniteVolume",
+        "n": 16,
+        "dt": 0.0001,
+        "ticks": 100,
+        "refined": "refined",
+        "temporal": "mono",
+        "species": 0,
+        "h": null,
+        "build": "ordinary"
+      },
+      "status": "COMPLETED",
+      "endpoint_audit": {
+        "leaves": 176,
+        "root_cells": 64,
+        "full_finest_cells": 512,
+        "volume_m3": 0.015625,
+        "total": [
+          0.3125,
+          5.41265877346893e-09,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residual": [
+          0.0,
+          -1.7745340244977592e-19,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_time_s": 0.01,
+        "cycle": 100,
+        "duplicate_inventory": false
+      },
+      "endpoint_errors": {
+        "centroid_phase_error_m": 0.0,
+        "max_speed_m_s": 0.0003374278534511477,
+        "normalized_l1": null,
+        "normalized_wave_l2": 0.02848806336179548,
+        "shear_amplitude": 0.0,
+        "shear_exact_amplitude": 0.009980280260203828
+      },
+      "restore_exact": true,
+      "continuation_exact": true,
+      "pending_restoration": false,
+      "timing": {
+        "observations": 100,
+        "mean_ms": 0.25132322,
+        "p99_floor_ms": 0.316221
+      },
+      "maximum_trace_residual": [
+        4.996003610813204e-16,
+        7.4665954300466575e-19,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "independent_replay": {
+    "full_trace_equal": true,
+    "full_final_equal": true
+  },
+  "limits": "Independent endpoint inventory/partition audits; every-tick residuals from Rust telemetry. No independent per-tick payload archive, native Witness or GPU qualification.",
+  "source_commit": "5d69505236746f4e35d896824a83f217f1e4a5fb",
+  "clean_workspace_certificate": {
+    "source_head": "5d69505236746f4e35d896824a83f217f1e4a5fb",
+    "status_before": "",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--workspace",
+      "--all-targets",
+      "--all-features"
+    ],
+    "started_utc": "2026-11-28T00:45:30.536244+00:00",
+    "status": "PASS",
+    "returncode": 0,
+    "status_after": "",
+    "ended_utc": "2026-11-28T00:47:47.356787+00:00",
+    "passed": 293,
+    "failed": 0,
+    "ignored": 0
+  },
+  "experiment_checkpoint": {
+    "head": "5d69505236746f4e35d896824a83f217f1e4a5fb",
+    "status": "",
+    "started_utc": "2026-11-28T00:48:51.421236+00:00",
+    "registered_plan": "/home/cognis/habitat-003-20261127/REGISTERED_FINAL_PLAN.json",
+    "ended_utc": "2026-11-28T00:55:25.009763+00:00",
+    "head_after": "5d69505236746f4e35d896824a83f217f1e4a5fb",
+    "status_after": ""
+  },
+  "experiment_matrix": [
+    {
+      "id": "E01",
+      "status": "PASS",
+      "scope": "Bounded uniform/refined/subcycled equilibrium",
+      "evidence": "Three equilibrium runs; speed<=1e-10, inventory budgets; focused equilibrium test"
+    },
+    {
+      "id": "E02",
+      "status": "PARTIAL",
+      "scope": "Weak gravity sampled hydrostatic profile",
+      "evidence": "All max speeds below1e-4m/s; transverse extent changes with h, so no same-box spatial trend or exact well-balancing claim"
+    },
+    {
+      "id": "E03",
+      "status": "PASS",
+      "scope": "Analytical sinusoidal diffusion",
+      "evidence": "12 uniform/refined/fine controls, L1<=.15 and decreasing across three h"
+    },
+    {
+      "id": "E04",
+      "status": "PASS",
+      "scope": "Sinusoidal advection phase position",
+      "evidence": "12 controls; phase error<=one coarse h, measured rather than visually inferred"
+    },
+    {
+      "id": "E05",
+      "status": "PASS",
+      "scope": "Shear modal decay and spatial trend",
+      "evidence": "12 controls; amplitude error<=.15, decreasing L1; no complete compressible stress claim"
+    },
+    {
+      "id": "E06",
+      "status": "PASS",
+      "scope": "Accounted momentum transport on refined grids",
+      "evidence": "Shear/disturbance/scalar-momentum focused test, all completed endpoints independently audited"
+    },
+    {
+      "id": "E07",
+      "status": "FAIL",
+      "scope": "Linear pressure wave accuracy across tested resolution envelope",
+      "evidence": "Failed cases: wave-16-uniform-mono, wave-16-refined-mono, wave-16-refined-subcycle"
+    },
+    {
+      "id": "E08",
+      "status": "NOT RUN",
+      "scope": "Isolated reflection/transmission",
+      "evidence": "Dependency: localized acoustic packet and separated reflected/transmitted reference; periodic-wave/fine comparisons do not substitute"
+    },
+    {
+      "id": "E09",
+      "status": "PARTIAL",
+      "scope": "Moving density-disturbance executions",
+      "evidence": "Uniform/refined/subcycled pulses completed; isolated crossing/centroid reference not qualified"
+    },
+    {
+      "id": "E10",
+      "status": "PARTIAL",
+      "scope": "Two initial density disturbances",
+      "evidence": "Three executions conserve and stay valid; interaction-specific quantitative reference missing"
+    },
+    {
+      "id": "E11",
+      "status": "PASS",
+      "scope": "Sealed FV wall impulse with weak gravity",
+      "evidence": "Hydrostatic endpoint wall/source ledgers independently account momentum; FV free-slip differs from legacy LBM no-slip"
+    },
+    {
+      "id": "E12",
+      "status": "PASS",
+      "scope": "Existing passive-sphere regression only",
+      "evidence": "Clean293-test suite includes original two_way_coupling_and_wall_impulses_close_momentum;003 bodies refused"
+    },
+    {
+      "id": "E13",
+      "status": "PASS",
+      "scope": "Repeated conservative remapping",
+      "evidence": "100 refine/coarsen cycles and focused inventory assertions; counters differ, microscopic replay not claimed"
+    },
+    {
+      "id": "E14",
+      "status": "PASS",
+      "scope": "One-dimensional spatial convergence controls",
+      "evidence": "Three h for diffusion/shear/wave; not fixed-box3D convergence or universal order"
+    },
+    {
+      "id": "E15",
+      "status": "PARTIAL",
+      "scope": "Three subcycled dt settings",
+      "evidence": "Fixed-h shear L1 slightly increases when dt decreases; temporal truncation not isolated from spatial error, no temporal-order qualification"
+    },
+    {
+      "id": "E16",
+      "status": "PARTIAL",
+      "scope": "5000-cycle finite sustained window",
+      "evidence": "1 physical second; conserved/stable, shorter physical duration than historical00234.13s; no lifetime/long-duration equivalence"
+    },
+    {
+      "id": "E17",
+      "status": "PASS",
+      "scope": "Native nonoverlapping leaf owner",
+      "evidence": "Every saved endpoint independently partition-audited"
+    },
+    {
+      "id": "E18",
+      "status": "PASS",
+      "scope": "No parent/child duplicate physical inventory",
+      "evidence": "Partition falsification; inspected source has no finest-volume authoritative shadow"
+    },
+    {
+      "id": "E19",
+      "status": "PASS",
+      "scope": "Coarse/fine synchronized inventory",
+      "evidence": "Paired integrated interface register, endpoint audits and reflux honest-red"
+    },
+    {
+      "id": "E20",
+      "status": "PASS",
+      "scope": "Fixed2:1 conservative subcycling contract",
+      "evidence": "Focused half-cycle/finish refusal tests; final accuracy and cost are separate"
+    },
+    {
+      "id": "E21",
+      "status": "PASS",
+      "scope": "Same-source process replay",
+      "evidence": "Full100-cycle trace and final checkpoint exactly equal in two independent executions"
+    },
+    {
+      "id": "E22",
+      "status": "PASS",
+      "scope": "Complete synchronized checkpoint restoration",
+      "evidence": "All74 saved committed endpoints restore exactly; one monorate continuation compared for completed runs"
+    },
+    {
+      "id": "E23",
+      "status": "PASS",
+      "scope": "Incomplete-cycle restoration",
+      "evidence": "Every subcycle run restores its first pending half-cycle and finishes identically; focused pending continuation"
+    },
+    {
+      "id": "E24",
+      "status": "PASS",
+      "scope": "Invalid state and commit refusal",
+      "evidence": "Injected numerical/finish refusal, conservation mutant and six adversarial checkpoint loads"
+    },
+    {
+      "id": "E25",
+      "status": "PASS",
+      "scope": "Logical leaf capacity refusal/recovery",
+      "evidence": "Focused capacity32 test; no actual OS OOM, disk-full or GPU OOM manufactured"
+    },
+    {
+      "id": "E26",
+      "status": "NOT RUN",
+      "scope": "New-owner native Witness comparison",
+      "evidence": "Dependency: native hierarchy/FV observation adapter and actual controlled stationary/moving captures"
+    },
+    {
+      "id": "E27",
+      "status": "NOT RUN",
+      "scope": "New-owner native Witness comparison",
+      "evidence": "Dependency: native hierarchy/FV observation adapter and actual controlled stationary/moving captures"
+    },
+    {
+      "id": "E28",
+      "status": "NOT RUN",
+      "scope": "New-owner native Witness comparison",
+      "evidence": "Dependency: native hierarchy/FV observation adapter and actual controlled stationary/moving captures"
+    },
+    {
+      "id": "E29",
+      "status": "PASS",
+      "scope": "Fixed-h actual tube enlargement",
+      "evidence": "Length1/2/4/8/16m, cross-section0.0625\u00b2m\u00b2, fineh0.015625m; not isotropic ship scaling"
+    },
+    {
+      "id": "E30",
+      "status": "NOT RUN",
+      "scope": "Fixed3D-box resolution scaling",
+      "evidence": "Dependency: independent x/y/z extent controls; current x-resolution family changes transverse lengths"
+    },
+    {
+      "id": "E31",
+      "status": "PARTIAL",
+      "scope": "Fixed refinement volume in growing tubes",
+      "evidence": "Central refinement window fixed; all coarse background and scalar tails retained; no fixed-active-gas sparse universe claim"
+    },
+    {
+      "id": "E32",
+      "status": "NOT RUN",
+      "scope": "Active-region count scaling",
+      "evidence": "Dependency: disjoint-region physical scenarios and qualification protocol"
+    },
+    {
+      "id": "E33",
+      "status": "PASS",
+      "scope": "Bounded refined-volume fraction sweep",
+      "evidence": "0/25/100percent at matched roots/h/dt/physical extent; uniform/refined/fine cases and costs retained"
+    },
+    {
+      "id": "E34",
+      "status": "NOT RUN",
+      "scope": "Moving refinement overhead",
+      "evidence": "Dependency: quantitative moving-indicator trajectory; hysteresis currently unit-tested only"
+    },
+    {
+      "id": "E35",
+      "status": "PASS",
+      "scope": "One/two/four passive scalar species",
+      "evidence": "Matched refined diffusion100-cycle runs, inventories independently audited"
+    },
+    {
+      "id": "E36",
+      "status": "NOT RUN",
+      "scope": "Passive-body count",
+      "evidence": "new003 closure not qualified; bodies refused"
+    },
+    {
+      "id": "E37",
+      "status": "NOT RUN",
+      "scope": "CPU workers",
+      "evidence": "single-thread deterministic owner; no new parallel executor"
+    },
+    {
+      "id": "E38",
+      "status": "NOT RUN",
+      "scope": "GPU workload",
+      "evidence": "complete environmental GPU transaction not implemented"
+    },
+    {
+      "id": "E39",
+      "status": "NOT RUN",
+      "scope": "Concurrent-rendering full transaction",
+      "evidence": "new-owner Witness and full GPU transaction not implemented"
+    },
+    {
+      "id": "E40",
+      "status": "PARTIAL",
+      "scope": "Bounded requested-heap accounting",
+      "evidence": "5000 streamed ticks: live-before range0bytes after20ticks; requested allocator only, not total RSS/VRAM/page cache"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "status": "PARTIALLY QUALIFIED",
+      "finding": "Native spatial leaf controls conserve with fewer payload cells; coarse-wave error fails and general3D adaptive accuracy is open"
+    },
+    {
+      "id": "H2",
+      "status": "PARTIALLY QUALIFIED",
+      "finding": "Fixed2:1 cycles synchronize conservatively, but measured cost is higher and temporal accuracy order is unresolved"
+    },
+    {
+      "id": "H3",
+      "status": "PARTIALLY QUALIFIED",
+      "finding": "Paired flux and reflux contracts qualify bounded FV conservation; acoustic-interface scattering still NOT RUN"
+    },
+    {
+      "id": "H4",
+      "status": "QUALIFIED",
+      "finding": "Bounded experimental native ownership and persisted provisional work; no canonical integration"
+    },
+    {
+      "id": "H5",
+      "status": "PARTIALLY QUALIFIED",
+      "finding": "FV diffusion/shear/advection controls qualify; n16 wave controls fail, no calibrated full atmosphere"
+    },
+    {
+      "id": "H6",
+      "status": "UNRESOLVED",
+      "finding": "Conditional Knudsen arithmetic and donor dossier only; no hybrid solver"
+    },
+    {
+      "id": "H7",
+      "status": "NOT RUN",
+      "finding": "Full environmental GPU authority remains unimplemented"
+    },
+    {
+      "id": "H8",
+      "status": "PARTIALLY QUALIFIED",
+      "finding": "Physical jump/hysteresis state implemented and tested; moving-refinement adequacy/cost not qualified"
+    }
+  ],
+  "maximum_admitted_trace_residual": [
+    3.1086244689504383e-15,
+    1.8041124150158794e-16,
+    1.7532309473509665e-15,
+    4.1692994542930073e-16,
+    9.529120656610879e-21,
+    3.705769144237564e-21,
+    3.5998900258307764e-21,
+    7.411538288475128e-21
+  ],
+  "modal_viscosity": [
+    {
+      "case": "shear-16-uniform-mono",
+      "projected_initial_amplitude": 0.01,
+      "final_amplitude": 0.00961775292916825,
+      "apparent_modal_nu_m2_s": 0.0049361703448174594,
+      "nominal_nu_m2_s": 0.005
+    },
+    {
+      "case": "shear-16-refined-mono",
+      "projected_initial_amplitude": 0.009995826138925329,
+      "final_amplitude": 0.009614758327798099,
+      "apparent_modal_nu_m2_s": 0.004922737321416893,
+      "nominal_nu_m2_s": 0.005
+    },
+    {
+      "case": "shear-16-refined-subcycle",
+      "projected_initial_amplitude": 0.009995826138925329,
+      "final_amplitude": 0.009614760085634264,
+      "apparent_modal_nu_m2_s": 0.004922714166125492,
+      "nominal_nu_m2_s": 0.005
+    },
+    {
+      "case": "shear-16-fine-mono",
+      "projected_initial_amplitude": 0.00995184726672197,
+      "final_amplitude": 0.009567822722322289,
+      "apparent_modal_nu_m2_s": 0.004984054886497678,
+      "nominal_nu_m2_s": 0.005
+    },
+    {
+      "case": "shear-32-uniform-mono",
+      "projected_initial_amplitude": 0.01,
+      "final_amplitude": 0.009614117325047987,
+      "apparent_modal_nu_m2_s": 0.004984054886497327,
+      "nominal_nu_m2_s": 0.005
+    },
+    {
+      "case": "shear-32-refined-mono",
+      "projected_initial_amplitude": 0.009998918105449981,
+      "final_amplitude": 0.009613297246806617,
+      "apparent_modal_nu_m2_s": 0.004981155544060805,
+      "nominal_nu_m2_s": 0.005
+    },
+    {
+      "case": "shear-32-refined-subcycle",
+      "projected_initial_amplitude": 0.009998918105449981,
+      "final_amplitude": 0.00961329891640918,
+      "apparent_modal_nu_m2_s": 0.004981133547693575,
+      "nominal_nu_m2_s": 0.005
+    },
+    {
+      "case": "shear-32-fine-mono",
+      "projected_initial_amplitude": 0.009987954562051779,
+      "final_amplitude": 0.009601624721813636,
+      "apparent_modal_nu_m2_s": 0.0049960838779044125,
+      "nominal_nu_m2_s": 0.005
+    },
+    {
+      "case": "shear-64-uniform-mono",
+      "projected_initial_amplitude": 0.010000000000000005,
+      "final_amplitude": 0.009613204247338181,
+      "apparent_modal_nu_m2_s": 0.004996083877903739,
+      "nominal_nu_m2_s": 0.005
+    },
+    {
+      "case": "shear-64-refined-mono",
+      "projected_initial_amplitude": 0.009999727162550444,
+      "final_amplitude": 0.009612994705770284,
+      "apparent_modal_nu_m2_s": 0.004995388990144598,
+      "nominal_nu_m2_s": 0.005
+    },
+    {
+      "case": "shear-64-refined-subcycle",
+      "projected_initial_amplitude": 0.009999727162550444,
+      "final_amplitude": 0.00961299630192087,
+      "apparent_modal_nu_m2_s": 0.004995367960816818,
+      "nominal_nu_m2_s": 0.005
+    },
+    {
+      "case": "shear-64-fine-mono",
+      "projected_initial_amplitude": 0.009996988186962,
+      "final_amplitude": 0.009610080467698118,
+      "apparent_modal_nu_m2_s": 0.0049990947515684385,
+      "nominal_nu_m2_s": 0.005
+    }
+  ],
+  "case_status_counts": {
+    "COMPLETED": 73,
+    "REJECTED": 1
+  },
+  "matrix_status_counts": {
+    "PASS": 21,
+    "PARTIAL": 7,
+    "FAIL": 1,
+    "NOT RUN": 11
+  },
+  "method_limit": "Checkpoint continuation summary compares one monorate step after synchronized restoration; pending proof separately restores/finishes a subcycle. The explicit integrator command is part of the reproduction recipe, not a persisted integrator-selection lock."
 }

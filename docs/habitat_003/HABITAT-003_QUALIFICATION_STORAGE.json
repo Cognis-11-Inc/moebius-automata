@@ -1,0 +1,69 @@
+{
+  "status": "ARCHIVED_HASH_RESTORE_AND_EXECUTION_VERIFIED",
+  "phase": "qualification",
+  "verified_utc": "2026-11-28T00:58:07.377760+00:00",
+  "purpose": "HABITAT003 qualification, including retained failures, source and executables",
+  "run": "habitat-003-20261127",
+  "archive_version": "habitat-003-qualification-v1",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "source": "/dev/sdb2",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon",
+    "fstype": "ntfs3"
+  },
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-003/2026-11-27/habitat-003-qualification-v1/evidence.tar.gz",
+  "archive_sha256": "3e7ed729a2c63c2f958ace91ae44a90ae628ef941b96a55ec1b8bbae3dc5ec77",
+  "archive_bytes": 15552334,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-003/2026-11-27/habitat-003-qualification-v1/MANIFEST.json",
+  "manifest_sha256": "50924f7ab19d3d76b6c0e2f2a409fecd29840af1cce062c83ab2eb6b9514f41a",
+  "member_count": 760,
+  "member_bytes": 95680257,
+  "classification": {
+    "research/reports/tests/continuity/Atlas snapshots": {
+      "files": 183,
+      "bytes": 10278037
+    },
+    "source/executables/provenance": {
+      "files": 7,
+      "bytes": 5747593
+    },
+    "raw physical traces/checkpoints/timing": {
+      "files": 570,
+      "bytes": 79654627
+    }
+  },
+  "all_restored_hashes_match": true,
+  "restore_working_copy": "/home/cognis/habitat-003-qualification-restored-20261127",
+  "working_root": "/home/cognis/habitat-003-20261127",
+  "source_head": "5d69505236746f4e35d896824a83f217f1e4a5fb",
+  "restore_execution": {
+    "command": [
+      "/home/cognis/habitat-003-qualification-restored-20261127/ordinary-certified/habitat_scientific.binary",
+      "replay",
+      "/home/cognis/habitat-003-qualification-restored-20261127/prearchive-proof/initial.json",
+      "/home/cognis/habitat-003-qualification-restored-20261127/restored-replay.json",
+      "20"
+    ],
+    "initial_sha256": "7bf40bdbbd13dec196857c36447f39eea715aa2bb35c081f67181a895761e53d",
+    "expected_final_sha256": "fe18d2bcc3aab024e4f1e4c20c2c14b946cb027f6b3be59547060b94722a1e4d",
+    "restored_final_sha256": "fe18d2bcc3aab024e4f1e4c20c2c14b946cb027f6b3be59547060b94722a1e4d",
+    "full_checkpoint_equal": true
+  },
+  "restore_instructions": "Reverify Mermogon UUID D0A02EEBA02ED82C, archive and manifest hashes. Extract into a new directory, verify every member size/hash, execute captured binary with matching backend/source/precision checkpoint. Keep all versions. Cargo caches/toolchain are external prerequisites, not archive members. Pilot source snapshot limitation is recorded separately.",
+  "additional_restored_final_case": {
+    "command": [
+      "/home/cognis/habitat-003-qualification-restored-20261127/ordinary-certified/habitat_scientific.binary",
+      "replay",
+      "/home/cognis/habitat-003-qualification-restored-20261127/qualification/replay-control/initial.json",
+      "/home/cognis/habitat-003-qualification-restored-20261127/restored-final-control.json",
+      "100"
+    ],
+    "exitcode": 0,
+    "full_checkpoint_equal": true,
+    "expected_sha256": "98c51d1cfa2fbc85528842499a229251265f5a38af48c5480c14ead1062d4ac9",
+    "actual_sha256": "98c51d1cfa2fbc85528842499a229251265f5a38af48c5480c14ead1062d4ac9",
+    "retention": "Output duplicates the archived final checkpoint exactly; no unique bulky evidence outside the authoritative archive"
+  }
+}

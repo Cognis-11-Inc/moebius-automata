@@ -34,3 +34,9 @@ For external artifacts verify Mermogon mount UUID D0A02EEBA02ED82C on this run,
 archive/manifest SHA256, and each restored member hash/size; execute the restored
 captured binary against its matching checkpoint. STORAGE records authoritative
 versions and working-copy paths. Never overwrite a version or discard old evidence.
+
+Harness input boundary: Diffusion and Advection controls require at least one
+species; the registered plan supplies it. Malformed CLI argument counts and
+out-of-contract scenario/species combinations are not qualified as graceful CLI
+refusals (the analytical error evaluator indexes species0). This limitation is
+separate from the validated Chamber state/transaction/checkpoint refusal contract.

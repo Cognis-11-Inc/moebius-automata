@@ -1,5 +1,5 @@
 {
-  "status": "FOCUSED VERIFIED; final clean broad suite pending",
+  "status": "PARTIAL programme; bounded CPU contracts validated, failures and NOT RUN preserved",
   "focused": {
     "command": "cargo test --offline -p moebius-morph --all-features --lib scientific",
     "pass": 10,
@@ -52,12 +52,159 @@
     "pass": 5,
     "fail": 0
   },
-  "broad": "PENDING authorized clean source commit",
-  "final_physical_qualification": "PENDING",
+  "broad": {
+    "source_head": "5d69505236746f4e35d896824a83f217f1e4a5fb",
+    "status_before": "",
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--workspace",
+      "--all-targets",
+      "--all-features"
+    ],
+    "started_utc": "2026-11-28T00:45:30.536244+00:00",
+    "status": "PASS",
+    "returncode": 0,
+    "status_after": "",
+    "ended_utc": "2026-11-28T00:47:47.356787+00:00",
+    "passed": 293,
+    "failed": 0,
+    "ignored": 0
+  },
+  "final_physical_qualification": {
+    "status": "PARTIAL",
+    "executed_cases": 74,
+    "completed": 73,
+    "conservation_rejected": 1,
+    "matrix": {
+      "PASS": 21,
+      "PARTIAL": 7,
+      "FAIL": 1,
+      "NOT RUN": 11
+    }
+  },
   "raw_root": "/home/cognis/habitat-003-20261127",
   "precommit_whitespace": {
     "first_check": "FAIL: four Markdown hard-break trailing spaces in copied directive; source commit sequence incorrectly continued",
     "correction": "Trailing spaces removed in follow-up commit, original preserved in immutable implementation archive; no runtime/source identity change",
     "final_check": "PASS"
+  },
+  "experiment_source": "5d69505236746f4e35d896824a83f217f1e4a5fb",
+  "final_cases": {
+    "COMPLETED": 73,
+    "REJECTED": 1
+  },
+  "matrix_status_counts": {
+    "PASS": 21,
+    "PARTIAL": 7,
+    "FAIL": 1,
+    "NOT RUN": 11
+  },
+  "independent_replay": {
+    "full_trace_equal": true,
+    "full_final_equal": true
+  },
+  "adversarial_loads": [
+    {
+      "case": "source",
+      "command": [
+        "/home/cognis/habitat-003-20261127/ordinary-certified/habitat_scientific.binary",
+        "replay",
+        "/home/cognis/habitat-003-20261127/adversarial/source.json",
+        "/home/cognis/habitat-003-20261127/adversarial/source-output.json",
+        "1"
+      ],
+      "exitcode": 1,
+      "stderr": "Error: MorphError(\"H003 source/backend/schema mismatch\")\n",
+      "output_absent": true
+    },
+    {
+      "case": "backend",
+      "command": [
+        "/home/cognis/habitat-003-20261127/ordinary-certified/habitat_scientific.binary",
+        "replay",
+        "/home/cognis/habitat-003-20261127/adversarial/backend.json",
+        "/home/cognis/habitat-003-20261127/adversarial/backend-output.json",
+        "1"
+      ],
+      "exitcode": 1,
+      "stderr": "Error: MorphError(\"H003 source/backend/schema mismatch\")\n",
+      "output_absent": true
+    },
+    {
+      "case": "schema",
+      "command": [
+        "/home/cognis/habitat-003-20261127/ordinary-certified/habitat_scientific.binary",
+        "replay",
+        "/home/cognis/habitat-003-20261127/adversarial/schema.json",
+        "/home/cognis/habitat-003-20261127/adversarial/schema-output.json",
+        "1"
+      ],
+      "exitcode": 1,
+      "stderr": "Error: MorphError(\"H003 source/backend/schema mismatch\")\n",
+      "output_absent": true
+    },
+    {
+      "case": "mass",
+      "command": [
+        "/home/cognis/habitat-003-20261127/ordinary-certified/habitat_scientific.binary",
+        "replay",
+        "/home/cognis/habitat-003-20261127/adversarial/mass.json",
+        "/home/cognis/habitat-003-20261127/adversarial/mass-output.json",
+        "1"
+      ],
+      "exitcode": 1,
+      "stderr": "Error: MorphError(\"H003 carrier inventory\")\n",
+      "output_absent": true
+    },
+    {
+      "case": "ownership",
+      "command": [
+        "/home/cognis/habitat-003-20261127/ordinary-certified/habitat_scientific.binary",
+        "replay",
+        "/home/cognis/habitat-003-20261127/adversarial/ownership.json",
+        "/home/cognis/habitat-003-20261127/adversarial/ownership-output.json",
+        "1"
+      ],
+      "exitcode": 1,
+      "stderr": "Error: MorphError(\"H003 overlapping or incomplete physical ownership\")\n",
+      "output_absent": true
+    },
+    {
+      "case": "body",
+      "command": [
+        "/home/cognis/habitat-003-20261127/ordinary-certified/habitat_scientific.binary",
+        "replay",
+        "/home/cognis/habitat-003-20261127/adversarial/body.json",
+        "/home/cognis/habitat-003-20261127/adversarial/body-output.json",
+        "1"
+      ],
+      "exitcode": 1,
+      "stderr": "Error: MorphError(\"H003 clock/body envelope\")\n",
+      "output_absent": true
+    }
+  ],
+  "raw_integrity": "All74 endpoint partition/inventory audits, source identities and checkpoint restoration verified; traces use Rust per-tick diagnostics; no independent per-tick full-payload archive",
+  "untested": [
+    "localized interface scattering",
+    "fixed-box3D convergence",
+    "new-body closure",
+    "moving refinement",
+    "full GPU transaction",
+    "native Witness trajectory comparisons",
+    "real memory/driver exhaustion"
+  ],
+  "archive_verification": {
+    "implementation": "HABITAT-003_STORAGE.json",
+    "qualification": "HABITAT-003_QUALIFICATION_STORAGE.json",
+    "hash_restore_and_execution": "VERIFIED",
+    "restored_final_control_exact": true
+  },
+  "publication_svg_whitespace": {
+    "initial_staged_check": "FAIL; Matplotlib multiline path padding, caught before publication commit",
+    "lines_normalized": 1275,
+    "correction": "Trailing whitespace removed; parsed XML element/normalized attribute/text signatures identical",
+    "restaged_check": "PASS"
   }
 }
