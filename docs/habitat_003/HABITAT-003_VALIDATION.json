@@ -54,5 +54,10 @@
   },
   "broad": "PENDING authorized clean source commit",
   "final_physical_qualification": "PENDING",
-  "raw_root": "/home/cognis/habitat-003-20261127"
+  "raw_root": "/home/cognis/habitat-003-20261127",
+  "precommit_whitespace": {
+    "first_check": "FAIL: four Markdown hard-break trailing spaces in copied directive; source commit sequence incorrectly continued",
+    "correction": "Trailing spaces removed in follow-up commit, original preserved in immutable implementation archive; no runtime/source identity change",
+    "final_check": "PASS"
+  }
 }

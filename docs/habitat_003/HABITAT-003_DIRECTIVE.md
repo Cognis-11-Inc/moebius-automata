@@ -1,10 +1,10 @@
 # MŒBIUS AUTOMATA
 # HABITAT-003 — Scientific Computational Architecture & Conservative Multiscale Atmosphere
 
-**Issued by:** Cognis 11 Inc.  
-**Classification:** Experimental Research and Development  
-**Starting publication:** `9c5c103c0d668976d378c6e96a8aae52e485de62`  
-**Execution environment:** FORGE  
+**Issued by:** Cognis 11 Inc.
+**Classification:** Experimental Research and Development
+**Starting publication:** `9c5c103c0d668976d378c6e96a8aae52e485de62`
+**Execution environment:** FORGE
 **Canonical integration:** NOT AUTHORIZED
 
 ---
