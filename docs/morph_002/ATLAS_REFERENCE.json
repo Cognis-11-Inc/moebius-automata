@@ -14,8 +14,8 @@
   "snapshot_members": [
     {
       "path": "00_HOME/INDEX.md",
-      "bytes": 1725,
-      "sha256": "6099adcb0a92094f6e4208ffa1fcda70ac4bc14cfc89ec6d18a1fcd6d6da785b"
+      "bytes": 2013,
+      "sha256": "0ec529317e1cd99d4bb9888b816654003490424547781803d986cbd0bfbf5286"
     },
     {
       "path": "00_HOME/STATUS_GUIDE.md",
@@ -470,6 +470,266 @@
       "path": "09_EVIDENCE/HABITAT_003_LIMITS.md",
       "bytes": 1174,
       "sha256": "26b78eae26dccd7bedb565fbb48b63322a809bf463d7abb611d47a884895f4d1"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_CART3D.md",
+      "bytes": 2525,
+      "sha256": "cd42317ad138c81b597b902812cfe685a2d4ea57486dd7a056a1bd61d5cc9b20"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_AMREX.md",
+      "bytes": 2745,
+      "sha256": "72fbfec7d1cf2e598538bfabd6012212afb9681fa14d717da5470799a4b71df4"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_WALBERLA.md",
+      "bytes": 2393,
+      "sha256": "46314aaa0dcd4ba2db177d030ad0566a1c62ab50fc894277405cb63ccadc293b"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_PALABOS.md",
+      "bytes": 2766,
+      "sha256": "7f7dd75dc7b77af3b08af479fa4ef1341be252d570286904f197bd05b788c328"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_OPENLB.md",
+      "bytes": 2374,
+      "sha256": "e5c96909d8409234d27d7f2574216814d848497e8dc35c81679a5ff0413eca2c"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_SAMRAI.md",
+      "bytes": 2405,
+      "sha256": "2acc612b619b2a7d9b837de84462351b1b12ffbe5ec81abb83a2b3bfc04ab4c7"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_P4EST.md",
+      "bytes": 2593,
+      "sha256": "5d1455e3520c297e8835fd7631b5662734151f836353bab434e08abc0a2329a8"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_CHOMBO.md",
+      "bytes": 2506,
+      "sha256": "548d30ab332f508f1b749e7d88a70be5e53db43dfe0dca84873913b6f05c3a06"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_FLASH.md",
+      "bytes": 2422,
+      "sha256": "d8c75c7505d364b2adfebbe4f9ce69cf598e1f5e2f18cc2c1477f1e532531666"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_AREPO.md",
+      "bytes": 2363,
+      "sha256": "7386183bf6322aebc17a38600a7cfe8c1f7e9814eaf8cb16b75efee9e559d410"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_GADGET4.md",
+      "bytes": 2420,
+      "sha256": "d9dea32be7d147c9313afe4ef83cc25bfeb37a8c968ce9a90ca23d9a34ea8f47"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_ATHENA.md",
+      "bytes": 2568,
+      "sha256": "ceba6039b4530538c5b4e1be0bd1c45acda8903f8b03f58fae3413a3e014cfe4"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_RAMSES.md",
+      "bytes": 2433,
+      "sha256": "b977daf84cdb460114cdb15718ca8efa37ddbc782eaef04cc4eb0f521d4dd2ff"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_ENZO.md",
+      "bytes": 2406,
+      "sha256": "8f57c4b0357bdf70c082077e11a7110590bfb4aef052680421fdfbc4dcc08037"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_HYPERS.md",
+      "bytes": 2817,
+      "sha256": "d0a3c2ea9d152b11530ee017fd3ac578b3bac1bc582ad444ad6ecbbf415ab615"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_SWMF.md",
+      "bytes": 2552,
+      "sha256": "cd98c4490b18c64e98ca692e4cc1a81434954a132ea389cfad6e3dbb524c734d"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_WARPX.md",
+      "bytes": 2392,
+      "sha256": "147af552f45f98530cefcadfc1c1a08f29f1d0535a466ca0b0b489f09a5b81a7"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_SPARTA.md",
+      "bytes": 2620,
+      "sha256": "4c7783aabdd725b33e3aec44c7f4e6b5d9e03f60c02368c3db18791440745d0e"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_LAMMPS.md",
+      "bytes": 2439,
+      "sha256": "81a371efdbcaca418aeb750ca0a2da684e86dec07193a1c07de16bf878b9c1d0"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_NASADSMC.md",
+      "bytes": 2643,
+      "sha256": "07a910a86aed05991ffe310584ddab5216d23b9de07bbe9bbcb7d33d67dcb9ef"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_BERGERCOLELLA.md",
+      "bytes": 2619,
+      "sha256": "3672120e8cd203f2fd268e830c7dbb0e6f15b706af7341806267b62c62f1f437"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_DUPUISCHOPARD.md",
+      "bytes": 2613,
+      "sha256": "88c20af7712fe3e2ddc57d54b766266c709d45789fe247a1471076960e02b23c"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_CLAWPACK.md",
+      "bytes": 2500,
+      "sha256": "ba3ec36412c07ee0681119b888d8374a850b38851779fb8b50497eef01bf5e7f"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_HYPRE.md",
+      "bytes": 2421,
+      "sha256": "a2c031d343117aa79431bb0546efe3c624f96fa523ceb68af5559d74cc88fb01"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_IBAMR.md",
+      "bytes": 2417,
+      "sha256": "69532179ec242b06d6d60599c869434598ff472d0c55faad1aff80dfdcad1f28"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_LIBROM.md",
+      "bytes": 2432,
+      "sha256": "048f639d9139e6cc752451da9af4f31fda0465d10cd9afba4d56c5f164c089df"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_EXAFMM.md",
+      "bytes": 2402,
+      "sha256": "fd53c161b7bfa86483c15d9846899c152c07efdcb98da02100b5fc442eeed87e"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_NAIRNMPM.md",
+      "bytes": 2453,
+      "sha256": "c41d7f7ac77240dd5bbdf043abfc5f6e8f2af9c72564f7eef221dbeeaf683e52"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_CHASTE.md",
+      "bytes": 2416,
+      "sha256": "b1545846da430e5358fe17575b783a9271782f61200313114e05ab2bf036feff"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_PHYSICELL.md",
+      "bytes": 2425,
+      "sha256": "d7920abacb82f879a8a2a17c6522b09e5a2db0869daa4c3364a402d75746b7cf"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_MORPHEUS.md",
+      "bytes": 2450,
+      "sha256": "14eb045d3b53a03c637a698d906d26ba6ddd0ce716dfacbf8f45989d992b152e"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_COMPUCELL.md",
+      "bytes": 2404,
+      "sha256": "e38d2ce33c19c1aabbbfd58a7965975eb6fa96336ebf33836c8606f8544e90cb"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_SOFA.md",
+      "bytes": 2406,
+      "sha256": "5f7cbd30956125a7e42b8c2efddf6544aaccc4606e1929fd9e6f83a50a0af492"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_FEBIO.md",
+      "bytes": 2390,
+      "sha256": "83a602df8d22ae9b516ce3875d8c3b62442886569d9426d5fad94b7397f3359d"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_COPASI.md",
+      "bytes": 2388,
+      "sha256": "37d45638c2932cd4955ae8b2e162b6c37d69834fbbdb347860e15d47b2af7096"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_MOOSE.md",
+      "bytes": 2424,
+      "sha256": "149193b83788d6a4c96b1e1fb8a60960d130856873fbe215fa21e09c361c9ac2"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_BIODYNAMO.md",
+      "bytes": 2414,
+      "sha256": "95b6c178e7f64c6d72503f09f4911e79bdb8f3e4ca0104583336c935ea41b7f5"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_NEURON.md",
+      "bytes": 2422,
+      "sha256": "325d3cf4a1d37bc8147826721b825eef3162655b8e5aca346c9c141cadaec342"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_NEST.md",
+      "bytes": 2457,
+      "sha256": "b5f84850c508a9bbb1ce4c4afcfa14daa28694df1742a518c948693f9d6214aa"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_DAMASK.md",
+      "bytes": 2414,
+      "sha256": "5fbc177c84d11433a50c06e6218920cfb68b82e0583e9f7027a9d7709226ee6a"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_VANLEER1979.md",
+      "bytes": 2593,
+      "sha256": "47ab0bbffcba4f41e1874a1199ec40b1876b05845e8a73a886ffa6f194609971"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_SSP2001.md",
+      "bytes": 2683,
+      "sha256": "9e7f62f67e7536f2e2fb2ebc1340f7b54f92b6977f1b608ac2cd6ebbfe599553"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_ZENG2014.md",
+      "bytes": 2483,
+      "sha256": "ce706f27cd2f99a7deb2f3b0a66f8f4190cb2e07d76a93004ec064539acf4e36"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_ROHDE2006.md",
+      "bytes": 2636,
+      "sha256": "381386a2d71a60059ec707ef065adbb48d912681103727e115c73413aa44511e"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_KOKKOS.md",
+      "bytes": 2234,
+      "sha256": "b8cf1e3f329f799e23f5a6adebd65ffeff590f0b2d58d05125869bbd4b057329"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_RAJA.md",
+      "bytes": 2241,
+      "sha256": "44c3ae99f81dfc850c4ef90e024100decafef90f9f17ed07a2a419db40897833"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_SYCL.md",
+      "bytes": 2203,
+      "sha256": "7b35b2ba16eb6179f479181c50df235e4a1eb313d2e0aa1c4d3f5d879708a04a"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_RUSTSIMD.md",
+      "bytes": 2320,
+      "sha256": "d24fec905965b7d1ff312daff17e53c6204fcc6bbb1946f5ca61a47ceae812f2"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCM4_OPENCLPROFILE.md",
+      "bytes": 2437,
+      "sha256": "01371a922ae8917f8f7be3ef7c38505936b15152cc6952b56692e2a77649704b"
+    },
+    {
+      "path": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCIENTIFIC_COMPUTATIONAL_METHODS_V2.md",
+      "bytes": 4581,
+      "sha256": "430414e97c5e8f2b0c3610761f415685c38e350ae3af618acd35d4658037c83b"
+    },
+    {
+      "path": "11_FORGE_HARDWARE/v1/FORGE_HARDWARE_DOSSIER.md",
+      "bytes": 1016,
+      "sha256": "7d6b2643d8b031ebf7337983469fc87f45698c468bbe763677271e3309ad6392"
+    },
+    {
+      "path": "11_FORGE_HARDWARE/v1/FORGE_EXECUTION_BOUNDARIES.md",
+      "bytes": 674,
+      "sha256": "e154fb441a10952098f832e823a24c269cdde6445c9efb72688740fc452df1d6"
     }
   ],
   "snapshot_note": "Rehashed after the clean MORPH-003 suite on a8cb705. Six edited notes cite that implementation commit. Ship design canon is unchanged.",
@@ -525,5 +785,13 @@
     "report": "docs/habitat_003/HABITAT-003_RESULTS.md",
     "authority": "Navigation only; live source and Mermogon raw evidence remain authoritative",
     "source_revision": "5d69505236746f4e35d896824a83f217f1e4a5fb"
+  },
+  "habitat_004": {
+    "status": "PARTIAL implementation/research; final qualification pending",
+    "scientific_library": "10_SCIENTIFIC_COMPUTATIONAL_METHODS/v2/SCIENTIFIC_COMPUTATIONAL_METHODS_V2.md",
+    "hardware_dossier": "11_FORGE_HARDWARE/v1/FORGE_HARDWARE_DOSSIER.md",
+    "donor_records": 49,
+    "report": "docs/habitat_004/HABITAT-004_RESULTS.md",
+    "authority": "Navigation only; source/Mermogon evidence govern measured claims"
   }
 }

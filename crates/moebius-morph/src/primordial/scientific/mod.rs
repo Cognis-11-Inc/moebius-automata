@@ -5,12 +5,32 @@ pub mod experiments;
 mod fv;
 mod lbm;
 pub mod mesh;
+pub mod reconstruction;
+pub mod topology;
 pub const NF: usize = 8;
 pub type U = [f64; NF];
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Model {
     FiniteVolume,
     AdaptiveLbm,
+}
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub enum Reconstruction {
+    #[default]
+    Constant,
+    Minmod,
+}
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub enum Integrator {
+    #[default]
+    Euler,
+    Ssp2,
+}
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct VortexForcing {
+    pub amplitude: f64,
+    pub wavenumber: f64,
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -38,6 +58,12 @@ pub struct Config {
     pub periodic: bool,
     pub capacity: usize,
     pub indicators: Option<Indicators>,
+    #[serde(default)]
+    pub reconstruction: Reconstruction,
+    #[serde(default)]
+    pub integrator: Integrator,
+    #[serde(default)]
+    pub vortex_forcing: Option<VortexForcing>,
 }
 impl Default for Config {
     fn default() -> Self {
@@ -55,6 +81,9 @@ impl Default for Config {
             periodic: false,
             capacity: 100_000,
             indicators: None,
+            reconstruction: Reconstruction::Constant,
+            integrator: Integrator::Euler,
+            vortex_forcing: None,
         }
     }
 }
@@ -72,6 +101,26 @@ impl Config {
     }
     pub fn validate(&self) -> Result<(), MorphError> {
         self.origin.absolute()?;
+        if self.model == Model::AdaptiveLbm {
+            require(
+                self.reconstruction == Reconstruction::Constant
+                    && self.integrator == Integrator::Euler
+                    && self.vortex_forcing.is_none(),
+                "H004 LBM candidate unchanged",
+            )?;
+        }
+        if let Some(f) = &self.vortex_forcing {
+            require(
+                self.model == Model::FiniteVolume
+                    && self.periodic
+                    && self.gravity == [0.; 3]
+                    && f.amplitude.is_finite()
+                    && (0. ..=0.02).contains(&f.amplitude)
+                    && f.wavenumber.is_finite()
+                    && (0.1..=100.).contains(&f.wavenumber),
+                "H004 manufactured source envelope",
+            )?;
+        }
         require(
             self.roots.iter().all(|&v| v > 0 && v <= 65536)
                 && self.count() <= 100_000
@@ -137,6 +186,8 @@ pub struct Ledger {
     pub wall_scalar: [[f64; 6]; 4],
     pub drag_loss: f64,
     pub body_wall_loss: f64,
+    #[serde(default)]
+    pub manufactured_impulse: V,
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -241,7 +292,8 @@ impl State {
         for k in 0..3 {
             residual[k + 1] -= self.ledger.gravity_impulse[k]
                 + self.ledger.walls_impulse[k]
-                + self.ledger.hydrostatic_support[k];
+                + self.ledger.hydrostatic_support[k]
+                + self.ledger.manufactured_impulse[k];
         }
         Diagnostics {
             total,
@@ -279,6 +331,7 @@ impl State {
                 .chain(self.ledger.gravity_impulse.iter())
                 .chain(self.ledger.walls_impulse.iter())
                 .chain(self.ledger.hydrostatic_support.iter())
+                .chain(self.ledger.manufactured_impulse.iter())
                 .all(|v| v.is_finite())
                 && self.ledger.drag_loss.is_finite()
                 && self.ledger.body_wall_loss.is_finite(),
@@ -335,7 +388,8 @@ impl State {
                             * (self.ledger.initial[k].abs()
                                 + norm(self.ledger.gravity_impulse)
                                 + norm(self.ledger.walls_impulse)
-                                + norm(self.ledger.hydrostatic_support)),
+                                + norm(self.ledger.hydrostatic_support)
+                                + norm(self.ledger.manufactured_impulse)),
                 "H003 momentum inventory",
             )?;
         }
@@ -450,6 +504,21 @@ impl Chamber {
         Ok(())
     }
     pub fn step(&mut self) -> Result<Profile, MorphError> {
+        self.step_faces(&[], None)
+    }
+    pub fn step_cached(
+        &mut self,
+        workspace: &mut topology::Workspace,
+    ) -> Result<Profile, MorphError> {
+        let start = Instant::now();
+        let faces = workspace.faces(&self.state)?;
+        self.step_faces(faces, Some(start.elapsed().as_nanos()))
+    }
+    fn step_faces(
+        &mut self,
+        provided: &[mesh::Face],
+        cache_ns: Option<u128>,
+    ) -> Result<Profile, MorphError> {
         require(self.pending.is_none(), "H003 complete pending cycle first")?;
         let start = Instant::now();
         let t = Instant::now();
@@ -459,12 +528,18 @@ impl Chamber {
             ..Default::default()
         };
         let t = Instant::now();
-        let faces = mesh::faces(&next)?;
-        p.topology_ns = t.elapsed().as_nanos();
+        let built;
+        let faces = if cache_ns.is_some() {
+            provided
+        } else {
+            built = mesh::faces(&next)?;
+            &built
+        };
+        p.topology_ns = cache_ns.unwrap_or_else(|| t.elapsed().as_nanos());
         p.faces = faces.len();
         let t = Instant::now();
         let result = match next.config.model {
-            Model::FiniteVolume => fv::advance(&mut next, &faces, self.state.config.dt),
+            Model::FiniteVolume => fv::advance(&mut next, faces, self.state.config.dt),
             Model::AdaptiveLbm => lbm::advance(&mut next),
         };
         p.numerical_ns = t.elapsed().as_nanos();
@@ -475,7 +550,7 @@ impl Chamber {
         next.cycle += 1;
         let t = Instant::now();
         if next.config.indicators.is_some()
-            && let Err(e) = mesh::adapt(&mut next, &faces)
+            && let Err(e) = mesh::adapt(&mut next, faces)
         {
             self.rejected = Some(next);
             return Err(e);
@@ -493,7 +568,7 @@ impl Chamber {
         p.leaves = next.cells.len();
         self.state = next;
         self.rejected = None;
-        p.total_ns = start.elapsed().as_nanos();
+        p.total_ns = start.elapsed().as_nanos() + cache_ns.unwrap_or(0);
         Ok(p)
     }
     pub fn digest(&self) -> Result<String, MorphError> {
@@ -509,7 +584,7 @@ impl Chamber {
         if let Some(p) = &self.pending {
             fv::validate_pending(&self.state, p)?;
         }
-        let data = serde_json::json!({"schema":"HABITAT-003/native-f64-v1","source":crate::BENCHMARK_BUILD_IDENTITY,"backend":"CPU-f64","digest":self.digest()?,"state":encode_bits(serde_json::to_value(&self.state).map_err(error)?),"pending":encode_bits(serde_json::to_value(&self.pending).map_err(error)?)});
+        let data = serde_json::json!({"schema":"HABITAT-004/native-f64-v2","source":crate::BENCHMARK_BUILD_IDENTITY,"backend":"CPU-f64","digest":self.digest()?,"state":encode_bits(serde_json::to_value(&self.state).map_err(error)?),"pending":encode_bits(serde_json::to_value(&self.pending).map_err(error)?)});
         crate::write_atomic(path, &serde_json::to_string(&data).map_err(error)?)
     }
     pub fn load(path: &Path) -> Result<Self, MorphError> {
@@ -520,7 +595,7 @@ impl Chamber {
         let mut v: serde_json::Value =
             serde_json::from_slice(&std::fs::read(path).map_err(error)?).map_err(error)?;
         require(
-            v["schema"] == "HABITAT-003/native-f64-v1"
+            v["schema"] == "HABITAT-004/native-f64-v2"
                 && v["source"] == crate::BENCHMARK_BUILD_IDENTITY
                 && v["backend"] == "CPU-f64",
             "H003 source/backend/schema mismatch",

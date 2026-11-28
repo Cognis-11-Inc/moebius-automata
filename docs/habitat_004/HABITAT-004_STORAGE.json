@@ -1,0 +1,72 @@
+{
+  "status": "ARCHIVED_HASH_RESTORE_EXECUTION_VERIFIED",
+  "phase": "implementation",
+  "run": "habitat-004-20261127",
+  "archive_version": "habitat-004-implementation-v2",
+  "verified_utc": "2026-11-28T04:16:13.959198+00:00",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "source": "/dev/sdb2",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon",
+    "fstype": "ntfs3"
+  },
+  "volume_uuid": "D0A02EEBA02ED82C",
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-004/2026-11-27/habitat-004-implementation-v2/evidence.tar.gz",
+  "archive_sha256": "6b4e0d26c1d28ac64c8cc5b1cdbd81483821c8dc1ba7c21dc939479cce29152c",
+  "archive_bytes": 408960030,
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-004/2026-11-27/habitat-004-implementation-v2/MANIFEST.json",
+  "manifest_sha256": "432c1f6ad77f9a27bb1ee0ffbcde2f09944d2a32f649e7c6910b11c45734fb58",
+  "member_count": 415,
+  "member_bytes": 463871123,
+  "classification": {
+    "research/protocols/reports/failure/Atlas/reproduction metadata": {
+      "files": 261,
+      "bytes": 7682690
+    },
+    "raw runs/traces/checkpoints/profiling": {
+      "files": 130,
+      "bytes": 44474907
+    },
+    "source/executables/build identity": {
+      "files": 24,
+      "bytes": 411713526
+    }
+  },
+  "all_restored_hashes_match": true,
+  "restore_working_copy": "/home/cognis/habitat-004-implementation-v2-restored-20261127",
+  "working_root": "/home/cognis/habitat-004-20261127",
+  "source_head": "e02b72099d1bc1fc6261e3b9ff3fe07e4c809667",
+  "restore_execution": {
+    "command": [
+      "/home/cognis/habitat-004-implementation-v2-restored-20261127/ordinary-v2-certified/habitat_fidelity.binary",
+      "replay",
+      "/home/cognis/habitat-004-implementation-v2-restored-20261127/prearchive-proof-v2/initial.json",
+      "/home/cognis/habitat-004-implementation-v2-restored-20261127/restored-replay.json",
+      "20",
+      "cached"
+    ],
+    "expected_final_sha256": "d32c147a6f66eb8094aa31dea9f9891c13538c4a2564e7f1f7fda83ee51df88b",
+    "actual_final_sha256": "d32c147a6f66eb8094aa31dea9f9891c13538c4a2564e7f1f7fda83ee51df88b",
+    "complete_checkpoint_equal": true
+  },
+  "restore_instructions": "Reverify volume UUID D0A02EEBA02ED82C and archive/manifest SHA256; extract into a new directory; verify each member hash/size. Matching captured binary/checkpoint source/backend/schema required. Full workspace source capsule includes non-Rust compile inputs too; Cargo registry/toolchain external. Restore prior003 separately from ENTRY references for old-source baseline commands. Do not overwrite versions or discard prior copies.",
+  "restored_source_rebuild": {
+    "source_members_verified": 2347,
+    "source_member_bytes": 244984625,
+    "selected_target": "habitat_fidelity",
+    "offline_rebuild_pass": true,
+    "full_checkpoint_equal": true,
+    "command": [
+      "/home/cognis/habitat-004-implementation-v2-restored-20261127/rebuilt-selected-v2/habitat_fidelity.binary",
+      "replay",
+      "/home/cognis/habitat-004-implementation-v2-restored-20261127/prearchive-proof-v2/initial.json",
+      "/home/cognis/habitat-004-implementation-v2-restored-20261127/rebuilt-final-v2.json",
+      "20",
+      "cached"
+    ],
+    "binary_sha256": "1e26be665c50eff84e2fbfb2c40ddbfab4da25c5375f7c5d7370ef19df52bff4",
+    "retention": "Derivative working target; source/expected checkpoint already archived",
+    "scope": "Selected numerical target rebuilt, no full-workspace suite on this restored tree; external registry/toolchain required"
+  }
+}

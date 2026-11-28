@@ -1,0 +1,7 @@
+{
+  "status": "PENDING clean-source final hardware runs",
+  "preliminary_gpu": "FP32/FP64/copy arithmetic verified; final rerun planned",
+  "cpu_source": "crates/moebius-morph/examples/habitat_hardware.rs",
+  "gpu_source": "python/habitat_004_hardware_gpu.py",
+  "scope": "No environmental acceleration claim"
+}

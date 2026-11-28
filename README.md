@@ -405,3 +405,9 @@ Witness owner. See [results and limitations](docs/habitat_003/HABITAT-003_RESULT
 [the scientific donor library](docs/habitat_003/SCIENTIFIC_DONOR_ATLAS.md) and
 [reproduction](docs/habitat_003/REPRODUCE.md). The failed LBM interface is retained;
 GPU environmental integration and new-owner visualization remain unqualified.
+
+HABITAT-004 extends the experimental scientific owner with fixed-box3D controls,
+explicit limited reconstruction/SSP2 ablations and a derived topology cache.
+[The dossier](docs/habitat_004/HABITAT-004_RESULTS.md) separates physical fidelity,
+conservation, source-bound replay and hardware microbenchmarks. Recursive authority,
+full GPU atmosphere, new body coupling and native scientific Witness remain gated.

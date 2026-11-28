@@ -1,0 +1,131 @@
+{
+  "status": "FOCUSED VERIFIED; broad/final qualification pending",
+  "focused_rust": {
+    "pass": 19,
+    "fail": 0,
+    "command": "cargo test --offline -p moebius-morph --all-features --lib scientific"
+  },
+  "hardware_tests": {
+    "pass": 2,
+    "fail": 0
+  },
+  "python_integrity": {
+    "pass": 5,
+    "fail": 0
+  },
+  "honest_red": [
+    {
+      "property": "topology",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "-p",
+        "moebius-morph",
+        "--all-features",
+        "--lib",
+        "cached_and_rebuilt_topology_match_after_mesh_changes",
+        "--",
+        "--nocapture"
+      ],
+      "mutant_failed": true,
+      "restored_pass": true,
+      "restored_source_sha256": "d619614228954b638f4e610084d1f6407fb5bb92188b004190733f9b4adf6f60"
+    },
+    {
+      "property": "reconstruction",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "-p",
+        "moebius-morph",
+        "--all-features",
+        "--lib",
+        "reconstructed_negative_density_is_refused",
+        "--",
+        "--nocapture"
+      ],
+      "mutant_failed": true,
+      "restored_pass": true,
+      "restored_source_sha256": "7cf0bb54c1dc5425967318a265fa93605ca87ce2b6a0d36d6fb90e8dfc2abfb1"
+    },
+    {
+      "property": "source-impulse",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "-p",
+        "moebius-morph",
+        "--all-features",
+        "--lib",
+        "manufactured_source_global_impulse_has_independent_integral",
+        "--",
+        "--nocapture"
+      ],
+      "mutant_failed": true,
+      "restored_pass": true,
+      "restored_source_sha256": "8f859b2390057d262015d243ab768e66652cba96895c9acb1209f43d11f2e277"
+    },
+    {
+      "property": "viscous-reference",
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "-p",
+        "moebius-morph",
+        "--all-features",
+        "--lib",
+        "oblique_reference_includes_viscous_acoustic_decay",
+        "--",
+        "--nocapture"
+      ],
+      "mutant_failed": true,
+      "restored_pass": true,
+      "restored_source_sha256": "2bf854763daf553ee7674463ddd1dd8c679479c278c56af173dd199ebbb1586f"
+    }
+  ],
+  "natural_minmod_underflow_red_then_fixed": true,
+  "strict_static": "Clippy all-targets/all-features and fmt PASS",
+  "legacy_compatibility": {
+    "command": [
+      "/home/cognis/habitat-004-20261127/current_legacy_scientific.binary",
+      "/home/cognis/habitat-004-20261127/compatibility-diffusion16",
+      "Diffusion",
+      "FiniteVolume",
+      "16",
+      ".0002",
+      "1000",
+      "refined",
+      "mono",
+      "1"
+    ],
+    "old_complete_physical_state_equal_after_declared_schema_metadata_removal": true,
+    "new_config_fields": {
+      "reconstruction": "Constant",
+      "integrator": "Euler",
+      "vortex_forcing": null
+    },
+    "new_ledger_zero_field": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "limits": "Source/schema headers differ by design; no claim old003 checkpoints load in004 binary"
+  },
+  "lbm_diagnosis": {
+    "every_candidate_population_exact": true,
+    "net_interface_mass_defect_kg": 1.1080826923257417e-07,
+    "net_interface_px_defect_kg_m_s": -5.59540559079549e-06
+  },
+  "broad": "PENDING clean authorized source commit",
+  "final121_cases": "PENDING",
+  "reference_correction": {
+    "old_inviscid_comparator": "implementation-v1 preserved",
+    "new": "linear viscous wave plus initial second harmonic/mean; packet explicitly kinematic",
+    "thresholds_changed": false,
+    "completed_before_final_qualification": true
+  }
+}

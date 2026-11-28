@@ -1,0 +1,17 @@
+{
+  "status": "HASH_RESTORE_INDEPENDENT_ANALYSIS_VERIFIED",
+  "volume": {
+    "target": "/run/media/cognis/Mermogon",
+    "uuid": "D0A02EEBA02ED82C",
+    "label": "Mermogon"
+  },
+  "archive": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-004/2026-11-27/habitat-004-prequalification-supplement-v1/evidence.tar.gz",
+  "archive_sha256": "5ae70ac7db4e40b2dee37b54f05f4240768f7a33dc1e1459bd3533a46a859fd7",
+  "manifest": "/run/media/cognis/Mermogon/Moebius-Automata/experiments/HABITAT-004/2026-11-27/habitat-004-prequalification-supplement-v1/MANIFEST.json",
+  "manifest_sha256": "d022aa9a9b578e9bd9ed83580a3c90a90c0f0b649eefd6be434f535cbc509284",
+  "member_count": 31,
+  "member_bytes": 1373742,
+  "restored_at": "/home/cognis/habitat-004-prequalification-supplement-restored-20261127",
+  "restore_analysis": "Independent analytic/inventory checks rerun on all four restored pilot endpoints; executables/source bound by implementation-v2",
+  "verified_utc": "2026-11-28T04:20:26.921912+00:00"
+}

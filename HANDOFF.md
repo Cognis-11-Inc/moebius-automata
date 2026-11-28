@@ -1,3 +1,94 @@
+# HABITAT-004 reference-v2 checkpoint — 2026-11-28T04:15:58.709276+00:00, Codex
+
+PARTIAL, authorized dirty004 source/docs; main HEAD e02b720 at this write. Review found
+an inviscid oblique comparator despite configured viscosity, BEFORE final qualification.
+Corrected to linear viscous density/momentum evolution including initial quadratic
+momentum modes; full nonlinear model error remains O(amplitude²). Packet Gaussian
+is explicitly a kinematic comparator; homogeneous controls govern viscous scattering.
+Reference/boundary/source validation strengthened. No acceptance limit changed.
+19 focused tests PASS,2 hardware tests PASS,5 Python integrity tests PASS;4 honest-red
+mutants/restorations PASS (including viscous-decay reference). Static gates PASS.
+Earlier implementation-v1/source capsules remain immutable; selected full-source
+restored numerical target rebuilt and reproduced its complete checkpoint exactly.
+V2 build selection recorded in raw BUILD_SELECTION.json; new source/asset capsule and
+implementation-v2 archive supersede current-source pointers, never overwrite v1.
+BROAD CLEAN SOURCE SUITE and FINAL121 CASES STILL PENDING source commit. Canonical
+runtime/old LBM/body/Witness remain unchanged; no new dependencies/driver edits.
+Follow the dependency sequence in the prior checkpoint; published receipt identifies
+latest implementation archive and original INITIAL_STORAGE preserves v1. Exact
+current/remote SHA must be checked in Git after publication.
+
+--- Earlier implementation checkpoint retained ---
+
+# HABITAT-004 implementation checkpoint — 2026-11-28T04:03:50.750874+00:00, Codex
+
+PARTIAL / IN PROGRESS. Repo /home/cognis/Cognis_Lab/Möbius Automata, main,
+HEAD e02b72099d1bc1fc6261e3b9ff3fe07e4c809667 at this write; authorized004 source,
+reports and Atlas-reference DIRTY, no pre-existing user changes on entry. No canonical
+integration; MORPH005 PARTIAL/paused,006 suspended. Old001–003 evidence/source retained.
+
+Implemented within existing scientific owner: Config Reconstruction/Integrator and
+optional bounded manufactured vortex force; FV primitive minmod and SSP2 stages,
+intermediate validation and external impulse accounting; private derived face cache
+with exact geometry-key invalidation; fixed-box3D/control builder/recorder and independent
+Python reference/auditor. Files scientific/{mod,fv,reconstruction,topology,tests}.rs,
+scientific/experiments/fidelity.rs and experiments.rs export; examples habitat_fidelity.rs
+and habitat_hardware.rs/Cargo targets; python/habitat_004_{qualification,hardware_gpu,
+lbm_audit,donors}.py plus test_habitat_004_integrity.py. Source schema native-f64-v2
+intentionally refuses003 headers; old captured binaries restore old data. LBM file,
+legacy primordial kernels/body closure, ship runtime and existing Witness unchanged.
+No solver code/new runtime dependency/driver or permanent system configuration change.
+
+Entry: six archive/manifest pairs rehashed, fresh003 restore760members verified,
+92 Atlas notes read/hashed, all001–003 md/JSON dossiers retained. Eleven selected full
+baseline checkpoints reproduced EXACTLY. Current first-order complete physical f64
+encoded state matches003 after declared metadata/zero-ledger field removal. Fresh
+shear32 mono0.528811ms/subcycle2.896886ms; measured face construction305184ns of
+mono0.529ms preceded cache work. Empty-rejection timing reducer error retained and
+corrected to null/0samples, not a false speed result.
+
+17 focused scientific tests PASS,2 scalar/AVX2 hardware tests PASS,5 independent
+Python integrity tests PASS; strict all-target/all-feature Clippy/fmt PASS. Three
+honest-red mutants (invalidation, reconstructed density guard, manufactured impulse)
+FAIL then restored PASS. Natural minmod underflow red found/fixed with sign tests.
+Four20-step smoke pilots complete; full source/binary of that pilot version retained.
+Final121-case qualification and clean broad suite are PENDING source commit.
+Higher-order FV is implemented, not yet fully qualified; no tuned tolerances/clipping.
+
+Original LBM failure now independently reproduced with every candidate population
+exact. Net unpaired coarse/fine exchange accounts mass1.108082692e-7kg and
+Px-5.595405591e-6kg*m/s. Second fine half changes exchange while tentative coarse
+full update still uses old fine data. Original homogeneous coarse/fine wave controls
+complete100 cycles. No normalization/revised-LBM candidate; E58 remains NOT RUN.
+
+Hardware observed:7950X16cores/32logical, AVX2/AVX-512 flags (only256-bit execution
+verified), NVML management FAIL18, perf unavailable, OpenCL RTX5060Ti driver620.73.04
+still executes verified FP32/FP64/copy microkernels. These are precommit probes, not
+GPU atmosphere or final hardware performance. Process-local CPU affinity/worker probes
+and final ordinary microbenchmarks follow clean certification. No ceilings inferred.
+
+Docs/habitat_004 includes all required dossiers; final measurements pending. Scientific
+Methods Atlas v2 has49 records with independent D0–D3 evidence, no automatically
+established D4/D5/D6. Correct p4est repository/source pin and Rohde DOI metadata resolve
+previous access/bibliographic uncertainty, old failures retained. Permanent FORGE dossier
+created. Atlas144notes/399links PASS on verified8CA451CDA451BA82; navigation only.
+Raw root /home/cognis/habitat-004-20261127. Three current source/binary capsules plus
+pilot/compatibility executable retained. Full workspace source including compile-time
+non-Rust assets is being captured separately; existing Rust-only capture is not a
+self-contained full-workspace rebuild. Required implementation Mermogon receipt will
+record classification/hashes/restoration/execution before source commit.
+
+Next: immutable implementation archive/restore gate, staged/diff check, authorized
+source commit; CLEAN cargo test --offline --workspace --all-targets --all-features;
+then121 registered cases, independent analytic/endpoint/scattering analysis, current
+hardware probes, Atlas/results/HANDOFF final update, verified final archive, metadata
+commit/push/remote check. Every gate must fail closed. Safe first inspection:
+git status --short and docs/habitat_004/HABITAT-004_VALIDATION.json. Recursive>2levels,
+alternative physical storage, optimized/higher-order subcycle, full parallel/GPU FV,
+new scientific body closure/native Witness and canonical biology remain unimplemented.
+
+--- Earlier HABITAT-003 outgoing continuity retained ---
+
 # HABITAT-003 outgoing evidence checkpoint — 2026-11-28T00:58:05.686405+00:00, Codex
 
 PARTIAL. Repo /home/cognis/Cognis_Lab/Möbius Automata, main. Certified clean source

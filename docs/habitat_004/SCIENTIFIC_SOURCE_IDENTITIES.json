@@ -1,0 +1,70 @@
+{
+  "pyclaw": [
+    {
+      "repo": "clawpack/pyclaw",
+      "revision": "30c359229953b8734187ea60b27280ebe7207757",
+      "date": "2026-11-19T16:45:17Z",
+      "files": [
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/clawpack/pyclaw/30c359229953b8734187ea60b27280ebe7207757/LICENSE",
+          "sha256": "668317944192d8217d63c0fd0730f889bd07f759b69ed6b657e1fb9902145ebe",
+          "bytes": 1524
+        },
+        {
+          "path": "src/pyclaw/limiters/tvd.py",
+          "url": "https://raw.githubusercontent.com/clawpack/pyclaw/30c359229953b8734187ea60b27280ebe7207757/src/pyclaw/limiters/tvd.py",
+          "sha256": "58d51bc57363921884265d071a75683bda0a9c32e44dc14a41fd15cd7409cb87",
+          "bytes": 13648
+        }
+      ],
+      "inspection": "Selected minmod limiter implementation and complete LICENSE; no solver import"
+    },
+    {
+      "url": "https://www.math.umd.edu/~tadmor/pub/linear-stability/Gottlieb-Shu-Tadmor.SIREV-01.pdf",
+      "path": "consulted-source/SSP2001.pdf",
+      "sha256": "b06fcbeab67fccf637c04624fb908daf84790425a0514c826bcf789a6ae015a4",
+      "bytes": 536703,
+      "inspection": "Selected relevant equations/assumptions; not claim of whole-paper reproduction"
+    },
+    {
+      "url": "https://arxiv.org/pdf/1301.0967v2",
+      "path": "consulted-source/Zeng2014.pdf",
+      "sha256": "549f67296a13c5900c669637b03c46e74d57303e12c2d2249f1a35cab2bd4831",
+      "bytes": 1693641,
+      "inspection": "Selected relevant equations/assumptions; not claim of whole-paper reproduction"
+    }
+  ],
+  "p4est": {
+    "repo": "cburstedde/p4est",
+    "revision": "d286d8da273e1d0e450d263b2b1229e8d3fe785c",
+    "date": "2026-11-23T17:48:14Z",
+    "files": [
+      {
+        "path": "COPYING",
+        "url": "https://raw.githubusercontent.com/cburstedde/p4est/d286d8da273e1d0e450d263b2b1229e8d3fe785c/COPYING",
+        "bytes": 18092,
+        "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+      },
+      {
+        "path": "src/p4est.h",
+        "url": "https://raw.githubusercontent.com/cburstedde/p4est/d286d8da273e1d0e450d263b2b1229e8d3fe785c/src/p4est.h",
+        "bytes": 25403,
+        "sha256": "99f2004639a88c895c7f1486fe0784f099485bb3ff3db026844b72d7b790ca06"
+      },
+      {
+        "path": "src/p8est.h",
+        "url": "https://raw.githubusercontent.com/cburstedde/p4est/d286d8da273e1d0e450d263b2b1229e8d3fe785c/src/p8est.h",
+        "bytes": 25586,
+        "sha256": "2286b549d6b81b2636c94c12748fdb1ae5d54eb919511dac184147418abdfa1b"
+      },
+      {
+        "path": "src/p4est_bits.h",
+        "url": "https://raw.githubusercontent.com/cburstedde/p4est/d286d8da273e1d0e450d263b2b1229e8d3fe785c/src/p4est_bits.h",
+        "bytes": 42575,
+        "sha256": "5bf7bfdef51852a07feb14abcd4260b8780c22ac3e693f4421e3949e9a46dff1"
+      }
+    ],
+    "inspection": "Selected coordinate/maximum-level/quadrant declarations and linear-index API; not entire implementation or donor reproduction"
+  }
+}

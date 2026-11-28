@@ -147,3 +147,5 @@ pub fn errors(s: &State, scenario: Scenario) -> serde_json::Value {
     let phase_error = (centroid_phase - expected_phase + 0.5).rem_euclid(1.) - 0.5;
     serde_json::json!({"normalized_l1":if scale>0.{Some(absolute/scale)}else{None},"normalized_wave_l2":if wave_scale>0.{Some((wave_l2/wave_scale).sqrt())}else{None},"shear_amplitude":amplitude/volume,"shear_exact_amplitude":0.01*(-s.config.viscosity/s.config.density*k*k*t).exp(),"centroid_phase_error_m":phase_error,"max_speed_m_s":s.diagnostics().max_speed})
 }
+
+pub mod fidelity;

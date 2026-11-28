@@ -1,0 +1,22 @@
+{
+  "status": "PRIMARY INVENTORY VERIFIED; performance qualification pending",
+  "cpu": "AMD Ryzen 9 7950X 16-Core Processor",
+  "logical_cpus": 32,
+  "physical_cores": 16,
+  "observed_isa": [
+    "SSE2",
+    "AVX",
+    "AVX2",
+    "FMA",
+    "AVX-512 families"
+  ],
+  "compiler": "exact rustc -vV in hardware raw/build identities",
+  "nvidia_management": "FAILED exit18; exact stderr retained",
+  "nvidia_opencl_device": "NVIDIA GeForce RTX 5060 Ti",
+  "opencl_reported_global_memory_bytes": 16715481088,
+  "free_vram": "UNRESOLVED",
+  "performance_counters": "perf command unavailable; no counters measured",
+  "dimm_configuration": "UNRESOLVED",
+  "source": "HARDWARE_RAW.json and gpu-micro/REPORT.json in implementation archive",
+  "scope": "Current inventory/observed API, not measured sustained hardware ceilings"
+}

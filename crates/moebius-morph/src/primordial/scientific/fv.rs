@@ -16,6 +16,18 @@ fn fluxes_coarse(
     coarse_factor: f64,
 ) -> Result<Vec<U>, MorphError> {
     let c = &s.config;
+    require(
+        faces.iter().all(|f| {
+            f.left.is_none_or(|k| s.cells.contains_key(&k))
+                && f.right.is_none_or(|k| s.cells.contains_key(&k))
+        }),
+        "H004 missing cached face owner",
+    )?;
+    let gradients = if c.reconstruction == Reconstruction::Minmod {
+        Some(reconstruction::slopes(s, faces))
+    } else {
+        None
+    };
     let mut rates: BTreeMap<u64, f64> = s.cells.keys().map(|&k| (k, 0.)).collect();
     let mut out = Vec::with_capacity(faces.len());
     for f in faces {
@@ -28,6 +40,14 @@ fn fluxes_coarse(
         }
         if f.right.is_none() {
             r.1[f.axis] = -l.1[f.axis];
+        }
+        let original_l = l;
+        let original_r = r;
+        if let Some(grad) = &gradients
+            && let (Some(a), Some(b)) = (f.left, f.right)
+        {
+            l = reconstruction::at_face(s, grad, a, b, f.axis, true)?;
+            r = reconstruction::at_face(s, grad, b, a, f.axis, false)?;
         }
         let a = f.axis;
         let lam = l.1[a].abs().max(r.1[a].abs()) + c.sound_speed;
@@ -43,9 +63,9 @@ fn fluxes_coarse(
             } else {
                 q[0] * if q[0] >= 0. { l.1[k] } else { r.1[k] }
             };
-            q[k + 1] -= c.viscosity * (r.1[k] - l.1[k]) / f.distance;
+            q[k + 1] -= c.viscosity * (original_r.1[k] - original_l.1[k]) / f.distance;
         }
-        let mut diffusion = c.viscosity / l.0.min(r.0);
+        let mut diffusion = c.viscosity / original_l.0.min(original_r.0);
         let mut speed = l.1[a].abs().max(r.1[a].abs());
         for (k, sp) in c.species.iter().enumerate() {
             let v = 0.5 * (l.1[a] + r.1[a]) + slip(c, sp)[a];
@@ -53,7 +73,7 @@ fn fluxes_coarse(
             diffusion = diffusion.max(sp.diffusivity_m2_s);
             q[k + 4] = v * if v >= 0. { l.2[k] } else { r.2[k] };
             if f.left.is_some() && f.right.is_some() {
-                q[k + 4] -= sp.diffusivity_m2_s * (r.2[k] - l.2[k]) / f.distance;
+                q[k + 4] -= sp.diffusivity_m2_s * (original_r.2[k] - original_l.2[k]) / f.distance;
             } else {
                 // absorbing outward terminal slip, no fictitious wall source
                 q[k + 4] = if f.left.is_none() {
@@ -123,11 +143,73 @@ fn gravity(s: &mut State, dt: f64, level: Option<u8>) {
         }
     }
 }
-pub(super) fn advance(s: &mut State, faces: &[mesh::Face], dt: f64) -> Result<(), MorphError> {
+fn euler(s: &mut State, faces: &[mesh::Face], dt: f64, time: f64) -> Result<(), MorphError> {
     let f = fluxes(s, faces, dt)?;
     apply(s, faces, &f, None, false);
     gravity(s, dt, None);
+    manufactured(s, dt, time);
     Ok(())
+}
+pub(super) fn advance(s: &mut State, faces: &[mesh::Face], dt: f64) -> Result<(), MorphError> {
+    let time = s.cycle as f64 * s.config.dt;
+    if s.config.integrator == Integrator::Euler {
+        return euler(s, faces, dt, time);
+    }
+    let old = s.clone();
+    euler(s, faces, dt, time)?;
+    s.validate()?;
+    euler(s, faces, dt, time + dt)?;
+    s.validate()?;
+    for (&key, p) in &mut s.cells {
+        let Payload::Fv(u) = p else { unreachable!() };
+        let Payload::Fv(v) = old.cells[&key] else {
+            unreachable!()
+        };
+        for k in 0..NF {
+            u[k] = 0.5 * (u[k] + v[k]);
+        }
+    }
+    for k in 0..3 {
+        s.ledger.gravity_impulse[k] =
+            0.5 * (s.ledger.gravity_impulse[k] + old.ledger.gravity_impulse[k]);
+        s.ledger.walls_impulse[k] = 0.5 * (s.ledger.walls_impulse[k] + old.ledger.walls_impulse[k]);
+        s.ledger.manufactured_impulse[k] =
+            0.5 * (s.ledger.manufactured_impulse[k] + old.ledger.manufactured_impulse[k]);
+    }
+    for k in 0..4 {
+        for side in 0..6 {
+            s.ledger.wall_scalar[k][side] =
+                0.5 * (s.ledger.wall_scalar[k][side] + old.ledger.wall_scalar[k][side]);
+        }
+    }
+    Ok(())
+}
+fn manufactured(s: &mut State, dt: f64, time: f64) {
+    let Some(f) = &s.config.vortex_forcing else {
+        return;
+    };
+    let k = f.wavenumber;
+    let amplitude =
+        f.amplitude * (-3. * s.config.viscosity / s.config.density * k * k * time).exp();
+    for (&key, p) in &mut s.cells {
+        let g = mesh::geometry(&s.config, key);
+        let at = g.centre();
+        let zfactor = 0.5 * (1. + (2. * k * at[2]).cos() * reconstruction::sinc(k * g.h));
+        if let Payload::Fv(u) = p {
+            for a in 0..2 {
+                let force = s.config.density
+                    * amplitude.powi(2)
+                    * k
+                    * 0.5
+                    * (2. * k * at[a]).sin()
+                    * reconstruction::sinc(k * g.h)
+                    * zfactor;
+                let j = force * g.volume() * dt;
+                u[a + 1] += j;
+                s.ledger.manufactured_impulse[a] += j;
+            }
+        }
+    }
 }
 fn accumulate(register: &mut BTreeMap<u64, U>, faces: &[mesh::Face], flux: &[U]) {
     for (f, q) in faces.iter().zip(flux) {
@@ -145,7 +227,11 @@ fn accumulate(register: &mut BTreeMap<u64, U>, faces: &[mesh::Face], flux: &[U])
 }
 pub(super) fn begin(base: &State) -> Result<Pending, MorphError> {
     require(
-        base.config.model == Model::FiniteVolume && base.bodies.is_empty(),
+        base.config.model == Model::FiniteVolume
+            && base.bodies.is_empty()
+            && base.config.reconstruction == Reconstruction::Constant
+            && base.config.integrator == Integrator::Euler
+            && base.config.vortex_forcing.is_none(),
         "H003 FV subcycle envelope",
     )?;
     let faces = mesh::faces(base)?;

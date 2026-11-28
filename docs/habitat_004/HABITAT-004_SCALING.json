@@ -1,0 +1,6 @@
+{
+  "status": "NOT RUN final qualification",
+  "dependency": "clean source commit/full suite",
+  "cases_registered": 121,
+  "plan": "python/habitat_004_qualification.py"
+}
